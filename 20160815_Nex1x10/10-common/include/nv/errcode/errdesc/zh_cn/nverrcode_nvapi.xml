@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nverrcodedesc>
+       <global>
+          <language>zh_cn</language>
+       </global>
+       <module  id="01" desc="NVAPI模块全部错误码描述">     
+              <submodule  id="00" desc="nvbasesdk子业务模块">
+                     <levelgrp level="0" desc="提示类">   
+                           <error id="0">操作成功</error> 
+                           <error id="1">操作失败</error>                                   
+                     </levelgrp>    
+                     <levelgrp level="1" desc="警告类">   
+                                 
+                     </levelgrp> 
+		     <levelgrp level="2" desc="错误类">   
+                                 
+                     </levelgrp>  
+		     <levelgrp level="3" desc="系统错误级别类">   
+                                 
+                     </levelgrp>                                                 
+              </submodule>
+              <submodule  id="01" desc="nvconfctrlsdk子业务模块">
+                     <levelgrp level="0" desc="提示类">   
+                                                    
+                     </levelgrp>    
+                     <levelgrp level="1" desc="警告类">   
+                                 
+                     </levelgrp> 
+		     <levelgrp level="2" desc="错误类">   
+                                 
+                     </levelgrp>  
+		     <levelgrp level="3" desc="系统错误级别类">   
+                                 
+                     </levelgrp>                                                 
+              </submodule>
+              <submodule  id="02" desc="nvpcdvsdk子业务模块">
+                     <levelgrp level="0" desc="提示类">   
+                                                    
+                     </levelgrp>    
+                     <levelgrp level="1" desc="警告类">   
+                                 
+                     </levelgrp> 
+		     <levelgrp level="2" desc="错误类">   
+                                 
+                     </levelgrp>  
+		     <levelgrp level="3" desc="系统错误级别类">   
+                                 
+                     </levelgrp>                                                 
+              </submodule>
+              <submodule  id="03" desc="nvmediactrlsdk子业务模块">
+                     <levelgrp level="0" desc="提示类">   
+                                                    
+                     </levelgrp>    
+                     <levelgrp level="1" desc="警告类">   
+                                 
+                     </levelgrp> 
+		     <levelgrp level="2" desc="错误类">   
+                                 
+                     </levelgrp>  
+		     <levelgrp level="3" desc="系统错误级别类">   
+                                 
+                     </levelgrp>                                                 
+              </submodule>
+              <submodule  id="04" desc="nvmeetingmgrsdk子业务模块">
+                     <levelgrp level="0" desc="提示类">   
+                                                    
+                     </levelgrp>    
+                     <levelgrp level="1" desc="警告类">   
+                                 
+                     </levelgrp> 
+		     <levelgrp level="2" desc="错误类">   
+                                 
+                     </levelgrp>  
+		     <levelgrp level="3" desc="系统错误级别类">   
+                                 
+                     </levelgrp>                                                 
+              </submodule>
+              <submodule  id="05" desc="nvimsdk子业务模块">
+                     <levelgrp level="0" desc="提示类">   
+                                                    
+                     </levelgrp>    
+                     <levelgrp level="1" desc="警告类">   
+                                 
+                     </levelgrp> 
+		     <levelgrp level="2" desc="错误类">   
+                                 
+                     </levelgrp>  
+		     <levelgrp level="3" desc="系统错误级别类">   
+                                 
+                     </levelgrp>                                                 
+              </submodule>
+              <submodule  id="06" desc="nvdataconfsdk子业务模块">
+                     <levelgrp level="0" desc="提示类">   
+                                                    
+                     </levelgrp>    
+                     <levelgrp level="1" desc="警告类">   
+                                 
+                     </levelgrp> 
+		     <levelgrp level="2" desc="错误类">   
+                                 
+                     </levelgrp>  
+		     <levelgrp level="3" desc="系统错误级别类">   
+                                 
+                     </levelgrp>                                                 
+              </submodule>
+              <submodule  id="07" desc="nvcloudaddrsdk子业务模块">
+                     <levelgrp level="0" desc="提示类">   
+                                                    
+                     </levelgrp>    
+                     <levelgrp level="1" desc="警告类">   
+                                 
+                     </levelgrp> 
+		     <levelgrp level="2" desc="错误类">   
+                                 
+                     </levelgrp>  
+		     <levelgrp level="3" desc="系统错误级别类">   
+                                 
+                     </levelgrp>                                                 
+              </submodule>
+              <submodule  id="08" desc="nvdiagnosesdk子业务模块">
+                     <levelgrp level="0" desc="提示类">   
+                                                    
+                     </levelgrp>    
+                     <levelgrp level="1" desc="警告类">   
+                                 
+                     </levelgrp> 
+		     <levelgrp level="2" desc="错误类">   
+                                 
+                     </levelgrp>  
+		     <levelgrp level="3" desc="系统错误级别类">   
+                                 
+                     </levelgrp>                                                 
+              </submodule>
+       </module> 
+</nverrcodedesc>

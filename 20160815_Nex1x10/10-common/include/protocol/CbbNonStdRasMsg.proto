@@ -1,0 +1,83 @@
+package Cbb.NonStdMsg;
+
+import public "CbbNonStdStruct.proto";
+
+option optimize_for = CODE_SIZE;
+
+//MT->GK创建会议请求
+message CBB_CreateConfReq		
+{
+    optional CBB_TMiniConfInfo mini_conf_info = 1;
+}
+
+//MT->GK创建会议回复会议E164号
+message CBB_ConfE164Ntf   		
+{
+    optional string conf_e164 = 1;
+}
+
+//GK->MT创建会议回复
+message CBB_CreateConfRsp  		
+{
+    optional string conf_e164 = 1;
+}
+
+//GK->MT回复会议列表
+message CBB_GetConfListRsp	 	
+{
+    repeated CBB_TConfListItemMtReqed conf_list = 1;
+}
+
+//MT->GK参加会议请求
+message CBB_JoinConfReq	 		
+{
+    optional string conf_e164 = 1;
+    optional string mt_e164 = 2;             // 终端E164号码，普通终端和电话此字段均必填，终端权限校验使用
+    optional uint32 call_bitrate = 3;
+    optional bytes  conf_password = 4;
+    optional CBB_EmSubTypeDef mt_type = 5;   // 对应终端类型如普通终端、电话、卫星终端、vrs等
+    optional string phone_no = 6;           // 当终端类型为电话是，此字段添电话号码，必填，呼叫电话使用
+}
+
+//GK->MT参加会议回复
+message CBB_JoinConfRsp
+{
+    optional string conf_e164 = 1;
+}
+
+//MT->GK获取最大会议和空闲会议数 
+message CBB_ConfNumReq   		
+{
+    optional string mt_e164 = 1;
+}
+
+//GK->MT回复最大会议和空闲会议数
+message CBB_ConfNumRsp   		
+{
+    optional uint32 total_conf_num = 1; //总的会议个数
+	optional uint32 idle_conf_num = 2;  //空闲的会议个数
+}
+
+
+//GK->MT返回预约会议列表
+message CBB_GetBookListRsp 		
+{
+    repeated CBB_TConfListItemMtReqed conf_list = 1;
+}
+
+//MT_GK获取会议详细信息(内容填写会议别名)
+message CBB_ConfDetailReq		
+{
+    optional string conf_e164 = 1;
+}
+
+//GK_MT回复会议详细信息
+message CBB_ConfDetailRsp    	
+{
+    optional CBB_TConfDetailInfo conf_detail_info = 1;
+}
+
+message CBB_TemplateConfListRsp
+{
+    repeated CBB_TConfListItemMtReqed conf_list = 1;
+}

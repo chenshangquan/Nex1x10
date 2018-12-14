@@ -1,0 +1,105 @@
+<!--MT->GK创建会议请求-->
+<CBB_CreateConfReq>
+    <time_id><!--无符号整型--></time_id><!--时间戳-->
+	<!--创会信息-->
+    <CBB_TMiniConfInfo role="mini_conf_info"><!--结构体--></CBB_TMiniConfInfo>
+</CBB_CreateConfReq>
+
+<!--MT->GK创建会议回复会议E164号-->
+<CBB_ConfE164Ntf>
+	<!--会议E164号-->
+    <conf_e164><!--字符串--></conf_e164>
+</CBB_ConfE164Ntf>
+
+<!--GK->MT创建会议回复-->
+<CBB_CreateConfRsp>
+	<!--会议E164号-->
+    <conf_e164><!--字符串--></conf_e164>
+    <time_id><!--无符号整型--></time_id><!--时间戳-->
+    <err_code><!--无符号整型--></err_code><!--错误码-->
+</CBB_CreateConfRsp>
+
+<!--MT->GK参加会议请求-->
+<CBB_JoinConfReq>
+    <conf_e164><!--字符串--></conf_e164><!--会议E164号-->
+    <!--终端E164号码，普通终端和电话此字段均必填，终端权限校验使用-->
+    <mt_e164><!--字符串--></mt_e164><!--终端E164号-->
+    <call_bitrate><!--无符号整型--></call_bitrate><!--会议码率-->
+    <conf_password><!--每个字节转换为16进制，再以字符串形式表示--></conf_password><!--入会密码-->
+    <time_id><!--无符号整型--></time_id><!--时间戳-->
+    <!--入会终端类型：普通终端、电话、卫星终端、vrs等-->
+    <CBB_EmSubTypeDef role="mt_type"><!--枚举--></CBB_EmSubTypeDef>
+    <!--当终端类型为电话是，此字段添电话号码，必填，呼叫电话使用-->
+    <phone_no><!--字符串--></phone_no><!--电话号码-->
+</CBB_JoinConfReq>
+
+<!-- GK->MT参加会议回复 -->
+<CBB_JoinConfRsp>
+	<conf_e164><!--字符串--></conf_e164><!--会议E164号-->
+	<time_id><!--无符号整型--></time_id><!--时间戳-->
+	<err_code><!--无符号整型--></err_code><!--错误码-->
+</CBB_JoinConfRsp>
+
+<!--MT->GK获取最大会议和空闲会议数 -->
+<CBB_ConfNumReq>
+    <mt_e164><!--字符串--></mt_e164><!--终端E164号-->
+</CBB_ConfNumReq>
+
+<!--GK->MT回复最大会议和空闲会议数-->
+<CBB_ConfNumRsp>
+    <total_conf_num><!--无符号整型--></total_conf_num><!--总的会议个数-->
+    <idle_conf_num><!--无符号整型--></idle_conf_num><!--空闲的会议个数-->
+</CBB_ConfNumRsp>
+
+
+<!--MT_GK获取会议详细信息(内容填写会议别名)-->
+<CBB_ConfDetailReq>
+    <conf_e164><!--字符串--></conf_e164><!--会议E164号-->
+    <time_id><!--无符号整型--></time_id><!--时间戳-->
+</CBB_ConfDetailReq>
+
+<!--GK_MT回复会议详细信息-->
+<CBB_ConfDetailRsp>
+	<!--会议详细信息-->
+    <CBB_TConfDetailInfo role="conf_detail_info"><!--结构体--></CBB_TConfDetailInfo>
+    <time_id><!--无符号整型--></time_id><!--时间戳-->
+    <err_code><!--无符号整型--></err_code><!--错误码-->
+</CBB_ConfDetailRsp>
+
+<!--会议列表请求（即时会议、预约会议、公共模板公用），三种列表请求通过外部eventid进行区分-->
+<CBB_ConfListReq>
+	<time_id><!--无符号整型--></time_id><!--时间戳-->
+</CBB_ConfListReq>
+
+<!--GK->MT返回公共模板会议列表-->
+<CBB_TemplateConfListRsp>
+        <time_id><!--无符号整型--></time_id><!--时间戳-->
+        <islast><!--布尔：0-不是，1-是--></islast><!--是否是最后一包-->
+	<err_code><!--无符号整型--></err_code><!--错误码-->
+	<!--会议列表信息-->
+	<conflist num="">
+		<!--<CBB_TConfListItemMtReqed> 列表-->
+	</conflist>
+</CBB_TemplateConfListRsp>
+
+<!--GK->MT回复即时会议列表，对应KDVP_NSM_GETNEWCONFLIST_RSP-->
+<CBB_GetConfListRsp>
+        <time_id><!--无符号整型--></time_id><!--时间戳-->
+        <islast><!--布尔：0-不是，1-是--></islast><!--是否是最后一包-->
+	<err_code><!--无符号整型--></err_code><!--错误码-->
+	<!--会议列表信息-->
+	<conflist num="">
+		<!--<CBB_TConfListItemMtReqed> 列表-->
+	</conflist>
+</CBB_GetConfListRsp>
+
+<!--GK->MT返回预约会议列表-->
+<CBB_GetBookListRsp>
+        <time_id><!--无符号整型--></time_id><!--时间戳-->
+        <islast><!--布尔：0-不是，1-是--></islast><!--是否是最后一包-->
+	<err_code><!--无符号整型--></err_code><!--错误码-->
+        <!--会议列表信息-->
+	<conflist num="">
+		<!--<CBB_TConfListItemMtReqed> 列表-->
+	</conflist>
+</CBB_GetBookListRsp>

@@ -1,0 +1,643 @@
+//package Cbb.NonStd.enum;
+package Cbb.NonStdMsg;
+
+enum CBB_EmMediaModeDef{
+        CBB_MEDIA_MODE_NONE		= 0;   //无媒体
+        CBB_MEDIA_MODE_VIDEO	= 1;   //视频
+        CBB_MEDIA_MODE_AUDIO	= 2;   //音频
+        CBB_MEDIA_MODE_BOTH		= 3;   //音视频
+        CBB_MEDIA_MODE_DATA     = 4;   //数据 
+        CBB_MEDIA_MODE_SECVIDEO = 5;   //双流
+}
+
+enum CBB_EmConfTakeModeDef{
+        CBB_CONF_TAKEMODE_SCHEDULED = 1;  //预约会议
+        CBB_CONF_TAKEMODE_ONGOING   = 2;  //即时会议
+        CBB_CONF_TAKEMODE_TEMPLATE  = 3;  //会议模板
+}
+enum CBB_EmLockModeDef{
+        CBB_LOCK_MODE_NONE      = 0;  //未保护
+        CBB_LOCK_MODE_NEEDPWD   = 1;  //根据密码操作
+        CBB_LOCK_MODE_LOCK      = 2;  //独享 
+}
+enum CBB_EmCallModeDef{
+        CBB_CALL_MODE_NONE  = 0;  //手动呼叫
+        CBB_CALL_MODE_TIMER = 1;  //定时呼叫
+}
+enum CBB_EmRollCallModeDef{
+        CBB_ROLLCALL_MODE_NONE   = 0;       //非点名状态
+        CBB_ROLLCALL_MODE_VMP    = 1;       //VMP模式：点名人被点名人互看，其他人看它们的VMP
+        CBB_ROLLCALL_MODE_CALLER = 2;       //CALLER模式：点名人看被点名人，其他人看点名人
+        CBB_ROLLCALL_MODE_CALLEE = 3;       //CALLEE模式：被点名人看点名人，其他人看被点名人
+}
+enum CBB_EmPollStateDef{
+        CBB_POLL_STATE_NONE   = 0;  //未轮询 
+        CBB_POLL_STATE_NORMAL = 1;  //轮询正常
+        CBB_POLL_STATE_PAUSE  = 2;  //轮询暂停
+}
+enum CBB_EmRecStateDef{
+    	CBB_REC_STATE_NONE   = 0;  //不录像
+    	CBB_REC_STATE_REC    = 1;  //录像
+    	CBB_REC_STATE_PAUSE  = 2;  //暂停
+}
+
+enum CBB_EmRecModeDef{
+		 CBB_REC_MODE_NORMAL    = 1;   /* 实时录像 */
+	     CBB_REC_MODE_SKIPFRAME	= 2;   /* 抽帧录像 */
+}
+
+enum CBB_EmPlayStateDef{
+        CBB_PLAY_STATE_NONE      = 0;  //不放像
+        CBB_PLAY_STATE_PLAY      = 1;  //放像
+        CBB_PLAY_STATE_PAUSE     = 2;  //暂停
+        CBB_PLAY_STATE_FF        = 3;  //快进
+        CBB_PLAY_STATE_FB        = 4;  //快退
+        CBB_PLAY_STATE_PLAYREADY = 5;  //准备放像
+}
+enum CBB_EmBasModeDef{
+        CBB_BAS_MODE_NONE     = 0;  //不进行码率适配
+        CBB_BAS_MODE_AUD      = 1;  //音频适配
+        CBB_BAS_MODE_VID      = 2;  //视频适配
+        CBB_BAS_MODE_BR       = 3;  //码率适配
+        CBB_BAS_MODE_CASDAUD  = 4;  //级联回传音频适配
+        CBB_BAS_MODE_CASDVID  = 5;  //级联回传视频适配
+}
+enum CBB_EmPollModeDef{
+        CBB_POLL_MODE_NONE           =    0;  //不轮询广播 
+        CBB_POLL_MODE_VIDEO          =    1;  //仅图像轮询广播 到本地
+        CBB_POLL_MODE_SPEAKER        =    2;  //轮流发言       到本地
+        CBB_POLL_MODE_VIDEO_SPY      =    3;  //仅图像轮询广播 到回传
+        CBB_POLL_MODE_SPEAKER_SPY    =    4;  //轮流发言       到回传
+        CBB_POLL_MODE_VIDEO_BOTH     =    5;  //仅图像轮询广播 到本地和回传
+        CBB_POLL_MODE_SPEAKER_BOTH   =    6;  //轮流发言       到本地和回传
+        CBB_POLL_MODE_VIDEO_CHAIRMAN =    7;  //只带视频的“主席轮询选看”轮询模式
+        CBB_POLL_MODE_BOTH_CHAIRMAN  =    8;  //带音频的“主席轮询选看”轮询模式
+}
+enum CBB_EmMixModeDef{
+        CBB_MCU_NO_MIX = 0;       //不混音
+        CBB_MCU_WHOLE_MIX = 1;    //全体混音
+        CBB_MCU_PART_MIX = 2;     //定制混音
+        CBB_MCU_VAC_MIX = 3;      //VAC
+        CBB_MCU_VAC_WHOLE_MIX = 4; //带VAC的全体混音
+}
+
+enum CBB_EmVideoQualityDef{
+        CBB_VideoQuality = 0;     //质量优先
+        CBB_VideoSpeed = 1;       //速度优先
+}
+
+enum CBB_EmMainTypeDef{ 
+    CBB_TYPE_MCU = 1; 
+    CBB_TYPE_MT = 2; 
+    CBB_TYPE_EQP = 3; 
+}
+
+enum CBB_EmSubTypeDef {
+    CBB_MT_TYPE_MT = 1;
+    CBB_MT_TYPE_MMCU = 2;//上级MCU
+    CBB_MT_TYPE_SMCU = 3;//下级MCU
+    CBB_MT_TYPE_VRSREC = 4;//vrs新录播设备
+    CBB_MT_TYPE_PHONE = 5;	 //电话终端
+    CBB_MT_TYPE_SATD = 6;	 //卫星终端
+
+}
+
+enum CBB_EmMemberTypeDef {
+    	CBB_VMP_MEMBERTYPE_NULL	        =	 0;  //没有指定成员类型
+	    CBB_VMP_MEMBERTYPE_MCSSPEC      =    1;  //会控指定 
+	    CBB_VMP_MEMBERTYPE_SPEAKER      =    2;  //发言人跟随
+	    CBB_VMP_MEMBERTYPE_CHAIRMAN     =    3;  //主席跟随
+	    CBB_VMP_MEMBERTYPE_POLL         =    4;  //轮询视频跟随
+	    CBB_VMP_MEMBERTYPE_VAC          =    5;  //语音激励(会控不要用此类型)
+	    CBB_VMP_MEMBERTYPE_VMPCHLPOLL   =    6;  //vmp单通道轮询
+	    CBB_VMP_MEMBERTYPE_DSTREAM      =    7;  //双流跟随
+        CBB_VMP_MEMBERTYPE_VCSPEC       =    8;  //会议业务指定
+}
+enum CBB_EmMemberStatusDef{
+        CBB_MT_STATUS_NULL  = 0;      //没有指定状态
+        CBB_MT_STATUS_AUDIENCE = 1;   //观众  
+        CBB_MT_STATUS_CHAIRMAN = 2;   //主席
+        CBB_MT_STATUS_SPEAKER  = 3;   //发言人
+}
+
+enum CBB_EmVmpStyleDef{
+	CBB_VMP_STYLE_DYNAMIC = 1;		//动态分屏(仅自动合成时有效)
+	CBB_VMP_STYLE_1 = 2;			//一画面全屏
+	CBB_VMP_STYLE_2_1X2 = 3;		//两画面: 2等大，居中(1行2列)
+	CBB_VMP_STYLE_2_B1_S1RD = 4;	//两画面: 1大1小，1大全屏，1小右下
+	CBB_VMP_STYLE_3_1U_2D1X2 = 5;	//三画面: 等大，1上，2下(1行2列)
+	CBB_VMP_STYLE_3_B1L_S2R2X1 = 6;	//三画面: 1大2小，1大左，2小右(2行1列)
+	CBB_VMP_STYLE_3_1L_2R2X1 = 7;	//三画面: 等大，1左，2右(2行1列)
+	CBB_VMP_STYLE_3_B1_S2LD1X2 = 8;	//三画面: 1大2小，1大全屏，2小左下(1行2列)
+	CBB_VMP_STYLE_3_3X1 = 9;		//三画面: 等大，3行1列
+	CBB_VMP_STYLE_4_2X2 = 10;			//四画面: 等大，2行2列
+	CBB_VMP_STYLE_4_B1L_S3R3X1 = 11;	//四画面: 1大3小，1大左，3小右(3行1列)
+	CBB_VMP_STYLE_4_B1U_S3D1X3 = 12;	//四画面: 1大3小，1大上，3小下(1行3列)
+	CBB_VMP_STYLE_5_B1L_S4R4X1 = 13;	//五画面: 1大4小，1大左，4小右(4行1列)
+	CBB_VMP_STYLE_5_B1U_S4D1X4 = 14;	//五画面: 1大4小，1大上，4小下(1行4列)
+	CBB_VMP_STYLE_5_B2U1X2_S3D1X3 = 15;	//五画面: 2大3小，2大上(1行2列)，3小下(1行3列)
+	CBB_VMP_STYLE_6_B1LU_S2RU2X1_S3D1X3 = 16;	//六画面: 1大5小，1大左上，2小右上(2行1列)，3小下(1行3列)
+	CBB_VMP_STYLE_6_B2U1X2_S4D1X4 = 17;			//六画面: 2大4小，2大上(1行2列), 4小下(1行4列)
+	CBB_VMP_STYLE_6_2X3 = 18;					//六画面: 等大，2行3列
+	CBB_VMP_STYLE_6_B1U_S5D1X5 = 19;			//六画面: 1大5小，1大上，5小下(1行5列)
+	CBB_VMP_STYLE_7_B2U1X2_B1LD_S4RD2X2 = 20;			//七画面: 3大4小，2大上(1行2列)，1大左下，4小右下(2行2列)
+	CBB_VMP_STYLE_7_S2LU2X1_B1MU_S2RU2X1_B2D1X2 = 21;	//七画面: 3大4小，2小左上(2行1列)，1大中上，2小右上(2行1列)，2大下(1行2列)
+	CBB_VMP_STYLE_7_B1U_S6D1X6 = 22;					//七画面: 1大6小，1大上，6小下(1行6列)
+	CBB_VMP_STYLE_8_B1LU_S3RU3X1_S4D1X4 = 23;			//八画面: 1大7小，1大左上，3小右上(3行1列)，4小下(1行4列)
+	CBB_VMP_STYLE_8_B4L2X2_S4R4X1 = 24;					//八画面: 4大4小，4大左(2行2列)，4小右(4行1列)
+	CBB_VMP_STYLE_9_3X3 = 25;					//九画面: 等大，3行3列
+	CBB_VMP_STYLE_9_S4U1X4_B1M_S4D1X4 = 26;		//九画面: 1大8小，4小上(1行4列)，1大中，4小下(1行4列)
+	CBB_VMP_STYLE_10_B2L2X1_S8R4X2 = 27;		//十画面: 2大8小，2大左(2行1列)，8小右(4行2列)
+	CBB_VMP_STYLE_10_B2U1X2_S8D2X4 = 28;		//十画面: 2大8小，2大上(1行2列)，8小下(2行4列)
+	CBB_VMP_STYLE_10_S4U1X4_B2M1X2_S4D1X4 = 29;	//十画面: 2大8小，4小上(1行4列)，2大中(1行2列)，4小下(1行4列)
+	CBB_VMP_STYLE_10_S4L4X1_B2M2X1_S4R4X1 = 30;	//十画面: 2大8小，4小左(4行1列)，2大中(2行1列)，4小右(4行1列)
+	CBB_VMP_STYLE_11_S5U1X5_B1M_S5D1X5 = 31;	//十一画面: 1大10小，5小上(1行5列)，大1中，5小下(1行5列)
+	CBB_VMP_STYLE_11_B1U_S10D2X5 = 32;			//十一画面: 1大10小，1大上，10小下(2行5列)
+	CBB_VMP_STYLE_12_B2U1X2_B1LD_S9RD3X3 = 33;	//十二画面: 3大9小，2大上(1行2列)，1大左下，9小右下(3行3列)
+	CBB_VMP_STYLE_12_B1LU_S5RU4X1_S6D1X6 = 34;	//十二画面: 1大11小，大1左上，5小右上(4行1列)，5小下(1行5列)
+	CBB_VMP_STYLE_13_B1LU_S4RU2X2_S8D2X4 = 35;	//十三画面: 1大12小，大1左上，4小右上(2行2列)，8小下(2行4列)
+	CBB_VMP_STYLE_13_S4U1X4_S2LM2X1_B1MM_S2LM2X1_S4D1X4 = 36;	//十三画面: 1大12小，4小上(1行4列)，2小左中(2行1列)，1大中中，2小右中(2行1列), 4小下(1行4列)
+	CBB_VMP_STYLE_13_B4LU2X2_S4RU4X1_S5D1X5 = 37;				//十三画面: 4大9小，4大左上(2行2列)，4小右上(4行1列)，5小下(1行5列)
+	CBB_VMP_STYLE_14_B2LU1X2_S2RU2X1_S10D2X5 = 38;				//十四画面: 2大12小，2大左上(1行2列)，2小右上(2行1列)，10小下(2行5列)
+	CBB_VMP_STYLE_14_S5U1X5_B1LM_S2MM2X1_B1RM_S5D1X5 = 39;		//十四画面: 2大12小，5小上(1行5列)，1大左中，2小中中(2行1列)，1大右中，5小下(1行5列)
+	CBB_VMP_STYLE_15_B3U1X3_S12D2X6 = 40;						//十五画面: 3大12小，3大上(1行3列)，12小下(2行6列)
+	CBB_VMP_STYLE_15_S4U1X4_S3LM3X1_B1MM_S3RM3X1_S4D1X4 = 41;	//十五画面: 1大14小，4小上(1行4列)，3小左中(3行1列)，1大中中，3小右中(3行1列)，4小下(1行4列)
+	CBB_VMP_STYLE_16_4X4 = 42;									//十六画面: 16等分，4x4
+	CBB_VMP_STYLE_16_B1LU_S7RU7X1_S8D1X8 = 43;					//十六画面: 1大15小，1大左上，7小右上(7行1列)，8小下(1行8列)
+	CBB_VMP_STYLE_17_S5U1X5_S3LM3X1_B1MM_S3RM3X1_S5D1X5 = 44;	//十七画面: 1大16小，5小上(1行5列)，3小左中(3行1列)，1大中中，3小右中(3行1列)，5小下(1行5列)
+	CBB_VMP_STYLE_17_B1LU_S6RU3X2_S10D2X5 = 45;					//十七画面: 1大16小，1大左上，6小右上(3行2列)，10小下(2行5列)
+	CBB_VMP_STYLE_17_B2U1X2_S15D3X5 = 46;			//十七画面: 2大15小，2大上(1行2列)，15小下(5列3行)
+	CBB_VMP_STYLE_18_S6U1X6_B6M2X3_S6D1X6 = 47;		//十八画面: 6大12小，6小上(1行6列)，6大居中(2行3列)，6小下(1行6列)
+	CBB_VMP_STYLE_18_B6U2X3_S12D2X6 = 48;			//十八画面: 6大12小，6大上(2行3列)，12小下(2行6列)
+	CBB_VMP_STYLE_18_S6L6X1_B6M3X2_S6R6X1 = 49;		//十八画面: 6大12小，6小左(6行1列)，6大中(3行2列)，6小右(6行1列)
+	CBB_VMP_STYLE_19_B2LU1X2_S2RU2X1_S15D3X5 = 50;	//十九画面: 2大17小，2大左上(1行2列)，2小右上(2行1列)，15小下(3行5列)
+	CBB_VMP_STYLE_19_B2LU2X1_S12RU4X3_S5D1X5 = 51;	//十九画面: 2大17小，2大左上(2行1列)，12小右上(4行3列)，5小下(1行5列)
+	CBB_VMP_STYLE_20_B2U1X2_S18D3X6 = 52;			//二十画面: 2大18小，2大上(1行2列)，18小下(3行6列)
+	CBB_VMP_STYLE_20_S6U1X6_B2M1X2_S12D2X6 = 53;	//二十画面: 2大18小，6小上(1行6列)，2大中(1行2列)，12小下(2行6列)
+	CBB_VMP_STYLE_21_S6U1X6_S4LM4X1_B1MM_S4RM4X1_S6D1X6 = 54;	//二十一画面: 1大20小，6小上(1行6列)，4小左中(4行1列)，1大中中，4小右中(4行1列)，6小下(1行6列)
+	CBB_VMP_STYLE_21_B1LU_S8RU4X2_S12D2X6 = 55;					//二十一画面: 1大20小，1大左上，8小右上(4行2列)，12小下(2行6列)
+	CBB_VMP_STYLE_22_B1LU_S6RU2X3_S15D3X5 = 56;					//二十二画面: 1大21小，1大左上，6小右上(2行3列)，15小下(3行5列)
+	CBB_VMP_STYLE_23_4U1X4_15M3X5_4D1X4 = 57;					//二十三画面: 23同大，4上(1行4列)，15中(3行5列)，4下(1行4列)
+	CBB_VMP_STYLE_23_B2U1X2_S4LM2X2_B1MM_S4RM2X2_S12D2X6 = 58;	//二十三画面: 3大20小，2大上(1行2列)，4小左中(2行2列)，1大中中，4小右中(2行2列)，12小下(2行6列)
+	CBB_VMP_STYLE_24_S6U1X6_S4LM4X1_B4MM2X2_S4RM4X1_S6D1X6 = 59;//二十四画面: 4大20小，6小上(1行6列)，4小左中(4行1列)，4大中中(2行2列)，4小右中(4行1列)，6小下(1行6列)
+	CBB_VMP_STYLE_25_5X5 = 60;									//二十五画面: 等大，5行5列
+	CBB_VMP_STYLE_25_S3LU3X1_B1MU_S3RU3X1_S18D3X6 = 61;			//二十五画面: 1大24小，3小左上(3行1列)，1大中上，3小右上(3行1列)，18小下(3行6列)
+}
+
+//画面合成方式
+enum CBB_EmVmpModeDef{
+        CBB_VMP_MODE_NONE = 0;  //不进行画面合成
+        CBB_VMP_MODE_CTRL = 1;  //会控或主席选择成员合成
+        CBB_VMP_MODE_AUTO = 2;  //动态分屏与设置成员
+}
+
+//画面合成类型
+enum CBB_EmVmpTypeDef{
+        CBB_VMP_TYPE_NONBROADCAST   = 0;    //非广播
+        CBB_VMP_TYPE_BROADCAST      = 1;    //广播
+        CBB_VMP_TYPE_SELFRECEIVE    = 2;    //自己看
+}
+
+enum CBB_EmPublishModeDef{
+        CBB_PUBLISH_MODE_NONE	= 0;	//不发布
+        CBB_PUBLISH_MODE_IMMED  = 1;	//立即发布,新录播直播标志
+        CBB_PUBLISH_MODE_FIN    = 2;	//录像完毕之后发布，新录播发布标志
+        CBB_PUBLISH_MODE_BOTH   = 3;	//直播+发布
+}
+enum CBB_EmPublishLevelDef{
+        CBB_PUBLISH_LEVEL_NORMAL = 0;	//正常发布
+        CBB_PUBLISH_LEVEL_SECRET = 1;	//秘密发布
+}
+
+enum CBB_EmConfOpenModeDef{
+		CBB_CONF_OPENMODE_OPEN    = 1;  //完全开放 
+		CBB_CONF_OPENMODE_HIDE    = 2;  //隐藏会议，仅受邀列表里的终端可见
+}
+enum CBB_EmEncryptModeDef{
+     CBB_ENCRYPT_MODE_NONE = 0; //不加密
+     CBB_ENCRYPT_MODE_DES  = 1; //des加密
+     CBB_ENCRYPT_MODE_AES  = 2; //aes加密
+}
+enum CBB_EmDataConfModeDef{
+		CBB_CONF_DATAMODE_VAONLY    = 0;  //不包含数据的视音频会议
+		CBB_CONF_DATAMODE_VAANDDATA = 1;  //包含数据的视音频会议
+		CBB_CONF_DATAMODE_DATAONLY  = 2;  //不包含视音频的数据会议
+}
+enum CBB_EmConfReleaseModeDef{
+        CBB_CONF_RELEASEMODE_NONE = 0;  //不会自动结束
+        CBB_CONF_RELEASEMODE_NOMT = 1;  //无终端时自动结束
+}
+enum CBB_EmQosModeDef{
+        CBB_QUALITY_PRI = 1;   //质量优先
+        CBB_FLUENCY_PRI = 2;   //流畅度优先
+}
+enum CBB_EmConfSpeakerSrcMode{
+        CBB_CONF_SPEAKERSRC_SELF  = 0;  //看自己
+        CBB_CONF_SPEAKERSRC_CHAIR = 1;  //看主席
+        CBB_CONF_SPEAKERSRC_LAST  = 2;  //看上一次发言人
+}
+enum CBB_EmConfDualMode{
+		CBB_CONF_DUALMODE_SPEAKERONLY	=	 0;	//只能发言人发起
+		CBB_CONF_DUALMODE_EACHMTATWILL	=	 1;	//任意终端都能发起
+}
+enum CBB_EmConfSpeakMode{
+        CBB_CONF_SPEAKMODE_NORMAL          =  0;  //会控指定 或 一般申请（带队列，非自动出列）
+        CBB_CONF_SPEAKMODE_ANSWERINSTANTLY =  1;  //抢答（带队列，自动出列）
+}
+
+enum CBB_EmManuId{
+		CBB_MT_MANU_KDC          =            1;   //科达
+		CBB_MT_MANU_NETMEETING   =            2;   //Netmeeting
+		CBB_MT_MANU_POLYCOM      =            3;   //PolyCom
+		CBB_MT_MANU_HUAWEI       =            4;   //华为
+		CBB_MT_MANU_TAIDE        =            5;   //泰德
+		CBB_MT_MANU_SONY         =            6;   //SONY
+		CBB_MT_MANU_VCON         =            7;   //VCON
+		CBB_MT_MANU_RADVISION    =            8;   //Radvision
+        CBB_MT_MANU_KDCMCU       =            9;   //kedamcu
+		CBB_MT_MANU_PENTEVIEW    =            10;  //中泰
+		CBB_MT_MANU_VTEL         =            11;  //VTEL
+        CBB_MT_MANU_ZTE          =            12;  //中兴终端
+        CBB_MT_MANU_ZTEMCU       =            13;  //中兴MCU
+        CBB_MT_MANU_CODIAN       =            14;  //CodianMCU
+		CBB_MT_MANU_AETHRA		 =            15;  //Aethra
+		CBB_MT_MANU_OTHER        =            16;  //其它
+        CBB_MT_MANU_CHAORAN      =            17;  //超然
+}
+
+enum CBB_EmProtocolTypeDef{
+		CBB_PROTOCOL_TYPE_H323	= 1;  //H323
+		CBB_PROTOCOL_TYPE_H320  = 2;  //H320
+		CBB_PROTOCOL_TYPE_SIP   = 3;  //SIP
+}
+
+enum CBB_EmMulticastChnId
+{
+	CBB_CHAN_UNKNOW = 0;
+	CBB_CHAN_VIDEO1 = 1;
+	CBB_CHAN_AUDIO  = 2;
+	CBB_CHAN_VIDEO2 = 3;
+}
+
+enum CBB_EmMultiPicDef
+{
+	CBB_STYLE_2p  = 1;
+	CBB_STYLE_3p  = 2;
+	CBB_STYLE_4p  = 3;
+	CBB_STYLE_6p  = 4;
+	CBB_STYLE_8p  = 5;
+	CBB_STYLE_9p  = 6;
+	CBB_STYLE_13p = 7;
+	CBB_STYLE_13  = 8;
+	CBB_STYLE_16p = 9;
+}
+enum CBB_EmVendorProductId
+{
+	CBB_VENDOR_MICROSOFT_NETMEETING = 1;
+	CBB_VENDOR_KEDA = 2;
+	CBB_VENDOR_HUAWEI = 3;
+	CBB_VENDOR_POLYCOM = 4;
+    CBB_VENDOR_POLYCOM_MCU = 5;
+	CBB_VENDOR_TANDBERG = 6;
+	CBB_VENDOR_RADVISION = 7;
+	CBB_VENDOR_VCON = 8;
+	CBB_VENDOR_SONY = 9;
+	CBB_VENDOR_VTEL = 10;
+	CBB_VENDOR_ZTE = 11;
+	CBB_VENDOR_ZTE_MCU = 12;
+    CBB_VENDOR_CODIAN = 13;
+	CBB_VENDOR_AETHRA = 14;
+	CBB_VENDOR_CHAORAN = 15;
+	CBB_VENDOR_UNKNOWN = 16;
+}
+
+enum CBB_EmComType
+{
+    CBB_COM_UNKNOW  = 0;
+    CBB_COM_RS232   = 1;
+    CBB_COM_RS422   = 2;
+    CBB_COM_RS485   = 3;
+}
+
+enum CBB_EmLogChnnlType
+{
+    CBB_LOGCHL_VIDEO        = 1;	//主视频逻辑通道
+    CBB_LOGCHL_AUDIO        = 2;	//音频逻辑通道
+    CBB_LOGCHL_SECVIDEO     = 3;	//第二视频逻辑通道
+    CBB_LOGCHL_T120DATA     = 4;	//T120数据逻辑通道
+    CBB_LOGCHL_H224DATA     = 5;	//H224数据逻辑通道
+    CBB_LOGCHL_MMCUDATA     = 6;   //级联数据逻辑通道
+    CBB_LOGCHL_VIDEO_BOTH   = 7;   //主视频+第二视频逻辑通道
+}
+
+enum CBB_EmVidResolution
+{
+    CBB_VIDEO_FORMAT_NULL       =      0; //无效分辨率
+    CBB_VIDEO_FORMAT_SQCIF		  =	1;   //SQCIF(128*96)
+    CBB_VIDEO_FORMAT_QCIF		= 		2;   //SCIF(176*144)
+    CBB_VIDEO_FORMAT_CIF        =        3;   //CIF(352*288)  - P制
+    CBB_VIDEO_FORMAT_2CIF       =        4;   //2CIF(352*576) - p
+    CBB_VIDEO_FORMAT_4CIF       =        5;   //4CIF(704*576) - P制(H264下此宏指代D1(720*576)   - P制（N制D1：720*480）)
+    CBB_VIDEO_FORMAT_16CIF	=			6;   //16CIF(1408*1152)
+    CBB_VIDEO_FORMAT_AUTO	=			7;   //自适应，仅用于MPEG4
+    
+    CBB_VIDEO_FORMAT_SIF     =           8;   //SIF(352*240)  - N制
+    CBB_VIDEO_FORMAT_2SIF     =          9;   //2SIF
+    CBB_VIDEO_FORMAT_4SIF     =          10;  //4SIF(704*480) - N制
+    CBB_VIDEO_FORMAT_VGA      =          11;  //VGA(640*480)
+    CBB_VIDEO_FORMAT_SVGA     =          12;  //SVGA(800*600)
+    CBB_VIDEO_FORMAT_XGA      =          13;  //XGA(1024*768)
+    
+    CBB_VIDEO_FORMAT_WCIF     =          14;  //WCIF(512*288)
+    
+    //仅用于终端分辨率改变
+    CBB_VIDEO_FORMAT_SQCIF_112x96  =     21;  //SQCIF(112*96)
+    CBB_VIDEO_FORMAT_SQCIF_96x80   =     22;  //SQCIF(96*80)
+    
+    // 高清分辨率
+    CBB_VIDEO_FORMAT_W4CIF         =     31;  //Wide 4CIF(1024*576)
+    CBB_VIDEO_FORMAT_HD720         =     32;  //720 1280*720
+    CBB_VIDEO_FORMAT_SXGA          =     33;  //SXGA 1280*1024
+    CBB_VIDEO_FORMAT_UXGA          =     34;  //UXGA 1600*1200
+    CBB_VIDEO_FORMAT_HD1080        =     35;  //1080  1920*1080(p) 1920*544(i)
+    CBB_VIDEO_FORMAT_WXGA          =     36;  //WXGA 1280*800
+    CBB_VIDEO_FORMAT_WSXGA         =     37;  //WSXGA 1440*900
+    CBB_VIDEO_FORMAT_XVGA          =     38;  //XVGA  1280*960
+    
+    // FROM KDV-HD
+    
+    //非标分辨率（1080p底图）－用于终端分辨率改变
+    CBB_VIDEO_FORMAT_1440x816      =     41;  //1440×816(3/4)
+    CBB_VIDEO_FORMAT_1280x720      =     42;  //1280×720(2/3)
+    CBB_VIDEO_FORMAT_960x544       =     43;  // 960×544(1/2)
+    CBB_VIDEO_FORMAT_640x368       =     44;  // 640×368(1/3)
+    CBB_VIDEO_FORMAT_480x272       =     45;  // 480×272(1/4)
+    CBB_VIDEO_FORMAT_384x272       =     46;  // 384×272(1/5)
+    CBB_VIDEO_FORMAT_640x544       =     47;  // 640x544
+    CBB_VIDEO_FORMAT_320x272       =     48;  // 320x272
+    
+    //非标分辨率（720p底图） －用于终端分辨率改变
+    CBB_VIDEO_FORMAT_720_960x544   =     51;  //960×544(3/4)
+    CBB_VIDEO_FORMAT_720_864x480   =     52;  //864×480(2/3)
+    CBB_VIDEO_FORMAT_720_640x368   =     53;  //640×368(1/2)
+    CBB_VIDEO_FORMAT_720_432x240   =     54;  //432×240(1/3)
+    CBB_VIDEO_FORMAT_720_320x192   =     55;  //320×192(1/4)
+    
+    //非标分辨率
+    CBB_VIDEO_FORMAT_IPAD_480x352  =     61;  //480×352, iPad专用
+    CBB_VIDEO_FORMAT_4K		   = 	 62;  //3840×2160 4k2k
+}
+
+enum CBB_EmMcu2MtNtfMsgType
+{
+    CBB_NONE_NTF           = 1;
+
+    //普通业务控制逻辑相关通知:1-10
+    CBB_BE_POLLED_NEXT_NTF   = 2;            //即将被轮询到 通知
+
+
+    //打开双流通道失败相关通知:11-30
+    CBB_NO_OPEN_DSCHNNL_NONSPEAKER   = 11;   //打开双流通道 因 发言人模式 失败通知
+    CBB_NO_OPEN_DSCHNNLNONCAP       = 12;   //打开双流通道 因 能力集限制 失败通知
+    CBB_NO_OPEN_DSCHNNLBRLOW64      = 13;   //打开双流通道 因 通道码率小于64k 失败通知
+    CBB_NO_OPEN_DSCHNNLFECTYPE      = 14;   //打开双流通道 因 FEC类型不匹配 失败通知
+    CBB_NO_OPEN_DSCHNNLNONMP        = 15;   //打开双流通道 因 对应转发板不存在 失败通知
+    CBB_NO_OPEN_DSCHNNLENCRYPTMODE  = 16;   //打开双流通道 因 加密模式不匹配 失败通知
+    CBB_NO_OPEN_DSCHNNLOVERSATDCASTCHNNUM = 17; //打开双流通道 因 超过了卫星分散会议的最大通道数 失败通知
+
+    //打开第一路视频流通道失败相关通知:31-50
+    CBB_NO_OPEN_FSCHNNL_NONCAP       = 31;   //打开第一路视频通道 因 能力集限制 失败通知
+    CBB_NO_OPEN_FSCHNNL_BR_LOW64      = 32;   //打开第一路视频通道 因 通道码率小于64k 失败通知
+    CBB_NO_OPEN_FSCHNNL_ENCRPYT_MODE  = 33;   //打开第一路视频通道 因 加密模式不匹配 失败通知
+    CBB_NO_OPEN_FSCHNNL_FECTYPE      = 34;  //打开第一路视频通道 因 FEC类型不匹配 失败通知
+    CBB_NO_OPEN_FSCHNNL_NONMP        = 35;   //打开第一路视频通道 因 对应的转发板不存在 失败通知
+    CBB_NO_OPEN_FSCHNNL_BR_OVERFLOW   = 36;   //打开第一路视频通道 因 码率过大 失败通知
+    CBB_NO_OPEN_FSCHNNL_BOTH_H263PLUS = 37;   //打开第一路视频通道 因 通道类型和动态载荷均为H263+ 失败通知
+    CBB_NO_OPEN_FSCHNNL_FORMAT       = 38;   //打开第一路视频通道 因 分辨率过大 失败通知
+    CBB_NO_OPEN_FSCHNNL_FPS          = 39;   //打开第一路视频通道 因 帧率过大 失败通知
+
+
+    //其他类型通知(待扩展):51+
+	CBB_CALL_FAILED_BR_LESS_THAN_CONF		= 51;	//呼叫码率 小于 会议码率，请重新呼叫
+	CBB_CALL_FAILED_BR_LARGER_THAN_CONF	= 52;	//呼叫码率 大于 会议码率，已自动调整
+	CBB_NO_SUPPORT_OPR_FOR_NOAUTH			= 53;	//不支持该操作，权限不足，请联系管理员
+    CBB_NO_IN_MIXGRP_APPLY_INTERRUPT      = 54;    //不在混音组中，发言前需申请插话
+}
+
+enum CBB_EmFps
+{
+    CBB_VIDEO_FPS_1    =      1;   //1 帧/s
+    CBB_VIDEO_FPS_2    =      2;   //2 帧/s
+    CBB_VIDEO_FPS_3    =      3;   //3 帧/s
+    CBB_VIDEO_FPS_4    =      4;   //4 帧/s
+    CBB_VIDEO_FPS_5    =      5;   //5 帧/s
+    CBB_VIDEO_FPS_6    =      6;   //6 帧/s
+    CBB_VIDEO_FPS_7P5  =      7;   //7.5 帧/s
+    CBB_VIDEO_FPS_8    =      8;   //8 帧/s
+    CBB_VIDEO_FPS_9    =      9;   //9 帧/s
+    CBB_VIDEO_FPS_10   =      10;  //10 帧/s
+    CBB_VIDEO_FPS_11   =      11;  //11 帧/s
+    CBB_VIDEO_FPS_12   =      12;  //12 帧/s
+    CBB_VIDEO_FPS_13   =      13;  //13 帧/s
+    CBB_VIDEO_FPS_14   =      14;  //14 帧/s
+    CBB_VIDEO_FPS_15   =      15;  //15 帧/s
+    CBB_VIDEO_FPS_20   =      20;  //20 帧/s
+    CBB_VIDEO_FPS_22   =      22;  //22 帧/s
+    CBB_VIDEO_FPS_25   =      25;  //25 帧/s(底层按30帧处理)
+    CBB_VIDEO_FPS_30   =      30;  //30 帧/s
+    CBB_VIDEO_FPS_60   =      60;  //60 帧/s
+}
+
+enum CBB_EmMtSpeakerStatus
+{
+    CBB_WAITING       = 1;    //等待同意；mcu不会发送此状态，终端在发起申请 到 成为发言人通知 到 之前，自动跳入该状态
+    CBB_AGREED        = 2;    //发言人；
+    CBB_DENID         = 3;    //申请被拒绝；
+    CBB_CANCELED      = 4;    //被取消发言；
+}
+
+enum CBB_EmModifyConfInfoType
+{
+	CBB_MODIFY_CONF_NAME_TYPE       = 1;      // 修改会议名称， buf解析：名称buf
+	CBB_MODIFY_CONF_DURATION_TYPE   = 2;      // 修改会议时长，buf解析：u16(会议时长)
+	CBB_MODIFY_CONF_PWD_TYPE        = 3;      // 修改会议密码，buf解析：u8(0——不需要密码，1——需要密码)+密码buf
+	CBB_MODIFY_CONF_DUALMODE_TYPE   = 4;      // 修改会议双流发起方式，buf解析：u8(0——仅发言人可发双流，1——任意终端均可发双流)
+	CBB_MODIFY_ADD_VMP_MEMALIAS	= 5;	  // 修改会议画面合成是否显示成员别名，buf解析:u8(1——显示别名，0——不现实别名)
+	CBB_MODIFY_CONF_OPENMODE 	= 6;	  // 修改会议的openmode(对应CBB_EmConfOpenModeDef)
+	CBB_MODIFY_CONF_DUMB    	= 7;	  // 修改会议全体哑音
+	CBB_MODIFY_CONF_CLOSED    	= 8;	  // 修改会议是否封闭（对应终端免打扰）
+}
+
+enum CBB_EmConfFailureReason
+{
+	CBB_FAIL_REASON_DIFF_CONF_ENCRYPT_MODE = 1;
+	CBB_FAIL_REASON_MT_NOT_JOINED_CONF = 2;
+	CBB_FAIL_REASON_CONF_IS_NOT_CPING = 3;
+	CBB_FAIL_REASON_MT_IS_NOT_CHAIR = 4;
+	CBB_FAIL_REASON_CONF_IS_NOT_DIALOG_MODE = 5;
+	CBB_FAIL_REASON_NO_IDLE_CONF_RESOURCE = 6;
+	CBB_FAIL_REASON_CONF_RESOURCE_LACK = 7;
+	CBB_FAIL_REASON_MT_IN_DIALOG = 8;
+	CBB_FAIL_REASON_SEL_MT_VID_OVER_CHNNL_NUM = 9;                   //视频选看时，超过最大回传通道数
+	CBB_FAIL_REASON_SEL_MT_AUD_OVER_CHNNL_NUM = 10;                   //音频选看时，超过最大回传通道数
+	CBB_FAIL_REASON_SEL_MT_BOTH_OVER_CHNNL_NUM = 11;                  //音视频选看时，超过最大回传通道数
+	CBB_FAIL_REASON_CAN_NOT_JION_VMP_BY_OVER_CHNNL_NUM = 12;            //自动、对讲画面合成时，由于回传通道数的限制未能加入到画面合成中
+	CBB_FAIL_REASON_CAN_NOT_JION_MIX_BY_OVER_CHNNL_NUM = 13;           //会议讨论时，由于回传通道数的限制未能加入到讨论组中
+	CBB_FAIL_REASON_CHANGE_VMP_ASK_FALSE = 14;                      //终端申请对话方失败
+	CBB_FAIL_REASON_CAN_NOT_JION_CTRY_VMP_BY_OVER_CHNNL_NUM = 15;        //会议模板定制画面合成时，由于回传通道数的限制未能加入到画面合成中
+}
+
+enum CBB_EmCallMtFailureReason
+{
+	CBB_Fail_Reason_DRQ = 1;      // DRQ from GK
+	CBB_Fail_Reason_Rtd = 2;          // roundtripdelay timeout
+	CBB_Fail_Reason_Busy = 3;
+	CBB_Fail_Reason_Normal = 4;
+	CBB_Fail_Reason_Rejected = 5;
+	CBB_Fail_Reason_Unreachable = 6;
+	CBB_Fail_Reason_Local = 7;
+	CBB_Fail_Reason_Unmatched = 8;    // 本原因基于业务定义，与协议栈无关。不适配。
+	CBB_Fail_Reason_Unknown = 9;
+	CBB_Fail_Reason_BysyExt = 10;
+	CBB_Fail_Reason_Remote_Reconnect = 11;
+	CBB_Fail_Reason_Remote_ConfHolding = 12;
+	CBB_Fail_Reason_Remote_HasCascaded = 13;
+	CBB_Fail_Reason_TimeOut = 14;       // 呼叫超时
+	CBB_Fail_Reason_ConfResuming = 15;  // 会议恢复中
+	CBB_Fail_Reason_NoIdleVPU = 16;             // 没有足够能力的空闲媒体处理器
+	CBB_Fail_Reason_MiniMediaConfMtNum = 17;    // 超过小型媒体会议入会终端限制
+	CBB_Fail_Reason_MaxConfNum = 18;            // 已达最大会议数
+	CBB_Fail_Reason_EncrypeErr = 19;            // 与会议加密模式不符
+	CBB_Fail_Reason_MaxMTNum = 20;              // 达到会议最大人员数
+	CBB_Fail_Reason_ConfNotExist = 21;
+	CBB_Fail_Reason_MccDrop = 22;              // 会控挂断
+	CBB_Fail_Reason_ChairDrop = 23;            // 主席挂断
+	CBB_Fail_Reason_MMcuDrop = 24;             // 上级会议挂断
+	CBB_Fail_Reason_ConfRelease = 25;          // 会议结束挂断
+	CBB_Fail_Reason_NotDisturbed = 26;         // 对端免打扰
+	CBB_Fail_Reason_CallFirewall = 27;         // 对端启动来电防火墙，并且本端不知道对端地址簿中
+	CBB_Fail_Reason_AdaptBusy = 28;		// 电话终端呼叫失败原因
+	CBB_Fail_Reason_PswError = 29;//创会密码错误
+	CBB_Fail_Reason_NotOpenSateConfPermission = 30;//未开启卫星会议权限
+	CBB_Fail_Reason_GetSatDAddrError = 31;//组播地址无效
+	CBB_Fail_Reason_ConfReleaseNoMt = 32;        // 无终端自动结会-1分钟
+	CBB_Fail_Reason_ConfReleaseNoJoinedMt = 33;  // 无在线终端自动结会-5分钟
+	CBB_Fail_Reason_ConfReleaseOnlyOneMt = 34;   // 仅一个在线终端自动结会-10分钟
+	CBB_Fail_Reason_ConfE164Repeat = 35;         // E164号码重复
+}
+
+enum CBB_EmMtAliasType
+{
+	CBB_TRANSPORTADDRESS = 1;  //终端别名类型: 传输地址
+	CBB_E164 = 2;              //终端别名类型: E164号码
+	CBB_H323ID = 3;            //终端别名类型: H323 ID
+	CBB_H320ID = 4;            //终端别名类型: H320 ID类型
+    CBB_H320ALIAS = 5;         //终端别名类型: H320 别名类型, 不作呼叫信息
+	CBB_PARTNUMBER = 6;        //IP电话号码或者分机号
+	CBB_PU_IP_PLUS = 7;        //特殊PU呼叫信息:网管IP(u32网络序)+PU别名(11字节)
+	CBB_OTHERS = 100;          //终端别名类型: 其它
+}
+
+enum CBB_EmClarity
+{
+    CBB_HD_MODE = 1;		//高清
+    CBB_SD_MODE = 2;        //标清
+    CBB_FLUENT_MODE = 3;    //流畅
+    CBB_UD_MODE = 4;        //自定义
+	CBB_FHD_MODE = 5;       //全高清
+	CBB_UHD_MODE = 6;       //超高清
+}
+
+enum CBB_EmConfStyle
+{
+    CBB_CONF_STYLE_OPENING = 1;		//召开中
+    CBB_CONF_STYLE_IDLE = 2;		//空闲
+    CBB_CONF_STYLE_BOOK = 3;		//预约
+    CBB_CONF_STYLE_TEMPLATE = 4;	//模板
+}
+
+enum CBB_EmAudioType
+{
+    CBB_AudioInvalid = 0;
+    CBB_AudioG7221C = 1;
+    CBB_AudioG711A = 2;
+    CBB_AudioG711U = 3;
+    CBB_AudioG719 = 4;
+    CBB_AudioG722 = 5;
+    CBB_AudioG728 = 6;
+    CBB_AudioG729 = 7;
+    CBB_AudioMP3 = 8;
+    CBB_AudioAACLC = 9;
+    CBB_AudioAACLD = 10;
+    CBB_AudioAACLC_M = 11;
+    CBB_AudioAACLD_M = 12;
+    CBB_AudioOPUS = 13;
+}
+
+enum CBB_EmAudioSubType
+{
+    CBB_AudioSubInvalid = 0;
+    CBB_AudioSubG7221C_24K = 1;
+    CBB_AudioSubG7221C_32K = 2;
+    CBB_AudioSubG7221C_48K = 3;
+}
+
+enum CBB_EmVideoType
+{
+    CBB_emVideoInvalid = 0;
+    CBB_emVideoH265 = 1;
+    CBB_emVideoH261 = 2;
+    CBB_emVideoH263 = 3;
+    CBB_emVideoH264 = 4;
+    CBB_emVideoMPEG4 = 5;
+	CBB_emVideoH262 = 6;
+	CBB_emVideoH263_PLUS = 7;
+}
+
+enum CBB_EmH264Profile
+{
+    CBB_emProInvalid = 0;
+    CBB_emProBase = 1;
+    CBB_emProMain = 2;
+    CBB_emProExtend = 3;
+    CBB_emProHigh = 4;
+}
+
+enum CBB_RollMsgType
+{
+	CBB_ROLLMSG_TYPE_INVALID = 0;
+	CBB_ROLLMSG_TYPE_SMS = 1;	// 短消息
+	CBB_ROLLMSG_TYPE_PAGETITLE = 2;// 翻页字幕
+	CBB_ROLLMSG_TYPE_ROLLTITLE = 3;	// 滚动字幕
+	CBB_ROLLMSG_TYPE_STATICTEXT = 4;	// 静态文本
+}
+
+enum CBB_RollMsgSpeed
+{
+	CBB_ROLL_SPEED_1 = 1;	// 最慢
+	CBB_ROLL_SPEED_2 = 2;	// 稍慢
+	CBB_ROLL_SPEED_3 = 3;	// 中速
+	CBB_ROLL_SPEED_4 = 4;	// 稍快
+	CBB_ROLL_SPEED_5 = 5;	// 最快
+}
+
+enum CBB_MT_BOARD_Type    ////当心，枚举值不能改， 160以上的值，兼容老的产品， 在以前定义的vccomm中
+{ 
+    CBB_MT_BOARD_SkyWindows = 160;      //桌面终端 自建
+	CBB_MT_BOARD_SkyIPad = 161;         //移动终端ipad 自建
+	CBB_MT_BOARD_SkyIPhone = 162;       //移动终端iphone 自建
+	CBB_MT_BOARD_SkyAndroidPad = 163;   //移动终端androidpad 自建
+	CBB_MT_BOARD_SkyAndroidPhone = 164; //移动终端androidphone 自建
+	CBB_MT_BOARD_X500_1080P60 = 165;    //硬终端 自建
+	CBB_MT_BOARD_X500_1080P30 = 166;    //硬终端 自建
+	CBB_MT_BOARD_X500_720P60 = 167;     //硬终端 自建
+	CBB_MT_BOARD_X500_mo_1080P  = 168;  //硬终端 租赁
+	CBB_MT_BOARD_X500_mo_720P = 169;    //硬终端 租赁
+	CBB_MT_BOARD_X500_oem_1080P = 170;  //硬终端 自建
+	CBB_MT_BOARD_X500_oem_mo_1080P = 171; //硬终端 租赁
+	CBB_MT_BOARD_TrueLink = 172;          //桌面终端 租赁
+	CBB_MT_BOARD_TrueTouchIpad = 173;     //移动终端ipad 租赁
+	CBB_MT_BOARD_TrueTouchIphone = 174;   //移动终端iphone 租赁
+	CBB_MT_BOARD_TrueTouchAndroidPhone = 175;  //移动终端androidphone 租赁	
+    CBB_MT_BOARD_TrueTouchAndroidPad = 176;    //移动终端androidpad   租赁
+}

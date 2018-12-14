@@ -1,0 +1,1005 @@
+<CBB_TMessageWrap>
+    <eventid><!--非标消息号--></eventid>
+    <body>
+    <!--msg.xml中消息体的XML内容-->
+    <!--例如
+        <CBB_ChairTransferReq>
+            <CBB_TTERLABEL role="dstmt"></CBB_TTERLABEL>
+        </CBB_ChairTransferReq>
+    -->
+    </body>
+</CBB_TMessageWrap>
+
+<CBB_TMt>
+    <!--终端类型-->
+    <CBB_EmMainTypeDef role="maintype"><!--枚举--></CBB_EmMainTypeDef>
+    <!--终端子类型-->
+    <CBB_EmSubTypeDef role="subtype"><!--枚举--></CBB_EmSubTypeDef>
+    <!--Mcu id-->
+    <mcuid><!--无符号整型--></mcuid>
+    <!--设备 id-->
+    <eqpid><!--无符号整型--></eqpid>
+    <!--接入板 id-->
+    <driid><!--无符号整型--></driid>
+    <!--会议索引号-->
+    <confidx><!--无符号整型--></confidx>
+</CBB_TMt>
+
+<CBB_TTransportAddr>
+    <!--是否ipv4-->
+    <ipv4><!--布尔：0-不是，1-是--></ipv4>
+    <!--IP地址, IPV4 - "XXX.XXX.XXX.XXX", IPV6 - "XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX"-->
+	<ip><!--字符串--></ip>
+	<!--端口号-->	
+	<port><!--无符号整型--></port>
+	<!--获取或设置 IPv6 地址范围标识符-->
+	<scopeid><!--无符号整型--></scopeid>
+</CBB_TTransportAddr>
+
+<CBB_TMtAlias>
+    <!--别名类型-->
+    <CBB_EmMtAliasType role="aliastype"><!--枚举--></CBB_EmMtAliasType>
+    <!--别名字符串-->
+    <alias><!--字符串--></alias>
+    <!--传输地址-->
+    <CBB_TTransportAddr role="transaddr"><!--结构体--></CBB_TTransportAddr>
+</CBB_TMtAlias>
+
+<CBB_TVMPMember>
+    <!--合成对象-->
+    <CBB_TMt role="member"><!--结构体--></CBB_TMt>
+    <!--合成成员类型-->
+    <CBB_EmMemberTypeDef role="mbtype"><!--枚举--></CBB_EmMemberTypeDef>
+    <!--合成成员状态-->
+    <CBB_EmMemberStatusDef role="mbstat"><!--枚举--></CBB_EmMemberStatusDef>
+    <!--多流终端，标示多流的通道id；单流终端，添0-->
+    <chidx><!--无符号整型--></chidx>
+    <!--成员数值下标-->
+    <member_index><!--无符号整型--></member_index>    	
+</CBB_TVMPMember>
+
+
+<CBB_TMiniVMPMember>
+    <!--合成对象-->
+    <mtidx role="member"><!--<无符号整型>终端索引--></mtid>
+    <!--合成成员类型-->
+    <CBB_EmMemberTypeDef role="mbtype"><!--枚举--></CBB_EmMemberTypeDef>
+    <!--合成成员状态-->
+    <CBB_EmMemberStatusDef role="mbstat"><!--枚举--></CBB_EmMemberStatusDef>
+    <!--多流终端，标示多流的通道id；单流终端，添0-->
+    <chidx><!--无符号整型--></chidx>
+	<!--终端所在VMP通道索引-->
+	<vmpchnidx><!--无符号整型--></vmpchnidx>
+</CBB_TMiniVMPMember>
+
+<CBB_TConfMode>
+    <!--会议举行模式-->
+    <CBB_EmConfTakeModeDef role="conftkmod"><!--枚举--></CBB_EmConfTakeModeDef>
+    <!--会议锁定模式-->
+    <CBB_EmLockModeDef role="lockmod"><!--枚举--></CBB_EmLockModeDef>
+    <!--呼叫终端模式-->        
+    <CBB_EmCallModeDef role="callmod"><!--枚举--></CBB_EmCallModeDef>
+    <!--会议点名模式-->        
+    <CBB_EmRollCallModeDef role="rlcalmod"><!--枚举--></CBB_EmRollCallModeDef>
+    <!--会议中hdu批量轮询状态-->    
+    <CBB_EmPollStateDef role="hdubatchpolstat"><!--枚举--></CBB_EmPollStateDef> 
+    <!--会议录像状态--> 
+    <CBB_EmRecStateDef role="recsta"><!--枚举--></CBB_EmRecStateDef>    
+    <!--会议放像状态-->  
+    <CBB_EmPlayStateDef role="plysta"><!--枚举--></CBB_EmPlayStateDef>
+    <!--适配模式-->    
+    <CBB_EmBasModeDef role="adpmod"><!--枚举--></CBB_EmBasModeDef>
+    <!--会议轮询模式-->        
+    <CBB_EmPollModeDef role="polmod"><!--枚举--></CBB_EmPollModeDef>
+    <!--是否强制收看发言-->      
+    <isfrspk><!--布尔：0-不强制收看发言人 1-强制收看发言人--></isfrspk>
+    <!--是否无会议主席模式-->
+    <isnochr><!--布尔：0-不是无主席方式 1-无主席方式--></isnochr>
+    <!--定时呼叫时的呼叫间隔：(单位：秒，最小为5秒)-->
+    <calit><!--无符号整型--></calit>
+    <!--定时呼叫时的呼叫次数-->
+    <calnum><!--无符号整型--></calnum>
+</CBB_TConfMode>
+
+<CBB_TMixParam>
+    <!--混音模式-->
+    <CBB_EmMixModeDef role="mixmod"><!--枚举--></CBB_EmMixModeDef>
+    <!--混音成员列表,mtlist里的num属性值决定TMt的数量-->
+    <mtlist num="">
+        <!-- <CBB_TMt>列表 -->
+    </mtlist>
+    <!--记录使用的混音器最大成员数,恢复与启动备份时用到-->
+    <maxnum><!--无符号整型--></maxnum>
+</CBB_TMixParam>
+
+<CBB_TMiniMixParam>
+    <!--混音模式-->
+    <CBB_EmMixModeDef role="mixmod"><!--枚举--></CBB_EmMixModeDef>
+    <!--混音成员列表,mtlist里的num属性值决定TMt的数量-->
+    <mtlist num="">
+        <!-- <无符号整型>终端索引列表 -->
+    </mtlist>
+    <!--语音激励敏感度-->
+    <vacinterval><!--无符号整型--></vacinterval>
+</CBB_TMiniMixParam>
+
+<CBB_TVmpParam>
+    <!--是否正在画面合成 -->
+    <iscping><!--布尔：0-不是，1-是--></iscping>
+    <!--合成图像是否向终端广播-->
+    <isbrdst><!--布尔：0-不是，1-是--></isbrdst>
+    <!--画面合成风格-->
+    <CBB_EmVmpStyleDef role="vmpstyle"><!--枚举--></CBB_EmVmpStyleDef>
+    <!--合成风格方案编号,最大支持5套方案,1-5-->
+    <scheid><!--无符号整型--></scheid>
+    <!--图像复合模式-->
+    <CBB_EmVmpModeDef role="vmpmod"><!--枚举--></CBB_EmVmpModeDef>
+    <!--是否使用边框:-->
+    <isrimable><!--布尔：0-不使用，1-使用--></isrimable>
+    <!--合成图像是否叠加合成成员别名-->
+    <isadalias><!--布尔：0-不叠加，1-叠加--></isadalias>
+    <!--是否批量轮询-->
+    <isbpol><!--布尔：0-不是，1-是--></isbpol>
+    <!--是否被主席选看-->
+    <ischrseen><!--布尔：0-不是，1-是--></ischrseen>
+    <!--画面合成成员列表-->
+    <mblist num="">
+        <!-- <CBB_TVMPMember>列表 -->
+    </mblist>
+</CBB_TVmpParam>
+
+<CBB_TMiniVmpParam>
+    <!--合成图像是否向终端广播-->
+    <isbrdst><!--布尔：0-不是，1-是--></isbrdst>
+    <!--画面合成风格-->
+    <CBB_EmVmpStyleDef role="vmpstyle"><!--枚举--></CBB_EmVmpStyleDef>
+    <!--图像复合模式-->
+    <CBB_EmVmpModeDef role="vmpmod"><!--枚举--></CBB_EmVmpModeDef>
+    <!--是否使用边框:-->
+    <isrimable><!--布尔：0-不使用，1-使用--></isrimable>
+    <!--合成图像是否叠加合成成员别名-->
+    <isadalias><!--布尔：0-不叠加，1-叠加--></isadalias>
+    <!--是否批量轮询-->
+    <isbpol><!--布尔：0-不是，1-是--></isbpol>
+    <!--终端轮询的保留时间 单位:秒(s)-->
+    <kptm><!--无符号整型--></kptm>
+    <!--终端轮询的次数,为0则无限循环-->
+    <polnum><!--无符号整型--></polnum>
+    <!--画面合成成员列表-->
+    <mblist num="">
+        <!-- <CBB_TMiniVMPMember>列表 -->
+    </mblist>
+    <!--是否识别声音来源-->
+    <isvoicehint><!--布尔: 0-不是， 1-是--></isvoicehint>
+</CBB_TMiniVmpParam>
+
+<CBB_TRecProg>
+    <!--当前进度-->
+    <curprog><!--无符号整型--></curprog>
+    <!--总长度，仅在放像时有效-->
+    <toltm><!--无符号整型--></toltm>
+</CBB_TRecProg>
+
+<CBB_TMtPollParam>
+    <!--轮询对象-->
+    <CBB_TMt role="polmt"><!--结构体--></CBB_TMt>
+    <!--终端轮询的保留时间 单位:秒(s)-->
+    <kptm><!--无符号整型--></kptm>
+    <!--终端轮询的次数-->
+    <polnum><!--无符号整型--></polnum>
+</CBB_TMtPollParam>
+
+<CBB_TPollInfo>
+    <!--轮询模式-->
+    <CBB_EmPollModeDef role="polmod"><!--枚举--></CBB_EmPollModeDef>
+    <!--轮询状态-->
+    <CBB_EmPollStateDef role="polsta"><!--枚举--></CBB_EmPollStateDef>
+    <!--终端轮询的次数，注：hdu批量轮询与电视墙轮询复用-->
+    <polnum><!--无符号整型--></polnum>
+    <!--当前被轮询广播的终端及其参数-->
+    <CBB_TMtPollParam role="polparam"><!--结构体--></CBB_TMtPollParam>
+</CBB_TPollInfo>
+
+<CBB_TMiniPollInfo>
+    <!--轮询模式-->
+    <CBB_EmPollModeDef role="polmod"><!--枚举--></CBB_EmPollModeDef>
+    <!--终端轮询的保留时间 单位:秒(s)-->
+    <kptm><!--无符号整型--></kptm>
+    <!--终端轮询的次数-->
+    <polnum><!--无符号整型--></polnum>
+    <!--轮询终端列表-->
+    <polllist num="">
+        <!-- <无符号整型>终端索引列表 -->
+    </polllist>
+</CBB_TMiniPollInfo>
+
+<CBB_TMiniVipListInfo>
+    <!--Vip列表，数组长度为8，且数组下标代表优先级,终端索引列表-->
+    <viplist num="">
+        <!-- <无符号整型>列表-->
+    </viplist>
+</CBB_TMiniVipListInfo>
+
+<CBB_TTvWallPollInfo>
+    <!--轮询信息-->
+    <CBB_TPollInfo role="polinfo"><!--结构体--></CBB_TPollInfo>
+    <!--电视墙信息-->
+    <CBB_TMt role="tvwall"><!--结构体--></CBB_TMt>
+    <!--电视墙通道号-->
+    <twchn><!--无符号整型--></twchn>
+    <!--持续时间-->
+	<kptm><!--无符号整型--></kptm>
+	<!--方案编号-->
+	<scheidx><!--无符号整型--></scheidx>
+	<!--是否由停止再启动-->
+	<isstartpas><!--布尔：0-不是，1-是--></isstartpas>
+</CBB_TTvWallPollInfo>
+
+<CBB_TConfStatus>
+    <!--主席-->
+    <CBB_TMt role="chair"><!--结构体--></CBB_TMt>
+    <!--发言人-->
+    <CBB_TMt role="spk"><!--结构体--></CBB_TMt>
+    <!--会议方式-->
+    <CBB_TConfMode role="confmod"><!--结构体--></CBB_TConfMode>
+    <!--当前录像进程,仅录像状态时有效-->
+    <CBB_TRecProg role="recprog"><!--结构体--></CBB_TRecProg>
+    <!--当前放像进程,仅放像状态时有效-->
+    <CBB_TRecProg role="plyprog"><!--结构体--></CBB_TRecProg>
+    <!--会议轮询参数,仅轮询时有较-->
+    <CBB_TPollInfo role="polinfo"><!--结构体--></CBB_TPollInfo>
+    <!--hdu当前轮询参数，仅轮询时有效-->
+    <CBB_TTvWallPollInfo role="twpolinfo"><!--结构体--></CBB_TTvWallPollInfo>
+    <!--当前混音参数-->
+    <CBB_TMixParam role="mixparam"><!--结构体--></CBB_TMixParam>
+    <!--当前视频复合参数，仅视频复合时有效-->
+    <CBB_TVmpParam role="vmpparam"><!--结构体--></CBB_TVmpParam>
+    <!--当前VMPTW参数-->
+    <CBB_TVmpParam role="vmptwparam"><!--结构体--></CBB_TVmpParam>
+    <!--当前包重传状态-->
+    <prssta><!--无符号整型--></prssta>
+</CBB_TConfStatus>
+
+<CBB_TVideoStreamCap>
+    <!--最大码率-->
+    <maxbt><!--无符号整型--></maxbt>
+    <!--媒体类型-->
+    <CBB_EmVideoType role="medtp"><!--枚举--></CBB_EmVideoType>
+    <!--分辨率-->
+    <CBB_EmVidResolution role="res"><!--枚举--></CBB_EmVidResolution>
+    <!--帧率 MPI，对于 H.264 则是 FPS-->
+    <CBB_EmFps role="fr"><!--枚举--></CBB_EmFps>
+    <!--HP/BP属性-->
+    <CBB_EmH264Profile role="h264pro"><!--枚举--></CBB_EmH264Profile>
+</CBB_TVideoStreamCap>
+
+<CBB_TAudioStreamCap>
+    <!--媒体类型-->
+    <CBB_EmAudioType role="medtp"><!--枚举--></CBB_EmAudioType>
+    <!--会议主音频的子类型-->
+    <CBB_EmAudioSubType role="subtp"><!--枚举--></CBB_EmAudioSubType>
+    <!--opus最大码率-->
+    <opusmaxbt><!--无符号整型--></opusmaxbt>
+    <!--opus最小码率-->
+	<opusminbt><!--无符号整型--></opusminbt>
+</CBB_TAudioStreamCap>
+
+<CBB_TDStreamCap>
+    <!--视频能力-->
+    <CBB_TVideoStreamCap role="videocap"><!--结构体--></CBB_TVideoStreamCap>
+    <!--是否支持h239-->
+	<is239><!--布尔：0-不支持，1-支持--></is239>
+</CBB_TDStreamCap>
+
+<CBB_TSimCapSet>
+    <!--视频能力-->
+    <videocap num="">
+        <!--CBB_TVideoStreamCap结构体列表-->
+    </videocap>
+    <!--音频能力-->
+    <audiocap num="">
+        <!--CBB_TAudioStreamCap结构体列表-->
+    </audiocap>
+</CBB_TSimCapSet>
+
+<CBB_TDVSimCapSet num="">
+        <!--CBB_TDStreamCap结构体列表-->
+</CBB_TDVSimCapSet>
+
+<CBB_TCapSupport>
+    <!--是否支持合并级联-->
+    <issupmmcu><!--布尔：0-不支持，1-支持--></issupmmcu>
+    <!--是否支持H224-->
+    <issuph224><!--布尔：0-不支持，1-支持--></issuph224>
+    <!--是否支持t120-->
+    <issupt120><!--布尔：0-不支持，1-支持--></issupt120>
+    <!--加密模式-->
+    <CBB_EmEncryptModeDef role="encymod"><!--枚举--></CBB_EmEncryptModeDef>
+    <!--双流能力-->
+    <CBB_TDVSimCapSet role="dscap"><!--结构体--></CBB_TDVSimCapSet>
+    <!--主的同时能力集-->
+    <CBB_TSimCapSet role="maincap"><!--结构体--></CBB_TSimCapSet>
+</CBB_TCapSupport>
+
+<CBB_TKdvTime>
+    <!--年-->
+	<y><!--无符号整型--></y>
+	<!--月-->
+	<m><!--无符号整型--></m>
+	<!--日-->
+	<md><!--无符号整型--></md>
+	<!--时-->
+	<h><!--无符号整型--></h>
+	<!--分-->
+	<mi><!--无符号整型--></mi>
+	<!--秒-->
+	<s><!--无符号整型--></s>
+</CBB_TKdvTime>
+
+<CBB_TRecStartPara>
+    <!--录像模式-->
+    <CBB_EmRecModeDef role="recmod"><!--枚举--></CBB_EmRecModeDef>
+    <!--发布模式-->
+    <CBB_EmPublishModeDef role="pubmod"><!--枚举--></CBB_EmPublishModeDef>
+    <!--发布层次-->
+    <CBB_EmPublishLevelDef role="publevl"><!--枚举--></CBB_EmPublishLevelDef>
+    <!--是否录低速码流-->
+    <isreclow><!--布尔：0-不录低速码流，1-录低速码流--></isreclow>
+    <!--是否录主格式视频码流-->
+    <isrecmv><!--布尔：0-不录主格式视频，1-录主格式视频--></isrecmv>
+    <!--是否录主格式音频码流-->
+    <isrecma><!--布尔：0-不录主格式音频，1-录主格式音频--></isrecma>
+    <!--是否录双流-->
+    <isrecds><!--布尔：0-不录双流，1-录双流--></isrecds>
+    <!--录像码率-->
+	<recbt><!--无符号整型--></recbt>
+	<!--录像双流码率-->
+    <recdsbt><!--无符号整型--></recdsbt>
+</CBB_TRecStartPara>
+
+<CBB_TConfAutoRecAttrb>
+    <!--是否会议开始自动录像-->
+    <isauto><!--布尔：0-不开启，1-开启--></isauto>
+    <!--自动录像的录像机id-->
+    <recid><!--无符号整型--></recid>
+    <!-- 开始时间和结束时间都不支持跨天，结束时间必须在开始时间之后-->
+    <!--开始录像的启动时间.只关心 时/分/秒，year设置为0即不需要设置时间，会议开始后自动开始-->
+    <CBB_TKdvTime role="start"><!--结构体--></CBB_TKdvTime>
+    <!--自动录像结束的时间.只关心 时/分/秒，year设置为0即不需要设置时间，需要用户手动停止-->
+    <CBB_TKdvTime role="stop"><!--结构体--></CBB_TKdvTime>
+    <!--自动录像参数-->
+    <CBB_TRecStartPara role="startpara"><!--结构体--></CBB_TRecStartPara>
+    <!--开始录像的日期类型-->
+    <weekd><!--无符号整型--></weekd>
+</CBB_TConfAutoRecAttrb>
+
+<CBB_TConfAttrb>
+    <!--会议开放模式-->
+	<CBB_EmConfOpenModeDef role="openmod"><!--枚举--></CBB_EmConfOpenModeDef>
+	<!--加密模式-->
+	<CBB_EmEncryptModeDef role="encymod"><!--枚举--></CBB_EmEncryptModeDef>
+	<!--是否组播-->
+	<ismltcast><!--布尔：0-不是组播会议 1-组播会议 --></ismltcast>
+	<!--数据会议模式-->
+	<CBB_EmDataConfModeDef role="datamod"><!--枚举--></CBB_EmDataConfModeDef>
+	<!--会议结束模式-->
+	<CBB_EmConfReleaseModeDef role="relmod"><!--枚举--></CBB_EmConfReleaseModeDef>
+	<!--会议视频模式-->
+	<CBB_EmQosModeDef role="qosmod"><!--枚举--></CBB_EmQosModeDef>
+	<!--是否支持合并级联-->
+	<casd><!--布尔：0-不支持合并级联, 1-支持合并级联 --></casd>
+	<!--是否支持丢包重传-->
+	<prs><!--布尔：0-不重传 1-重传--></prs>
+	<!--是否有电视墙模板-->
+	<twmd><!--布尔：0-无电视墙模板  1-有电视墙模板--></twmd>
+	<!--是否有画面合成模板-->
+	<vmpmd><!--布尔：0-无画面合成模板  1-有画面合成模板--></vmpmd>
+	<!--是否讨论会议-->
+	<discus><!--布尔：0-不是讨论会议(演讲会议) 1-讨论会议--></discus>
+	<!--是否启用适配-->
+	<adpt><!--布尔：0-不启用任何适配 2-按需要进行(码流，码率)适配--></adpt>
+	<!--发言人的源模式-->
+	<CBB_EmConfSpeakerSrcMode role="spksrcmod"><!--枚举--></CBB_EmConfSpeakerSrcMode>
+	<!--发言人的源的媒体模式-->
+	<CBB_EmMediaModeDef role="spksrcmediamod"><!--枚举--></CBB_EmMediaModeDef>
+	<!--是否组播低速码流-->
+	<mltclow><!--布尔：0-不是组播低速码流(组播高速码流) 1-组播低速码流--></mltclow>
+	<!--组播低速码率值-->
+	<mltclowbr><!--无符号整型--></mltclowbr>
+	<!--终端入会后是否初始哑音-->
+	<initdumb><!--布尔：0-不哑音 1-哑音--></initdumb>
+	<!--会议的双流发起模式-->
+	<CBB_EmConfDualMode role="dulmod"><!--枚举--></CBB_EmConfDualMode>
+	<!--码流转发时是否支持归一化整理方式-->
+	<unimod><!--布尔：0-不支持，1-支持--></unimod>
+	<!--会议组播起始端口-->
+	<mltcport><!--无符号整型--></mltcport>
+	<!--会议组播地址-->
+	<mltcip><!--无符号整型--></mltcip>
+	<!--卫星分散会议Ip地址-->
+	<satdcastip><!--无符号整型--></satdcastip>
+	<!--卫星分散会议端口-->
+	<satdcastport><!--无符号整型--></satdcastport>
+	<!--是否支持卫星分散会议-->
+	<satdcast><!--布尔：0-不支持，1-支持--></satdcast>
+	<!--会议密钥模式-->
+	<encymanu><!-- 0-自动密钥, 1-手动密钥--></encymanu>
+	<!--端口模式会议-->
+	<portmod><!--布尔：0-不是端口模式，1-是端口模式 --></portmod>
+	<!--卫星会议上传允许的视频通道数-->
+	<satdcastvch><!--无符号整型--></satdcastvch>
+	<!--卫星会议上传允许的音频通道数-->
+	<satdcastach><!--无符号整型--></satdcastach>
+	<!--自动录像属性-->
+	<CBB_TConfAutoRecAttrb role="autorecattrb"><!--结构体--></CBB_TConfAutoRecAttrb>
+    <!--画面合成自动调整分辨率-->
+	<vmpautoadpres><!--无符号整型--></vmpautoadpres>
+	<!--正在hdu批量轮询的预案索引号-->
+	<scheidxinbatchpoll><!--无符号整型--></scheidxinbatchpoll>
+	<!--是否为真正的卫星会议-->
+	<realsatconf><!--布尔：0-不是，1-是 --></realsatconf>
+	<!--会议支持发送的总带宽-->
+	<sndspybw><!--无符号整型--></sndspybw>
+	<!--会议发言模式-->
+	<CBB_EmConfSpeakMode role="spkmod"><!--枚举--></CBB_EmConfSpeakMode>
+	<!--是否公共会议-->
+	<pubconf><!--布尔：0-不是，1-是 --></pubconf>
+</CBB_TConfAttrb>
+
+<CBB_TMediaEncrypt>
+    <!--加密模式-->
+	<CBB_EmEncryptModeDef role="encymod"><!--枚举--></CBB_EmEncryptModeDef>
+	<!--加密key的长度-->
+    <keylen><!--无符号整型--></keylen>
+    <!--加密KEY-->
+	<enckey><!--每个字节转换为16进制，再以字符串形式表示--></enckey>
+</CBB_TMediaEncrypt>
+
+<CBB_TConfInfo>
+    <!--开始时间，控制台填0为立即开始-->
+    <CBB_TKdvTime role="starttm"><!--结构体--></CBB_TKdvTime>
+    <!--持续时间(分钟)，0表示不自动停止-->
+    <dur><!--无符号整型--></dur>
+    <!--会议码率(单位:Kbps,1K=1024)-->
+    <br><!--无符号整型--></br>
+    <!--双流百分比-->
+    <dsscl><!--无符号整型--></dsscl>
+    <!--最小发言持续时间(单位:秒)-->
+    <talkholdtm><!--无符号整型--></talkholdtm>
+    <!--会议支持的媒体-->
+    <CBB_TCapSupport role="confcap"><!--结构体--></CBB_TCapSupport>
+    <!--会议密码-->
+    <pwd><!--每个字节转换为16进制，再以字符串形式表示--></pwd>
+    <!--会议名-->
+    <name><!--字符串--></name>
+    <!--会议的E164号码-->
+    <e164><!--字符串--></e164>
+    <!--会议中主席的别名-->
+    <CBB_TMtAlias role="chr"><!--结构体--></CBB_TMtAlias>
+    <!--会议中发言人的别名-->
+    <CBB_TMtAlias role="spk"><!--结构体--></CBB_TMtAlias>
+    <!--会议属性结构-->
+    <CBB_TConfAttrb role="attrib"><!--结构体--></CBB_TConfAttrb>
+    <!--会议加密信息-->
+    <CBB_TMediaEncrypt role="encry"><!--结构体--></CBB_TMediaEncrypt>
+    <!--会议状态-->
+    <CBB_TConfStatus role="state"><!--结构体--></CBB_TConfStatus>
+</CBB_TConfInfo>
+
+
+<CBB_TMtConfInfo>
+    <!--开始时间，控制台填0为立即开始-->
+    <CBB_TKdvTime role="starttm"><!--结构体--></CBB_TKdvTime>
+    <!--持续时间(分钟)，0表示不自动停止-->
+    <dur><!--无符号整型--></dur>
+    <!--会议码率(单位:Kbps,1K=1024)-->
+    <br><!--无符号整型--></br>
+    <!--双速会议的第2码率-->
+    <secbitrate><!--无符号整型--></secbitrate>
+	<!--主视频格式-->
+	<CBB_EmVidResolution role="mainvid"></CBB_EmVidResolution>
+	<!--辅视频格式-->
+	<CBB_EmVidResolution role="secvid"></CBB_EmVidResolution>
+	<!--最小发言持续时间(单位:秒)-->
+    <talkholdtm><!--无符号整型--></talkholdtm>
+    <!--会议密码-->
+    <pwd><!--每个字节转换为16进制，再以字符串形式表示--></pwd>
+    <!--会议名-->
+    <name><!--字符串--></name>
+    <!--会议的E164号码-->
+    <e164><!--字符串--></e164>
+    <!--主席终端-->
+    <CBB_TTERLABEL role="chr"><!--结构体--></CBB_TTERLABEL>
+    <!--发言终端-->
+    <CBB_TTERLABEL role="spk"><!--结构体--></CBB_TTERLABEL>
+    <!--画面合成参数-->
+    <CBB_TVmpParam role="vmppara"><!--结构体--></CBB_TVmpParam>
+    <!--混音参数-->
+    <CBB_TMixParam role="mixpara"><!--结构体--></CBB_TMixParam>
+    <!--是否支持卫星分散会议-->
+    <issupportdcast><!--布尔：0-不支持，1-支持 --></issupportdcast>
+    <!--会议开放方式-->
+    <CBB_EmConfOpenModeDef role="openmode"><!--枚举--></CBB_EmConfOpenModeDef>
+	<!--是否占用图像处理（包括画面合成和适配）能力-->
+	<isoccupyvpu><!--布尔：0-没占用，1-占用 --></isoccupyvpu>
+	<!--发言模式-->
+    <CBB_EmConfDualMode role="dualmode"><!--枚举--></CBB_EmConfDualMode>
+	<!--终端入会后是否初始哑音-->
+	<isallinitdumb><!--布尔：0-不哑音 1-哑音--></isallinitdumb>
+	<is_closed><!--布尔：0-封闭 1-不封闭--></is_closed><!--封闭会议（对应终端免打扰模式）拒绝列表以外的终端 -->
+	<is_port_mode><!--布尔：0-传统 1-端口--></is_port_mode><!--端口模式会议-->
+	<is_must_see_broadcast><!--布尔：0-不强制收看广播 1-强制收看广播--></is_must_see_broadcast><!--是否强制收看广播-->
+</CBB_TMtConfInfo>
+
+<CBB_TConfTimeInfo>
+	<!--开始时间，控制台填0为立即开始-->
+	<CBB_TKdvTime role="starttime"><!--结构体--></CBB_TKdvTime>
+	<!--持续时间(分钟)，0表示不自动停止-->
+	<duration><!--无符号整型--></duration>
+	<!--会议剩余时间（目的是防止终端时间与平台时间不一致，计算错误）-->
+	<confresttime><!--无符号整型--></confresttime>
+</CBB_TConfTimeInfo>
+
+<CBB_TTERLABEL>
+	<!-- MCU ID-->
+    <mcu_no><!--无符号整型--></mcu_no>
+	<!-- 终端ID-->
+    <ter_no><!--无符号整型--></ter_no>
+</CBB_TTERLABEL>
+
+<CBB_TEncryptSync>
+    <!--加密模式-->
+	<CBB_EmEncryptModeDef role="encymod"><!--枚举--></CBB_EmEncryptModeDef>
+	<!--shall be the Dynamic PayloadType for H.323-->
+    <synflag><!--无符号整型--></synflag>
+    <!--H.235 encoded value(1-65535)-->	         
+    <h235key><!--字符串--></h235key>
+    <!--H.235 encoded value len-->	 
+    <h235keylen><!--无符号整型--></h235keylen>
+</CBB_TEncryptSync>
+
+
+<CBB_VideoInfo>
+    <id><!--通道号从0开始 --></id>	
+   <!--终端是否丢失视频源-->
+    <lostv><!--布尔：1-丢失，0-没丢失 --></lostv>
+    <!--当前本地视频源(0:S端子,1-6:C端子)-->		
+   <vsrc><!--无符号整型--></vsrc>
+    <!--是否允许远遥	1 yes 0 no		-->
+    <remote_ctrl><!--无符号整型--></remote_ctrl>
+</CBB_VideoInfo>
+
+<CBB_TTERSTATUS>    
+    <!-- 终端板卡类型 老的产品值定义在vccomm中，5.0终端类型的定义在CBB_MT_BOARD_Type-->
+	<mtbrdtp><!--无符号整型--></mtbrdtp>
+	<videoinfo num=""><!--<CBB_VideoInfo>结构体--></loclist>    
+	<!--矩阵状态 (1 ok 0 err)-->
+	<matrixsta><!--无符号整型--></matrixsta>	
+	<!--当前编码音量(单位:等级)-->
+	<encvol><!--无符号整型--></encvol>
+	<!--当前解码音量(单位:等级)-->   
+    <dec_vol><!--无符号整型--></dec_vol>
+    <!--是否哑音-->
+	<mute><!--布尔：1 yes 0 no--></mute>
+	<!--是否静音-->
+	<quiet><!--布尔：1 yes 0 no--></quiet>
+	<!--终端扩展视频源 0表示没有-->
+    <ex_vsrc_num><!--无符号整型--></ex_vsrc_num>
+	<!--选看标识-->
+	<CBB_EmMediaModeDef role="selectmode"><!--枚举--></CBB_EmMediaModeDef>
+
+</CBB_TTERSTATUS>
+
+<CBB_TTERADDR>
+	<!--地址类型-->
+    <CBB_EmMtAliasType role="addrtype"><!--枚举--></CBB_EmMtAliasType>
+    <!--地址-->
+    <CBB_TTransportAddr role="addr"><!--结构体--></CBB_TTransportAddr>
+    <!-- 别名类型-->
+	<CBB_EmMtAliasType role="aliastype"><!--枚举--></CBB_EmMtAliasType>
+	<!-- 别名-->	
+	<alias><!--字符串--></alias>
+</CBB_TTERADDR>
+
+<CBB_TAddMtInfo>
+    <!--被呼终端别名-->
+    <CBB_TMtAlias role="alias"><!--结构体--></CBB_TMtAlias>
+    <!--呼叫模式-->
+	<CBB_EmCallModeDef role="calmod"><!--枚举--></CBB_EmCallModeDef>
+	<!--呼叫码率，单位Kbps-->
+	<dialbr><!--无符号整型--></dialbr>
+</CBB_TAddMtInfo>
+
+<CBB_TMtPollInfo>
+    <!--轮询终端-->
+    <CBB_TTERLABEL role="polmt"><!--结构体--></CBB_TTERLABEL>
+    <!--轮询间隔-->
+    <polite><!--无符号整型--></polite>
+</CBB_TMtPollInfo>
+
+<CBB_TConfMtInfo>
+    <!--该MC所在的Mcu的Id号-->
+	<mcuid><!--无符号整型--></mcuid>
+	<!--会议索引号 -->
+    <confidx><!--无符号整型--></confidx>
+    <!--受邀终端列表-->
+	<invitedlist><!--每个字节转换为16进制，再以字符串形式表示--></invitedlist>
+	<!--与会终端列表-->
+	<joinedlist><!--每个字节转换为16进制，再以字符串形式表示--></joinedlist>	
+</CBB_TConfMtInfo>
+
+<CBB_TBasicConfInfo>
+    <!--发言人-->
+    <CBB_TMt role="spk"><!--结构体--></CBB_TMt>
+    <!--主席-->
+	<CBB_TMt role="chr"><!--结构体--></CBB_TMt>
+</CBB_TBasicConfInfo>
+
+<CBB_TSimConfInfo>
+	<!--基本会议信息-->
+    <CBB_TBasicConfInfo role="basic"><!--结构体--></CBB_TBasicConfInfo>
+	<!--混音模式-->
+    <CBB_EmMixModeDef role="mixmod"><!--枚举--></CBB_EmMixModeDef>
+	<!--画面合成模式-->
+    <CBB_EmVmpModeDef role="vmpmod"><!--枚举--></CBB_EmVmpModeDef>
+</CBB_TSimConfInfo>
+
+<CBB_TMtExt>
+    <CBB_TMt role="mt"><!--结构体--></CBB_TMt>
+    <!--厂商编号,参见厂商编号定义-->
+	<CBB_EmManuId role="manu"><!--枚举--></CBB_EmManuId>
+	<!--呼叫终端方式-->
+	<CBB_EmCallModeDef role="calmod"><!--枚举--></CBB_EmCallModeDef>
+	<!--呼叫终端速率,单位KBPS-->
+	<dialbr><!--无符号整型--></dialbr>
+	<!--定时呼叫终端的剩余呼叫次数-->
+	<calleftnum><!--无符号整型--></calleftnum>
+	<!--终端地址-->
+	<CBB_TTransportAddr role="mtaddr"><!--结构体--></CBB_TTransportAddr>
+	<!--终端别名-->
+	<alias><!--字符串--></alias>
+	<!-- 终端的协议类型-->
+    <CBB_EmProtocolTypeDef role="prottype><!--枚举--></CBB_EmProtocolTypeDef>
+</CBB_TMtExt>
+
+<CBB_TERBITRATE>
+    <pri_s_br><!--无符号整型--></pri_s_br>			    <!--视频编码码率(单位:kbps)-->
+    <sec_s_br><!--无符号整型--></sec_s_br>			    <!--视频编码码率(单位:kbps)-->
+    <pri_r_br><!--无符号整型--></pri_r_br>			    <!--视频解码码率(单位:kbps)-->
+    <sec_r_br><!--无符号整型--></sec_r_br>			    <!--视频解码码率(单位:kbps)-->
+    <pri_s_avbr><!--无符号整型--></pri_s_avbr>			<!--平均编码码率(单位:kbps)-->
+    <sec_s_avbr><!--无符号整型--></sec_s_avbr>			<!--平均编码码率(单位:kbps)-->
+    <pri_r_avbr><!--无符号整型--></pri_r_avbr>			<!--平均解码码率(单位:kbps)-->
+    <sec_r_avbr><!--无符号整型--></sec_r_avbr>			<!--平均解码码率(单位:kbps)-->
+</CBB_TERBITRATE>
+
+<!--终端通道描述-->
+<CBB_TMtLoc>
+	<Direct><!--字符串："snd" or "rcv"--></Direct>
+	<CBB_EmMediaModeDef role="medaimode"><!--枚举--></CBB_EmMediaModeDef>
+	<id><!--通道号，从0开始--></id>
+	<alias><!--通道别名字符串--></alias>
+</CBB_TMtLoc>
+
+<CBB_TTerminalInfo>
+	<!-- 终端ID-->
+	<CBB_TTERLABEL role="ter"><!--结构体--></CBB_TTERLABEL>
+	<!-- 终端类型-->
+	<CBB_EmSubTypeDef role="type"><!--枚举--></CBB_EmSubTypeDef>
+	<!-- 终端E164号-->
+	<e164><!--字符串--></e164>
+	<!-- 终端别名-->
+	<alias><!--字符串--></alias>
+	<!-- 终端是否为为只发送音频码流-->
+	<isonlyaud><!--布尔：0-不只发送音频，1-只发送音频--></isonlyaud>
+	<!--所有通道-->
+	<loclist num=""><!--<CBB_TMtLoc>结构体--></loclist>
+</CBB_TTerminalInfo>
+
+<CBB_TMultiPic>
+	<!-- MCU ID-->
+	<mcu_no><!--无符号整型--></mcu_no>
+	<!-- 端口画面合成风格-->
+	<CBB_EmMultiPicDef role="style"><!--枚举--></CBB_EmMultiPicDef>
+	<terlist num="">
+		<!-- <CBB_TTERLABEL>列表 -->
+	</terlist>
+</CBB_TMultiPic>
+
+<CBB_TTERINFO>
+	<!--终端ID(结合MCUNO)-->
+	<CBB_TTERLABEL role="ter"><!--结构体--></CBB_TTERLABEL>
+	<!--终端ID(本级会议有效)-->
+	<terid><!--字符串--></terid>
+</CBB_TTERINFO>
+
+
+<CBB_TCapInfo>
+    <!--厂商ID-->
+    <CBB_EmVendorProductId role="vendor"><!--枚举--></CBB_EmVendorProductId>
+    <smcu><!--布尔--></smcu><!--0:MT, 1:MCU-->
+    <mix><!--布尔：0-没有混音，1-在混音 --></mix><!--混音-->
+    <vac><!--布尔：0-没开启，1-开启 --></vac><!--语音激励-->
+    <custvmp><!--布尔：0-不是定制合成，1-是定制合成 --></custvmp><!--定制画面合成-->
+    <autovmp><!--布尔：0-不是自动合成，1-是自动合成--></autovmp><!--自动画面合成-->
+    <endconf><!--布尔：0-否，1-是--></endconf>><!--结束会议-->
+    <invitemt><!--布尔：0-否，1-是--></invitemt><!--邀请终端-->
+    <dropmt><!--布尔：0-否，1-是--></dropmt><!--删除终端-->
+    <selspk><!--布尔:0-取消，1-指定--></selspk><!--指定/取消发言人-->
+    <selchr><!--布尔:0-取消，1-指定--></selchr><!--指定/放弃主席-->
+    <selsrc><!--布尔：0-否，1-是--></selsrc><!--选看终端-->
+    <fecc><!--布尔：0-否，1-是--></fecc><!--远程摄像头遥控-->
+    <quiet><!--布尔：0-不静音，1-静音--></quiet><!--远端静音-->
+    <mute><!--布尔：0-不哑音，1-哑音--></mute><!--远端哑音-->
+    <confreq><!--布尔：0-否，1-是--></confreq><!--会议申请处理-->
+    <onlinelist><!--布尔：0-否，1-是--></onlinelist><!--在线终端列表-->
+    <offlinelist><!--布尔：0-否，1-是--></offlinelist><!--离线终端列表-->
+    <selspkuser><!--布尔：0-否，1-是--></selspkuser><!--点名-->
+    <picswitch><!--布尔：0-否，1-是--></picswitch><!--单多画面切换-->
+    <mustseespk><!--布尔：0-否，1-是--></mustseespk><!--强制广播-->
+</CBB_TCapInfo>
+
+<CBB_TCOMDATA>
+	<!--串口数据类型-->
+    <CBB_EmComType role="comtype"><!--枚举--></CBB_EmComType>
+	<!--串口数据长度-->
+    <datalen><!--无符号整型--></datalen>
+	<!--串口数据内容-->
+    <data><!--每个字节转换为16进制，再以字符串形式表示--></data>
+</CBB_TCOMDATA>
+
+<CBB_TCHANMULTICAST><!--组播通道-->
+	<!--组播通道ID-->
+    <CBB_EmMulticastChnId role="chid"><!--枚举--></CBB_EmMulticastChnId>
+	<!--传输地址-->
+	<CBB_TTransportAddr role="addr"><!--结构体--></CBB_TTransportAddr>
+</CBB_TCHANMULTICAST>
+
+<CBB_TConfListItemMtReqed>
+    <!--会议名-->
+	<name><!--字符串--></name>
+	<!--E164号码-->
+	<e164><!--字符串--></e164>
+	<!--入会终端数-->
+	<joinednum><!--无符号整型--></joinednum>
+	<!--会议剩余时间-->				   
+	<remaintime><!--无符号整型--></remaintime>
+	<!--会议开放模式-->				   
+	<CBB_EmConfOpenModeDef role="openmode"><!--结构体--></CBB_EmConfOpenModeDef>
+	<!--会议模式-->
+	<CBB_EmClarity role="clarity"><!--枚举--></CBB_EmClarity>
+	<!--会议开始时间-->				   
+	<CBB_TKdvTime role="starttm"><!--结构体--></CBB_TKdvTime>
+	<!--是否支持卫星分散会议-->
+	<issat><!--布尔：0-不支持，1-支持--></issat>
+	<!--是否为开放会议-->
+	<ispubconf><!--布尔：0-不是，1-是--></ispubconf>
+	<isneedpwd><!--布尔：0-不是，1-是--></isneedpwd><!--是否为密码会议-->
+</CBB_TConfListItemMtReqed>
+
+<CBB_TMiniConfInfo>
+    <!--会议密码-->
+    <pwd><!--每个字节转换为16进制，再以字符串形式表示--></pwd>
+    <!--会议名-->
+    <name><!--字符串--></name>
+    <!--持续时间(分钟)-->
+	<dura><!--无符号整型--></dura>
+	<!--会议码率-->						
+	<br><!--无符号整型--></br>
+	<!--会议开放方式-->
+	<CBB_EmConfOpenModeDef role="openmode"><!--枚举--></CBB_EmConfOpenModeDef>	
+	<!--会议结束方式-->
+	<CBB_EmConfReleaseModeDef role="relmod"><!--枚举--></CBB_EmConfReleaseModeDef>	
+	<!--是否初始哑音-->					
+	<isinitdumb><!--布尔：0-初始不哑音 1-初始哑音 --></isinitdumb>
+	<!--会议支持的媒体-->				
+	<CBB_TCapSupport role="cap"><!--结构体--></CBB_TCapSupport>
+	<!--密钥-->				
+	<CBB_TMediaEncrypt role="key"><!--结构体--></CBB_TMediaEncrypt>
+	<!--画面合成参数-->					
+	<CBB_TMiniVmpParam role="vmpparam"><!--结构体--></CBB_TMiniVmpParam>
+	<!--卫星分散会议-->					
+	<issat><!--布尔：0-不是，1-是 --></issat>
+	<!--opus最大码率-->	
+        <maxopusbr><!--无符号整型--></maxopusbr>
+        <!--opus最小码率-->
+	<minopusbr><!--无符号整型--></minopusbr>
+	<!--是否开放会议-->
+	<ispub><!--布尔：0 -不开放， 1 - 开放--></ispub>
+	<!--端口模式会议-->
+	<portmod><!--布尔：0-不是端口模式 1-是端口模式 --></portmod>
+	<isclosedmode><!--布尔：0-不是封闭模式 1-是封闭模式 --></isclosedmode>
+	<!--指定发言人-->
+    <CBB_TMtAlias role="spk"><!--结构体--></CBB_TMtAlias>
+    <!--混音参数-->					
+	<CBB_TMiniMixParam role="mix_param"><!--结构体--></CBB_TMiniMixParam>
+	<!--轮询参数-->					
+	<CBB_TMiniPollInfo role="poll_param"><!--结构体--></CBB_TMiniPollInfo>
+	<!--呼叫次数-->						
+	<calltimes><!--无符号整型--></calltimes>
+	<!--呼叫间隔-->						
+	<callinterval><!--无符号整型--></callinterval>
+	<!--是否追呼-->
+	<callChase><!--布尔：0-不追呼 1-追呼 --></callChase>
+	<!--追呼成员列表,callchaselist里的num属性值决定CBB_TMtAlias的数量-->
+        <callchaselist num="">
+        <!-- <无符号整型>终端索引列表 -->
+        </callchaselist>
+        <!--视频质量-->
+	<CBB_EmVideoQualityDef role="video_quality"><!--枚举--></CBB_EmVideoQualityDef>	
+	<!--会议的双流发起方式-->
+	<CBB_EmConfDualModerole="dual_mode"><!--枚举--></CBB_EmConfDualMode>	
+	<!--级联模式-->						
+	<cascademode><!--无符号整型，0简单级联，1合并级联--></cascademode>
+	<!--是否级联上传-->
+	<cascadeUpload><!--布尔：1是，0否 --></cascadeUpload>
+	<!--是否级联回传-->
+	<cascadeReturn><!--布尔：1是，0否 --></cascadeReturn>
+	<!--组播是否激活-->
+	<is_multicastenable><!--布尔：1是，0否 --></is_multicastenable>
+	<!--会议组播地址-->
+	<CBB_TTransportAddr role="multicastAddr"><!--结构体--></CBB_TTransportAddr>
+	
+	<!--VipList-->
+	<CBB_TMiniVipListInfo role="vip_list"><!--结构体--></CBB_TMiniVipListInfo>
+    <!--终端列表-->
+	<CBB_TMtAlias num=""><!--CBB_TMtAlias列表--> </CBB_TMtAlias>
+	<maxjoinedmt><!--无符号整型,最大入会终端数--></maxjoinedmt>
+    <!--主席-->
+    <CBB_TMtAlias role="chr"><!--结构体--></CBB_TMtAlias>
+    <!--录像设置-->
+    <CBB_TAutorecattrb><!--结构体--></CBB_TAutorecattrb>
+	<!--是否归一重整-->
+	<is_onereforming><!--布尔--></is_onereforming>
+	<!--是否预分配会议号-->
+	<conf_e164><!--字符串--></conf_e164>
+</CBB_TMiniConfInfo>
+
+<CBB_TAutorecattrb>
+    <!--是否会议开启自动录像 0-不支持 1-支持-->
+    <autorec><!--布尔--></autorec>
+    <!--0-不发布 1-立即发布，新录播直播标志 2.-录像完毕之后发布，新录播发布标志 3-直播+发布-->
+    <publishmode><!--无符号整型--></publishmode>
+    <!--是否录主格式码流(视频+音频)-->
+    <isrecmainvideo><!--布尔--></isrecmainvideo>
+    <!--是否录双流(仅双流)-->
+    <isrecdstream><!--布尔--></isrecdstream>
+    <!--录像机别名信息-->
+    <CBB_TVrsalias><!--结构体--></CBB_TVrsalias>
+</CBB_TAutorecattrb>
+
+<CBB_TVrsalias>
+     <!--录像机别名类型 0-初始值， 1-IP, 2-E164 平台依据类型获取对应的别名信息-->
+	 <aliastype><!--无符号整型--></aliastype>
+    <!--录像机ip-->
+    <addr><!--字符串--></addr>
+    <!--录像机别名E164-->
+    <vrsno><!--字符串--></vrsno>
+</CBB_TVrsalias>
+
+<CBB_TConfDetailInfo>
+    <!--会议名-->
+    <name><!--字符串--></name>
+    <!--会议E164-->
+	<e164><!--字符串--></e164>
+	<!--域guid-->
+	<domainguid><!--字符串--></domainguid>
+	<!--域名-->
+	<domainname><!--字符串--></domainname>
+	<!--域的MOID-->		
+	<domainmoid><!--字符串--></domainmoid>
+	<!--会议类型-->
+	<CBB_EmConfStyle role="confsty"><!--枚举--></CBB_EmConfStyle>
+	<!--会议短号:6位-->
+	<shortcode><!--字符串--></shortcode>			
+    <!--会议加密模式-->
+ 	<CBB_EmEncryptModeDef role="encymod"><!--枚举--></CBB_EmEncryptModeDef>
+ 	<!--会议视频质量模式-->						
+	<CBB_EmClarity role="clarity"><!--枚举--></CBB_EmClarity>
+	<!--会议码率(单位:Kbps,1K=1024)-->				
+ 	<br><!--无符号整型--></br>
+ 	<!--分辨率 VIDEO_FORMAT_AUTO, ...-->						
+ 	<CBB_EmVidResolution role="res"><!--枚举--></CBB_EmVidResolution>					    
+    <!--开放模式-->
+	<CBB_EmConfOpenModeDef role="openmod"><!--枚举--></CBB_EmConfOpenModeDef>
+	<!--是否讨论会议-->					
+	<isdisc><!--布尔：0-不是讨论会议(演讲会议) 1-讨论会议--></isdisc>
+	<!--开始时间-->					
+	<CBB_TKdvTime role="starttm"><!--结构体--></CBB_TKdvTime>
+	<!--持续时间(分钟)--> 					    
+    <dura><!--无符号整型--></dura>
+    <!--创会人别名字符串-->						
+	<creatoralias><!--字符串--></creatoralias>
+	<!--会议的双流发起方式-->			
+	<CBB_EmConfDualMode role="dualmod"><!--枚举--></CBB_EmConfDualMode> 						
+    <!--是否支持卫星分散会议-->
+	<issat><!--布尔：0-不支持，1-支持--></issat>
+	<!--是否开放会议室属性-->
+	<ispub><!--布尔：0 -不开放， 1 - 开放--></ispub>
+	<!--端口模式会议-->
+	<portmod><!--布尔：0-不是端口模式 1-是端口模式 --></portmod>	
+	<isclosedmode><!--布尔：0-不是封闭模式 1-是封闭模式 --></isclosedmode>					
+	<isneedpwd><!--布尔：0-不需要密码 1-需要密码 --></isneedpwd>
+	<maxjoinedmt><!--无符号整型,最大入会终端数--></maxjoinedmt>
+</CBB_TConfDetailInfo>
+
+<CBB_multicastTerRsp_TransInfo>
+	<!--源的传输地址信息-->
+    <CBB_TTransportAddr role="vid_addr"><!--结构体--></CBB_TTransportAddr>
+	<!--有效载荷-->
+    <payload><!--无符号整型--></payload>
+	<!--加密参数-->
+    <CBB_TEncryptSync role="encrypt_sync"><!--结构体--></CBB_TEncryptSync>
+</CBB_multicastTerRsp_TransInfo>
+
+<CBB_TPassRsp>
+	<CBB_TTERLABEL role="mt"><!--结构体内容--></CBB_TTERLABEL>
+	<passlen><!--数字，密码长度--></passlen>
+	<password><!--密码，16进制字符串，两个字符组成一个密码字节--></password>
+</CBB_TPassRsp>
+
+<CBB_TNETADDR>
+    <!--地址类型，组播或单播-->
+    <CBB_EmTransportAddrType role="addr_type"><!--枚举值--></CBB_EmTransportAddrType> 
+    <!--支持的 IP地址类型-->   
+    <CBB_EmIpType role="ip_type"><!--枚举值--></CBB_EmIpType>  
+	<ipv6><!--字符串 xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx--><ipv6>
+	<ipv4><!--字符串 xxx.xxx.xxx.xxx--></ipv4>
+	<port><!--端口数字--></port>
+</CBB_TNETADDR>
+
+<CBB_TH239INFO>
+    <CBB_EmH239InfoType role="h239_type"><!--枚举值--></CBB_EmH239InfoType>
+    <CBB_TTERLABEL role="mt"><!--结构体内容--></CBB_TTERLABEL>
+    <chanid><!--通道ID数字--></chanid>
+    
+    <!--在emH239FlowControlReleaseResponse
+      和emH239PresentationTokenResponse中使用
+      TRUE表示同意，FALSE表示拒绝-->
+    <isack><!--布尔型 0: 拒绝，1：同意--></isack>   
+    
+    <!--通道码率，单位：100bit/s，范围：1～19200
+      在emH239FlowControlReleaseRequest
+      和emH239FlowControlReleaseResponse消息中使用-->      
+    <bitrate><!--码率数字--></bitrate>          
+    
+    <!--MT取1～127之间的随机值;
+      MCU可以设为0，但是有具体含义-->
+    <symmetryBreaking><!--随机值数字--></symmetryBreaking> 
+</CBB_TH239INFO>
+
+<CBB_TUserInputInfo>
+    <CBB_EmUserInputIndication role="inputtype"><!--枚举值--><CBB_EmUserInputIndication>
+    <!--FROM ("0123456789#*ABCD!")-->
+    <signaltype><!--单字符--><signaltype> 
+    <!--超时值，单位：milliseconds-->
+    <duration></duration>
+    <alphanumeric><!--字符串--></alphanumeric>
+    <nonstddatalen><!--非标数据长度--></nonstddatalen>
+    <nonstddata><!--非标数据：16进制字符，两个字符组成一个内存字节--></nonstddata>
+</TUserInputInfo>
+
+<CBB_TMultiplexCapability>
+    <CBB_EmH264NALMode role="h264_mode"><!--枚举值--></CBB_EmH264NALMode>
+</CBB_TMultiplexCapability>
+
+<CBB_CameraPosInfo>
+	<!-- 通道 ID-->
+    <chn_idx><!--无符号整型--></chn_idx>
+	<CameraPos num="">
+		<!-- <CBB_CameraPos> 列表 -->
+		</CameraPos>
+</CBB_CameraPosInfo>
+
+<CBB_CameraPos>
+	<!-- 预置位号-->
+    <pos_idx><!--无符号整型--></pos_idx>
+	<!--预置位别名-->
+		<alias><!--字符串--></alias>
+</CBB_CameraPos>
+
+<CBB_RecvChanLossRate>
+	<CBB_EmMediaModeDef role="medaimode"><!--枚举--></CBB_EmMediaModeDef>   
+	<recv_idx><!--无符号整型--></recv_idx>
+	<packet_lost_rate><!--无符号整型--></packet_lost_rate>
+</CBB_RecvChanLossRate>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nverrcodedesc>
+       <global>
+          <language>zh_cn</language>
+       </global>
+       <module  id="00" desc="全局类的全部错误码信息描述">     
+              <submodule  id="00" desc="子业务模块名称描述">
+                     <levelgrp level="0" desc="提示类">   
+                           <error id="0">操作成功</error> 
+                           <error id="1">操作失败</error>                                   
+                     </levelgrp>    
+                     <levelgrp level="1" desc="警告类">   
+                                 
+                     </levelgrp> 
+		     <levelgrp level="2" desc="错误类">   
+                                 
+                     </levelgrp>  
+		     <levelgrp level="3" desc="系统错误级别类">   
+                                 
+                     </levelgrp>                                                 
+              </submodule>
+       </module> 
+</nverrcodedesc>

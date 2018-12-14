@@ -1,0 +1,1287 @@
+<!--主席终端转移令牌请求 chair->MC-->
+<CBB_ChairTransferReq>
+	<!--终端ID-->
+    <CBB_TTERLABEL role="dstmt"><!--结构体--></CBB_TTERLABEL>
+</CBB_ChairTransferReq>
+
+<!--主席邀请终端请求 chair->MC-->
+<CBB_ChairInviteTerminalReq>
+	<!--被邀请的终端信息(地址信息+别名信息)-->
+    <CBB_TTERADDR role="mtaddr"><!--结构体--></CBB_TTERADDR>
+	<!--呼叫码率-->
+    <bitrate><!--无符号整型--></bitrate>
+</CBB_ChairInviteTerminalReq>
+
+<!--询问MCU A终端被谁选看 ter->MC-->
+<CBB_WhoViewThisTerReq>
+	<!--A终端ID-->
+    <CBB_TTERLABEL role="viewedmt"><!--结构体--></CBB_TTERLABEL>
+</CBB_WhoViewThisTerReq>
+
+<!--延长会议时间 chair->MC-->
+<CBB_DelayConfTimeReq>
+	<!--时间信息-->
+    <delaytm><!--无符号整型--></delaytm>
+</CBB_DelayConfTimeReq>
+
+<!--强制选看请求 ter->MC-->
+<CBB_LetTerViewMeReq>
+	<!--被选看的终端ID-->
+    <CBB_TTERLABEL role="reqed_mt"><!--结构体--></CBB_TTERLABEL>
+	<!--媒体模式-->
+    <CBB_EmMediaModeDef role="media_mode"><!--枚举--></CBB_EmMediaModeDef>
+</CBB_LetTerViewMeReq>
+
+<!--组播终端请求 ter->MC-->
+<CBB_MulticastTerReq>
+	<!--发起组播的终端ID-->
+    <CBB_TTERLABEL role="dstmt"><!--结构体--></CBB_TTERLABEL>
+</CBB_MulticastTerReq>
+
+<!--源终端请求目的终端状态 ter->MC-->
+<CBB_DestterStatusReq>
+	<!--目的终端ID-->
+    <CBB_TTERLABEL role="dst_mt"><!--结构体--></CBB_TTERLABEL>
+</CBB_DestterStatusReq>
+
+<!--对应whoViewThisTerReq MC->ter-->
+<CBB_WhoViewThisTerRsp>
+	<!--被选看终端ID，发送端-->
+    <CBB_TTERLABEL role="viewed_mt"><!--结构体--></CBB_TTERLABEL>
+	<!--选看终端ID，接收端-->
+    <viewers num="">
+		<!-- <CBB_TTERLABEL> 列表 -->
+	</viewers>
+</CBB_WhoViewThisTerRsp>
+
+<!--查询轮询参数 MC->ter,-->
+<CBB_PollParamReq>
+</CBB_PollParamReq>
+
+<!--轮询参数应答 ter->MC-->
+<CBB_PollParamRsp>
+	<!--媒体模式-->
+    <CBB_EmMediaModeDef role="poll_media_mode"><!--枚举--></CBB_EmMediaModeDef>
+	<!--轮询状态-->
+    <CBB_EmPollStateDef role="poll_state"><!--枚举--></CBB_EmPollStateDef>
+	<!--终端轮询信息-->
+    <CBB_TMtPollInfo role="polling_mt"><!--结构体--></CBB_TMtPollInfo>
+	<!--终端轮询列表信息-->
+    <pollmtlist num="">
+		<!-- <CBB_TMtPollInfo> 列表 -->
+	</pollmtlist>
+</CBB_PollParamRsp>
+
+<!--停止轮询命令 MC->ter-->
+<CBB_StopPollCmd>
+</CBB_StopPollCmd>
+
+<!--暂停轮询命令 MC->ter-->
+<CBB_PausePollCmd>
+</CBB_PausePollCmd>
+
+<!--恢复轮询命令 MC->ter-->
+<CBB_ResumePollCmd>
+</CBB_ResumePollCmd>
+
+<!--询问会议信息 ter->MC-->
+<CBB_ConfInfoReq>
+</CBB_ConfInfoReq>
+
+<!--回答会议信息 MC->ter-->
+<CBB_ConfInfoRsp>
+	<!--会议信息-->
+    <CBB_TMtConfInfo role="conf_info"><!--结构体--></CBB_TMtConfInfo>
+</CBB_ConfInfoRsp>
+
+<!--会议时间信息 MC->ter-->
+<CBB_ConfInfoNtf>
+	<CBB_TConfTimeInfo role="timeinfo"><!--结构体--></CBB_TConfTimeInfo>
+</CBB_ConfInfoNtf>
+
+<!--延长会议时间应答-->
+<CBB_DelayConfTimeRsp>
+	<!--是否同意延长会议-->
+    <is_granted><!--布尔：1-同意，0-不同意--></is_granted>
+</CBB_DelayConfTimeRsp>
+
+<!--强制选看应答 MC->ter-->
+<CBB_LetTerViewMeRsp>
+	<!--是否同意强制选看-->
+    <is_granted><!--布尔：1-同意，0-不同意--></is_granted>
+</CBB_LetTerViewMeRsp>
+
+<!-- 开始语音激励请求 ter->MC -->
+<CBB_StartVACReq>
+</CBB_StartVACReq>
+
+<!--开始语音激励请求响应 MC->ter-->
+<CBB_StartVACRsp>
+	<!--是否成功开启语音激励-->
+    <is_granted><!--布尔：1-成功，0-失败--></is_granted>
+</CBB_StartVACRsp>
+
+<!-- 停止语音激励请求 ter->MC -->
+<CBB_StopVACReq>
+</CBB_StopVACReq>
+
+<!--停止语音激励请求响应 MC->ter-->
+<CBB_StopVACRsp>
+	<!--是否成功停止语音激励-->
+    <is_granted><!--布尔：1-成功，0-失败--></is_granted>
+</CBB_StopVACRsp>
+
+<!--开始讨论 chair->MC-->
+<CBB_StartDiscussReq>
+	<!--混音参数信息-->
+    <CBB_TMixParam role="discuss_param"><!--结构体--></CBB_TMixParam>
+</CBB_StartDiscussReq>
+
+<!--开始讨论请求响应 MC->ter-->
+<CBB_StartDiscussRsp>
+	<!--混音模式-->
+    <CBB_EmMixModeDef role="mix_mode"><!--枚举--></CBB_EmMixModeDef>
+	<!--是否成功开启会议讨论-->
+    <is_granted><!--布尔：1-成功，0-失败--></is_granted>
+</CBB_StartDiscussRsp>
+
+<!-- 停止讨论请求 ter->MC -->
+<CBB_StopDiscussReq>
+</CBB_StopDiscussReq>
+
+<!--停止讨论请求响应 MC->ter-->
+<CBB_StopDiscussRsp>
+	<!--混音模式-->
+    <CBB_EmMixModeDef role="mix_mode"><!--枚举--></CBB_EmMixModeDef>
+	<!--是否成功停止会议讨论-->
+    <is_granted><!--布尔：1-成功，0-失败--></is_granted>
+</CBB_StopDiscussRsp>
+
+<!--开始视频复合 chair->MC-->
+<CBB_StartVmpReq>
+	<!--画面合成参数-->
+    <CBB_TVmpParam role="vmp_param"><!--结构体--></CBB_TVmpParam>
+</CBB_StartVmpReq>
+
+<!--开始视频复合请求响应 MC->ter-->
+<CBB_StartVMPRsp>
+	<!--是否成功开启视频复合-->
+    <is_granted><!--布尔：1-成功，0-失败--></is_granted>
+</CBB_StartVMPRsp>
+
+<!--开始视频复合请求通知 MC->ter-->
+<CBB_StartVMPNotify>
+	<!--是否成功开启视频复合-->
+    <is_granted><!--布尔：1-成功，0-失败--></is_granted>
+	<!--画面合成参数-->
+    <CBB_TVmpParam role="vmp_param"><!--结构体--></CBB_TVmpParam>
+</CBB_StartVMPNotify>
+
+<!--停止视频复合请求 ter->MC -->
+<CBB_StopVMPReq>
+</CBB_StopVMPReq>
+
+<!--停止视频复合请求响应 MC->ter-->
+<CBB_StopVMPRsp>
+	<!--是否成功停止视频复合-->
+    <is_granted><!--布尔：1-成功，0-失败--></is_granted>
+</CBB_StopVMPRsp>
+
+<!--停止视频复合请求通知 MC->ter-->
+<CBB_StopVMPNotify>
+	<!--是否成功停止视频复合-->
+    <is_granted><!--布尔：1-成功，0-失败--></is_granted>
+</CBB_StopVMPNotify>
+
+<!--改变视频复合参数 chair->MC-->
+<CBB_ChangeVmpParamReq>
+	<!--画面合成参数-->
+    <CBB_TVmpParam role="vmp_param"><!--结构体--></CBB_TVmpParam>
+</CBB_ChangeVmpParamReq>
+
+<!--改变视频复合参数请求响应 MC->ter-->
+<CBB_ChangeVMPParamRsp>
+	<!--是否成功改变视频复合参数-->
+    <is_granted><!--布尔：1-成功，0-失败--></is_granted>
+</CBB_ChangeVMPParamRsp>
+
+<!--改变视频复合参数请求通知 MC->ter-->
+<CBB_ChangeVMPParamNotify>
+	<!--画面合成参数-->
+    <CBB_TVmpParam role="vmp_param"><!--结构体--></CBB_TVmpParam>
+</CBB_ChangeVMPParamNotify>
+
+<!--得到视频复合参数请求 ter->MC -->
+<CBB_GetVMPParamReq>
+</CBB_GetVMPParamReq>
+
+<!--得到视频复合参数请求响应 MC->ter-->
+<CBB_GetVMPParamRsp>
+    <is_granted><!--布尔：1-成功，0-失败--></is_granted>	
+	<!--画面合成参数-->
+    <CBB_TVmpParam role="vmp_param"><!--结构体--></CBB_TVmpParam>
+</CBB_GetVMPParamRsp>
+
+<!--组播终端应答 MC->ter-->
+<CBB_MulticastTerRsp>
+	<!--目的终端ID-->
+    <CBB_TTERLABEL role="dst_mt"><!--结构体--></CBB_TTERLABEL>
+	<!--视频源信息-->
+    <CBB_multicastTerRsp_TransInfo role="vid_info">
+		<!--地址信息-->
+		<CBB_TTransportAddr role="transportaddr"><!--结构体--></CBB_TTransportAddr>
+		<!--媒体格式-->
+		<realpayload><!--无符号整型--></realpayload>
+		<!--加密信息-->
+		<CBB_TEncryptSync role="encryptsync"><!--结构体--></CBB_TEncryptSync>
+	</CBB_multicastTerRsp_TransInfo>
+    <!--音频源信息-->
+	<CBB_multicastTerRsp_TransInfo role="aud_info">
+		<!--地址信息-->
+		<CBB_TTransportAddr role="transportaddr"><!--结构体--></CBB_TTransportAddr>
+		<!--媒体格式-->
+		<realpayload><!--无符号整型--></realpayload>
+		<!--加密信息-->
+		<CBB_TEncryptSync role="encryptsync"><!--结构体--></CBB_TEncryptSync>
+	</CBB_multicastTerRsp_TransInfo>
+</CBB_MulticastTerRsp>
+
+<!--终端状态请求 MC->ter -->
+<CBB_TerStatusReq>
+</CBB_TerStatusReq>
+
+<!--请求目的终端状态的响应 MC->ter-->
+<CBB_DestterStatusRsp>
+	<!--终端ID-->
+    <CBB_TTERLABEL role="dst_mt"><!--结构体--></CBB_TTERLABEL>
+	<!--终端状态信息-->
+    <CBB_TTERSTATUS role="mt_status"><!--结构体--></CBB_TTERSTATUS>
+</CBB_DestterStatusRsp>
+
+<!--远端静音命令 ter->MC,MC->ter-->
+<CBB_MakeTerQuietCmd>
+	<!--终端ID-->
+    <CBB_TTERLABEL role="dst_mt"><!--结构体--></CBB_TTERLABEL>
+	<!--开启静音/关闭静音-->
+    <is_turn_on><!--布尔：1-开启，0-关闭--></is_turn_on>
+</CBB_MakeTerQuietCmd>
+
+<!--远端哑音命令 ter->MC,MC->ter-->
+<CBB_MakeTerMuteCmd>
+	<!--终端ID-->
+    <CBB_TTERLABEL role="dst_mt"><!--结构体--></CBB_TTERLABEL>
+	<!--开启哑音/关闭哑音-->
+    <is_turn_on><!--布尔：1-开启，0-关闭--></is_turn_on>
+</CBB_MakeTerMuteCmd>
+
+<!--恢复轮询 MC->ter, NULL-->
+<CBB_ResumePollCmd>
+	<!--是否恢复轮询-->
+    <is_turn_on><!--布尔：1-恢复，0-不恢复--></is_turn_on>
+	<!--终端轮询列表索引位置-->
+    <preset_pos><!--无符号整型--></preset_pos>
+</CBB_ResumePollCmd>
+
+<!--停止组播终端 ter->MC -->
+<CBB_StopMulticastTer>
+	<!--终端ID-->
+    <CBB_TTERLABEL role="dst_mt"><!--结构体--></CBB_TTERLABEL>
+</CBB_StopMulticastTer>
+
+<!--主席选看 ter->MC -->
+<CBB_ChairSelectViewCmd>
+	<!--被选看终端ID-->
+    <CBB_TTERLABEL role="ds_mt"><!--结构体--></CBB_TTERLABEL>
+	<!--媒体模式-->
+    <CBB_EmMediaModeDef role="view_mode"><!--枚举--></CBB_EmMediaModeDef>
+</CBB_ChairSelectViewCmd>
+
+<!--主席邀请终端失败 MC->chair-->
+<CBB_ChairInviteFailedInd>
+	<!--主席邀请的终端的地址信息(地址+别名)-->
+    <CBB_TTERADDR role="invited_mt_addr"><!--结构体--></CBB_TTERADDR>
+	<!--邀请失败原因-->
+	<CBB_EmCallMtFailureReason role="failreason"><!--枚举--></CBB_EmCallMtFailureReason>
+</CBB_ChairInviteFailedInd>
+
+<!--会议即将结束指示 MC->chair-->
+<CBB_ConfWillEndInd>
+	<!--会议剩余的时间-->
+    <remain_minutes><!--无符号整型--></remain_minutes>
+</CBB_ConfWillEndInd>
+
+<!--延长会议时间指示 MC->ter-->
+<CBB_DelayConfTimeInd>
+	<!--延长的时间-->
+    <delay_minutes><!--无符号整型--></delay_minutes>
+</CBB_DelayConfTimeInd>
+
+<!--有终端申请主席 ter->MC -->
+<CBB_TerApplyChairInd>
+	<!--申请主席的终端ID-->
+    <CBB_TTERLABEL role="mt"><!--结构体--></CBB_TTERLABEL>
+</CBB_TerApplyChairInd>
+
+<!--终端状态指示 ter->MC-->
+<CBB_TerStatusInd>
+	<!--终端状态信息-->
+    <CBB_TTERSTATUS role="mt_status"><!--结构体--></CBB_TTERSTATUS>
+</CBB_TerStatusInd>
+
+<!--轮询状态指示-->
+<CBB_PollParamInd>
+	<!--媒体模式-->
+    <CBB_EmMediaModeDef role="poll_media_mode"><!--枚举--></CBB_EmMediaModeDef>
+	<!--轮询状态-->
+    <CBB_EmPollStateDef role="poll_state"><!--枚举--></CBB_EmPollStateDef>
+	<!--终端轮询信息-->
+    <CBB_TMtPollInfo role="polling_mt"><!--结构体--></CBB_TMtPollInfo>
+</CBB_PollParamInd>
+
+<!--短消息指示			ter->MC,MC->ter -->
+<CBB_SmsInd>
+	<CBB_RollMsgType role="type"><!--枚举--></CBB_RollMsgType>
+	<rolltime><!--无符号整型--></rolltime>
+	<CBB_RollMsgSpeed role="speed"><!--枚举--></CBB_RollMsgSpeed>
+	<CBB_TTERLABEL role="srcmt"><!--结构体--></CBB_TTERLABEL>
+	<dstmt num="">
+		<!--CBB_TTERLABEL 列表-->
+	</dstmt>
+	<simplemsg><!--字符串 短消息内容 --></simplemsg>
+</CBB_SmsInd>
+
+<!--新广播源通告	MC->ter -->
+<CBB_BroadcasterTokenOwnerInd>
+	<!--新广播源信息-->
+    <CBB_TTERLABEL role="src"><!--结构体--></CBB_TTERLABEL>
+</CBB_BroadcasterTokenOwnerInd>
+
+<!--主席指定终端插话			ter->MC-->
+<CBB_MakeTerChimeInCmd>
+	<!--指定的插话终端ID-->
+    <CBB_TTERLABEL role="dst_mt"><!--结构体--></CBB_TTERLABEL>
+</CBB_MakeTerChimeInCmd>
+
+<!--终端插话状态	MC->ter-->
+<CBB_ChimeInInd>
+	<!--终端是否在插话-->
+    <is_chime><!--布尔：1-在插话，0-没插话--></is_chime>
+</CBB_ChimeInInd>
+
+<!--其它终端申请插话指示 MC->chair-->
+<CBB_OtherTerChimeInInd>
+	<!--其他终端ID-->
+    <CBB_TTERLABEL role="other_mt"><!--结构体--></CBB_TTERLABEL>
+</CBB_OtherTerChimeInInd>
+
+<!--终端申请插话 ter->MC -->
+<CBB_ChimeInReq>
+</CBB_ChimeInReq>
+
+<!--mcu通知终端更新会议信息 MC->ter	-->
+<CBB_SimpleConfInfoInd>
+	<!--更新的会议信息-->
+    <CBB_TSimConfInfo role="simple_conf_info"><!--结构体--></CBB_TSimConfInfo>
+</CBB_SimpleConfInfoInd>
+
+<!--mt接收发送带宽通知 ter->MC-->
+<CBB_TerBandWidthInd>
+	<!--接收带宽-->
+    <recv_band_width><!--无符号整型--></recv_band_width>
+	<!--发送带宽-->
+    <send_band_width><!--无符号整型--></send_band_width>
+</CBB_TerBandWidthInd>
+
+<!--mt对终端码率应答 ter->MC -->
+<CBB_TerBitrateInfoRsp>
+	<!--终端的码率信息-->
+    <CBB_TERBITRATE role="bitrate"><!--结构体--></CBB_TERBITRATE>
+</CBB_TerBitrateInfoRsp>
+
+<!--主席终端强制广播-->
+<CBB_ViewBroadcastingSrcCmd>
+	<!--是否强制进行广播-->
+    <is_opr_start><!--布尔：1-是，0-否--></is_opr_start>
+</CBB_ViewBroadcastingSrcCmd>
+
+<!--卫星分散会议接收地址通知 Mcu-->
+<CBB_SatDConfAddrInd>
+	<!--第一路视频接收地址信息-->
+    <CBB_TTransportAddr role="first_vid_addr"><!--结构体--></CBB_TTransportAddr>
+	<!--第一路音频接收地址信息-->
+    <CBB_TTransportAddr role="first_aud_addr"><!--结构体--></CBB_TTransportAddr>
+	<!--第一路双流接收地址信息-->
+    <CBB_TTransportAddr role="first_dvid_addr"><!--结构体--></CBB_TTransportAddr>
+</CBB_SatDConfAddrInd>
+
+<!--视频分辨率调整  Mcu-->
+<CBB_VideoFormatChangeCmd>
+	<!--逻辑通道类型-->
+    <CBB_EmLogChnnlType role="logic_chnnl_type"><!--枚举--></CBB_EmLogChnnlType>
+	<!--分辨率-->
+    <CBB_EmVidResolution role="video_res"><!--枚举--></CBB_EmVidResolution>
+    <!--通道号 从0开始-->
+    <chlidx><!--无符号整型--></chlidx>
+</CBB_VideoFormatChangeCmd>
+
+<!--终端音量调节 Mcu-->
+<CBB_SetAudioVolumeCmd>
+	<!--调高音量/调低音量-->
+    <is_out><!--布尔：1-调高，0-调低--></is_out>
+	<!--调节的音量值-->
+    <value><!--无符号整型--></value>
+</CBB_SetAudioVolumeCmd>
+
+<!--终端通知通用消息 Mcu-->
+<CBB_SomeOfferingNtf>
+	<!--mcu发给MT的消息类型-->
+    <CBB_EmMcu2MtNtfMsgType role="notify"><!--枚举--></CBB_EmMcu2MtNtfMsgType>
+	<!--码率-->
+    <bitrate><!--无符号整型--></bitrate>
+</CBB_SomeOfferingNtf>
+
+<!--第一路)视频编码帧率调整 Mc-->
+<CBB_VideoFrameRateChangeCmd>
+	<!--调整的帧率-->
+    <CBB_EmFps role="fps"><!--枚举--></CBB_EmFps>
+</CBB_VideoFrameRateChangeCmd>
+
+<!--移除定制混音中的终端 (由主席触发有效)  Mt-->
+<CBB_RemoveMixMemberCmd>
+	<!--被移除的终端信息-->
+	<removemt num="">
+		<!-- <CBB_TMt> 列表 -->
+	</removemt>
+</CBB_RemoveMixMemberCmd>
+
+<!--混音信息通知 Mt-->
+<CBB_DiscussParamInd>
+	<!--混音参数-->
+    <CBB_TMixParam role="discuss_param"><!--结构体--></CBB_TMixParam>
+</CBB_DiscussParamInd>
+
+<!--终端（仅限主席MT）选看画面合成请求 ter -->
+<CBB_MtSelectVmpReq>
+	<!--是否开始选看画面合成-->
+    <is_start><!--布尔：1-开始选看，0-没选看--></is_start>
+</CBB_MtSelectVmpReq>
+
+<!--终端（仅限主席MT）选看画面合成应答 MC -->
+<CBB_MtSelectVmpRsp>
+	<!--是否成功选看画面合成-->
+    <is_ok><!--布尔：1-成功，0-失败--></is_ok>
+</CBB_MtSelectVmpRsp>
+
+<!--终端 申请发言中的终端  MC -->
+<CBB_MtSpeakStatusNtf>
+	<!--发言人状态-->
+    <CBB_EmMtSpeakerStatus role="speaker_status"><!--枚举--></CBB_EmMtSpeakerStatus>
+</CBB_MtSpeakStatusNtf>
+
+<!--终端 所有与会终端  MC -->
+<CBB_ConfSpeakModeNtf>
+	<!--会议发言模式-->
+    <CBB_EmConfSpeakMode role="speaker_mode_notif"><!--枚举--></CBB_EmConfSpeakMode>
+</CBB_ConfSpeakModeNtf>
+
+<!--发言人终端 －> MCU  ter -->
+<CBB_ApplyCancelSpeakerReq>
+	<!--是否取消发言请求-->
+    <is_apply><!--布尔：1-取消，0-不取消--></is_apply>
+</CBB_ApplyCancelSpeakerReq>
+
+<!--MCU －>  发言人终端  MC -->
+<CBB_ApplyCancelSpeakerRsp>
+	<!--是否成功取消发言-->
+    <is_granted><!--布尔：1-成功，0-失败--></is_granted>
+</CBB_ApplyCancelSpeakerRsp>
+
+<!--视频帧率调整  Mcu-->
+<CBB_VideoFpsChangeCmd>
+	<!--逻辑通道类型-->
+    <CBB_EmLogChnnlType role="logic_chnnl_type"><!--枚举--></CBB_EmLogChnnlType>
+	<!--帧率-->
+    <CBB_EmFps role="fps"><!--枚举--></CBB_EmFps>
+    <!--通道号 从0开始-->
+    <chlidx><!--无符号整型--></chlidx>
+</CBB_VideoFpsChangeCmd>
+
+<!--一个通道的多个视频源-->
+<CBB_VideoAlias>
+	<!--通道号 从0开始-->
+    <chlidx><!--无符号整型--></chlidx>
+	<!--视频源别名列表-->
+	<vidsrclist num="">
+		<CBB_videoAliasInd_Video><!--视频源别名信息-->
+			<!--视频源索引-->
+			<vid_indes><!--无符号整型--></vid_indes>
+			<!--视频源别名-->
+			<alias><!--字符串--></alias>
+		</CBB_videoAliasInd_Video>
+	</vidsrclist>
+</CBB_VideoAlias>
+
+
+<!--终端视频源别名指示  ter--mcu>
+<CBB_VideoAliasInd>
+	<VideoAliasList num="">
+		<!-- <CBB_VideoAlias> 列表 -->
+		</VideoAliasList>
+</CBB_VideoAliasInd>
+
+<!--控制终端双流发送命令 Mcu-->
+<CBB_ChgSecVidSendCmd>
+	<!--是否开始发送双流-->
+    <is_start><!--布尔：1-发送，0-不发送--></is_start>
+</CBB_ChgSecVidSendCmd>
+
+<!--MT命令修改会议名称 ter-->
+<CBB_ModifyConfNameReq>
+	<!--会议名称-->
+    <conf_name><!--字符串--></conf_name>
+</CBB_ModifyConfNameReq>
+
+<!--MT命令修改会议名称 Mcu-->
+<CBB_ModifyConfNameRsp>
+	<!--是否修改成功-->
+    <is_granted><!--布尔：1-成功，0-失败--></is_granted>
+</CBB_ModifyConfNameRsp>
+
+<!--MT命令修改会议时长 ter-->
+<CBB_ModifyConfDurationCmd>
+	<!--会议持续时长-->
+    <duration_minutes><!--无符号整型--></duration_minutes>
+</CBB_ModifyConfDurationCmd>
+
+<!--MT命令修改会议入会密码  ter-->
+<CBB_ModifyConfPwdCmd>
+	<!--是否加密-->
+    <is_encrypt><!--布尔：1-加密，0-没加密--></is_encrypt>
+	<!--入会密码-->
+    <key><!--字符串--></key>
+</CBB_ModifyConfPwdCmd>
+
+<!--MT(主席)命令修改已召开会议信息 ter-->
+<CBB_ModifyConfInfoReq>
+	<!--修改会议类型-->
+    <CBB_EmModifyConfInfoType role="modify_type"><!--枚举--></CBB_EmModifyConfInfoType>
+    <CBB_ModifyConfNameTypeContent role="modify_conf_name_content"><!--修改会议名称-->
+		<!--会议名称-->
+        <new_conf_name><!--字符串--></new_conf_name>
+    </CBB_ModifyConfNameTypeContent>
+    <CBB_ModifyConfDurationTypeContent role="modify_conf_duration_content"><!--修改会议时长-->
+		<!--会议持续时长-->
+        <new_duration><!--无符号整型--></new_duration>
+    </CBB_ModifyConfDurationTypeContent>
+    <CBB_ModifyConfPwdTypeContent role="modify_conf_pwd_content"><!--修改会议密码-->
+		<!--是否入会加密-->
+        <is_enc><!--布尔：1-加密，0-没加密--></is_enc>
+		<!--会议密码-->
+        <new_password><!--字符串--></new_password>
+    </CBB_ModifyConfPwdTypeContent>
+    <CBB_ModifyConfDualModeTypeContent role="modify_conf_dual_mode_content"><!--修改会议双流发起方式-->
+		<!--会议的双流发起方式-->
+        <CBB_EmConfDualMode role="new_dual_mode"><!--枚举--></CBB_EmConfDualMode>
+    </CBB_ModifyConfDualModeTypeContent>
+    <CBB_ModifyAddVmpMemAliasContent role="modify_add_vmp_mem_alias_content"><!--修改画面合成成员别名内容-->
+		<!--是否添加画面合成成员别名-->
+        <is_add_alias><!--布尔：1-添加，0-不添加--></is_add_alias>
+    </CBB_ModifyAddVmpMemAliasContent>
+    <CBB_ModifyOpenModeContent role="modify_openmode_content"><!--修改会议的openmode(对应CBB_EmConfOpenModeDef)-->
+		<!--修改会议的openmode-->
+        <CBB_EmConfOpenModeDef role="new_openmode"><!--枚举--></CBB_EmConfOpenModeDef>
+    </CBB_ModifyOpenModeContent>
+    <CBB_ModifyConfDumbContent role="modify_confdumb_content"><!--修改会议全体哑音-->
+		<!--是否会议全体哑音-->
+        <is_conf_dumb><!--布尔：1-全体哑音，0-取消全体哑音--></is_conf_dumb>
+    </CBB_ModifyConfDumbContent>
+    
+    <CBB_ModifyConfClosedContent role="conf_closed"><!--修改为封闭会议，对应终端免打扰模式-->
+		<!--是否为封闭会议-->
+        <is_conf_closed><!--布尔：1-封闭，0-取消封闭--></is_conf_closed>
+    </CBB_ModifyConfClosedContent>
+    
+</CBB_ModifyConfInfoReq>
+
+<!--MT(主席)命令修改已召开会议信息回复 Mcu-->
+<CBB_ModifyConfInfoRsp>
+	<!--会议类型-->
+    <CBB_EmModifyConfInfoType role="modify_type"><!--枚举--></CBB_EmModifyConfInfoType>
+	<!--是否修改成功-->
+    <is_granted><!--布尔：1-成功，0-失败--></is_granted>
+</CBB_ModifyConfInfoRsp>
+
+
+<!--指定与会终端发双流 ter->MC-->
+<CBB_SpecTerSendDualCmd>
+	<!--指定的终端ID-->
+    <CBB_TTERLABEL role="reqed_mt"><!--结构体--></CBB_TTERLABEL>
+</CBB_SpecTerSendDualCmd>
+
+<!--指定当前终端多路接收通道码率的比例 ter->MC-->
+<CBB_RcvLocRatioCmd>
+	<!--多路接收通道码率的比例-->
+    <ration_list num="">
+         <ration><!--0-100的值--> <ration>
+        <!--ration列表-->
+    </ration_list>
+</CBB_RcvLocRatioCmd>
+
+
+<!--MT(主席)请求获得终端信息 ter->Mcu -->
+<CBB_RequestTerminalInfo>
+    <!--时间戳-->
+    <timestamp><!--u32--></timestamp>
+	<!--要获取的终端ID-->
+    <CBB_TTERLABEL role="mt"><!--结构体--></CBB_TTERLABEL>
+</CBB_RequestTerminalInfo>
+
+<!--MT(主席)请求获得终端信息的平台响应-Mcu-->
+<CBB_RequestTerminalInfoResponce>
+	<!--时间戳-->
+    <time_stamp><!--无符号整型--></time_stamp>
+	<!--消息结束标记-->
+    <is_msg_end><!--布尔：1-end, 0-not end--></is_msg_end>
+	<!--获取消息标记-->
+    <is_msg_all><!--布尔：1-get one, 0-get all --></is_msg_all>
+	<!--终端信息列表-->
+	<mtinfolist num="">
+		<!-- <CBB_TTerminalInfo> 列表 -->
+	</mtinfolist>
+</CBB_RequestTerminalInfoResponce>
+
+<!--MCU回应 Mcu-->
+<CBB_GetDialogAuthRsp>
+	<!--是否成功获取日志-->
+    <is_granted><!--布尔：1-成功，0-失败--></is_granted>
+</CBB_GetDialogAuthRsp>
+
+<!--MCU回应 Mcu-->
+<CBB_GiveupDialogAuthRsp>
+	<!--是否成功放弃日志-->
+    <is_granted><!--布尔：1-成功，0-失败--></is_granted>
+</CBB_GiveupDialogAuthRsp>
+
+<!--会议发生错误通知 MCU--->
+<CBB_ConfFailNtf>
+	<!--错误原因-->
+    <CBB_EmConfFailureReason role="fail_reason"><!--枚举--></CBB_EmConfFailureReason>
+</CBB_ConfFailNtf>
+
+<!--远端静音请求-->
+<CBB_QuietRequest>
+	<!--请求静音的终端ID-->
+    <CBB_TTERLABEL role="mt"><!--结构体--></CBB_TTERLABEL>
+</CBB_QuietRequest>
+
+<!--远端静音响应-->
+<CBB_QuietResponse>
+	<!--请求静音的终端ID-->
+    <CBB_TTERLABEL role="mt"><!--结构体--></CBB_TTERLABEL>
+	<!--是否静音-->
+    <is_granted><!--布尔：1-静音，0-不静音--></is_granted>
+</CBB_QuietResponse>
+
+<!--取消远端静音请求-->
+<CBB_CancelQuietRequest>
+	<!--请求取消静音的终端ID-->
+    <CBB_TTERLABEL role="mt"><!--结构体--></CBB_TTERLABEL>
+</CBB_CancelQuietRequest>
+
+<!--取消远端静音响应-->
+<CBB_CancelQuietResponse>
+	<!--请求取消静音的终端ID-->
+    <CBB_TTERLABEL role="mt"><!--结构体--></CBB_TTERLABEL>
+	<!--是否成功取消静音-->
+    <is_granted><!--布尔：1-成功，0-失败--></is_granted>
+</CBB_CancelQuietResponse>
+
+<!--远端闭音请求-->
+<CBB_MuteRequest>
+	<!--请求哑音的终端ID-->
+    <CBB_TTERLABEL role="mt"><!--结构体--></CBB_TTERLABEL>
+</CBB_MuteRequest>
+
+<!--远端闭音响应-->
+<CBB_MuteResponse >
+	<!--请求哑音的终端ID-->
+    <CBB_TTERLABEL role="mt"><!--结构体--></CBB_TTERLABEL>
+	<!--是否哑音-->
+    <is_granted><!--布尔：1-哑音，0-不哑音--></is_granted>
+</CBB_MuteResponse>
+
+<!--取消远端闭音请求-->
+<CBB_CancelMuteRequest>
+	<!--请求取消哑音的终端ID-->
+    <CBB_TTERLABEL role="mt"><!--结构体--></CBB_TTERLABEL>
+</CBB_CancelMuteRequest>
+
+<!--取消远端闭音响应-->
+<CBB_CancelMuteResponse>
+	<!--请求取消哑音的终端ID-->
+    <CBB_TTERLABEL role="mt"><!--结构体--></CBB_TTERLABEL>
+	<!--是否成功取消哑音-->
+    <is_granted><!--布尔：1-成功，0-失败--></is_granted>
+</CBB_CancelMuteResponse>
+
+ <!--设置声控切换(语音激励)-->
+<CBB_SetVACReqequest>
+	<!--是否开启语音激励-->
+    <is_start><!--布尔：1-开启，0-不开启--></is_start>
+	<!--语音激励保护时间-->
+    <value><!--无符号整型--></value>
+</CBB_SetVACReqequest>
+
+<!--设置声控切换结果-->
+<CBB_SetVACResponse>
+	<!--是否成功开启语音激励-->
+    <is_granted><!--布尔：1-成功，0-失败--></is_granted>
+</CBB_SetVACResponse>
+
+<!--开始自由讨论-->
+<CBB_StartDiscussRequest>
+</CBB_StartDiscussRequest>
+
+<!--自由讨论结果-->
+<CBB_StartDiscussResponse>
+	<!--是否成功开启自由讨论-->
+    <is_granted><!--布尔：：1-成功，0-失败--></is_granted>
+</CBB_StartDiscussResponse>
+
+<!--设置多画面-->
+<CBB_SetMultiPicRequest>
+	<!--画面合成信息-->
+    <CBB_TMultiPic role="multipic"><!--结构体--></CBB_TMultiPic>
+</CBB_SetMultiPicRequest>
+
+<CBB_SetMultiPicResponse>
+	<!--是否成功设置画面合成信息-->
+    <is_granted><!--布尔：1-成功，0-失败--></is_granted>
+</CBB_SetMultiPicResponse>
+
+<!--请求所有未入会会场名-->
+<CBB_NotInConfTerminalListRequest>
+</CBB_NotInConfTerminalListRequest>
+
+<!--所有未入会会场名应答-->
+<CBB_NotInConfTerminalListResponse>
+	<!--未入会终端信息-->
+	<mtlist num="">
+		<!--<CBB_TTERINFO> 列表-->
+	</mtlist>
+</CBB_NotInConfTerminalListResponse>
+
+<!--呼叫离线会场-->
+<CBB_CallTerminal>
+	<!--掉线终端ID-->
+    <CBB_TTERLABEL role="mt"><!--结构体--></CBB_TTERLABEL>
+</CBB_CallTerminal>
+
+<!--挂断终端-->
+<CBB_DisconnectTerminal>
+	<!--被挂断的终端ID-->
+    <CBB_TTERLABEL role="mt"><!--结构体--></CBB_TTERLABEL>
+</CBB_DisconnectTerminal>
+
+<!--点名发言-->
+<CBB_SelectSpeakingUserRequest>
+	<!--被点名的终端ID-->
+    <CBB_TTERLABEL role="mt"><!--结构体--></CBB_TTERLABEL>
+</CBB_SelectSpeakingUserRequest>
+
+<!--点名发言结果-->
+<CBB_SelectSpeakingUserResponse>
+	<!--被点名的终端ID-->
+    <CBB_TTERLABEL role="mt"><!--结构体--></CBB_TTERLABEL>
+	<!--是否点名成功-->
+    <is_granted><!--布尔：1-成功，0-失败--></is_granted>
+</CBB_SelectSpeakingUserResponse>
+
+<!--单,多画面切换-->
+<CBB_SetPicSwitch>
+	<!--是否切换成功-->
+    <is_multipic><!--布尔：1-成功，0-失败--></is_multipic>
+</CBB_SetPicSwitch>
+
+<!--对通能力指示-->
+<CBB_CapabilitiesInd>
+	<!--能力信息-->
+    <CBB_TCapInfo role="capinfo"><!--结构体--></CBB_TCapInfo>
+</CBB_CapabilitiesInd>
+
+<!--串口数据-->
+<CBB_SerialPortData>
+	<!--串口数据信息-->
+    <CBB_TCOMDATA role="com_data"><!--结构体--></CBB_TCOMDATA>
+</CBB_SerialPortData>
+
+<!--设置通道组播地址-->
+<CBB_SetChanMultiCastAddr>
+	<!--组播通道-->
+    <CBB_TCHANMULTICAST role="chan_multicast"><!--结构体--></CBB_TCHANMULTICAST>
+</CBB_SetChanMultiCastAddr>
+
+<!--序列号-->
+<CBB_SerialNumber>
+    <serial_number><!--字符串--></serial_number>
+</CBB_SerialNumber>
+
+<!--请求开始数据会议-->
+<CBB_StartDataConfRequest>
+</CBB_StartDataConfRequest>
+
+<!--应答开始数据会议-->
+<CBB_StartDataConfResponse>
+	<!--是否成功开启会议-->
+    <is_granted><!--布尔：1-成功，0-失败--></is_granted>
+</CBB_StartDataConfResponse>
+
+<CBB_AskVcsOccupyPermit>
+	<!--会议名称-->
+    <conf_name><!--字符串--></conf_name>
+</CBB_AskVcsOccupyPermit>
+
+<CBB_AskVcsOccupyPermitResp>
+	<!--是否成功获取Vcs许可-->
+    <is_granted><!--布尔：1-成功，0-失败--></is_granted>
+</CBB_AskVcsOccupyPermitResp>
+
+<CBB_VersionIdInd>
+	<!--版本ID-->
+    <vesion_id><!--字符串--></vesion_id>
+</CBB_VersionIdInd>
+
+<!--终端自主画面合成（仅限端口会议）相关：-->
+<CBB_StartMtVmpReq>
+    <CBB_EmVmpModeDef role="vmpmode"><!--枚举--></CBB_EmVmpModeDef><!-- 画面合成方式-->
+    <CBB_EmVmpStyleDef role="vmpstyle"><!--枚举--></CBB_EmVmpStyleDef><!-- 画面合成风格-->
+	<!--画面合成成员-->
+    <vmpmember num="">
+		<!--<CBB_TVMPMember> 列表。若vmpmode为auto，则CBB_TVMPMember中channel填255-->
+	</vmpmember>
+</CBB_StartMtVmpReq>
+
+<CBB_StartMtVmpRsp><!--开启画面合成响应（平台响应）-->
+	<is_success><!--开启画面合成标识，布尔：1-开启成功，0-开启失败--></is_success>
+</CBB_StartMtVmpRsp>
+
+<CBB_StartMtVmpNotify><!--开启画面合成通知（底层硬件响应）-->
+    <is_success><!--开启画面合成标识，布尔：1-开启成功，0-开启失败--></is_success>
+    <!-- 以下成功才需要填-->
+    <CBB_EmVmpModeDef role="vmpmode"><!--枚举--></CBB_EmVmpModeDef><!-- 画面合成方式-->
+    <CBB_EmVmpStyleDef role="vmpstyle"><!--枚举--></CBB_EmVmpStyleDef><!-- 画面合成风格-->
+	<!--画面合成成员-->
+    <vmpmember num="">
+		<!--<CBB_TVMPMember> 列表。若vmpmode为auto，则CBB_TVMPMember中channel填255-->
+	</vmpmember>
+</CBB_StartMtVmpNotify>
+
+<CBB_StopMtVmpReq><!--停止画面合成-->
+</CBB_StopMtVmpReq>
+
+<CBB_StopMtVmpRsp><!--停止画面合成响应（平台响应）-->
+    <is_success><!--布尔：1-停止成功，0-停止失败--></is_success><!--是否成功停止画面合成-->
+</CBB_StopMtVmpRsp>
+
+<CBB_StopMtVmpNotify><!--停止画面合成通知（底层硬件响应）-->
+    <is_success><!--布尔：1-停止成功，0-停止失败--></is_success><!--停止画面合标识-->
+</CBB_StopMtVmpNotify>
+
+<CBB_ChangeMtVmpReq>
+    <CBB_EmVmpModeDef role="vmpmode"><!--枚举--></CBB_EmVmpModeDef><!-- 画面合成方式-->
+    <CBB_EmVmpStyleDef role="vmpstyle"><!--枚举--></CBB_EmVmpStyleDef><!-- 画面合成风格-->
+	<!--画面合成成员-->
+    <vmpmember num="">
+		<!--<CBB_TVMPMember> 列表。若vmpmode为auto，则CBB_TVMPMember中channel填255-->
+	</vmpmember>
+</CBB_ChangeMtVmpReq>
+
+<CBB_ChangeMtVmpRsp><!--更改画面合成响应（平台响应）-->
+    <is_success><!--布尔：1-修改成功，0-修改失败--></is_success><!--是否成功修改画面合成-->
+</CBB_ChangeMtVmpRsp>
+
+<CBB_ChangeMtVmpNotify><!--更改画面合成通知（底层硬件响应）-->
+    <is_success><!--布尔：1-修改成功，2-没修改失败--></is_success><!--修改画面合成标识-->
+    <!-- 以下成功才需要填-->
+    <CBB_EmVmpModeDef role="vmpmode"><!--枚举--></CBB_EmVmpModeDef><!-- 画面合成方式-->
+    <CBB_EmVmpStyleDef role="vmpstyle"><!--枚举--></CBB_EmVmpStyleDef><!-- 画面合成风格-->
+	<!--画面合成成员-->
+	<vmpmember num="">
+		<!--<CBB_TVMPMember> 列表。若vmpmode为auto，则CBB_TVMPMember中channel填255-->
+	</vmpmember>
+</CBB_ChangeMtVmpNotify>
+
+<CBB_DataConfCreatedNtf><!--白板会议创建通知-->
+    <confname><!--白板会议名称，字符串--></confname>
+    <confe164><!-- 白板会议164号，字符串--></confe164>
+</CBB_DataConfCreatedNtf>
+
+<CBB_JoinDataConfCmd><!--//加入白板会议命令，收到CBB_DataConfCreatedNtf后，MCU需要将此发往所有在本视频会议中的MT-->
+    <confname><!--白板会议名称，字符串--></confname>
+    <confe164><!-- 白板会议164号，字符串--></confe164>
+</CBB_JoinDataConfCmd>
+
+<CBB_SetVipListReq><!--设置Vip列表请求-->
+	<vip_list num="">
+		<!--<CBB_TMt> vip列表-->
+	</vip_list>
+</CBB_SetVipListReq>
+
+<CBB_SetVipListRsp><!--设置Vip列表回复-->
+	<is_success><!--布尔：1-设置成功，0-设置失败--></is_success>
+</CBB_SetVipListRsp>
+
+<CBB_VipListNotify><!--Vip列表通知-->
+	<vip_list num="">
+		<!--<CBB_TMt> vip列表-->
+	</vip_list>
+</CBB_VipListNotify>
+
+
+<!--开始多点会议指示  MC->ter, Master->slave,   [incoming]&[outgoing]: NULL-->
+<CBB_MultipointConference>
+</CBB_MultipointConference>
+
+<!--取消多点会议指示  MC->ter, Master->slave,   [outgoing]: NULL-->
+<CBB_CancelMultipointConference>
+</CBB_CancelMultipointConference>
+
+<!--会议模式命令	    MC->ter,   [incoming]&[outgoing]: [TCOMMODEINFO[]],目前不使用-->
+<!--CBB_communicationModeCommand></CBB_communicationModeCommand-->
+
+<!--MC询问会议密码    MC->ter,   [incoming]&[outgoing]: NULL-->
+<CBB_enterH243Password>
+</CBB_enterH243Password>
+
+<!--终端回答密码	    ter->MC,   [incoming]&[outgoing]: [TPassRsp]-->
+<CBB_passwordResponse>
+    <CBB_TPassRsp role="pwd"><!--结构体--></CBB_TPassRsp>
+</CBB_passwordResponse>
+
+<!--分配终端编号	    MC->ter,   [incoming]&[outgoing]: [TTERLABEL]-->
+<CBB_terminalNumberAssign>
+    <CBB_TTERLABEL role="mt"><!--结构体--></CBB_TTERLABEL>
+</CBB_terminalNumberAssign>
+
+<!--请求终端列表	    ter->MC,   [incoming]&[outgoing]: NULL-->
+<CBB_terminalListRequest>
+</CBB_terminalListRequest>
+
+<!--回答终端列表	    MC->ter,   [incoming]&[outgoing]: [TTERLABEL[]]-->
+<CBB_terminalListResponse>
+    <terlist num="">
+        <!--<CBB_TTERLABEL></CBB_TTERLABEL> 列表-->
+    </terlist>
+</CBB_terminalListResponse>
+
+<!--ter询问终端名	    ter->MC,   [incoming]&[outgoing]: [TTERLABEL]-->
+<CBB_requestTerminalID>
+    <CBB_TTERLABEL role="mt"><!--结构体--></CBB_TTERLABEL>
+</CBB_requestTerminalID>
+
+<!--MC回答终端名	    MC->ter,   [incoming]&[outgoing]: [TTERINFO]-->
+<CBB_CTerminalIDResponse>
+    <CBB_TTERINFO role="mt_info"><!--结构体--></CBB_TTERINFO>
+</CBB_CTerminalIDResponse>
+
+<!--MC询问终端名	    MC->ter,   [incoming]&[outgoing]: NULL-->
+<CBB_enterH243TerminalID>
+</CBB_enterH243TerminalID>
+
+<!--ter回答终端名	    ter->MC,   [incoming]&[outgoing]: [TTERINFO]-->
+<CBB_terminalIDResponse>
+    <CBB_TTERINFO role="mt_info"><!--结构体--></CBB_TTERINFO>
+</CBB_terminalIDResponse>
+
+<!--ter请求所有终端名 ter->MC,   [incoming]&[outgoing]: NULL-->
+<CBB_requestAllTerminalIDs>
+</CBB_requestAllTerminalIDs>
+
+<!--回答所有终端名字	MC->ter,   [incoming]&[outgoing]: [TTERINFO[]]-->
+<CBB_requestAllTerminalIDsResponse>
+    <terinfolist num="">
+            <!--<CBB_TTERINFO></CBB_TTERINFO> 列表-->
+    </terinfolist>
+</CBB_requestAllTerminalIDsResponse>
+
+<!--终端加入会议		MC->ter,   [incoming]&[outgoing]: [TTERLABEL]-->
+<CBB_terminalJoinedConference>
+    <CBB_TTERLABEL role="joined_mt"><!--结构体--></CBB_TTERLABEL>
+</CBB_terminalJoinedConference>
+
+<!--终端退出会议		MC->ter,   [incoming]&[outgoing]: [TTERLABEL]-->
+<CBB_terminalLeftConference>
+    <CBB_TTERLABEL role="leave_mt"><!--结构体--></CBB_TTERLABEL>
+</CBB_terminalLeftConference>
+
+<!--强制终端退出		chair->MC, [incoming]&[outgoing]: [TTERLABEL]-->
+<CBB_dropTerminal>
+    <CBB_TTERLABEL role="drop_mt"><!--结构体--></CBB_TTERLABEL>
+</CBB_dropTerminal>
+
+<!--强制终端退出失败	MC->chair, [incoming]&[outgoing]: NULL	-->
+<CBB_terminalDropReject>
+</CBB_terminalDropReject>
+
+<!--结束会议 chair->MC,MC->ter,  [incoming]&[outgoing]: NULL-->
+<CBB_dropConference>
+</CBB_dropConference>
+
+<!--申请发言			ter->MC,   [incoming]&[outgoing]: NULL-->
+<CBB_requestForFloor>
+</CBB_requestForFloor>
+
+<!--发言申请			MC->chair, [incoming]&[outgoing]: [TTERLABEL]-->
+<CBB_floorRequested>
+    <CBB_TTERLABEL role="spk_apply"><!--结构体--></CBB_TTERLABEL>
+</CBB_floorRequested>
+
+<!--广播终端			chair->MC, [incoming]&[outgoing]: [TTERLABEL+u8:CtrlMode]-->
+<CBB_makeTerminalBroadcaster>
+    <CBB_TTERLABEL role="brd_mt"><!--结构体--></CBB_TTERLABEL>
+    <CBB_EmCtrlMode role="brd_mode"><!--枚举值--></CBB_EmCtrlMode>
+</CBB_makeTerminalBroadcaster>
+
+<!--广播应答			MC->chair, [incoming]&[outgoing]: [u8:CtrlResult]-->
+<CBB_makeTerminalBroadcasterResponse>
+    <CBB_EmCtrlResult role="brd_rsp"><!--枚举值--></CBB_EmCtrlResult>
+</CBB_makeTerminalBroadcasterResponse>
+
+<!--取消广播			chair->MC, [incoming]&[outgoing]: NULL-->
+<CBB_cancelMakeTerminalBroadcaster>
+</CBB_cancelMakeTerminalBroadcaster>
+
+<!--广播源指示		MC->ter,   [incoming]&[outgoing]: NULL-->
+<CBB_seenByAll>
+</CBB_seenByAll>
+
+<!--广播源被取消指示	MC->ter,   [incoming]&[outgoing]: NULL-->
+<CBB_cancelSeenByAll>
+</CBB_cancelSeenByAll>
+
+<!--告知被其他终端选看  MC->ter, [incoming]&[outgoing]: NULL-->
+<CBB_seenByAtLeastOneOther>
+</CBB_seenByAtLeastOneOther>
+
+<!--告知被其他终端停看  MC->ter, [incoming]&[outgoing]: NULL-->
+<CBB_cancelSeenByAtLeastOneOther>
+</CBB_cancelSeenByAtLeastOneOther>
+
+<!--选看终端			chair->MC, [incoming]&[outgoing]: [TTERLABEL+u8:CtrlMode]-->
+<CBB_sendThisSource>
+    <CBB_TTERLABEL role="see_mt"><!--结构体--></CBB_TTERLABEL>
+    <CBB_EmCtrlMode role="see_mode"><!--枚举值--></CBB_EmCtrlMode>
+</CBB_sendThisSource>
+
+<!--选看应答			MC->chair, [incoming]&[outgoing]: [u8:CtrlResult]-->
+<CBB_sendThisSourceResponse>
+    <CBB_EmCtrlResult role="see_rsp"><!--枚举值--></CBB_EmCtrlResult>
+</CBB_sendThisSourceResponse>
+
+<!--取消选看			chair->MC, [incoming]&[outgoing]: NULL-->
+<CBB_cancelSendThisSource>
+</CBB_cancelSendThisSource>
+
+<!--终端通知所有通道别名 ter->MC -->
+<!--消息名：h_ctrl_allLocAliasNotif-->
+<CBB_AllLocAliasNotif>
+	<loclist num=""><!--<CBB_TMtLoc>结构体--></loclist>
+</CBB_AllLocAliasNotif>
+
+<!--指定选看某终端某通道 ter->MC -->
+<!--消息名：h_ctrl_selectViewChnCmd-->
+<CBB_SelectViewChnCmd>
+	<!--被选看终端ID-->
+    <CBB_TTERLABEL role="ds_mt"><!--结构体--></CBB_TTERLABEL>
+	<!--媒体模式-->
+    <CBB_EmMediaModeDef role="view_mode"><!--枚举--></CBB_EmMediaModeDef>
+    <!--被选看终端发送通道号-->
+    <locid_snd><!--通道id，从0开始--></locid_snd>
+    <!--选看终端接收通道号-->
+    <locid_rcv><!--通道id，从0开始--></locid_rcv>
+</CBB_SelectViewChnCmd>
+
+<!--正在观看的视频源	MC->ter,   [incoming]&[outgoing]: [TTERLABEL]+接收通道id-->
+<CBB_terminalYouAreSeeing>
+    <CBB_TTERLABEL role="view_src"><!--结构体--></CBB_TTERLABEL>
+    <!--被观看终端发送通道号-->
+    <locid_snd><!--通道id，从0开始--></locid_snd>    	
+    <!--接收通道ID-->
+    <locid_rcv><!--通道id，从0开始--></locid_rcv>
+</CBB_terminalYouAreSeeing>
+
+<!--申请主席			ter->MC,   [incoming]&[outgoing]: NULL-->
+<CBB_makeMeChair>
+</CBB_makeMeChair>
+
+<!--释放主席			chair->MC, [incoming]&[outgoing]: NULL-->
+<CBB_cancelMakeMeChair>
+</CBB_cancelMakeMeChair>
+
+<!--主席申请/释放应答	MC->ter,   [incoming]&[outgoing]: [u8:CtrlResult]-->
+<CBB_makeMeChairResponse>
+    <CBB_EmCtrlResult role="result"><!--枚举值--></CBB_EmCtrlResult>
+</CBB_makeMeChairResponse>
+
+<!--主席撤销指示		MC->ter,   [incoming]&[outgoing]: NULL-->
+<CBB_withdrawChairToken>
+</CBB_withdrawChairToken>
+
+<!--询问当前主席		ter->MC,   [incoming]&[outgoing]: NULL-->
+<CBB_requestChairTokenOwner>
+</CBB_requestChairTokenOwner>
+
+<!--回答当前主席		MC->ter,   [incoming]&[outgoing]: [TTERINFO]-->
+<CBB_chairTokenOwnerResponse>
+    <CBB_TTERINFO role="mt_info"><!--结构体--></CBB_TTERINFO>
+</CBB_chairTokenOwnerResponse>
+
+<!--含有MC的实体地址	MC->ter,   [incoming]&[outgoing]: [TNETADDR]-->
+<CBB_mcLocationIndication>
+    <CBB_TNETADDR role="addr"><!--结构体--></CBB_TNETADDR>
+</CBB_mcLocationIndication>
+
+<!--检查对端是否Alive ter->MC,MC->ter, [incoming]&[outgoing]: [s32:nMaxDelay]-->
+<CBB_roundTripDelay>
+    <maxdelay><!--无符号整型 最大超时次数--></maxdelay>
+</CBB_roundTripDelay>
+
+<!--发送H239消息      ter->MC,MC->ter, [incoming]&[outgoing]: [TH239INFO]-->
+<CBB_H239Message>
+    <CBB_TH239INFO role="h239_info"><!--结构体--></CBB_TH239INFO>
+</CBB_H239Message>
+
+<!--谁是双流源通知  消息号h_ctrl_SecVidSrcInd  ter->MC,MC->ter, [incoming]&[outgoing]: [TH239INFO]-->
+<CBB_SecVidSrcInd>
+		<!--终端ID-->
+    <CBB_TTERLABEL role="SecVidSrc"><!--结构体--></CBB_TTERLABEL>
+</CBB_SecVidSrcInd>
+
+<!--发送UserInput消息            [incoming]&[outgoing]: [TUserInputInfo]-->
+<CBB_userInput>
+    <CBB_TUserInputInfo role="input_info"><!--结构体--></CBB_TUserInputInfo>
+</CBB_userInput>
+
+<!--<CBB_roundTripDelay请求的附加消息(防火墙内部使用，用于区分请求和应答)-->
+<CBB_roundTripDelay_request>
+</CBB_roundTripDelay_request>
+
+<!--FECC消息（使用H245进行FECC消息的传递，主要用于pxy）-->
+<CBB_customFecc>
+</CBB_customFecc>
+
+<!--multiplexCapability消息,  [incoming]&[outgoing]: [TMultiplexCapability]-->
+<CBB_multiplexCapability>
+    <CBB_TMultiplexCapability role="mul_cap"><!--结构体--><CBB_TMultiplexCapability>
+</CBB_multiplexCapability>
+
+<!--[outgoing]        主从决定response，用于收到对方masterslaveresquest后，手动回复对方ack-->
+<CBB_masterSlaveResponse>
+</CBB_masterSlaveResponse>
+
+<!--[outgoing]		转发<CBB_MultipointConference消息，不产生回报-->
+<CBB_OutgoingMultipointConference>
+</CBB_OutgoingMultipointConference>
+
+
+<!--非标 fecc命令,用于非第0路的远摇   ter->MC，MC->ter -->
+<CBB_NonStandFeccCmd>
+    <CBB_TTERLABEL role="src_mt"><!--结构体--></CBB_TTERLABEL>
+	<CBB_TTERLABEL role="dst_mt"><!--结构体--></CBB_TTERLABEL>
+	
+    <!--多流终端，标示多流的通道id -->
+    <chidx><!--无符号整型--></chidx>
+    <!--摄像头动作start, continue, stop, video source, preset	-->
+    <CBB_EmFeccAction role="emAction"><!--枚举--></CBB_EmFeccAction>
+	<CBB_EmFeccPTFZRequest role = "emRequest"><!--枚举--></CBB_EmFeccPTFZRequest>
+	<sourceno><!--for VIDEO SOURCE operations--></sourceno>
+	<presetno><!--for PRESET operations--></presetno>
+	<timeout><!--for start action only ,unit 50ms, 0表示800ms--></timeout>
+</CBB_NonStandFeccCmd>
+
+
+<!--终端环回请求		ter->MC -->
+<CBB_MediaLoopRequest>
+<CBB_EmMediaModeDef role="media_mode"><!--枚举--></CBB_EmMediaModeDef>
+<chlidx><!--无符号整型--></chlidx>
+</CBB_MediaLoopRequest>
+
+<!--终端环回请求同意		MC->ter -->
+<CBB_MediaLoopConfirm>
+<CBB_EmMediaModeDef role="media_mode"><!--枚举--></CBB_EmMediaModeDef>
+<chlidx><!--无符号整型--></chlidx>
+</CBB_MediaLoopConfirm>
+
+<!--终端环回请求拒绝		MC->ter -->
+<CBB_MediaLoopReject>
+<CBB_EmMediaModeDef role="media_mode"><!--枚举--></CBB_EmMediaModeDef>
+<chlidx><!--无符号整型--></chlidx>
+</CBB_MediaLoopReject>
+
+<!--终端环回停止请求		ter->MC -->
+<CBB_MediaLoopOff>
+<CBB_EmMediaModeDef role="media_mode"><!--枚举--></CBB_EmMediaModeDef>
+<chlidx><!--无符号整型--></chlidx>
+</CBB_MediaLoopOff>
+
+<!--指定取消本地某路选看 ter->MC -->
+<!--消息名：h_ctrl_CancelselectViewChnCmd-->
+<CBB_CancelSelectViewChnCmd>	
+	<!--媒体模式-->
+    <CBB_EmMediaModeDef role="view_mode"><!--枚举--></CBB_EmMediaModeDef>    
+    <!--选看终端接收通道号-->
+    <locid_rcv><!--通道id，从0开始--></locid_rcv>
+</CBB_CancelSelectViewChnCmd>
+
+<!--终端请求平台视频源名称 ter->MC -->
+<CBB_terGetTerVidAliasReq>
+	<!--终端ID-->
+    <CBB_TTERLABEL role="dstmt"><!--结构体--></CBB_TTERLABEL>
+</CBB_terGetTerVidAliasReq>
+
+<!--平台回复终端 视频源名称 mcu-->ter-->
+<CBB_terGetTerVidAliasRsp>
+	<!--终端ID-->
+    <CBB_TTERLABEL role="dstmt"><!--结构体--></CBB_TTERLABEL>
+	<VideoAliasList num="">
+		<!-- <CBB_VideoAlias> 列表 -->
+		</VideoAliasList>
+</CBB_terGetTerVidAliasRsp>
+
+<!--终端预置位信息上报 ter-->mcu-->
+<CBB_terCameraPosNtf>
+	<CameraPosList num="">
+		<!-- <CBB_CameraPosInfo> 列表 -->
+		</CameraPosList>
+</CBB_terCameraPosNtf>
+
+<!--终端请求平台预置位信息 ter->MC -->
+<CBB_terGetTerCameraPosCmd>
+	<!--终端ID-->
+    <CBB_TTERLABEL role="dstmt"><!--结构体--></CBB_TTERLABEL>
+</CBB_terGetTerCameraPosCmd>
+
+<!--平台回复终端 预置位信息 mcu-->ter-->
+<CBB_terGetTerCameraPosNtf>
+	<!--终端ID-->
+    <CBB_TTERLABEL role="dstmt"><!--结构体--></CBB_TTERLABEL>
+	<CameraPosList num="">
+		<!-- <CBB_CameraPosInfo> 列表 -->
+		</CameraPosList>
+</CBB_terGetTerCameraPosNtf>
+
+<!--终端回复平台 丢包率信息 ter-->mcu-->
+<CBB_terGetTerLossRateNtf>
+	<RecvChanLossRate num="">
+	<!-- <CBB_RecvChanLossRate> 列表 -->
+	</RecvChanLossRate>
+</CBB_terGetTerLossRateNtf>
+
+<!--通知对端 是否支持fec功能 mt->mcu  mcu->mt-->
+<CBB_bFecc_Suport>
+	<is_support>
+	<!-- 1, 支持， 0， 不支持 -->
+	</is_support>
+</CBB_bFecc_Suport>
+
+

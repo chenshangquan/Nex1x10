@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<makecfg>
+       <langlist>
+          <language>zh_cn</language>
+          <language>en_us</language>
+       </langlist>
+       <filelist>   
+            <file>
+               <name>mterrcode_global.xml</name>
+               <desc>全局相关</desc>                     
+            </file>
+            <file>
+               <name>mterrcode_mtapi.xml</name>
+               <desc>mtapi相关错误码</desc>                     
+            </file>
+            <file>
+               <name>mterrcode_mtsdk.xml</name>
+               <desc>mtsdk相关错误码</desc>                     
+            </file>
+            <file>
+               <name>xxxxxx.xml</name>
+               <desc>xxxxxx</desc>                     
+            </file>
+       </filelist> 
+</makecfg>

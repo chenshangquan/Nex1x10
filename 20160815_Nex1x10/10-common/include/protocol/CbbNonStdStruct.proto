@@ -1,0 +1,674 @@
+package Cbb.NonStdMsg;
+
+import public "CbbNonStdEnum.proto";
+
+option optimize_for = CODE_SIZE;
+
+message CBB_TMessageWrap
+{
+    optional uint32 event_id = 1;
+    optional bytes  message_body = 2;  // msg.proto中定义的消息体序列化后的BUF
+}
+
+message CBB_TMt   
+{   
+    optional CBB_EmMainTypeDef main_type = 1;   
+    optional CBB_EmSubTypeDef sub_type = 2; 
+    optional uint32 mcu_id = 3;   
+    optional uint32 eqp_id = 4; 
+    optional uint32 confdri_id = 5;   
+    optional uint32 conf_idx = 6; 
+}
+
+message CBB_TTransportAddr
+{
+    optional bool   is_ipv4 = 1;
+	optional string ip_addr = 2;		//IP地址, IPV4 - "XXX.XXX.XXX.XXX", IPV6 - "XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX"
+	optional uint32 port = 3;		//端口号
+	optional uint32 scope_id = 4;        //获取或设置 IPv6 地址范围标识符
+}
+
+message CBB_TMtAlias
+{
+    optional CBB_EmMtAliasType alias_type = 1;               //别名类型
+    optional string alias = 2;                              //别名字符串
+    optional CBB_TTransportAddr	transport_addr = 3;          //传输地址
+}
+
+message CBB_TVMPMember
+{
+    optional CBB_TMt member = 1;
+    optional CBB_EmMemberTypeDef member_type = 2;     //画面合成成员类型,参见mcuconst.h中画面合成成员类型定义
+    optional CBB_EmMemberStatusDef member_status  = 3;
+    optional uint32  chnnl_index = 4;       // 多流终端，标示多流的通道id；单流终端，添0
+    optional uint32  member_index = 5;      // 成员数值下标
+}
+
+message CBB_TMiniVMPMember
+{
+    optional uint32 mt_index = 1;                     //终端索引
+    optional CBB_EmMemberTypeDef member_type = 2;     //画面合成成员类型,参见mcuconst.h中画面合成成员类型定义
+    optional CBB_EmMemberStatusDef member_status  = 3;
+    optional uint32  chnnl_index = 4;       // 多流终端，标示多流的通道id；单流终端，添0
+    optional uint32  vmp_chnnl_idx = 5;      // 成员通道索引
+}
+
+message CBB_TConfMode
+{
+    optional CBB_EmConfTakeModeDef take_mode = 1;        //会议举行方式
+    optional CBB_EmLockModeDef lock_mode = 2;        //会议锁定方式
+    optional CBB_EmCallModeDef call_mode = 3;        //呼叫终端方式
+    optional CBB_EmRollCallModeDef roll_call_mode = 4;    //会议点名方式
+    optional CBB_EmPollStateDef hdu_inbatch_poll = 5;  //会议中hdu预案是否在批量轮询
+    optional CBB_EmRecStateDef record_mode = 6;      //会议录像方式
+    optional CBB_EmPlayStateDef play_mode = 7;        //会议放像方式
+    optional CBB_EmBasModeDef bas_mode = 8;         //码率适配方式
+    optional CBB_EmPollModeDef poll_mode = 9;        //会议轮询方式
+    optional bool is_force_rcv_speaker = 10;   //强制收看发言
+    optional bool is_nochair_mode = 11;       //会议主席模式
+    optional uint32 call_interval = 12;      //定时呼叫时的呼叫间隔：(单位：秒，最小为5秒)（网络序）
+    optional uint32 call_times = 13;         //定时呼叫时的呼叫次数（网络序）
+}
+
+message CBB_TMixParam
+{
+    optional CBB_EmMixModeDef mix_mode = 1;    //混音模式
+    repeated CBB_TMt mt_list = 2;
+    optional uint32 mt_max_num = 3;      //记录使用的混音器最大成员数,恢复与启动备份时用到
+}
+
+message CBB_TMiniMixParam
+{
+    optional CBB_EmMixModeDef mix_mode = 1;    //混音模式
+    repeated uint32 mt_list = 2;               //终端索引列表
+	optional uint32 vacinterval = 3;           //语音激励敏感度
+}
+
+message CBB_TVmpParam
+{
+    optional bool is_cping = 1;       //是否正在画面合成 
+    optional bool is_vmp_brdst = 2;    //合成图像是否向终端广播
+    optional CBB_EmVmpStyleDef vmp_style = 3;     //画面合成风格
+    optional uint32 vmp_scheme_id = 4;  //合成风格方案编号,最大支持5套方案,1-5
+    optional CBB_EmVmpModeDef vmp_mode = 5;      //图像复合模式
+    optional bool is_rim_enabled = 6;   //是否使用边框:
+    optional bool is_add_mmbalias = 7;  //合成图像是否叠加合成成员别名
+    optional bool is_vmp_batch_poll = 8;  //是否批量轮询
+    optional bool is_vmp_see_by_chairman = 9;  //是否被主席选看
+    repeated CBB_TVMPMember vmp_member = 10; //画面合成成员
+}
+
+message CBB_TMiniVmpParam
+{
+    optional bool is_vmp_brdst = 1;    //合成图像是否向终端广播
+    optional CBB_EmVmpStyleDef vmp_style = 2;     //画面合成风格
+    optional CBB_EmVmpModeDef vmp_mode = 3;      //图像复合模式
+    optional bool is_rim_enabled = 4;   //是否使用边框:
+    optional bool is_add_mmbalias = 5;  //合成图像是否叠加合成成员别名
+    optional bool is_vmp_batch_poll = 6;  //是否批量轮询
+    optional uint32 keep_time = 7;        //终端轮询的保留时间 单位:秒(s)
+    optional uint32 poll_num = 8;        //终端轮询的次数,为0则无限循环
+    repeated CBB_TMiniVMPMember vmp_member = 9; //画面合成成员
+	optional bool is_voice_hint = 10;          //是否识别声音来源
+}
+
+message CBB_TRecProg
+{
+    optional uint32 cur_prog = 1;	//当前进度
+    optional uint32 total_time = 2;	//总长度，仅在放像时有效
+}
+
+message CBB_TMtPollParam
+{
+    optional CBB_TMt poll_mt = 1;
+    optional uint32 keep_time = 2;        //终端轮询的保留时间 单位:秒(s)
+    optional uint32 poll_num = 3;        //终端轮询的次数
+}
+
+message CBB_TPollInfo
+{
+    optional CBB_EmPollModeDef media_mode = 1;         //轮询模式
+    optional CBB_EmPollStateDef poll_state = 2;        //轮询状态，参见轮询状态定义
+    optional uint32 poll_num = 3;                //终端轮询的次数，注：hdu批量轮询与电视墙轮询复用
+    optional CBB_TMtPollParam mt_poll_param = 4;  //当前被轮询广播的终端及其参数
+}
+
+message CBB_TMiniPollInfo
+{
+    optional CBB_EmPollModeDef media_mode = 1;         //轮询模式
+    optional uint32 keep_time = 2;          //终端轮询的保留时间 单位:秒(s)
+    optional uint32 poll_num = 3;            //终端轮询的次数
+    repeated uint32 pollmt_list = 4;            //轮询终端列表
+}
+
+message CBB_TMiniVipListInfo
+{
+    repeated uint32 viplist_mt = 1;       //数组长度为8，且数组下标代表优先级, 终端索引数组
+}
+
+message CBB_TTvWallPollInfo
+{
+    optional CBB_TPollInfo poll_info = 1;
+    optional CBB_TMt tvwall = 2;
+    optional uint32 tw_chnnl = 3;
+	optional uint32 keep_time = 4;
+	optional uint32 scheme_idx = 5;
+	optional bool is_start_as_pause = 6;  //是否由停止再启动
+}
+
+message CBB_TConfStatus
+{
+    optional CBB_TMt chairman = 1;
+    optional CBB_TMt speaker = 2;                   //发言终端，MCU号为0表示无发言人
+    optional CBB_TConfMode conf_mode = 3;        //会议方式
+    optional CBB_TRecProg rec_prog = 4;         //当前录像进程,仅录像状态时有效
+    optional CBB_TRecProg play_prog = 5;        //当前放像进程,仅放像状态时有效
+    optional CBB_TPollInfo poll_info = 6;        //会议轮询参数,仅轮询时有较
+    optional CBB_TTvWallPollInfo tvwall_poll_info = 7;     //hdu当前轮询参数，仅轮询时有效
+    optional CBB_TMixParam mix_param = 8;        //当前混音参数
+    optional CBB_TVmpParam vmp_param = 9;        //当前视频复合参数，仅视频复合时有效
+    optional CBB_TVmpParam vmptw_param = 10;      //当前VMPTW参数
+    optional uint32 prs_status = 11;            //当前包重传状态
+}
+
+message CBB_TVideoStreamCap
+{	
+    optional uint32 max_bitrate = 1;    
+    optional CBB_EmVideoType media_type = 2;
+    optional CBB_EmVidResolution resolution = 3;
+    optional CBB_EmFps framerate = 4;  //帧率 MPI，对于 H.264 则是 FPS
+    optional CBB_EmH264Profile h264profile = 5;      //HP/BP属性
+}
+
+message CBB_TAudioStreamCap	
+{
+    optional CBB_EmAudioType media_type = 1;
+    optional CBB_EmAudioSubType audio_subtype = 2;    //会议主音频的子类型
+    optional uint32 max_bitrate_for_opus = 3;
+	optional uint32 min_bitrate_for_opus = 4;
+}
+
+message CBB_TDStreamCap
+{
+    optional CBB_TVideoStreamCap video_stream_cap = 1;	
+	optional bool is_h239_type = 2;
+}
+
+message CBB_TSimCapSet	
+{
+    repeated CBB_TVideoStreamCap video_cap = 1;
+	repeated CBB_TAudioStreamCap audio_cap = 2;     
+}
+
+message CBB_TDVSimCapSet	
+{
+    repeated CBB_TDStreamCap dvideo_cap = 1;  
+}
+
+message CBB_TCapSupport
+{
+    optional bool is_support_mmcu = 1;        //是否支持合并级联
+    optional bool is_support_h224 = 2;        //是否支持H224
+    optional bool is_support_t120 = 3;
+    optional CBB_EmEncryptModeDef encrypt_mode = 4;        //加密模式
+    optional CBB_TDVSimCapSet dstream_cap = 5;          //双流同时能力集
+    optional CBB_TSimCapSet  main_simcapset = 6;       //主的同时能力集
+}
+
+message CBB_TKdvTime
+{
+	optional uint32 year = 1;//年
+	optional uint32 month = 2;//月
+	optional uint32 mday = 3;//日
+	optional uint32 hour = 4;//时
+	optional uint32 minute = 5;//分
+	optional uint32 second = 6;//秒
+}
+
+message CBB_TRecStartPara
+{
+    optional CBB_EmRecModeDef rec_mode = 1;         //录像模式
+    optional CBB_EmPublishModeDef publish_mode = 2;     //发布模式
+    optional CBB_EmPublishLevelDef publish_level = 3;    //发布层次
+    optional bool   is_rec_low_stream = 4;  //是否录低速码流
+    optional bool   is_rec_main_video = 5;  //是否录主格式视频码流
+    optional bool   is_rec_main_audio = 6;  //是否录主格式音频码流
+    optional bool   is_rec_dstream = 7;    //是否录双流
+	optional uint32 rec_bitrate = 8;       //录像码率
+    optional uint32 rec_bitrate_sec = 9;    //录像双流码率
+}
+
+message CBB_TConfAutoRecAttrb
+{    
+    optional bool is_auto_rec = 1;         //是否会议开始自动录像
+    optional uint32 rec_id = 2;    //自动录像的录像机id        
+    // 开始时间和结束时间都不支持跨天，结束时间必须在开始时间之后
+    optional CBB_TKdvTime time_start = 3;      //开始录像的启动时间.只关心 时/分/秒，year设置为0即不需要设置时间，会议开始后自动开始
+    optional CBB_TKdvTime time_end = 4;        //自动录像结束的时间.只关心 时/分/秒，year设置为0即不需要设置时间，需要用户手动停止
+    optional CBB_TRecStartPara rec_param = 5;  //自动录像参数
+    optional uint32 weekdays = 6;        //开始录像的日期类型
+}
+
+message CBB_TConfAttrb
+{
+	optional CBB_EmConfOpenModeDef open_mode = 1;        //会议开放方式
+	optional CBB_EmEncryptModeDef encrypt_mode = 2;     //会议加密模式
+	optional bool is_multicast_mode = 3;   //组播会议方式
+	optional CBB_EmDataConfModeDef data_mode = 4;        //数据会议方式
+	optional CBB_EmConfReleaseModeDef release_mode = 5;     //会议结束方式
+	optional CBB_EmQosModeDef qos_mode = 6;       //会议视频模式
+	optional bool is_cascade_mode = 7;     //会议级连方式
+	optional bool is_prs_mode = 8;         //丢包重传方式
+	optional bool has_tvwall_module = 9; //电视墙模板
+	optional bool has_vmp_module = 10;    //画面合成模板
+	optional bool is_discuss_conf = 11;     //是否讨论会议
+	optional bool is_use_adapter = 12;      //是否启用适配
+	optional CBB_EmConfSpeakerSrcMode speaker_src_mode = 13;      //发言人的源
+	optional CBB_EmMediaModeDef speaker_src_media_mode = 14;  //发言人的源的方式
+	optional bool is_mulcast_low_stream = 15;//是否组播低速码流
+	optional uint32 multicast_low_br = 16;    //组播低速码率值
+	optional bool is_all_init_dumb = 17;     //终端入会后是否初始哑音
+	optional CBB_EmConfDualMode dual_mode = 18;        //会议的双流发起方式
+	optional bool is_uniform_mode = 19;     //码流转发时是否支持归一化整理方式
+	optional uint32 multicast_port = 20;    //会议组播起始端口
+	optional uint32 multicast_ip = 21;     //会议组播地址	    
+	optional uint32 sat_dcast_ip = 22;      //卫星分散会议Ip地址
+	optional uint32 sat_dcast_port = 23;     //卫星分散会议端口
+	optional bool is_satdcast_mode = 24;    //是否支持卫星分散会议
+	optional bool is_enckey_manual = 25;    //会议密钥模式
+	optional bool is_port_mode = 26;         //端口模式会议
+	optional uint32 satdcast_vid_chnl = 27; //卫星会议上传允许的视频通道数
+	optional uint32 satdcast_aud_chnl = 28;
+	optional CBB_TConfAutoRecAttrb auto_rec_attrb = 29;              //自动录像属性
+	optional uint32 vmp_auto_adapte = 30;            //画面合成自动调整分辨率
+	optional uint32 scheme_idx_in_batch_poll = 31;     //正在hdu批量轮询的预案索引号
+	optional bool is_real_sat_conf = 32;              //是否为真正的卫星会议
+	optional uint32 snd_spy_bandwidth = 33;     //会议支持发送的总带宽
+	optional CBB_EmConfSpeakMode speak_mode = 34;                //会议发言模式：正常申请/抢答
+	optional bool is_public_conf = 35;              //是否开放会议
+}
+
+message CBB_TMediaEncrypt
+{
+	optional CBB_EmEncryptModeDef encrypt_mode = 1;         //加密模式
+    optional uint32 keylen = 2;               //加密key的长度
+	optional bytes  enckey = 3;  // 加密KEY
+}
+
+message CBB_TConfInfo
+{
+    optional CBB_TKdvTime start_time = 1;                     //开始时间，控制台填0为立即开始
+    optional uint32 duration = 2;                      //持续时间(分钟)，0表示不自动停止
+    optional uint32 bitrate = 3;                       //会议码率(单位:Kbps,1K=1024)
+    optional uint32 dstream_scale = 4;                 //双流百分比
+    optional uint32 talk_holdtime = 5;                 //最小发言持续时间(单位:秒)
+    optional CBB_TCapSupport capability_support = 6;                    //会议支持的媒体
+    optional bytes conf_pwd = 7;                        //会议密码
+    optional string conf_name = 8;                      //会议名
+    optional string conf_e164 = 9;                      //会议的E164号码
+    optional CBB_TMtAlias chair_alias = 10;             //会议中主席的别名
+    optional CBB_TMtAlias speaker_alias = 11;                  //会议中发言人的别名
+    optional CBB_TConfAttrb conf_attrb = 12;                      //会议属性结构(会议中不会改变)
+    optional CBB_TMediaEncrypt media_key = 13;
+    optional CBB_TConfStatus  status = 14;                        //会议状态
+}
+
+message CBB_TMtConfInfo
+{
+	optional CBB_TKdvTime			start_time = 1;        //开始时间，控制台填0为立即开始
+	optional uint32					duration = 2;          //持续时间(分钟)，0表示不自动停止
+	optional uint32					bitrate  = 3;          //会议码率(单位:Kbps,1K=1024)
+	optional uint32					sec_bitrate = 4;       //双速会议的第2码率(单位:Kbps,为0表示是单速会议)
+	optional CBB_EmVidResolution	main_video_res = 5;    //主视频格式
+	optional CBB_EmVidResolution	sec_video_res  = 6;    //辅视频格式
+	optional uint32					talk_hold_time = 7;    //最小发言持续时间(单位:秒)
+
+	optional bytes					conf_pwd = 8;         //会议密码
+	optional string					conf_name = 9;        //会议名
+	optional string					conf_e164 = 10;        //会议的E164号码
+
+	optional CBB_TTERLABEL			chair_man = 11;        //主席终端，MCU号为0表示无主席
+	optional CBB_TTERLABEL			speaker   = 12;        //发言终端，MCU号为0表示无发言人
+	optional CBB_TVmpParam			vmp_param = 13;        //当前视频复合参数，仅视频复合时有效
+	optional CBB_TMixParam			mix_param = 14;        //当前混音参数
+
+	///对应原来TMtConfInfoEx
+	optional bool					is_support_dcast =15;     //是否支持卫星分散会议：0-不支持，1-支持
+	optional CBB_EmConfOpenModeDef	open_mode = 16;          //会议开放方式:1-完全开放 2-隐藏会议，仅受邀列表里的终端可见
+
+	optional bool					is_occupy_vpu = 17;       //是否占用图像处理（包括画面合成和适配）能力
+	optional CBB_EmConfDualMode		dual_mode = 18;           //发言模式
+	optional bool					is_all_init_dumb = 19;    //终端入会后是否初始哑音 0-不哑音 1-哑音
+	optional bool					is_closed = 20;     //封闭会议（对应终端免打扰模式）拒绝列表以外的终端 
+	optional bool                                   is_port_mode = 21;  //端口模式会议
+	optional bool                                   is_must_see_broadcast = 22;  //是否强制收看广播: 0-不强制收看广播 1-强制收看广播
+	optional uint32       conf_level=23;     //会议的级别
+}
+
+message CBB_TConfTimeInfo
+{
+	optional CBB_TKdvTime start_time = 1;	//开始时间，控制台填0为立即开始
+	optional uint32 duration = 2;			//持续时间(分钟)，0表示不自动停止
+	optional uint32 conf_rest_time = 3;		//会议剩余时间（目的是防止终端时间与平台时间不一致，计算错误）
+}
+
+message CBB_TTERLABEL
+{
+    optional uint32 mcu_no = 1;
+    optional uint32 ter_no = 2;
+}
+
+message CBB_TEncryptSync
+{
+    optional CBB_EmEncryptModeDef encrypt_mode = 1;
+    optional uint32 synch_flag = 2;			         //shall be the Dynamic PayloadType for H.323
+    optional bytes h235_key = 3;     //H.235 encoded value(1-65535)
+    optional uint32 h235_key_len = 4;
+}
+
+message CBB_VideoInfo
+{
+	optional uint32 id = 1;				//通道号 从0开始
+	optional bool is_lost_video = 2;                 //终端是否丢失视频源
+	optional uint32 video_src = 3;			//当前本地视频源(0:S端子,1-6:C端子)
+	optional uint32 is_remote_ctrl_enable = 4;	//是否允许远遥	1 yes 0 no	
+}
+
+message CBB_TTERSTATUS
+{    
+	optional uint32 mt_board_type = 1;				//终端板卡类型 老的产品值定义在vccomm中，5.0终端类型的定义在CBB_MT_BOARD_Type
+	repeated CBB_VideoInfo videoinfo = 2;				//终端通道信息
+	optional uint32 matrix_status = 3;				//矩阵状态		(1 ok 0 err)		
+	optional uint32 enc_vol = 4;					//当前编码音量(单位:等级)
+    	optional uint32 dec_vol = 5;					//当前解码音量(单位:等级)
+	optional bool is_mute = 6;					//是否哑音	1 yes 0 no	
+	optional bool is_quiet = 7;					//是否静音	1 yes 0 no
+    	optional uint32 ex_video_source_num = 8;           			//终端扩展视频源 0表示没有
+	optional CBB_EmMediaModeDef select_mode = 9;			//选看标识
+}
+
+message CBB_TTERADDR
+{
+	optional CBB_EmMtAliasType addr_type = 1;		// 地址类型
+    optional CBB_TTransportAddr transport_addr = 2;
+	optional CBB_EmMtAliasType alias_type = 3;	// 别名类型
+	optional string alias = 4;
+}
+
+message CBB_TAddMtInfo
+{
+    optional CBB_TMtAlias mt_alias = 1;
+	optional CBB_EmCallModeDef call_mode = 2;
+	optional uint32 dial_bitrate = 3; //（网络序）//单位Kbps
+}
+
+message CBB_MtPollInfo
+{
+    optional CBB_TTERLABEL poll_mt = 1;
+    optional uint32 poll_interval = 2;
+}
+
+message CBB_TConfMtInfo
+{   
+	optional uint32 mcu_id = 1;          //该MC所在的Mcu的Id号
+    optional uint32 conf_idx = 2;        //会议索引号 
+	optional bytes invited_mt = 3;	        //受邀终端列表
+	optional bytes joined_mt = 4;	//与会终端列表
+}
+
+message CBB_TBasicConfInfo
+{
+    optional CBB_TMt speaker = 1;
+	optional CBB_TMt chairman = 2;
+}
+
+message CBB_TSimConfInfo
+{
+    optional CBB_TBasicConfInfo basic_conf_info = 1;
+    optional CBB_EmMixModeDef mix_mode = 2;
+    optional CBB_EmVmpModeDef vmp_mode = 3; 
+}
+
+message CBB_TMtExt
+{
+    optional CBB_TMt mt = 1;
+	optional CBB_EmManuId manu_id = 2;          //厂商编号,参见厂商编号定义
+	optional CBB_EmCallModeDef call_mode = 3;        //呼叫终端方式
+	optional uint32 dial_bitrate = 4;      //呼叫终端速率（网络序）单位KBPS
+	optional uint32 call_lefttimes = 5;   //定时呼叫终端的剩余呼叫次数
+	optional CBB_TTransportAddr mt_address = 6;
+	optional string mt_alias = 7;  //终端别名长度为16Byte
+    optional CBB_EmProtocolTypeDef protocol_type = 8;         // 终端的协议类型
+}
+
+message CBB_TERBITRATE
+{
+    optional uint32 primo_send_bitrate = 1;			    //视频编码码率(单位:kbps)
+    optional uint32 second_send_bitrate = 2;			    //视频编码码率(单位:kbps)
+    optional uint32 primo_recv_bitrate = 3;			    //视频解码码率(单位:kbps)
+    optional uint32 second_recv_bitrate = 4;			    //视频解码码率(单位:kbps)
+    optional uint32 primo_send_av_bitrate = 5;			//平均编码码率(单位:kbps)   
+    optional uint32 second_send_av_bitrate = 6;			//平均编码码率(单位:kbps)   
+    optional uint32 primo_recv_av_bitrate = 7;			//平均解码码率(单位:kbps)
+    optional uint32 second_recv_av_bitrate = 8;			//平均解码码率(单位:kbps)
+}
+
+message CBB_TMtLoc
+{
+     optional string direct = 1; 	//"snd" or "rcv"
+     optional uint32 mediamode = 2;	//模式 
+     optional uint32 id = 3;		//通道号 从0开始
+     optional string alias = 4;     	//通道别名字符串
+}
+
+message CBB_TTerminalInfo
+{
+	optional CBB_TTERLABEL	ter_label = 1;					// 终端ID
+	optional CBB_EmSubTypeDef type = 2;						    // 终端类型
+	optional string	e164 = 3;		// 终端E164号
+	optional string	alias = 4;		// 终端别名
+	optional bool	is_only_aud = 5;						// 终端是否为为只发送音频码流 0-不只发送音频，1-只发送音频
+	repeated CBB_TMtLoc terloc = 6;		//终端通道信息
+}
+
+
+message CBB_TMultiPic
+{
+	optional uint32 mcu_no = 1;
+	optional CBB_EmMultiPicDef style = 2;
+	repeated CBB_TTERLABEL ter = 3;
+}
+
+message CBB_TTERINFO
+{
+	optional CBB_TTERLABEL ter_label = 1;
+	optional string terid = 2;
+}
+
+
+message CBB_TCapInfo
+{   
+    optional CBB_EmVendorProductId vendor = 1;                   //厂商ID
+    optional bool ismcu = 2;                      //FALSE:MT, TRUE:MCU
+    optional bool mix = 3;                        //混音
+    optional bool vac = 4;                        //语音激励
+    optional bool custom_vmp = 5;                  //定制画面合成
+    optional bool auto_vmp = 6;                    //自动画面合成
+    optional bool end_conf = 7;                    //结束会议
+    optional bool invite_mt = 8;                   //邀请终端
+    optional bool drop_mt = 9;                     //删除终端
+    optional bool sel_speaker = 10;                 //指定/取消发言人
+    optional bool sel_chair = 11;                   //指定/放弃主席
+    optional bool sel_source = 12;                  //选看终端
+    optional bool fecc = 13;                       //远程摄像头遥控
+    optional bool quiet = 14;                      //远端静音
+    optional bool mute = 15;                       //远端哑音
+    optional bool conf_req = 16;                    //会议申请处理
+    optional bool online_list = 17;                 //在线终端列表
+    optional bool offline_list = 18;                //离线终端列表
+    optional bool sel_speaking_user = 19;            //点名
+    optional bool pic_switch = 20;                  //单多画面切换
+    optional bool must_see_speaker = 21;             //强制广播
+}
+
+message CBB_TCOMDATA
+{
+    optional CBB_EmComType com_type = 1;
+    optional uint32 data_len = 2;
+    optional bytes  data = 3;
+}
+
+message CBB_TCHANMULTICAST
+{
+    optional CBB_EmMulticastChnId chan_id = 1;
+	optional CBB_TTransportAddr multicast_addr = 2; 
+}
+
+message CBB_TConfListItemMtReqed
+{
+	optional string conf_name = 1; //会议名
+	optional string conf_e164 = 2;    //E164号码
+	optional uint32 joined_mt_num = 3;						   //入会终端数
+	optional uint32 conf_remain_time = 4;					   //会议剩余时间
+	optional CBB_EmConfOpenModeDef conf_openmode = 5;          //会议开放模式
+	optional CBB_EmClarity clarity_mode = 6;				   //会议流畅度模式
+	optional CBB_TKdvTime time_start = 7;                     //会议开始时间
+	optional bool is_satdcast_mode = 8;                  //是否支持卫星分散会议：0-不支持，1-支持
+	optional bool is_public_conf = 9;                  //是否为开放会议：0-不是，1-是
+	optional bool is_need_pwd = 10;                  //是否为密码会议：0-不是，1-是
+}
+
+message CBB_TMiniConfInfo
+{
+    optional bytes conf_pwd = 1;       //会议密码
+    optional string conf_name = 2; //会议名
+	optional uint32	duration = 3;						//持续时间(分钟)
+	optional uint32	bitrate = 4;							//会议码率
+	optional CBB_EmConfOpenModeDef open_mode = 5;						//会议开放方式
+	optional CBB_EmConfReleaseModeDef release_mode = 6;					//会议结束方式
+	//optional bool is_cascade_mode = 7;     //会议级连方式: FALSE-不支持合并级联, TRUE-支持合并级联
+	//optional bool is_discuss_conf = 8;					//会议讨论模式
+	optional bool is_all_init_dumb = 9;					//是否初始哑音
+	optional CBB_TCapSupport capability_support = 10;			//会议支持的媒体
+	optional CBB_TMediaEncrypt media_key = 11;				//密钥
+	optional CBB_TMiniVmpParam vmp_param = 12;					//画面合成参数
+	optional bool is_satdcast_mode = 13;                //卫星分散会议
+    optional uint32 max_bitrate_for_opus = 14;
+	optional uint32 min_bitrate_for_opus = 15;
+	optional bool is_public_conf = 16;       //是否公共会议室，1是，0否
+	optional bool is_port_mode = 17;         //端口模式会议
+	optional bool is_closed_mode = 18;         //是否为封闭会议（对应终端免打扰模式）
+	// wy[2015/03/31]  个人模板需要添加字段bgn
+	optional CBB_TMtAlias speaker_e164 = 19;          //指定发言人
+	optional CBB_TMiniMixParam mix_param = 20;  //混音参数
+	optional CBB_TMiniPollInfo poll_param = 21;  //轮询参数
+	optional uint32	calltimes = 22;	            //呼叫次数
+	optional uint32	callinterval = 23;	    //呼叫间隔
+	optional bool is_callChase = 24;	    //是否追呼1是，0否
+	repeated uint32 callchaselist = 25;   // 追呼终端列表
+	optional CBB_EmVideoQualityDef video_quality = 26;    //视频质量
+	optional CBB_EmConfDualMode dual_mode = 27;        //会议的双流发起方式
+	optional uint32	cascademode = 28;	    //级联模式,0简单级联，1合并级联
+	optional bool	is_cascadeUpload = 29;	    //是否级联上传:1是，0否
+	optional bool	is_cascadeReturn = 30;	    //是否级联回传:1是，0否
+	optional uint32	cascadeReturnPara = 31;	    //级联回传带宽参数
+	optional CBB_TTransportAddr multicastAddr = 32; // 组播地址
+	optional bool	is_multicastenable = 33;	//组播是否激活:1 是， 0否
+	optional CBB_TMiniVipListInfo vip_list = 34;  //VipList
+    repeated CBB_TMtAlias mtlist = 35;           //终端列表
+	optional uint32 max_joined_mt = 36;          //最大入会终端数
+	// 卫星会议实现方式未定，相关字段后续添加
+	// 录像操作无需在创会信息中携带
+	// wy[2015/03/31]  个人模板需要添加字段end
+	optional CBB_TMtAlias chairman = 37;        //主席
+	optional CBB_TAutorecattrb autorecord = 38;           //自动录像设置
+	optional bool is_onereforming = 39;             //是否归一重整
+	optional string conf_e164 = 40;                 //会议e164
+}
+
+message CBB_TAutorecattrb
+{
+    optional bool autorec = 1;               //是否会议开启自动录像 0-不支持 1-支持
+	optional uint32 publishmode = 2;         //0-不发布 1-立即发布，新录播直播标志 2.-录像完毕之后发布，新录播发布标志 3-直播+发布
+	optional bool isrecmainvideo = 3;        //是否录主格式码流(视频+音频)
+	optional bool isrecdstream = 4;          //是否录双流(仅双流)
+	optional CBB_TVrsalias vrsalias = 5;              //录像机别名信息
+}
+
+message CBB_TVrsalias
+{
+	optional uint32 aliastype = 1;            //录像机别名类型 0-初始值， 1-IP, 2-E164 平台依据类型获取对应的别名信息
+	optional string addr = 2;                 //录像机ip
+	optional string vrsno = 3;                //录像机别名E164
+}
+
+message CBB_TConfDetailInfo
+{
+    optional string conf_name = 1;
+	optional string conf_e164 = 2;
+	optional string domain_guid = 3;		//guid
+	optional string domain_name = 4;		//域名
+	optional string domain_moid = 5;				//域的MOID
+	
+	optional CBB_EmConfStyle  conf_style = 6;		
+	optional string  short_code = 7;			//短号:6位
+
+ 	optional CBB_EmEncryptModeDef encrypt_mode = 8;						//会议加密模式
+	optional CBB_EmClarity clarity_mode = 9;						//会议模式
+ 	optional uint32	bitrate = 10;							//会议码率(单位:Kbps,1K=1024)
+ 	optional CBB_EmVidResolution resolution = 11;					    //分辨率
+
+	optional CBB_EmConfOpenModeDef open_mode = 12;						//开放模式
+	optional bool is_discuss_conf = 13;						//是否讨论会议
+
+	optional CBB_TKdvTime time_start = 14; 					    //开始时间
+    optional uint32	duration = 15;							//持续时间(分钟)
+	optional string creator_alias = 16;			//创会人别名字符串
+	optional CBB_EmConfDualMode dual_mode = 17; 						//会议的双流发起方式
+
+	optional bool is_satdcast_mode = 18;                     //是否支持卫星分散会议		
+	optional bool is_public_conf = 19;						//是否开放会议室属性	
+	optional bool is_port_mode = 20;         //端口模式会议	
+	optional bool is_closed_mode = 21;         //是否为封闭会议（对应终端免打扰模式）
+	optional bool is_need_pwd = 22;            //是否为密码会议：0-不是，1-是
+	optional uint32 max_joined_mt = 23;        //最大入会终端数
+}
+
+message CBB_videoAliasInd_Video
+{
+	optional uint32 vid_indes = 1;
+	optional string alias = 2;
+}
+
+//一个通道的多个视频源
+message CBB_VideoAlias
+{
+	optional uint32 chlidx = 1;//从0开始
+	repeated CBB_videoAliasInd_Video video = 2;
+}	
+//终端位置信息
+message CBB_CameraInfo_Pos
+{
+	optional uint32 posidx = 1; //预置位号
+	optional string alias = 2; //预置位名称
+}
+
+//一个通道的多个位置信息
+message CBB_CameraPosInfo
+{
+	optional uint32 chlidx = 1;//通道号
+	repeated CBB_CameraInfo_Pos pos = 2;
+}	
+
+message CBB_GetTerLossRateNtf
+{
+   repeated CBB_TerChanLossRate one_chan = 1;   ///一个通道的 丢包率
+}
+
+message CBB_TerChanLossRate 
+{
+    optional CBB_EmMediaModeDef mode = 1;      //通道类型
+	optional uint32  recv_idx = 2;             //通道索引
+	optional uint32  packet_lost_rate = 3;     //丢包率
+}
+

@@ -1,0 +1,888 @@
+package Cbb.NonStdMsg;
+
+import "CbbNonStdStruct.proto";
+
+option optimize_for = CODE_SIZE;
+
+//主席终端转移令牌请求	chair->MC
+message CBB_ChairTransferReq				
+{
+    optional CBB_TTERLABEL dst_mt = 1;
+}
+
+//主席邀请终端请求		chair->MC
+message CBB_ChairInviteTerminalReq			
+{
+    optional CBB_TTERADDR mt_addr = 1;
+    optional uint32 call_bitrate = 2;
+}
+
+//询问MCU A终端被谁选看	ter->MC
+message CBB_WhoViewThisTerReq				
+{
+    optional CBB_TTERLABEL viewed_mt = 1;
+}
+
+//延长会议时间			chair->MC
+message CBB_DelayConfTimeReq				
+{
+    optional uint32 delay_conf_time = 1;
+}
+
+//强制选看请求			ter->MC
+message CBB_LetTerViewMeReq					 
+{
+    optional CBB_TTERLABEL reqed_mt = 1;
+    optional CBB_EmMediaModeDef media_mode = 2;
+}
+
+//组播终端请求			ter->MC
+message CBB_MulticastTerReq					
+{
+    optional CBB_TTERLABEL dst_mt = 1;
+}	
+
+//源终端请求目的终端状态     ter->MC
+message CBB_DestterStatusReq                
+{
+    optional CBB_TTERLABEL dst_mt = 1;
+}
+
+//对应whoViewThisTerReq	MC->ter
+message CBB_WhoViewThisTerRsp				
+{
+    optional CBB_TTERLABEL viewed_mt = 1;
+    repeated CBB_TTERLABEL viewers = 2;
+}
+
+//轮询参数应答			ter->MC
+message CBB_PollParamRsp
+{
+    optional CBB_EmMediaModeDef poll_media_mode = 1;
+    optional CBB_EmPollStateDef poll_state = 2;
+    optional CBB_MtPollInfo polling_mt = 3;
+    repeated CBB_MtPollInfo poll_mt_list = 4;
+}
+
+//回答会议信息			MC->ter
+message CBB_ConfInfoRsp						
+{
+	//optional CBB_TConfInfo conf_info = 1;
+	optional CBB_TMtConfInfo conf_info = 1;
+}
+
+//会议时间信息 MC->ter
+message CBB_ConfInfoNtf
+{
+	optional CBB_TConfTimeInfo time_info = 1;
+}
+
+//延长会议时间应答	
+message CBB_DelayConfTimeRsp				
+{
+    optional bool is_granted = 1;
+}
+
+//强制选看应答			MC->ter
+message CBB_LetTerViewMeRsp					
+{
+    optional bool is_granted = 1;
+}
+
+//开始语音激励请求响应 MC->ter
+message CBB_StartVACRsp						
+{
+    optional bool is_granted = 1;
+}
+
+//停止语音激励请求响应 MC->ter
+message CBB_StopVACRsp						
+{
+    optional bool is_granted = 1;
+}
+
+//开始讨论 chair->MC
+message CBB_StartDiscussReq					
+{
+    optional CBB_TMixParam discuss_param = 1;
+}
+
+//开始讨论请求响应 MC->ter
+message CBB_StartDiscussRsp				
+{
+    optional CBB_EmMixModeDef mix_mode = 1;
+    optional bool is_granted = 2;
+}
+
+//停止讨论请求响应 MC->ter
+message CBB_StopDiscussRsp					
+{
+    optional CBB_EmMixModeDef mix_mode = 1;
+    optional bool is_granted = 2;
+}
+
+//开始视频复合 chair->MC
+message CBB_StartVmpReq						
+{
+    optional CBB_TVmpParam vmp_param = 1;
+}
+
+//开始视频复合请求响应 MC->ter
+message CBB_StartVMPRsp						
+{
+    optional bool is_granted = 1;
+}
+
+//开始视频复合请求通知 MC->ter
+message CBB_StartVMPNotify
+{
+    optional bool is_granted = 1;
+    optional CBB_TVmpParam vmp_param = 2;
+}
+
+//停止视频复合请求响应 MC->ter
+message CBB_StopVMPRsp						
+{
+    optional bool is_granted = 1;
+}
+
+//停止视频复合请求通知 MC->ter
+message CBB_StopVMPNotify
+{
+    optional bool is_granted = 1;
+}
+
+//改变视频复合参数 chair->MC
+message CBB_ChangeVmpParamReq				
+{
+    optional CBB_TVmpParam vmp_param = 1;
+}
+
+//改变视频复合参数请求响应 MC->ter
+message CBB_ChangeVMPParamRsp				
+{
+    optional bool is_granted = 1;
+}
+
+//改变视频复合参数请求通知 MC->ter
+message CBB_ChangeVMPParamNofity
+{
+    optional CBB_TVmpParam vmp_param = 1;
+}
+
+//得到视频复合参数请求响应 MC->ter
+message CBB_GetVMPParamRsp					
+{
+    optional bool is_granted = 1;	
+    optional CBB_TVmpParam vmp_param = 2;
+}
+
+//组播终端应答   MC->ter
+message CBB_MulticastTerRsp					
+{
+    optional CBB_TTERLABEL dst_mt = 1;
+    message CBB_multicastTerRsp_TransInfo
+    {
+        optional CBB_TTransportAddr transport_addr = 1;
+        optional uint32 real_payload = 2;
+        optional CBB_TEncryptSync encrypt_sync = 3;
+    }
+    optional CBB_multicastTerRsp_TransInfo vid_info = 2;
+    optional CBB_multicastTerRsp_TransInfo aud_info = 3; 
+}
+										
+//请求目的终端状态的响应   MC->ter
+message CBB_DestterStatusRsp            
+{
+    optional CBB_TTERLABEL dst_mt = 1;
+    optional CBB_TTERSTATUS mt_status = 2;
+}
+
+//远端静音命令			ter->MC,MC->ter
+message CBB_MakeTerQuietCmd					
+{
+    optional CBB_TTERLABEL dst_mt = 1;
+    optional bool is_turn_on = 2;
+}
+
+//远端哑音命令			ter->MC,MC->ter
+message CBB_MakeTerMuteCmd					
+{
+    optional CBB_TTERLABEL dst_mt = 1;
+    optional bool is_turn_on = 2;
+}
+									
+//恢复轮询				MC->ter,	NULL
+message CBB_ResumePollCmd					
+{
+    optional bool is_turn_on = 1;
+    optional uint32 preset_pos = 2;
+}
+
+//停止组播终端			ter->MC									
+message CBB_StopMulticastTer				
+{
+    optional CBB_TTERLABEL dst_mt = 1;
+
+}
+
+//主席选看				ter->MC
+message CBB_ChairSelectViewCmd				
+{
+    optional CBB_TTERLABEL ds_mt = 1;
+    optional CBB_EmMediaModeDef view_mode = 2;
+}
+
+//主席邀请终端失败		MC->chair
+message CBB_ChairInviteFailedInd			
+{
+    optional CBB_TTERADDR invited_mt_addr = 1;
+	optional CBB_EmCallMtFailureReason fail_reason = 2;
+}
+
+//会议即将结束指示		MC->chair
+message CBB_ConfWillEndInd					
+{
+    optional uint32 remain_minutes = 1;
+}
+
+//延长会议时间指示      MC->ter
+message CBB_DelayConfTimeInd            
+{
+    optional uint32 delay_minutes = 1;
+}
+
+//有终端申请主席
+message CBB_TerApplyChairInd				
+{
+    optional CBB_TTERLABEL mt = 1;
+}	
+
+//终端状态指示			ter->MC
+message CBB_TerStatusInd					
+{
+    optional CBB_TTERSTATUS mt_status = 1;
+}
+
+//轮询状态指示
+message CBB_PollParamInd                
+{
+    optional CBB_EmMediaModeDef poll_media_mode = 1;
+    optional CBB_EmPollStateDef poll_state = 2;
+    optional CBB_MtPollInfo polling_mt = 3;
+}
+
+//短消息指示			ter->MC,MC->ter
+message CBB_SmsInd
+{
+	optional CBB_RollMsgType msgtype = 1;
+	optional uint32 rolltime = 2;
+	optional CBB_RollMsgSpeed rollspeed = 3;
+	optional CBB_TTERLABEL srcmt = 4;
+	repeated CBB_TTERLABEL dstmt = 5;
+	optional string simplemsg = 6;
+}
+
+//新广播源通告			MC->ter                                      
+message CBB_BroadcasterTokenOwnerInd		
+{
+    optional CBB_TTERLABEL src = 1;
+}
+
+//主席指定终端插话			ter->MC
+message CBB_MakeTerChimeInCmd				
+{
+    optional CBB_TTERLABEL dst_mt = 1;
+}
+
+//终端插话状态				MC->ter
+message CBB_ChimeInInd						
+{
+    optional bool is_chime = 1;
+}
+
+//其它终端申请插话指示		MC->chair
+message CBB_OtherTerChimeInInd				
+{
+    optional CBB_TTERLABEL other_mt = 1;
+}
+
+//mcu通知终端更新会议信息      MC->ter	
+message CBB_SimpleConfInfoInd           	
+{
+    optional CBB_TSimConfInfo simple_conf_info = 1;
+}
+
+//mt接收发送带宽通知           ter->MC
+message CBB_TerBandWidthInd             
+{
+    optional uint32 recv_band_width = 1;
+    optional uint32 send_band_widht = 2;
+}
+
+//mt对终端码率应答             ter->MC 
+message CBB_TerBitrateInfoRsp
+{           
+    optional CBB_TERBITRATE bitrate = 1;
+}
+
+//主席终端强制广播
+message CBB_ViewBroadcastingSrcCmd     
+{
+    optional bool is_opr_start = 1;
+}
+
+//卫星分散会议接收地址通知 Mcu-->ter
+message CBB_SatDConfAddrInd             
+{
+    optional CBB_TTransportAddr first_vid_addr = 1;
+    optional CBB_TTransportAddr first_aud_addr = 2;
+    optional CBB_TTransportAddr first_dvid_addr = 3;
+}
+
+//视频分辨率调整  Mcu-->ter
+message CBB_VideoFormatChangeCmd        
+{
+    optional CBB_EmLogChnnlType logic_chnnl_type = 1;
+    optional CBB_EmVidResolution video_res = 2;
+}
+
+//终端音量调节   Mcu-->ter
+message CBB_SetAudioVolumeCmd           
+{
+    optional bool is_out = 1;
+    optional uint32 value = 2;
+}
+
+//终端通知通用消息 Mcu-->ter
+message CBB_SomeOfferingNtf             
+{
+    optional CBB_EmMcu2MtNtfMsgType notify = 1;
+    optional uint32 bitrate = 2;
+}
+
+
+//第一路)视频编码帧率调整 Mc-->ter                                       
+message CBB_VideoFrameRateChangeCmd 
+{
+    optional CBB_EmFps fps = 1;
+}    
+
+//移除定制混音中的终端 (由主席触发有效)  Mt-->Mc
+message CBB_RemoveMixMemberCmd			
+{
+    repeated CBB_TMt mt = 1;
+}
+
+//混音信息通知 Mt-->Mc
+message CBB_DiscussParamInd				
+{
+    optional CBB_TMixParam discuss_param = 1;
+}
+
+
+//终端（仅限主席MT）选看画面合成请求 ter --> MC
+message CBB_MtSelectVmpReq				
+{
+    optional bool is_start = 1;
+}
+
+//终端（仅限主席MT）选看画面合成应答 MC --> ter
+message CBB_MtSelectVmpRsp				
+{
+    optional bool is_ok = 1;
+}
+
+//终端 申请发言中的终端  MC --> ter	
+message CBB_MtSpeakStatusNtf 
+{
+    optional CBB_EmMtSpeakerStatus speaker_status = 1;
+}           
+
+//终端 所有与会终端  MC --> ter
+message CBB_ConfSpeakModeNtf             
+{
+    optional CBB_EmConfSpeakMode speaker_mode_notif = 1;
+}
+
+//发言人终端 －> MCU  ter --> MC
+message CBB_ApplyCancelSpeakerReq        
+{
+    optional bool is_apply = 1;
+}
+
+//MCU －>  发言人终端  MC --> ter
+message CBB_ApplyCancelSpeakerRsp  
+{
+    optional bool is_granted = 1;
+}     
+
+//视频帧率调整  Mcu-->ter
+message CBB_VideoFpsChangeCmd           
+{
+    optional CBB_EmLogChnnlType logic_chnnl_type = 1;
+    optional CBB_EmFps fps = 2;
+}
+
+//控制终端双流发送命令 Mcu-->ter
+message CBB_ChgSecVidSendCmd	
+{
+    optional bool is_start = 1;
+}
+
+//MT命令修改会议名称 ter-->Mcu
+message CBB_ModifyConfNameReq			
+{
+    optional string conf_name = 1;
+}
+
+//MT命令修改会议名称 Mcu-->ter
+message CBB_ModifyConfNameRsp			
+{
+    optional bool is_granted = 1;
+}
+
+//MT命令修改会议时长 ter-->Mcu
+message CBB_ModifyConfDurationCmd		
+{
+    optional uint32 conf_duration_minutes = 1;
+}
+
+//MT命令修改会议入会密码  ter-->Mcu
+message CBB_ModifyConfPwdCmd			
+{
+    optional bool is_encrypt = 1;
+    optional string key = 2;
+}
+
+//MT(主席)命令修改已召开会议信息 ter-->Mcu
+message CBB_ModifyConfInfoReq           
+{
+    optional CBB_EmModifyConfInfoType modify_type = 1;
+    
+    message CBB_ModifyConfNameTypeContent
+    {
+        optional string new_conf_name = 1;
+    }
+    message CBB_ModifyConfDurationTypeContent
+    {
+        optional uint32 new_duration = 1;
+    }
+    message CBB_ModifyConfPwdTypeContent
+    {
+        optional bool is_enc = 1;
+        optional string new_password = 2;
+    }
+    message CBB_ModifyConfDualModeTypeContent
+    {
+        optional CBB_EmConfDualMode new_dual_mode = 1;
+    }
+    message CBB_ModifyAddVmpMemAliasContent
+    {
+        optional bool is_add_alias = 1;
+    }
+    
+    message CBB_ModifyOpenModeContent
+    {
+        optional CBB_EmConfOpenModeDef new_openmode = 1;
+    }
+    
+    message CBB_ModifyConfDumbContent
+    {
+        optional bool is_conf_dumb = 1;
+    }
+    
+    message CBB_ModifyConfClosedContent
+    {
+        optional bool is_conf_closed = 1;
+    }
+    
+    optional CBB_ModifyConfNameTypeContent modify_conf_name_content = 2;
+    optional CBB_ModifyConfDurationTypeContent modify_conf_duration_content = 3;
+    optional CBB_ModifyConfPwdTypeContent modify_conf_pwd_content = 4;
+    optional CBB_ModifyConfDualModeTypeContent modify_conf_dual_mode_content = 5;
+    optional CBB_ModifyAddVmpMemAliasContent modify_add_vmp_mem_alias_content = 6;
+    optional CBB_ModifyOpenModeContent modify_openmode_content = 7;
+    optional CBB_ModifyConfDumbContent modify_confdumb_content = 8;
+    optional CBB_ModifyConfClosedContent modify_confclosed_content = 9;
+}
+
+//MT(主席)命令修改已召开会议信息回复 Mcu-->ter
+message CBB_ModifyConfInfoRsp          
+{
+    optional CBB_EmModifyConfInfoType modify_type = 1;
+    optional bool is_granted = 2;
+}
+
+//MT(主席)请求获得终端信息-ter-->Mcu
+message CBB_RequestTerminalInfo		
+{
+    optional CBB_TTERLABEL mt = 1;
+    optional uint32 time_stamp = 2;
+}
+
+//MT(主席)请求获得终端信息的平台响应-Mcu-->ter                                   
+message CBB_RequestTerminalInfoResponce
+{
+    optional uint32 time_stamp = 1;
+    optional bool is_end = 2;
+    optional bool is_all = 3;
+    repeated CBB_TTerminalInfo mt_info = 4;
+}	
+
+//MCU回应 Mcu-->ter
+message CBB_GetDialogAuthRsp            
+{
+    optional bool is_granted = 1;
+}
+
+//MCU回应 Mcu-->ter
+message CBB_GiveupDialogAuthRsp         
+{
+    optional bool is_granted = 1;
+}
+
+//会议发生错误通知 MCU--->ter
+message CBB_ConfFailNtf                 
+{
+    optional CBB_EmConfFailureReason fail_reason = 1;
+}
+
+
+//远端静音请求				
+message CBB_QuietRequest				  
+{
+    optional CBB_TTERLABEL mt = 1;
+}
+
+//远端静音响应	
+message CBB_QuietResponse			  
+{
+    optional CBB_TTERLABEL mt = 1;
+    optional bool is_granted = 2;
+}
+
+//取消远端静音请求		
+message CBB_CancelQuietRequest		  
+{
+    optional CBB_TTERLABEL mt = 1;
+}
+
+//取消远端静音响应	
+message CBB_CancelQuietResponse		  
+{
+    optional CBB_TTERLABEL mt = 1;
+    optional bool is_granted = 2;
+}
+
+//远端闭音请求
+message CBB_MuteRequest				  
+{
+    optional CBB_TTERLABEL mt = 1;
+}
+
+//远端闭音响应				
+message CBB_MuteResponse 			  
+{
+    optional CBB_TTERLABEL mt = 1;
+    optional bool is_granted = 2;
+}
+
+//取消远端闭音请求		
+message CBB_CancelMuteRequest		  
+{
+    optional CBB_TTERLABEL mt = 1;
+}
+
+//取消远端闭音响应		
+message CBB_CancelMuteResponse		  
+{
+    optional CBB_TTERLABEL mt = 1;
+    optional bool is_granted = 2;
+}
+
+ //设置声控切换(语音激励)
+message CBB_SetVACReqequest			 
+{
+    optional bool is_start = 1;
+    optional uint32 value = 2;
+}
+
+//设置声控切换结果	
+message CBB_SetVACResponse			  
+{
+    optional bool is_granted = 1;
+}
+
+//自由讨论结果			
+message CBB_StartDiscussResponse	  
+{
+    optional bool is_granted = 1;
+}
+
+//设置多画面			
+message CBB_SetMultiPicRequest		  
+{
+    optional CBB_TMultiPic multipic = 1;
+}
+
+message CBB_SetMultiPicResponse		  
+{
+    optional bool is_granted = 1;
+}
+
+//所有未入会会场名应答
+message CBB_NotInConfTerminalListResponse
+{
+    repeated CBB_TTERINFO mt_list = 1;
+}
+
+//呼叫离线会场		
+message CBB_CallTerminal				  
+{
+    optional CBB_TTERLABEL mt = 1;
+}
+
+//挂断终端		
+message CBB_DisconnectTerminal		  
+{
+    optional CBB_TTERLABEL mt = 1;
+}
+
+//点名发言			
+message CBB_SelectSpeakingUserRequest	
+{
+    optional CBB_TTERLABEL mt = 1;
+}
+
+//点名发言结果		
+message CBB_SelectSpeakingUserResponse  
+{
+    optional CBB_TTERLABEL mt = 1;
+    optional bool is_granted = 2;
+}
+
+//单,多画面切换				
+message CBB_SetPicSwitch				 	
+{
+    optional bool is_multipic = 1;
+}
+
+//对通能力指示        
+message CBB_CapabilitiesInd             
+{
+    optional CBB_TCapInfo capinfo = 1;
+}
+
+//串口数据              
+message CBB_SerialPortData              
+{
+    optional CBB_TCOMDATA com_data = 1;
+}
+
+//设置通道组播地址	
+message CBB_SetChanMultiCastAddr		   
+{
+    optional CBB_TCHANMULTICAST chan_multicast = 1;
+}
+
+//序列号    		
+message CBB_SerialNumber      		   
+{
+    optional string serial_number = 1;
+}
+
+//应答开始数据会议       
+message CBB_StartDataConfResponse       
+{
+    optional bool is_granted = 1;
+}
+
+message CBB_AskVcsOccupyPermit
+{
+    optional string conf_name = 1; 
+}
+
+message CBB_AskVcsOccupyPermitResp      
+{
+    optional bool is_granted = 1;
+}
+
+message CBB_VersionIdInd              
+{
+    optional string vesion_id = 1;
+}
+
+//终端自主画面合成（仅限端口会议）相关：
+//开启画面合成
+message CBB_StartMtVmpReq
+{
+    optional CBB_EmVmpModeDef vmp_mode = 1;  // 画面合成方式
+    optional CBB_EmVmpStyleDef vmp_style = 2; // 画面合成风格
+    repeated CBB_TVMPMember vmp_member = 3; //画面合成成员
+}
+
+//开启画面合成响应（平台响应）
+message CBB_StartMtVmpRsp
+{
+	optional bool is_success = 1;	//是否成功
+}
+
+//开启画面合成通知（底层硬件响应）
+message CBB_StartMtVmpNotify
+{
+    optional bool is_success = 1;	//是否成功
+    // 以下成功才需要填
+    optional CBB_EmVmpModeDef vmp_mode= 2;  // 画面合成方式
+    optional CBB_EmVmpStyleDef vmp_style = 3; // 画面合成风格
+    repeated CBB_TVMPMember vmp_member = 4; //画面合成成员
+}
+
+//停止画面合成响应（平台响应）
+message CBB_StopMtVmpRsp
+{
+    optional bool is_success = 1;	//是否成功
+}
+
+//停止画面合成通知（底层硬件响应）
+message CBB_StopMtVmpNotify
+{
+    optional bool is_success = 1;	//是否成功
+}
+
+//更改画面合成
+message CBB_ChangeMtVmpReq
+{
+    optional CBB_EmVmpModeDef vmp_mode = 1;  // 画面合成方式
+    optional CBB_EmVmpStyleDef vmp_style = 2; // 画面合成风格
+    repeated CBB_TVMPMember vmp_member = 3; //画面合成成员
+}
+
+//更改画面合成响应（平台响应）
+message CBB_ChangeMtVmpRsp
+{
+    optional bool is_success = 1;	//是否成功
+}
+
+//更改画面合成通知（底层硬件响应）
+message CBB_ChangeMtVmpNotify
+{
+    optional bool is_success = 1;	//是否成功
+    // 以下成功才需要填
+    optional CBB_EmVmpModeDef vmp_mode = 2;  // 画面合成方式
+    optional CBB_EmVmpStyleDef vmp_style = 3; // 画面合成风格
+    repeated CBB_TVMPMember vmp_member = 4; //画面合成成员
+}
+
+//白板会议创建通知 mt -> mcu
+message CBB_DataConfCreatedNtf
+{
+    optional string conf_name = 1;   //白板会议名称
+    optional string conf_e164 = 2;   //白板会议164号
+}
+
+//加入白板会议命令 mcu -> mt
+//收到CBB_DataConfCreatedNtf后，MCU需要将此发往所有在本视频会议中的MT
+message CBB_JoinDataConfCmd
+{
+    optional string conf_name = 1;   //白板会议名称
+    optional string conf_e164 = 2;   //白板会议164号
+}
+
+//设置Vip列表请求
+message CBB_SetVipListReq
+{
+    repeated CBB_TMt vip_list = 1;  //vip list
+}
+
+//设置Vip列表回复
+message CBB_SetVipListRsp
+{
+    optional bool is_success = 1;   //成功还是失败
+}
+
+//Vip列表通知
+message CBB_VipListNotify
+{
+	repeated CBB_TMt vip_list = 1;	//vip list
+}
+
+//指定与会终端发双流
+message CBB_SpecTerSendDualCmd
+{
+   optional CBB_TTERLABEL ter_label = 1;
+}
+
+//指定当前终端多路接收通道码率的比例
+message CBB_RcvLocRatioCmd
+{
+	repeated uint32  ratio = 1;	
+}
+
+//终端通知所有通道别名 ter->MC
+message CBB_AllLocAliasNotif
+{
+	repeated CBB_TMtLoc terloc = 1;		//终端通道信息
+}
+
+//指定选看某终端某通道 ter->MC
+message CBB_SelectViewChnCmd
+{
+	optional CBB_TTERLABEL ter_label = 1;//远端终端标识(被选看终端ID)
+	optional CBB_EmMediaModeDef mediamode = 2;	//模式 
+	optional uint32 sndid = 3;	//远端发送通道号 从0开始
+	optional uint32 rcvid = 4;	//接收通道号 从0开始
+}
+
+//指定取消本地某路选看 ter->MC
+message CBB_CancelSelectViewChnCmd
+{	
+	optional CBB_EmMediaModeDef mediamode = 1;	//模式 	
+	optional uint32 rcvid = 2;	//接收通道号 从0开始
+}
+
+//终端请求平台视频源名称  ter-->Mcu
+message CBB_terGetTerVidAliasReq           
+{
+   optional CBB_TTERLABEL dst_mt = 1;	
+}
+
+//终端视频源别名指示  ter-->Mcu
+message CBB_VideoAliasInd           
+{
+	repeated CBB_VideoAlias videoalias = 1; //多个通道
+}
+
+///平台回复终端 视频源名称 mcu-->ter
+message CBB_terGetTerVidAliasRsp
+{
+	optional CBB_TTERLABEL dst_mt = 1;
+	repeated CBB_VideoAlias videoalias = 2; //多个通道
+}
+
+
+//终端预置位信息上报 ter-->mcu
+message CBB_terCameraPosNtf
+{
+	repeated CBB_CameraPosInfo posinfo = 1;
+}
+
+//终端请求平台预置位信息  ter-->Mcu
+message CBB_terGetTerCameraPosCmd          
+{
+   optional CBB_TTERLABEL dst_mt = 1;	
+}
+
+///平台回复终端 预置位信息 mcu-->ter
+message CBB_terGetTerCameraPosNtf
+{
+	optional CBB_TTERLABEL dst_mt = 1;
+	repeated CBB_CameraPosInfo posinfo = 2; //多个通道
+}
+
+////通知对端 是否支持fec功能 mt->mcu  mcu->mt
+message CBB_bFecc_Suport
+{
+	optional bool  bsupport = 1;
+}
+

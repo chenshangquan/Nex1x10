@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<makecfg>
+       <langlist>
+          <language>zh_cn</language>
+          <language>en_us</language>
+       </langlist>
+       <filelist>   
+            <file>
+               <name>nverrcode_global.xml</name>
+               <desc>全局相关</desc>                     
+            </file>
+            <file>
+               <name>nverrcode_nvapi.xml</name>
+               <desc>nvapi相关错误码</desc>                     
+            </file>
+            <file>
+               <name>nverrcode_nvsdk.xml</name>
+               <desc>nvsdk相关错误码</desc>                     
+            </file>
+            <file>
+               <name>xxxxxx.xml</name>
+               <desc>xxxxxx</desc>                     
+            </file>
+       </filelist> 
+</makecfg>
