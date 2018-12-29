@@ -59,6 +59,8 @@ class TNVMtSvrStateList;
 class TNVMtMicStatus;
 class TNVMtAllMicStatus;
 class TNVMtHDVidInPort;
+class TNVImixAllVerInfo;
+class TNVSusUpgradeModule;
 
 // ===================================================================
 
@@ -2780,6 +2782,231 @@ class MTMSG_API TNVMtHDVidInPort : public ::google::protobuf::Message {
 
   void InitAsDefaultInstance();
   static TNVMtHDVidInPort* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class MTMSG_API TNVImixAllVerInfo : public ::google::protobuf::Message {
+ public:
+  TNVImixAllVerInfo();
+  virtual ~TNVImixAllVerInfo();
+
+  TNVImixAllVerInfo(const TNVImixAllVerInfo& from);
+
+  inline TNVImixAllVerInfo& operator=(const TNVImixAllVerInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const TNVImixAllVerInfo& default_instance();
+
+  void Swap(TNVImixAllVerInfo* other);
+
+  // implements Message ----------------------------------------------
+
+  TNVImixAllVerInfo* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const TNVImixAllVerInfo& from);
+  void MergeFrom(const TNVImixAllVerInfo& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional string imix_ver = 1;
+  inline bool has_imix_ver() const;
+  inline void clear_imix_ver();
+  static const int kImixVerFieldNumber = 1;
+  inline const ::std::string& imix_ver() const;
+  inline void set_imix_ver(const ::std::string& value);
+  inline void set_imix_ver(const char* value);
+  inline void set_imix_ver(const char* value, size_t size);
+  inline ::std::string* mutable_imix_ver();
+  inline ::std::string* release_imix_ver();
+  inline void set_allocated_imix_ver(::std::string* imix_ver);
+
+  // optional string power_ver = 2;
+  inline bool has_power_ver() const;
+  inline void clear_power_ver();
+  static const int kPowerVerFieldNumber = 2;
+  inline const ::std::string& power_ver() const;
+  inline void set_power_ver(const ::std::string& value);
+  inline void set_power_ver(const char* value);
+  inline void set_power_ver(const char* value, size_t size);
+  inline ::std::string* mutable_power_ver();
+  inline ::std::string* release_power_ver();
+  inline void set_allocated_power_ver(::std::string* power_ver);
+
+  // optional string router_ver = 3;
+  inline bool has_router_ver() const;
+  inline void clear_router_ver();
+  static const int kRouterVerFieldNumber = 3;
+  inline const ::std::string& router_ver() const;
+  inline void set_router_ver(const ::std::string& value);
+  inline void set_router_ver(const char* value);
+  inline void set_router_ver(const char* value, size_t size);
+  inline ::std::string* mutable_router_ver();
+  inline ::std::string* release_router_ver();
+  inline void set_allocated_router_ver(::std::string* router_ver);
+
+  // optional string qk_ver = 4;
+  inline bool has_qk_ver() const;
+  inline void clear_qk_ver();
+  static const int kQkVerFieldNumber = 4;
+  inline const ::std::string& qk_ver() const;
+  inline void set_qk_ver(const ::std::string& value);
+  inline void set_qk_ver(const char* value);
+  inline void set_qk_ver(const char* value, size_t size);
+  inline ::std::string* mutable_qk_ver();
+  inline ::std::string* release_qk_ver();
+  inline void set_allocated_qk_ver(::std::string* qk_ver);
+
+  // @@protoc_insertion_point(class_scope:nv.TNVImixAllVerInfo)
+ private:
+  inline void set_has_imix_ver();
+  inline void clear_has_imix_ver();
+  inline void set_has_power_ver();
+  inline void clear_has_power_ver();
+  inline void set_has_router_ver();
+  inline void clear_has_router_ver();
+  inline void set_has_qk_ver();
+  inline void clear_has_qk_ver();
+
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
+  ::std::string* imix_ver_;
+  ::std::string* power_ver_;
+  ::std::string* router_ver_;
+  ::std::string* qk_ver_;
+
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(4 + 31) / 32];
+
+  friend void MTMSG_API protobuf_AddDesc_nvstructmt_2eproto();
+  friend void protobuf_AssignDesc_nvstructmt_2eproto();
+  friend void protobuf_ShutdownFile_nvstructmt_2eproto();
+
+  void InitAsDefaultInstance();
+  static TNVImixAllVerInfo* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class MTMSG_API TNVSusUpgradeModule : public ::google::protobuf::Message {
+ public:
+  TNVSusUpgradeModule();
+  virtual ~TNVSusUpgradeModule();
+
+  TNVSusUpgradeModule(const TNVSusUpgradeModule& from);
+
+  inline TNVSusUpgradeModule& operator=(const TNVSusUpgradeModule& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const TNVSusUpgradeModule& default_instance();
+
+  void Swap(TNVSusUpgradeModule* other);
+
+  // implements Message ----------------------------------------------
+
+  TNVSusUpgradeModule* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const TNVSusUpgradeModule& from);
+  void MergeFrom(const TNVSusUpgradeModule& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated .nv.EmSusUpgradeModule upgrade_module = 1;
+  inline int upgrade_module_size() const;
+  inline void clear_upgrade_module();
+  static const int kUpgradeModuleFieldNumber = 1;
+  inline ::nv::EmSusUpgradeModule upgrade_module(int index) const;
+  inline void set_upgrade_module(int index, ::nv::EmSusUpgradeModule value);
+  inline void add_upgrade_module(::nv::EmSusUpgradeModule value);
+  inline const ::google::protobuf::RepeatedField<int>& upgrade_module() const;
+  inline ::google::protobuf::RepeatedField<int>* mutable_upgrade_module();
+
+  // optional uint32 module_size = 2;
+  inline bool has_module_size() const;
+  inline void clear_module_size();
+  static const int kModuleSizeFieldNumber = 2;
+  inline ::google::protobuf::uint32 module_size() const;
+  inline void set_module_size(::google::protobuf::uint32 value);
+
+  // @@protoc_insertion_point(class_scope:nv.TNVSusUpgradeModule)
+ private:
+  inline void set_has_module_size();
+  inline void clear_has_module_size();
+
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
+  ::google::protobuf::RepeatedField<int> upgrade_module_;
+  ::google::protobuf::uint32 module_size_;
+
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
+
+  friend void MTMSG_API protobuf_AddDesc_nvstructmt_2eproto();
+  friend void protobuf_AssignDesc_nvstructmt_2eproto();
+  friend void protobuf_ShutdownFile_nvstructmt_2eproto();
+
+  void InitAsDefaultInstance();
+  static TNVSusUpgradeModule* default_instance_;
 };
 // ===================================================================
 
@@ -6310,6 +6537,343 @@ inline void TNVMtHDVidInPort::set_vid_port(::nv::EmNvVideoPort_Api value) {
   assert(::nv::EmNvVideoPort_Api_IsValid(value));
   set_has_vid_port();
   vid_port_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// TNVImixAllVerInfo
+
+// optional string imix_ver = 1;
+inline bool TNVImixAllVerInfo::has_imix_ver() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void TNVImixAllVerInfo::set_has_imix_ver() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void TNVImixAllVerInfo::clear_has_imix_ver() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void TNVImixAllVerInfo::clear_imix_ver() {
+  if (imix_ver_ != &::google::protobuf::internal::kEmptyString) {
+    imix_ver_->clear();
+  }
+  clear_has_imix_ver();
+}
+inline const ::std::string& TNVImixAllVerInfo::imix_ver() const {
+  return *imix_ver_;
+}
+inline void TNVImixAllVerInfo::set_imix_ver(const ::std::string& value) {
+  set_has_imix_ver();
+  if (imix_ver_ == &::google::protobuf::internal::kEmptyString) {
+    imix_ver_ = new ::std::string;
+  }
+  imix_ver_->assign(value);
+}
+inline void TNVImixAllVerInfo::set_imix_ver(const char* value) {
+  set_has_imix_ver();
+  if (imix_ver_ == &::google::protobuf::internal::kEmptyString) {
+    imix_ver_ = new ::std::string;
+  }
+  imix_ver_->assign(value);
+}
+inline void TNVImixAllVerInfo::set_imix_ver(const char* value, size_t size) {
+  set_has_imix_ver();
+  if (imix_ver_ == &::google::protobuf::internal::kEmptyString) {
+    imix_ver_ = new ::std::string;
+  }
+  imix_ver_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* TNVImixAllVerInfo::mutable_imix_ver() {
+  set_has_imix_ver();
+  if (imix_ver_ == &::google::protobuf::internal::kEmptyString) {
+    imix_ver_ = new ::std::string;
+  }
+  return imix_ver_;
+}
+inline ::std::string* TNVImixAllVerInfo::release_imix_ver() {
+  clear_has_imix_ver();
+  if (imix_ver_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = imix_ver_;
+    imix_ver_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
+}
+inline void TNVImixAllVerInfo::set_allocated_imix_ver(::std::string* imix_ver) {
+  if (imix_ver_ != &::google::protobuf::internal::kEmptyString) {
+    delete imix_ver_;
+  }
+  if (imix_ver) {
+    set_has_imix_ver();
+    imix_ver_ = imix_ver;
+  } else {
+    clear_has_imix_ver();
+    imix_ver_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  }
+}
+
+// optional string power_ver = 2;
+inline bool TNVImixAllVerInfo::has_power_ver() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void TNVImixAllVerInfo::set_has_power_ver() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void TNVImixAllVerInfo::clear_has_power_ver() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void TNVImixAllVerInfo::clear_power_ver() {
+  if (power_ver_ != &::google::protobuf::internal::kEmptyString) {
+    power_ver_->clear();
+  }
+  clear_has_power_ver();
+}
+inline const ::std::string& TNVImixAllVerInfo::power_ver() const {
+  return *power_ver_;
+}
+inline void TNVImixAllVerInfo::set_power_ver(const ::std::string& value) {
+  set_has_power_ver();
+  if (power_ver_ == &::google::protobuf::internal::kEmptyString) {
+    power_ver_ = new ::std::string;
+  }
+  power_ver_->assign(value);
+}
+inline void TNVImixAllVerInfo::set_power_ver(const char* value) {
+  set_has_power_ver();
+  if (power_ver_ == &::google::protobuf::internal::kEmptyString) {
+    power_ver_ = new ::std::string;
+  }
+  power_ver_->assign(value);
+}
+inline void TNVImixAllVerInfo::set_power_ver(const char* value, size_t size) {
+  set_has_power_ver();
+  if (power_ver_ == &::google::protobuf::internal::kEmptyString) {
+    power_ver_ = new ::std::string;
+  }
+  power_ver_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* TNVImixAllVerInfo::mutable_power_ver() {
+  set_has_power_ver();
+  if (power_ver_ == &::google::protobuf::internal::kEmptyString) {
+    power_ver_ = new ::std::string;
+  }
+  return power_ver_;
+}
+inline ::std::string* TNVImixAllVerInfo::release_power_ver() {
+  clear_has_power_ver();
+  if (power_ver_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = power_ver_;
+    power_ver_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
+}
+inline void TNVImixAllVerInfo::set_allocated_power_ver(::std::string* power_ver) {
+  if (power_ver_ != &::google::protobuf::internal::kEmptyString) {
+    delete power_ver_;
+  }
+  if (power_ver) {
+    set_has_power_ver();
+    power_ver_ = power_ver;
+  } else {
+    clear_has_power_ver();
+    power_ver_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  }
+}
+
+// optional string router_ver = 3;
+inline bool TNVImixAllVerInfo::has_router_ver() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void TNVImixAllVerInfo::set_has_router_ver() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void TNVImixAllVerInfo::clear_has_router_ver() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void TNVImixAllVerInfo::clear_router_ver() {
+  if (router_ver_ != &::google::protobuf::internal::kEmptyString) {
+    router_ver_->clear();
+  }
+  clear_has_router_ver();
+}
+inline const ::std::string& TNVImixAllVerInfo::router_ver() const {
+  return *router_ver_;
+}
+inline void TNVImixAllVerInfo::set_router_ver(const ::std::string& value) {
+  set_has_router_ver();
+  if (router_ver_ == &::google::protobuf::internal::kEmptyString) {
+    router_ver_ = new ::std::string;
+  }
+  router_ver_->assign(value);
+}
+inline void TNVImixAllVerInfo::set_router_ver(const char* value) {
+  set_has_router_ver();
+  if (router_ver_ == &::google::protobuf::internal::kEmptyString) {
+    router_ver_ = new ::std::string;
+  }
+  router_ver_->assign(value);
+}
+inline void TNVImixAllVerInfo::set_router_ver(const char* value, size_t size) {
+  set_has_router_ver();
+  if (router_ver_ == &::google::protobuf::internal::kEmptyString) {
+    router_ver_ = new ::std::string;
+  }
+  router_ver_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* TNVImixAllVerInfo::mutable_router_ver() {
+  set_has_router_ver();
+  if (router_ver_ == &::google::protobuf::internal::kEmptyString) {
+    router_ver_ = new ::std::string;
+  }
+  return router_ver_;
+}
+inline ::std::string* TNVImixAllVerInfo::release_router_ver() {
+  clear_has_router_ver();
+  if (router_ver_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = router_ver_;
+    router_ver_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
+}
+inline void TNVImixAllVerInfo::set_allocated_router_ver(::std::string* router_ver) {
+  if (router_ver_ != &::google::protobuf::internal::kEmptyString) {
+    delete router_ver_;
+  }
+  if (router_ver) {
+    set_has_router_ver();
+    router_ver_ = router_ver;
+  } else {
+    clear_has_router_ver();
+    router_ver_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  }
+}
+
+// optional string qk_ver = 4;
+inline bool TNVImixAllVerInfo::has_qk_ver() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void TNVImixAllVerInfo::set_has_qk_ver() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void TNVImixAllVerInfo::clear_has_qk_ver() {
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline void TNVImixAllVerInfo::clear_qk_ver() {
+  if (qk_ver_ != &::google::protobuf::internal::kEmptyString) {
+    qk_ver_->clear();
+  }
+  clear_has_qk_ver();
+}
+inline const ::std::string& TNVImixAllVerInfo::qk_ver() const {
+  return *qk_ver_;
+}
+inline void TNVImixAllVerInfo::set_qk_ver(const ::std::string& value) {
+  set_has_qk_ver();
+  if (qk_ver_ == &::google::protobuf::internal::kEmptyString) {
+    qk_ver_ = new ::std::string;
+  }
+  qk_ver_->assign(value);
+}
+inline void TNVImixAllVerInfo::set_qk_ver(const char* value) {
+  set_has_qk_ver();
+  if (qk_ver_ == &::google::protobuf::internal::kEmptyString) {
+    qk_ver_ = new ::std::string;
+  }
+  qk_ver_->assign(value);
+}
+inline void TNVImixAllVerInfo::set_qk_ver(const char* value, size_t size) {
+  set_has_qk_ver();
+  if (qk_ver_ == &::google::protobuf::internal::kEmptyString) {
+    qk_ver_ = new ::std::string;
+  }
+  qk_ver_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* TNVImixAllVerInfo::mutable_qk_ver() {
+  set_has_qk_ver();
+  if (qk_ver_ == &::google::protobuf::internal::kEmptyString) {
+    qk_ver_ = new ::std::string;
+  }
+  return qk_ver_;
+}
+inline ::std::string* TNVImixAllVerInfo::release_qk_ver() {
+  clear_has_qk_ver();
+  if (qk_ver_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = qk_ver_;
+    qk_ver_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
+}
+inline void TNVImixAllVerInfo::set_allocated_qk_ver(::std::string* qk_ver) {
+  if (qk_ver_ != &::google::protobuf::internal::kEmptyString) {
+    delete qk_ver_;
+  }
+  if (qk_ver) {
+    set_has_qk_ver();
+    qk_ver_ = qk_ver;
+  } else {
+    clear_has_qk_ver();
+    qk_ver_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  }
+}
+
+// -------------------------------------------------------------------
+
+// TNVSusUpgradeModule
+
+// repeated .nv.EmSusUpgradeModule upgrade_module = 1;
+inline int TNVSusUpgradeModule::upgrade_module_size() const {
+  return upgrade_module_.size();
+}
+inline void TNVSusUpgradeModule::clear_upgrade_module() {
+  upgrade_module_.Clear();
+}
+inline ::nv::EmSusUpgradeModule TNVSusUpgradeModule::upgrade_module(int index) const {
+  return static_cast< ::nv::EmSusUpgradeModule >(upgrade_module_.Get(index));
+}
+inline void TNVSusUpgradeModule::set_upgrade_module(int index, ::nv::EmSusUpgradeModule value) {
+  assert(::nv::EmSusUpgradeModule_IsValid(value));
+  upgrade_module_.Set(index, value);
+}
+inline void TNVSusUpgradeModule::add_upgrade_module(::nv::EmSusUpgradeModule value) {
+  assert(::nv::EmSusUpgradeModule_IsValid(value));
+  upgrade_module_.Add(value);
+}
+inline const ::google::protobuf::RepeatedField<int>&
+TNVSusUpgradeModule::upgrade_module() const {
+  return upgrade_module_;
+}
+inline ::google::protobuf::RepeatedField<int>*
+TNVSusUpgradeModule::mutable_upgrade_module() {
+  return &upgrade_module_;
+}
+
+// optional uint32 module_size = 2;
+inline bool TNVSusUpgradeModule::has_module_size() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void TNVSusUpgradeModule::set_has_module_size() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void TNVSusUpgradeModule::clear_has_module_size() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void TNVSusUpgradeModule::clear_module_size() {
+  module_size_ = 0u;
+  clear_has_module_size();
+}
+inline ::google::protobuf::uint32 TNVSusUpgradeModule::module_size() const {
+  return module_size_;
+}
+inline void TNVSusUpgradeModule::set_module_size(::google::protobuf::uint32 value) {
+  set_has_module_size();
+  module_size_ = value;
 }
 
 

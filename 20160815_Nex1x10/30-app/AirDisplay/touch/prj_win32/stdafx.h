@@ -106,3 +106,8 @@ typedef enum _EnumPptStatus
 	EM_PPT_PLAYING		         // ppt播放状态	
 }EnumPptStatus;
 
+enum EMLangID
+{
+    enumLangIdCHN   = (u8)0,    //简体中文
+    enumLangIdENG   = (u8)1     //English
+};

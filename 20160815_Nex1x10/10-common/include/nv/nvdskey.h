@@ -101,7 +101,12 @@
 #define emNv_Rt_PadLoginInfo              "emNv_Rt_PadLoginInfo"                  //pad登录信息(value:TNVPadLoginInfos)
 #define emNv_Rt_RouterIsDown              "emNv_Rt_RouterIsDown"                  //路由器升级文件是否正在下载中(value: TBOOL32)
 #define emNv_Rt_TerminalName              "emNv_Rt_TerminalName"                  //终端别名(value:TNVTerminalName)
+#define emNv_Rt_ChangeLocalEcho           "emNv_Rt_ChangeLocalEcho"               //是否从回显切走
+#define emNv_Rt_ImixSerialNum             "emNv_Rt_ImixSerialNum"                 //imix序列号
+
+/*------------------------平台升级相关----------------------------*/
 #define emNv_Rt_NvSusInfo                 "emNv_Rt_NvSusInfo"                     //sus服务器信息(value:TNVSUSAddr)
+#define emNv_Rt_NvImixAllVerInfo          "emNv_Rt_NvImixAllVerInfo"              //当前imix所有组件的版本信息(value:TNVImixAllVerInfo)
 /*================= 分界线，以下为产品专用Key ====================*/
 
 /********************硬终端产品配置数据项Key开始********************/

@@ -2475,6 +2475,25 @@ class MTMSG_API TSrtpCrypto : public ::google::protobuf::Message {
   inline ::std::string* release_bkrtcp_crypto_key();
   inline void set_allocated_bkrtcp_crypto_key(::std::string* bkrtcp_crypto_key);
 
+  // optional bytes bkrtcp_crypto_keyid = 8;
+  inline bool has_bkrtcp_crypto_keyid() const;
+  inline void clear_bkrtcp_crypto_keyid();
+  static const int kBkrtcpCryptoKeyidFieldNumber = 8;
+  inline const ::std::string& bkrtcp_crypto_keyid() const;
+  inline void set_bkrtcp_crypto_keyid(const ::std::string& value);
+  inline void set_bkrtcp_crypto_keyid(const char* value);
+  inline void set_bkrtcp_crypto_keyid(const void* value, size_t size);
+  inline ::std::string* mutable_bkrtcp_crypto_keyid();
+  inline ::std::string* release_bkrtcp_crypto_keyid();
+  inline void set_allocated_bkrtcp_crypto_keyid(::std::string* bkrtcp_crypto_keyid);
+
+  // optional uint32 bkrtcp_crypto_keyid_len = 9;
+  inline bool has_bkrtcp_crypto_keyid_len() const;
+  inline void clear_bkrtcp_crypto_keyid_len();
+  static const int kBkrtcpCryptoKeyidLenFieldNumber = 9;
+  inline ::google::protobuf::uint32 bkrtcp_crypto_keyid_len() const;
+  inline void set_bkrtcp_crypto_keyid_len(::google::protobuf::uint32 value);
+
   // @@protoc_insertion_point(class_scope:mt.TSrtpCrypto)
  private:
   inline void set_has_srtp_crypto_type();
@@ -2491,6 +2510,10 @@ class MTMSG_API TSrtpCrypto : public ::google::protobuf::Message {
   inline void clear_has_crypto_keyid_len();
   inline void set_has_bkrtcp_crypto_key();
   inline void clear_has_bkrtcp_crypto_key();
+  inline void set_has_bkrtcp_crypto_keyid();
+  inline void clear_has_bkrtcp_crypto_keyid();
+  inline void set_has_bkrtcp_crypto_keyid_len();
+  inline void clear_has_bkrtcp_crypto_keyid_len();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
@@ -2501,9 +2524,11 @@ class MTMSG_API TSrtpCrypto : public ::google::protobuf::Message {
   ::google::protobuf::uint32 crypto_keyid_len_;
   ::std::string* crypto_keyid_;
   ::std::string* bkrtcp_crypto_key_;
+  ::std::string* bkrtcp_crypto_keyid_;
+  ::google::protobuf::uint32 bkrtcp_crypto_keyid_len_;
 
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(7 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(9 + 31) / 32];
 
   friend void MTMSG_API protobuf_AddDesc_structconf_2eproto();
   friend void protobuf_AssignDesc_structconf_2eproto();
@@ -7593,7 +7618,7 @@ class MTMSG_API TMtConfInfo : public ::google::protobuf::Message {
   inline bool is_occupy_vpu() const;
   inline void set_is_occupy_vpu(bool value);
 
-  // optional .mt.EmMtDualMode dual_mode = 18;
+  // optional .mt.EmMtDualMode dual_mode = 18 [default = MT_DUAL_MODE_EVERYONE];
   inline bool has_dual_mode() const;
   inline void clear_dual_mode();
   static const int kDualModeFieldNumber = 18;
@@ -15576,6 +15601,98 @@ inline void TSrtpCrypto::set_allocated_bkrtcp_crypto_key(::std::string* bkrtcp_c
   }
 }
 
+// optional bytes bkrtcp_crypto_keyid = 8;
+inline bool TSrtpCrypto::has_bkrtcp_crypto_keyid() const {
+  return (_has_bits_[0] & 0x00000080u) != 0;
+}
+inline void TSrtpCrypto::set_has_bkrtcp_crypto_keyid() {
+  _has_bits_[0] |= 0x00000080u;
+}
+inline void TSrtpCrypto::clear_has_bkrtcp_crypto_keyid() {
+  _has_bits_[0] &= ~0x00000080u;
+}
+inline void TSrtpCrypto::clear_bkrtcp_crypto_keyid() {
+  if (bkrtcp_crypto_keyid_ != &::google::protobuf::internal::kEmptyString) {
+    bkrtcp_crypto_keyid_->clear();
+  }
+  clear_has_bkrtcp_crypto_keyid();
+}
+inline const ::std::string& TSrtpCrypto::bkrtcp_crypto_keyid() const {
+  return *bkrtcp_crypto_keyid_;
+}
+inline void TSrtpCrypto::set_bkrtcp_crypto_keyid(const ::std::string& value) {
+  set_has_bkrtcp_crypto_keyid();
+  if (bkrtcp_crypto_keyid_ == &::google::protobuf::internal::kEmptyString) {
+    bkrtcp_crypto_keyid_ = new ::std::string;
+  }
+  bkrtcp_crypto_keyid_->assign(value);
+}
+inline void TSrtpCrypto::set_bkrtcp_crypto_keyid(const char* value) {
+  set_has_bkrtcp_crypto_keyid();
+  if (bkrtcp_crypto_keyid_ == &::google::protobuf::internal::kEmptyString) {
+    bkrtcp_crypto_keyid_ = new ::std::string;
+  }
+  bkrtcp_crypto_keyid_->assign(value);
+}
+inline void TSrtpCrypto::set_bkrtcp_crypto_keyid(const void* value, size_t size) {
+  set_has_bkrtcp_crypto_keyid();
+  if (bkrtcp_crypto_keyid_ == &::google::protobuf::internal::kEmptyString) {
+    bkrtcp_crypto_keyid_ = new ::std::string;
+  }
+  bkrtcp_crypto_keyid_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* TSrtpCrypto::mutable_bkrtcp_crypto_keyid() {
+  set_has_bkrtcp_crypto_keyid();
+  if (bkrtcp_crypto_keyid_ == &::google::protobuf::internal::kEmptyString) {
+    bkrtcp_crypto_keyid_ = new ::std::string;
+  }
+  return bkrtcp_crypto_keyid_;
+}
+inline ::std::string* TSrtpCrypto::release_bkrtcp_crypto_keyid() {
+  clear_has_bkrtcp_crypto_keyid();
+  if (bkrtcp_crypto_keyid_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = bkrtcp_crypto_keyid_;
+    bkrtcp_crypto_keyid_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
+}
+inline void TSrtpCrypto::set_allocated_bkrtcp_crypto_keyid(::std::string* bkrtcp_crypto_keyid) {
+  if (bkrtcp_crypto_keyid_ != &::google::protobuf::internal::kEmptyString) {
+    delete bkrtcp_crypto_keyid_;
+  }
+  if (bkrtcp_crypto_keyid) {
+    set_has_bkrtcp_crypto_keyid();
+    bkrtcp_crypto_keyid_ = bkrtcp_crypto_keyid;
+  } else {
+    clear_has_bkrtcp_crypto_keyid();
+    bkrtcp_crypto_keyid_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  }
+}
+
+// optional uint32 bkrtcp_crypto_keyid_len = 9;
+inline bool TSrtpCrypto::has_bkrtcp_crypto_keyid_len() const {
+  return (_has_bits_[0] & 0x00000100u) != 0;
+}
+inline void TSrtpCrypto::set_has_bkrtcp_crypto_keyid_len() {
+  _has_bits_[0] |= 0x00000100u;
+}
+inline void TSrtpCrypto::clear_has_bkrtcp_crypto_keyid_len() {
+  _has_bits_[0] &= ~0x00000100u;
+}
+inline void TSrtpCrypto::clear_bkrtcp_crypto_keyid_len() {
+  bkrtcp_crypto_keyid_len_ = 0u;
+  clear_has_bkrtcp_crypto_keyid_len();
+}
+inline ::google::protobuf::uint32 TSrtpCrypto::bkrtcp_crypto_keyid_len() const {
+  return bkrtcp_crypto_keyid_len_;
+}
+inline void TSrtpCrypto::set_bkrtcp_crypto_keyid_len(::google::protobuf::uint32 value) {
+  set_has_bkrtcp_crypto_keyid_len();
+  bkrtcp_crypto_keyid_len_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // TSrtpParamSetting
@@ -23410,7 +23527,7 @@ inline void TMtConfInfo::set_is_occupy_vpu(bool value) {
   is_occupy_vpu_ = value;
 }
 
-// optional .mt.EmMtDualMode dual_mode = 18;
+// optional .mt.EmMtDualMode dual_mode = 18 [default = MT_DUAL_MODE_EVERYONE];
 inline bool TMtConfInfo::has_dual_mode() const {
   return (_has_bits_[0] & 0x00020000u) != 0;
 }
@@ -23421,7 +23538,7 @@ inline void TMtConfInfo::clear_has_dual_mode() {
   _has_bits_[0] &= ~0x00020000u;
 }
 inline void TMtConfInfo::clear_dual_mode() {
-  dual_mode_ = 0;
+  dual_mode_ = 1;
   clear_has_dual_mode();
 }
 inline ::mt::EmMtDualMode TMtConfInfo::dual_mode() const {

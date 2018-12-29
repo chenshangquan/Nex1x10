@@ -581,20 +581,35 @@ class MTMSG_API TFaceCheckInInfo : public ::google::protobuf::Message {
   inline ::std::string* release_time();
   inline void set_allocated_time(::std::string* time);
 
+  // optional string description = 3;
+  inline bool has_description() const;
+  inline void clear_description();
+  static const int kDescriptionFieldNumber = 3;
+  inline const ::std::string& description() const;
+  inline void set_description(const ::std::string& value);
+  inline void set_description(const char* value);
+  inline void set_description(const char* value, size_t size);
+  inline ::std::string* mutable_description();
+  inline ::std::string* release_description();
+  inline void set_allocated_description(::std::string* description);
+
   // @@protoc_insertion_point(class_scope:cmr.TFaceCheckInInfo)
  private:
   inline void set_has_name();
   inline void clear_has_name();
   inline void set_has_time();
   inline void clear_has_time();
+  inline void set_has_description();
+  inline void clear_has_description();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
   ::std::string* name_;
   ::std::string* time_;
+  ::std::string* description_;
 
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
 
   friend void MTMSG_API protobuf_AddDesc_structcamera_2eproto();
   friend void protobuf_AssignDesc_structcamera_2eproto();
@@ -1146,6 +1161,76 @@ inline void TFaceCheckInInfo::set_allocated_time(::std::string* time) {
   } else {
     clear_has_time();
     time_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  }
+}
+
+// optional string description = 3;
+inline bool TFaceCheckInInfo::has_description() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void TFaceCheckInInfo::set_has_description() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void TFaceCheckInInfo::clear_has_description() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void TFaceCheckInInfo::clear_description() {
+  if (description_ != &::google::protobuf::internal::kEmptyString) {
+    description_->clear();
+  }
+  clear_has_description();
+}
+inline const ::std::string& TFaceCheckInInfo::description() const {
+  return *description_;
+}
+inline void TFaceCheckInInfo::set_description(const ::std::string& value) {
+  set_has_description();
+  if (description_ == &::google::protobuf::internal::kEmptyString) {
+    description_ = new ::std::string;
+  }
+  description_->assign(value);
+}
+inline void TFaceCheckInInfo::set_description(const char* value) {
+  set_has_description();
+  if (description_ == &::google::protobuf::internal::kEmptyString) {
+    description_ = new ::std::string;
+  }
+  description_->assign(value);
+}
+inline void TFaceCheckInInfo::set_description(const char* value, size_t size) {
+  set_has_description();
+  if (description_ == &::google::protobuf::internal::kEmptyString) {
+    description_ = new ::std::string;
+  }
+  description_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* TFaceCheckInInfo::mutable_description() {
+  set_has_description();
+  if (description_ == &::google::protobuf::internal::kEmptyString) {
+    description_ = new ::std::string;
+  }
+  return description_;
+}
+inline ::std::string* TFaceCheckInInfo::release_description() {
+  clear_has_description();
+  if (description_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = description_;
+    description_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
+}
+inline void TFaceCheckInInfo::set_allocated_description(::std::string* description) {
+  if (description_ != &::google::protobuf::internal::kEmptyString) {
+    delete description_;
+  }
+  if (description) {
+    set_has_description();
+    description_ = description;
+  } else {
+    clear_has_description();
+    description_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   }
 }
 

@@ -810,6 +810,9 @@ public:
 	virtual u32    SetEnableSecureCfgCmd( IN CONST BOOL32 bEnable );
 	virtual BOOL32 GetEnableSecureCfg() = 0;
 
+	virtual u32    SetShortCutKeyCfgCmd( IN CONST TMtShortCutKeyList_Api tCfg );
+	virtual TMtShortCutKeyList_Api GetShortCutKeyCfg() = 0;
+
 	/********************Ó²ÖÕ¶Ë²úÆ·Key½áÊø********************/
 
 	virtual u32 SetMtWizardResultCfgCmd( CONST BOOL32 &bIsConfiged);
@@ -1299,6 +1302,7 @@ protected:
 	BOOL32 OnSetShowLostPktCfg_Ntf( mtmsg::CMtMsg *pcMsg, u32 dwSrcId, u32 dwSrcNode );
 	BOOL32 OnSetUserLoginPwdTimeoutCfg_Ntf( mtmsg::CMtMsg *pcMsg, u32 dwSrcId, u32 dwSrcNode );
 	BOOL32 OnSetEnableSecureCfg_Ntf( mtmsg::CMtMsg *pcMsg, u32 dwSrcId, u32 dwSrcNode );
+	BOOL32 OnSetShortCutKeyCfg_Ntf( mtmsg::CMtMsg *pcMsg, u32 dwSrcId, u32 dwSrcNode );
 };
 
 #endif // _I_MTDATASHARE_H_

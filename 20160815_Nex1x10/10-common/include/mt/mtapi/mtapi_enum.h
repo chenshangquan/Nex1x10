@@ -902,11 +902,11 @@ enum EmMtVmpStyle_Api
 	emMt_VMP_STYLE_25_5X5_Api = 60,									///<二十五画面: 等大，5行5列
 	emMt_VMP_STYLE_25_S3LU3X1_B1MU_S3RU3X1_S18D3X6_Api = 61,			
 	///<二十五画面: 1大24小，3小左上(3行1列)，1大中上，3小右上(3行1列)，18小下(3行6列)
+	emMt_VMP_STYLE_2_B1_S1RU_Api = 62,						//两画面: 1大1小，1大全屏，1小右上
+	emMt_VMP_STYLE_2_B1_S1LD_Api = 63,						// 两画面: 1大1小，1大全屏，1小左下
+	emMt_VMP_STYLE_2_B1_S1L_Api = 64,						// 两画面: 1大1小，1大全屏，1小左上
 
-	emMt_VMP_STYLE_20_5X4_Api = 62,                                 ///<二十画面，等分5*4， 兼容老的行业平台，5.0平台没有  
-    emMt_VMP_STYLE_2_B1_S1RU_Api = 63,						//两画面: 1大1小，1大全屏，1小右上
-    emMt_VMP_STYLE_2_B1_S1L_Api  = 64,						// 两画面: 1大1小，1大全屏，1小左
-    emMt_VMP_STYLE_2_B1_S1LD_Api = 65						// 两画面: 1大1小，1大全屏，1小左下
+	emMt_VMP_STYLE_20_5X4_Api = 100,                                 ///<二十画面，等分5*4， 兼容老的行业平台，5.0平台没有  
 };
 
 /** 画面合成成员类型定义 */
@@ -3415,6 +3415,7 @@ enum EmVConfCreateType_Api
 {
 	emCreateNormalConf_Api = 0,			///< 实时会议
 	emCreateVirtualConf_Api = 1,		///< 虚拟会议室
+    emCreateConfByTemplate_Api = 2      ///< 根据模板ID创会
 };
 
 //投屏器状态
@@ -3486,6 +3487,28 @@ enum EmAiAssState_Api
 	emAiAssRob_Api              = 3,    //抢双流
 	emAiAssClose_Api            = 4,    //关双流
 	emAiAssEnd_Api              =20,
+};
+
+enum EmShortCutKeyType_Api
+{
+	emUnkown_Api			    = 0,		 ///未知
+	emRedShortCutKey_Api        = 1,		 ///红色快捷键
+	emYellowShortCutKey_Api     = 2,         ///黄色快捷键
+	emGreenShortCutKey_Api      = 3,         ///绿色快捷键
+};
+
+enum EmShortCutKeyFuc_Api
+{
+	emFucBegin_Api              = 0,
+	emLoop_Api                  = 1,         ///自环
+	emApplyChair_Api            = 2,         ///申请主席
+	emApplySpeaker_Api          = 3,         ///申请主讲
+	emShowSystemInfo_Api        = 4,         ///显示系统信息
+	emFullMute_Api              = 5,         ///全场哑音
+	emSpeechHelper_Api          = 6,         ///语音助手
+	emFaceCheckIn_Api           = 7,         ///人脸签到
+
+	emClose_Api                 = 20,        ///关闭功能
 };
 
 /**@}*/

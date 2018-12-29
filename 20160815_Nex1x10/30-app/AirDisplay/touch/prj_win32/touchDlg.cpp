@@ -19,10 +19,14 @@
 #include "Functiondiscoverykeys_devpkey.h"
 
 #include "lm.h"
+#include "language.h"
+
 #pragma comment(lib,"netapi32.lib")
 
 extern CtouchDlg * g_dlg;
 
+//语言类型
+EMLangID g_emLanType;
 //用于响应默认音量变化
 HWND g_hVolumeCtrlDlg = NULL;
 GUID g_guidMyContext = GUID_NULL;
@@ -526,6 +530,8 @@ CtouchDlg::CtouchDlg(CWnd* pParent /*=NULL*/)
 	m_bPptExit = false;
 
 	m_bCapOverEncode = false;
+	m_bStretch = false;
+
 	m_bBusinessStaus = true;
 	m_bNeedCodeConsult = FALSE;
 
@@ -806,6 +812,17 @@ BOOL CtouchDlg::OnInitDialog()
 		//::MessageBox(NULL, _T("获取系统用户名失败!"), NULL, MB_OK|MB_ICONERROR );
 		//return FALSE;
 	}
+
+    // 获取系统语言类型，并设置界面语言类型
+    LANGID langID = GetSystemDefaultLangID();
+    if (langID == 0x0804)
+    {
+        g_emLanType = enumLangIdCHN;
+    }
+    else
+    {
+        g_emLanType = enumLangIdENG;
+    }
 
 	InitUI();
 
@@ -1551,7 +1568,18 @@ void CtouchDlg::InitVideoEncoderParam(u8 byVideoType)
 
 	if ( m_bCapOverEncode )
 	{
-		m_cEncoder.SetVidDecZoomPolicy( EN_ZOOM_FILLBLACK );
+		//m_cEncoder.SetVidDecZoomPolicy( EN_ZOOM_FILLBLACK );
+        // 采集分辨率比例大于等于1.5时，不等比全屏；反之，等比加黑边
+        if (m_bStretch)
+        {
+            m_cEncoder.SetVidDecZoomPolicy( EN_ZOOM_SCALE );
+            PRINTMSG("不等比全屏\r\n");
+        }
+        else
+        {
+            m_cEncoder.SetVidDecZoomPolicy( EN_ZOOM_FILLBLACK );
+            PRINTMSG("等比加黑边\r\n");
+        }
 	}
 
 	m_cEncoder.SetVideoEncParam(tVideoEncParam);
@@ -2329,9 +2357,16 @@ void CtouchDlg::GetResolution(int &nWidth, int &nHeight)
 	m_bCapOverEncode = false;
 	if ( nWid > 1920 && nHei > 1080)
 	{
-		nWid = 1920;
-		nHei = 1080;
-		m_bCapOverEncode = true;
+        // 新增编码分辨率与采集不一致策略
+        m_bStretch = false;
+        if ( float(nWid)/float(nHei) >= 1.5 )    // 采集分辨率比例大于等于1.5 --不等比全屏
+        {
+            m_bStretch = true;
+        }
+
+        nWid = 1920;
+        nHei = 1080;
+        m_bCapOverEncode = true;
 	}
 
 	nWidth = nWid;

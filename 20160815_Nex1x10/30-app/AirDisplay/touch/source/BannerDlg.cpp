@@ -6,6 +6,7 @@
 #include "BannerDlg.h"
 #include "afxdialogex.h"
 #include "touchDlg.h"
+#include "language.h"
 
 extern CtouchDlg * g_dlg;
 // CBannerDlg 对话框
@@ -105,10 +106,10 @@ void CBannerDlg::InitUI()
 	}
 	
 
-	CString strDes = strName + _T(" 正在投屏");
+	CString strDes = strName + STRING_PROJECTING;
 	m_staticBanner.SetWindowText(strDes);
 
-	m_btnBannerClose.SetWindowText(_T("停止投屏"));
+	m_btnBannerClose.SetWindowText(STRING_STOP_PROJECTING);
 	
 }
 

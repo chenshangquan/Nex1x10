@@ -25572,27 +25572,9 @@ public final class StructCfgPB {
      */
     int getErrcode();
 
-    // optional uint32 total_percent = 2;
+    // optional uint32 cur_percent = 2;
     /**
-     * <code>optional uint32 total_percent = 2;</code>
-     *
-     * <pre>
-     *文件下载总进度
-     * </pre>
-     */
-    boolean hasTotalPercent();
-    /**
-     * <code>optional uint32 total_percent = 2;</code>
-     *
-     * <pre>
-     *文件下载总进度
-     * </pre>
-     */
-    int getTotalPercent();
-
-    // optional uint32 cur_percent = 3;
-    /**
-     * <code>optional uint32 cur_percent = 3;</code>
+     * <code>optional uint32 cur_percent = 2;</code>
      *
      * <pre>
      *当前文件的下载进度
@@ -25600,7 +25582,7 @@ public final class StructCfgPB {
      */
     boolean hasCurPercent();
     /**
-     * <code>optional uint32 cur_percent = 3;</code>
+     * <code>optional uint32 cur_percent = 2;</code>
      *
      * <pre>
      *当前文件的下载进度
@@ -25608,32 +25590,23 @@ public final class StructCfgPB {
      */
     int getCurPercent();
 
-    // optional string cur_file_name = 4;
+    // optional .nv.EmSusUpgradeModule module = 3;
     /**
-     * <code>optional string cur_file_name = 4;</code>
+     * <code>optional .nv.EmSusUpgradeModule module = 3;</code>
      *
      * <pre>
-     *当前正在下载的文件名
+     *当前正在下载的模块
      * </pre>
      */
-    boolean hasCurFileName();
+    boolean hasModule();
     /**
-     * <code>optional string cur_file_name = 4;</code>
+     * <code>optional .nv.EmSusUpgradeModule module = 3;</code>
      *
      * <pre>
-     *当前正在下载的文件名
+     *当前正在下载的模块
      * </pre>
      */
-    java.lang.String getCurFileName();
-    /**
-     * <code>optional string cur_file_name = 4;</code>
-     *
-     * <pre>
-     *当前正在下载的文件名
-     * </pre>
-     */
-    com.google.protobuf.ByteString
-        getCurFileNameBytes();
+    com.kedacom.nv.netmanage.protobuf.EnumPB.EmSusUpgradeModule getModule();
   }
   /**
    * Protobuf type {@code nv.TNVUpgradeDownloadInfo}
@@ -25697,17 +25670,18 @@ public final class StructCfgPB {
             }
             case 16: {
               bitField0_ |= 0x00000002;
-              totalPercent_ = input.readUInt32();
-              break;
-            }
-            case 24: {
-              bitField0_ |= 0x00000004;
               curPercent_ = input.readUInt32();
               break;
             }
-            case 34: {
-              bitField0_ |= 0x00000008;
-              curFileName_ = input.readBytes();
+            case 24: {
+              int rawValue = input.readEnum();
+              com.kedacom.nv.netmanage.protobuf.EnumPB.EmSusUpgradeModule value = com.kedacom.nv.netmanage.protobuf.EnumPB.EmSusUpgradeModule.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(3, rawValue);
+              } else {
+                bitField0_ |= 0x00000004;
+                module_ = value;
+              }
               break;
             }
           }
@@ -25774,45 +25748,21 @@ public final class StructCfgPB {
       return errcode_;
     }
 
-    // optional uint32 total_percent = 2;
-    public static final int TOTAL_PERCENT_FIELD_NUMBER = 2;
-    private int totalPercent_;
-    /**
-     * <code>optional uint32 total_percent = 2;</code>
-     *
-     * <pre>
-     *文件下载总进度
-     * </pre>
-     */
-    public boolean hasTotalPercent() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    /**
-     * <code>optional uint32 total_percent = 2;</code>
-     *
-     * <pre>
-     *文件下载总进度
-     * </pre>
-     */
-    public int getTotalPercent() {
-      return totalPercent_;
-    }
-
-    // optional uint32 cur_percent = 3;
-    public static final int CUR_PERCENT_FIELD_NUMBER = 3;
+    // optional uint32 cur_percent = 2;
+    public static final int CUR_PERCENT_FIELD_NUMBER = 2;
     private int curPercent_;
     /**
-     * <code>optional uint32 cur_percent = 3;</code>
+     * <code>optional uint32 cur_percent = 2;</code>
      *
      * <pre>
      *当前文件的下载进度
      * </pre>
      */
     public boolean hasCurPercent() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
+      return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>optional uint32 cur_percent = 3;</code>
+     * <code>optional uint32 cur_percent = 2;</code>
      *
      * <pre>
      *当前文件的下载进度
@@ -25822,66 +25772,34 @@ public final class StructCfgPB {
       return curPercent_;
     }
 
-    // optional string cur_file_name = 4;
-    public static final int CUR_FILE_NAME_FIELD_NUMBER = 4;
-    private java.lang.Object curFileName_;
+    // optional .nv.EmSusUpgradeModule module = 3;
+    public static final int MODULE_FIELD_NUMBER = 3;
+    private com.kedacom.nv.netmanage.protobuf.EnumPB.EmSusUpgradeModule module_;
     /**
-     * <code>optional string cur_file_name = 4;</code>
+     * <code>optional .nv.EmSusUpgradeModule module = 3;</code>
      *
      * <pre>
-     *当前正在下载的文件名
+     *当前正在下载的模块
      * </pre>
      */
-    public boolean hasCurFileName() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
+    public boolean hasModule() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>optional string cur_file_name = 4;</code>
+     * <code>optional .nv.EmSusUpgradeModule module = 3;</code>
      *
      * <pre>
-     *当前正在下载的文件名
+     *当前正在下载的模块
      * </pre>
      */
-    public java.lang.String getCurFileName() {
-      java.lang.Object ref = curFileName_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          curFileName_ = s;
-        }
-        return s;
-      }
-    }
-    /**
-     * <code>optional string cur_file_name = 4;</code>
-     *
-     * <pre>
-     *当前正在下载的文件名
-     * </pre>
-     */
-    public com.google.protobuf.ByteString
-        getCurFileNameBytes() {
-      java.lang.Object ref = curFileName_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        curFileName_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public com.kedacom.nv.netmanage.protobuf.EnumPB.EmSusUpgradeModule getModule() {
+      return module_;
     }
 
     private void initFields() {
       errcode_ = 0;
-      totalPercent_ = 0;
       curPercent_ = 0;
-      curFileName_ = "";
+      module_ = com.kedacom.nv.netmanage.protobuf.EnumPB.EmSusUpgradeModule.emNvSusInvalid;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -25899,13 +25817,10 @@ public final class StructCfgPB {
         output.writeUInt32(1, errcode_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeUInt32(2, totalPercent_);
+        output.writeUInt32(2, curPercent_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeUInt32(3, curPercent_);
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeBytes(4, getCurFileNameBytes());
+        output.writeEnum(3, module_.getNumber());
       }
       getUnknownFields().writeTo(output);
     }
@@ -25922,15 +25837,11 @@ public final class StructCfgPB {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(2, totalPercent_);
+          .computeUInt32Size(2, curPercent_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(3, curPercent_);
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(4, getCurFileNameBytes());
+          .computeEnumSize(3, module_.getNumber());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -26054,12 +25965,10 @@ public final class StructCfgPB {
         super.clear();
         errcode_ = 0;
         bitField0_ = (bitField0_ & ~0x00000001);
-        totalPercent_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000002);
         curPercent_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        module_ = com.kedacom.nv.netmanage.protobuf.EnumPB.EmSusUpgradeModule.emNvSusInvalid;
         bitField0_ = (bitField0_ & ~0x00000004);
-        curFileName_ = "";
-        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
 
@@ -26095,15 +26004,11 @@ public final class StructCfgPB {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.totalPercent_ = totalPercent_;
+        result.curPercent_ = curPercent_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.curPercent_ = curPercent_;
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
-        }
-        result.curFileName_ = curFileName_;
+        result.module_ = module_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -26123,16 +26028,11 @@ public final class StructCfgPB {
         if (other.hasErrcode()) {
           setErrcode(other.getErrcode());
         }
-        if (other.hasTotalPercent()) {
-          setTotalPercent(other.getTotalPercent());
-        }
         if (other.hasCurPercent()) {
           setCurPercent(other.getCurPercent());
         }
-        if (other.hasCurFileName()) {
-          bitField0_ |= 0x00000008;
-          curFileName_ = other.curFileName_;
-          onChanged();
+        if (other.hasModule()) {
+          setModule(other.getModule());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -26210,69 +26110,20 @@ public final class StructCfgPB {
         return this;
       }
 
-      // optional uint32 total_percent = 2;
-      private int totalPercent_ ;
-      /**
-       * <code>optional uint32 total_percent = 2;</code>
-       *
-       * <pre>
-       *文件下载总进度
-       * </pre>
-       */
-      public boolean hasTotalPercent() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      /**
-       * <code>optional uint32 total_percent = 2;</code>
-       *
-       * <pre>
-       *文件下载总进度
-       * </pre>
-       */
-      public int getTotalPercent() {
-        return totalPercent_;
-      }
-      /**
-       * <code>optional uint32 total_percent = 2;</code>
-       *
-       * <pre>
-       *文件下载总进度
-       * </pre>
-       */
-      public Builder setTotalPercent(int value) {
-        bitField0_ |= 0x00000002;
-        totalPercent_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional uint32 total_percent = 2;</code>
-       *
-       * <pre>
-       *文件下载总进度
-       * </pre>
-       */
-      public Builder clearTotalPercent() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        totalPercent_ = 0;
-        onChanged();
-        return this;
-      }
-
-      // optional uint32 cur_percent = 3;
+      // optional uint32 cur_percent = 2;
       private int curPercent_ ;
       /**
-       * <code>optional uint32 cur_percent = 3;</code>
+       * <code>optional uint32 cur_percent = 2;</code>
        *
        * <pre>
        *当前文件的下载进度
        * </pre>
        */
       public boolean hasCurPercent() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>optional uint32 cur_percent = 3;</code>
+       * <code>optional uint32 cur_percent = 2;</code>
        *
        * <pre>
        *当前文件的下载进度
@@ -26282,126 +26133,80 @@ public final class StructCfgPB {
         return curPercent_;
       }
       /**
-       * <code>optional uint32 cur_percent = 3;</code>
+       * <code>optional uint32 cur_percent = 2;</code>
        *
        * <pre>
        *当前文件的下载进度
        * </pre>
        */
       public Builder setCurPercent(int value) {
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000002;
         curPercent_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional uint32 cur_percent = 3;</code>
+       * <code>optional uint32 cur_percent = 2;</code>
        *
        * <pre>
        *当前文件的下载进度
        * </pre>
        */
       public Builder clearCurPercent() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000002);
         curPercent_ = 0;
         onChanged();
         return this;
       }
 
-      // optional string cur_file_name = 4;
-      private java.lang.Object curFileName_ = "";
+      // optional .nv.EmSusUpgradeModule module = 3;
+      private com.kedacom.nv.netmanage.protobuf.EnumPB.EmSusUpgradeModule module_ = com.kedacom.nv.netmanage.protobuf.EnumPB.EmSusUpgradeModule.emNvSusInvalid;
       /**
-       * <code>optional string cur_file_name = 4;</code>
+       * <code>optional .nv.EmSusUpgradeModule module = 3;</code>
        *
        * <pre>
-       *当前正在下载的文件名
+       *当前正在下载的模块
        * </pre>
        */
-      public boolean hasCurFileName() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+      public boolean hasModule() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>optional string cur_file_name = 4;</code>
+       * <code>optional .nv.EmSusUpgradeModule module = 3;</code>
        *
        * <pre>
-       *当前正在下载的文件名
+       *当前正在下载的模块
        * </pre>
        */
-      public java.lang.String getCurFileName() {
-        java.lang.Object ref = curFileName_;
-        if (!(ref instanceof java.lang.String)) {
-          java.lang.String s = ((com.google.protobuf.ByteString) ref)
-              .toStringUtf8();
-          curFileName_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+      public com.kedacom.nv.netmanage.protobuf.EnumPB.EmSusUpgradeModule getModule() {
+        return module_;
       }
       /**
-       * <code>optional string cur_file_name = 4;</code>
+       * <code>optional .nv.EmSusUpgradeModule module = 3;</code>
        *
        * <pre>
-       *当前正在下载的文件名
+       *当前正在下载的模块
        * </pre>
        */
-      public com.google.protobuf.ByteString
-          getCurFileNameBytes() {
-        java.lang.Object ref = curFileName_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          curFileName_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string cur_file_name = 4;</code>
-       *
-       * <pre>
-       *当前正在下载的文件名
-       * </pre>
-       */
-      public Builder setCurFileName(
-          java.lang.String value) {
+      public Builder setModule(com.kedacom.nv.netmanage.protobuf.EnumPB.EmSusUpgradeModule value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000008;
-        curFileName_ = value;
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000004;
+        module_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string cur_file_name = 4;</code>
+       * <code>optional .nv.EmSusUpgradeModule module = 3;</code>
        *
        * <pre>
-       *当前正在下载的文件名
+       *当前正在下载的模块
        * </pre>
        */
-      public Builder clearCurFileName() {
-        bitField0_ = (bitField0_ & ~0x00000008);
-        curFileName_ = getDefaultInstance().getCurFileName();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string cur_file_name = 4;</code>
-       *
-       * <pre>
-       *当前正在下载的文件名
-       * </pre>
-       */
-      public Builder setCurFileNameBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000008;
-        curFileName_ = value;
+      public Builder clearModule() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        module_ = com.kedacom.nv.netmanage.protobuf.EnumPB.EmSusUpgradeModule.emNvSusInvalid;
         onChanged();
         return this;
       }
@@ -73185,163 +72990,163 @@ public final class StructCfgPB {
       "nv.TNVUpgradeGrayRange\"b\n\031TNVUpgradeVers" +
       "ionInfoList\022\030\n\020is_get_recommend\030\001 \001(\010\022+\n" +
       "\010ver_list\030\002 \003(\0132\031.nv.TNVUpgradeVersionIn" +
-      "fo\"l\n\026TNVUpgradeDownloadInfo\022\017\n\007errcode\030" +
-      "\001 \001(\r\022\025\n\rtotal_percent\030\002 \001(\r\022\023\n\013cur_perc" +
-      "ent\030\003 \001(\r\022\025\n\rcur_file_name\030\004 \001(\t\"z\n\nTNVS" +
-      "USAddr\022\016\n\006Domain\030\001 \001(\t\022\n\n\002ip\030\002 \001(\r\022\014\n\004po" +
-      "rt\030\003 \001(\r\022\030\n\020use_default_addr\030\004 \001(\010\022\025\n\rcu",
-      "stom_domain\030\005 \001(\t\022\021\n\tcustom_ip\030\006 \001(\r\"\250\001\n" +
-      "\017TNVUserFullInfo\022\014\n\004guid\030\001 \001(\r\022!\n\010nvc_ty" +
-      "pe\030\002 \001(\0162\017.nv.EmNvNvcType\022\021\n\tuser_name\030\003" +
-      " \001(\t\022\020\n\010password\030\004 \001(\t\022\r\n\005actor\030\005 \001(\r\022\026\n" +
-      "\016full_user_name\030\006 \001(\t\022\030\n\020user_discriptio" +
-      "n\030\007 \001(\t\"S\n\020TNVUserReqResult\022&\n\tuser_info" +
-      "\030\001 \001(\0132\023.nv.TNVUserFullInfo\022\027\n\017user_req_" +
-      "result\030\002 \001(\r\"D\n\024TNVMultiUserFullInfo\022,\n\017" +
-      "multi_user_info\030\001 \003(\0132\023.nv.TNVUserFullIn" +
-      "fo\"L\n\025TNVMultiUserReqResult\0223\n\025multi_use",
-      "r_req_result\030\001 \003(\0132\024.nv.TNVUserReqResult" +
-      "\"\200\001\n\022TNVUserConnectInfo\022\r\n\005mt_ip\030\001 \001(\t\022\023" +
-      "\n\013listen_port\030\002 \001(\r\022!\n\010nvc_type\030\003 \001(\0162\017." +
-      "nv.EmNvNvcType\022\021\n\tuser_name\030\004 \001(\t\022\020\n\010pas" +
-      "sword\030\005 \001(\t\"\233\002\n\021TNVEthnetCardInfo\022\026\n\016ena" +
-      "ble_ip_dhcp\030\001 \001(\010\022\021\n\tstatic_ip\030\002 \001(\r\022\023\n\013" +
-      "static_mask\030\003 \001(\r\022\031\n\021static_gateway_ip\030\004" +
-      " \001(\r\022\017\n\007dhcp_ip\030\005 \001(\r\022\021\n\tdhcp_mask\030\006 \001(\r" +
-      "\022\024\n\014dhcp_gateway\030\007 \001(\r\022\027\n\017enable_dns_dhc" +
-      "p\030\010 \001(\010\022\022\n\nstatic_dns\030\t \001(\r\022\031\n\021static_dn",
-      "s_backup\030\n \001(\r\022\020\n\010dhcp_dns\030\013 \001(\r\022\027\n\017dhcp" +
-      "_dns_backup\030\014 \001(\r\"\241\001\n\014TNVEthnetCfg\0223\n\021et" +
-      "hnet_backupmode\030\001 \001(\0162\030.nv.EmNvEthInterf" +
-      "aceMode\022\022\n\ncur_cardid\030\002 \001(\r\022#\n\004eth1\030\003 \001(" +
-      "\0132\025.nv.TNVEthnetCardInfo\022#\n\004eth2\030\004 \001(\0132\025" +
-      ".nv.TNVEthnetCardInfo\"V\n\016TNVLastDisplay\022" +
-      "0\n\021emLastDisplayType\030\001 \001(\0162\025.nv.EmNvHDLa" +
-      "stDisplay\022\022\n\nwait_timer\030\002 \001(\r\"9\n\rTNVResi" +
-      "zeMode\022(\n\014emResizeMode\030\001 \001(\0162\022.nv.EmNvRe" +
-      "sizeMode\"=\n\017TNVHDImageNoise\022*\n\014emNoiseLe",
-      "vel\030\001 \001(\0162\024.nv.EmNvHDImageNoise\"\255\001\n\034TNVH" +
-      "DImageDeformationTensile\022)\n\tCodecType\030\001 " +
-      "\001(\0162\026.nv.EmNvCodecComponent\022/\n\nCodecInde" +
-      "x\030\002 \001(\0162\033.nv.EmNvCodecComponentIndex\022\031\n\021" +
-      "left_right_number\030\003 \001(\r\022\026\n\016up_down_numbe" +
-      "r\030\004 \001(\r\"Z\n\024TNVImixVidSourceInfo\022)\n\temVid" +
-      "Type\030\001 \001(\0162\026.nv.EmNvImixVidSrcType\022\027\n\017en" +
-      "able_have_src\030\002 \001(\010\"M\n\031TNVMultiImixVidSo" +
-      "urceInfo\0220\n\016multi_src_info\030\001 \003(\0132\030.nv.TN" +
-      "VImixVidSourceInfo\"\250\001\n\017TNVApiStartInfo\022\"",
-      "\n\temApiMode\030\001 \001(\0162\017.nv.EmNvApiMode\022\034\n\024en" +
-      "able_UniqueLogFile\030\002 \001(\010\022\016\n\006log_ip\030\003 \001(\t" +
-      "\022\020\n\010filepath\030\004 \001(\t\022\036\n\026enable_ToFileLogSe" +
-      "rver\030\005 \001(\010\022\021\n\tstrCltTag\030\006 \001(\t\"\221\001\n\014TNVLog" +
-      "inInfo\022\017\n\007node_id\030\001 \001(\r\022\022\n\nappinst_id\030\002 " +
-      "\001(\r\022\016\n\006pcname\030\003 \001(\t\022%\n\005empos\030\004 \001(\0162\026.nv." +
-      "EmNvImixVidSrcType\022\021\n\tis_active\030\005 \001(\010\022\022\n" +
-      "\nis_viewppt\030\006 \001(\010\"I\n\rTNVLoginInfos\022)\n\017lo" +
-      "gin_info_list\030\001 \003(\0132\020.nv.TNVLoginInfo\022\r\n" +
-      "\005state\030\002 \001(\r\"d\n\023TNVImixVidSrcSignal\022(\n\010s",
-      "rc_type\030\001 \001(\0162\026.nv.EmNvImixVidSrcType\022\021\n" +
-      "\tis_hassrc\030\002 \001(\010\022\020\n\010vid_name\030\003 \001(\t\"D\n\027TN" +
-      "VImixVidSrcSignalList\022)\n\010vid_list\030\001 \003(\0132" +
-      "\027.nv.TNVImixVidSrcSignal\"~\n\020TNVVidInPort" +
-      "Mode\022)\n\014video_inport\030\001 \001(\0162\023.nv.EmNvVide" +
-      "oInPort\022,\n\013inport_mode\030\002 \001(\0162\027.nv.EmNvVi" +
-      "deoOutPutMode\022\021\n\tis_change\030\003 \001(\010\"\202\001\n\021TNV" +
-      "VidOutPortMode\022+\n\rvideo_outport\030\001 \001(\0162\024." +
-      "nv.EmNvVideoOutPort\022-\n\014outport_mode\030\002 \001(" +
-      "\0162\027.nv.EmNvVideoOutPutMode\022\021\n\tis_change\030",
-      "\003 \001(\010\"\203\001\n\026TNVVideoOutPort2InPort\022+\n\rvide" +
-      "o_outport\030\001 \001(\0162\024.nv.EmNvVideoOutPort\022)\n" +
-      "\014video_inport\030\002 \001(\0162\023.nv.EmNvVideoInPort" +
-      "\022\021\n\tis_change\030\003 \001(\010\"\242\001\n\024TNVVideoMatrixSc" +
-      "heme\022)\n\013inport_mode\030\001 \003(\0132\024.nv.TNVVidInP" +
-      "ortMode\022+\n\014outport_mode\030\002 \003(\0132\025.nv.TNVVi" +
-      "dOutPortMode\0222\n\016outport_inport\030\003 \003(\0132\032.n" +
-      "v.TNVVideoOutPort2InPort\"\204\001\n\007TE1Unit\022\r\n\005" +
-      "e1_id\030\001 \001(\r\022\021\n\tused_flag\030\002 \001(\r\022\022\n\ne1_ts_" +
-      "mask\030\003 \001(\r\022\025\n\rprotocol_type\030\004 \001(\r\022\025\n\rech",
-      "o_interval\030\005 \001(\r\022\025\n\recho_maxretry\030\006 \001(\r\"" +
-      "\215\002\n\010TE1Group\022\016\n\006enable\030\001 \001(\010\022\020\n\010unit_num" +
-      "\030\002 \001(\r\022\017\n\007is_bind\030\003 \001(\r\022\020\n\010group_id\030\004 \001(" +
-      "\r\022\n\n\002ip\030\005 \001(\r\022\014\n\004mask\030\006 \001(\r\022\021\n\tauth_type" +
-      "\030\007 \001(\r\022\033\n\023frag_minpackage_len\030\010 \001(\r\022\023\n\013s" +
-      "vr_usrname\030\t \001(\t\022\022\n\nsvr_usrpwd\030\n \001(\t\022\024\n\014" +
-      "sent_usrname\030\013 \001(\t\022\023\n\013sent_usrpwd\030\014 \001(\t\022" +
-      "\036\n\tunit_list\030\r \003(\0132\013.nv.TE1Unit\"Q\n\006TE1Cf" +
-      "g\022\017\n\007encrypt\030\001 \001(\010\022\022\n\nclock_type\030\002 \001(\r\022\"" +
-      "\n\014group_detail\030\003 \003(\0132\014.nv.TE1Group\"o\n\017TN",
-      "VLocalDevInfo\022)\n\010dev_type\030\001 \001(\0162\027.nv.EmN" +
-      "vDevRegUpdateSer\022\023\n\013dev_version\030\002 \001(\t\022\016\n" +
-      "\006instid\030\003 \001(\r\022\014\n\004node\030\004 \001(\r\"\235\001\n\017TNVDevUp" +
-      "dateCfg\022\017\n\007is_used\030\001 \001(\010\022)\n\010dev_type\030\002 \001" +
-      "(\0162\027.nv.EmNvDevRegUpdateSer\022\'\n\013update_ty" +
-      "pe\030\003 \001(\0162\022.nv.EmNvUpdateType\022\023\n\013dev_vers" +
-      "ion\030\004 \001(\t\022\020\n\010filename\030\005 \001(\t\"\224\001\n\021TNVDevCf" +
-      "gInfoList\022\'\n\ntupdatecfg\030\001 \003(\0132\023.nv.TNVDe" +
-      "vUpdateCfg\022\020\n\010local_ip\030\002 \001(\r\022!\n\014imix_ver" +
-      "sion\030\003 \003(\0132\013.nv.TString\022!\n\014tpad_version\030",
-      "\004 \003(\0132\013.nv.TString\"z\n\016TNVFTPFileInfo\022\016\n\006" +
-      "ser_ip\030\001 \001(\r\022\020\n\010ser_port\030\002 \001(\r\022\020\n\010userna" +
-      "me\030\003 \001(\t\022\020\n\010password\030\004 \001(\t\022\020\n\010filepath\030\005" +
-      " \001(\t\022\020\n\010filesize\030\006 \001(\r\"\301\001\n\rTNVDevUpgrade" +
-      "\022)\n\010dev_type\030\001 \001(\0162\027.nv.EmNvDevRegUpdate" +
-      "Ser\022\023\n\013dev_version\030\002 \001(\t\022$\n\010tftpinfo\030\003 \001" +
-      "(\0132\022.nv.TNVFTPFileInfo\022\'\n\013update_type\030\004 " +
-      "\001(\0162\022.nv.EmNvUpdateType\022!\n\014version_info\030" +
-      "\005 \003(\0132\013.nv.TString\";\n\025TNVUpGradeConnectI" +
-      "nfo\022\r\n\005mt_ip\030\001 \001(\t\022\023\n\013listen_port\030\002 \001(\r\"",
-      "S\n\030TNVUpgradePackageContent\022\032\n\022is_has_ap" +
-      "p_package\030\001 \001(\010\022\033\n\023is_has_imix_package\030\002" +
-      " \001(\010\"O\n\022TNVCfgMtSystemTime\022\023\n\013bSyncServe" +
-      "r\030\001 \001(\010\022$\n\nemTimeZone\030\002 \001(\0162\020.nv.EmNvTim" +
-      "eZone\"[\n\017TNVFtpLoginInfo\022\'\n\nlogin_info\030\001" +
-      " \001(\0132\023.nv.TNVUserFullInfo\022\021\n\tbopen_ftp\030\002" +
-      " \001(\010\022\014\n\004node\030\003 \001(\r\"T\n\020TNVFtpLoginInfos\022," +
-      "\n\017login_info_list\030\001 \003(\0132\023.nv.TNVFtpLogin" +
-      "Info\022\022\n\nopen_count\030\002 \001(\r\"6\n\017TNVTerminalN" +
-      "ame\022\020\n\010ter_e164\030\001 \001(\t\022\021\n\tter_alias\030\002 \001(\t",
-      "\"\304\004\n\016TNVMiniVidInfo\022\014\n\004open\030\001 \001(\010\022\014\n\004ful" +
-      "l\030\002 \001(\010\022\037\n\003pos\030\003 \001(\0162\022.nv.EmNvMiniVidPos" +
-      "\022\014\n\004flag\030\004 \001(\r\022\017\n\007start_x\030\005 \001(\r\022\017\n\007start" +
-      "_y\030\006 \001(\r\022\016\n\006height\030\007 \001(\r\022\r\n\005width\030\010 \001(\r\022" +
-      "\030\n\020prohibit_start_x\030\t \001(\r\022\030\n\020prohibit_st" +
-      "art_y\030\n \001(\r\022\026\n\016prohibit_end_x\030\013 \001(\r\022\026\n\016p" +
-      "rohibit_end_y\030\014 \001(\r\022\032\n\022prohibit_start_x_" +
-      "2\030\r \001(\r\022\032\n\022prohibit_start_y_2\030\016 \001(\r\022\030\n\020p" +
-      "rohibit_end_x_2\030\017 \001(\r\022\030\n\020prohibit_end_y_" +
-      "2\030\020 \001(\r\022\032\n\022prohibit_start_x_3\030\021 \001(\r\022\032\n\022p",
-      "rohibit_start_y_3\030\022 \001(\r\022\030\n\020prohibit_end_" +
-      "x_3\030\023 \001(\r\022\030\n\020prohibit_end_y_3\030\024 \001(\r\022\032\n\022p" +
-      "rohibit_start_x_4\030\025 \001(\r\022\032\n\022prohibit_star" +
-      "t_y_4\030\026 \001(\r\022\030\n\020prohibit_end_x_4\030\027 \001(\r\022\030\n" +
-      "\020prohibit_end_y_4\030\030 \001(\r\"d\n\016TNVImixVerInf" +
-      "o\022\016\n\006mt_ver\030\001 \001(\t\022\021\n\tpower_ver\030\002 \001(\t\022\021\n\t" +
-      "imix_mode\030\003 \001(\t\022\034\n\006qk_ver\030\004 \003(\0132\014.nv.TNV" +
-      "QkVer\"\255\001\n\tTNVHWInfo\022\021\n\tmode_name\030\001 \001(\t\022\021" +
-      "\n\tfpga1_ver\030\002 \001(\t\022\020\n\010cpld_ver\030\003 \001(\t\022\022\n\ns" +
-      "erial_num\030\004 \001(\t\022\017\n\007inf_ver\030\005 \001(\t\022\016\n\006hw_v",
-      "er\030\006 \001(\t\022\016\n\006sf_ver\030\007 \001(\t\022#\n\nemMtMdodel\030\010" +
-      " \001(\0162\017.nv.EmNvMtModel\"\305\001\n\tTNVMtInfo\022\"\n\007m" +
-      "t_conf\030\001 \001(\0162\021.nv.EmNvCallState\022\021\n\tsend_" +
-      "dual\030\002 \001(\010\022\021\n\trecv_dual\030\003 \001(\010\022\022\n\nanswerm" +
-      "ode\030\004 \001(\r\022\r\n\005mt_ip\030\005 \001(\t\022\034\n\007mt_mode\030\006 \001(" +
-      "\0162\013.nv.EmMtVer\022\r\n\005sleep\030\007 \001(\010\022\036\n\007thwinfo" +
-      "\030\010 \001(\0132\r.nv.TNVHWInfo\"`\n\010TNVQkVer\022(\n\010src" +
-      "_type\030\001 \001(\0162\026.nv.EmNvImixVidSrcType\022\013\n\003v" +
-      "er\030\002 \001(\t\022\020\n\010vid_name\030\003 \001(\t\022\013\n\003use\030\004 \001(\010\"" +
-      "D\n\021TNVMtAutoSleepCfg\022\016\n\006enable\030\001 \001(\010\022\014\n\004",
-      "time\030\002 \001(\r\022\021\n\tallowcall\030\003 \001(\010\";\n\017TNVClea" +
-      "rSrcType\022(\n\010src_type\030\001 \003(\0162\026.nv.EmNvImix" +
-      "VidSrcType\"\260\001\n\033TNVAllUpgradePackageConte" +
-      "nt\022\032\n\022is_has_app_package\030\001 \001(\010\022\033\n\023is_has" +
-      "_imix_package\030\002 \001(\010\022\034\n\024is_has_power_pack" +
-      "age\030\003 \001(\010\022\036\n\026is_has_openwrt_package\030\004 \001(" +
-      "\010\022\032\n\022is_has_pad_package\030\005 \001(\010\"H\n\017TNVPadL" +
-      "oginInfo\022\017\n\007node_id\030\001 \001(\r\022\022\n\nappinst_id\030" +
-      "\002 \001(\r\022\020\n\010download\030\003 \001(\010\"@\n\020TNVPadLoginIn" +
-      "fos\022,\n\017login_info_list\030\001 \003(\0132\023.nv.TNVPad",
-      "LoginInfoB0\n!com.kedacom.nv.netmanage.pr" +
-      "otobufB\013StructCfgPB"
+      "fo\"f\n\026TNVUpgradeDownloadInfo\022\017\n\007errcode\030" +
+      "\001 \001(\r\022\023\n\013cur_percent\030\002 \001(\r\022&\n\006module\030\003 \001" +
+      "(\0162\026.nv.EmSusUpgradeModule\"z\n\nTNVSUSAddr" +
+      "\022\016\n\006Domain\030\001 \001(\t\022\n\n\002ip\030\002 \001(\r\022\014\n\004port\030\003 \001" +
+      "(\r\022\030\n\020use_default_addr\030\004 \001(\010\022\025\n\rcustom_d",
+      "omain\030\005 \001(\t\022\021\n\tcustom_ip\030\006 \001(\r\"\250\001\n\017TNVUs" +
+      "erFullInfo\022\014\n\004guid\030\001 \001(\r\022!\n\010nvc_type\030\002 \001" +
+      "(\0162\017.nv.EmNvNvcType\022\021\n\tuser_name\030\003 \001(\t\022\020" +
+      "\n\010password\030\004 \001(\t\022\r\n\005actor\030\005 \001(\r\022\026\n\016full_" +
+      "user_name\030\006 \001(\t\022\030\n\020user_discription\030\007 \001(" +
+      "\t\"S\n\020TNVUserReqResult\022&\n\tuser_info\030\001 \001(\013" +
+      "2\023.nv.TNVUserFullInfo\022\027\n\017user_req_result" +
+      "\030\002 \001(\r\"D\n\024TNVMultiUserFullInfo\022,\n\017multi_" +
+      "user_info\030\001 \003(\0132\023.nv.TNVUserFullInfo\"L\n\025" +
+      "TNVMultiUserReqResult\0223\n\025multi_user_req_",
+      "result\030\001 \003(\0132\024.nv.TNVUserReqResult\"\200\001\n\022T" +
+      "NVUserConnectInfo\022\r\n\005mt_ip\030\001 \001(\t\022\023\n\013list" +
+      "en_port\030\002 \001(\r\022!\n\010nvc_type\030\003 \001(\0162\017.nv.EmN" +
+      "vNvcType\022\021\n\tuser_name\030\004 \001(\t\022\020\n\010password\030" +
+      "\005 \001(\t\"\233\002\n\021TNVEthnetCardInfo\022\026\n\016enable_ip" +
+      "_dhcp\030\001 \001(\010\022\021\n\tstatic_ip\030\002 \001(\r\022\023\n\013static" +
+      "_mask\030\003 \001(\r\022\031\n\021static_gateway_ip\030\004 \001(\r\022\017" +
+      "\n\007dhcp_ip\030\005 \001(\r\022\021\n\tdhcp_mask\030\006 \001(\r\022\024\n\014dh" +
+      "cp_gateway\030\007 \001(\r\022\027\n\017enable_dns_dhcp\030\010 \001(" +
+      "\010\022\022\n\nstatic_dns\030\t \001(\r\022\031\n\021static_dns_back",
+      "up\030\n \001(\r\022\020\n\010dhcp_dns\030\013 \001(\r\022\027\n\017dhcp_dns_b" +
+      "ackup\030\014 \001(\r\"\241\001\n\014TNVEthnetCfg\0223\n\021ethnet_b" +
+      "ackupmode\030\001 \001(\0162\030.nv.EmNvEthInterfaceMod" +
+      "e\022\022\n\ncur_cardid\030\002 \001(\r\022#\n\004eth1\030\003 \001(\0132\025.nv" +
+      ".TNVEthnetCardInfo\022#\n\004eth2\030\004 \001(\0132\025.nv.TN" +
+      "VEthnetCardInfo\"V\n\016TNVLastDisplay\0220\n\021emL" +
+      "astDisplayType\030\001 \001(\0162\025.nv.EmNvHDLastDisp" +
+      "lay\022\022\n\nwait_timer\030\002 \001(\r\"9\n\rTNVResizeMode" +
+      "\022(\n\014emResizeMode\030\001 \001(\0162\022.nv.EmNvResizeMo" +
+      "de\"=\n\017TNVHDImageNoise\022*\n\014emNoiseLevel\030\001 ",
+      "\001(\0162\024.nv.EmNvHDImageNoise\"\255\001\n\034TNVHDImage" +
+      "DeformationTensile\022)\n\tCodecType\030\001 \001(\0162\026." +
+      "nv.EmNvCodecComponent\022/\n\nCodecIndex\030\002 \001(" +
+      "\0162\033.nv.EmNvCodecComponentIndex\022\031\n\021left_r" +
+      "ight_number\030\003 \001(\r\022\026\n\016up_down_number\030\004 \001(" +
+      "\r\"Z\n\024TNVImixVidSourceInfo\022)\n\temVidType\030\001" +
+      " \001(\0162\026.nv.EmNvImixVidSrcType\022\027\n\017enable_h" +
+      "ave_src\030\002 \001(\010\"M\n\031TNVMultiImixVidSourceIn" +
+      "fo\0220\n\016multi_src_info\030\001 \003(\0132\030.nv.TNVImixV" +
+      "idSourceInfo\"\250\001\n\017TNVApiStartInfo\022\"\n\temAp",
+      "iMode\030\001 \001(\0162\017.nv.EmNvApiMode\022\034\n\024enable_U" +
+      "niqueLogFile\030\002 \001(\010\022\016\n\006log_ip\030\003 \001(\t\022\020\n\010fi" +
+      "lepath\030\004 \001(\t\022\036\n\026enable_ToFileLogServer\030\005" +
+      " \001(\010\022\021\n\tstrCltTag\030\006 \001(\t\"\221\001\n\014TNVLoginInfo" +
+      "\022\017\n\007node_id\030\001 \001(\r\022\022\n\nappinst_id\030\002 \001(\r\022\016\n" +
+      "\006pcname\030\003 \001(\t\022%\n\005empos\030\004 \001(\0162\026.nv.EmNvIm" +
+      "ixVidSrcType\022\021\n\tis_active\030\005 \001(\010\022\022\n\nis_vi" +
+      "ewppt\030\006 \001(\010\"I\n\rTNVLoginInfos\022)\n\017login_in" +
+      "fo_list\030\001 \003(\0132\020.nv.TNVLoginInfo\022\r\n\005state" +
+      "\030\002 \001(\r\"d\n\023TNVImixVidSrcSignal\022(\n\010src_typ",
+      "e\030\001 \001(\0162\026.nv.EmNvImixVidSrcType\022\021\n\tis_ha" +
+      "ssrc\030\002 \001(\010\022\020\n\010vid_name\030\003 \001(\t\"D\n\027TNVImixV" +
+      "idSrcSignalList\022)\n\010vid_list\030\001 \003(\0132\027.nv.T" +
+      "NVImixVidSrcSignal\"~\n\020TNVVidInPortMode\022)" +
+      "\n\014video_inport\030\001 \001(\0162\023.nv.EmNvVideoInPor" +
+      "t\022,\n\013inport_mode\030\002 \001(\0162\027.nv.EmNvVideoOut" +
+      "PutMode\022\021\n\tis_change\030\003 \001(\010\"\202\001\n\021TNVVidOut" +
+      "PortMode\022+\n\rvideo_outport\030\001 \001(\0162\024.nv.EmN" +
+      "vVideoOutPort\022-\n\014outport_mode\030\002 \001(\0162\027.nv" +
+      ".EmNvVideoOutPutMode\022\021\n\tis_change\030\003 \001(\010\"",
+      "\203\001\n\026TNVVideoOutPort2InPort\022+\n\rvideo_outp" +
+      "ort\030\001 \001(\0162\024.nv.EmNvVideoOutPort\022)\n\014video" +
+      "_inport\030\002 \001(\0162\023.nv.EmNvVideoInPort\022\021\n\tis" +
+      "_change\030\003 \001(\010\"\242\001\n\024TNVVideoMatrixScheme\022)" +
+      "\n\013inport_mode\030\001 \003(\0132\024.nv.TNVVidInPortMod" +
+      "e\022+\n\014outport_mode\030\002 \003(\0132\025.nv.TNVVidOutPo" +
+      "rtMode\0222\n\016outport_inport\030\003 \003(\0132\032.nv.TNVV" +
+      "ideoOutPort2InPort\"\204\001\n\007TE1Unit\022\r\n\005e1_id\030" +
+      "\001 \001(\r\022\021\n\tused_flag\030\002 \001(\r\022\022\n\ne1_ts_mask\030\003" +
+      " \001(\r\022\025\n\rprotocol_type\030\004 \001(\r\022\025\n\recho_inte",
+      "rval\030\005 \001(\r\022\025\n\recho_maxretry\030\006 \001(\r\"\215\002\n\010TE" +
+      "1Group\022\016\n\006enable\030\001 \001(\010\022\020\n\010unit_num\030\002 \001(\r" +
+      "\022\017\n\007is_bind\030\003 \001(\r\022\020\n\010group_id\030\004 \001(\r\022\n\n\002i" +
+      "p\030\005 \001(\r\022\014\n\004mask\030\006 \001(\r\022\021\n\tauth_type\030\007 \001(\r" +
+      "\022\033\n\023frag_minpackage_len\030\010 \001(\r\022\023\n\013svr_usr" +
+      "name\030\t \001(\t\022\022\n\nsvr_usrpwd\030\n \001(\t\022\024\n\014sent_u" +
+      "srname\030\013 \001(\t\022\023\n\013sent_usrpwd\030\014 \001(\t\022\036\n\tuni" +
+      "t_list\030\r \003(\0132\013.nv.TE1Unit\"Q\n\006TE1Cfg\022\017\n\007e" +
+      "ncrypt\030\001 \001(\010\022\022\n\nclock_type\030\002 \001(\r\022\"\n\014grou" +
+      "p_detail\030\003 \003(\0132\014.nv.TE1Group\"o\n\017TNVLocal",
+      "DevInfo\022)\n\010dev_type\030\001 \001(\0162\027.nv.EmNvDevRe" +
+      "gUpdateSer\022\023\n\013dev_version\030\002 \001(\t\022\016\n\006insti" +
+      "d\030\003 \001(\r\022\014\n\004node\030\004 \001(\r\"\235\001\n\017TNVDevUpdateCf" +
+      "g\022\017\n\007is_used\030\001 \001(\010\022)\n\010dev_type\030\002 \001(\0162\027.n" +
+      "v.EmNvDevRegUpdateSer\022\'\n\013update_type\030\003 \001" +
+      "(\0162\022.nv.EmNvUpdateType\022\023\n\013dev_version\030\004 " +
+      "\001(\t\022\020\n\010filename\030\005 \001(\t\"\224\001\n\021TNVDevCfgInfoL" +
+      "ist\022\'\n\ntupdatecfg\030\001 \003(\0132\023.nv.TNVDevUpdat" +
+      "eCfg\022\020\n\010local_ip\030\002 \001(\r\022!\n\014imix_version\030\003" +
+      " \003(\0132\013.nv.TString\022!\n\014tpad_version\030\004 \003(\0132",
+      "\013.nv.TString\"z\n\016TNVFTPFileInfo\022\016\n\006ser_ip" +
+      "\030\001 \001(\r\022\020\n\010ser_port\030\002 \001(\r\022\020\n\010username\030\003 \001" +
+      "(\t\022\020\n\010password\030\004 \001(\t\022\020\n\010filepath\030\005 \001(\t\022\020" +
+      "\n\010filesize\030\006 \001(\r\"\301\001\n\rTNVDevUpgrade\022)\n\010de" +
+      "v_type\030\001 \001(\0162\027.nv.EmNvDevRegUpdateSer\022\023\n" +
+      "\013dev_version\030\002 \001(\t\022$\n\010tftpinfo\030\003 \001(\0132\022.n" +
+      "v.TNVFTPFileInfo\022\'\n\013update_type\030\004 \001(\0162\022." +
+      "nv.EmNvUpdateType\022!\n\014version_info\030\005 \003(\0132" +
+      "\013.nv.TString\";\n\025TNVUpGradeConnectInfo\022\r\n" +
+      "\005mt_ip\030\001 \001(\t\022\023\n\013listen_port\030\002 \001(\r\"S\n\030TNV",
+      "UpgradePackageContent\022\032\n\022is_has_app_pack" +
+      "age\030\001 \001(\010\022\033\n\023is_has_imix_package\030\002 \001(\010\"O" +
+      "\n\022TNVCfgMtSystemTime\022\023\n\013bSyncServer\030\001 \001(" +
+      "\010\022$\n\nemTimeZone\030\002 \001(\0162\020.nv.EmNvTimeZone\"" +
+      "[\n\017TNVFtpLoginInfo\022\'\n\nlogin_info\030\001 \001(\0132\023" +
+      ".nv.TNVUserFullInfo\022\021\n\tbopen_ftp\030\002 \001(\010\022\014" +
+      "\n\004node\030\003 \001(\r\"T\n\020TNVFtpLoginInfos\022,\n\017logi" +
+      "n_info_list\030\001 \003(\0132\023.nv.TNVFtpLoginInfo\022\022" +
+      "\n\nopen_count\030\002 \001(\r\"6\n\017TNVTerminalName\022\020\n" +
+      "\010ter_e164\030\001 \001(\t\022\021\n\tter_alias\030\002 \001(\t\"\304\004\n\016T",
+      "NVMiniVidInfo\022\014\n\004open\030\001 \001(\010\022\014\n\004full\030\002 \001(" +
+      "\010\022\037\n\003pos\030\003 \001(\0162\022.nv.EmNvMiniVidPos\022\014\n\004fl" +
+      "ag\030\004 \001(\r\022\017\n\007start_x\030\005 \001(\r\022\017\n\007start_y\030\006 \001" +
+      "(\r\022\016\n\006height\030\007 \001(\r\022\r\n\005width\030\010 \001(\r\022\030\n\020pro" +
+      "hibit_start_x\030\t \001(\r\022\030\n\020prohibit_start_y\030" +
+      "\n \001(\r\022\026\n\016prohibit_end_x\030\013 \001(\r\022\026\n\016prohibi" +
+      "t_end_y\030\014 \001(\r\022\032\n\022prohibit_start_x_2\030\r \001(" +
+      "\r\022\032\n\022prohibit_start_y_2\030\016 \001(\r\022\030\n\020prohibi" +
+      "t_end_x_2\030\017 \001(\r\022\030\n\020prohibit_end_y_2\030\020 \001(" +
+      "\r\022\032\n\022prohibit_start_x_3\030\021 \001(\r\022\032\n\022prohibi",
+      "t_start_y_3\030\022 \001(\r\022\030\n\020prohibit_end_x_3\030\023 " +
+      "\001(\r\022\030\n\020prohibit_end_y_3\030\024 \001(\r\022\032\n\022prohibi" +
+      "t_start_x_4\030\025 \001(\r\022\032\n\022prohibit_start_y_4\030" +
+      "\026 \001(\r\022\030\n\020prohibit_end_x_4\030\027 \001(\r\022\030\n\020prohi" +
+      "bit_end_y_4\030\030 \001(\r\"d\n\016TNVImixVerInfo\022\016\n\006m" +
+      "t_ver\030\001 \001(\t\022\021\n\tpower_ver\030\002 \001(\t\022\021\n\timix_m" +
+      "ode\030\003 \001(\t\022\034\n\006qk_ver\030\004 \003(\0132\014.nv.TNVQkVer\"" +
+      "\255\001\n\tTNVHWInfo\022\021\n\tmode_name\030\001 \001(\t\022\021\n\tfpga" +
+      "1_ver\030\002 \001(\t\022\020\n\010cpld_ver\030\003 \001(\t\022\022\n\nserial_" +
+      "num\030\004 \001(\t\022\017\n\007inf_ver\030\005 \001(\t\022\016\n\006hw_ver\030\006 \001",
+      "(\t\022\016\n\006sf_ver\030\007 \001(\t\022#\n\nemMtMdodel\030\010 \001(\0162\017" +
+      ".nv.EmNvMtModel\"\305\001\n\tTNVMtInfo\022\"\n\007mt_conf" +
+      "\030\001 \001(\0162\021.nv.EmNvCallState\022\021\n\tsend_dual\030\002" +
+      " \001(\010\022\021\n\trecv_dual\030\003 \001(\010\022\022\n\nanswermode\030\004 " +
+      "\001(\r\022\r\n\005mt_ip\030\005 \001(\t\022\034\n\007mt_mode\030\006 \001(\0162\013.nv" +
+      ".EmMtVer\022\r\n\005sleep\030\007 \001(\010\022\036\n\007thwinfo\030\010 \001(\013" +
+      "2\r.nv.TNVHWInfo\"`\n\010TNVQkVer\022(\n\010src_type\030" +
+      "\001 \001(\0162\026.nv.EmNvImixVidSrcType\022\013\n\003ver\030\002 \001" +
+      "(\t\022\020\n\010vid_name\030\003 \001(\t\022\013\n\003use\030\004 \001(\010\"D\n\021TNV" +
+      "MtAutoSleepCfg\022\016\n\006enable\030\001 \001(\010\022\014\n\004time\030\002",
+      " \001(\r\022\021\n\tallowcall\030\003 \001(\010\";\n\017TNVClearSrcTy" +
+      "pe\022(\n\010src_type\030\001 \003(\0162\026.nv.EmNvImixVidSrc" +
+      "Type\"\260\001\n\033TNVAllUpgradePackageContent\022\032\n\022" +
+      "is_has_app_package\030\001 \001(\010\022\033\n\023is_has_imix_" +
+      "package\030\002 \001(\010\022\034\n\024is_has_power_package\030\003 " +
+      "\001(\010\022\036\n\026is_has_openwrt_package\030\004 \001(\010\022\032\n\022i" +
+      "s_has_pad_package\030\005 \001(\010\"H\n\017TNVPadLoginIn" +
+      "fo\022\017\n\007node_id\030\001 \001(\r\022\022\n\nappinst_id\030\002 \001(\r\022" +
+      "\020\n\010download\030\003 \001(\010\"@\n\020TNVPadLoginInfos\022,\n" +
+      "\017login_info_list\030\001 \003(\0132\023.nv.TNVPadLoginI",
+      "nfoB0\n!com.kedacom.nv.netmanage.protobuf" +
+      "B\013StructCfgPB"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -73503,7 +73308,7 @@ public final class StructCfgPB {
           internal_static_nv_TNVUpgradeDownloadInfo_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_nv_TNVUpgradeDownloadInfo_descriptor,
-              new java.lang.String[] { "Errcode", "TotalPercent", "CurPercent", "CurFileName", });
+              new java.lang.String[] { "Errcode", "CurPercent", "Module", });
           internal_static_nv_TNVSUSAddr_descriptor =
             getDescriptor().getMessageTypes().get(26);
           internal_static_nv_TNVSUSAddr_fieldAccessorTable = new

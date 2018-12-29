@@ -1425,13 +1425,15 @@ enum EmNvApiBaseEv
 
 	/**
 	@brief	imix与JD平台版本是否一致回应
-	*BODY(nv::TBOOL32, tbSame)
+	*BODY(nv::TBOOL32, tbSame)                      //是否需要升级
+	*BODY(nv::TU32, tReason)                        //不需要升级的原因
+	*BODY(nv::TNVSusUpgradeModule, tModule)         //需要升级的模块
 	*/
 	Ev_NvApi_Base_NVVerIsSameAsJDServer_Rsp,
 
 	/**
 	@brief	从JD平台下载版本进度通知
-	*BODY(nv::TU32, tdwSchedule)
+	*BODY(nv::TNVUpgradeDownloadInfo, tdwSchedule)
 	*/
 	Ev_NvApi_Base_NVDownloadFromJDServer_Nty,
 
@@ -1440,6 +1442,18 @@ enum EmNvApiBaseEv
 	*BODY(nv::TBOOL32, tbLogin)
 	*/
 	Ev_NvApi_Base_NVDownloadResultFromJD_Nty,
+
+	/**
+	@brief	imix获取sus服务器信息通知
+	*BODY(nv::TBOOL32, tbLogin)
+	*/
+	Ev_NvApi_Base_NVGetSusCfg_Nty,
+
+	/**
+	@brief	获取imix序列号回应
+	*BODY(nv::TString, tNum)
+	*/
+	Ev_NvApi_Base_GetImixSerialNum_Rsp,
 
 	EV_UI_END(NVAPI_BASE) = EVSEG_NVAPI_BASE_END
 	

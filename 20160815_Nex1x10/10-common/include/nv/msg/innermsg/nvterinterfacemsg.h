@@ -968,11 +968,23 @@ enum EmNvTerinterfaceMsg
 	MESSAGE(Ev_NV_DeviceKeyVolume_Nty)
 	BODY(nv::TBOOL32, tbVolUp)
 
-	/*<<系统关机时先通知终端待机>>
+	/*<<系统关机时先通知终端摄像机待机>>
 	*消息流向 nvdevice==>dispatch==>nvterinterface
 	*
 	*/
-	MESSAGE(Ev_NV_DeviceTurnOffToSleepMT_Nty)
+	MESSAGE(Ev_NV_SetTerCameraSleep_Cmd)
+
+	/*<<获取终端sus升级服务器信息>>
+	*消息流向 nvupgrade==>dispatch==>nvterinterface
+	*
+	*/
+	MESSAGE(Ev_NV_GetSusInfo_Cmd)
+
+	/*<<终端跳过设置向导静态图片>>
+	*消息流向 nvservice==>dispatch==>nvterinterface
+	*
+	*/
+	MESSAGE(Ev_NV_SkipTerWizard_Cmd)
 
 #if !defined(_MESSAGE_HELP_)
     EV_END(TERINTERFACE) = EVSEG_TERINTERFACE_END

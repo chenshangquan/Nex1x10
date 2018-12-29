@@ -16168,42 +16168,42 @@ public final class EnumPB {
      * <code>emMt_VMP_STYLE_25_S3LU3X1_B1MU_S3RU3X1_S18D3X6 = 61;</code>
      *
      * <pre>
-     *二十五画面: 1大24小，3小左上(3行1列)，1大中上，3小右上(3行1列)，18小下(3行6列)
+     *二十五画面: 1大24小，3小左上(3行1列)，1大中上，3小右上(3行1列)，18小下(3行6列)  
      * </pre>
      */
     emMt_VMP_STYLE_25_S3LU3X1_B1MU_S3RU3X1_S18D3X6(61, 61),
     /**
-     * <code>emMt_VMP_STYLE_20_5X4 = 62;</code>
-     *
-     * <pre>
-     *二十画面，等分5*4， 兼容老的行业平台，5.0平台没有  
-     * </pre>
-     */
-    emMt_VMP_STYLE_20_5X4(62, 62),
-    /**
-     * <code>emMt_VMP_STYLE_2_B1_S1RU = 63;</code>
+     * <code>emMt_VMP_STYLE_2_B1_S1RU = 62;</code>
      *
      * <pre>
      *两画面: 1大1小，1大全屏，1小右上
      * </pre>
      */
-    emMt_VMP_STYLE_2_B1_S1RU(63, 63),
+    emMt_VMP_STYLE_2_B1_S1RU(62, 62),
     /**
-     * <code>emMt_VMP_STYLE_2_B1_S1L = 64;</code>
-     *
-     * <pre>
-     * 两画面: 1大1小，1大全屏，1小左
-     * </pre>
-     */
-    emMt_VMP_STYLE_2_B1_S1L(64, 64),
-    /**
-     * <code>emMt_VMP_STYLE_2_B1_S1LD = 65;</code>
+     * <code>emMt_VMP_STYLE_2_B1_S1LD = 63;</code>
      *
      * <pre>
      * 两画面: 1大1小，1大全屏，1小左下
      * </pre>
      */
-    emMt_VMP_STYLE_2_B1_S1LD(65, 65),
+    emMt_VMP_STYLE_2_B1_S1LD(63, 63),
+    /**
+     * <code>emMt_VMP_STYLE_2_B1_S1L = 64;</code>
+     *
+     * <pre>
+     * 两画面: 1大1小，1大全屏，1小左上
+     * </pre>
+     */
+    emMt_VMP_STYLE_2_B1_S1L(64, 64),
+    /**
+     * <code>emMt_VMP_STYLE_20_5X4 = 100;</code>
+     *
+     * <pre>
+     *二十画面，等分5*4， 兼容老的行业平台，5.0平台没有
+     * </pre>
+     */
+    emMt_VMP_STYLE_20_5X4(65, 100),
     ;
 
     /**
@@ -16698,42 +16698,42 @@ public final class EnumPB {
      * <code>emMt_VMP_STYLE_25_S3LU3X1_B1MU_S3RU3X1_S18D3X6 = 61;</code>
      *
      * <pre>
-     *二十五画面: 1大24小，3小左上(3行1列)，1大中上，3小右上(3行1列)，18小下(3行6列)
+     *二十五画面: 1大24小，3小左上(3行1列)，1大中上，3小右上(3行1列)，18小下(3行6列)  
      * </pre>
      */
     public static final int emMt_VMP_STYLE_25_S3LU3X1_B1MU_S3RU3X1_S18D3X6_VALUE = 61;
     /**
-     * <code>emMt_VMP_STYLE_20_5X4 = 62;</code>
-     *
-     * <pre>
-     *二十画面，等分5*4， 兼容老的行业平台，5.0平台没有  
-     * </pre>
-     */
-    public static final int emMt_VMP_STYLE_20_5X4_VALUE = 62;
-    /**
-     * <code>emMt_VMP_STYLE_2_B1_S1RU = 63;</code>
+     * <code>emMt_VMP_STYLE_2_B1_S1RU = 62;</code>
      *
      * <pre>
      *两画面: 1大1小，1大全屏，1小右上
      * </pre>
      */
-    public static final int emMt_VMP_STYLE_2_B1_S1RU_VALUE = 63;
+    public static final int emMt_VMP_STYLE_2_B1_S1RU_VALUE = 62;
     /**
-     * <code>emMt_VMP_STYLE_2_B1_S1L = 64;</code>
-     *
-     * <pre>
-     * 两画面: 1大1小，1大全屏，1小左
-     * </pre>
-     */
-    public static final int emMt_VMP_STYLE_2_B1_S1L_VALUE = 64;
-    /**
-     * <code>emMt_VMP_STYLE_2_B1_S1LD = 65;</code>
+     * <code>emMt_VMP_STYLE_2_B1_S1LD = 63;</code>
      *
      * <pre>
      * 两画面: 1大1小，1大全屏，1小左下
      * </pre>
      */
-    public static final int emMt_VMP_STYLE_2_B1_S1LD_VALUE = 65;
+    public static final int emMt_VMP_STYLE_2_B1_S1LD_VALUE = 63;
+    /**
+     * <code>emMt_VMP_STYLE_2_B1_S1L = 64;</code>
+     *
+     * <pre>
+     * 两画面: 1大1小，1大全屏，1小左上
+     * </pre>
+     */
+    public static final int emMt_VMP_STYLE_2_B1_S1L_VALUE = 64;
+    /**
+     * <code>emMt_VMP_STYLE_20_5X4 = 100;</code>
+     *
+     * <pre>
+     *二十画面，等分5*4， 兼容老的行业平台，5.0平台没有
+     * </pre>
+     */
+    public static final int emMt_VMP_STYLE_20_5X4_VALUE = 100;
 
 
     public final int getNumber() { return value; }
@@ -16802,10 +16802,10 @@ public final class EnumPB {
         case 59: return emMt_VMP_STYLE_24_S6U1X6_S4LM4X1_B4MM2X2_S4RM4X1_S6D1X6;
         case 60: return emMt_VMP_STYLE_25_5X5;
         case 61: return emMt_VMP_STYLE_25_S3LU3X1_B1MU_S3RU3X1_S18D3X6;
-        case 62: return emMt_VMP_STYLE_20_5X4;
-        case 63: return emMt_VMP_STYLE_2_B1_S1RU;
+        case 62: return emMt_VMP_STYLE_2_B1_S1RU;
+        case 63: return emMt_VMP_STYLE_2_B1_S1LD;
         case 64: return emMt_VMP_STYLE_2_B1_S1L;
-        case 65: return emMt_VMP_STYLE_2_B1_S1LD;
+        case 100: return emMt_VMP_STYLE_20_5X4;
         default: return null;
       }
     }
@@ -50867,6 +50867,14 @@ public final class EnumPB {
      * <code>emCreateVirtualConf = 1;</code>
      */
     emCreateVirtualConf(1, 1),
+    /**
+     * <code>emCreateConfByTemplate = 2;</code>
+     *
+     * <pre>
+     *&#47;&lt; 根据模板ID创会
+     * </pre>
+     */
+    emCreateConfByTemplate(2, 2),
     ;
 
     /**
@@ -50877,6 +50885,14 @@ public final class EnumPB {
      * <code>emCreateVirtualConf = 1;</code>
      */
     public static final int emCreateVirtualConf_VALUE = 1;
+    /**
+     * <code>emCreateConfByTemplate = 2;</code>
+     *
+     * <pre>
+     *&#47;&lt; 根据模板ID创会
+     * </pre>
+     */
+    public static final int emCreateConfByTemplate_VALUE = 2;
 
 
     public final int getNumber() { return value; }
@@ -50885,6 +50901,7 @@ public final class EnumPB {
       switch (value) {
         case 0: return emCreateNormalConf;
         case 1: return emCreateVirtualConf;
+        case 2: return emCreateConfByTemplate;
         default: return null;
       }
     }
@@ -52492,6 +52509,347 @@ public final class EnumPB {
     // @@protoc_insertion_point(enum_scope:mt.EmAiContactType)
   }
 
+  /**
+   * Protobuf enum {@code mt.EmShortCutKeyType}
+   */
+  public enum EmShortCutKeyType
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>emUnkown = 0;</code>
+     *
+     * <pre>
+     *&#47;未知
+     * </pre>
+     */
+    emUnkown(0, 0),
+    /**
+     * <code>emRedShortCutKey = 1;</code>
+     *
+     * <pre>
+     *&#47;红色快捷键
+     * </pre>
+     */
+    emRedShortCutKey(1, 1),
+    /**
+     * <code>emYellowShortCutKey = 2;</code>
+     *
+     * <pre>
+     *&#47;黄色快捷键
+     * </pre>
+     */
+    emYellowShortCutKey(2, 2),
+    /**
+     * <code>emGreenShortCutKey = 3;</code>
+     *
+     * <pre>
+     *&#47;绿色快捷键
+     * </pre>
+     */
+    emGreenShortCutKey(3, 3),
+    ;
+
+    /**
+     * <code>emUnkown = 0;</code>
+     *
+     * <pre>
+     *&#47;未知
+     * </pre>
+     */
+    public static final int emUnkown_VALUE = 0;
+    /**
+     * <code>emRedShortCutKey = 1;</code>
+     *
+     * <pre>
+     *&#47;红色快捷键
+     * </pre>
+     */
+    public static final int emRedShortCutKey_VALUE = 1;
+    /**
+     * <code>emYellowShortCutKey = 2;</code>
+     *
+     * <pre>
+     *&#47;黄色快捷键
+     * </pre>
+     */
+    public static final int emYellowShortCutKey_VALUE = 2;
+    /**
+     * <code>emGreenShortCutKey = 3;</code>
+     *
+     * <pre>
+     *&#47;绿色快捷键
+     * </pre>
+     */
+    public static final int emGreenShortCutKey_VALUE = 3;
+
+
+    public final int getNumber() { return value; }
+
+    public static EmShortCutKeyType valueOf(int value) {
+      switch (value) {
+        case 0: return emUnkown;
+        case 1: return emRedShortCutKey;
+        case 2: return emYellowShortCutKey;
+        case 3: return emGreenShortCutKey;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<EmShortCutKeyType>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static com.google.protobuf.Internal.EnumLiteMap<EmShortCutKeyType>
+        internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<EmShortCutKeyType>() {
+            public EmShortCutKeyType findValueByNumber(int number) {
+              return EmShortCutKeyType.valueOf(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(index);
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return com.kedacom.mt.netmanage.protobuf.EnumPB.getDescriptor().getEnumTypes().get(295);
+    }
+
+    private static final EmShortCutKeyType[] VALUES = values();
+
+    public static EmShortCutKeyType valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int index;
+    private final int value;
+
+    private EmShortCutKeyType(int index, int value) {
+      this.index = index;
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:mt.EmShortCutKeyType)
+  }
+
+  /**
+   * Protobuf enum {@code mt.EmShortCutKeyFuc}
+   */
+  public enum EmShortCutKeyFuc
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>emFucBegin = 0;</code>
+     */
+    emFucBegin(0, 0),
+    /**
+     * <code>emLoop = 1;</code>
+     *
+     * <pre>
+     *&#47;自环
+     * </pre>
+     */
+    emLoop(1, 1),
+    /**
+     * <code>emApplyChair = 2;</code>
+     *
+     * <pre>
+     *&#47;申请主席
+     * </pre>
+     */
+    emApplyChair(2, 2),
+    /**
+     * <code>emApplySpeaker = 3;</code>
+     *
+     * <pre>
+     *&#47;申请主讲
+     * </pre>
+     */
+    emApplySpeaker(3, 3),
+    /**
+     * <code>emShowSystemInfo = 4;</code>
+     *
+     * <pre>
+     *&#47;显示系统信息
+     * </pre>
+     */
+    emShowSystemInfo(4, 4),
+    /**
+     * <code>emFullMute = 5;</code>
+     *
+     * <pre>
+     *&#47;全场哑音
+     * </pre>
+     */
+    emFullMute(5, 5),
+    /**
+     * <code>emSpeechHelper = 6;</code>
+     *
+     * <pre>
+     *&#47;语音助手
+     * </pre>
+     */
+    emSpeechHelper(6, 6),
+    /**
+     * <code>emFaceCheckIn = 7;</code>
+     *
+     * <pre>
+     *&#47;人脸签到
+     * </pre>
+     */
+    emFaceCheckIn(7, 7),
+    /**
+     * <code>emClose = 20;</code>
+     *
+     * <pre>
+     *&#47;关闭功能
+     * </pre>
+     */
+    emClose(8, 20),
+    ;
+
+    /**
+     * <code>emFucBegin = 0;</code>
+     */
+    public static final int emFucBegin_VALUE = 0;
+    /**
+     * <code>emLoop = 1;</code>
+     *
+     * <pre>
+     *&#47;自环
+     * </pre>
+     */
+    public static final int emLoop_VALUE = 1;
+    /**
+     * <code>emApplyChair = 2;</code>
+     *
+     * <pre>
+     *&#47;申请主席
+     * </pre>
+     */
+    public static final int emApplyChair_VALUE = 2;
+    /**
+     * <code>emApplySpeaker = 3;</code>
+     *
+     * <pre>
+     *&#47;申请主讲
+     * </pre>
+     */
+    public static final int emApplySpeaker_VALUE = 3;
+    /**
+     * <code>emShowSystemInfo = 4;</code>
+     *
+     * <pre>
+     *&#47;显示系统信息
+     * </pre>
+     */
+    public static final int emShowSystemInfo_VALUE = 4;
+    /**
+     * <code>emFullMute = 5;</code>
+     *
+     * <pre>
+     *&#47;全场哑音
+     * </pre>
+     */
+    public static final int emFullMute_VALUE = 5;
+    /**
+     * <code>emSpeechHelper = 6;</code>
+     *
+     * <pre>
+     *&#47;语音助手
+     * </pre>
+     */
+    public static final int emSpeechHelper_VALUE = 6;
+    /**
+     * <code>emFaceCheckIn = 7;</code>
+     *
+     * <pre>
+     *&#47;人脸签到
+     * </pre>
+     */
+    public static final int emFaceCheckIn_VALUE = 7;
+    /**
+     * <code>emClose = 20;</code>
+     *
+     * <pre>
+     *&#47;关闭功能
+     * </pre>
+     */
+    public static final int emClose_VALUE = 20;
+
+
+    public final int getNumber() { return value; }
+
+    public static EmShortCutKeyFuc valueOf(int value) {
+      switch (value) {
+        case 0: return emFucBegin;
+        case 1: return emLoop;
+        case 2: return emApplyChair;
+        case 3: return emApplySpeaker;
+        case 4: return emShowSystemInfo;
+        case 5: return emFullMute;
+        case 6: return emSpeechHelper;
+        case 7: return emFaceCheckIn;
+        case 20: return emClose;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<EmShortCutKeyFuc>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static com.google.protobuf.Internal.EnumLiteMap<EmShortCutKeyFuc>
+        internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<EmShortCutKeyFuc>() {
+            public EmShortCutKeyFuc findValueByNumber(int number) {
+              return EmShortCutKeyFuc.valueOf(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(index);
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return com.kedacom.mt.netmanage.protobuf.EnumPB.getDescriptor().getEnumTypes().get(296);
+    }
+
+    private static final EmShortCutKeyFuc[] VALUES = values();
+
+    public static EmShortCutKeyFuc valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int index;
+    private final int value;
+
+    private EmShortCutKeyFuc(int index, int value) {
+      this.index = index;
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:mt.EmShortCutKeyFuc)
+  }
+
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -53024,10 +53382,10 @@ public final class EnumPB {
       "M2X2_S12D2X6\020:\022;\n7emMt_VMP_STYLE_24_S6U1" +
       "X6_S4LM4X1_B4MM2X2_S4RM4X1_S6D1X6\020;\022\031\n\025e" +
       "mMt_VMP_STYLE_25_5X5\020<\0222\n.emMt_VMP_STYLE" +
-      "_25_S3LU3X1_B1MU_S3RU3X1_S18D3X6\020=\022\031\n\025em" +
-      "Mt_VMP_STYLE_20_5X4\020>\022\034\n\030emMt_VMP_STYLE_" +
-      "2_B1_S1RU\020?\022\033\n\027emMt_VMP_STYLE_2_B1_S1L\020@" +
-      "\022\034\n\030emMt_VMP_STYLE_2_B1_S1LD\020A*x\n\023EmMtMe" +
+      "_25_S3LU3X1_B1MU_S3RU3X1_S18D3X6\020=\022\034\n\030em" +
+      "Mt_VMP_STYLE_2_B1_S1RU\020>\022\034\n\030emMt_VMP_STY" +
+      "LE_2_B1_S1LD\020?\022\033\n\027emMt_VMP_STYLE_2_B1_S1" +
+      "L\020@\022\031\n\025emMt_VMP_STYLE_20_5X4\020d*x\n\023EmMtMe" +
       "mberStatusDef\022\024\n\020emMT_STATUS_NULL\020\000\022\030\n\024e" +
       "mMT_STATUS_AUDIENCE\020\001\022\030\n\024emMT_STATUS_CHA" +
       "IRMAN\020\002\022\027\n\023emMT_STATUS_SPEAKER\020\003*\310\001\n\016EmM",
@@ -53870,50 +54228,58 @@ public final class EnumPB {
       "wdAuth\020\000\022\022\n\016emInnerPwdAuth\020\001\022\021\n\remDynami" +
       "cAuth\020\002\022\r\n\temAuthEnd\020\003*]\n\021EmLoginFailRea" +
       "son\022\014\n\010emPwdErr\020\001\022\021\n\remTerStarting\020\002\022\022\n\016" +
-      "emTerUpgrading\020\003\022\023\n\017emFailReasonEnd\020\n*D\n",
+      "emTerUpgrading\020\003\022\023\n\017emFailReasonEnd\020\n*`\n",
       "\021EmVConfCreateType\022\026\n\022emCreateNormalConf" +
-      "\020\000\022\027\n\023emCreateVirtualConf\020\001*\231\001\n\tEmQkStat" +
-      "e\022\014\n\010emUsbOff\020\000\022\013\n\007emUsbOn\020\001\022\016\n\nemUpdati" +
-      "ng\020\002\022\t\n\005emWps\020\003\022\r\n\temWpsSucc\020\004\022\014\n\010emApLi" +
-      "nk\020\005\022\013\n\007emApOff\020\006\022\r\n\temQkStart\020\007\022\013\n\007emQk" +
-      "Off\020\010\022\020\n\014emWpsTimeOut\020\t*`\n\016EmResourceTyp" +
-      "e\022\031\n\025emResourceType_LimitP\020\000\022\032\n\026emResour" +
-      "ceType_LimitPR\020\001\022\027\n\023emResourceType_None\020" +
-      "\002*J\n\024EmAgentPackFileState\022\022\n\016emPackNotSt" +
-      "art\020\000\022\r\n\temPacking\020\001\022\017\n\013emPackError\020\002*\301\007",
-      "\n\rEmAiAudioType\022\016\n\nemAiUnknow\020\000\022\021\n\remAiP" +
-      "leaseSay\020\001\022\016\n\nemAiBayBay\020\002\022\027\n\023emAiUnLogi" +
-      "nPlatForm\020\003\022\026\n\022emAiRepeatConfName\020\004\022\022\n\016e" +
-      "mAiSelectConf\020\005\022\024\n\020emAiJoinConfFail\020\006\022\024\n" +
-      "\020emAiOnCreateConf\020\007\022\025\n\021emAiCreateSuccess" +
-      "\020\010\022\022\n\016emAiCreateFail\020\t\022\027\n\023emAiJoinConfSu" +
-      "ccess\020\n\022\022\n\016emAiOnJoinConf\020\013\022\024\n\020emAiNoPer" +
-      "mission\020\014\022\022\n\016emAiHungupConf\020\r\022\016\n\nemAiRob" +
-      "Ass\020\016\022\021\n\remAiDelayConf\020\017\022\022\n\016emAiConfIsId" +
-      "le\020\020\022\022\n\016emAiConfNotMcc\020\021\022\017\n\013emAiEndConf\020",
-      "\022\022\023\n\017emAiUnknowAgain\020\023\022\022\n\016emAiOnFindConf" +
-      "\020\024\022\014\n\010emAiGood\020\025\022\030\n\024emAiOnFindConfMember" +
-      "\020\026\022\032\n\026emAiRepeatInviteMember\020\027\022\026\n\022emAiOn" +
-      "InviteMember\020\030\022\020\n\014emAiSatrtAss\020\031\022\023\n\017emAi" +
-      "AssNoSignal\020\032\022\031\n\025emAiDelayConfWithTime\020\033" +
-      "\022\017\n\013emAiUpAudio\020\034\022\021\n\remAiDownAudio\020\035\022\020\n\014" +
-      "emAiMaxAudio\020\036\022\020\n\014emAiMinAudio\020\037\022\024\n\020emAi" +
-      "SelectMember\020 \022\020\n\014emAiCloseAss\020!\022\030\n\024emAi" +
-      "SureOrNotEndConf\020\"\022\033\n\027emAiSureOrNotHangu" +
-      "pConf\020#\022\026\n\022emAiCancleOperator\020$\022\027\n\023emAiH",
-      "angupOrEndConf\020%\022\022\n\016emAiApplyChair\020&\022\022\n\016" +
-      "emAiSelectView\020\'\022\032\n\026emAiSelectViewNotExi" +
-      "st\020(\022\030\n\024emAiCancleSelectView\020)\022\020\n\014emAiMt" +
-      "OnConf\020*\022\022\n\016emAiAssIsClose\020+\022\013\n\007emAiEnd\020" +
-      "d*\263\001\n\017EmAiActionState\022\023\n\017emAiActionBegin" +
-      "\020\000\022\025\n\021emAiActionEndConf\020\001\022\030\n\024emAiActionH" +
-      "ungupConf\020\002\022\025\n\021emAiActionOpenAss\020\003\022\026\n\022em" +
-      "AiActionJoinConf\020\004\022\030\n\024emAiActionInviteCa" +
-      "ll\020\005\022\021\n\remAiActionEnd\0202*g\n\017EmAiContactTy" +
-      "pe\022\024\n\020emAiContactBegin\020\000\022\024\n\020emAiLocalCon",
-      "tact\020\001\022\024\n\020emAiShareContact\020\002\022\022\n\016emAiCont" +
-      "actEnd\020\024B+\n!com.kedacom.mt.netmanage.pro" +
-      "tobufB\006EnumPB"
+      "\020\000\022\027\n\023emCreateVirtualConf\020\001\022\032\n\026emCreateC" +
+      "onfByTemplate\020\002*\231\001\n\tEmQkState\022\014\n\010emUsbOf" +
+      "f\020\000\022\013\n\007emUsbOn\020\001\022\016\n\nemUpdating\020\002\022\t\n\005emWp" +
+      "s\020\003\022\r\n\temWpsSucc\020\004\022\014\n\010emApLink\020\005\022\013\n\007emAp" +
+      "Off\020\006\022\r\n\temQkStart\020\007\022\013\n\007emQkOff\020\010\022\020\n\014emW" +
+      "psTimeOut\020\t*`\n\016EmResourceType\022\031\n\025emResou" +
+      "rceType_LimitP\020\000\022\032\n\026emResourceType_Limit" +
+      "PR\020\001\022\027\n\023emResourceType_None\020\002*J\n\024EmAgent" +
+      "PackFileState\022\022\n\016emPackNotStart\020\000\022\r\n\temP",
+      "acking\020\001\022\017\n\013emPackError\020\002*\301\007\n\rEmAiAudioT" +
+      "ype\022\016\n\nemAiUnknow\020\000\022\021\n\remAiPleaseSay\020\001\022\016" +
+      "\n\nemAiBayBay\020\002\022\027\n\023emAiUnLoginPlatForm\020\003\022" +
+      "\026\n\022emAiRepeatConfName\020\004\022\022\n\016emAiSelectCon" +
+      "f\020\005\022\024\n\020emAiJoinConfFail\020\006\022\024\n\020emAiOnCreat" +
+      "eConf\020\007\022\025\n\021emAiCreateSuccess\020\010\022\022\n\016emAiCr" +
+      "eateFail\020\t\022\027\n\023emAiJoinConfSuccess\020\n\022\022\n\016e" +
+      "mAiOnJoinConf\020\013\022\024\n\020emAiNoPermission\020\014\022\022\n" +
+      "\016emAiHungupConf\020\r\022\016\n\nemAiRobAss\020\016\022\021\n\remA" +
+      "iDelayConf\020\017\022\022\n\016emAiConfIsIdle\020\020\022\022\n\016emAi",
+      "ConfNotMcc\020\021\022\017\n\013emAiEndConf\020\022\022\023\n\017emAiUnk" +
+      "nowAgain\020\023\022\022\n\016emAiOnFindConf\020\024\022\014\n\010emAiGo" +
+      "od\020\025\022\030\n\024emAiOnFindConfMember\020\026\022\032\n\026emAiRe" +
+      "peatInviteMember\020\027\022\026\n\022emAiOnInviteMember" +
+      "\020\030\022\020\n\014emAiSatrtAss\020\031\022\023\n\017emAiAssNoSignal\020" +
+      "\032\022\031\n\025emAiDelayConfWithTime\020\033\022\017\n\013emAiUpAu" +
+      "dio\020\034\022\021\n\remAiDownAudio\020\035\022\020\n\014emAiMaxAudio" +
+      "\020\036\022\020\n\014emAiMinAudio\020\037\022\024\n\020emAiSelectMember" +
+      "\020 \022\020\n\014emAiCloseAss\020!\022\030\n\024emAiSureOrNotEnd" +
+      "Conf\020\"\022\033\n\027emAiSureOrNotHangupConf\020#\022\026\n\022e",
+      "mAiCancleOperator\020$\022\027\n\023emAiHangupOrEndCo" +
+      "nf\020%\022\022\n\016emAiApplyChair\020&\022\022\n\016emAiSelectVi" +
+      "ew\020\'\022\032\n\026emAiSelectViewNotExist\020(\022\030\n\024emAi" +
+      "CancleSelectView\020)\022\020\n\014emAiMtOnConf\020*\022\022\n\016" +
+      "emAiAssIsClose\020+\022\013\n\007emAiEnd\020d*\263\001\n\017EmAiAc" +
+      "tionState\022\023\n\017emAiActionBegin\020\000\022\025\n\021emAiAc" +
+      "tionEndConf\020\001\022\030\n\024emAiActionHungupConf\020\002\022" +
+      "\025\n\021emAiActionOpenAss\020\003\022\026\n\022emAiActionJoin" +
+      "Conf\020\004\022\030\n\024emAiActionInviteCall\020\005\022\021\n\remAi" +
+      "ActionEnd\0202*g\n\017EmAiContactType\022\024\n\020emAiCo",
+      "ntactBegin\020\000\022\024\n\020emAiLocalContact\020\001\022\024\n\020em" +
+      "AiShareContact\020\002\022\022\n\016emAiContactEnd\020\024*h\n\021" +
+      "EmShortCutKeyType\022\014\n\010emUnkown\020\000\022\024\n\020emRed" +
+      "ShortCutKey\020\001\022\027\n\023emYellowShortCutKey\020\002\022\026" +
+      "\n\022emGreenShortCutKey\020\003*\256\001\n\020EmShortCutKey" +
+      "Fuc\022\016\n\nemFucBegin\020\000\022\n\n\006emLoop\020\001\022\020\n\014emApp" +
+      "lyChair\020\002\022\022\n\016emApplySpeaker\020\003\022\024\n\020emShowS" +
+      "ystemInfo\020\004\022\016\n\nemFullMute\020\005\022\022\n\016emSpeechH" +
+      "elper\020\006\022\021\n\remFaceCheckIn\020\007\022\013\n\007emClose\020\024B" +
+      "+\n!com.kedacom.mt.netmanage.protobufB\006En",
+      "umPB"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

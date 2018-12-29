@@ -1955,6 +1955,37 @@ enum EmMtApiDiagnoseEv
 	*/
 	Ev_MtApi_Diagnose_GetElectricFanTime_Rsp,
 
+	/**
+	@brief 设置智能摄像机的通知
+	MainBuf(#u32, dwTime )
+	@verbatim
+	{
+		
+	}
+	@endverbatim
+	*/
+	Ev_MtApi_Diagnose_SetAiCamera_Ntf,
+
+	/**
+	@brief 人数统计结果
+	MainBuf(#TMtPeopleCountingResult_Api )
+	@verbatim
+	{
+		
+	}
+	@endverbatim
+	*/
+	Ev_MtApi_Diagnose_PeopleCountingResult_Ntf,
+	/**
+	@brief 人脸签到信息
+	MainBuf(#TMtFaceCheckInList_Api )
+	@verbatim
+	{
+		
+	}
+	@endverbatim
+	*/
+	Ev_MtApi_Diagnose_FaceCheckInInfo_Ntf,
 
     EV_UI_END(MTAPI_DIAGNOSE) = EVSEG_MTAPI_DIAGNOSE_END
 };

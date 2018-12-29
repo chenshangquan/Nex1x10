@@ -48,8 +48,6 @@ public:
 	bool m_bInstallYHFont;     //是否安装了微软雅黑
 };
 
-BOOL UdiskIn();
-
 BOOL OnlyStartOne();
 
 extern CtouchApp theApp;

@@ -225,6 +225,76 @@ enum EmUpgradeMsg
     MESSAGE(Ev_NV_CancelFile_Cmd)
     BODY(nv::TString, tFilePath)
 
+	/*<<sus服务器连接状态>>
+	* suc -> upgrade
+	*/
+    MESSAGE(Ev_NV_ConnectSus_State_Ntf)
+    BODY(nv::TU32, tState)
+
+	/*<<sus服务器版本比对信息>>
+	* suc -> upgrade
+	*/
+    MESSAGE(Ev_NV_UpgradeModule_Ntf)
+    BODY(nv::TBOOL32, tUpgrade)
+	BODY(nv::TNVSusUpgradeModule, tModule)
+	BODY(nv::TBOOL32, tLoadFile)
+
+	/*<<sus服务器投屏器文件下载完成通知>>
+	* suc -> upgrade
+	*/
+    MESSAGE(Ev_NV_LoadQKFileSuc_Ntf)
+
+	/*<<断开sus服务器>>
+	* suc -> upgrade
+	*/
+    MESSAGE(Ev_NV_ImixDisconnectSus_Cmd)
+
+	/*<<获取到sus服务器信息通知>>
+	* suc -> upgrade
+	*/
+    MESSAGE(Ev_NV_GetSusCfg_Nty)
+
+	/*<<连接sus服务器命令>>
+	* upgrade -> suc
+	*/
+    MESSAGE(Ev_NV_ConnectSus_Cmd)
+	BODY(nv::TNVSUSAddr, tInfo)
+
+	/*<<获取sus服务器中imix的版本>>
+	* upgrade -> suc
+	*/
+    MESSAGE(Ev_NV_GetSusImixVer_Cmd)
+
+	/*<<从sus服务器中下载文件>>
+	* upgrade -> suc
+	*/
+    MESSAGE(Ev_NV_DownLoadFileFromSus_Cmd)
+	BODY(nv::TString, tPath)
+	BODY(nv::TString, tFile)
+
+	/*<<从sus服务器中下载整包>>
+	* upgrade -> suc
+	*/
+    MESSAGE(Ev_NV_DownLoadAllVerFromSus_Cmd)
+	BODY(nv::TString, tPath)
+	BODY(nv::TString, tFile)
+
+	/*<<将imix当前版本信息发送给suc>>
+	* upgrade -> suc
+	*/
+    MESSAGE(Ev_NV_CompareVerInfoWithSus_Cmd)
+	BODY(nv::TNVImixAllVerInfo, tInfo)
+
+	/*<<开始从sus服务器中下载模块文件>>
+	* upgrade -> suc
+	*/
+    MESSAGE(Ev_NV_StartDownLoadModuleFile_Cmd)
+
+	/*<<与sus服务器断开连接>>
+	* upgrade -> suc
+	*/
+    MESSAGE(Ev_NV_DisConnecSus_Cmd)
+
 
 
 #if !defined(_MESSAGE_HELP_)

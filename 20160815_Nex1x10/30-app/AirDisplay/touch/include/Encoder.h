@@ -64,7 +64,7 @@ private:
 
 
 #define LOW_POWER_FRAME      10
-#define NORMAL_POWER_FRAME   25
+#define NORMAL_POWER_FRAME   30
 
 
 class CEncoder  

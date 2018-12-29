@@ -107,6 +107,9 @@ public:
 	virtual u32 SetAiInfoCfgCmd( IN CONST TMtAiInfoCfg_Api tCfg ) =0;
 	virtual TMtAiInfoCfg_Api GetAiInfoCfg() = 0;
 	virtual u32 GetAiInfoCfgtReq() = 0;
+
+	virtual u32 SetSkipWizardStaticImage( IN CONST BOOL32 bSkip ) = 0;
+
 public:
 
 };

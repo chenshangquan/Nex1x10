@@ -55,7 +55,7 @@ public:
 	//获取nv版本当前信息
 	virtual u32 GetNvVerInfoReq() = 0;
 	//获取imix版本是否与JD平台版本一致
-	virtual u32 GetNVVerIsSameAsJDServeReq() = 0;
+	virtual u32 GetNVVerIsSameAsJDServeReq(IN CONST nv::TString tRouterVer) = 0;
 	//设置imix是否从JD平台下载版本
 	virtual u32 SetNVIsUpgradeFromJDServerCmd(IN CONST nv::TBOOL32 tUpgrade) = 0;
 private:

@@ -1108,6 +1108,26 @@ enum EmMtConfigMsg
 
 
     /*
+    * key : emMt_Cfg_ShortCutKey
+    */
+    MESSAGE(Ev_MT_SetShortCutKeyCfg_Cmd)
+    BODY(mt::TMtShortCutKeyList, )
+
+    MESSAGE(Ev_MT_SetShortCutKeyCfg_Ntf)
+    BODY(mt::TMtShortCutKeyList, )
+
+
+    /*
+    * key : emMt_Cfg_AiCameraInfo
+    */
+    MESSAGE(Ev_MT_SetAiCameraInfoCfg_Cmd)
+    BODY(mt::TMTHDCameraAiList, )
+
+    MESSAGE(Ev_MT_SetAiCameraInfoCfg_Ntf)
+    BODY(mt::TMTHDCameraAiList, )
+
+
+    /*
     * key : emHD_Cfg_ShortMsg
     */
     MESSAGE(Ev_HD_SetShortMsgCfg_Cmd)

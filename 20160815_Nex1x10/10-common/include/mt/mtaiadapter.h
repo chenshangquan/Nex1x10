@@ -36,7 +36,7 @@ typedef struct tagTMtWakeupParam
 
 	s8 achWakeupPinyin[MT_STR_LEN_64+1];
 	s8 achThresh[MT_STR_LEN_16+1]; ///0-1Ö®¼ä
-
+	s8 achMajor[MT_STR_LEN_16+1];
 	tagTMtWakeupParam()
 	{
 		memset(this, 0, sizeof(tagTMtWakeupParam) );

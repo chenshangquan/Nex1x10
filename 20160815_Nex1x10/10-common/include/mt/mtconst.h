@@ -191,8 +191,8 @@ const u32 VENDOR_UNKNOWN = 50;
 #define MTPA_DISCONNECT_TIMEOUT      (u32)(20*1000)       //秒
 #define MTPA_TLSRENEGOTIATE_TIMEOUT  (u32)(3600*1000)      //秒
 
-#define MAX_MAINAUDIO_NUM            (u32)3    ///主流最大音频发送接收通道数
-#define MAX_MAINVIDEO_NUM            (u32)3    ///主流最大视频发送接收通道数
+#define MAX_MAINAUDIO_NUM            (u32)1    ///主流最大音频发送接收通道数
+#define MAX_MAINVIDEO_NUM            (u32)2    ///主流最大视频发送接收通道数
 
 #define MAX_MAINVIDEO_EMBED_FPS       (u32)60   ///硬终端主流最大帧率，只针对264,265
 #define MAX_PCASSVIDEO_EMBED_FPS      (u32)5   ///硬终端pc辅流最大帧率，只针对264,265

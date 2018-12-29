@@ -37,6 +37,7 @@ typedef struct tagTMtCheckInInfo
 {
     s8 achName[CAMERA_MAX_ID_LEN+1]; ///<签到人姓名
 	s8 achTime[CAMERA_MAX_ID_LEN+1]; ///<签到时间 (签到时间待定)
+	s8 achPosition[CAMERA_MAX_ID_LEN+1];///<员工职位
 public:
 	tagTMtCheckInInfo(){ memset( this ,0 ,sizeof( struct  tagTMtCheckInInfo ) );}
 }*PTMtCheckInInfo, TMtCheckInInfo;

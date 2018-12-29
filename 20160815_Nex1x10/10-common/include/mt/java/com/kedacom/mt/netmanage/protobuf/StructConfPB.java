@@ -21637,6 +21637,42 @@ public final class StructConfPB {
      * </pre>
      */
     com.google.protobuf.ByteString getBkrtcpCryptoKey();
+
+    // optional bytes bkrtcp_crypto_keyid = 8;
+    /**
+     * <code>optional bytes bkrtcp_crypto_keyid = 8;</code>
+     *
+     * <pre>
+     *反向私钥keyid
+     * </pre>
+     */
+    boolean hasBkrtcpCryptoKeyid();
+    /**
+     * <code>optional bytes bkrtcp_crypto_keyid = 8;</code>
+     *
+     * <pre>
+     *反向私钥keyid
+     * </pre>
+     */
+    com.google.protobuf.ByteString getBkrtcpCryptoKeyid();
+
+    // optional uint32 bkrtcp_crypto_keyid_len = 9;
+    /**
+     * <code>optional uint32 bkrtcp_crypto_keyid_len = 9;</code>
+     *
+     * <pre>
+     *反向keyid长度,是在srtp中占的长度， 不是keyid的长度
+     * </pre>
+     */
+    boolean hasBkrtcpCryptoKeyidLen();
+    /**
+     * <code>optional uint32 bkrtcp_crypto_keyid_len = 9;</code>
+     *
+     * <pre>
+     *反向keyid长度,是在srtp中占的长度， 不是keyid的长度
+     * </pre>
+     */
+    int getBkrtcpCryptoKeyidLen();
   }
   /**
    * Protobuf type {@code mt.TSrtpCrypto}
@@ -21734,6 +21770,16 @@ public final class StructConfPB {
             case 58: {
               bitField0_ |= 0x00000040;
               bkrtcpCryptoKey_ = input.readBytes();
+              break;
+            }
+            case 66: {
+              bitField0_ |= 0x00000080;
+              bkrtcpCryptoKeyid_ = input.readBytes();
+              break;
+            }
+            case 72: {
+              bitField0_ |= 0x00000100;
+              bkrtcpCryptoKeyidLen_ = input.readUInt32();
               break;
             }
           }
@@ -21944,6 +21990,54 @@ public final class StructConfPB {
       return bkrtcpCryptoKey_;
     }
 
+    // optional bytes bkrtcp_crypto_keyid = 8;
+    public static final int BKRTCP_CRYPTO_KEYID_FIELD_NUMBER = 8;
+    private com.google.protobuf.ByteString bkrtcpCryptoKeyid_;
+    /**
+     * <code>optional bytes bkrtcp_crypto_keyid = 8;</code>
+     *
+     * <pre>
+     *反向私钥keyid
+     * </pre>
+     */
+    public boolean hasBkrtcpCryptoKeyid() {
+      return ((bitField0_ & 0x00000080) == 0x00000080);
+    }
+    /**
+     * <code>optional bytes bkrtcp_crypto_keyid = 8;</code>
+     *
+     * <pre>
+     *反向私钥keyid
+     * </pre>
+     */
+    public com.google.protobuf.ByteString getBkrtcpCryptoKeyid() {
+      return bkrtcpCryptoKeyid_;
+    }
+
+    // optional uint32 bkrtcp_crypto_keyid_len = 9;
+    public static final int BKRTCP_CRYPTO_KEYID_LEN_FIELD_NUMBER = 9;
+    private int bkrtcpCryptoKeyidLen_;
+    /**
+     * <code>optional uint32 bkrtcp_crypto_keyid_len = 9;</code>
+     *
+     * <pre>
+     *反向keyid长度,是在srtp中占的长度， 不是keyid的长度
+     * </pre>
+     */
+    public boolean hasBkrtcpCryptoKeyidLen() {
+      return ((bitField0_ & 0x00000100) == 0x00000100);
+    }
+    /**
+     * <code>optional uint32 bkrtcp_crypto_keyid_len = 9;</code>
+     *
+     * <pre>
+     *反向keyid长度,是在srtp中占的长度， 不是keyid的长度
+     * </pre>
+     */
+    public int getBkrtcpCryptoKeyidLen() {
+      return bkrtcpCryptoKeyidLen_;
+    }
+
     private void initFields() {
       srtpCryptoType_ = com.kedacom.mt.netmanage.protobuf.EnumPB.EmSrtpCryptoType.emSrtpCryptoNone;
       srtpAuthType_ = com.kedacom.mt.netmanage.protobuf.EnumPB.EmSrtpAuthType.emSrtpAuthNone;
@@ -21952,6 +22046,8 @@ public final class StructConfPB {
       cryptoKeyid_ = com.google.protobuf.ByteString.EMPTY;
       cryptoKeyidLen_ = 0;
       bkrtcpCryptoKey_ = com.google.protobuf.ByteString.EMPTY;
+      bkrtcpCryptoKeyid_ = com.google.protobuf.ByteString.EMPTY;
+      bkrtcpCryptoKeyidLen_ = 0;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -21985,6 +22081,12 @@ public final class StructConfPB {
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
         output.writeBytes(7, bkrtcpCryptoKey_);
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        output.writeBytes(8, bkrtcpCryptoKeyid_);
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        output.writeUInt32(9, bkrtcpCryptoKeyidLen_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -22022,6 +22124,14 @@ public final class StructConfPB {
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(7, bkrtcpCryptoKey_);
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(8, bkrtcpCryptoKeyid_);
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(9, bkrtcpCryptoKeyidLen_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -22153,6 +22263,10 @@ public final class StructConfPB {
         bitField0_ = (bitField0_ & ~0x00000020);
         bkrtcpCryptoKey_ = com.google.protobuf.ByteString.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000040);
+        bkrtcpCryptoKeyid_ = com.google.protobuf.ByteString.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000080);
+        bkrtcpCryptoKeyidLen_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000100);
         return this;
       }
 
@@ -22209,6 +22323,14 @@ public final class StructConfPB {
           to_bitField0_ |= 0x00000040;
         }
         result.bkrtcpCryptoKey_ = bkrtcpCryptoKey_;
+        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
+          to_bitField0_ |= 0x00000080;
+        }
+        result.bkrtcpCryptoKeyid_ = bkrtcpCryptoKeyid_;
+        if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
+          to_bitField0_ |= 0x00000100;
+        }
+        result.bkrtcpCryptoKeyidLen_ = bkrtcpCryptoKeyidLen_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -22245,6 +22367,12 @@ public final class StructConfPB {
         }
         if (other.hasBkrtcpCryptoKey()) {
           setBkrtcpCryptoKey(other.getBkrtcpCryptoKey());
+        }
+        if (other.hasBkrtcpCryptoKeyid()) {
+          setBkrtcpCryptoKeyid(other.getBkrtcpCryptoKeyid());
+        }
+        if (other.hasBkrtcpCryptoKeyidLen()) {
+          setBkrtcpCryptoKeyidLen(other.getBkrtcpCryptoKeyidLen());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -22627,6 +22755,107 @@ public final class StructConfPB {
       public Builder clearBkrtcpCryptoKey() {
         bitField0_ = (bitField0_ & ~0x00000040);
         bkrtcpCryptoKey_ = getDefaultInstance().getBkrtcpCryptoKey();
+        onChanged();
+        return this;
+      }
+
+      // optional bytes bkrtcp_crypto_keyid = 8;
+      private com.google.protobuf.ByteString bkrtcpCryptoKeyid_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>optional bytes bkrtcp_crypto_keyid = 8;</code>
+       *
+       * <pre>
+       *反向私钥keyid
+       * </pre>
+       */
+      public boolean hasBkrtcpCryptoKeyid() {
+        return ((bitField0_ & 0x00000080) == 0x00000080);
+      }
+      /**
+       * <code>optional bytes bkrtcp_crypto_keyid = 8;</code>
+       *
+       * <pre>
+       *反向私钥keyid
+       * </pre>
+       */
+      public com.google.protobuf.ByteString getBkrtcpCryptoKeyid() {
+        return bkrtcpCryptoKeyid_;
+      }
+      /**
+       * <code>optional bytes bkrtcp_crypto_keyid = 8;</code>
+       *
+       * <pre>
+       *反向私钥keyid
+       * </pre>
+       */
+      public Builder setBkrtcpCryptoKeyid(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000080;
+        bkrtcpCryptoKeyid_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bytes bkrtcp_crypto_keyid = 8;</code>
+       *
+       * <pre>
+       *反向私钥keyid
+       * </pre>
+       */
+      public Builder clearBkrtcpCryptoKeyid() {
+        bitField0_ = (bitField0_ & ~0x00000080);
+        bkrtcpCryptoKeyid_ = getDefaultInstance().getBkrtcpCryptoKeyid();
+        onChanged();
+        return this;
+      }
+
+      // optional uint32 bkrtcp_crypto_keyid_len = 9;
+      private int bkrtcpCryptoKeyidLen_ ;
+      /**
+       * <code>optional uint32 bkrtcp_crypto_keyid_len = 9;</code>
+       *
+       * <pre>
+       *反向keyid长度,是在srtp中占的长度， 不是keyid的长度
+       * </pre>
+       */
+      public boolean hasBkrtcpCryptoKeyidLen() {
+        return ((bitField0_ & 0x00000100) == 0x00000100);
+      }
+      /**
+       * <code>optional uint32 bkrtcp_crypto_keyid_len = 9;</code>
+       *
+       * <pre>
+       *反向keyid长度,是在srtp中占的长度， 不是keyid的长度
+       * </pre>
+       */
+      public int getBkrtcpCryptoKeyidLen() {
+        return bkrtcpCryptoKeyidLen_;
+      }
+      /**
+       * <code>optional uint32 bkrtcp_crypto_keyid_len = 9;</code>
+       *
+       * <pre>
+       *反向keyid长度,是在srtp中占的长度， 不是keyid的长度
+       * </pre>
+       */
+      public Builder setBkrtcpCryptoKeyidLen(int value) {
+        bitField0_ |= 0x00000100;
+        bkrtcpCryptoKeyidLen_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 bkrtcp_crypto_keyid_len = 9;</code>
+       *
+       * <pre>
+       *反向keyid长度,是在srtp中占的长度， 不是keyid的长度
+       * </pre>
+       */
+      public Builder clearBkrtcpCryptoKeyidLen() {
+        bitField0_ = (bitField0_ & ~0x00000100);
+        bkrtcpCryptoKeyidLen_ = 0;
         onChanged();
         return this;
       }
@@ -70340,20 +70569,20 @@ public final class StructConfPB {
      */
     boolean getIsOccupyVpu();
 
-    // optional .mt.EmMtDualMode dual_mode = 18;
+    // optional .mt.EmMtDualMode dual_mode = 18 [default = MT_DUAL_MODE_EVERYONE];
     /**
-     * <code>optional .mt.EmMtDualMode dual_mode = 18;</code>
+     * <code>optional .mt.EmMtDualMode dual_mode = 18 [default = MT_DUAL_MODE_EVERYONE];</code>
      *
      * <pre>
-     *发言模式
+     *发言模式 
      * </pre>
      */
     boolean hasDualMode();
     /**
-     * <code>optional .mt.EmMtDualMode dual_mode = 18;</code>
+     * <code>optional .mt.EmMtDualMode dual_mode = 18 [default = MT_DUAL_MODE_EVERYONE];</code>
      *
      * <pre>
-     *发言模式
+     *发言模式 
      * </pre>
      */
     com.kedacom.mt.netmanage.protobuf.EnumPB.EmMtDualMode getDualMode();
@@ -71273,24 +71502,24 @@ public final class StructConfPB {
       return isOccupyVpu_;
     }
 
-    // optional .mt.EmMtDualMode dual_mode = 18;
+    // optional .mt.EmMtDualMode dual_mode = 18 [default = MT_DUAL_MODE_EVERYONE];
     public static final int DUAL_MODE_FIELD_NUMBER = 18;
     private com.kedacom.mt.netmanage.protobuf.EnumPB.EmMtDualMode dualMode_;
     /**
-     * <code>optional .mt.EmMtDualMode dual_mode = 18;</code>
+     * <code>optional .mt.EmMtDualMode dual_mode = 18 [default = MT_DUAL_MODE_EVERYONE];</code>
      *
      * <pre>
-     *发言模式
+     *发言模式 
      * </pre>
      */
     public boolean hasDualMode() {
       return ((bitField0_ & 0x00020000) == 0x00020000);
     }
     /**
-     * <code>optional .mt.EmMtDualMode dual_mode = 18;</code>
+     * <code>optional .mt.EmMtDualMode dual_mode = 18 [default = MT_DUAL_MODE_EVERYONE];</code>
      *
      * <pre>
-     *发言模式
+     *发言模式 
      * </pre>
      */
     public com.kedacom.mt.netmanage.protobuf.EnumPB.EmMtDualMode getDualMode() {
@@ -71435,7 +71664,7 @@ public final class StructConfPB {
       bsatDcastMode_ = false;
       openMode_ = com.kedacom.mt.netmanage.protobuf.EnumPB.EmMtOpenMode.emMt_OPEN;
       isOccupyVpu_ = false;
-      dualMode_ = com.kedacom.mt.netmanage.protobuf.EnumPB.EmMtDualMode.MT_DUAL_MODE_SPEAKER;
+      dualMode_ = com.kedacom.mt.netmanage.protobuf.EnumPB.EmMtDualMode.MT_DUAL_MODE_EVERYONE;
       isAllInitDumb_ = false;
       isConfNoDisturb_ = false;
       isPortMode_ = false;
@@ -71803,7 +72032,7 @@ public final class StructConfPB {
         bitField0_ = (bitField0_ & ~0x00008000);
         isOccupyVpu_ = false;
         bitField0_ = (bitField0_ & ~0x00010000);
-        dualMode_ = com.kedacom.mt.netmanage.protobuf.EnumPB.EmMtDualMode.MT_DUAL_MODE_SPEAKER;
+        dualMode_ = com.kedacom.mt.netmanage.protobuf.EnumPB.EmMtDualMode.MT_DUAL_MODE_EVERYONE;
         bitField0_ = (bitField0_ & ~0x00020000);
         isAllInitDumb_ = false;
         bitField0_ = (bitField0_ & ~0x00040000);
@@ -73582,33 +73811,33 @@ public final class StructConfPB {
         return this;
       }
 
-      // optional .mt.EmMtDualMode dual_mode = 18;
-      private com.kedacom.mt.netmanage.protobuf.EnumPB.EmMtDualMode dualMode_ = com.kedacom.mt.netmanage.protobuf.EnumPB.EmMtDualMode.MT_DUAL_MODE_SPEAKER;
+      // optional .mt.EmMtDualMode dual_mode = 18 [default = MT_DUAL_MODE_EVERYONE];
+      private com.kedacom.mt.netmanage.protobuf.EnumPB.EmMtDualMode dualMode_ = com.kedacom.mt.netmanage.protobuf.EnumPB.EmMtDualMode.MT_DUAL_MODE_EVERYONE;
       /**
-       * <code>optional .mt.EmMtDualMode dual_mode = 18;</code>
+       * <code>optional .mt.EmMtDualMode dual_mode = 18 [default = MT_DUAL_MODE_EVERYONE];</code>
        *
        * <pre>
-       *发言模式
+       *发言模式 
        * </pre>
        */
       public boolean hasDualMode() {
         return ((bitField0_ & 0x00020000) == 0x00020000);
       }
       /**
-       * <code>optional .mt.EmMtDualMode dual_mode = 18;</code>
+       * <code>optional .mt.EmMtDualMode dual_mode = 18 [default = MT_DUAL_MODE_EVERYONE];</code>
        *
        * <pre>
-       *发言模式
+       *发言模式 
        * </pre>
        */
       public com.kedacom.mt.netmanage.protobuf.EnumPB.EmMtDualMode getDualMode() {
         return dualMode_;
       }
       /**
-       * <code>optional .mt.EmMtDualMode dual_mode = 18;</code>
+       * <code>optional .mt.EmMtDualMode dual_mode = 18 [default = MT_DUAL_MODE_EVERYONE];</code>
        *
        * <pre>
-       *发言模式
+       *发言模式 
        * </pre>
        */
       public Builder setDualMode(com.kedacom.mt.netmanage.protobuf.EnumPB.EmMtDualMode value) {
@@ -73621,15 +73850,15 @@ public final class StructConfPB {
         return this;
       }
       /**
-       * <code>optional .mt.EmMtDualMode dual_mode = 18;</code>
+       * <code>optional .mt.EmMtDualMode dual_mode = 18 [default = MT_DUAL_MODE_EVERYONE];</code>
        *
        * <pre>
-       *发言模式
+       *发言模式 
        * </pre>
        */
       public Builder clearDualMode() {
         bitField0_ = (bitField0_ & ~0x00020000);
-        dualMode_ = com.kedacom.mt.netmanage.protobuf.EnumPB.EmMtDualMode.MT_DUAL_MODE_SPEAKER;
+        dualMode_ = com.kedacom.mt.netmanage.protobuf.EnumPB.EmMtDualMode.MT_DUAL_MODE_EVERYONE;
         onChanged();
         return this;
       }
@@ -119402,353 +119631,355 @@ public final class StructConfPB {
       "\r:\00296\022\022\n\ng7221_rate\030\010 \001(\r\022\026\n\016bg7221_reve" +
       "rse\030\t \001(\010\022\030\n\020is_nat_traversal\030\n \001(\010\022\030\n\020a" +
       "ac_ld_MuxConfig\030\013 \001(\014\022\024\n\014is_tlp_event\030\014 " +
-      "\001(\010\"\332\001\n\013TSrtpCrypto\022.\n\020srtp_crypto_type\030" +
+      "\001(\010\"\230\002\n\013TSrtpCrypto\022.\n\020srtp_crypto_type\030" +
       "\001 \001(\0162\024.mt.EmSrtpCryptoType\022*\n\016srtp_auth" +
       "_type\030\002 \001(\0162\022.mt.EmSrtpAuthType\022\020\n\010srtp_" +
       "tag\030\003 \001(\r\022\022\n\ncrypto_key\030\004 \001(\014\022\024\n\014crypto_" +
       "keyid\030\005 \001(\014\022\030\n\020crypto_keyid_len\030\006 \001(\r\022\031\n" +
-      "\021bkrtcp_crypto_key\030\007 \001(\014\"W\n\021TSrtpParamSe",
-      "tting\022\026\n\016is_srtp_enable\030\001 \001(\010\022*\n\021srtp_cr" +
-      "ypto_param\030\002 \003(\0132\017.mt.TSrtpCrypto\"o\n\017TAV" +
-      "CapSrtpParam\022-\n\016vid_srtp_param\030\001 \003(\0132\025.m" +
-      "t.TSrtpParamSetting\022-\n\016aud_srtp_param\030\002 " +
-      "\003(\0132\025.mt.TSrtpParamSetting\"\324\003\n\rTVidChanP" +
-      "aram\022%\n\014video_format\030\001 \001(\0162\017.mt.EmVidFor" +
-      "mat\022\017\n\007payload\030\002 \001(\r\022\"\n\tencry_key\030\003 \001(\0132" +
-      "\017.mt.TEncryptKey\022.\n\rencrypt_arith\030\004 \001(\0162" +
-      "\027.mt.EmEncryptArithmetic\022,\n\020video_resolu" +
-      "tion\030\005 \001(\0162\022.mt.EmMtResolution\022\022\n\nframe_",
-      "rate\030\006 \001(\r\022\030\n\020chan_max_bitrate\030\007 \001(\r\022\'\n\014" +
-      "h264_profile\030\010 \001(\0162\021.mt.EmH264Profile\022\027\n" +
-      "\017h264_svc_enable\030\t \001(\010\022\030\n\020is_nat_travers" +
-      "al\030\n \001(\010\022\'\n\014h265_profile\030\013 \001(\0162\021.mt.EmH2" +
-      "65Profile\022\025\n\ris_rtcp_fbpli\030\014 \001(\010\022\025\n\ris_r" +
-      "tcp_fbfir\030\r \001(\010\022\027\n\017is_rtcp_fbtmmbr\030\016 \001(\010" +
-      "\022\017\n\007is_h239\030\024 \001(\010\"b\n\017TRpAudChanParam\022$\n\t" +
-      "aud_param\030\001 \003(\0132\021.mt.TAudChanParam\022)\n\nsr" +
-      "tp_param\030\002 \001(\0132\025.mt.TSrtpParamSetting\"b\n" +
-      "\017TRpVidChanParam\022$\n\tvid_param\030\001 \003(\0132\021.mt",
-      ".TVidChanParam\022)\n\nsrtp_param\030\002 \001(\0132\025.mt." +
-      "TSrtpParamSetting\"j\n\016TMtAVChanParam\022+\n\016a" +
-      "ud_chan_param\030\001 \001(\0132\023.mt.TRpAudChanParam" +
-      "\022+\n\016vid_chan_param\030\002 \001(\0132\023.mt.TRpVidChan" +
-      "Param\"\235\004\n\017TMtConfBaseInfo\022\017\n\007conf_id\030\001 \001" +
-      "(\t\022\021\n\tconf_name\030\002 \001(\t\022\023\n\013conf_number\030\003 \001" +
-      "(\t\022\020\n\010conf_pwd\030\004 \001(\t\022\021\n\tbneed_pwd\030\005 \001(\010\022" +
-      "\025\n\rconf_duration\030\006 \001(\r\022+\n\nencry_type\030\007 \001" +
-      "(\0162\027.mt.EmEncryptArithmetic\022%\n\014video_for" +
-      "mat\030\010 \001(\0162\017.mt.EmVidFormat\022%\n\014audio_form",
-      "at\030\t \001(\0162\017.mt.EmAudFormat\022&\n\nresolution\030" +
-      "\n \001(\0162\022.mt.EmMtResolution\022\"\n\010chnl_num\030\013 " +
-      "\001(\0162\020.mt.EmAacChnlNum\022)\n\020sec_video_forma" +
-      "t\030\014 \001(\0162\017.mt.EmVidFormat\022\'\n\013sec_vid_res\030" +
-      "\r \001(\0162\022.mt.EmMtResolution\022\023\n\013sec_vid_fps" +
-      "\030\016 \001(\r\022\023\n\013is_auto_vmp\030\017 \001(\010\022\016\n\006is_mix\030\020 " +
-      "\001(\010\022*\n\017vid_h264Profile\030\021 \001(\0162\021.mt.EmH264" +
-      "Profile\022\024\n\014conf_bitrate\030\022 \001(\r\"7\n\rTRpMtCo" +
-      "nfList\022&\n\tconf_info\030\001 \003(\0132\023.mt.TMtConfBa" +
-      "seInfo\"\232\002\n\017TMtConfNameInfo\022\021\n\tconf_name\030",
-      "\001 \001(\t\022\021\n\tconf_e164\030\002 \001(\t\022\023\n\013terlist_num\030" +
-      "\003 \001(\r\022\023\n\013remain_time\030\004 \001(\r\022#\n\topen_mode\030" +
-      "\005 \001(\0162\020.mt.EmMtOpenMode\022%\n\014clarity_mode\030" +
-      "\006 \001(\0162\017.mt.EmMtClarity\022$\n\017conf_start_tim" +
-      "e\030\007 \001(\0132\013.mt.TMTTime\022\030\n\020is_satdcast_mode" +
-      "\030\010 \001(\010\022\026\n\016is_public_conf\030\t \001(\010\022\023\n\013is_nee" +
-      "d_pwd\030\n \001(\010\"@\n\021TRpMtConfNameInfo\022+\n\016conf" +
-      "_name_info\030\001 \003(\0132\023.mt.TMtConfNameInfo\"y\n" +
-      "\022TMtNewConfBaseInfo\022\021\n\tconf_name\030\001 \001(\t\022\021" +
-      "\n\tconf_e164\030\002 \001(\t\022\023\n\013domain_guid\030\003 \001(\t\022\023",
-      "\n\013domain_name\030\004 \001(\t\022\023\n\013domain_moid\030\005 \001(\t" +
-      "\"\257\004\n\021TMtConfDetailInfo\0222\n\022new_conf_base_" +
-      "info\030\001 \001(\0132\026.mt.TMtNewConfBaseInfo\022\022\n\nco" +
-      "nf_style\030\002 \001(\r\022\021\n\tshort_num\030\003 \001(\t\022-\n\014enc" +
-      "rypt_mode\030\004 \001(\0162\027.mt.EmEncryptArithmetic" +
-      "\022\017\n\007bitrate\030\005 \001(\r\022%\n\014clarity_mode\030\006 \001(\0162" +
-      "\017.mt.EmMtClarity\022#\n\007vid_res\030\007 \001(\0162\022.mt.E" +
-      "mMtResolution\022#\n\topen_mode\030\010 \001(\0162\020.mt.Em" +
-      "MtOpenMode\022\027\n\017is_discuss_conf\030\t \001(\010\022\037\n\ns" +
-      "tart_time\030\n \001(\0132\013.mt.TMTTime\022\020\n\010duration",
-      "\030\013 \001(\r\022\r\n\005alias\030\014 \001(\t\022#\n\tdual_mode\030\r \001(\016" +
-      "2\020.mt.EmMtDualMode\022\030\n\020is_satdcast_mode\030\016" +
-      " \001(\010\022\026\n\016is_public_conf\030\017 \001(\010\022\024\n\014is_port_" +
-      "mode\030\020 \001(\010\022\032\n\022is_conf_no_disturb\030\021 \001(\010\022\023" +
-      "\n\013is_need_pwd\030\022 \001(\010\022\025\n\rmax_joined_mt\030\023 \001" +
-      "(\r\"\226\001\n\020TMtJoinConfParam\022\021\n\tcall_rate\030\001 \001" +
-      "(\r\022\021\n\tconf_e164\030\002 \001(\t\022\020\n\010conf_pwd\030\003 \001(\t\022" +
-      "\017\n\007is_dial\030\004 \001(\010\022\020\n\010dial_num\030\005 \001(\t\022\021\n\tco" +
-      "nf_name\030\006 \001(\t\022\024\n\014conf_name_ai\030\007 \001(\t\":\n\024T" +
-      "MtJoinConfParamList\022\"\n\004list\030\001 \003(\0132\024.mt.T",
-      "MtJoinConfParam\"\257\013\n\022TMtCreateConfParam\022\020" +
-      "\n\010conf_pwd\030\001 \001(\t\022\021\n\tconf_name\030\002 \001(\t\022\025\n\rc" +
-      "onf_duration\030\003 \001(\r\022\024\n\014conf_bitrate\030\004 \001(\r" +
-      "\022#\n\topen_mode\030\005 \001(\0162\020.mt.EmMtOpenMode\0220\n" +
-      "\014release_mode\030\006 \001(\0162\032.mt.EmMtConfRelease" +
-      "ModeDef\022\030\n\020is_all_init_dumb\030\007 \001(\010\022-\n\014con" +
-      "f_encrypt\030\010 \001(\0162\027.mt.EmEncryptArithmetic" +
-      "\022\016\n\006enckey\030\t \001(\014\022\030\n\020is_satdcast_mode\030\n \001" +
-      "(\010\022\034\n\024max_bitrate_for_opus\030\013 \001(\r\022\034\n\024min_" +
-      "bitrate_for_opus\030\014 \001(\r\022\026\n\016is_public_conf",
-      "\030\r \001(\010\022\024\n\014is_port_mode\030\016 \001(\010\022\031\n\021is_conf_" +
-      "nodisturb\030\017 \001(\010\022#\n\nvid_format\030\020 \001(\0162\017.mt" +
-      ".EmVidFormat\022\'\n\014h264_profile\030\021 \001(\0162\021.mt." +
-      "EmH264Profile\022#\n\007vid_res\030\022 \001(\0162\022.mt.EmMt" +
-      "Resolution\022\017\n\007vid_fps\030\023 \001(\r\022&\n\rassvid_fo" +
-      "rmat\030\024 \001(\0162\017.mt.EmVidFormat\022&\n\nassvid_re" +
-      "s\030\025 \001(\0162\022.mt.EmMtResolution\022\022\n\nassvid_fp" +
-      "s\030\026 \001(\r\022#\n\naud_format\030\027 \001(\0162\017.mt.EmAudFo" +
-      "rmat\022\"\n\010chnl_num\030\030 \001(\0162\020.mt.EmAacChnlNum" +
-      "\022\034\n\007speaker\030\031 \001(\0132\013.mt.TMtAddr\022\021\n\tcallti",
-      "mes\030\032 \001(\r\022\024\n\014callinterval\030\033 \001(\r\022\024\n\014is_ca" +
-      "llChase\030\034 \001(\010\022-\n\rvideo_quality\030\035 \001(\0162\026.m" +
-      "t.EmRestVideoQuality\022#\n\tdual_mode\030\036 \001(\0162" +
-      "\020.mt.EmMtDualMode\022\023\n\013cascademode\030\037 \001(\r\022\030" +
-      "\n\020is_cascadeupload\030  \001(\010\022\030\n\020is_cascadere" +
-      "turn\030! \001(\010\022\031\n\021cascadereturnpara\030\" \001(\r\022#\n" +
-      "\rmulticastaddr\030# \001(\0132\014.mt.TNetAddr\022\032\n\022is" +
-      "_multicastenable\030$ \001(\010\022\020\n\010vip_list\030% \003(\r" +
-      "\022\026\n\016call_chaselist\030& \003(\r\022&\n\tpoll_Info\030\' " +
-      "\001(\0132\023.mt.TMtMiniPollInfo\022&\n\tvmp_param\030( ",
-      "\001(\0132\023.mt.TMtMiniVmpParam\022!\n\010mix_mode\030) \001" +
-      "(\0162\017.mt.EmMtMixType\022\020\n\010mix_list\030* \003(\r\022\036\n" +
-      "\007mt_list\030+ \001(\0132\r.mt.TRpMtAddr\022\035\n\010chairma" +
-      "n\030, \001(\0132\013.mt.TMtAddr\022\'\n\nautorecord\030- \001(\013" +
-      "2\023.mt.TMtAutorecattrb\022\027\n\017mix_vacinterval" +
-      "\030. \001(\r\022\027\n\017is_onereforming\030/ \001(\010\022\021\n\tconf_" +
-      "e164\0300 \001(\t\022\025\n\rmax_joined_mt\0301 \001(\r\"\210\001\n\017TM" +
-      "tAutorecattrb\022\017\n\007autorec\030\001 \001(\010\022\023\n\013publis" +
-      "hmode\030\002 \001(\r\022\026\n\016isrecmainvideo\030\003 \001(\010\022\024\n\014i" +
-      "srecdstream\030\004 \001(\010\022!\n\010vrsalias\030\005 \001(\0132\017.mt",
-      ".TMtVrsalias\"=\n\013TMtVrsalias\022\021\n\taliastype" +
-      "\030\001 \001(\r\022\014\n\004addr\030\002 \001(\t\022\r\n\005vrsno\030\003 \001(\t\"p\n\017T" +
-      "MtMiniPollInfo\022\'\n\nmedia_mode\030\001 \001(\0162\023.mt." +
-      "EmMtPollModeDef\022\021\n\tkeep_time\030\002 \001(\r\022\020\n\010po" +
-      "ll_num\030\003 \001(\r\022\017\n\007poll_mt\030\004 \003(\r\"\246\002\n\017TMtMin" +
-      "iVmpParam\022\024\n\014is_vmp_brdst\030\002 \001(\010\022#\n\tvmp_s" +
-      "tyle\030\003 \001(\0162\020.mt.EmMtVmpStyle\022!\n\010vmp_mode" +
-      "\030\005 \001(\0162\017.mt.EmMtVmpMode\022\026\n\016is_rim_enable" +
-      "d\030\006 \001(\010\022\027\n\017is_add_mmbalias\030\007 \001(\010\022\031\n\021is_v" +
-      "mp_batch_poll\030\010 \001(\010\022\026\n\016keep_poll_time\030\t ",
-      "\001(\r\022\020\n\010poll_num\030\n \001(\r\022(\n\nvmp_member\030\013 \003(" +
-      "\0132\024.mt.TMtMiniVMPMember\022\025\n\ris_voice_hint" +
-      "\030\014 \001(\010\"\243\001\n\020TMtMiniVMPMember\022\016\n\006member\030\001 " +
-      "\001(\r\022\'\n\013member_type\030\002 \001(\0162\022.mt.EmMtVMPMmb" +
-      "Type\022.\n\rmember_status\030\003 \001(\0162\027.mt.EmMtMem" +
-      "berStatusDef\022\023\n\013chnnl_index\030\004 \001(\r\022\021\n\tmem" +
-      "_index\030\005 \001(\r\"\274\005\n\014TMtCallParam\022#\n\tcall_ty" +
-      "pe\030\001 \001(\0162\020.mt.EmMtCallMode\022\021\n\tcall_rate\030" +
-      "\002 \001(\r\022)\n\rconf_protocol\030\003 \001(\0162\022.mt.EmConf" +
-      "Protocol\022(\n\016call_addr_type\030\004 \001(\0162\020.mt.Em",
-      "MtAddrType\022\"\n\014calling_addr\030\005 \001(\0132\014.mt.TN" +
-      "etAddr\022!\n\013called_addr\030\006 \001(\0132\014.mt.TNetAdd" +
-      "r\022%\n\rcalling_alias\030\007 \001(\0132\016.mt.TRpMtAlias" +
-      "\022$\n\014called_alias\030\010 \001(\0132\016.mt.TRpMtAlias\022\024" +
-      "\n\014bcreate_conf\030\t \001(\010\022+\n\016conf_base_info\030\n" +
-      " \001(\0132\023.mt.TMtConfBaseInfo\022\036\n\007mt_list\030\013 \001" +
-      "(\0132\r.mt.TRpMtAddr\022\027\n\017peer_product_id\030\014 \001" +
-      "(\t\022\027\n\017peer_version_id\030\r \001(\t\022\026\n\016peer_vend" +
-      "er_id\030\016 \001(\r\022\020\n\010bencrypt\030\017 \001(\010\022)\n\rendpoin" +
-      "t_type\030\020 \001(\0162\022.mt.EmEndpointType\022\020\n\010nons",
-      "tand\030\021 \001(\014\022\016\n\006callid\030\022 \001(\t\022\030\n\020is_peersta" +
-      "ck_5p0\030\023 \001(\010\022\025\n\ris_vidchanoff\030\024 \001(\010\022-\n\017s" +
-      "ipconnect_type\030\025 \001(\0162\024.mt.EmSipConnectTy" +
-      "pe\022\037\n\027is_peer_support_confsub\030\030 \001(\010\"9\n\021T" +
-      "MultiMtCallParam\022$\n\ncall_param\030\001 \003(\0132\020.m" +
-      "t.TMtCallParam\"7\n\020TMTSatelliteFlag\022\017\n\007is" +
-      "_sate\030\001 \001(\010\022\022\n\np2p_enable\030\002 \001(\010\"\251\005\n\017TMtC" +
-      "allLinkSate\022%\n\ncall_state\030\001 \001(\0162\021.mt.EmM" +
-      "tCallState\022)\n\rconf_protocol\030\002 \001(\0162\022.mt.E" +
-      "mConfProtocol\022\021\n\tis_caller\030\003 \001(\010\022\021\n\tcall",
-      "_rate\030\004 \001(\r\022\032\n\022call_avial_up_rate\030\005 \001(\r\022" +
-      "\034\n\024call_avail_down_rate\030\006 \001(\r\022.\n\017call_di" +
-      "s_reason\030\007 \001(\0162\025.mt.EmMtCallDisReason\022\037\n" +
-      "\tpeer_addr\030\010 \001(\0132\014.mt.TNetAddr\022!\n\npeer_m" +
-      "odel\030\t \001(\0162\r.mt.EmMtModel\022\026\n\016peer_produc" +
-      "tid\030\n \001(\t\022\"\n\npeer_alias\030\013 \001(\0132\016.mt.TRpMt" +
-      "Alias\022.\n\022peer_endpoint_type\030\014 \001(\0162\022.mt.E" +
-      "mEndpointType\022*\n\025conf_established_time\030\r" +
-      " \001(\0132\013.mt.TMTTime\022)\n\014calling_type\030\016 \001(\0162" +
-      "\023.mt.EmMtCallingType\022\023\n\013peer_Vendor\030\017 \001(",
-      "\r\022\026\n\016peer_versionId\030\020 \001(\t\022\034\n\024is_peerstac" +
-      "kafter5p0\030\021 \001(\010\022\022\n\nis_qt_call\030\022 \001(\010\022-\n\017s" +
-      "ipconnect_type\030\023 \001(\0162\024.mt.EmSipConnectTy" +
-      "pe\022\037\n\027is_peer_spt_subconflist\030\024 \001(\010\"\210\001\n\016" +
-      "TCodecPackStat\022\017\n\007bitrate\030\001 \001(\r\022\023\n\013avr_b" +
-      "itrate\030\002 \001(\r\022\022\n\nlost_packs\030\003 \001(\r\022\023\n\013tota" +
-      "l_packs\030\004 \001(\r\022\016\n\006frames\030\005 \001(\r\022\027\n\017lost_fr" +
-      "ame_rate\030\006 \001(\r\"\224\001\n\017TMtStatusToPcdv\022\037\n\010mt" +
-      "_model\030\001 \001(\0162\r.mt.EmMtModel\022$\n\tcall_sate" +
-      "\030\002 \001(\0162\021.mt.EmMtCallState\022#\n\tconf_mode\030\003",
-      " \001(\0162\020.mt.EmMtConfMode\022\025\n\rcan_send_dual\030" +
-      "\004 \001(\010\"\220\001\n\rTAssVidStatus\022%\n\nchan_state\030\001 " +
-      "\001(\0162\021.mt.EmMtChanState\022!\n\007vid_lab\030\002 \001(\0162" +
-      "\020.mt.EmMtVidLabel\022\017\n\007bactive\030\003 \001(\010\022$\n\npc" +
-      "_ass_src\030\004 \001(\0132\020.mt.TMtcBaseInfo\"<\n\022TMtA" +
-      "ssSndVidStatus\022&\n\013ass_vid_snd\030\001 \003(\0132\021.mt" +
-      ".TAssVidStatus\"<\n\022TMtAssRcvVidStatus\022&\n\013" +
-      "ass_vid_rcv\030\001 \003(\0132\021.mt.TAssVidStatus\"\224\001\n" +
-      "\017TMtSimpConfInfo\022\032\n\007speaker\030\001 \001(\0132\t.mt.T" +
-      "MtId\022\033\n\010chairman\030\002 \001(\0132\t.mt.TMtId\022%\n\014dis",
-      "cuss_mode\030\003 \001(\0162\017.mt.EmMtMixType\022!\n\010vmp_" +
-      "mode\030\004 \001(\0162\017.mt.EmMtVmpMode\"7\n\016TMtTerLos" +
-      "sRate\022%\n\010one_chan\030\001 \003(\0132\023.mt.TMtChanLoss" +
-      "Rate\"_\n\017TMtChanLossRate\022 \n\004mode\030\001 \001(\0162\022." +
-      "mt.EmMediaModeDef\022\020\n\010recv_idx\030\002 \001(\r\022\030\n\020p" +
-      "acket_lost_rate\030\003 \001(\r\"\205\005\n\013TMtConfInfo\022\037\n" +
-      "\nstart_time\030\001 \001(\0132\013.mt.TMTTime\022\020\n\010durati" +
-      "on\030\002 \001(\r\022\017\n\007bitrate\030\003 \001(\r\022\023\n\013sec_bitrate" +
-      "\030\004 \001(\r\022*\n\016main_video_res\030\005 \001(\0162\022.mt.EmMt" +
-      "Resolution\022)\n\rass_video_res\030\006 \001(\0162\022.mt.E",
-      "mMtResolution\022\026\n\016talk_hold_time\030\007 \001(\r\022\020\n" +
-      "\010conf_pwd\030\010 \001(\t\022\021\n\tconf_name\030\t \001(\t\022\021\n\tco" +
-      "nf_e164\030\n \001(\t\022\033\n\010chairman\030\013 \001(\0132\t.mt.TMt" +
-      "Id\022\032\n\007speaker\030\014 \001(\0132\t.mt.TMtId\022\"\n\tvmp_pa" +
-      "ram\030\r \001(\0132\017.mt.TMtVmpParam\022\"\n\tmix_param\030" +
-      "\016 \001(\0132\017.mt.TMtMixParam\022\027\n\017bsat_dcast_mod" +
-      "e\030\017 \001(\010\022#\n\topen_mode\030\020 \001(\0162\020.mt.EmMtOpen" +
-      "Mode\022\025\n\ris_occupy_vpu\030\021 \001(\010\022#\n\tdual_mode" +
-      "\030\022 \001(\0162\020.mt.EmMtDualMode\022\030\n\020is_all_init_" +
-      "dumb\030\023 \001(\010\022\032\n\022is_conf_no_disturb\030\024 \001(\010\022\024",
-      "\n\014is_port_mode\030\025 \001(\010\022\032\n\022is_force_broadca" +
-      "st\030\026 \001(\010\022\023\n\013record_mode\030\027 \001(\r\"\373\002\n\023TPeerC" +
-      "apabilityInfo\022\014\n\004bMix\030\001 \001(\010\022\014\n\004bVAC\030\002 \001(" +
-      "\010\022\022\n\nbCustomVMP\030\003 \001(\010\022\020\n\010bAutoVMP\030\004 \001(\010\022" +
-      "\020\n\010bEndConf\030\005 \001(\010\022\021\n\tbInvateMt\030\006 \001(\010\022\017\n\007" +
-      "bDropMt\030\007 \001(\010\022\023\n\013bSelSpeaker\030\010 \001(\010\022\021\n\tbS" +
-      "elChair\030\t \001(\010\022\022\n\nbSelSource\030\n \001(\010\022\r\n\005bFE" +
-      "CC\030\013 \001(\010\022\016\n\006bQuiet\030\014 \001(\010\022\r\n\005bMute\030\r \001(\010\022" +
-      "\020\n\010bConfReq\030\016 \001(\010\022\023\n\013bOnlineList\030\017 \001(\010\022\024" +
-      "\n\014bOfflineList\030\020 \001(\010\022\022\n\nbPicSwitch\030\021 \001(\010",
-      "\022\030\n\020bSelSpeakingUser\030\022 \001(\010\022\027\n\017bForceBroa" +
-      "dcast\030\023 \001(\010\"S\n\013TMtMixParam\022%\n\014discuss_mo" +
-      "de\030\001 \001(\0162\017.mt.EmMtMixType\022\035\n\010mix_item\030\002 " +
-      "\001(\0132\013.mt.TRpMtId\"\246\001\n\013TMtVmpParam\022!\n\010vmp_" +
-      "mode\030\001 \001(\0162\017.mt.EmMtVmpMode\022#\n\tvmp_style" +
-      "\030\002 \001(\0162\020.mt.EmMtVmpStyle\022\037\n\007mt_item\030\003 \003(" +
-      "\0132\016.mt.TMtVmpItem\022\026\n\016bvmp_broadcast\030\004 \001(" +
-      "\010\022\026\n\016badd_mmb_alias\030\005 \001(\010\"\211\001\n\nTMtVmpItem" +
-      "\022\030\n\005mt_id\030\001 \001(\0132\t.mt.TMtId\022#\n\007mt_type\030\002 " +
-      "\001(\0162\022.mt.EmMtVMPMmbType\022+\n\010chan_idx\030\003 \001(",
-      "\0162\031.mt.EmCodecComponentIndex\022\017\n\007mem_idx\030" +
-      "\004 \001(\r\"\230\001\n\013TMtPollInfo\022%\n\nmedia_type\030\001 \001(" +
-      "\0162\021.mt.EmMtMediaType\022\034\n\006action\030\002 \001(\0162\014.m" +
-      "t.EmAction\022\021\n\tkeep_time\030\003 \001(\r\022\031\n\006mtlist\030" +
-      "\004 \003(\0132\t.mt.TMtId\022\026\n\016poll_scheme_id\030\005 \001(\r" +
-      "\"7\n\020TVideoSourceInfo\022\020\n\010vid_port\030\001 \001(\r\022\021" +
-      "\n\tport_name\030\002 \001(\014\"C\n\022TRpVideoSourceInfo\022" +
-      "-\n\017vid_source_info\030\001 \003(\0132\024.mt.TVideoSour" +
-      "ceInfo\"\231\001\n\rTMtVideoAlias\022(\n\nvideo_type\030\001" +
-      " \001(\0162\024.mt.EmCodecComponent\022+\n\010video_id\030\002",
-      " \001(\0162\031.mt.EmCodecComponentIndex\0221\n\021video" +
-      "_source_list\030\003 \001(\0132\026.mt.TRpVideoSourceIn" +
-      "fo\">\n\017TRpMtVideoAlias\022+\n\020video_alias_lis" +
-      "t\030\001 \003(\0132\021.mt.TMtVideoAlias\"O\n\017TMtEntityS" +
-      "tatus\022\030\n\005label\030\001 \001(\0132\t.mt.TMtId\022\"\n\nter_s" +
-      "tatus\030\002 \001(\0132\016.mt.TTerStatus\";\n\021TRpMtEnti" +
-      "tyStatus\022&\n\tmt_status\030\001 \003(\0132\023.mt.TMtEnti" +
-      "tyStatus\"T\n\nTVideoInfo\022\n\n\002id\030\001 \001(\r\022\024\n\014bf" +
-      "ecc_enable\030\002 \001(\010\022\021\n\thas_video\030\003 \001(\010\022\021\n\tv" +
-      "ideo_src\030\004 \001(\r\"1\n\014TRpVideoInfo\022!\n\tvideoi",
-      "nfo\030\001 \003(\0132\016.mt.TVideoInfo\"\310\001\n\nTTerStatus" +
-      "\022\037\n\010mt_model\030\001 \001(\0162\r.mt.EmMtModel\022\017\n\007enc" +
-      "_vol\030\002 \001(\r\022\017\n\007dec_vol\030\003 \001(\r\022\r\n\005bmute\030\004 \001" +
-      "(\010\022\016\n\006bquiet\030\005 \001(\010\022\017\n\007bmatrix\030\006 \001(\010\022!\n\tv" +
-      "ideoinfo\030\007 \003(\0132\016.mt.TVideoInfo\022$\n\tview_t" +
-      "ype\030\010 \001(\0162\021.mt.EmMtMediaType\"\254\001\n\tTShortM" +
-      "sg\022\037\n\010sms_type\030\001 \001(\0162\r.mt.EmSMSType\022\031\n\006m" +
-      "t_src\030\002 \001(\0132\t.mt.TMtId\022\031\n\006mt_dst\030\003 \003(\0132\t" +
-      ".mt.TMtId\022&\n\nroll_speed\030\004 \001(\0162\022.mt.EmRol" +
-      "lMsgSpeed\022\022\n\nroll_times\030\005 \001(\r\022\014\n\004text\030\006 ",
-      "\001(\t\"\241\002\n\014TMtRegistReq\022\035\n\005alias\030\001 \001(\0132\016.mt" +
-      ".TRpMtAlias\022 \n\nlocal_addr\030\002 \001(\0132\014.mt.TNe" +
-      "tAddr\022\035\n\007gk_addr\030\003 \001(\0132\014.mt.TNetAddr\022\"\n\014" +
-      "sip_reg_addr\030\004 \001(\0132\014.mt.TNetAddr\022\021\n\ttime" +
-      "_live\030\005 \001(\r\022\036\n\010username\030\006 \001(\0132\014.mt.TMtAl" +
-      "ias\022\020\n\010password\030\007 \001(\t\022\021\n\tproductid\030\010 \001(\t" +
-      "\022\021\n\tversionid\030\t \001(\t\022\022\n\nsip_domain\030\n \001(\t\022" +
-      "\016\n\006domain\030\013 \001(\t\"X\n\nTGkRegInfo\022\021\n\tbregist" +
-      "ed\030\001 \001(\010\022%\n\006reason\030\002 \001(\0162\025.mt.EmRegFaile" +
-      "dReason\022\020\n\010bauth_ok\030\003 \001(\010\"p\n\020TH323StackH",
-      "andle\022\014\n\004call\030\001 \001(\003\022\020\n\010app_call\030\002 \001(\003\022\014\n" +
-      "\004chan\030\003 \001(\003\022\020\n\010app_chan\030\004 \001(\003\022\013\n\003ras\030\005 \001" +
-      "(\003\022\017\n\007app_ras\030\006 \001(\003\"`\n\nTMtRCFInfo\022!\n\013end" +
-      "point_id\030\001 \001(\0132\014.mt.TMtAlias\022\033\n\005gk_id\030\002 " +
-      "\001(\0132\014.mt.TMtAlias\022\022\n\ntimetolive\030\003 \001(\r\"C\n" +
-      "\nTMtACFInfo\022\024\n\014gk_bandwidth\030\001 \001(\r\022\037\n\tpee" +
-      "r_addr\030\002 \001(\0132\014.mt.TNetAddr\"\263\001\n\nTMtFeccMs" +
-      "g\022\016\n\006action\030\001 \001(\r\022\017\n\007request\030\002 \001(\r\022\020\n\010so" +
-      "urceno\030\003 \001(\r\022\020\n\010presetno\030\004 \001(\r\022\017\n\007timeou" +
-      "t\030\005 \001(\r\022\022\n\nis_cme_msg\030\006 \001(\r\022*\n\014cme_msg_t",
-      "ype\030\007 \001(\0162\024.mt.EmFeccCMEMsgType\022\017\n\007com_i" +
-      "dx\030\010 \001(\r\"R\n\tTMtSeeing\022+\n\010chan_idx\030\001 \001(\0162" +
-      "\031.mt.EmCodecComponentIndex\022\030\n\005mt_id\030\002 \001(" +
-      "\0132\t.mt.TMtId\",\n\013TRpMtSeeing\022\035\n\006mt_see\030\001 " +
-      "\003(\0132\r.mt.TMtSeeing\"\215\001\n\rTViewTerParam\022\025\n\002" +
-      "mt\030\001 \001(\0132\t.mt.TMtId\022\037\n\004type\030\002 \001(\0162\021.mt.E" +
-      "mMtMediaType\022\027\n\017is_see_all_chan\030\003 \001(\010\022+\n" +
-      "\010chan_idx\030\004 \001(\0162\031.mt.EmCodecComponentInd" +
-      "ex\"T\n\021TCloudRecordState\022\027\n\017is_cloud_reco" +
-      "rd\030\001 \001(\010\022&\n\021cloud_record_time\030\002 \001(\0132\013.mt",
-      ".TMTTime\"\224\002\n\rTInnerMCParam\022\020\n\010vmp_type\030\001" +
-      " \001(\r\022\035\n\007mc_mode\030\002 \001(\0162\014.mt.EmMCMode\022\021\n\tc" +
-      "onf_name\030\003 \001(\t\022\021\n\tconf_rate\030\004 \001(\r\022)\n\rcon" +
-      "f_protocol\030\005 \001(\0162\022.mt.EmConfProtocol\022\'\n\014" +
-      "main_vid_cap\030\006 \001(\0132\021.mt.TVidFormatCap\022(\n" +
-      "\rassis_vid_cap\030\007 \001(\0132\021.mt.TVidFormatCap\022" +
-      "\034\n\007aud_cap\030\010 \001(\0132\013.mt.TAudDes\022\020\n\010bmc_use" +
-      "d\030\t \001(\010\"\257\001\n\017TInnerMCRunInfo\022\032\n\013mc_is_exi" +
-      "st\030\001 \001(\010:\005false\022\033\n\014mc_is_active\030\002 \001(\010:\005f" +
-      "alse\022\033\n\014mc_is_inconf\030\003 \001(\010:\005false\022\025\n\rmc_",
-      "mem_maxnum\030\004 \001(\r\022\030\n\rp2p_pa_handle\030\005 \001(\r:" +
-      "\0010\022\025\n\rp2p_ep_handle\030\006 \001(\r\"}\n\tTFastCall\022\021" +
-      "\n\tcall_rate\030\001 \001(\r\022#\n\tcall_type\030\002 \001(\0162\020.m" +
-      "t.EmMtAddrType\022\021\n\tpeer_addr\030\003 \001(\r\022\021\n\tpee" +
-      "r_e164\030\004 \001(\t\022\022\n\npeer_alias\030\005 \001(\t\"1\n\rTFas" +
-      "tCallList\022 \n\tfast_call\030\001 \003(\0132\r.mt.TFastC" +
-      "all\"\343\001\n\026TMtSecCertDistinctName\022\024\n\014countr" +
-      "y_name\030\001 \001(\t\022\036\n\026state_or_province_name\030\002" +
-      " \001(\t\022\025\n\rlocality_name\030\003 \001(\t\022\031\n\021organizat" +
-      "ion_name\030\004 \001(\t\022\036\n\026organization_unit_name",
-      "\030\005 \001(\t\022\023\n\013common_name\030\006 \001(\t\022\025\n\rserial_nu" +
-      "mber\030\007 \001(\t\022\025\n\remail_address\030\010 \001(\t\"C\n\022TMt" +
-      "SecCertValidity\022\026\n\016nottime_before\030\001 \001(\t\022" +
-      "\025\n\rnottime_after\030\002 \001(\t\"\221\002\n\016TMtSecCertInf" +
-      "o\022\017\n\007version\030\001 \001(\005\022\025\n\rserial_number\030\002 \001(" +
-      "\t\022\020\n\010sign_alg\030\003 \001(\t\022/\n\013issuer_info\030\004 \001(\013" +
-      "2\032.mt.TMtSecCertDistinctName\022(\n\010validity" +
-      "\030\005 \001(\0132\026.mt.TMtSecCertValidity\0220\n\014subjec" +
-      "t_info\030\006 \001(\0132\032.mt.TMtSecCertDistinctName" +
-      "\022\022\n\npubkey_alg\030\007 \001(\t\022\024\n\014finger_print\030\010 \001",
-      "(\014\022\016\n\006format\030\t \001(\005\"%\n\020TRpMtSecCaIDList\022\021" +
-      "\n\tcacert_id\030\001 \003(\014\"9\n\rTMtTerAuthCmd\022\023\n\013au" +
-      "ther_name\030\001 \001(\t\022\023\n\013authee_name\030\002 \001(\t\"7\n\021" +
-      "TMtTerAuthRequest\022\020\n\010username\030\001 \001(\t\022\020\n\010p" +
-      "assword\030\002 \001(\t\"<\n\020TMtTerAuthCancel\022\023\n\013aut" +
-      "her_name\030\001 \001(\t\022\023\n\013authee_name\030\002 \001(\t\"7\n\rT" +
-      "MtTerAuthMsg\022\026\n\016is_authforcall\030\001 \001(\005\022\016\n\006" +
-      "callid\030\002 \001(\t\"\202\001\n\023TMtSecCreateCertReq\022\017\n\007" +
-      "is_sign\030\001 \001(\010\022\023\n\013is_resetpwd\030\002 \001(\010\022\033\n\023de" +
-      "vicecert_fileName\030\003 \001(\t\022(\n\004name\030\004 \001(\0132\032.",
-      "mt.TMtSecCertDistinctName\"\\\n\016TMtVrsUserI" +
-      "nfo\022\021\n\trightmask\030\001 \001(\005\022\r\n\005token\030\002 \001(\t\022\026\n" +
-      "\016userdomainmoid\030\003 \001(\t\022\020\n\010usermoid\030\004 \001(\t\"" +
-      "\377\002\n\010TLicense\022*\n\017KeyVersion_Type\030\001 \001(\0162\021." +
-      "mt.EmVersionType\022(\n\021emKeyTerminalType\030\002 " +
-      "\001(\0162\r.mt.EmMtModel\022\030\n\020KeyChannelAccess\030\003" +
-      " \001(\010\022\034\n\024KeyHybridcloudAccess\030\004 \001(\010\022\034\n\024Ke" +
-      "yPubliccloudAccess\030\005 \001(\010\022\033\n\023KeyTerminalD" +
-      "eviceId\030\006 \001(\t\022\020\n\010UserType\030\007 \001(\t\022\024\n\014Contr" +
-      "actNode\030\010 \001(\t\022\024\n\014CustomerName\030\t \001(\t\022\027\n\017C",
-      "ustomerAddress\030\n \001(\t\022\016\n\006Serler\030\013 \001(\t\022\023\n\013" +
-      "Description\030\014 \001(\t\022.\n\nCheckValue\030\r \001(\0162\032." +
-      "mt.EmLicenseKeyCheckValue\"e\n\017TMtAiInvite" +
-      "Info\022\014\n\004name\030\001 \001(\t\022\014\n\004e164\030\002 \001(\t\022\n\n\002ip\030\003" +
-      " \001(\t\022*\n\remContactType\030\004 \001(\0162\023.mt.EmAiCon" +
-      "tactType\"=\n\023TMtAiInviteInfoList\022&\n\ttAiIn" +
-      "vite\030\001 \003(\0132\023.mt.TMtAiInviteInfo\"l\n\022TVend" +
-      "orCheckConfig\022\016\n\006peerip\030\001 \001(\r\022\020\n\010peerpor" +
-      "t\030\002 \001(\r\022\014\n\004path\030\003 \001(\t\022\021\n\tlocalport\030\004 \001(\r" +
-      "\022\023\n\013is_platform\030\005 \001(\010B1\n!com.kedacom.mt.",
-      "netmanage.protobufB\014StructConfPB"
+      "\021bkrtcp_crypto_key\030\007 \001(\014\022\033\n\023bkrtcp_crypt",
+      "o_keyid\030\010 \001(\014\022\037\n\027bkrtcp_crypto_keyid_len" +
+      "\030\t \001(\r\"W\n\021TSrtpParamSetting\022\026\n\016is_srtp_e" +
+      "nable\030\001 \001(\010\022*\n\021srtp_crypto_param\030\002 \003(\0132\017" +
+      ".mt.TSrtpCrypto\"o\n\017TAVCapSrtpParam\022-\n\016vi" +
+      "d_srtp_param\030\001 \003(\0132\025.mt.TSrtpParamSettin" +
+      "g\022-\n\016aud_srtp_param\030\002 \003(\0132\025.mt.TSrtpPara" +
+      "mSetting\"\324\003\n\rTVidChanParam\022%\n\014video_form" +
+      "at\030\001 \001(\0162\017.mt.EmVidFormat\022\017\n\007payload\030\002 \001" +
+      "(\r\022\"\n\tencry_key\030\003 \001(\0132\017.mt.TEncryptKey\022." +
+      "\n\rencrypt_arith\030\004 \001(\0162\027.mt.EmEncryptArit",
+      "hmetic\022,\n\020video_resolution\030\005 \001(\0162\022.mt.Em" +
+      "MtResolution\022\022\n\nframe_rate\030\006 \001(\r\022\030\n\020chan" +
+      "_max_bitrate\030\007 \001(\r\022\'\n\014h264_profile\030\010 \001(\016" +
+      "2\021.mt.EmH264Profile\022\027\n\017h264_svc_enable\030\t" +
+      " \001(\010\022\030\n\020is_nat_traversal\030\n \001(\010\022\'\n\014h265_p" +
+      "rofile\030\013 \001(\0162\021.mt.EmH265Profile\022\025\n\ris_rt" +
+      "cp_fbpli\030\014 \001(\010\022\025\n\ris_rtcp_fbfir\030\r \001(\010\022\027\n" +
+      "\017is_rtcp_fbtmmbr\030\016 \001(\010\022\017\n\007is_h239\030\024 \001(\010\"" +
+      "b\n\017TRpAudChanParam\022$\n\taud_param\030\001 \003(\0132\021." +
+      "mt.TAudChanParam\022)\n\nsrtp_param\030\002 \001(\0132\025.m",
+      "t.TSrtpParamSetting\"b\n\017TRpVidChanParam\022$" +
+      "\n\tvid_param\030\001 \003(\0132\021.mt.TVidChanParam\022)\n\n" +
+      "srtp_param\030\002 \001(\0132\025.mt.TSrtpParamSetting\"" +
+      "j\n\016TMtAVChanParam\022+\n\016aud_chan_param\030\001 \001(" +
+      "\0132\023.mt.TRpAudChanParam\022+\n\016vid_chan_param" +
+      "\030\002 \001(\0132\023.mt.TRpVidChanParam\"\235\004\n\017TMtConfB" +
+      "aseInfo\022\017\n\007conf_id\030\001 \001(\t\022\021\n\tconf_name\030\002 " +
+      "\001(\t\022\023\n\013conf_number\030\003 \001(\t\022\020\n\010conf_pwd\030\004 \001" +
+      "(\t\022\021\n\tbneed_pwd\030\005 \001(\010\022\025\n\rconf_duration\030\006" +
+      " \001(\r\022+\n\nencry_type\030\007 \001(\0162\027.mt.EmEncryptA",
+      "rithmetic\022%\n\014video_format\030\010 \001(\0162\017.mt.EmV" +
+      "idFormat\022%\n\014audio_format\030\t \001(\0162\017.mt.EmAu" +
+      "dFormat\022&\n\nresolution\030\n \001(\0162\022.mt.EmMtRes" +
+      "olution\022\"\n\010chnl_num\030\013 \001(\0162\020.mt.EmAacChnl" +
+      "Num\022)\n\020sec_video_format\030\014 \001(\0162\017.mt.EmVid" +
+      "Format\022\'\n\013sec_vid_res\030\r \001(\0162\022.mt.EmMtRes" +
+      "olution\022\023\n\013sec_vid_fps\030\016 \001(\r\022\023\n\013is_auto_" +
+      "vmp\030\017 \001(\010\022\016\n\006is_mix\030\020 \001(\010\022*\n\017vid_h264Pro" +
+      "file\030\021 \001(\0162\021.mt.EmH264Profile\022\024\n\014conf_bi" +
+      "trate\030\022 \001(\r\"7\n\rTRpMtConfList\022&\n\tconf_inf",
+      "o\030\001 \003(\0132\023.mt.TMtConfBaseInfo\"\232\002\n\017TMtConf" +
+      "NameInfo\022\021\n\tconf_name\030\001 \001(\t\022\021\n\tconf_e164" +
+      "\030\002 \001(\t\022\023\n\013terlist_num\030\003 \001(\r\022\023\n\013remain_ti" +
+      "me\030\004 \001(\r\022#\n\topen_mode\030\005 \001(\0162\020.mt.EmMtOpe" +
+      "nMode\022%\n\014clarity_mode\030\006 \001(\0162\017.mt.EmMtCla" +
+      "rity\022$\n\017conf_start_time\030\007 \001(\0132\013.mt.TMTTi" +
+      "me\022\030\n\020is_satdcast_mode\030\010 \001(\010\022\026\n\016is_publi" +
+      "c_conf\030\t \001(\010\022\023\n\013is_need_pwd\030\n \001(\010\"@\n\021TRp" +
+      "MtConfNameInfo\022+\n\016conf_name_info\030\001 \003(\0132\023" +
+      ".mt.TMtConfNameInfo\"y\n\022TMtNewConfBaseInf",
+      "o\022\021\n\tconf_name\030\001 \001(\t\022\021\n\tconf_e164\030\002 \001(\t\022" +
+      "\023\n\013domain_guid\030\003 \001(\t\022\023\n\013domain_name\030\004 \001(" +
+      "\t\022\023\n\013domain_moid\030\005 \001(\t\"\257\004\n\021TMtConfDetail" +
+      "Info\0222\n\022new_conf_base_info\030\001 \001(\0132\026.mt.TM" +
+      "tNewConfBaseInfo\022\022\n\nconf_style\030\002 \001(\r\022\021\n\t" +
+      "short_num\030\003 \001(\t\022-\n\014encrypt_mode\030\004 \001(\0162\027." +
+      "mt.EmEncryptArithmetic\022\017\n\007bitrate\030\005 \001(\r\022" +
+      "%\n\014clarity_mode\030\006 \001(\0162\017.mt.EmMtClarity\022#" +
+      "\n\007vid_res\030\007 \001(\0162\022.mt.EmMtResolution\022#\n\to" +
+      "pen_mode\030\010 \001(\0162\020.mt.EmMtOpenMode\022\027\n\017is_d",
+      "iscuss_conf\030\t \001(\010\022\037\n\nstart_time\030\n \001(\0132\013." +
+      "mt.TMTTime\022\020\n\010duration\030\013 \001(\r\022\r\n\005alias\030\014 " +
+      "\001(\t\022#\n\tdual_mode\030\r \001(\0162\020.mt.EmMtDualMode" +
+      "\022\030\n\020is_satdcast_mode\030\016 \001(\010\022\026\n\016is_public_" +
+      "conf\030\017 \001(\010\022\024\n\014is_port_mode\030\020 \001(\010\022\032\n\022is_c" +
+      "onf_no_disturb\030\021 \001(\010\022\023\n\013is_need_pwd\030\022 \001(" +
+      "\010\022\025\n\rmax_joined_mt\030\023 \001(\r\"\226\001\n\020TMtJoinConf" +
+      "Param\022\021\n\tcall_rate\030\001 \001(\r\022\021\n\tconf_e164\030\002 " +
+      "\001(\t\022\020\n\010conf_pwd\030\003 \001(\t\022\017\n\007is_dial\030\004 \001(\010\022\020" +
+      "\n\010dial_num\030\005 \001(\t\022\021\n\tconf_name\030\006 \001(\t\022\024\n\014c",
+      "onf_name_ai\030\007 \001(\t\":\n\024TMtJoinConfParamLis" +
+      "t\022\"\n\004list\030\001 \003(\0132\024.mt.TMtJoinConfParam\"\257\013" +
+      "\n\022TMtCreateConfParam\022\020\n\010conf_pwd\030\001 \001(\t\022\021" +
+      "\n\tconf_name\030\002 \001(\t\022\025\n\rconf_duration\030\003 \001(\r" +
+      "\022\024\n\014conf_bitrate\030\004 \001(\r\022#\n\topen_mode\030\005 \001(" +
+      "\0162\020.mt.EmMtOpenMode\0220\n\014release_mode\030\006 \001(" +
+      "\0162\032.mt.EmMtConfReleaseModeDef\022\030\n\020is_all_" +
+      "init_dumb\030\007 \001(\010\022-\n\014conf_encrypt\030\010 \001(\0162\027." +
+      "mt.EmEncryptArithmetic\022\016\n\006enckey\030\t \001(\014\022\030" +
+      "\n\020is_satdcast_mode\030\n \001(\010\022\034\n\024max_bitrate_",
+      "for_opus\030\013 \001(\r\022\034\n\024min_bitrate_for_opus\030\014" +
+      " \001(\r\022\026\n\016is_public_conf\030\r \001(\010\022\024\n\014is_port_" +
+      "mode\030\016 \001(\010\022\031\n\021is_conf_nodisturb\030\017 \001(\010\022#\n" +
+      "\nvid_format\030\020 \001(\0162\017.mt.EmVidFormat\022\'\n\014h2" +
+      "64_profile\030\021 \001(\0162\021.mt.EmH264Profile\022#\n\007v" +
+      "id_res\030\022 \001(\0162\022.mt.EmMtResolution\022\017\n\007vid_" +
+      "fps\030\023 \001(\r\022&\n\rassvid_format\030\024 \001(\0162\017.mt.Em" +
+      "VidFormat\022&\n\nassvid_res\030\025 \001(\0162\022.mt.EmMtR" +
+      "esolution\022\022\n\nassvid_fps\030\026 \001(\r\022#\n\naud_for" +
+      "mat\030\027 \001(\0162\017.mt.EmAudFormat\022\"\n\010chnl_num\030\030",
+      " \001(\0162\020.mt.EmAacChnlNum\022\034\n\007speaker\030\031 \001(\0132" +
+      "\013.mt.TMtAddr\022\021\n\tcalltimes\030\032 \001(\r\022\024\n\014calli" +
+      "nterval\030\033 \001(\r\022\024\n\014is_callChase\030\034 \001(\010\022-\n\rv" +
+      "ideo_quality\030\035 \001(\0162\026.mt.EmRestVideoQuali" +
+      "ty\022#\n\tdual_mode\030\036 \001(\0162\020.mt.EmMtDualMode\022" +
+      "\023\n\013cascademode\030\037 \001(\r\022\030\n\020is_cascadeupload" +
+      "\030  \001(\010\022\030\n\020is_cascadereturn\030! \001(\010\022\031\n\021casc" +
+      "adereturnpara\030\" \001(\r\022#\n\rmulticastaddr\030# \001" +
+      "(\0132\014.mt.TNetAddr\022\032\n\022is_multicastenable\030$" +
+      " \001(\010\022\020\n\010vip_list\030% \003(\r\022\026\n\016call_chaselist",
+      "\030& \003(\r\022&\n\tpoll_Info\030\' \001(\0132\023.mt.TMtMiniPo" +
+      "llInfo\022&\n\tvmp_param\030( \001(\0132\023.mt.TMtMiniVm" +
+      "pParam\022!\n\010mix_mode\030) \001(\0162\017.mt.EmMtMixTyp" +
+      "e\022\020\n\010mix_list\030* \003(\r\022\036\n\007mt_list\030+ \001(\0132\r.m" +
+      "t.TRpMtAddr\022\035\n\010chairman\030, \001(\0132\013.mt.TMtAd" +
+      "dr\022\'\n\nautorecord\030- \001(\0132\023.mt.TMtAutorecat" +
+      "trb\022\027\n\017mix_vacinterval\030. \001(\r\022\027\n\017is_onere" +
+      "forming\030/ \001(\010\022\021\n\tconf_e164\0300 \001(\t\022\025\n\rmax_" +
+      "joined_mt\0301 \001(\r\"\210\001\n\017TMtAutorecattrb\022\017\n\007a" +
+      "utorec\030\001 \001(\010\022\023\n\013publishmode\030\002 \001(\r\022\026\n\016isr",
+      "ecmainvideo\030\003 \001(\010\022\024\n\014isrecdstream\030\004 \001(\010\022" +
+      "!\n\010vrsalias\030\005 \001(\0132\017.mt.TMtVrsalias\"=\n\013TM" +
+      "tVrsalias\022\021\n\taliastype\030\001 \001(\r\022\014\n\004addr\030\002 \001" +
+      "(\t\022\r\n\005vrsno\030\003 \001(\t\"p\n\017TMtMiniPollInfo\022\'\n\n" +
+      "media_mode\030\001 \001(\0162\023.mt.EmMtPollModeDef\022\021\n" +
+      "\tkeep_time\030\002 \001(\r\022\020\n\010poll_num\030\003 \001(\r\022\017\n\007po" +
+      "ll_mt\030\004 \003(\r\"\246\002\n\017TMtMiniVmpParam\022\024\n\014is_vm" +
+      "p_brdst\030\002 \001(\010\022#\n\tvmp_style\030\003 \001(\0162\020.mt.Em" +
+      "MtVmpStyle\022!\n\010vmp_mode\030\005 \001(\0162\017.mt.EmMtVm" +
+      "pMode\022\026\n\016is_rim_enabled\030\006 \001(\010\022\027\n\017is_add_",
+      "mmbalias\030\007 \001(\010\022\031\n\021is_vmp_batch_poll\030\010 \001(" +
+      "\010\022\026\n\016keep_poll_time\030\t \001(\r\022\020\n\010poll_num\030\n " +
+      "\001(\r\022(\n\nvmp_member\030\013 \003(\0132\024.mt.TMtMiniVMPM" +
+      "ember\022\025\n\ris_voice_hint\030\014 \001(\010\"\243\001\n\020TMtMini" +
+      "VMPMember\022\016\n\006member\030\001 \001(\r\022\'\n\013member_type" +
+      "\030\002 \001(\0162\022.mt.EmMtVMPMmbType\022.\n\rmember_sta" +
+      "tus\030\003 \001(\0162\027.mt.EmMtMemberStatusDef\022\023\n\013ch" +
+      "nnl_index\030\004 \001(\r\022\021\n\tmem_index\030\005 \001(\r\"\274\005\n\014T" +
+      "MtCallParam\022#\n\tcall_type\030\001 \001(\0162\020.mt.EmMt" +
+      "CallMode\022\021\n\tcall_rate\030\002 \001(\r\022)\n\rconf_prot",
+      "ocol\030\003 \001(\0162\022.mt.EmConfProtocol\022(\n\016call_a" +
+      "ddr_type\030\004 \001(\0162\020.mt.EmMtAddrType\022\"\n\014call" +
+      "ing_addr\030\005 \001(\0132\014.mt.TNetAddr\022!\n\013called_a" +
+      "ddr\030\006 \001(\0132\014.mt.TNetAddr\022%\n\rcalling_alias" +
+      "\030\007 \001(\0132\016.mt.TRpMtAlias\022$\n\014called_alias\030\010" +
+      " \001(\0132\016.mt.TRpMtAlias\022\024\n\014bcreate_conf\030\t \001" +
+      "(\010\022+\n\016conf_base_info\030\n \001(\0132\023.mt.TMtConfB" +
+      "aseInfo\022\036\n\007mt_list\030\013 \001(\0132\r.mt.TRpMtAddr\022" +
+      "\027\n\017peer_product_id\030\014 \001(\t\022\027\n\017peer_version" +
+      "_id\030\r \001(\t\022\026\n\016peer_vender_id\030\016 \001(\r\022\020\n\010ben",
+      "crypt\030\017 \001(\010\022)\n\rendpoint_type\030\020 \001(\0162\022.mt." +
+      "EmEndpointType\022\020\n\010nonstand\030\021 \001(\014\022\016\n\006call" +
+      "id\030\022 \001(\t\022\030\n\020is_peerstack_5p0\030\023 \001(\010\022\025\n\ris" +
+      "_vidchanoff\030\024 \001(\010\022-\n\017sipconnect_type\030\025 \001" +
+      "(\0162\024.mt.EmSipConnectType\022\037\n\027is_peer_supp" +
+      "ort_confsub\030\030 \001(\010\"9\n\021TMultiMtCallParam\022$" +
+      "\n\ncall_param\030\001 \003(\0132\020.mt.TMtCallParam\"7\n\020" +
+      "TMTSatelliteFlag\022\017\n\007is_sate\030\001 \001(\010\022\022\n\np2p" +
+      "_enable\030\002 \001(\010\"\251\005\n\017TMtCallLinkSate\022%\n\ncal" +
+      "l_state\030\001 \001(\0162\021.mt.EmMtCallState\022)\n\rconf",
+      "_protocol\030\002 \001(\0162\022.mt.EmConfProtocol\022\021\n\ti" +
+      "s_caller\030\003 \001(\010\022\021\n\tcall_rate\030\004 \001(\r\022\032\n\022cal" +
+      "l_avial_up_rate\030\005 \001(\r\022\034\n\024call_avail_down" +
+      "_rate\030\006 \001(\r\022.\n\017call_dis_reason\030\007 \001(\0162\025.m" +
+      "t.EmMtCallDisReason\022\037\n\tpeer_addr\030\010 \001(\0132\014" +
+      ".mt.TNetAddr\022!\n\npeer_model\030\t \001(\0162\r.mt.Em" +
+      "MtModel\022\026\n\016peer_productid\030\n \001(\t\022\"\n\npeer_" +
+      "alias\030\013 \001(\0132\016.mt.TRpMtAlias\022.\n\022peer_endp" +
+      "oint_type\030\014 \001(\0162\022.mt.EmEndpointType\022*\n\025c" +
+      "onf_established_time\030\r \001(\0132\013.mt.TMTTime\022",
+      ")\n\014calling_type\030\016 \001(\0162\023.mt.EmMtCallingTy" +
+      "pe\022\023\n\013peer_Vendor\030\017 \001(\r\022\026\n\016peer_versionI" +
+      "d\030\020 \001(\t\022\034\n\024is_peerstackafter5p0\030\021 \001(\010\022\022\n" +
+      "\nis_qt_call\030\022 \001(\010\022-\n\017sipconnect_type\030\023 \001" +
+      "(\0162\024.mt.EmSipConnectType\022\037\n\027is_peer_spt_" +
+      "subconflist\030\024 \001(\010\"\210\001\n\016TCodecPackStat\022\017\n\007" +
+      "bitrate\030\001 \001(\r\022\023\n\013avr_bitrate\030\002 \001(\r\022\022\n\nlo" +
+      "st_packs\030\003 \001(\r\022\023\n\013total_packs\030\004 \001(\r\022\016\n\006f" +
+      "rames\030\005 \001(\r\022\027\n\017lost_frame_rate\030\006 \001(\r\"\224\001\n" +
+      "\017TMtStatusToPcdv\022\037\n\010mt_model\030\001 \001(\0162\r.mt.",
+      "EmMtModel\022$\n\tcall_sate\030\002 \001(\0162\021.mt.EmMtCa" +
+      "llState\022#\n\tconf_mode\030\003 \001(\0162\020.mt.EmMtConf" +
+      "Mode\022\025\n\rcan_send_dual\030\004 \001(\010\"\220\001\n\rTAssVidS" +
+      "tatus\022%\n\nchan_state\030\001 \001(\0162\021.mt.EmMtChanS" +
+      "tate\022!\n\007vid_lab\030\002 \001(\0162\020.mt.EmMtVidLabel\022" +
+      "\017\n\007bactive\030\003 \001(\010\022$\n\npc_ass_src\030\004 \001(\0132\020.m" +
+      "t.TMtcBaseInfo\"<\n\022TMtAssSndVidStatus\022&\n\013" +
+      "ass_vid_snd\030\001 \003(\0132\021.mt.TAssVidStatus\"<\n\022" +
+      "TMtAssRcvVidStatus\022&\n\013ass_vid_rcv\030\001 \003(\0132" +
+      "\021.mt.TAssVidStatus\"\224\001\n\017TMtSimpConfInfo\022\032",
+      "\n\007speaker\030\001 \001(\0132\t.mt.TMtId\022\033\n\010chairman\030\002" +
+      " \001(\0132\t.mt.TMtId\022%\n\014discuss_mode\030\003 \001(\0162\017." +
+      "mt.EmMtMixType\022!\n\010vmp_mode\030\004 \001(\0162\017.mt.Em" +
+      "MtVmpMode\"7\n\016TMtTerLossRate\022%\n\010one_chan\030" +
+      "\001 \003(\0132\023.mt.TMtChanLossRate\"_\n\017TMtChanLos" +
+      "sRate\022 \n\004mode\030\001 \001(\0162\022.mt.EmMediaModeDef\022" +
+      "\020\n\010recv_idx\030\002 \001(\r\022\030\n\020packet_lost_rate\030\003 " +
+      "\001(\r\"\234\005\n\013TMtConfInfo\022\037\n\nstart_time\030\001 \001(\0132" +
+      "\013.mt.TMTTime\022\020\n\010duration\030\002 \001(\r\022\017\n\007bitrat" +
+      "e\030\003 \001(\r\022\023\n\013sec_bitrate\030\004 \001(\r\022*\n\016main_vid",
+      "eo_res\030\005 \001(\0162\022.mt.EmMtResolution\022)\n\rass_" +
+      "video_res\030\006 \001(\0162\022.mt.EmMtResolution\022\026\n\016t" +
+      "alk_hold_time\030\007 \001(\r\022\020\n\010conf_pwd\030\010 \001(\t\022\021\n" +
+      "\tconf_name\030\t \001(\t\022\021\n\tconf_e164\030\n \001(\t\022\033\n\010c" +
+      "hairman\030\013 \001(\0132\t.mt.TMtId\022\032\n\007speaker\030\014 \001(" +
+      "\0132\t.mt.TMtId\022\"\n\tvmp_param\030\r \001(\0132\017.mt.TMt" +
+      "VmpParam\022\"\n\tmix_param\030\016 \001(\0132\017.mt.TMtMixP" +
+      "aram\022\027\n\017bsat_dcast_mode\030\017 \001(\010\022#\n\topen_mo" +
+      "de\030\020 \001(\0162\020.mt.EmMtOpenMode\022\025\n\ris_occupy_" +
+      "vpu\030\021 \001(\010\022:\n\tdual_mode\030\022 \001(\0162\020.mt.EmMtDu",
+      "alMode:\025MT_DUAL_MODE_EVERYONE\022\030\n\020is_all_" +
+      "init_dumb\030\023 \001(\010\022\032\n\022is_conf_no_disturb\030\024 " +
+      "\001(\010\022\024\n\014is_port_mode\030\025 \001(\010\022\032\n\022is_force_br" +
+      "oadcast\030\026 \001(\010\022\023\n\013record_mode\030\027 \001(\r\"\373\002\n\023T" +
+      "PeerCapabilityInfo\022\014\n\004bMix\030\001 \001(\010\022\014\n\004bVAC" +
+      "\030\002 \001(\010\022\022\n\nbCustomVMP\030\003 \001(\010\022\020\n\010bAutoVMP\030\004" +
+      " \001(\010\022\020\n\010bEndConf\030\005 \001(\010\022\021\n\tbInvateMt\030\006 \001(" +
+      "\010\022\017\n\007bDropMt\030\007 \001(\010\022\023\n\013bSelSpeaker\030\010 \001(\010\022" +
+      "\021\n\tbSelChair\030\t \001(\010\022\022\n\nbSelSource\030\n \001(\010\022\r" +
+      "\n\005bFECC\030\013 \001(\010\022\016\n\006bQuiet\030\014 \001(\010\022\r\n\005bMute\030\r",
+      " \001(\010\022\020\n\010bConfReq\030\016 \001(\010\022\023\n\013bOnlineList\030\017 " +
+      "\001(\010\022\024\n\014bOfflineList\030\020 \001(\010\022\022\n\nbPicSwitch\030" +
+      "\021 \001(\010\022\030\n\020bSelSpeakingUser\030\022 \001(\010\022\027\n\017bForc" +
+      "eBroadcast\030\023 \001(\010\"S\n\013TMtMixParam\022%\n\014discu" +
+      "ss_mode\030\001 \001(\0162\017.mt.EmMtMixType\022\035\n\010mix_it" +
+      "em\030\002 \001(\0132\013.mt.TRpMtId\"\246\001\n\013TMtVmpParam\022!\n" +
+      "\010vmp_mode\030\001 \001(\0162\017.mt.EmMtVmpMode\022#\n\tvmp_" +
+      "style\030\002 \001(\0162\020.mt.EmMtVmpStyle\022\037\n\007mt_item" +
+      "\030\003 \003(\0132\016.mt.TMtVmpItem\022\026\n\016bvmp_broadcast" +
+      "\030\004 \001(\010\022\026\n\016badd_mmb_alias\030\005 \001(\010\"\211\001\n\nTMtVm",
+      "pItem\022\030\n\005mt_id\030\001 \001(\0132\t.mt.TMtId\022#\n\007mt_ty" +
+      "pe\030\002 \001(\0162\022.mt.EmMtVMPMmbType\022+\n\010chan_idx" +
+      "\030\003 \001(\0162\031.mt.EmCodecComponentIndex\022\017\n\007mem" +
+      "_idx\030\004 \001(\r\"\230\001\n\013TMtPollInfo\022%\n\nmedia_type" +
+      "\030\001 \001(\0162\021.mt.EmMtMediaType\022\034\n\006action\030\002 \001(" +
+      "\0162\014.mt.EmAction\022\021\n\tkeep_time\030\003 \001(\r\022\031\n\006mt" +
+      "list\030\004 \003(\0132\t.mt.TMtId\022\026\n\016poll_scheme_id\030" +
+      "\005 \001(\r\"7\n\020TVideoSourceInfo\022\020\n\010vid_port\030\001 " +
+      "\001(\r\022\021\n\tport_name\030\002 \001(\014\"C\n\022TRpVideoSource" +
+      "Info\022-\n\017vid_source_info\030\001 \003(\0132\024.mt.TVide",
+      "oSourceInfo\"\231\001\n\rTMtVideoAlias\022(\n\nvideo_t" +
+      "ype\030\001 \001(\0162\024.mt.EmCodecComponent\022+\n\010video" +
+      "_id\030\002 \001(\0162\031.mt.EmCodecComponentIndex\0221\n\021" +
+      "video_source_list\030\003 \001(\0132\026.mt.TRpVideoSou" +
+      "rceInfo\">\n\017TRpMtVideoAlias\022+\n\020video_alia" +
+      "s_list\030\001 \003(\0132\021.mt.TMtVideoAlias\"O\n\017TMtEn" +
+      "tityStatus\022\030\n\005label\030\001 \001(\0132\t.mt.TMtId\022\"\n\n" +
+      "ter_status\030\002 \001(\0132\016.mt.TTerStatus\";\n\021TRpM" +
+      "tEntityStatus\022&\n\tmt_status\030\001 \003(\0132\023.mt.TM" +
+      "tEntityStatus\"T\n\nTVideoInfo\022\n\n\002id\030\001 \001(\r\022",
+      "\024\n\014bfecc_enable\030\002 \001(\010\022\021\n\thas_video\030\003 \001(\010" +
+      "\022\021\n\tvideo_src\030\004 \001(\r\"1\n\014TRpVideoInfo\022!\n\tv" +
+      "ideoinfo\030\001 \003(\0132\016.mt.TVideoInfo\"\310\001\n\nTTerS" +
+      "tatus\022\037\n\010mt_model\030\001 \001(\0162\r.mt.EmMtModel\022\017" +
+      "\n\007enc_vol\030\002 \001(\r\022\017\n\007dec_vol\030\003 \001(\r\022\r\n\005bmut" +
+      "e\030\004 \001(\010\022\016\n\006bquiet\030\005 \001(\010\022\017\n\007bmatrix\030\006 \001(\010" +
+      "\022!\n\tvideoinfo\030\007 \003(\0132\016.mt.TVideoInfo\022$\n\tv" +
+      "iew_type\030\010 \001(\0162\021.mt.EmMtMediaType\"\254\001\n\tTS" +
+      "hortMsg\022\037\n\010sms_type\030\001 \001(\0162\r.mt.EmSMSType" +
+      "\022\031\n\006mt_src\030\002 \001(\0132\t.mt.TMtId\022\031\n\006mt_dst\030\003 ",
+      "\003(\0132\t.mt.TMtId\022&\n\nroll_speed\030\004 \001(\0162\022.mt." +
+      "EmRollMsgSpeed\022\022\n\nroll_times\030\005 \001(\r\022\014\n\004te" +
+      "xt\030\006 \001(\t\"\241\002\n\014TMtRegistReq\022\035\n\005alias\030\001 \001(\013" +
+      "2\016.mt.TRpMtAlias\022 \n\nlocal_addr\030\002 \001(\0132\014.m" +
+      "t.TNetAddr\022\035\n\007gk_addr\030\003 \001(\0132\014.mt.TNetAdd" +
+      "r\022\"\n\014sip_reg_addr\030\004 \001(\0132\014.mt.TNetAddr\022\021\n" +
+      "\ttime_live\030\005 \001(\r\022\036\n\010username\030\006 \001(\0132\014.mt." +
+      "TMtAlias\022\020\n\010password\030\007 \001(\t\022\021\n\tproductid\030" +
+      "\010 \001(\t\022\021\n\tversionid\030\t \001(\t\022\022\n\nsip_domain\030\n" +
+      " \001(\t\022\016\n\006domain\030\013 \001(\t\"X\n\nTGkRegInfo\022\021\n\tbr",
+      "egisted\030\001 \001(\010\022%\n\006reason\030\002 \001(\0162\025.mt.EmReg" +
+      "FailedReason\022\020\n\010bauth_ok\030\003 \001(\010\"p\n\020TH323S" +
+      "tackHandle\022\014\n\004call\030\001 \001(\003\022\020\n\010app_call\030\002 \001" +
+      "(\003\022\014\n\004chan\030\003 \001(\003\022\020\n\010app_chan\030\004 \001(\003\022\013\n\003ra" +
+      "s\030\005 \001(\003\022\017\n\007app_ras\030\006 \001(\003\"`\n\nTMtRCFInfo\022!" +
+      "\n\013endpoint_id\030\001 \001(\0132\014.mt.TMtAlias\022\033\n\005gk_" +
+      "id\030\002 \001(\0132\014.mt.TMtAlias\022\022\n\ntimetolive\030\003 \001" +
+      "(\r\"C\n\nTMtACFInfo\022\024\n\014gk_bandwidth\030\001 \001(\r\022\037" +
+      "\n\tpeer_addr\030\002 \001(\0132\014.mt.TNetAddr\"\263\001\n\nTMtF" +
+      "eccMsg\022\016\n\006action\030\001 \001(\r\022\017\n\007request\030\002 \001(\r\022",
+      "\020\n\010sourceno\030\003 \001(\r\022\020\n\010presetno\030\004 \001(\r\022\017\n\007t" +
+      "imeout\030\005 \001(\r\022\022\n\nis_cme_msg\030\006 \001(\r\022*\n\014cme_" +
+      "msg_type\030\007 \001(\0162\024.mt.EmFeccCMEMsgType\022\017\n\007" +
+      "com_idx\030\010 \001(\r\"R\n\tTMtSeeing\022+\n\010chan_idx\030\001" +
+      " \001(\0162\031.mt.EmCodecComponentIndex\022\030\n\005mt_id" +
+      "\030\002 \001(\0132\t.mt.TMtId\",\n\013TRpMtSeeing\022\035\n\006mt_s" +
+      "ee\030\001 \003(\0132\r.mt.TMtSeeing\"\215\001\n\rTViewTerPara" +
+      "m\022\025\n\002mt\030\001 \001(\0132\t.mt.TMtId\022\037\n\004type\030\002 \001(\0162\021" +
+      ".mt.EmMtMediaType\022\027\n\017is_see_all_chan\030\003 \001" +
+      "(\010\022+\n\010chan_idx\030\004 \001(\0162\031.mt.EmCodecCompone",
+      "ntIndex\"T\n\021TCloudRecordState\022\027\n\017is_cloud" +
+      "_record\030\001 \001(\010\022&\n\021cloud_record_time\030\002 \001(\013" +
+      "2\013.mt.TMTTime\"\224\002\n\rTInnerMCParam\022\020\n\010vmp_t" +
+      "ype\030\001 \001(\r\022\035\n\007mc_mode\030\002 \001(\0162\014.mt.EmMCMode" +
+      "\022\021\n\tconf_name\030\003 \001(\t\022\021\n\tconf_rate\030\004 \001(\r\022)" +
+      "\n\rconf_protocol\030\005 \001(\0162\022.mt.EmConfProtoco" +
+      "l\022\'\n\014main_vid_cap\030\006 \001(\0132\021.mt.TVidFormatC" +
+      "ap\022(\n\rassis_vid_cap\030\007 \001(\0132\021.mt.TVidForma" +
+      "tCap\022\034\n\007aud_cap\030\010 \001(\0132\013.mt.TAudDes\022\020\n\010bm" +
+      "c_used\030\t \001(\010\"\257\001\n\017TInnerMCRunInfo\022\032\n\013mc_i",
+      "s_exist\030\001 \001(\010:\005false\022\033\n\014mc_is_active\030\002 \001" +
+      "(\010:\005false\022\033\n\014mc_is_inconf\030\003 \001(\010:\005false\022\025" +
+      "\n\rmc_mem_maxnum\030\004 \001(\r\022\030\n\rp2p_pa_handle\030\005" +
+      " \001(\r:\0010\022\025\n\rp2p_ep_handle\030\006 \001(\r\"}\n\tTFastC" +
+      "all\022\021\n\tcall_rate\030\001 \001(\r\022#\n\tcall_type\030\002 \001(" +
+      "\0162\020.mt.EmMtAddrType\022\021\n\tpeer_addr\030\003 \001(\r\022\021" +
+      "\n\tpeer_e164\030\004 \001(\t\022\022\n\npeer_alias\030\005 \001(\t\"1\n" +
+      "\rTFastCallList\022 \n\tfast_call\030\001 \003(\0132\r.mt.T" +
+      "FastCall\"\343\001\n\026TMtSecCertDistinctName\022\024\n\014c" +
+      "ountry_name\030\001 \001(\t\022\036\n\026state_or_province_n",
+      "ame\030\002 \001(\t\022\025\n\rlocality_name\030\003 \001(\t\022\031\n\021orga" +
+      "nization_name\030\004 \001(\t\022\036\n\026organization_unit" +
+      "_name\030\005 \001(\t\022\023\n\013common_name\030\006 \001(\t\022\025\n\rseri" +
+      "al_number\030\007 \001(\t\022\025\n\remail_address\030\010 \001(\t\"C" +
+      "\n\022TMtSecCertValidity\022\026\n\016nottime_before\030\001" +
+      " \001(\t\022\025\n\rnottime_after\030\002 \001(\t\"\221\002\n\016TMtSecCe" +
+      "rtInfo\022\017\n\007version\030\001 \001(\005\022\025\n\rserial_number" +
+      "\030\002 \001(\t\022\020\n\010sign_alg\030\003 \001(\t\022/\n\013issuer_info\030" +
+      "\004 \001(\0132\032.mt.TMtSecCertDistinctName\022(\n\010val" +
+      "idity\030\005 \001(\0132\026.mt.TMtSecCertValidity\0220\n\014s",
+      "ubject_info\030\006 \001(\0132\032.mt.TMtSecCertDistinc" +
+      "tName\022\022\n\npubkey_alg\030\007 \001(\t\022\024\n\014finger_prin" +
+      "t\030\010 \001(\014\022\016\n\006format\030\t \001(\005\"%\n\020TRpMtSecCaIDL" +
+      "ist\022\021\n\tcacert_id\030\001 \003(\014\"9\n\rTMtTerAuthCmd\022" +
+      "\023\n\013auther_name\030\001 \001(\t\022\023\n\013authee_name\030\002 \001(" +
+      "\t\"7\n\021TMtTerAuthRequest\022\020\n\010username\030\001 \001(\t" +
+      "\022\020\n\010password\030\002 \001(\t\"<\n\020TMtTerAuthCancel\022\023" +
+      "\n\013auther_name\030\001 \001(\t\022\023\n\013authee_name\030\002 \001(\t" +
+      "\"7\n\rTMtTerAuthMsg\022\026\n\016is_authforcall\030\001 \001(" +
+      "\005\022\016\n\006callid\030\002 \001(\t\"\202\001\n\023TMtSecCreateCertRe",
+      "q\022\017\n\007is_sign\030\001 \001(\010\022\023\n\013is_resetpwd\030\002 \001(\010\022" +
+      "\033\n\023devicecert_fileName\030\003 \001(\t\022(\n\004name\030\004 \001" +
+      "(\0132\032.mt.TMtSecCertDistinctName\"\\\n\016TMtVrs" +
+      "UserInfo\022\021\n\trightmask\030\001 \001(\005\022\r\n\005token\030\002 \001" +
+      "(\t\022\026\n\016userdomainmoid\030\003 \001(\t\022\020\n\010usermoid\030\004" +
+      " \001(\t\"\377\002\n\010TLicense\022*\n\017KeyVersion_Type\030\001 \001" +
+      "(\0162\021.mt.EmVersionType\022(\n\021emKeyTerminalTy" +
+      "pe\030\002 \001(\0162\r.mt.EmMtModel\022\030\n\020KeyChannelAcc" +
+      "ess\030\003 \001(\010\022\034\n\024KeyHybridcloudAccess\030\004 \001(\010\022" +
+      "\034\n\024KeyPubliccloudAccess\030\005 \001(\010\022\033\n\023KeyTerm",
+      "inalDeviceId\030\006 \001(\t\022\020\n\010UserType\030\007 \001(\t\022\024\n\014" +
+      "ContractNode\030\010 \001(\t\022\024\n\014CustomerName\030\t \001(\t" +
+      "\022\027\n\017CustomerAddress\030\n \001(\t\022\016\n\006Serler\030\013 \001(" +
+      "\t\022\023\n\013Description\030\014 \001(\t\022.\n\nCheckValue\030\r \001" +
+      "(\0162\032.mt.EmLicenseKeyCheckValue\"e\n\017TMtAiI" +
+      "nviteInfo\022\014\n\004name\030\001 \001(\t\022\014\n\004e164\030\002 \001(\t\022\n\n" +
+      "\002ip\030\003 \001(\t\022*\n\remContactType\030\004 \001(\0162\023.mt.Em" +
+      "AiContactType\"=\n\023TMtAiInviteInfoList\022&\n\t" +
+      "tAiInvite\030\001 \003(\0132\023.mt.TMtAiInviteInfo\"l\n\022" +
+      "TVendorCheckConfig\022\016\n\006peerip\030\001 \001(\r\022\020\n\010pe",
+      "erport\030\002 \001(\r\022\014\n\004path\030\003 \001(\t\022\021\n\tlocalport\030" +
+      "\004 \001(\r\022\023\n\013is_platform\030\005 \001(\010B1\n!com.kedaco" +
+      "m.mt.netmanage.protobufB\014StructConfPB"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -119868,7 +120099,7 @@ public final class StructConfPB {
           internal_static_mt_TSrtpCrypto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_mt_TSrtpCrypto_descriptor,
-              new java.lang.String[] { "SrtpCryptoType", "SrtpAuthType", "SrtpTag", "CryptoKey", "CryptoKeyid", "CryptoKeyidLen", "BkrtcpCryptoKey", });
+              new java.lang.String[] { "SrtpCryptoType", "SrtpAuthType", "SrtpTag", "CryptoKey", "CryptoKeyid", "CryptoKeyidLen", "BkrtcpCryptoKey", "BkrtcpCryptoKeyid", "BkrtcpCryptoKeyidLen", });
           internal_static_mt_TSrtpParamSetting_descriptor =
             getDescriptor().getMessageTypes().get(19);
           internal_static_mt_TSrtpParamSetting_fieldAccessorTable = new

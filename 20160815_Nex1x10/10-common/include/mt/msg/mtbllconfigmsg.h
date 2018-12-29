@@ -1651,6 +1651,36 @@ enum EmBLLMtConfigMsg
 
 
     /*
+    * key : emMt_Cfg_ShortCutKey
+    */
+    MESSAGE(Ev_MT_BLL_SetShortCutKeyCfg_Cmd)
+    BODY(mt::TMtShortCutKeyList, )
+
+    MESSAGE(Ev_MT_BLL_SetShortCutKeyCfg_Ntf)
+    BODY(mt::TMtShortCutKeyList, )
+
+    MESSAGE(Ev_MT_BLL_GetShortCutKeyCfg_Req)
+
+    MESSAGE(Ev_MT_BLL_GetShortCutKeyCfg_Rsp)
+    BODY(mt::TMtShortCutKeyList, )
+
+
+    /*
+    * key : emMt_Cfg_AiCameraInfo
+    */
+    MESSAGE(Ev_MT_BLL_SetAiCameraInfoCfg_Cmd)
+    BODY(mt::TMTHDCameraAiList, )
+
+    MESSAGE(Ev_MT_BLL_SetAiCameraInfoCfg_Ntf)
+    BODY(mt::TMTHDCameraAiList, )
+
+    MESSAGE(Ev_MT_BLL_GetAiCameraInfoCfg_Req)
+
+    MESSAGE(Ev_MT_BLL_GetAiCameraInfoCfg_Rsp)
+    BODY(mt::TMTHDCameraAiList, )
+
+
+    /*
     * key : emMt_Rt_CurAPS
     */
     MESSAGE(Ev_MT_BLL_SetCurAPSRt_Ntf)
@@ -2308,6 +2338,54 @@ enum EmBLLMtConfigMsg
 
     MESSAGE(Ev_MT_BLL_GetIsSelectViewRt_Rsp)
     BODY(mt::TBOOL32, )
+
+
+    /*
+    * key : emMt_Rt_ShareContactInfo
+    */
+    MESSAGE(Ev_MT_BLL_SetShareContactInfoRt_Ntf)
+    BODY(mt::TMTAddressBooks, )
+
+    MESSAGE(Ev_MT_BLL_GetShareContactInfoRt_Req)
+
+    MESSAGE(Ev_MT_BLL_GetShareContactInfoRt_Rsp)
+    BODY(mt::TMTAddressBooks, )
+
+
+    /*
+    * key : emMt_Rt_LocalContactInfo
+    */
+    MESSAGE(Ev_MT_BLL_SetLocalContactInfoRt_Ntf)
+    BODY(mt::TAddrBookRosterList, )
+
+    MESSAGE(Ev_MT_BLL_GetLocalContactInfoRt_Req)
+
+    MESSAGE(Ev_MT_BLL_GetLocalContactInfoRt_Rsp)
+    BODY(mt::TAddrBookRosterList, )
+
+
+    /*
+    * key : emMt_Rt_JoinConfListInfo
+    */
+    MESSAGE(Ev_MT_BLL_SetJoinConfListInfoRt_Ntf)
+    BODY(mt::TMtJoinConfParamList, )
+
+    MESSAGE(Ev_MT_BLL_GetJoinConfListInfoRt_Req)
+
+    MESSAGE(Ev_MT_BLL_GetJoinConfListInfoRt_Rsp)
+    BODY(mt::TMtJoinConfParamList, )
+
+
+    /*
+    * key : emMt_Rt_OnLineTerListInfo
+    */
+    MESSAGE(Ev_MT_BLL_SetOnLineTerListInfoRt_Ntf)
+    BODY(mt::TRpMtInfo, )
+
+    MESSAGE(Ev_MT_BLL_GetOnLineTerListInfoRt_Req)
+
+    MESSAGE(Ev_MT_BLL_GetOnLineTerListInfoRt_Rsp)
+    BODY(mt::TRpMtInfo, )
 
 
     /*

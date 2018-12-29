@@ -165,6 +165,7 @@ public:
 	virtual u32 SetIspGammaCmd( IN CONST u32 dwValue ) = 0;
 	virtual u32 SetIspDefogCmd( IN CONST u32 dwValue ) = 0;
 	virtual u32 SetCameraImgInfoCmd( IN CONST TMtCameraImgInfo_Api tInfo ) = 0;
+	virtual u32 SetAiCamera( IN CONST TMtHDCameraAiList_Api tInfo ) = 0;
 	virtual u32 SetCameraPersonFirstCmd( IN CONST BOOL32 bOn ) = 0;
 	virtual u32 SetShowRmtAssVidCmd( IN CONST BOOL32 bShow ) = 0;
 	virtual u32 SetCameraSceneModeCmd( IN CONST u32 dwVidIdx, IN CONST EmCameraSceneMode_Api emSceneMode ) = 0;

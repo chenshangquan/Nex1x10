@@ -2539,6 +2539,65 @@ enum EmMtApiDCSEv
 	Ev_MtApi_DcsDropConfCall_Ntf,
 
 
+
+	/**
+  @brief   级联入会通知
+  
+	MainBuf(#s8*) \n
+	Json格式如下：
+	{
+		basetype: ""    // 会议E164号
+	}
+
+*/
+	Ev_MtApi_DcsJoinCascadeConf_Ntf,
+
+
+	/**
+  @brief   级联删除所有白板通知
+  
+	MainBuf(#s8*) \n
+	Json格式如下：
+	{
+		basetype: ""    // 会议E164号
+	}
+
+*/
+	Ev_MtApi_DcsCascadeDelAllWhiteBoard_Ntf,
+
+
+
+/**
+  @brief    会议数据同步通知
+  
+	MainBuf(#TDCSGetAllBoard_Api) \n
+	Json格式如下：
+	{
+		"achConfE164" : "",
+		"dwBoardNum" : 0,
+		"atBoardInfo" : [
+			"achWbName" : "",
+			"emWbMode" : 0,
+			"dwWbPageNum" : 0,
+			"dwWbCreateTime" : 0,
+			"achTabId" : "",
+			"dwPageId" : 0,
+			"achWbCreatorE164" : "",
+			"dwWbWidth" : 0,
+			"dwWbHeight" : 0,
+			"achElementUrl" : "",
+			"achDownloadUrl" : "",
+			"achUploadUrl" : "",
+			"dwWbAnonyId" : 0				
+		]
+	}
+
+*/
+Ev_MtApi_DcsDataSync_Ntf,
+
+
+
+
 /**
   @brief   入会过程中的，会议地址域名查询
   

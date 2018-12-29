@@ -21581,6 +21581,1723 @@ public final class StructMtPB {
     // @@protoc_insertion_point(class_scope:nv.TNVMtHDVidInPort)
   }
 
+  public interface TNVImixAllVerInfoOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional string imix_ver = 1;
+    /**
+     * <code>optional string imix_ver = 1;</code>
+     *
+     * <pre>
+     *imix的当前版本
+     * </pre>
+     */
+    boolean hasImixVer();
+    /**
+     * <code>optional string imix_ver = 1;</code>
+     *
+     * <pre>
+     *imix的当前版本
+     * </pre>
+     */
+    java.lang.String getImixVer();
+    /**
+     * <code>optional string imix_ver = 1;</code>
+     *
+     * <pre>
+     *imix的当前版本
+     * </pre>
+     */
+    com.google.protobuf.ByteString
+        getImixVerBytes();
+
+    // optional string power_ver = 2;
+    /**
+     * <code>optional string power_ver = 2;</code>
+     *
+     * <pre>
+     *总开关的当前版本
+     * </pre>
+     */
+    boolean hasPowerVer();
+    /**
+     * <code>optional string power_ver = 2;</code>
+     *
+     * <pre>
+     *总开关的当前版本
+     * </pre>
+     */
+    java.lang.String getPowerVer();
+    /**
+     * <code>optional string power_ver = 2;</code>
+     *
+     * <pre>
+     *总开关的当前版本
+     * </pre>
+     */
+    com.google.protobuf.ByteString
+        getPowerVerBytes();
+
+    // optional string router_ver = 3;
+    /**
+     * <code>optional string router_ver = 3;</code>
+     *
+     * <pre>
+     *路由器的当前版本
+     * </pre>
+     */
+    boolean hasRouterVer();
+    /**
+     * <code>optional string router_ver = 3;</code>
+     *
+     * <pre>
+     *路由器的当前版本
+     * </pre>
+     */
+    java.lang.String getRouterVer();
+    /**
+     * <code>optional string router_ver = 3;</code>
+     *
+     * <pre>
+     *路由器的当前版本
+     * </pre>
+     */
+    com.google.protobuf.ByteString
+        getRouterVerBytes();
+
+    // optional string qk_ver = 4;
+    /**
+     * <code>optional string qk_ver = 4;</code>
+     *
+     * <pre>
+     *投屏器的当前版本
+     * </pre>
+     */
+    boolean hasQkVer();
+    /**
+     * <code>optional string qk_ver = 4;</code>
+     *
+     * <pre>
+     *投屏器的当前版本
+     * </pre>
+     */
+    java.lang.String getQkVer();
+    /**
+     * <code>optional string qk_ver = 4;</code>
+     *
+     * <pre>
+     *投屏器的当前版本
+     * </pre>
+     */
+    com.google.protobuf.ByteString
+        getQkVerBytes();
+  }
+  /**
+   * Protobuf type {@code nv.TNVImixAllVerInfo}
+   *
+   * <pre>
+   *与升级服务器比对的版本信息
+   * </pre>
+   */
+  public static final class TNVImixAllVerInfo extends
+      com.google.protobuf.GeneratedMessage
+      implements TNVImixAllVerInfoOrBuilder {
+    // Use TNVImixAllVerInfo.newBuilder() to construct.
+    private TNVImixAllVerInfo(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private TNVImixAllVerInfo(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final TNVImixAllVerInfo defaultInstance;
+    public static TNVImixAllVerInfo getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public TNVImixAllVerInfo getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private TNVImixAllVerInfo(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              bitField0_ |= 0x00000001;
+              imixVer_ = input.readBytes();
+              break;
+            }
+            case 18: {
+              bitField0_ |= 0x00000002;
+              powerVer_ = input.readBytes();
+              break;
+            }
+            case 26: {
+              bitField0_ |= 0x00000004;
+              routerVer_ = input.readBytes();
+              break;
+            }
+            case 34: {
+              bitField0_ |= 0x00000008;
+              qkVer_ = input.readBytes();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.kedacom.nv.netmanage.protobuf.StructMtPB.internal_static_nv_TNVImixAllVerInfo_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.kedacom.nv.netmanage.protobuf.StructMtPB.internal_static_nv_TNVImixAllVerInfo_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVImixAllVerInfo.class, com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVImixAllVerInfo.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<TNVImixAllVerInfo> PARSER =
+        new com.google.protobuf.AbstractParser<TNVImixAllVerInfo>() {
+      public TNVImixAllVerInfo parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new TNVImixAllVerInfo(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<TNVImixAllVerInfo> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // optional string imix_ver = 1;
+    public static final int IMIX_VER_FIELD_NUMBER = 1;
+    private java.lang.Object imixVer_;
+    /**
+     * <code>optional string imix_ver = 1;</code>
+     *
+     * <pre>
+     *imix的当前版本
+     * </pre>
+     */
+    public boolean hasImixVer() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional string imix_ver = 1;</code>
+     *
+     * <pre>
+     *imix的当前版本
+     * </pre>
+     */
+    public java.lang.String getImixVer() {
+      java.lang.Object ref = imixVer_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          imixVer_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string imix_ver = 1;</code>
+     *
+     * <pre>
+     *imix的当前版本
+     * </pre>
+     */
+    public com.google.protobuf.ByteString
+        getImixVerBytes() {
+      java.lang.Object ref = imixVer_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        imixVer_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    // optional string power_ver = 2;
+    public static final int POWER_VER_FIELD_NUMBER = 2;
+    private java.lang.Object powerVer_;
+    /**
+     * <code>optional string power_ver = 2;</code>
+     *
+     * <pre>
+     *总开关的当前版本
+     * </pre>
+     */
+    public boolean hasPowerVer() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional string power_ver = 2;</code>
+     *
+     * <pre>
+     *总开关的当前版本
+     * </pre>
+     */
+    public java.lang.String getPowerVer() {
+      java.lang.Object ref = powerVer_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          powerVer_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string power_ver = 2;</code>
+     *
+     * <pre>
+     *总开关的当前版本
+     * </pre>
+     */
+    public com.google.protobuf.ByteString
+        getPowerVerBytes() {
+      java.lang.Object ref = powerVer_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        powerVer_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    // optional string router_ver = 3;
+    public static final int ROUTER_VER_FIELD_NUMBER = 3;
+    private java.lang.Object routerVer_;
+    /**
+     * <code>optional string router_ver = 3;</code>
+     *
+     * <pre>
+     *路由器的当前版本
+     * </pre>
+     */
+    public boolean hasRouterVer() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional string router_ver = 3;</code>
+     *
+     * <pre>
+     *路由器的当前版本
+     * </pre>
+     */
+    public java.lang.String getRouterVer() {
+      java.lang.Object ref = routerVer_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          routerVer_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string router_ver = 3;</code>
+     *
+     * <pre>
+     *路由器的当前版本
+     * </pre>
+     */
+    public com.google.protobuf.ByteString
+        getRouterVerBytes() {
+      java.lang.Object ref = routerVer_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        routerVer_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    // optional string qk_ver = 4;
+    public static final int QK_VER_FIELD_NUMBER = 4;
+    private java.lang.Object qkVer_;
+    /**
+     * <code>optional string qk_ver = 4;</code>
+     *
+     * <pre>
+     *投屏器的当前版本
+     * </pre>
+     */
+    public boolean hasQkVer() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    /**
+     * <code>optional string qk_ver = 4;</code>
+     *
+     * <pre>
+     *投屏器的当前版本
+     * </pre>
+     */
+    public java.lang.String getQkVer() {
+      java.lang.Object ref = qkVer_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          qkVer_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string qk_ver = 4;</code>
+     *
+     * <pre>
+     *投屏器的当前版本
+     * </pre>
+     */
+    public com.google.protobuf.ByteString
+        getQkVerBytes() {
+      java.lang.Object ref = qkVer_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        qkVer_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private void initFields() {
+      imixVer_ = "";
+      powerVer_ = "";
+      routerVer_ = "";
+      qkVer_ = "";
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(1, getImixVerBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBytes(2, getPowerVerBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBytes(3, getRouterVerBytes());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeBytes(4, getQkVerBytes());
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, getImixVerBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, getPowerVerBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, getRouterVerBytes());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(4, getQkVerBytes());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVImixAllVerInfo parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVImixAllVerInfo parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVImixAllVerInfo parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVImixAllVerInfo parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVImixAllVerInfo parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVImixAllVerInfo parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVImixAllVerInfo parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVImixAllVerInfo parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVImixAllVerInfo parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVImixAllVerInfo parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVImixAllVerInfo prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code nv.TNVImixAllVerInfo}
+     *
+     * <pre>
+     *与升级服务器比对的版本信息
+     * </pre>
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVImixAllVerInfoOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.kedacom.nv.netmanage.protobuf.StructMtPB.internal_static_nv_TNVImixAllVerInfo_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.kedacom.nv.netmanage.protobuf.StructMtPB.internal_static_nv_TNVImixAllVerInfo_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVImixAllVerInfo.class, com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVImixAllVerInfo.Builder.class);
+      }
+
+      // Construct using com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVImixAllVerInfo.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        imixVer_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        powerVer_ = "";
+        bitField0_ = (bitField0_ & ~0x00000002);
+        routerVer_ = "";
+        bitField0_ = (bitField0_ & ~0x00000004);
+        qkVer_ = "";
+        bitField0_ = (bitField0_ & ~0x00000008);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.kedacom.nv.netmanage.protobuf.StructMtPB.internal_static_nv_TNVImixAllVerInfo_descriptor;
+      }
+
+      public com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVImixAllVerInfo getDefaultInstanceForType() {
+        return com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVImixAllVerInfo.getDefaultInstance();
+      }
+
+      public com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVImixAllVerInfo build() {
+        com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVImixAllVerInfo result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVImixAllVerInfo buildPartial() {
+        com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVImixAllVerInfo result = new com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVImixAllVerInfo(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.imixVer_ = imixVer_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.powerVer_ = powerVer_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.routerVer_ = routerVer_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.qkVer_ = qkVer_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVImixAllVerInfo) {
+          return mergeFrom((com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVImixAllVerInfo)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVImixAllVerInfo other) {
+        if (other == com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVImixAllVerInfo.getDefaultInstance()) return this;
+        if (other.hasImixVer()) {
+          bitField0_ |= 0x00000001;
+          imixVer_ = other.imixVer_;
+          onChanged();
+        }
+        if (other.hasPowerVer()) {
+          bitField0_ |= 0x00000002;
+          powerVer_ = other.powerVer_;
+          onChanged();
+        }
+        if (other.hasRouterVer()) {
+          bitField0_ |= 0x00000004;
+          routerVer_ = other.routerVer_;
+          onChanged();
+        }
+        if (other.hasQkVer()) {
+          bitField0_ |= 0x00000008;
+          qkVer_ = other.qkVer_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVImixAllVerInfo parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVImixAllVerInfo) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional string imix_ver = 1;
+      private java.lang.Object imixVer_ = "";
+      /**
+       * <code>optional string imix_ver = 1;</code>
+       *
+       * <pre>
+       *imix的当前版本
+       * </pre>
+       */
+      public boolean hasImixVer() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional string imix_ver = 1;</code>
+       *
+       * <pre>
+       *imix的当前版本
+       * </pre>
+       */
+      public java.lang.String getImixVer() {
+        java.lang.Object ref = imixVer_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          imixVer_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string imix_ver = 1;</code>
+       *
+       * <pre>
+       *imix的当前版本
+       * </pre>
+       */
+      public com.google.protobuf.ByteString
+          getImixVerBytes() {
+        java.lang.Object ref = imixVer_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          imixVer_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string imix_ver = 1;</code>
+       *
+       * <pre>
+       *imix的当前版本
+       * </pre>
+       */
+      public Builder setImixVer(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        imixVer_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string imix_ver = 1;</code>
+       *
+       * <pre>
+       *imix的当前版本
+       * </pre>
+       */
+      public Builder clearImixVer() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        imixVer_ = getDefaultInstance().getImixVer();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string imix_ver = 1;</code>
+       *
+       * <pre>
+       *imix的当前版本
+       * </pre>
+       */
+      public Builder setImixVerBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        imixVer_ = value;
+        onChanged();
+        return this;
+      }
+
+      // optional string power_ver = 2;
+      private java.lang.Object powerVer_ = "";
+      /**
+       * <code>optional string power_ver = 2;</code>
+       *
+       * <pre>
+       *总开关的当前版本
+       * </pre>
+       */
+      public boolean hasPowerVer() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional string power_ver = 2;</code>
+       *
+       * <pre>
+       *总开关的当前版本
+       * </pre>
+       */
+      public java.lang.String getPowerVer() {
+        java.lang.Object ref = powerVer_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          powerVer_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string power_ver = 2;</code>
+       *
+       * <pre>
+       *总开关的当前版本
+       * </pre>
+       */
+      public com.google.protobuf.ByteString
+          getPowerVerBytes() {
+        java.lang.Object ref = powerVer_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          powerVer_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string power_ver = 2;</code>
+       *
+       * <pre>
+       *总开关的当前版本
+       * </pre>
+       */
+      public Builder setPowerVer(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        powerVer_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string power_ver = 2;</code>
+       *
+       * <pre>
+       *总开关的当前版本
+       * </pre>
+       */
+      public Builder clearPowerVer() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        powerVer_ = getDefaultInstance().getPowerVer();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string power_ver = 2;</code>
+       *
+       * <pre>
+       *总开关的当前版本
+       * </pre>
+       */
+      public Builder setPowerVerBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        powerVer_ = value;
+        onChanged();
+        return this;
+      }
+
+      // optional string router_ver = 3;
+      private java.lang.Object routerVer_ = "";
+      /**
+       * <code>optional string router_ver = 3;</code>
+       *
+       * <pre>
+       *路由器的当前版本
+       * </pre>
+       */
+      public boolean hasRouterVer() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional string router_ver = 3;</code>
+       *
+       * <pre>
+       *路由器的当前版本
+       * </pre>
+       */
+      public java.lang.String getRouterVer() {
+        java.lang.Object ref = routerVer_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          routerVer_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string router_ver = 3;</code>
+       *
+       * <pre>
+       *路由器的当前版本
+       * </pre>
+       */
+      public com.google.protobuf.ByteString
+          getRouterVerBytes() {
+        java.lang.Object ref = routerVer_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          routerVer_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string router_ver = 3;</code>
+       *
+       * <pre>
+       *路由器的当前版本
+       * </pre>
+       */
+      public Builder setRouterVer(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        routerVer_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string router_ver = 3;</code>
+       *
+       * <pre>
+       *路由器的当前版本
+       * </pre>
+       */
+      public Builder clearRouterVer() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        routerVer_ = getDefaultInstance().getRouterVer();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string router_ver = 3;</code>
+       *
+       * <pre>
+       *路由器的当前版本
+       * </pre>
+       */
+      public Builder setRouterVerBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        routerVer_ = value;
+        onChanged();
+        return this;
+      }
+
+      // optional string qk_ver = 4;
+      private java.lang.Object qkVer_ = "";
+      /**
+       * <code>optional string qk_ver = 4;</code>
+       *
+       * <pre>
+       *投屏器的当前版本
+       * </pre>
+       */
+      public boolean hasQkVer() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional string qk_ver = 4;</code>
+       *
+       * <pre>
+       *投屏器的当前版本
+       * </pre>
+       */
+      public java.lang.String getQkVer() {
+        java.lang.Object ref = qkVer_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          qkVer_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string qk_ver = 4;</code>
+       *
+       * <pre>
+       *投屏器的当前版本
+       * </pre>
+       */
+      public com.google.protobuf.ByteString
+          getQkVerBytes() {
+        java.lang.Object ref = qkVer_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          qkVer_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string qk_ver = 4;</code>
+       *
+       * <pre>
+       *投屏器的当前版本
+       * </pre>
+       */
+      public Builder setQkVer(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+        qkVer_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string qk_ver = 4;</code>
+       *
+       * <pre>
+       *投屏器的当前版本
+       * </pre>
+       */
+      public Builder clearQkVer() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        qkVer_ = getDefaultInstance().getQkVer();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string qk_ver = 4;</code>
+       *
+       * <pre>
+       *投屏器的当前版本
+       * </pre>
+       */
+      public Builder setQkVerBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+        qkVer_ = value;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:nv.TNVImixAllVerInfo)
+    }
+
+    static {
+      defaultInstance = new TNVImixAllVerInfo(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:nv.TNVImixAllVerInfo)
+  }
+
+  public interface TNVSusUpgradeModuleOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // repeated .nv.EmSusUpgradeModule upgrade_module = 1;
+    /**
+     * <code>repeated .nv.EmSusUpgradeModule upgrade_module = 1;</code>
+     */
+    java.util.List<com.kedacom.nv.netmanage.protobuf.EnumPB.EmSusUpgradeModule> getUpgradeModuleList();
+    /**
+     * <code>repeated .nv.EmSusUpgradeModule upgrade_module = 1;</code>
+     */
+    int getUpgradeModuleCount();
+    /**
+     * <code>repeated .nv.EmSusUpgradeModule upgrade_module = 1;</code>
+     */
+    com.kedacom.nv.netmanage.protobuf.EnumPB.EmSusUpgradeModule getUpgradeModule(int index);
+
+    // optional uint32 module_size = 2;
+    /**
+     * <code>optional uint32 module_size = 2;</code>
+     */
+    boolean hasModuleSize();
+    /**
+     * <code>optional uint32 module_size = 2;</code>
+     */
+    int getModuleSize();
+  }
+  /**
+   * Protobuf type {@code nv.TNVSusUpgradeModule}
+   *
+   * <pre>
+   *升级服务器需要升级的模块
+   * </pre>
+   */
+  public static final class TNVSusUpgradeModule extends
+      com.google.protobuf.GeneratedMessage
+      implements TNVSusUpgradeModuleOrBuilder {
+    // Use TNVSusUpgradeModule.newBuilder() to construct.
+    private TNVSusUpgradeModule(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private TNVSusUpgradeModule(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final TNVSusUpgradeModule defaultInstance;
+    public static TNVSusUpgradeModule getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public TNVSusUpgradeModule getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private TNVSusUpgradeModule(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              int rawValue = input.readEnum();
+              com.kedacom.nv.netmanage.protobuf.EnumPB.EmSusUpgradeModule value = com.kedacom.nv.netmanage.protobuf.EnumPB.EmSusUpgradeModule.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(1, rawValue);
+              } else {
+                if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                  upgradeModule_ = new java.util.ArrayList<com.kedacom.nv.netmanage.protobuf.EnumPB.EmSusUpgradeModule>();
+                  mutable_bitField0_ |= 0x00000001;
+                }
+                upgradeModule_.add(value);
+              }
+              break;
+            }
+            case 10: {
+              int length = input.readRawVarint32();
+              int oldLimit = input.pushLimit(length);
+              while(input.getBytesUntilLimit() > 0) {
+                int rawValue = input.readEnum();
+                com.kedacom.nv.netmanage.protobuf.EnumPB.EmSusUpgradeModule value = com.kedacom.nv.netmanage.protobuf.EnumPB.EmSusUpgradeModule.valueOf(rawValue);
+                if (value == null) {
+                  unknownFields.mergeVarintField(1, rawValue);
+                } else {
+                  if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                    upgradeModule_ = new java.util.ArrayList<com.kedacom.nv.netmanage.protobuf.EnumPB.EmSusUpgradeModule>();
+                    mutable_bitField0_ |= 0x00000001;
+                  }
+                  upgradeModule_.add(value);
+                }
+              }
+              input.popLimit(oldLimit);
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000001;
+              moduleSize_ = input.readUInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+          upgradeModule_ = java.util.Collections.unmodifiableList(upgradeModule_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.kedacom.nv.netmanage.protobuf.StructMtPB.internal_static_nv_TNVSusUpgradeModule_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.kedacom.nv.netmanage.protobuf.StructMtPB.internal_static_nv_TNVSusUpgradeModule_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVSusUpgradeModule.class, com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVSusUpgradeModule.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<TNVSusUpgradeModule> PARSER =
+        new com.google.protobuf.AbstractParser<TNVSusUpgradeModule>() {
+      public TNVSusUpgradeModule parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new TNVSusUpgradeModule(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<TNVSusUpgradeModule> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // repeated .nv.EmSusUpgradeModule upgrade_module = 1;
+    public static final int UPGRADE_MODULE_FIELD_NUMBER = 1;
+    private java.util.List<com.kedacom.nv.netmanage.protobuf.EnumPB.EmSusUpgradeModule> upgradeModule_;
+    /**
+     * <code>repeated .nv.EmSusUpgradeModule upgrade_module = 1;</code>
+     */
+    public java.util.List<com.kedacom.nv.netmanage.protobuf.EnumPB.EmSusUpgradeModule> getUpgradeModuleList() {
+      return upgradeModule_;
+    }
+    /**
+     * <code>repeated .nv.EmSusUpgradeModule upgrade_module = 1;</code>
+     */
+    public int getUpgradeModuleCount() {
+      return upgradeModule_.size();
+    }
+    /**
+     * <code>repeated .nv.EmSusUpgradeModule upgrade_module = 1;</code>
+     */
+    public com.kedacom.nv.netmanage.protobuf.EnumPB.EmSusUpgradeModule getUpgradeModule(int index) {
+      return upgradeModule_.get(index);
+    }
+
+    // optional uint32 module_size = 2;
+    public static final int MODULE_SIZE_FIELD_NUMBER = 2;
+    private int moduleSize_;
+    /**
+     * <code>optional uint32 module_size = 2;</code>
+     */
+    public boolean hasModuleSize() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional uint32 module_size = 2;</code>
+     */
+    public int getModuleSize() {
+      return moduleSize_;
+    }
+
+    private void initFields() {
+      upgradeModule_ = java.util.Collections.emptyList();
+      moduleSize_ = 0;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      for (int i = 0; i < upgradeModule_.size(); i++) {
+        output.writeEnum(1, upgradeModule_.get(i).getNumber());
+      }
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeUInt32(2, moduleSize_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      {
+        int dataSize = 0;
+        for (int i = 0; i < upgradeModule_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeEnumSizeNoTag(upgradeModule_.get(i).getNumber());
+        }
+        size += dataSize;
+        size += 1 * upgradeModule_.size();
+      }
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(2, moduleSize_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVSusUpgradeModule parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVSusUpgradeModule parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVSusUpgradeModule parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVSusUpgradeModule parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVSusUpgradeModule parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVSusUpgradeModule parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVSusUpgradeModule parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVSusUpgradeModule parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVSusUpgradeModule parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVSusUpgradeModule parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVSusUpgradeModule prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code nv.TNVSusUpgradeModule}
+     *
+     * <pre>
+     *升级服务器需要升级的模块
+     * </pre>
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVSusUpgradeModuleOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.kedacom.nv.netmanage.protobuf.StructMtPB.internal_static_nv_TNVSusUpgradeModule_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.kedacom.nv.netmanage.protobuf.StructMtPB.internal_static_nv_TNVSusUpgradeModule_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVSusUpgradeModule.class, com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVSusUpgradeModule.Builder.class);
+      }
+
+      // Construct using com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVSusUpgradeModule.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        upgradeModule_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        moduleSize_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.kedacom.nv.netmanage.protobuf.StructMtPB.internal_static_nv_TNVSusUpgradeModule_descriptor;
+      }
+
+      public com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVSusUpgradeModule getDefaultInstanceForType() {
+        return com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVSusUpgradeModule.getDefaultInstance();
+      }
+
+      public com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVSusUpgradeModule build() {
+        com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVSusUpgradeModule result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVSusUpgradeModule buildPartial() {
+        com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVSusUpgradeModule result = new com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVSusUpgradeModule(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          upgradeModule_ = java.util.Collections.unmodifiableList(upgradeModule_);
+          bitField0_ = (bitField0_ & ~0x00000001);
+        }
+        result.upgradeModule_ = upgradeModule_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.moduleSize_ = moduleSize_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVSusUpgradeModule) {
+          return mergeFrom((com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVSusUpgradeModule)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVSusUpgradeModule other) {
+        if (other == com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVSusUpgradeModule.getDefaultInstance()) return this;
+        if (!other.upgradeModule_.isEmpty()) {
+          if (upgradeModule_.isEmpty()) {
+            upgradeModule_ = other.upgradeModule_;
+            bitField0_ = (bitField0_ & ~0x00000001);
+          } else {
+            ensureUpgradeModuleIsMutable();
+            upgradeModule_.addAll(other.upgradeModule_);
+          }
+          onChanged();
+        }
+        if (other.hasModuleSize()) {
+          setModuleSize(other.getModuleSize());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVSusUpgradeModule parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.kedacom.nv.netmanage.protobuf.StructMtPB.TNVSusUpgradeModule) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // repeated .nv.EmSusUpgradeModule upgrade_module = 1;
+      private java.util.List<com.kedacom.nv.netmanage.protobuf.EnumPB.EmSusUpgradeModule> upgradeModule_ =
+        java.util.Collections.emptyList();
+      private void ensureUpgradeModuleIsMutable() {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+          upgradeModule_ = new java.util.ArrayList<com.kedacom.nv.netmanage.protobuf.EnumPB.EmSusUpgradeModule>(upgradeModule_);
+          bitField0_ |= 0x00000001;
+        }
+      }
+      /**
+       * <code>repeated .nv.EmSusUpgradeModule upgrade_module = 1;</code>
+       */
+      public java.util.List<com.kedacom.nv.netmanage.protobuf.EnumPB.EmSusUpgradeModule> getUpgradeModuleList() {
+        return java.util.Collections.unmodifiableList(upgradeModule_);
+      }
+      /**
+       * <code>repeated .nv.EmSusUpgradeModule upgrade_module = 1;</code>
+       */
+      public int getUpgradeModuleCount() {
+        return upgradeModule_.size();
+      }
+      /**
+       * <code>repeated .nv.EmSusUpgradeModule upgrade_module = 1;</code>
+       */
+      public com.kedacom.nv.netmanage.protobuf.EnumPB.EmSusUpgradeModule getUpgradeModule(int index) {
+        return upgradeModule_.get(index);
+      }
+      /**
+       * <code>repeated .nv.EmSusUpgradeModule upgrade_module = 1;</code>
+       */
+      public Builder setUpgradeModule(
+          int index, com.kedacom.nv.netmanage.protobuf.EnumPB.EmSusUpgradeModule value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureUpgradeModuleIsMutable();
+        upgradeModule_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated .nv.EmSusUpgradeModule upgrade_module = 1;</code>
+       */
+      public Builder addUpgradeModule(com.kedacom.nv.netmanage.protobuf.EnumPB.EmSusUpgradeModule value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureUpgradeModuleIsMutable();
+        upgradeModule_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated .nv.EmSusUpgradeModule upgrade_module = 1;</code>
+       */
+      public Builder addAllUpgradeModule(
+          java.lang.Iterable<? extends com.kedacom.nv.netmanage.protobuf.EnumPB.EmSusUpgradeModule> values) {
+        ensureUpgradeModuleIsMutable();
+        super.addAll(values, upgradeModule_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated .nv.EmSusUpgradeModule upgrade_module = 1;</code>
+       */
+      public Builder clearUpgradeModule() {
+        upgradeModule_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+
+      // optional uint32 module_size = 2;
+      private int moduleSize_ ;
+      /**
+       * <code>optional uint32 module_size = 2;</code>
+       */
+      public boolean hasModuleSize() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional uint32 module_size = 2;</code>
+       */
+      public int getModuleSize() {
+        return moduleSize_;
+      }
+      /**
+       * <code>optional uint32 module_size = 2;</code>
+       */
+      public Builder setModuleSize(int value) {
+        bitField0_ |= 0x00000002;
+        moduleSize_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 module_size = 2;</code>
+       */
+      public Builder clearModuleSize() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        moduleSize_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:nv.TNVSusUpgradeModule)
+    }
+
+    static {
+      defaultInstance = new TNVSusUpgradeModule(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:nv.TNVSusUpgradeModule)
+  }
+
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_nv_TNVApsLoginParam_descriptor;
   private static
@@ -21696,6 +23413,16 @@ public final class StructMtPB {
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_nv_TNVMtHDVidInPort_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_nv_TNVImixAllVerInfo_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_nv_TNVImixAllVerInfo_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_nv_TNVSusUpgradeModule_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_nv_TNVSusUpgradeModule_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -21769,8 +23496,13 @@ public final class StructMtPB {
       "tatus\030\001 \003(\0132\022.nv.TNVMtMicStatus\022\017\n\007mic_c" +
       "nt\030\002 \001(\r\"b\n\020TNVMtHDVidInPort\022%\n\010vid_type" +
       "\030\001 \001(\0162\023.nv.EmMtHDVideoType\022\'\n\010vid_port\030" +
-      "\002 \001(\0162\025.nv.EmNvVideoPort_ApiB/\n!com.keda" +
-      "com.nv.netmanage.protobufB\nStructMtPB"
+      "\002 \001(\0162\025.nv.EmNvVideoPort_Api\"\\\n\021TNVImixA" +
+      "llVerInfo\022\020\n\010imix_ver\030\001 \001(\t\022\021\n\tpower_ver" +
+      "\030\002 \001(\t\022\022\n\nrouter_ver\030\003 \001(\t\022\016\n\006qk_ver\030\004 \001" +
+      "(\t\"Z\n\023TNVSusUpgradeModule\022.\n\016upgrade_mod" +
+      "ule\030\001 \003(\0162\026.nv.EmSusUpgradeModule\022\023\n\013mod" +
+      "ule_size\030\002 \001(\rB/\n!com.kedacom.nv.netmana",
+      "ge.protobufB\nStructMtPB"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -21915,6 +23647,18 @@ public final class StructMtPB {
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_nv_TNVMtHDVidInPort_descriptor,
               new java.lang.String[] { "VidType", "VidPort", });
+          internal_static_nv_TNVImixAllVerInfo_descriptor =
+            getDescriptor().getMessageTypes().get(23);
+          internal_static_nv_TNVImixAllVerInfo_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_nv_TNVImixAllVerInfo_descriptor,
+              new java.lang.String[] { "ImixVer", "PowerVer", "RouterVer", "QkVer", });
+          internal_static_nv_TNVSusUpgradeModule_descriptor =
+            getDescriptor().getMessageTypes().get(24);
+          internal_static_nv_TNVSusUpgradeModule_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_nv_TNVSusUpgradeModule_descriptor,
+              new java.lang.String[] { "UpgradeModule", "ModuleSize", });
           return null;
         }
       };

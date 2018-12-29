@@ -4503,9 +4503,9 @@ typedef struct tagTMTInstantConference_Api
     EmCallMode_Api              emCallMode;                             ///< 呼叫模式 
     TMTRecordAttribute_Api      tRecordAttr;                            ///< 录像设置
     TMTDCSAttribute_Api         tDCSAttr;                               ///< 数据协作
-	EmVConfCreateType_Api		emVConfCreateType;						///< 创会类型，4是虚拟会议室，如果不填则是默认的实时会议
-	s8							achVConfId[KMTAPI_BUF_64_LEN+1];		///< 虚拟会议室ID（只有createtype填写了，这个才生效）
-
+	EmVConfCreateType_Api		emVConfCreateType;						///< 创会类型，如果不填则是默认的实时会议
+	s8							achVConfId[KMTAPI_BUF_64_LEN+1];		///< 根据 虚拟会议室ID创会（emVConfCreateType填emCreateVirtualConf_Api） 
+                                                                        ///< 根据 模板ID创会（emVConfCreateType填emCreateConfByTemplate_Api）
     EmMtFecMode_Api             emFecMode;                              ///< FEC开关
     BOOL32                      bDoubleFlow;                            ///<成为发言人后立即发起内容共享，默认为0,0-否；1-是；
     BOOL32                      bMuteFilter;                             ///<是否开启全场哑音例外，默认为0,0-不开启；1-开启；
@@ -5522,6 +5522,8 @@ typedef struct tagTMTHDCameraCfg_Api
 	u32 dwAddress;                                                ///<菊花链位置
 	u32 dwSpeed;                                                  ///<速度（快、中、慢）
 	EmHDSerialType_Api emSerialType;                              ///<串口类型
+	u32 dwIp;													  ///<智能摄像机IP
+	u32 dwPort;													  ///<智能摄像机端口
 public:
 	tagTMTHDCameraCfg_Api() { memset( this, 0, sizeof(*this)); }
 }*PTMTHDCameraCfg_Api, TMTHDCameraCfg_Api;
@@ -9268,6 +9270,71 @@ typedef struct tagTMtAiInfoCfg_Api
 public:
 	tagTMtAiInfoCfg_Api(){ memset( this ,0 ,sizeof( struct  tagTMtAiInfoCfg_Api ) );}
 }*PTMtAiInfoCfg_Api, TMtAiInfoCfg_Api;
+
+///<从此往下是定义的有关AICamera模块的结构体
+typedef struct tagTMtHDCameraAiCfg_Api
+{
+	u32  dwVideoIndex;							 ///<索引
+	u32  dwIp;									///<网络序的IP地址
+	u32  dwPort;							    ///<连接端口
+public:
+	tagTMtHDCameraAiCfg_Api(){ memset( this ,0 ,sizeof( struct  tagTMtHDCameraAiCfg_Api ) );}
+}*PTMtHDCameraAiCfg_Api, TMtHDCameraAiCfg_Api;
+
+/** 摄像机AI配置列表 */
+typedef struct tagTMtHDCameraAiList_Api
+{
+	u32					 dwCameraAiNum;
+	TMtHDCameraAiCfg_Api atAiCameraList[KMTAPI_BUF_32_LEN+1]; 
+public:
+	tagTMtHDCameraAiList_Api(){ memset( this ,0 ,sizeof( struct  tagTMtHDCameraAiList_Api ) );}
+}*PTMtHDCameraAiList_Api, TMtHDCameraAiList_Api;
+
+///<人数统计
+typedef struct tagTMtPeopleCountingResult_Api
+{
+	u32					 dwVideoIndex; //<索引
+	u32					 dwPeopleNum; //<人数统计结果
+public:
+	tagTMtPeopleCountingResult_Api(){ memset( this ,0 ,sizeof( struct  tagTMtPeopleCountingResult_Api ) );}
+}*PTMtPeopleCountingResult_Api, TMtPeopleCountingResult_Api;
+
+///<人脸信息
+typedef struct tagTMtFaceCheckInInfo_Api
+{
+	s8					 achName[KMTAPI_BUF_32_LEN+1]; ///<姓名
+	s8					 achTime[KMTAPI_BUF_32_LEN+1]; ///<时间
+	s8					 achPosition[KMTAPI_BUF_32_LEN+1];///<员工职位
+public:
+	tagTMtFaceCheckInInfo_Api(){ memset( this ,0 ,sizeof( struct  tagTMtFaceCheckInInfo_Api ) );}
+}*PTMtFaceCheckInInfo_Api, TMtFaceCheckInInfo_Api;
+
+///<人脸签到通知信息
+typedef struct tagTMtFaceCheckInList_Api
+{
+	u32					 dwVideoIndex; ///<索引
+	u32					 dwFaceCheckNum; ///<人脸签到人数
+	TMtFaceCheckInInfo_Api atFaceCheckInfoList[KMTAPI_BUF_32_LEN+1]; ///<人脸签到通知信息列表
+public:
+	tagTMtFaceCheckInList_Api(){ memset( this ,0 ,sizeof( struct  tagTMtFaceCheckInList_Api ) );}
+}*PTMtFaceCheckInList_Api, TMtFaceCheckInList_Api;
+
+//osd快捷键配置
+typedef struct tagTMtShortCutKey_Api
+{
+	EmShortCutKeyType_Api emKeyType;	////< 快捷键类型
+	EmShortCutKeyFuc_Api  emKeyFuc;		////< 快捷键功能
+public:
+	tagTMtShortCutKey_Api(){ memset( this, 0, sizeof(tagTMtShortCutKey_Api) );}
+}*PTMtTMtShortCutKey_Api, TMtShortCutKey_Api;
+
+typedef struct tagTMtShortCutKeyList_Api
+{
+	TMtShortCutKey_Api atShortCutKey[KMTAPI_COUNT_4];
+	u8 byCnt;
+public:
+	tagTMtShortCutKeyList_Api(){ memset( this, 0, sizeof(tagTMtShortCutKeyList_Api) );}
+}*PTMtShortCutKeyList_Api, TMtShortCutKeyList_Api;
 
 
 /**@}*/

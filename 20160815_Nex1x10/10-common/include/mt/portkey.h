@@ -29,39 +29,35 @@ ADD_PORT(PORTS_H323NonStandCallingPort, 1, 0);
 
 
 ///////udp 端口分配
-ADD_PORT(PORTS_RecvAud0, 0, 2);       ///主音频接收， 也作为vod接收码流端口
-ADD_PORT(PORTS_RecvVid0, 0, 2);       ///主视频接收， 也作为vod接收码流端口
-ADD_PORT(PORTS_RecvAssVid, 0, 2);     ////暂时有1路 收视频辅流， 也作为vod 收辅视频流端口
-ADD_PORT(PORTS_RecvAssAud, 0, 0);     ////暂时有0路 收音频辅流
+ADD_PORT(PORTS_RecvAud0, 0, 2);            ///主音频接收， 也作为vod接收码流端口
+ADD_PORT(PORTS_RecvVid0, 0, 2);            ///主视频接收， 也作为vod接收码流端口
+ADD_PORT(PORTS_RecvAssVid, 0, 2);          ///暂时有1路 收视频辅流， 也作为vod 收辅视频流端口
+ADD_PORT(PORTS_RecvAssAud, 0, 0);          ///暂时有0路 收音频辅流
+ADD_PORT(PORTS_LocalAssV4Forword, 0, 2);   ///本地转发双流端口
 
-ADD_PORT(PORTS_RecvFecc, 0, 1);       ////fecc 端口复用， 收发就用一个端口
-ADD_PORT(PORTS_SendFecc, 0, 0);       ////fecc 端口不能复用
-ADD_PORT(PORTS_BFCP, 1, 1);          ////bfcp只占用一个端口，后一个浪费掉了，
+ADD_PORT(PORTS_RecvFecc, 0, 1);            ////fecc 端口复用， 收发就用一个端口
+ADD_PORT(PORTS_SendFecc, 0, 0);            ////fecc 端口不能复用
+ADD_PORT(PORTS_BFCP, 1, 1);                ////bfcp只占用一个端口，后一个浪费掉了，
+
 
 ADD_PORT(PORTS_SendAud0, 0, 2);       //如果端口复用，用recvaud的
 ADD_PORT(PORTS_SendVid0, 0, 2);       //如果端口复用，用recvvid的
 ADD_PORT(PORTS_SendAssVid, 0, 2);     //如果端口复用，用recvAssvid的
 ADD_PORT(PORTS_SendAssAud, 0, 0);
 
-ADD_PORT(PORTS_LocalAssV4Forword, 0, 2);           ///本地转发双流端口
-ADD_PORT(PORTS_DisplayToRecvAss,0,2);              ///双流回显，本地用到的端口
-ADD_PORT(PORTS_H323PXY, 0, MTH323PROXYPORTSIZE);   ////323代理用到的端口
-
 ////多流
 ADD_PORT(PORTS_RecvVidMul,0, 2*(MAX_MAINVIDEO_NUM-1) );  ///多流
 ADD_PORT(PORTS_SendVidMul, 0, 2*(MAX_MAINVIDEO_NUM-1) ); ///多流
-
 ADD_PORT(PORTS_RecvAudMul,0, 2*(MAX_MAINAUDIO_NUM-1) );  ///多流
 ADD_PORT(PORTS_SendAudMul, 0, 2*(MAX_MAINAUDIO_NUM-1) ); ///多流
 
 
+ADD_PORT(PORTS_H323PXY, 0, MTH323PROXYPORTSIZE);   ////323代理用到的端口
+ADD_PORT(PORTS_DisplayToRecvAss,0,2);              ///双流回显，本地用到的端口，skyshare也不用开端口
 
-/*
-    本地自环需要用到的端口，暂时只是硬终端用
-*/
+// 本地自环需要用到的端口，暂时只是硬终端用, 本地的， 不用开端口
 ADD_PORT(PORTS_AudLoop, 0, 4*MAX_MAINAUDIO_NUM);
 ADD_PORT(PORTS_VidLoop, 0, 8*MAX_MAINVIDEO_NUM);
-
 
 
 /*mtmp 媒控 申请用到的端口,下面的端口 主要是用在mtmp内部转发用到的端口，

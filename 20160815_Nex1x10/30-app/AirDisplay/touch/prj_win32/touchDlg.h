@@ -165,6 +165,7 @@ public:
 	int m_nStopPptCount;     //发送ppt未播放命令次数
 
 	bool m_bCapOverEncode;   //判断采集分辨率是否大于编码分辨率
+	bool m_bStretch;         //判断是否不等比拉伸，即采集分辨率比例大于等于1.5时
 
 	bool m_bBusinessStaus;   //是否需要判断业务状态
 	int m_nSendBusinessCount;//发送业务命令次数

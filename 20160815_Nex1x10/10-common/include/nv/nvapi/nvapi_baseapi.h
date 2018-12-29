@@ -2453,7 +2453,7 @@ KdvNvAPI u32 KdvNvCALL KdvNv_SetImixLocalEchoCmd(IN CONST nv::TBOOL32 tbOpen, IN
 *@return        u32  0：成功获取， 其他：错误码
 *@note          更新通知：Ev_NvApi_Base_NVVerIsSameAsJDServer_Rsp
 ***********************************************************************************/
-KdvNvAPI u32 KdvNvCALL KdvNv_GetNVVerIsSameAsJDServeReq( IN CONST SessionID dwSSID);
+KdvNvAPI u32 KdvNvCALL KdvNv_GetNVVerIsSameAsJDServeReq(IN CONST nv::TString tRouterVer, IN CONST SessionID dwSSID);
 
 /*******************************************************************************//**
 *@brief         设置imix版本从JD平台服务器下载版本
@@ -2464,5 +2464,22 @@ KdvNvAPI u32 KdvNvCALL KdvNv_GetNVVerIsSameAsJDServeReq( IN CONST SessionID dwSS
                           Ev_NvApi_Base_NVDownloadResultFromJD_Nty
 ***********************************************************************************/
 KdvNvAPI u32 KdvNvCALL KdvNv_SetNVIsUpgradeFromJDServerCmd( IN CONST nv::TBOOL32 tUpgrade, IN CONST SessionID dwSSID);
+
+/*******************************************************************************//**
+*@brief         设置终端跳过设置向导静态图片
+*KdvNv_SetSkipTerWizardCmd
+*@param[in]     dwSSID  NV会话ID 
+*@return        u32  0：成功获取， 其他：错误码
+*@note          更新通知：
+***********************************************************************************/
+KdvNvAPI u32 KdvNvCALL KdvNv_SetSkipTerWizardCmd( IN CONST SessionID dwSSID);
+/*******************************************************************************//**
+*@brief         获取imix序列号
+*KdvNv_GetImixSerialNumReq
+*@param[in]     dwSSID  NV会话ID 
+*@return        u32  0：成功获取， 其他：错误码
+*@note          更新通知：
+***********************************************************************************/
+KdvNvAPI u32 KdvNvCALL KdvNv_GetImixSerialNumReq( IN CONST SessionID dwSSID);
 
 #endif //_NVAPI_BASEAPI_H_

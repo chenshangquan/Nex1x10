@@ -3046,6 +3046,51 @@ inline bool EmQkCodeRes_Parse(
   return ::google::protobuf::internal::ParseNamedEnum<EmQkCodeRes>(
     EmQkCodeRes_descriptor(), name, value);
 }
+enum EmSusUpgradeModule {
+  emNvSusInvalid = 0,
+  emNvSusImix = 1,
+  emNvSusApk = 2,
+  emNvSusRouter = 3,
+  emNvSusQuichshare = 4,
+  emNvSusPower = 5
+};
+MTMSG_API bool EmSusUpgradeModule_IsValid(int value);
+const EmSusUpgradeModule EmSusUpgradeModule_MIN = emNvSusInvalid;
+const EmSusUpgradeModule EmSusUpgradeModule_MAX = emNvSusPower;
+const int EmSusUpgradeModule_ARRAYSIZE = EmSusUpgradeModule_MAX + 1;
+
+MTMSG_API const ::google::protobuf::EnumDescriptor* EmSusUpgradeModule_descriptor();
+inline const ::std::string& EmSusUpgradeModule_Name(EmSusUpgradeModule value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    EmSusUpgradeModule_descriptor(), value);
+}
+inline bool EmSusUpgradeModule_Parse(
+    const ::std::string& name, EmSusUpgradeModule* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<EmSusUpgradeModule>(
+    EmSusUpgradeModule_descriptor(), name, value);
+}
+enum EmSusNotUpgradeReason {
+  emNvSusConnectFail = 0,
+  emNvSusNoPackage = 1,
+  emNvSusLoadCfgFileFail = 2,
+  emNvSusNotNeedUpgrade = 3,
+  emNvSusNeedUpgrade = 4
+};
+MTMSG_API bool EmSusNotUpgradeReason_IsValid(int value);
+const EmSusNotUpgradeReason EmSusNotUpgradeReason_MIN = emNvSusConnectFail;
+const EmSusNotUpgradeReason EmSusNotUpgradeReason_MAX = emNvSusNeedUpgrade;
+const int EmSusNotUpgradeReason_ARRAYSIZE = EmSusNotUpgradeReason_MAX + 1;
+
+MTMSG_API const ::google::protobuf::EnumDescriptor* EmSusNotUpgradeReason_descriptor();
+inline const ::std::string& EmSusNotUpgradeReason_Name(EmSusNotUpgradeReason value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    EmSusNotUpgradeReason_descriptor(), value);
+}
+inline bool EmSusNotUpgradeReason_Parse(
+    const ::std::string& name, EmSusNotUpgradeReason* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<EmSusNotUpgradeReason>(
+    EmSusNotUpgradeReason_descriptor(), name, value);
+}
 // ===================================================================
 
 
@@ -3514,6 +3559,14 @@ inline const EnumDescriptor* GetEnumDescriptor< ::nv::EmQkAudFormat>() {
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::nv::EmQkCodeRes>() {
   return ::nv::EmQkCodeRes_descriptor();
+}
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::nv::EmSusUpgradeModule>() {
+  return ::nv::EmSusUpgradeModule_descriptor();
+}
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::nv::EmSusNotUpgradeReason>() {
+  return ::nv::EmSusNotUpgradeReason_descriptor();
 }
 
 }  // namespace google

@@ -9855,6 +9855,57 @@ enum EmMtApiBaseEv
 	Ev_MtApi_Base_AiApplyChair_Ntf,
 	Ev_MtApi_Base_AiSelectView_Ntf,
 
+	/**
+    @brief  获取摄像机配置
+  
+    MainBuf(#TMtHDCameraAiList_Api, bLock )
+    @verbatim
+    {
+      
+    }
+    @endverbatim
+    */
+	Ev_MtApi_Base_GetAicameraCfg_Rsp,
+
+	/**
+	@brief    osd设置快捷键配置通知
+	
+	MainBuf(#TMtShortCutKeyList_Api, tMtShortCutKeyList)
+
+	@verbatim
+	{
+		
+	}
+	@endverbatim
+	*/
+	Ev_MtApi_Base_SetShortCutKeyCfg_Ntf,
+
+	/**
+	@brief    osd请求快捷键配置的响应
+	
+	MainBuf(#TMtShortCutKeyList_Api, tMtShortCutKeyList)
+
+	@verbatim
+	{
+		
+	}
+	@endverbatim
+	*/
+	Ev_MtApi_Base_GetShortCutKeyCfg_Rsp,
+
+	/**
+	@brief   跳过设置向导静态图片的通知
+	
+	MainBuf(#BOOL32, bSkip)
+
+	@verbatim
+	{
+		
+	}
+	@endverbatim
+	*/
+	Ev_MtApi_Base_SkipWizardStaticImage_Ntf,
+
     EV_UI_END(MTAPI_BASE) = EVSEG_MTAPI_BASE_END
 };
 

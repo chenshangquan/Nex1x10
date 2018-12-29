@@ -85,6 +85,8 @@ public:
 	virtual u32 GetGKRegistRtReq( ) = 0;
 	virtual u32 GetSipRegistRtReq( ) = 0;
 	virtual u32 GetNvIsConnectTerReq( ) = 0;
+	virtual u32 SetSkipTerWizardCmd( ) = 0;
+	virtual u32 GetImixSerialNumReq( ) = 0;
 public:
 
 };

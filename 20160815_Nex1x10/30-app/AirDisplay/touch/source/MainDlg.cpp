@@ -6,6 +6,7 @@
 #include "MainDlg.h"
 #include "afxdialogex.h"
 #include "touchDlg.h"
+#include "language.h"
 
 extern CtouchDlg * g_dlg;
 // CMainDlg 对话框
@@ -128,9 +129,9 @@ void CMainDlg::InitUI()
 	m_btnPicConnectFail.SetWindowPos( NULL, MULX(215), MULY(179), MULX(70), MULY(22), SWP_HIDEWINDOW );
 	m_stGifConnectSuccess.SetWindowPos( NULL, MULX(45), MULY(115), MULX(410), MULY(130), SWP_HIDEWINDOW );
 	m_btnPicBkUpgrade.SetWindowPos( NULL, MULX(50), MULY(135), MULX(204), MULY(115), SWP_HIDEWINDOW );
-	m_stUpgradeTip1.SetWindowPos( NULL, MULX(260), MULY(135), MULX(235), MULY(16), SWP_HIDEWINDOW );
-	m_stUpgradeTip2.SetWindowPos( NULL, MULX(267), MULY(161), MULX(225), MULY(16), SWP_HIDEWINDOW );
-	m_linkIgnore.SetWindowPos( NULL, MULX(295), MULY(201), MULX(200), MULY(16), SWP_HIDEWINDOW );
+	m_stUpgradeTip1.SetWindowPos( NULL, MULX(260), MULY(135), MULX(235), MULY(18), SWP_HIDEWINDOW );
+	m_stUpgradeTip2.SetWindowPos( NULL, MULX(267), MULY(161), MULX(225), MULY(18), SWP_HIDEWINDOW );
+	m_linkIgnore.SetWindowPos( NULL, MULX(295), MULY(201), MULX(200), MULY(18), SWP_HIDEWINDOW );
 
 	m_stGifConnectSuccess.SetImage(IDR_GIF_CONNECT_SUCCESS);
 	m_stGifConnectSuccess.SetTimerDelay(50);
@@ -177,57 +178,57 @@ void CMainDlg::ShowConnectStatus(NET_STATUS emNetStatus)
 	{
 	case NET_STATUS_CONNECTING:
 		{
-			m_stTip.SetWindowText(_T("正在连接显示端"));
+            m_stTip.SetWindowText(STRING_NET_STATUS_CONNECTING);
 			m_stTipDes.SetWindowText(_T(""));
 			ShowConnectPicture(CONNECTING);
 		}
 		break;
 	case NET_STATUS_CONNECTED:
 		{
-			m_stTip.SetWindowText(_T("已连接显示端"));
-			m_stTipDes.SetWindowText(_T("按压无线投屏发射器开始投屏，再次按压结束投屏"));
+            m_stTip.SetWindowText(STRING_NET_STATUS_CONNECTED);
+            m_stTipDes.SetWindowText(STRING_DES_NET_STATUS_CONNECTED);
 			ShowConnectPicture(CONNECT_SUCESS);
 		}
 		break;
 	case NET_STATUS_DISCONNECTED:
 		{
-			m_stTip.SetWindowText(_T("连接已断开"));
-			m_stTipDes.SetWindowText(_T("请检查会议热点网络"));
+			m_stTip.SetWindowText(STRING_NET_STATUS_DISCONNECTED);
+			m_stTipDes.SetWindowText(STRING_DES_NET_STATUS_DISCONNECTED);
 			ShowConnectPicture(CONNECT_FAIL);
 		}
 		break;
 	case NET_STATUS_NO_NETWORK:
 		{
-			m_stTip.SetWindowText(_T("搜索不到热点"));
-			m_stTipDes.SetWindowText(_T("请检查网络连接"));
+			m_stTip.SetWindowText(STRING_NET_STATUS_NO_NETWORK);
+			m_stTipDes.SetWindowText(STRING_DES_NET_STATUS_NO_NETWORK);
 			ShowConnectPicture(CONNECT_FAIL);
 		}
 		break;
 	case NET_STATUS_NO_MATCH:
 		{
-			m_stTip.SetWindowText(_T("未与显示端配对"));
-			m_stTipDes.SetWindowText(_T("请将无线投屏发射器，插入显示端的USB1或者USB2接口，完成配对"));
+			m_stTip.SetWindowText(STRING_NET_STATUS_NO_MATCH);
+			m_stTipDes.SetWindowText(STRING_DES_NET_STATUS_NO_MATCH);
 			ShowConnectPicture(CONNECT_FAIL);
 		}
 		break;
 	case NET_STATUS_ENOUGHNUM:
 		{
-			m_stTip.SetWindowText(_T("连接失败"));
-			m_stTipDes.SetWindowText(_T("当前接收端已达到8方投屏连接限制"));
+			m_stTip.SetWindowText(STRING_NET_STATUS_ENOUGHNUM);
+			m_stTipDes.SetWindowText(STRING_DES_NET_STATUS_ENOUGHNUM);
 			ShowConnectPicture(CONNECT_FAIL);
 		}
 		break;
 	case NET_STATUS_RESETQUICKSHARE:
 		{
-			m_stTip.SetWindowText(_T("无法连接显示端"));
-			m_stTipDes.SetWindowText(_T("请拔掉无线投屏发射器，重新接入电脑"));
+			m_stTip.SetWindowText(STRING_NET_STATUS_RESETQUICKSHARE);
+			m_stTipDes.SetWindowText(STRING_DES_NET_STATUS_RESETQUICKSHARE);
 			ShowConnectPicture(CONNECT_FAIL);
 		}
 		break;
 	case NET_STATUS_RESETWIFI:
 		{
-			m_stTip.SetWindowText(_T("连接已断开"));
-			m_stTipDes.SetWindowText(_T("网络重连中，请稍候..."));
+			m_stTip.SetWindowText(STRING_NET_STATUS_RESETWIFI);
+			m_stTipDes.SetWindowText(STRING_DES_NET_STATUS_RESETWIFI);
 			ShowConnectPicture(CONNECT_FAIL);
 		}
 		break;
@@ -276,8 +277,8 @@ void CMainDlg::ShowConnectPicture(CONNECT_STATUS emConnectStatus)
 		break;
 	case CONNECT_BUSINESS_FAIL:
 		{
-			m_stTip.SetWindowText(_T("发射器业务进程异常"));
-			m_stTipDes.SetWindowText(_T("请将无线投屏发射器重新插入PC"));
+			m_stTip.SetWindowText(STRING_CONNECT_BUSINESS_FAIL);
+			m_stTipDes.SetWindowText(STRING_DES_CONNECT_BUSINESS_FAIL);
 			
 			m_btnPicBk.ShowWindow(SW_SHOW);
 			m_btnPicConnectFail.ShowWindow(SW_SHOW);
@@ -299,7 +300,7 @@ void CMainDlg::ShowUpgradeControl( bool bShow )
 	if ( bShow )
 	{
 		nShow = SW_SHOW;
-		m_stTip.SetWindowText(_T("发现无线投屏器新版本"));
+		m_stTip.SetWindowText(STRING_SHOW_UPGRADE);
 		m_stTipDes.SetWindowText(_T(""));
 
 		m_btnPicBk.ShowWindow(SW_HIDE);
@@ -311,8 +312,11 @@ void CMainDlg::ShowUpgradeControl( bool bShow )
 	}
 
 	m_stUpgradeTip1.ShowWindow(nShow);
+	m_stUpgradeTip1.SetWindowText(STRING_SHOW_UPGRADE_TIP1);
 	m_stUpgradeTip2.ShowWindow(nShow);
+	m_stUpgradeTip2.SetWindowText(STRING_SHOW_UPGRADE_TIP2);
 	m_linkIgnore.ShowWindow(nShow);
+    m_linkIgnore.SetWindowText(STRING_SHOW_LINK_IGNORE);
 	m_btnPicBkUpgrade.ShowWindow(nShow);
 }
 

@@ -29,7 +29,9 @@ END_MESSAGE_MAP()
 CtouchApp::CtouchApp()
 {
 	// 支持重新启动管理器
-	m_dwRestartManagerSupportFlags = AFX_RESTART_MANAGER_SUPPORT_RESTART;
+	// 需禁用重启管理器，避免未插入投屏器系统启动时自启touch程序情形：即，
+	// 重启或关机时，touch程序未关闭，若启用快速启动功能，则touch程序会在下次系统启动时自启
+	//m_dwRestartManagerSupportFlags = AFX_RESTART_MANAGER_SUPPORT_RESTART;
 
 	// TODO: 在此处添加构造代码，
 	// 将所有重要的初始化放置在 InitInstance 中
@@ -74,15 +76,6 @@ int CALLBACK EnumFontFamProc (ENUMLOGFONT* lpelf, NEWTEXTMETRIC* lpntm, int nFon
 
 BOOL CtouchApp::InitInstance()
 {
-#ifndef _DEBUG
-    //投屏器未插入不启动程序
-    if ( !UdiskIn() )
-    {
-        TerminateProcess(GetCurrentProcess(), 0);
-        return FALSE;
-    }
-#endif
-
 	//只开启一个程序实例
 	if ( !OnlyStartOne() )
 	{
@@ -336,41 +329,6 @@ void CtouchApp::SetDefaultFont()
 	}
 }
 
-BOOL UdiskIn()
-{
-    SetErrorMode(SEM_FAILCRITICALERRORS);  //set error mode
-
-    DWORD dwLen = GetLogicalDriveStrings(0, NULL);
-    if( dwLen == 0) //error
-    {
-        return false;
-    }
-
-    LPTSTR lpDriveStrings = (LPTSTR)HeapAlloc(GetProcessHeap(), 0, dwLen*sizeof(TCHAR));
-    GetLogicalDriveStrings(dwLen,lpDriveStrings);
-
-    bool bFind = false;
-    CString strPathName;
-
-    LPTSTR pszName = lpDriveStrings;
-    while ( *pszName )
-    {
-        if (DRIVE_CDROM == GetDriveType((pszName)))
-        {
-            CString strTmp = pszName;
-            strPathName = strTmp + _T("NexTransmitter.exe");
-            if ( PathFileExists(strPathName) )
-            {
-                bFind = true;
-                break;
-            }
-        }
-        pszName+=lstrlen((pszName))+1;
-    }
-    HeapFree(GetProcessHeap(), 0, lpDriveStrings); // 使用完毕后释放堆
-
-    return bFind;
-}
 
 BOOL OnlyStartOne()
 {

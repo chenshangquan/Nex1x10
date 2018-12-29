@@ -59,6 +59,7 @@ public:
     virtual u32 GetSkyShareVerReq() = 0;
 	virtual u32 GetSkyMtcVerRtReq() = 0;
 	virtual u32 ResetOsdAdminPwdCmd() = 0;
+	virtual u32 SetDeviceCameraSleepCmd( const BOOL32 bSleep ) = 0;
 
 	//界面同步命令
 	virtual u32 UISynchronize_Cmd( const EmUISynchronizeReason_Api emReason ) = 0 ;

@@ -27,8 +27,11 @@
 #endif
 
 
-CONNECTSUS_API BOOL32 InitSus(const CSusNetParam& tNetParm, const CSusLoginInfo& tDevLogInfo, SusCallBackFunc tCallBackFunc);
+CONNECTSUS_API BOOL32 InitConSus();
+CONNECTSUS_API BOOL32 QuitConSus();
 CONNECTSUS_API BOOL32 CloseSus( void );
+
+CONNECTSUS_API BOOL32 ConnectSus( const CSusNetParam& tNetParm, const CSusLoginInfo& tDevLogInfo, SusCallBackFunc tCallBackFunc );
 
 // 获取推荐版本信息
 CONNECTSUS_API BOOL32 GetRecommendVer( void );

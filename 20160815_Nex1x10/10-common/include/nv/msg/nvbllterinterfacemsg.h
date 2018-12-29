@@ -944,6 +944,29 @@ enum EmBLLTerInterfaceCEMsg
 	MESSAGE(Ev_NV_BLL_NVConnectTer_Rsp)
 	BODY(nv::TBOOL32, tbIsConnect)
 
+	/*<<终端获取到sus服务器信息后的通知>>
+	*消息流向 nvservice==>dispatch==>sdk
+	*
+	*/
+	MESSAGE(Ev_NV_BLL_GetSusCfg_Nty)
+
+	/*<<设置终端跳过设置向导静态图片>>
+	*消息流向 sdk==>dispatch==>nvservice
+	*
+	*/
+	MESSAGE(Ev_NV_BLL_SkipTerWizard_Cmd)
+
+	/*<<获取imix序列号>>
+	*
+	*/
+	MESSAGE(Ev_NV_BLL_GetImixSerialNum_Req)
+
+	/*<<获取imix序列号回应>>
+	*
+	*/
+	MESSAGE(Ev_NV_BLL_GetImixSerialNum_Rsp)
+	BODY(nv::TString, tNum)
+
 #if !defined(_MESSAGE_HELP_)
     EV_BLL_END(TERINTERFACE) = EVSEG_BLL_TERINTERFACE_END
 };

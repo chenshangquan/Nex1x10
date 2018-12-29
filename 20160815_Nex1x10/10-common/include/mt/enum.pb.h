@@ -2150,14 +2150,14 @@ enum EmMtVmpStyle {
   emMt_VMP_STYLE_24_S6U1X6_S4LM4X1_B4MM2X2_S4RM4X1_S6D1X6 = 59,
   emMt_VMP_STYLE_25_5X5 = 60,
   emMt_VMP_STYLE_25_S3LU3X1_B1MU_S3RU3X1_S18D3X6 = 61,
-  emMt_VMP_STYLE_20_5X4 = 62,
-  emMt_VMP_STYLE_2_B1_S1RU = 63,
+  emMt_VMP_STYLE_2_B1_S1RU = 62,
+  emMt_VMP_STYLE_2_B1_S1LD = 63,
   emMt_VMP_STYLE_2_B1_S1L = 64,
-  emMt_VMP_STYLE_2_B1_S1LD = 65
+  emMt_VMP_STYLE_20_5X4 = 100
 };
 MTMSG_API bool EmMtVmpStyle_IsValid(int value);
 const EmMtVmpStyle EmMtVmpStyle_MIN = emInvalid_Style;
-const EmMtVmpStyle EmMtVmpStyle_MAX = emMt_VMP_STYLE_2_B1_S1LD;
+const EmMtVmpStyle EmMtVmpStyle_MAX = emMt_VMP_STYLE_20_5X4;
 const int EmMtVmpStyle_ARRAYSIZE = EmMtVmpStyle_MAX + 1;
 
 MTMSG_API const ::google::protobuf::EnumDescriptor* EmMtVmpStyle_descriptor();
@@ -7071,11 +7071,12 @@ inline bool EmLoginFailReason_Parse(
 }
 enum EmVConfCreateType {
   emCreateNormalConf = 0,
-  emCreateVirtualConf = 1
+  emCreateVirtualConf = 1,
+  emCreateConfByTemplate = 2
 };
 MTMSG_API bool EmVConfCreateType_IsValid(int value);
 const EmVConfCreateType EmVConfCreateType_MIN = emCreateNormalConf;
-const EmVConfCreateType EmVConfCreateType_MAX = emCreateVirtualConf;
+const EmVConfCreateType EmVConfCreateType_MAX = emCreateConfByTemplate;
 const int EmVConfCreateType_ARRAYSIZE = EmVConfCreateType_MAX + 1;
 
 MTMSG_API const ::google::protobuf::EnumDescriptor* EmVConfCreateType_descriptor();
@@ -7261,6 +7262,53 @@ inline bool EmAiContactType_Parse(
     const ::std::string& name, EmAiContactType* value) {
   return ::google::protobuf::internal::ParseNamedEnum<EmAiContactType>(
     EmAiContactType_descriptor(), name, value);
+}
+enum EmShortCutKeyType {
+  emUnkown = 0,
+  emRedShortCutKey = 1,
+  emYellowShortCutKey = 2,
+  emGreenShortCutKey = 3
+};
+MTMSG_API bool EmShortCutKeyType_IsValid(int value);
+const EmShortCutKeyType EmShortCutKeyType_MIN = emUnkown;
+const EmShortCutKeyType EmShortCutKeyType_MAX = emGreenShortCutKey;
+const int EmShortCutKeyType_ARRAYSIZE = EmShortCutKeyType_MAX + 1;
+
+MTMSG_API const ::google::protobuf::EnumDescriptor* EmShortCutKeyType_descriptor();
+inline const ::std::string& EmShortCutKeyType_Name(EmShortCutKeyType value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    EmShortCutKeyType_descriptor(), value);
+}
+inline bool EmShortCutKeyType_Parse(
+    const ::std::string& name, EmShortCutKeyType* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<EmShortCutKeyType>(
+    EmShortCutKeyType_descriptor(), name, value);
+}
+enum EmShortCutKeyFuc {
+  emFucBegin = 0,
+  emLoop = 1,
+  emApplyChair = 2,
+  emApplySpeaker = 3,
+  emShowSystemInfo = 4,
+  emFullMute = 5,
+  emSpeechHelper = 6,
+  emFaceCheckIn = 7,
+  emClose = 20
+};
+MTMSG_API bool EmShortCutKeyFuc_IsValid(int value);
+const EmShortCutKeyFuc EmShortCutKeyFuc_MIN = emFucBegin;
+const EmShortCutKeyFuc EmShortCutKeyFuc_MAX = emClose;
+const int EmShortCutKeyFuc_ARRAYSIZE = EmShortCutKeyFuc_MAX + 1;
+
+MTMSG_API const ::google::protobuf::EnumDescriptor* EmShortCutKeyFuc_descriptor();
+inline const ::std::string& EmShortCutKeyFuc_Name(EmShortCutKeyFuc value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    EmShortCutKeyFuc_descriptor(), value);
+}
+inline bool EmShortCutKeyFuc_Parse(
+    const ::std::string& name, EmShortCutKeyFuc* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<EmShortCutKeyFuc>(
+    EmShortCutKeyFuc_descriptor(), name, value);
 }
 // ===================================================================
 
@@ -8458,6 +8506,14 @@ inline const EnumDescriptor* GetEnumDescriptor< ::mt::EmAiActionState>() {
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::mt::EmAiContactType>() {
   return ::mt::EmAiContactType_descriptor();
+}
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::mt::EmShortCutKeyType>() {
+  return ::mt::EmShortCutKeyType_descriptor();
+}
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::mt::EmShortCutKeyFuc>() {
+  return ::mt::EmShortCutKeyFuc_descriptor();
 }
 
 }  // namespace google

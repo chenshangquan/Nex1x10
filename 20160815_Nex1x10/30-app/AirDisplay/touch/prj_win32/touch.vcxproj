@@ -88,7 +88,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>..\..\CommInterfaceDll\prj_win32\release;..\..\..\..\10-common\lib\releaselib\release\win32;..\..\..\..\10-common\lib\locallib\release\win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <IgnoreSpecificDefaultLibraries>libcmt.lib;libcmtd.lib</IgnoreSpecificDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>libcmt.lib</IgnoreSpecificDefaultLibraries>
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
     </Link>
     <Midl>
@@ -161,6 +161,7 @@
     <ClInclude Include="..\include\commonstruct.h" />
     <ClInclude Include="..\include\datalistclass.h" />
     <ClInclude Include="..\include\Encoder.h" />
+    <ClInclude Include="..\include\language.h" />
     <ClInclude Include="..\include\logo.h" />
     <ClInclude Include="..\include\MainDlg.h" />
     <ClInclude Include="..\include\MenuEx.h" />

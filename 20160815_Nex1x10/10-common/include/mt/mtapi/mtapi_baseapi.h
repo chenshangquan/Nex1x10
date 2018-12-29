@@ -499,6 +499,18 @@ KdvMtAPI u32 KdvMtCALL KdvMt_CFGGetXAPListCfgReq( IN CONST SessionID dwSSID = KM
 */
 KdvMtAPI u32 KdvMtCALL KdvMt_CFGGetCurXAPCfgReq( IN CONST SessionID dwSSID = KMTAPI_DEF_SSID );
 
+/**
+*  KdvMt_CFGGetAicameraCfgReq 
+* 
+* @brief    获取智能摄像机配置
+* 
+* @param    [in] dwSSID  MT会话ID 
+* @return   u32  MT_SUCCESS:发送请求成功  其他：错误码
+*
+* @note 响应通知：Ev_MtApi_Base_GetAicameraCfg_Rsp
+*/
+KdvMtAPI u32 KdvMtCALL KdvMt_CFGGetAicameraCfgReq( IN CONST SessionID dwSSID = KMTAPI_DEF_SSID );
+
 
 /**
 *  KdvMt_CFGGetXNUCfgReq 
@@ -10716,6 +10728,69 @@ KdvMtAPI u32 KdvMtCALL KdvMt_GetUserLoginLockStateReq( IN CONST SessionID dwSSID
 * @note 响应通知：no
 */
 KdvMtAPI u32 KdvMtCALL KdvMt_GetUserLoginLockState( OUT BOOL32 &bLock, IN CONST SessionID dwSSID = KMTAPI_DEF_SSID );
+
+/**
+*  KdvMt_SetShortCutKeyCfgCmd
+* 
+* @brief    osd设置快捷键配置命令
+* 
+* @param    [in]   dwSSID    MT会话ID 
+* @return   u32    请求命令发送结果 
+*
+* @note 更新通知:  Ev_MtApi_Base_SetShortCutKeyCfg_Ntf
+*/
+KdvMtAPI u32 KdvMtCALL KdvMt_SetShortCutKeyCfgCmd( IN CONST TMtShortCutKeyList_Api tCfg, IN CONST SessionID dwSSID = KMTAPI_DEF_SSID );
+
+/**
+*  KdvMt_GetShortCutKeyCfgReq
+* 
+* @brief    osd请求快捷键配置
+* 
+* @param    [in]   dwSSID    MT会话ID 
+* @return   u32    请求命令发送结果 
+*
+* @note 更新通知:  Ev_MtApi_Base_GetShortCutKeyCfg_Rsp
+*/
+KdvMtAPI u32 KdvMtCALL KdvMt_GetShortCutKeyCfgReq( IN CONST SessionID dwSSID = KMTAPI_DEF_SSID );
+
+/**
+*  KdvMt_GetShortCutKeyCfg
+* 
+* @brief   osd获取快捷键配置
+* 
+* @param    [out] bLock，  登录是否锁定
+* @param    [in]  dwSSID    MT会话ID 
+* @return   u32  0：成功获取， 其他：错误码
+*
+* @note 响应通知：no
+*/
+KdvMtAPI u32 KdvMtCALL KdvMt_GetShortCutKeyCfg( OUT TMtShortCutKeyList_Api &tCfg, IN CONST SessionID dwSSID = KMTAPI_DEF_SSID );
+
+/**
+*  KdvMt_SetDeviceCameraSleepCmd
+* 
+* @brief   硬终端摄像机待机/唤醒命令 
+* 
+* @param    [in]   bSleep    TRUE: 待机, FALSE: 唤醒
+* @param    [in]   dwSSID    MT会话ID      
+* @return   u32    请求命令发送结果 
+*
+* @note 更新通知:  no
+*/
+KdvMtAPI u32 KdvMtCALL KdvMt_SetDeviceCameraSleepCmd( IN CONST BOOL32 bSleep,  IN CONST SessionID dwSSID = KMTAPI_DEF_SSID );
+
+/**
+*  KdvMt_SetSkipWizardStaticImage
+* 
+* @brief   终端跳过设置向导静态图片的命令，网呈用
+* 
+* @param    [in]   bSkip    TRUE: 跳过静态图片
+* @param    [in]   dwSSID    MT会话ID      
+* @return   u32    请求命令发送结果 
+*
+* @note 更新通知:  Ev_MtApi_Base_SkipWizardStaticImage_Ntf
+*/
+KdvMtAPI u32 KdvMtCALL KdvMt_SetSkipWizardStaticImage( IN CONST BOOL32 bSkip,  IN CONST SessionID dwSSID = KMTAPI_DEF_SSID );
 
 
 /**@}*/

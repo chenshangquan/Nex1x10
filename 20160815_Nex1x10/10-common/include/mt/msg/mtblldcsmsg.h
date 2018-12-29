@@ -94,6 +94,9 @@ enum EmBLLMtDcsMsg
 	MESSAGE(Ev_MT_BLL_DCS_CancelManager_Ntf)
 	MESSAGE(Ev_MT_BLL_DCS_SpecManager_Ntf)
 	MESSAGE(Ev_MT_BLL_DCS_JoinConf_Domain_Req)
+	MESSAGE(Ev_MT_BLL_DCS_JoinCascadeConf_Ntf)
+	MESSAGE(Ev_MT_BLL_DCS_Cascade_DelAllWhiteBoard_Ntf)
+	MESSAGE(Ev_MT_BLL_DCS_DataSync_Ntf)
 
 #if !defined(_MESSAGE_HELP_)
      EV_BLL_END(DCS) = EVSEG_BLL_DCS_END

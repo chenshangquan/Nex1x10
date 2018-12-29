@@ -147,6 +147,10 @@
 #define emMt_Cfg_AiInfo			          "emMt_Cfg_AiInfo"				           //ai信息配置(value: TMtAiInfoCfg)
 #define emMt_Cfg_UserLoginPwdTimeout	  "emMt_Cfg_UserLoginPwdTimeout"		   //用户登录密码过期时间 以月为单位(value: TU32)
 #define emMt_Cfg_EnableSecure			  "emMt_Cfg_EnableSecure"				   //是否启用商密功能(value: TBOOL32)
+#define emMt_Cfg_ShortCutKey			  "emMt_Cfg_ShortCutKey"				   //快捷键功能配置(value: TMtShortCutKeyList)
+#define	emMt_Cfg_AiCameraInfo              "emMt_Cfg_AiCameraInfo"                 //(value: TMTHDCameraAiList)智能摄像机配置
+#define emMt_Cfg_TRtpSamePort              "emMt_Cfg_TRtpSamePort"                  //原先是debug配置，现在已升级为正式配置,是否收发端口复用(value: TBOOL32)
+
 /*************************组件运行时数据项Key开始********************/
 #define	emMt_Rt_CurAPS                    "emMt_Rt_CurAPS"                         //(value: TMtAPSSvrAddr)  //当前手动选择的XAP服务器，或自动登录成功的xap
 #define	emMt_Rt_XNU                       "emMt_Rt_XNU"                            //(value: TMtXMPPInfo) //聊天服务器信息  //企业：XAP登陆成功后获取
@@ -205,6 +209,10 @@
 #define	emMt_Rt_EncryptType              "emMt_Rt_EncryptType"                     //(value: TU32) 会议加密模式
 #define	emMt_Rt_LocalMtId                "emMt_Rt_LocalMtId"                       //(value: TMtId) 本地id号
 #define emMt_Rt_IsSelectView             "emMt_Rt_IsSelectView"                    //当前是否选看(value: TBOOL32) 
+#define emMt_Rt_ShareContactInfo         "emMt_Rt_ShareContactInfo"                 //共享联系人(value: TMTAddressBooks) 
+#define emMt_Rt_LocalContactInfo         "emMt_Rt_LocalContactInfo"              //本地联系人(value: TAddrBookRosterList)
+#define emMt_Rt_JoinConfListInfo         "emMt_Rt_JoinConfListInfo"                 //会议列表(value: TMtJoinConfParamList)
+#define emMt_Rt_OnLineTerListInfo        "emMt_Rt_OnLineTerListInfo"                 //在线终端(value: TRpMtInfo)
 /*================= 分界线，以下为产品专用Key ====================*/
 
 /********************硬终端产品配置数据项Key开始********************/
@@ -360,6 +368,7 @@
 #define	emHD_Rt_OpenScanFeature           "emHD_Rt_OpenScanFeature"               //开启厂商识别(value: TBOOL32 )
 #define emHD_Rt_IsMfgTestLoad             "emHD_Rt_IsMfgTestLoad"                 //加载模式(value: TBOOL32 )
 
+
 //////下面是所有的debug配置的key
 /*
    这些debug的key, 有些是组件通用的debug的key,  有些key是 x500是正式key, 而windows是debug key
@@ -402,7 +411,6 @@
 
 #define	 emMt_Cfg_SipKeepAliveItrvl       "emMt_Cfg_SipKeepAliveItrvl"              //设置呼叫链路保活时间 断链检测时间间隔配置(秒) (value: TU32)
 #define  emMt_Rt_TConfinfo                "emMt_Rt_TConfinfo"                       //多点会议confinfo（value: TMtConfInfo）
-#define  emMt_Cfg_TRtpSamePort            "emMt_Cfg_TRtpSamePort"                   //通用debug, 是否收发端口复用 (value: TBOOL32)
 #define  emMt_Cfg_TRegTimeout             "emMt_Cfg_TRegTimeout"                    //通用debug, 注册超时时间( value: TU32)
 #define  emMt_Cfg_AutoRas                 "emMt_Cfg_AutoRas"                        //通用debug, 是否自动ras( value: TBOOL32) 
 #define  emMt_Cfg_TSipCallPort            "emMt_Cfg_SipCallPort"                    //通用debug, sip 呼叫端口( value: TMultiU32) 

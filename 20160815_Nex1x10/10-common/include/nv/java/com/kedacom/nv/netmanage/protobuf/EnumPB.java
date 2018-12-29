@@ -23420,6 +23420,241 @@ public final class EnumPB {
     // @@protoc_insertion_point(enum_scope:nv.EmQkCodeRes)
   }
 
+  /**
+   * Protobuf enum {@code nv.EmSusUpgradeModule}
+   *
+   * <pre>
+   ** sus服务器升级模块 
+   * </pre>
+   */
+  public enum EmSusUpgradeModule
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>emNvSusInvalid = 0;</code>
+     */
+    emNvSusInvalid(0, 0),
+    /**
+     * <code>emNvSusImix = 1;</code>
+     */
+    emNvSusImix(1, 1),
+    /**
+     * <code>emNvSusApk = 2;</code>
+     */
+    emNvSusApk(2, 2),
+    /**
+     * <code>emNvSusRouter = 3;</code>
+     */
+    emNvSusRouter(3, 3),
+    /**
+     * <code>emNvSusQuichshare = 4;</code>
+     */
+    emNvSusQuichshare(4, 4),
+    /**
+     * <code>emNvSusPower = 5;</code>
+     */
+    emNvSusPower(5, 5),
+    ;
+
+    /**
+     * <code>emNvSusInvalid = 0;</code>
+     */
+    public static final int emNvSusInvalid_VALUE = 0;
+    /**
+     * <code>emNvSusImix = 1;</code>
+     */
+    public static final int emNvSusImix_VALUE = 1;
+    /**
+     * <code>emNvSusApk = 2;</code>
+     */
+    public static final int emNvSusApk_VALUE = 2;
+    /**
+     * <code>emNvSusRouter = 3;</code>
+     */
+    public static final int emNvSusRouter_VALUE = 3;
+    /**
+     * <code>emNvSusQuichshare = 4;</code>
+     */
+    public static final int emNvSusQuichshare_VALUE = 4;
+    /**
+     * <code>emNvSusPower = 5;</code>
+     */
+    public static final int emNvSusPower_VALUE = 5;
+
+
+    public final int getNumber() { return value; }
+
+    public static EmSusUpgradeModule valueOf(int value) {
+      switch (value) {
+        case 0: return emNvSusInvalid;
+        case 1: return emNvSusImix;
+        case 2: return emNvSusApk;
+        case 3: return emNvSusRouter;
+        case 4: return emNvSusQuichshare;
+        case 5: return emNvSusPower;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<EmSusUpgradeModule>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static com.google.protobuf.Internal.EnumLiteMap<EmSusUpgradeModule>
+        internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<EmSusUpgradeModule>() {
+            public EmSusUpgradeModule findValueByNumber(int number) {
+              return EmSusUpgradeModule.valueOf(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(index);
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return com.kedacom.nv.netmanage.protobuf.EnumPB.getDescriptor().getEnumTypes().get(113);
+    }
+
+    private static final EmSusUpgradeModule[] VALUES = values();
+
+    public static EmSusUpgradeModule valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int index;
+    private final int value;
+
+    private EmSusUpgradeModule(int index, int value) {
+      this.index = index;
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:nv.EmSusUpgradeModule)
+  }
+
+  /**
+   * Protobuf enum {@code nv.EmSusNotUpgradeReason}
+   *
+   * <pre>
+   ** sus服务器无更新原因 
+   * </pre>
+   */
+  public enum EmSusNotUpgradeReason
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>emNvSusConnectFail = 0;</code>
+     */
+    emNvSusConnectFail(0, 0),
+    /**
+     * <code>emNvSusNoPackage = 1;</code>
+     */
+    emNvSusNoPackage(1, 1),
+    /**
+     * <code>emNvSusLoadCfgFileFail = 2;</code>
+     */
+    emNvSusLoadCfgFileFail(2, 2),
+    /**
+     * <code>emNvSusNotNeedUpgrade = 3;</code>
+     */
+    emNvSusNotNeedUpgrade(3, 3),
+    /**
+     * <code>emNvSusNeedUpgrade = 4;</code>
+     */
+    emNvSusNeedUpgrade(4, 4),
+    ;
+
+    /**
+     * <code>emNvSusConnectFail = 0;</code>
+     */
+    public static final int emNvSusConnectFail_VALUE = 0;
+    /**
+     * <code>emNvSusNoPackage = 1;</code>
+     */
+    public static final int emNvSusNoPackage_VALUE = 1;
+    /**
+     * <code>emNvSusLoadCfgFileFail = 2;</code>
+     */
+    public static final int emNvSusLoadCfgFileFail_VALUE = 2;
+    /**
+     * <code>emNvSusNotNeedUpgrade = 3;</code>
+     */
+    public static final int emNvSusNotNeedUpgrade_VALUE = 3;
+    /**
+     * <code>emNvSusNeedUpgrade = 4;</code>
+     */
+    public static final int emNvSusNeedUpgrade_VALUE = 4;
+
+
+    public final int getNumber() { return value; }
+
+    public static EmSusNotUpgradeReason valueOf(int value) {
+      switch (value) {
+        case 0: return emNvSusConnectFail;
+        case 1: return emNvSusNoPackage;
+        case 2: return emNvSusLoadCfgFileFail;
+        case 3: return emNvSusNotNeedUpgrade;
+        case 4: return emNvSusNeedUpgrade;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<EmSusNotUpgradeReason>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static com.google.protobuf.Internal.EnumLiteMap<EmSusNotUpgradeReason>
+        internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<EmSusNotUpgradeReason>() {
+            public EmSusNotUpgradeReason findValueByNumber(int number) {
+              return EmSusNotUpgradeReason.valueOf(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(index);
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return com.kedacom.nv.netmanage.protobuf.EnumPB.getDescriptor().getEnumTypes().get(114);
+    }
+
+    private static final EmSusNotUpgradeReason[] VALUES = values();
+
+    public static EmSusNotUpgradeReason valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int index;
+    private final int value;
+
+    private EmSusNotUpgradeReason(int index, int value) {
+      this.index = index;
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:nv.EmSusNotUpgradeReason)
+  }
+
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -24122,8 +24357,15 @@ public final class EnumPB {
       "0x800\020\007\022\031\n\025emQkRes_WXGA_1280x768\020\010\022\031\n\025em" +
       "QkRes_720P_1280x720\020\t\022\024\n\020emQkRes_1280x60" +
       "0\020\n\022\030\n\024emQkRes_XGA_1024x768\020\013\022\030\n\024emQkRes" +
-      "_SVGA_800x600\020\014B+\n!com.kedacom.nv.netman" +
-      "age.protobufB\006EnumPB"
+      "_SVGA_800x600\020\014*\205\001\n\022EmSusUpgradeModule\022\022" +
+      "\n\016emNvSusInvalid\020\000\022\017\n\013emNvSusImix\020\001\022\016\n\ne" +
+      "mNvSusApk\020\002\022\021\n\remNvSusRouter\020\003\022\025\n\021emNvSu" +
+      "sQuichshare\020\004\022\020\n\014emNvSusPower\020\005*\224\001\n\025EmSu" +
+      "sNotUpgradeReason\022\026\n\022emNvSusConnectFail\020" +
+      "\000\022\024\n\020emNvSusNoPackage\020\001\022\032\n\026emNvSusLoadCf" +
+      "gFileFail\020\002\022\031\n\025emNvSusNotNeedUpgrade\020\003\022\026",
+      "\n\022emNvSusNeedUpgrade\020\004B+\n!com.kedacom.nv" +
+      ".netmanage.protobufB\006EnumPB"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

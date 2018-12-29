@@ -3236,52 +3236,37 @@ class MTMSG_API TNVUpgradeDownloadInfo : public ::google::protobuf::Message {
   inline ::google::protobuf::uint32 errcode() const;
   inline void set_errcode(::google::protobuf::uint32 value);
 
-  // optional uint32 total_percent = 2;
-  inline bool has_total_percent() const;
-  inline void clear_total_percent();
-  static const int kTotalPercentFieldNumber = 2;
-  inline ::google::protobuf::uint32 total_percent() const;
-  inline void set_total_percent(::google::protobuf::uint32 value);
-
-  // optional uint32 cur_percent = 3;
+  // optional uint32 cur_percent = 2;
   inline bool has_cur_percent() const;
   inline void clear_cur_percent();
-  static const int kCurPercentFieldNumber = 3;
+  static const int kCurPercentFieldNumber = 2;
   inline ::google::protobuf::uint32 cur_percent() const;
   inline void set_cur_percent(::google::protobuf::uint32 value);
 
-  // optional string cur_file_name = 4;
-  inline bool has_cur_file_name() const;
-  inline void clear_cur_file_name();
-  static const int kCurFileNameFieldNumber = 4;
-  inline const ::std::string& cur_file_name() const;
-  inline void set_cur_file_name(const ::std::string& value);
-  inline void set_cur_file_name(const char* value);
-  inline void set_cur_file_name(const char* value, size_t size);
-  inline ::std::string* mutable_cur_file_name();
-  inline ::std::string* release_cur_file_name();
-  inline void set_allocated_cur_file_name(::std::string* cur_file_name);
+  // optional .nv.EmSusUpgradeModule module = 3;
+  inline bool has_module() const;
+  inline void clear_module();
+  static const int kModuleFieldNumber = 3;
+  inline ::nv::EmSusUpgradeModule module() const;
+  inline void set_module(::nv::EmSusUpgradeModule value);
 
   // @@protoc_insertion_point(class_scope:nv.TNVUpgradeDownloadInfo)
  private:
   inline void set_has_errcode();
   inline void clear_has_errcode();
-  inline void set_has_total_percent();
-  inline void clear_has_total_percent();
   inline void set_has_cur_percent();
   inline void clear_has_cur_percent();
-  inline void set_has_cur_file_name();
-  inline void clear_has_cur_file_name();
+  inline void set_has_module();
+  inline void clear_has_module();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
   ::google::protobuf::uint32 errcode_;
-  ::google::protobuf::uint32 total_percent_;
-  ::std::string* cur_file_name_;
   ::google::protobuf::uint32 cur_percent_;
+  int module_;
 
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(4 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
 
   friend void MTMSG_API protobuf_AddDesc_nvstructcfg_2eproto();
   friend void protobuf_AssignDesc_nvstructcfg_2eproto();
@@ -13510,37 +13495,15 @@ inline void TNVUpgradeDownloadInfo::set_errcode(::google::protobuf::uint32 value
   errcode_ = value;
 }
 
-// optional uint32 total_percent = 2;
-inline bool TNVUpgradeDownloadInfo::has_total_percent() const {
+// optional uint32 cur_percent = 2;
+inline bool TNVUpgradeDownloadInfo::has_cur_percent() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
-inline void TNVUpgradeDownloadInfo::set_has_total_percent() {
+inline void TNVUpgradeDownloadInfo::set_has_cur_percent() {
   _has_bits_[0] |= 0x00000002u;
 }
-inline void TNVUpgradeDownloadInfo::clear_has_total_percent() {
-  _has_bits_[0] &= ~0x00000002u;
-}
-inline void TNVUpgradeDownloadInfo::clear_total_percent() {
-  total_percent_ = 0u;
-  clear_has_total_percent();
-}
-inline ::google::protobuf::uint32 TNVUpgradeDownloadInfo::total_percent() const {
-  return total_percent_;
-}
-inline void TNVUpgradeDownloadInfo::set_total_percent(::google::protobuf::uint32 value) {
-  set_has_total_percent();
-  total_percent_ = value;
-}
-
-// optional uint32 cur_percent = 3;
-inline bool TNVUpgradeDownloadInfo::has_cur_percent() const {
-  return (_has_bits_[0] & 0x00000004u) != 0;
-}
-inline void TNVUpgradeDownloadInfo::set_has_cur_percent() {
-  _has_bits_[0] |= 0x00000004u;
-}
 inline void TNVUpgradeDownloadInfo::clear_has_cur_percent() {
-  _has_bits_[0] &= ~0x00000004u;
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline void TNVUpgradeDownloadInfo::clear_cur_percent() {
   cur_percent_ = 0u;
@@ -13554,74 +13517,27 @@ inline void TNVUpgradeDownloadInfo::set_cur_percent(::google::protobuf::uint32 v
   cur_percent_ = value;
 }
 
-// optional string cur_file_name = 4;
-inline bool TNVUpgradeDownloadInfo::has_cur_file_name() const {
-  return (_has_bits_[0] & 0x00000008u) != 0;
+// optional .nv.EmSusUpgradeModule module = 3;
+inline bool TNVUpgradeDownloadInfo::has_module() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
 }
-inline void TNVUpgradeDownloadInfo::set_has_cur_file_name() {
-  _has_bits_[0] |= 0x00000008u;
+inline void TNVUpgradeDownloadInfo::set_has_module() {
+  _has_bits_[0] |= 0x00000004u;
 }
-inline void TNVUpgradeDownloadInfo::clear_has_cur_file_name() {
-  _has_bits_[0] &= ~0x00000008u;
+inline void TNVUpgradeDownloadInfo::clear_has_module() {
+  _has_bits_[0] &= ~0x00000004u;
 }
-inline void TNVUpgradeDownloadInfo::clear_cur_file_name() {
-  if (cur_file_name_ != &::google::protobuf::internal::kEmptyString) {
-    cur_file_name_->clear();
-  }
-  clear_has_cur_file_name();
+inline void TNVUpgradeDownloadInfo::clear_module() {
+  module_ = 0;
+  clear_has_module();
 }
-inline const ::std::string& TNVUpgradeDownloadInfo::cur_file_name() const {
-  return *cur_file_name_;
+inline ::nv::EmSusUpgradeModule TNVUpgradeDownloadInfo::module() const {
+  return static_cast< ::nv::EmSusUpgradeModule >(module_);
 }
-inline void TNVUpgradeDownloadInfo::set_cur_file_name(const ::std::string& value) {
-  set_has_cur_file_name();
-  if (cur_file_name_ == &::google::protobuf::internal::kEmptyString) {
-    cur_file_name_ = new ::std::string;
-  }
-  cur_file_name_->assign(value);
-}
-inline void TNVUpgradeDownloadInfo::set_cur_file_name(const char* value) {
-  set_has_cur_file_name();
-  if (cur_file_name_ == &::google::protobuf::internal::kEmptyString) {
-    cur_file_name_ = new ::std::string;
-  }
-  cur_file_name_->assign(value);
-}
-inline void TNVUpgradeDownloadInfo::set_cur_file_name(const char* value, size_t size) {
-  set_has_cur_file_name();
-  if (cur_file_name_ == &::google::protobuf::internal::kEmptyString) {
-    cur_file_name_ = new ::std::string;
-  }
-  cur_file_name_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* TNVUpgradeDownloadInfo::mutable_cur_file_name() {
-  set_has_cur_file_name();
-  if (cur_file_name_ == &::google::protobuf::internal::kEmptyString) {
-    cur_file_name_ = new ::std::string;
-  }
-  return cur_file_name_;
-}
-inline ::std::string* TNVUpgradeDownloadInfo::release_cur_file_name() {
-  clear_has_cur_file_name();
-  if (cur_file_name_ == &::google::protobuf::internal::kEmptyString) {
-    return NULL;
-  } else {
-    ::std::string* temp = cur_file_name_;
-    cur_file_name_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
-    return temp;
-  }
-}
-inline void TNVUpgradeDownloadInfo::set_allocated_cur_file_name(::std::string* cur_file_name) {
-  if (cur_file_name_ != &::google::protobuf::internal::kEmptyString) {
-    delete cur_file_name_;
-  }
-  if (cur_file_name) {
-    set_has_cur_file_name();
-    cur_file_name_ = cur_file_name;
-  } else {
-    clear_has_cur_file_name();
-    cur_file_name_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
-  }
+inline void TNVUpgradeDownloadInfo::set_module(::nv::EmSusUpgradeModule value) {
+  assert(::nv::EmSusUpgradeModule_IsValid(value));
+  set_has_module();
+  module_ = value;
 }
 
 // -------------------------------------------------------------------

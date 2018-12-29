@@ -150,6 +150,7 @@ enum EmMtOspMsgTimer
     Ev_SendIrrFrequecy_Timer,                 ///323 发送irr定时器
 	Ev_SipRegTimer,                           ///sip 注册超时定时器
 	Ev_AiWakeupTimer,                         ///唤醒之后多久没命令，重新进入唤醒
+	Ev_AiFilterAsrTimer,
 };
 
 #endif

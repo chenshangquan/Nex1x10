@@ -223,6 +223,8 @@ class TMTAgentInfo;
 class TMTVgaImageOutAdjustCfg;
 class TMtPlatformInfo;
 class TMtCameraLastPos;
+class TMtShortCutKey;
+class TMtShortCutKeyList;
 
 // ===================================================================
 
@@ -17037,6 +17039,20 @@ class MTMSG_API TMTHDCameraCfg : public ::google::protobuf::Message {
   inline ::mt::EmSerialType serial_type() const;
   inline void set_serial_type(::mt::EmSerialType value);
 
+  // optional uint32 ip = 6;
+  inline bool has_ip() const;
+  inline void clear_ip();
+  static const int kIpFieldNumber = 6;
+  inline ::google::protobuf::uint32 ip() const;
+  inline void set_ip(::google::protobuf::uint32 value);
+
+  // optional uint32 port = 7;
+  inline bool has_port() const;
+  inline void clear_port();
+  static const int kPortFieldNumber = 7;
+  inline ::google::protobuf::uint32 port() const;
+  inline void set_port(::google::protobuf::uint32 value);
+
   // @@protoc_insertion_point(class_scope:mt.TMTHDCameraCfg)
  private:
   inline void set_has_video_index();
@@ -17049,6 +17065,10 @@ class MTMSG_API TMTHDCameraCfg : public ::google::protobuf::Message {
   inline void clear_has_speed();
   inline void set_has_serial_type();
   inline void clear_has_serial_type();
+  inline void set_has_ip();
+  inline void clear_has_ip();
+  inline void set_has_port();
+  inline void clear_has_port();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
@@ -17057,9 +17077,11 @@ class MTMSG_API TMTHDCameraCfg : public ::google::protobuf::Message {
   ::google::protobuf::uint32 address_;
   ::google::protobuf::uint32 speed_;
   int serial_type_;
+  ::google::protobuf::uint32 ip_;
+  ::google::protobuf::uint32 port_;
 
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(5 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(7 + 31) / 32];
 
   friend void MTMSG_API protobuf_AddDesc_structcfg_2eproto();
   friend void protobuf_AssignDesc_structcfg_2eproto();
@@ -17263,6 +17285,13 @@ class MTMSG_API TMTHDCameraAiCfg : public ::google::protobuf::Message {
   inline bool en_dog_tag() const;
   inline void set_en_dog_tag(bool value);
 
+  // optional bool en_CameraAi = 8;
+  inline bool has_en_cameraai() const;
+  inline void clear_en_cameraai();
+  static const int kEnCameraAiFieldNumber = 8;
+  inline bool en_cameraai() const;
+  inline void set_en_cameraai(bool value);
+
   // @@protoc_insertion_point(class_scope:mt.TMTHDCameraAiCfg)
  private:
   inline void set_has_video_index();
@@ -17279,6 +17308,8 @@ class MTMSG_API TMTHDCameraAiCfg : public ::google::protobuf::Message {
   inline void clear_has_en_face_checkin();
   inline void set_has_en_dog_tag();
   inline void clear_has_en_dog_tag();
+  inline void set_has_en_cameraai();
+  inline void clear_has_en_cameraai();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
@@ -17289,9 +17320,10 @@ class MTMSG_API TMTHDCameraAiCfg : public ::google::protobuf::Message {
   bool en_people_cnt_;
   bool en_face_checkin_;
   bool en_dog_tag_;
+  bool en_cameraai_;
 
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(7 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(8 + 31) / 32];
 
   friend void MTMSG_API protobuf_AddDesc_structcfg_2eproto();
   friend void protobuf_AssignDesc_structcfg_2eproto();
@@ -17465,20 +17497,35 @@ class MTMSG_API TMTFaceCheckInInfo : public ::google::protobuf::Message {
   inline ::std::string* release_time();
   inline void set_allocated_time(::std::string* time);
 
+  // optional string position = 3;
+  inline bool has_position() const;
+  inline void clear_position();
+  static const int kPositionFieldNumber = 3;
+  inline const ::std::string& position() const;
+  inline void set_position(const ::std::string& value);
+  inline void set_position(const char* value);
+  inline void set_position(const char* value, size_t size);
+  inline ::std::string* mutable_position();
+  inline ::std::string* release_position();
+  inline void set_allocated_position(::std::string* position);
+
   // @@protoc_insertion_point(class_scope:mt.TMTFaceCheckInInfo)
  private:
   inline void set_has_name();
   inline void clear_has_name();
   inline void set_has_time();
   inline void clear_has_time();
+  inline void set_has_position();
+  inline void clear_has_position();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
   ::std::string* name_;
   ::std::string* time_;
+  ::std::string* position_;
 
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
 
   friend void MTMSG_API protobuf_AddDesc_structcfg_2eproto();
   friend void protobuf_AssignDesc_structcfg_2eproto();
@@ -21590,6 +21637,183 @@ class MTMSG_API TMtCameraLastPos : public ::google::protobuf::Message {
 
   void InitAsDefaultInstance();
   static TMtCameraLastPos* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class MTMSG_API TMtShortCutKey : public ::google::protobuf::Message {
+ public:
+  TMtShortCutKey();
+  virtual ~TMtShortCutKey();
+
+  TMtShortCutKey(const TMtShortCutKey& from);
+
+  inline TMtShortCutKey& operator=(const TMtShortCutKey& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const TMtShortCutKey& default_instance();
+
+  void Swap(TMtShortCutKey* other);
+
+  // implements Message ----------------------------------------------
+
+  TMtShortCutKey* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const TMtShortCutKey& from);
+  void MergeFrom(const TMtShortCutKey& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional .mt.EmShortCutKeyType key_type = 1;
+  inline bool has_key_type() const;
+  inline void clear_key_type();
+  static const int kKeyTypeFieldNumber = 1;
+  inline ::mt::EmShortCutKeyType key_type() const;
+  inline void set_key_type(::mt::EmShortCutKeyType value);
+
+  // optional .mt.EmShortCutKeyFuc key_fuc = 2;
+  inline bool has_key_fuc() const;
+  inline void clear_key_fuc();
+  static const int kKeyFucFieldNumber = 2;
+  inline ::mt::EmShortCutKeyFuc key_fuc() const;
+  inline void set_key_fuc(::mt::EmShortCutKeyFuc value);
+
+  // @@protoc_insertion_point(class_scope:mt.TMtShortCutKey)
+ private:
+  inline void set_has_key_type();
+  inline void clear_has_key_type();
+  inline void set_has_key_fuc();
+  inline void clear_has_key_fuc();
+
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
+  int key_type_;
+  int key_fuc_;
+
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
+
+  friend void MTMSG_API protobuf_AddDesc_structcfg_2eproto();
+  friend void protobuf_AssignDesc_structcfg_2eproto();
+  friend void protobuf_ShutdownFile_structcfg_2eproto();
+
+  void InitAsDefaultInstance();
+  static TMtShortCutKey* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class MTMSG_API TMtShortCutKeyList : public ::google::protobuf::Message {
+ public:
+  TMtShortCutKeyList();
+  virtual ~TMtShortCutKeyList();
+
+  TMtShortCutKeyList(const TMtShortCutKeyList& from);
+
+  inline TMtShortCutKeyList& operator=(const TMtShortCutKeyList& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const TMtShortCutKeyList& default_instance();
+
+  void Swap(TMtShortCutKeyList* other);
+
+  // implements Message ----------------------------------------------
+
+  TMtShortCutKeyList* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const TMtShortCutKeyList& from);
+  void MergeFrom(const TMtShortCutKeyList& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated .mt.TMtShortCutKey short_cut_key = 1;
+  inline int short_cut_key_size() const;
+  inline void clear_short_cut_key();
+  static const int kShortCutKeyFieldNumber = 1;
+  inline const ::mt::TMtShortCutKey& short_cut_key(int index) const;
+  inline ::mt::TMtShortCutKey* mutable_short_cut_key(int index);
+  inline ::mt::TMtShortCutKey* add_short_cut_key();
+  inline const ::google::protobuf::RepeatedPtrField< ::mt::TMtShortCutKey >&
+      short_cut_key() const;
+  inline ::google::protobuf::RepeatedPtrField< ::mt::TMtShortCutKey >*
+      mutable_short_cut_key();
+
+  // @@protoc_insertion_point(class_scope:mt.TMtShortCutKeyList)
+ private:
+
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
+  ::google::protobuf::RepeatedPtrField< ::mt::TMtShortCutKey > short_cut_key_;
+
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+
+  friend void MTMSG_API protobuf_AddDesc_structcfg_2eproto();
+  friend void protobuf_AssignDesc_structcfg_2eproto();
+  friend void protobuf_ShutdownFile_structcfg_2eproto();
+
+  void InitAsDefaultInstance();
+  static TMtShortCutKeyList* default_instance_;
 };
 // ===================================================================
 
@@ -41886,6 +42110,50 @@ inline void TMTHDCameraCfg::set_serial_type(::mt::EmSerialType value) {
   serial_type_ = value;
 }
 
+// optional uint32 ip = 6;
+inline bool TMTHDCameraCfg::has_ip() const {
+  return (_has_bits_[0] & 0x00000020u) != 0;
+}
+inline void TMTHDCameraCfg::set_has_ip() {
+  _has_bits_[0] |= 0x00000020u;
+}
+inline void TMTHDCameraCfg::clear_has_ip() {
+  _has_bits_[0] &= ~0x00000020u;
+}
+inline void TMTHDCameraCfg::clear_ip() {
+  ip_ = 0u;
+  clear_has_ip();
+}
+inline ::google::protobuf::uint32 TMTHDCameraCfg::ip() const {
+  return ip_;
+}
+inline void TMTHDCameraCfg::set_ip(::google::protobuf::uint32 value) {
+  set_has_ip();
+  ip_ = value;
+}
+
+// optional uint32 port = 7;
+inline bool TMTHDCameraCfg::has_port() const {
+  return (_has_bits_[0] & 0x00000040u) != 0;
+}
+inline void TMTHDCameraCfg::set_has_port() {
+  _has_bits_[0] |= 0x00000040u;
+}
+inline void TMTHDCameraCfg::clear_has_port() {
+  _has_bits_[0] &= ~0x00000040u;
+}
+inline void TMTHDCameraCfg::clear_port() {
+  port_ = 0u;
+  clear_has_port();
+}
+inline ::google::protobuf::uint32 TMTHDCameraCfg::port() const {
+  return port_;
+}
+inline void TMTHDCameraCfg::set_port(::google::protobuf::uint32 value) {
+  set_has_port();
+  port_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // TMTHDCameraList
@@ -42122,6 +42390,28 @@ inline void TMTHDCameraAiCfg::set_en_dog_tag(bool value) {
   en_dog_tag_ = value;
 }
 
+// optional bool en_CameraAi = 8;
+inline bool TMTHDCameraAiCfg::has_en_cameraai() const {
+  return (_has_bits_[0] & 0x00000080u) != 0;
+}
+inline void TMTHDCameraAiCfg::set_has_en_cameraai() {
+  _has_bits_[0] |= 0x00000080u;
+}
+inline void TMTHDCameraAiCfg::clear_has_en_cameraai() {
+  _has_bits_[0] &= ~0x00000080u;
+}
+inline void TMTHDCameraAiCfg::clear_en_cameraai() {
+  en_cameraai_ = false;
+  clear_has_en_cameraai();
+}
+inline bool TMTHDCameraAiCfg::en_cameraai() const {
+  return en_cameraai_;
+}
+inline void TMTHDCameraAiCfg::set_en_cameraai(bool value) {
+  set_has_en_cameraai();
+  en_cameraai_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // TMTHDCameraAiList
@@ -42292,6 +42582,76 @@ inline void TMTFaceCheckInInfo::set_allocated_time(::std::string* time) {
   } else {
     clear_has_time();
     time_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  }
+}
+
+// optional string position = 3;
+inline bool TMTFaceCheckInInfo::has_position() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void TMTFaceCheckInInfo::set_has_position() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void TMTFaceCheckInInfo::clear_has_position() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void TMTFaceCheckInInfo::clear_position() {
+  if (position_ != &::google::protobuf::internal::kEmptyString) {
+    position_->clear();
+  }
+  clear_has_position();
+}
+inline const ::std::string& TMTFaceCheckInInfo::position() const {
+  return *position_;
+}
+inline void TMTFaceCheckInInfo::set_position(const ::std::string& value) {
+  set_has_position();
+  if (position_ == &::google::protobuf::internal::kEmptyString) {
+    position_ = new ::std::string;
+  }
+  position_->assign(value);
+}
+inline void TMTFaceCheckInInfo::set_position(const char* value) {
+  set_has_position();
+  if (position_ == &::google::protobuf::internal::kEmptyString) {
+    position_ = new ::std::string;
+  }
+  position_->assign(value);
+}
+inline void TMTFaceCheckInInfo::set_position(const char* value, size_t size) {
+  set_has_position();
+  if (position_ == &::google::protobuf::internal::kEmptyString) {
+    position_ = new ::std::string;
+  }
+  position_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* TMTFaceCheckInInfo::mutable_position() {
+  set_has_position();
+  if (position_ == &::google::protobuf::internal::kEmptyString) {
+    position_ = new ::std::string;
+  }
+  return position_;
+}
+inline ::std::string* TMTFaceCheckInInfo::release_position() {
+  clear_has_position();
+  if (position_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = position_;
+    position_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
+}
+inline void TMTFaceCheckInInfo::set_allocated_position(::std::string* position) {
+  if (position_ != &::google::protobuf::internal::kEmptyString) {
+    delete position_;
+  }
+  if (position) {
+    set_has_position();
+    position_ = position;
+  } else {
+    clear_has_position();
+    position_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   }
 }
 
@@ -45795,6 +46155,85 @@ inline ::google::protobuf::int32 TMtCameraLastPos::type() const {
 inline void TMtCameraLastPos::set_type(::google::protobuf::int32 value) {
   set_has_type();
   type_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// TMtShortCutKey
+
+// optional .mt.EmShortCutKeyType key_type = 1;
+inline bool TMtShortCutKey::has_key_type() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void TMtShortCutKey::set_has_key_type() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void TMtShortCutKey::clear_has_key_type() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void TMtShortCutKey::clear_key_type() {
+  key_type_ = 0;
+  clear_has_key_type();
+}
+inline ::mt::EmShortCutKeyType TMtShortCutKey::key_type() const {
+  return static_cast< ::mt::EmShortCutKeyType >(key_type_);
+}
+inline void TMtShortCutKey::set_key_type(::mt::EmShortCutKeyType value) {
+  assert(::mt::EmShortCutKeyType_IsValid(value));
+  set_has_key_type();
+  key_type_ = value;
+}
+
+// optional .mt.EmShortCutKeyFuc key_fuc = 2;
+inline bool TMtShortCutKey::has_key_fuc() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void TMtShortCutKey::set_has_key_fuc() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void TMtShortCutKey::clear_has_key_fuc() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void TMtShortCutKey::clear_key_fuc() {
+  key_fuc_ = 0;
+  clear_has_key_fuc();
+}
+inline ::mt::EmShortCutKeyFuc TMtShortCutKey::key_fuc() const {
+  return static_cast< ::mt::EmShortCutKeyFuc >(key_fuc_);
+}
+inline void TMtShortCutKey::set_key_fuc(::mt::EmShortCutKeyFuc value) {
+  assert(::mt::EmShortCutKeyFuc_IsValid(value));
+  set_has_key_fuc();
+  key_fuc_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// TMtShortCutKeyList
+
+// repeated .mt.TMtShortCutKey short_cut_key = 1;
+inline int TMtShortCutKeyList::short_cut_key_size() const {
+  return short_cut_key_.size();
+}
+inline void TMtShortCutKeyList::clear_short_cut_key() {
+  short_cut_key_.Clear();
+}
+inline const ::mt::TMtShortCutKey& TMtShortCutKeyList::short_cut_key(int index) const {
+  return short_cut_key_.Get(index);
+}
+inline ::mt::TMtShortCutKey* TMtShortCutKeyList::mutable_short_cut_key(int index) {
+  return short_cut_key_.Mutable(index);
+}
+inline ::mt::TMtShortCutKey* TMtShortCutKeyList::add_short_cut_key() {
+  return short_cut_key_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::mt::TMtShortCutKey >&
+TMtShortCutKeyList::short_cut_key() const {
+  return short_cut_key_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::mt::TMtShortCutKey >*
+TMtShortCutKeyList::mutable_short_cut_key() {
+  return &short_cut_key_;
 }
 
 

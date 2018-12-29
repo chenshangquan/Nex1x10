@@ -1814,6 +1814,20 @@ KdvMtAPI u32 KdvMtCALL KdvMt_DiagnoseSetOsdDisplayCmd( IN CONST BOOL32 bOpen, IN
 KdvMtAPI u32 KdvMtCALL KdvMt_DiagnoseSetCameraImgInfoCmd( IN CONST TMtCameraImgInfo_Api tInfo, IN CONST SessionID dwSSID = KMTAPI_DEF_SSID );
 
 /**
+* KdvMt_DiagnoseSetAiCameraCmd
+*
+* @brief   设置智能摄像机配置
+*
+* @param    [in]   tInfo          摄像机信息
+* @param    [in]   dwSSID         MT会话ID 
+* @return   u32    0：获取成功  其他错误码
+*
+* @note 更新通知：Ev_MtApi_Diagnose_SetAiCamera_Ntf 通知设置摄像消息
+*/
+KdvMtAPI u32 KdvMtCALL KdvMt_DiagnoseSetAiCameraCmd( IN CONST TMtHDCameraAiList_Api &tInfo, IN CONST SessionID dwSSID /*= KMTAPI_DEF_SSID*/ );
+
+
+/**
 * KdvMt_DiagnoseGetCameraImgInfoReq
 *
 * @brief   请求摄像机图像模式信息（外置摄像机）

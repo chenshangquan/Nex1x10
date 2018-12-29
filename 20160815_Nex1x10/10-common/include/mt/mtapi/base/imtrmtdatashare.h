@@ -39,6 +39,8 @@ public:
 
 	//获取XAPList配置请求
 	virtual u32 GetXAPListCfgReq() = 0;
+	//获取摄像机配置
+	virtual u32 GetAicameraCfgReq() = 0;
 	//获取当前使用的XAP服务器配置请求
 	virtual u32 GetCurXAPCfgReq() = 0;
 	//获取XNU服务器(XMPP登录)配置请求
@@ -491,6 +493,7 @@ public:
 	virtual u32 GetShowLostPktCfgReq() = 0;
 	virtual u32 GetUserLoginPwdTimeoutCfgReq() = 0;
 	virtual u32 GetEnableSecureCfgReq() = 0;
+	virtual u32 GetShortCutKeyCfgReq() = 0;
 
 private:
 

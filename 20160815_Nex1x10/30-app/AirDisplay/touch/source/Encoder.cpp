@@ -335,9 +335,9 @@ void CEncoder::SetNormalPowerMode()
 {
 	BOOL32 bSatus = TRUE;
 	m_pcEncoder->GetCpuAdjustStatus( bSatus );
-	if (  FALSE == bSatus )
+	if (  TRUE == bSatus )
 	{
-		m_pcEncoder->EnableCpuAdjust(TRUE);
+		m_pcEncoder->EnableCpuAdjust(FALSE);    //自动调整帧率功能去除
 		m_pcEncoder->SetDeskSharedVidFrame( NORMAL_POWER_FRAME );
 	}
 }

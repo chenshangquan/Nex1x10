@@ -11,14 +11,14 @@
 using namespace std;
 
 //回掉函数和注册回掉函数的定义 
-typedef  u32 (*NOTIFY_DEVICE_CALLBACK) (u32 dwEvent, u8 *pbyMainBuf, u32 dwMainBufLen); //回掉函数的函数指针定义
+typedef  u32 (*NOTIFY_DEVICE_CALLBACK) (u32 dwEvent, u8 *pbyMainBuf, u32 dwMainBufLen, u8 *pbySubBuf , u32 dwSubBufLen); //回掉函数的函数指针定义
 
 //NOTIFY_DEVICE_CALLBACK g_cbCamNotify;
 
  //<注册回调函数定义
 API u32 CamSetDeviceNotify( NOTIFY_DEVICE_CALLBACK  cbNotify); //注册回调函数定义
 //<发送给device消息实现
-API u32 PostToDevice(u32 dwEvent, u8* pbyMainBuf, u32 dwSize ); 
+API u32 PostToDevice(u32 dwEvent, u8* pbyMainBuf,  u32 dwMainSize, u8* pbySubBuf = NULL, u32 dwSubSize = 0 ); 
 
 /**
 * CamAddCameraCmd
