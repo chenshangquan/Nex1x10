@@ -70411,6 +70411,24 @@ public final class StructConfPB {
     com.google.protobuf.ByteString
         getConfE164Bytes();
 
+    // optional bool is_enc_pwd = 24;
+    /**
+     * <code>optional bool is_enc_pwd = 24;</code>
+     *
+     * <pre>
+     *会议密码是否加
+     * </pre>
+     */
+    boolean hasIsEncPwd();
+    /**
+     * <code>optional bool is_enc_pwd = 24;</code>
+     *
+     * <pre>
+     *会议密码是否加
+     * </pre>
+     */
+    boolean getIsEncPwd();
+
     // optional .mt.TMtId chairman = 11;
     /**
      * <code>optional .mt.TMtId chairman = 11;</code>
@@ -70804,7 +70822,7 @@ public final class StructConfPB {
             }
             case 90: {
               com.kedacom.mt.netmanage.protobuf.StructCommonPB.TMtId.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000400) == 0x00000400)) {
+              if (((bitField0_ & 0x00000800) == 0x00000800)) {
                 subBuilder = chairman_.toBuilder();
               }
               chairman_ = input.readMessage(com.kedacom.mt.netmanage.protobuf.StructCommonPB.TMtId.PARSER, extensionRegistry);
@@ -70812,12 +70830,12 @@ public final class StructConfPB {
                 subBuilder.mergeFrom(chairman_);
                 chairman_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000400;
+              bitField0_ |= 0x00000800;
               break;
             }
             case 98: {
               com.kedacom.mt.netmanage.protobuf.StructCommonPB.TMtId.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000800) == 0x00000800)) {
+              if (((bitField0_ & 0x00001000) == 0x00001000)) {
                 subBuilder = speaker_.toBuilder();
               }
               speaker_ = input.readMessage(com.kedacom.mt.netmanage.protobuf.StructCommonPB.TMtId.PARSER, extensionRegistry);
@@ -70825,12 +70843,12 @@ public final class StructConfPB {
                 subBuilder.mergeFrom(speaker_);
                 speaker_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000800;
+              bitField0_ |= 0x00001000;
               break;
             }
             case 106: {
               com.kedacom.mt.netmanage.protobuf.StructConfPB.TMtVmpParam.Builder subBuilder = null;
-              if (((bitField0_ & 0x00001000) == 0x00001000)) {
+              if (((bitField0_ & 0x00002000) == 0x00002000)) {
                 subBuilder = vmpParam_.toBuilder();
               }
               vmpParam_ = input.readMessage(com.kedacom.mt.netmanage.protobuf.StructConfPB.TMtVmpParam.PARSER, extensionRegistry);
@@ -70838,12 +70856,12 @@ public final class StructConfPB {
                 subBuilder.mergeFrom(vmpParam_);
                 vmpParam_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00001000;
+              bitField0_ |= 0x00002000;
               break;
             }
             case 114: {
               com.kedacom.mt.netmanage.protobuf.StructConfPB.TMtMixParam.Builder subBuilder = null;
-              if (((bitField0_ & 0x00002000) == 0x00002000)) {
+              if (((bitField0_ & 0x00004000) == 0x00004000)) {
                 subBuilder = mixParam_.toBuilder();
               }
               mixParam_ = input.readMessage(com.kedacom.mt.netmanage.protobuf.StructConfPB.TMtMixParam.PARSER, extensionRegistry);
@@ -70851,11 +70869,11 @@ public final class StructConfPB {
                 subBuilder.mergeFrom(mixParam_);
                 mixParam_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00002000;
+              bitField0_ |= 0x00004000;
               break;
             }
             case 120: {
-              bitField0_ |= 0x00004000;
+              bitField0_ |= 0x00008000;
               bsatDcastMode_ = input.readBool();
               break;
             }
@@ -70865,13 +70883,13 @@ public final class StructConfPB {
               if (value == null) {
                 unknownFields.mergeVarintField(16, rawValue);
               } else {
-                bitField0_ |= 0x00008000;
+                bitField0_ |= 0x00010000;
                 openMode_ = value;
               }
               break;
             }
             case 136: {
-              bitField0_ |= 0x00010000;
+              bitField0_ |= 0x00020000;
               isOccupyVpu_ = input.readBool();
               break;
             }
@@ -70881,34 +70899,39 @@ public final class StructConfPB {
               if (value == null) {
                 unknownFields.mergeVarintField(18, rawValue);
               } else {
-                bitField0_ |= 0x00020000;
+                bitField0_ |= 0x00040000;
                 dualMode_ = value;
               }
               break;
             }
             case 152: {
-              bitField0_ |= 0x00040000;
+              bitField0_ |= 0x00080000;
               isAllInitDumb_ = input.readBool();
               break;
             }
             case 160: {
-              bitField0_ |= 0x00080000;
+              bitField0_ |= 0x00100000;
               isConfNoDisturb_ = input.readBool();
               break;
             }
             case 168: {
-              bitField0_ |= 0x00100000;
+              bitField0_ |= 0x00200000;
               isPortMode_ = input.readBool();
               break;
             }
             case 176: {
-              bitField0_ |= 0x00200000;
+              bitField0_ |= 0x00400000;
               isForceBroadcast_ = input.readBool();
               break;
             }
             case 184: {
-              bitField0_ |= 0x00400000;
+              bitField0_ |= 0x00800000;
               recordMode_ = input.readUInt32();
+              break;
+            }
+            case 192: {
+              bitField0_ |= 0x00000400;
+              isEncPwd_ = input.readBool();
               break;
             }
           }
@@ -71294,6 +71317,30 @@ public final class StructConfPB {
       }
     }
 
+    // optional bool is_enc_pwd = 24;
+    public static final int IS_ENC_PWD_FIELD_NUMBER = 24;
+    private boolean isEncPwd_;
+    /**
+     * <code>optional bool is_enc_pwd = 24;</code>
+     *
+     * <pre>
+     *会议密码是否加
+     * </pre>
+     */
+    public boolean hasIsEncPwd() {
+      return ((bitField0_ & 0x00000400) == 0x00000400);
+    }
+    /**
+     * <code>optional bool is_enc_pwd = 24;</code>
+     *
+     * <pre>
+     *会议密码是否加
+     * </pre>
+     */
+    public boolean getIsEncPwd() {
+      return isEncPwd_;
+    }
+
     // optional .mt.TMtId chairman = 11;
     public static final int CHAIRMAN_FIELD_NUMBER = 11;
     private com.kedacom.mt.netmanage.protobuf.StructCommonPB.TMtId chairman_;
@@ -71305,7 +71352,7 @@ public final class StructConfPB {
      * </pre>
      */
     public boolean hasChairman() {
-      return ((bitField0_ & 0x00000400) == 0x00000400);
+      return ((bitField0_ & 0x00000800) == 0x00000800);
     }
     /**
      * <code>optional .mt.TMtId chairman = 11;</code>
@@ -71339,7 +71386,7 @@ public final class StructConfPB {
      * </pre>
      */
     public boolean hasSpeaker() {
-      return ((bitField0_ & 0x00000800) == 0x00000800);
+      return ((bitField0_ & 0x00001000) == 0x00001000);
     }
     /**
      * <code>optional .mt.TMtId speaker = 12;</code>
@@ -71373,7 +71420,7 @@ public final class StructConfPB {
      * </pre>
      */
     public boolean hasVmpParam() {
-      return ((bitField0_ & 0x00001000) == 0x00001000);
+      return ((bitField0_ & 0x00002000) == 0x00002000);
     }
     /**
      * <code>optional .mt.TMtVmpParam vmp_param = 13;</code>
@@ -71407,7 +71454,7 @@ public final class StructConfPB {
      * </pre>
      */
     public boolean hasMixParam() {
-      return ((bitField0_ & 0x00002000) == 0x00002000);
+      return ((bitField0_ & 0x00004000) == 0x00004000);
     }
     /**
      * <code>optional .mt.TMtMixParam mix_param = 14;</code>
@@ -71441,7 +71488,7 @@ public final class StructConfPB {
      * </pre>
      */
     public boolean hasBsatDcastMode() {
-      return ((bitField0_ & 0x00004000) == 0x00004000);
+      return ((bitField0_ & 0x00008000) == 0x00008000);
     }
     /**
      * <code>optional bool bsat_dcast_mode = 15;</code>
@@ -71465,7 +71512,7 @@ public final class StructConfPB {
      * </pre>
      */
     public boolean hasOpenMode() {
-      return ((bitField0_ & 0x00008000) == 0x00008000);
+      return ((bitField0_ & 0x00010000) == 0x00010000);
     }
     /**
      * <code>optional .mt.EmMtOpenMode open_mode = 16;</code>
@@ -71489,7 +71536,7 @@ public final class StructConfPB {
      * </pre>
      */
     public boolean hasIsOccupyVpu() {
-      return ((bitField0_ & 0x00010000) == 0x00010000);
+      return ((bitField0_ & 0x00020000) == 0x00020000);
     }
     /**
      * <code>optional bool is_occupy_vpu = 17;</code>
@@ -71513,7 +71560,7 @@ public final class StructConfPB {
      * </pre>
      */
     public boolean hasDualMode() {
-      return ((bitField0_ & 0x00020000) == 0x00020000);
+      return ((bitField0_ & 0x00040000) == 0x00040000);
     }
     /**
      * <code>optional .mt.EmMtDualMode dual_mode = 18 [default = MT_DUAL_MODE_EVERYONE];</code>
@@ -71537,7 +71584,7 @@ public final class StructConfPB {
      * </pre>
      */
     public boolean hasIsAllInitDumb() {
-      return ((bitField0_ & 0x00040000) == 0x00040000);
+      return ((bitField0_ & 0x00080000) == 0x00080000);
     }
     /**
      * <code>optional bool is_all_init_dumb = 19;</code>
@@ -71561,7 +71608,7 @@ public final class StructConfPB {
      * </pre>
      */
     public boolean hasIsConfNoDisturb() {
-      return ((bitField0_ & 0x00080000) == 0x00080000);
+      return ((bitField0_ & 0x00100000) == 0x00100000);
     }
     /**
      * <code>optional bool is_conf_no_disturb = 20;</code>
@@ -71585,7 +71632,7 @@ public final class StructConfPB {
      * </pre>
      */
     public boolean hasIsPortMode() {
-      return ((bitField0_ & 0x00100000) == 0x00100000);
+      return ((bitField0_ & 0x00200000) == 0x00200000);
     }
     /**
      * <code>optional bool is_port_mode = 21;</code>
@@ -71609,7 +71656,7 @@ public final class StructConfPB {
      * </pre>
      */
     public boolean hasIsForceBroadcast() {
-      return ((bitField0_ & 0x00200000) == 0x00200000);
+      return ((bitField0_ & 0x00400000) == 0x00400000);
     }
     /**
      * <code>optional bool is_force_broadcast = 22;</code>
@@ -71633,7 +71680,7 @@ public final class StructConfPB {
      * </pre>
      */
     public boolean hasRecordMode() {
-      return ((bitField0_ & 0x00400000) == 0x00400000);
+      return ((bitField0_ & 0x00800000) == 0x00800000);
     }
     /**
      * <code>optional uint32 record_mode = 23;</code>
@@ -71657,6 +71704,7 @@ public final class StructConfPB {
       confPwd_ = "";
       confName_ = "";
       confE164_ = "";
+      isEncPwd_ = false;
       chairman_ = com.kedacom.mt.netmanage.protobuf.StructCommonPB.TMtId.getDefaultInstance();
       speaker_ = com.kedacom.mt.netmanage.protobuf.StructCommonPB.TMtId.getDefaultInstance();
       vmpParam_ = com.kedacom.mt.netmanage.protobuf.StructConfPB.TMtVmpParam.getDefaultInstance();
@@ -71713,44 +71761,47 @@ public final class StructConfPB {
       if (((bitField0_ & 0x00000200) == 0x00000200)) {
         output.writeBytes(10, getConfE164Bytes());
       }
-      if (((bitField0_ & 0x00000400) == 0x00000400)) {
+      if (((bitField0_ & 0x00000800) == 0x00000800)) {
         output.writeMessage(11, chairman_);
       }
-      if (((bitField0_ & 0x00000800) == 0x00000800)) {
+      if (((bitField0_ & 0x00001000) == 0x00001000)) {
         output.writeMessage(12, speaker_);
       }
-      if (((bitField0_ & 0x00001000) == 0x00001000)) {
+      if (((bitField0_ & 0x00002000) == 0x00002000)) {
         output.writeMessage(13, vmpParam_);
       }
-      if (((bitField0_ & 0x00002000) == 0x00002000)) {
+      if (((bitField0_ & 0x00004000) == 0x00004000)) {
         output.writeMessage(14, mixParam_);
       }
-      if (((bitField0_ & 0x00004000) == 0x00004000)) {
+      if (((bitField0_ & 0x00008000) == 0x00008000)) {
         output.writeBool(15, bsatDcastMode_);
       }
-      if (((bitField0_ & 0x00008000) == 0x00008000)) {
+      if (((bitField0_ & 0x00010000) == 0x00010000)) {
         output.writeEnum(16, openMode_.getNumber());
       }
-      if (((bitField0_ & 0x00010000) == 0x00010000)) {
+      if (((bitField0_ & 0x00020000) == 0x00020000)) {
         output.writeBool(17, isOccupyVpu_);
       }
-      if (((bitField0_ & 0x00020000) == 0x00020000)) {
+      if (((bitField0_ & 0x00040000) == 0x00040000)) {
         output.writeEnum(18, dualMode_.getNumber());
       }
-      if (((bitField0_ & 0x00040000) == 0x00040000)) {
+      if (((bitField0_ & 0x00080000) == 0x00080000)) {
         output.writeBool(19, isAllInitDumb_);
       }
-      if (((bitField0_ & 0x00080000) == 0x00080000)) {
+      if (((bitField0_ & 0x00100000) == 0x00100000)) {
         output.writeBool(20, isConfNoDisturb_);
       }
-      if (((bitField0_ & 0x00100000) == 0x00100000)) {
+      if (((bitField0_ & 0x00200000) == 0x00200000)) {
         output.writeBool(21, isPortMode_);
       }
-      if (((bitField0_ & 0x00200000) == 0x00200000)) {
+      if (((bitField0_ & 0x00400000) == 0x00400000)) {
         output.writeBool(22, isForceBroadcast_);
       }
-      if (((bitField0_ & 0x00400000) == 0x00400000)) {
+      if (((bitField0_ & 0x00800000) == 0x00800000)) {
         output.writeUInt32(23, recordMode_);
+      }
+      if (((bitField0_ & 0x00000400) == 0x00000400)) {
+        output.writeBool(24, isEncPwd_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -71801,57 +71852,61 @@ public final class StructConfPB {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(10, getConfE164Bytes());
       }
-      if (((bitField0_ & 0x00000400) == 0x00000400)) {
+      if (((bitField0_ & 0x00000800) == 0x00000800)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(11, chairman_);
       }
-      if (((bitField0_ & 0x00000800) == 0x00000800)) {
+      if (((bitField0_ & 0x00001000) == 0x00001000)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(12, speaker_);
       }
-      if (((bitField0_ & 0x00001000) == 0x00001000)) {
+      if (((bitField0_ & 0x00002000) == 0x00002000)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(13, vmpParam_);
       }
-      if (((bitField0_ & 0x00002000) == 0x00002000)) {
+      if (((bitField0_ & 0x00004000) == 0x00004000)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(14, mixParam_);
       }
-      if (((bitField0_ & 0x00004000) == 0x00004000)) {
+      if (((bitField0_ & 0x00008000) == 0x00008000)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(15, bsatDcastMode_);
       }
-      if (((bitField0_ & 0x00008000) == 0x00008000)) {
+      if (((bitField0_ & 0x00010000) == 0x00010000)) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(16, openMode_.getNumber());
       }
-      if (((bitField0_ & 0x00010000) == 0x00010000)) {
+      if (((bitField0_ & 0x00020000) == 0x00020000)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(17, isOccupyVpu_);
       }
-      if (((bitField0_ & 0x00020000) == 0x00020000)) {
+      if (((bitField0_ & 0x00040000) == 0x00040000)) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(18, dualMode_.getNumber());
       }
-      if (((bitField0_ & 0x00040000) == 0x00040000)) {
+      if (((bitField0_ & 0x00080000) == 0x00080000)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(19, isAllInitDumb_);
       }
-      if (((bitField0_ & 0x00080000) == 0x00080000)) {
+      if (((bitField0_ & 0x00100000) == 0x00100000)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(20, isConfNoDisturb_);
       }
-      if (((bitField0_ & 0x00100000) == 0x00100000)) {
+      if (((bitField0_ & 0x00200000) == 0x00200000)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(21, isPortMode_);
       }
-      if (((bitField0_ & 0x00200000) == 0x00200000)) {
+      if (((bitField0_ & 0x00400000) == 0x00400000)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(22, isForceBroadcast_);
       }
-      if (((bitField0_ & 0x00400000) == 0x00400000)) {
+      if (((bitField0_ & 0x00800000) == 0x00800000)) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(23, recordMode_);
+      }
+      if (((bitField0_ & 0x00000400) == 0x00000400)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(24, isEncPwd_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -72002,48 +72057,50 @@ public final class StructConfPB {
         bitField0_ = (bitField0_ & ~0x00000100);
         confE164_ = "";
         bitField0_ = (bitField0_ & ~0x00000200);
+        isEncPwd_ = false;
+        bitField0_ = (bitField0_ & ~0x00000400);
         if (chairmanBuilder_ == null) {
           chairman_ = com.kedacom.mt.netmanage.protobuf.StructCommonPB.TMtId.getDefaultInstance();
         } else {
           chairmanBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000400);
+        bitField0_ = (bitField0_ & ~0x00000800);
         if (speakerBuilder_ == null) {
           speaker_ = com.kedacom.mt.netmanage.protobuf.StructCommonPB.TMtId.getDefaultInstance();
         } else {
           speakerBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000800);
+        bitField0_ = (bitField0_ & ~0x00001000);
         if (vmpParamBuilder_ == null) {
           vmpParam_ = com.kedacom.mt.netmanage.protobuf.StructConfPB.TMtVmpParam.getDefaultInstance();
         } else {
           vmpParamBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00001000);
+        bitField0_ = (bitField0_ & ~0x00002000);
         if (mixParamBuilder_ == null) {
           mixParam_ = com.kedacom.mt.netmanage.protobuf.StructConfPB.TMtMixParam.getDefaultInstance();
         } else {
           mixParamBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00002000);
-        bsatDcastMode_ = false;
         bitField0_ = (bitField0_ & ~0x00004000);
-        openMode_ = com.kedacom.mt.netmanage.protobuf.EnumPB.EmMtOpenMode.emMt_OPEN;
+        bsatDcastMode_ = false;
         bitField0_ = (bitField0_ & ~0x00008000);
-        isOccupyVpu_ = false;
+        openMode_ = com.kedacom.mt.netmanage.protobuf.EnumPB.EmMtOpenMode.emMt_OPEN;
         bitField0_ = (bitField0_ & ~0x00010000);
-        dualMode_ = com.kedacom.mt.netmanage.protobuf.EnumPB.EmMtDualMode.MT_DUAL_MODE_EVERYONE;
+        isOccupyVpu_ = false;
         bitField0_ = (bitField0_ & ~0x00020000);
-        isAllInitDumb_ = false;
+        dualMode_ = com.kedacom.mt.netmanage.protobuf.EnumPB.EmMtDualMode.MT_DUAL_MODE_EVERYONE;
         bitField0_ = (bitField0_ & ~0x00040000);
-        isConfNoDisturb_ = false;
+        isAllInitDumb_ = false;
         bitField0_ = (bitField0_ & ~0x00080000);
-        isPortMode_ = false;
+        isConfNoDisturb_ = false;
         bitField0_ = (bitField0_ & ~0x00100000);
-        isForceBroadcast_ = false;
+        isPortMode_ = false;
         bitField0_ = (bitField0_ & ~0x00200000);
-        recordMode_ = 0;
+        isForceBroadcast_ = false;
         bitField0_ = (bitField0_ & ~0x00400000);
+        recordMode_ = 0;
+        bitField0_ = (bitField0_ & ~0x00800000);
         return this;
       }
 
@@ -72119,69 +72176,73 @@ public final class StructConfPB {
         if (((from_bitField0_ & 0x00000400) == 0x00000400)) {
           to_bitField0_ |= 0x00000400;
         }
+        result.isEncPwd_ = isEncPwd_;
+        if (((from_bitField0_ & 0x00000800) == 0x00000800)) {
+          to_bitField0_ |= 0x00000800;
+        }
         if (chairmanBuilder_ == null) {
           result.chairman_ = chairman_;
         } else {
           result.chairman_ = chairmanBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000800) == 0x00000800)) {
-          to_bitField0_ |= 0x00000800;
+        if (((from_bitField0_ & 0x00001000) == 0x00001000)) {
+          to_bitField0_ |= 0x00001000;
         }
         if (speakerBuilder_ == null) {
           result.speaker_ = speaker_;
         } else {
           result.speaker_ = speakerBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00001000) == 0x00001000)) {
-          to_bitField0_ |= 0x00001000;
+        if (((from_bitField0_ & 0x00002000) == 0x00002000)) {
+          to_bitField0_ |= 0x00002000;
         }
         if (vmpParamBuilder_ == null) {
           result.vmpParam_ = vmpParam_;
         } else {
           result.vmpParam_ = vmpParamBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00002000) == 0x00002000)) {
-          to_bitField0_ |= 0x00002000;
+        if (((from_bitField0_ & 0x00004000) == 0x00004000)) {
+          to_bitField0_ |= 0x00004000;
         }
         if (mixParamBuilder_ == null) {
           result.mixParam_ = mixParam_;
         } else {
           result.mixParam_ = mixParamBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00004000) == 0x00004000)) {
-          to_bitField0_ |= 0x00004000;
-        }
-        result.bsatDcastMode_ = bsatDcastMode_;
         if (((from_bitField0_ & 0x00008000) == 0x00008000)) {
           to_bitField0_ |= 0x00008000;
         }
-        result.openMode_ = openMode_;
+        result.bsatDcastMode_ = bsatDcastMode_;
         if (((from_bitField0_ & 0x00010000) == 0x00010000)) {
           to_bitField0_ |= 0x00010000;
         }
-        result.isOccupyVpu_ = isOccupyVpu_;
+        result.openMode_ = openMode_;
         if (((from_bitField0_ & 0x00020000) == 0x00020000)) {
           to_bitField0_ |= 0x00020000;
         }
-        result.dualMode_ = dualMode_;
+        result.isOccupyVpu_ = isOccupyVpu_;
         if (((from_bitField0_ & 0x00040000) == 0x00040000)) {
           to_bitField0_ |= 0x00040000;
         }
-        result.isAllInitDumb_ = isAllInitDumb_;
+        result.dualMode_ = dualMode_;
         if (((from_bitField0_ & 0x00080000) == 0x00080000)) {
           to_bitField0_ |= 0x00080000;
         }
-        result.isConfNoDisturb_ = isConfNoDisturb_;
+        result.isAllInitDumb_ = isAllInitDumb_;
         if (((from_bitField0_ & 0x00100000) == 0x00100000)) {
           to_bitField0_ |= 0x00100000;
         }
-        result.isPortMode_ = isPortMode_;
+        result.isConfNoDisturb_ = isConfNoDisturb_;
         if (((from_bitField0_ & 0x00200000) == 0x00200000)) {
           to_bitField0_ |= 0x00200000;
         }
-        result.isForceBroadcast_ = isForceBroadcast_;
+        result.isPortMode_ = isPortMode_;
         if (((from_bitField0_ & 0x00400000) == 0x00400000)) {
           to_bitField0_ |= 0x00400000;
+        }
+        result.isForceBroadcast_ = isForceBroadcast_;
+        if (((from_bitField0_ & 0x00800000) == 0x00800000)) {
+          to_bitField0_ |= 0x00800000;
         }
         result.recordMode_ = recordMode_;
         result.bitField0_ = to_bitField0_;
@@ -72235,6 +72296,9 @@ public final class StructConfPB {
           bitField0_ |= 0x00000200;
           confE164_ = other.confE164_;
           onChanged();
+        }
+        if (other.hasIsEncPwd()) {
+          setIsEncPwd(other.getIsEncPwd());
         }
         if (other.hasChairman()) {
           mergeChairman(other.getChairman());
@@ -73049,6 +73113,55 @@ public final class StructConfPB {
         return this;
       }
 
+      // optional bool is_enc_pwd = 24;
+      private boolean isEncPwd_ ;
+      /**
+       * <code>optional bool is_enc_pwd = 24;</code>
+       *
+       * <pre>
+       *会议密码是否加
+       * </pre>
+       */
+      public boolean hasIsEncPwd() {
+        return ((bitField0_ & 0x00000400) == 0x00000400);
+      }
+      /**
+       * <code>optional bool is_enc_pwd = 24;</code>
+       *
+       * <pre>
+       *会议密码是否加
+       * </pre>
+       */
+      public boolean getIsEncPwd() {
+        return isEncPwd_;
+      }
+      /**
+       * <code>optional bool is_enc_pwd = 24;</code>
+       *
+       * <pre>
+       *会议密码是否加
+       * </pre>
+       */
+      public Builder setIsEncPwd(boolean value) {
+        bitField0_ |= 0x00000400;
+        isEncPwd_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool is_enc_pwd = 24;</code>
+       *
+       * <pre>
+       *会议密码是否加
+       * </pre>
+       */
+      public Builder clearIsEncPwd() {
+        bitField0_ = (bitField0_ & ~0x00000400);
+        isEncPwd_ = false;
+        onChanged();
+        return this;
+      }
+
       // optional .mt.TMtId chairman = 11;
       private com.kedacom.mt.netmanage.protobuf.StructCommonPB.TMtId chairman_ = com.kedacom.mt.netmanage.protobuf.StructCommonPB.TMtId.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
@@ -73061,7 +73174,7 @@ public final class StructConfPB {
        * </pre>
        */
       public boolean hasChairman() {
-        return ((bitField0_ & 0x00000400) == 0x00000400);
+        return ((bitField0_ & 0x00000800) == 0x00000800);
       }
       /**
        * <code>optional .mt.TMtId chairman = 11;</code>
@@ -73094,7 +73207,7 @@ public final class StructConfPB {
         } else {
           chairmanBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000400;
+        bitField0_ |= 0x00000800;
         return this;
       }
       /**
@@ -73112,7 +73225,7 @@ public final class StructConfPB {
         } else {
           chairmanBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000400;
+        bitField0_ |= 0x00000800;
         return this;
       }
       /**
@@ -73124,7 +73237,7 @@ public final class StructConfPB {
        */
       public Builder mergeChairman(com.kedacom.mt.netmanage.protobuf.StructCommonPB.TMtId value) {
         if (chairmanBuilder_ == null) {
-          if (((bitField0_ & 0x00000400) == 0x00000400) &&
+          if (((bitField0_ & 0x00000800) == 0x00000800) &&
               chairman_ != com.kedacom.mt.netmanage.protobuf.StructCommonPB.TMtId.getDefaultInstance()) {
             chairman_ =
               com.kedacom.mt.netmanage.protobuf.StructCommonPB.TMtId.newBuilder(chairman_).mergeFrom(value).buildPartial();
@@ -73135,7 +73248,7 @@ public final class StructConfPB {
         } else {
           chairmanBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000400;
+        bitField0_ |= 0x00000800;
         return this;
       }
       /**
@@ -73152,7 +73265,7 @@ public final class StructConfPB {
         } else {
           chairmanBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000400);
+        bitField0_ = (bitField0_ & ~0x00000800);
         return this;
       }
       /**
@@ -73163,7 +73276,7 @@ public final class StructConfPB {
        * </pre>
        */
       public com.kedacom.mt.netmanage.protobuf.StructCommonPB.TMtId.Builder getChairmanBuilder() {
-        bitField0_ |= 0x00000400;
+        bitField0_ |= 0x00000800;
         onChanged();
         return getChairmanFieldBuilder().getBuilder();
       }
@@ -73214,7 +73327,7 @@ public final class StructConfPB {
        * </pre>
        */
       public boolean hasSpeaker() {
-        return ((bitField0_ & 0x00000800) == 0x00000800);
+        return ((bitField0_ & 0x00001000) == 0x00001000);
       }
       /**
        * <code>optional .mt.TMtId speaker = 12;</code>
@@ -73247,7 +73360,7 @@ public final class StructConfPB {
         } else {
           speakerBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000800;
+        bitField0_ |= 0x00001000;
         return this;
       }
       /**
@@ -73265,7 +73378,7 @@ public final class StructConfPB {
         } else {
           speakerBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000800;
+        bitField0_ |= 0x00001000;
         return this;
       }
       /**
@@ -73277,7 +73390,7 @@ public final class StructConfPB {
        */
       public Builder mergeSpeaker(com.kedacom.mt.netmanage.protobuf.StructCommonPB.TMtId value) {
         if (speakerBuilder_ == null) {
-          if (((bitField0_ & 0x00000800) == 0x00000800) &&
+          if (((bitField0_ & 0x00001000) == 0x00001000) &&
               speaker_ != com.kedacom.mt.netmanage.protobuf.StructCommonPB.TMtId.getDefaultInstance()) {
             speaker_ =
               com.kedacom.mt.netmanage.protobuf.StructCommonPB.TMtId.newBuilder(speaker_).mergeFrom(value).buildPartial();
@@ -73288,7 +73401,7 @@ public final class StructConfPB {
         } else {
           speakerBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000800;
+        bitField0_ |= 0x00001000;
         return this;
       }
       /**
@@ -73305,7 +73418,7 @@ public final class StructConfPB {
         } else {
           speakerBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000800);
+        bitField0_ = (bitField0_ & ~0x00001000);
         return this;
       }
       /**
@@ -73316,7 +73429,7 @@ public final class StructConfPB {
        * </pre>
        */
       public com.kedacom.mt.netmanage.protobuf.StructCommonPB.TMtId.Builder getSpeakerBuilder() {
-        bitField0_ |= 0x00000800;
+        bitField0_ |= 0x00001000;
         onChanged();
         return getSpeakerFieldBuilder().getBuilder();
       }
@@ -73367,7 +73480,7 @@ public final class StructConfPB {
        * </pre>
        */
       public boolean hasVmpParam() {
-        return ((bitField0_ & 0x00001000) == 0x00001000);
+        return ((bitField0_ & 0x00002000) == 0x00002000);
       }
       /**
        * <code>optional .mt.TMtVmpParam vmp_param = 13;</code>
@@ -73400,7 +73513,7 @@ public final class StructConfPB {
         } else {
           vmpParamBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00001000;
+        bitField0_ |= 0x00002000;
         return this;
       }
       /**
@@ -73418,7 +73531,7 @@ public final class StructConfPB {
         } else {
           vmpParamBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00001000;
+        bitField0_ |= 0x00002000;
         return this;
       }
       /**
@@ -73430,7 +73543,7 @@ public final class StructConfPB {
        */
       public Builder mergeVmpParam(com.kedacom.mt.netmanage.protobuf.StructConfPB.TMtVmpParam value) {
         if (vmpParamBuilder_ == null) {
-          if (((bitField0_ & 0x00001000) == 0x00001000) &&
+          if (((bitField0_ & 0x00002000) == 0x00002000) &&
               vmpParam_ != com.kedacom.mt.netmanage.protobuf.StructConfPB.TMtVmpParam.getDefaultInstance()) {
             vmpParam_ =
               com.kedacom.mt.netmanage.protobuf.StructConfPB.TMtVmpParam.newBuilder(vmpParam_).mergeFrom(value).buildPartial();
@@ -73441,7 +73554,7 @@ public final class StructConfPB {
         } else {
           vmpParamBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00001000;
+        bitField0_ |= 0x00002000;
         return this;
       }
       /**
@@ -73458,7 +73571,7 @@ public final class StructConfPB {
         } else {
           vmpParamBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00001000);
+        bitField0_ = (bitField0_ & ~0x00002000);
         return this;
       }
       /**
@@ -73469,7 +73582,7 @@ public final class StructConfPB {
        * </pre>
        */
       public com.kedacom.mt.netmanage.protobuf.StructConfPB.TMtVmpParam.Builder getVmpParamBuilder() {
-        bitField0_ |= 0x00001000;
+        bitField0_ |= 0x00002000;
         onChanged();
         return getVmpParamFieldBuilder().getBuilder();
       }
@@ -73520,7 +73633,7 @@ public final class StructConfPB {
        * </pre>
        */
       public boolean hasMixParam() {
-        return ((bitField0_ & 0x00002000) == 0x00002000);
+        return ((bitField0_ & 0x00004000) == 0x00004000);
       }
       /**
        * <code>optional .mt.TMtMixParam mix_param = 14;</code>
@@ -73553,7 +73666,7 @@ public final class StructConfPB {
         } else {
           mixParamBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00002000;
+        bitField0_ |= 0x00004000;
         return this;
       }
       /**
@@ -73571,7 +73684,7 @@ public final class StructConfPB {
         } else {
           mixParamBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00002000;
+        bitField0_ |= 0x00004000;
         return this;
       }
       /**
@@ -73583,7 +73696,7 @@ public final class StructConfPB {
        */
       public Builder mergeMixParam(com.kedacom.mt.netmanage.protobuf.StructConfPB.TMtMixParam value) {
         if (mixParamBuilder_ == null) {
-          if (((bitField0_ & 0x00002000) == 0x00002000) &&
+          if (((bitField0_ & 0x00004000) == 0x00004000) &&
               mixParam_ != com.kedacom.mt.netmanage.protobuf.StructConfPB.TMtMixParam.getDefaultInstance()) {
             mixParam_ =
               com.kedacom.mt.netmanage.protobuf.StructConfPB.TMtMixParam.newBuilder(mixParam_).mergeFrom(value).buildPartial();
@@ -73594,7 +73707,7 @@ public final class StructConfPB {
         } else {
           mixParamBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00002000;
+        bitField0_ |= 0x00004000;
         return this;
       }
       /**
@@ -73611,7 +73724,7 @@ public final class StructConfPB {
         } else {
           mixParamBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00002000);
+        bitField0_ = (bitField0_ & ~0x00004000);
         return this;
       }
       /**
@@ -73622,7 +73735,7 @@ public final class StructConfPB {
        * </pre>
        */
       public com.kedacom.mt.netmanage.protobuf.StructConfPB.TMtMixParam.Builder getMixParamBuilder() {
-        bitField0_ |= 0x00002000;
+        bitField0_ |= 0x00004000;
         onChanged();
         return getMixParamFieldBuilder().getBuilder();
       }
@@ -73671,7 +73784,7 @@ public final class StructConfPB {
        * </pre>
        */
       public boolean hasBsatDcastMode() {
-        return ((bitField0_ & 0x00004000) == 0x00004000);
+        return ((bitField0_ & 0x00008000) == 0x00008000);
       }
       /**
        * <code>optional bool bsat_dcast_mode = 15;</code>
@@ -73691,7 +73804,7 @@ public final class StructConfPB {
        * </pre>
        */
       public Builder setBsatDcastMode(boolean value) {
-        bitField0_ |= 0x00004000;
+        bitField0_ |= 0x00008000;
         bsatDcastMode_ = value;
         onChanged();
         return this;
@@ -73704,7 +73817,7 @@ public final class StructConfPB {
        * </pre>
        */
       public Builder clearBsatDcastMode() {
-        bitField0_ = (bitField0_ & ~0x00004000);
+        bitField0_ = (bitField0_ & ~0x00008000);
         bsatDcastMode_ = false;
         onChanged();
         return this;
@@ -73720,7 +73833,7 @@ public final class StructConfPB {
        * </pre>
        */
       public boolean hasOpenMode() {
-        return ((bitField0_ & 0x00008000) == 0x00008000);
+        return ((bitField0_ & 0x00010000) == 0x00010000);
       }
       /**
        * <code>optional .mt.EmMtOpenMode open_mode = 16;</code>
@@ -73743,7 +73856,7 @@ public final class StructConfPB {
         if (value == null) {
           throw new NullPointerException();
         }
-        bitField0_ |= 0x00008000;
+        bitField0_ |= 0x00010000;
         openMode_ = value;
         onChanged();
         return this;
@@ -73756,7 +73869,7 @@ public final class StructConfPB {
        * </pre>
        */
       public Builder clearOpenMode() {
-        bitField0_ = (bitField0_ & ~0x00008000);
+        bitField0_ = (bitField0_ & ~0x00010000);
         openMode_ = com.kedacom.mt.netmanage.protobuf.EnumPB.EmMtOpenMode.emMt_OPEN;
         onChanged();
         return this;
@@ -73772,7 +73885,7 @@ public final class StructConfPB {
        * </pre>
        */
       public boolean hasIsOccupyVpu() {
-        return ((bitField0_ & 0x00010000) == 0x00010000);
+        return ((bitField0_ & 0x00020000) == 0x00020000);
       }
       /**
        * <code>optional bool is_occupy_vpu = 17;</code>
@@ -73792,7 +73905,7 @@ public final class StructConfPB {
        * </pre>
        */
       public Builder setIsOccupyVpu(boolean value) {
-        bitField0_ |= 0x00010000;
+        bitField0_ |= 0x00020000;
         isOccupyVpu_ = value;
         onChanged();
         return this;
@@ -73805,7 +73918,7 @@ public final class StructConfPB {
        * </pre>
        */
       public Builder clearIsOccupyVpu() {
-        bitField0_ = (bitField0_ & ~0x00010000);
+        bitField0_ = (bitField0_ & ~0x00020000);
         isOccupyVpu_ = false;
         onChanged();
         return this;
@@ -73821,7 +73934,7 @@ public final class StructConfPB {
        * </pre>
        */
       public boolean hasDualMode() {
-        return ((bitField0_ & 0x00020000) == 0x00020000);
+        return ((bitField0_ & 0x00040000) == 0x00040000);
       }
       /**
        * <code>optional .mt.EmMtDualMode dual_mode = 18 [default = MT_DUAL_MODE_EVERYONE];</code>
@@ -73844,7 +73957,7 @@ public final class StructConfPB {
         if (value == null) {
           throw new NullPointerException();
         }
-        bitField0_ |= 0x00020000;
+        bitField0_ |= 0x00040000;
         dualMode_ = value;
         onChanged();
         return this;
@@ -73857,7 +73970,7 @@ public final class StructConfPB {
        * </pre>
        */
       public Builder clearDualMode() {
-        bitField0_ = (bitField0_ & ~0x00020000);
+        bitField0_ = (bitField0_ & ~0x00040000);
         dualMode_ = com.kedacom.mt.netmanage.protobuf.EnumPB.EmMtDualMode.MT_DUAL_MODE_EVERYONE;
         onChanged();
         return this;
@@ -73873,7 +73986,7 @@ public final class StructConfPB {
        * </pre>
        */
       public boolean hasIsAllInitDumb() {
-        return ((bitField0_ & 0x00040000) == 0x00040000);
+        return ((bitField0_ & 0x00080000) == 0x00080000);
       }
       /**
        * <code>optional bool is_all_init_dumb = 19;</code>
@@ -73893,7 +74006,7 @@ public final class StructConfPB {
        * </pre>
        */
       public Builder setIsAllInitDumb(boolean value) {
-        bitField0_ |= 0x00040000;
+        bitField0_ |= 0x00080000;
         isAllInitDumb_ = value;
         onChanged();
         return this;
@@ -73906,7 +74019,7 @@ public final class StructConfPB {
        * </pre>
        */
       public Builder clearIsAllInitDumb() {
-        bitField0_ = (bitField0_ & ~0x00040000);
+        bitField0_ = (bitField0_ & ~0x00080000);
         isAllInitDumb_ = false;
         onChanged();
         return this;
@@ -73922,7 +74035,7 @@ public final class StructConfPB {
        * </pre>
        */
       public boolean hasIsConfNoDisturb() {
-        return ((bitField0_ & 0x00080000) == 0x00080000);
+        return ((bitField0_ & 0x00100000) == 0x00100000);
       }
       /**
        * <code>optional bool is_conf_no_disturb = 20;</code>
@@ -73942,7 +74055,7 @@ public final class StructConfPB {
        * </pre>
        */
       public Builder setIsConfNoDisturb(boolean value) {
-        bitField0_ |= 0x00080000;
+        bitField0_ |= 0x00100000;
         isConfNoDisturb_ = value;
         onChanged();
         return this;
@@ -73955,7 +74068,7 @@ public final class StructConfPB {
        * </pre>
        */
       public Builder clearIsConfNoDisturb() {
-        bitField0_ = (bitField0_ & ~0x00080000);
+        bitField0_ = (bitField0_ & ~0x00100000);
         isConfNoDisturb_ = false;
         onChanged();
         return this;
@@ -73971,7 +74084,7 @@ public final class StructConfPB {
        * </pre>
        */
       public boolean hasIsPortMode() {
-        return ((bitField0_ & 0x00100000) == 0x00100000);
+        return ((bitField0_ & 0x00200000) == 0x00200000);
       }
       /**
        * <code>optional bool is_port_mode = 21;</code>
@@ -73991,7 +74104,7 @@ public final class StructConfPB {
        * </pre>
        */
       public Builder setIsPortMode(boolean value) {
-        bitField0_ |= 0x00100000;
+        bitField0_ |= 0x00200000;
         isPortMode_ = value;
         onChanged();
         return this;
@@ -74004,7 +74117,7 @@ public final class StructConfPB {
        * </pre>
        */
       public Builder clearIsPortMode() {
-        bitField0_ = (bitField0_ & ~0x00100000);
+        bitField0_ = (bitField0_ & ~0x00200000);
         isPortMode_ = false;
         onChanged();
         return this;
@@ -74020,7 +74133,7 @@ public final class StructConfPB {
        * </pre>
        */
       public boolean hasIsForceBroadcast() {
-        return ((bitField0_ & 0x00200000) == 0x00200000);
+        return ((bitField0_ & 0x00400000) == 0x00400000);
       }
       /**
        * <code>optional bool is_force_broadcast = 22;</code>
@@ -74040,7 +74153,7 @@ public final class StructConfPB {
        * </pre>
        */
       public Builder setIsForceBroadcast(boolean value) {
-        bitField0_ |= 0x00200000;
+        bitField0_ |= 0x00400000;
         isForceBroadcast_ = value;
         onChanged();
         return this;
@@ -74053,7 +74166,7 @@ public final class StructConfPB {
        * </pre>
        */
       public Builder clearIsForceBroadcast() {
-        bitField0_ = (bitField0_ & ~0x00200000);
+        bitField0_ = (bitField0_ & ~0x00400000);
         isForceBroadcast_ = false;
         onChanged();
         return this;
@@ -74069,7 +74182,7 @@ public final class StructConfPB {
        * </pre>
        */
       public boolean hasRecordMode() {
-        return ((bitField0_ & 0x00400000) == 0x00400000);
+        return ((bitField0_ & 0x00800000) == 0x00800000);
       }
       /**
        * <code>optional uint32 record_mode = 23;</code>
@@ -74089,7 +74202,7 @@ public final class StructConfPB {
        * </pre>
        */
       public Builder setRecordMode(int value) {
-        bitField0_ |= 0x00400000;
+        bitField0_ |= 0x00800000;
         recordMode_ = value;
         onChanged();
         return this;
@@ -74102,7 +74215,7 @@ public final class StructConfPB {
        * </pre>
        */
       public Builder clearRecordMode() {
-        bitField0_ = (bitField0_ & ~0x00400000);
+        bitField0_ = (bitField0_ & ~0x00800000);
         recordMode_ = 0;
         onChanged();
         return this;
@@ -119824,162 +119937,163 @@ public final class StructConfPB {
       "\001 \003(\0132\023.mt.TMtChanLossRate\"_\n\017TMtChanLos" +
       "sRate\022 \n\004mode\030\001 \001(\0162\022.mt.EmMediaModeDef\022" +
       "\020\n\010recv_idx\030\002 \001(\r\022\030\n\020packet_lost_rate\030\003 " +
-      "\001(\r\"\234\005\n\013TMtConfInfo\022\037\n\nstart_time\030\001 \001(\0132" +
+      "\001(\r\"\260\005\n\013TMtConfInfo\022\037\n\nstart_time\030\001 \001(\0132" +
       "\013.mt.TMTTime\022\020\n\010duration\030\002 \001(\r\022\017\n\007bitrat" +
       "e\030\003 \001(\r\022\023\n\013sec_bitrate\030\004 \001(\r\022*\n\016main_vid",
       "eo_res\030\005 \001(\0162\022.mt.EmMtResolution\022)\n\rass_" +
       "video_res\030\006 \001(\0162\022.mt.EmMtResolution\022\026\n\016t" +
       "alk_hold_time\030\007 \001(\r\022\020\n\010conf_pwd\030\010 \001(\t\022\021\n" +
-      "\tconf_name\030\t \001(\t\022\021\n\tconf_e164\030\n \001(\t\022\033\n\010c" +
-      "hairman\030\013 \001(\0132\t.mt.TMtId\022\032\n\007speaker\030\014 \001(" +
-      "\0132\t.mt.TMtId\022\"\n\tvmp_param\030\r \001(\0132\017.mt.TMt" +
-      "VmpParam\022\"\n\tmix_param\030\016 \001(\0132\017.mt.TMtMixP" +
-      "aram\022\027\n\017bsat_dcast_mode\030\017 \001(\010\022#\n\topen_mo" +
-      "de\030\020 \001(\0162\020.mt.EmMtOpenMode\022\025\n\ris_occupy_" +
-      "vpu\030\021 \001(\010\022:\n\tdual_mode\030\022 \001(\0162\020.mt.EmMtDu",
-      "alMode:\025MT_DUAL_MODE_EVERYONE\022\030\n\020is_all_" +
-      "init_dumb\030\023 \001(\010\022\032\n\022is_conf_no_disturb\030\024 " +
-      "\001(\010\022\024\n\014is_port_mode\030\025 \001(\010\022\032\n\022is_force_br" +
-      "oadcast\030\026 \001(\010\022\023\n\013record_mode\030\027 \001(\r\"\373\002\n\023T" +
-      "PeerCapabilityInfo\022\014\n\004bMix\030\001 \001(\010\022\014\n\004bVAC" +
-      "\030\002 \001(\010\022\022\n\nbCustomVMP\030\003 \001(\010\022\020\n\010bAutoVMP\030\004" +
-      " \001(\010\022\020\n\010bEndConf\030\005 \001(\010\022\021\n\tbInvateMt\030\006 \001(" +
-      "\010\022\017\n\007bDropMt\030\007 \001(\010\022\023\n\013bSelSpeaker\030\010 \001(\010\022" +
-      "\021\n\tbSelChair\030\t \001(\010\022\022\n\nbSelSource\030\n \001(\010\022\r" +
-      "\n\005bFECC\030\013 \001(\010\022\016\n\006bQuiet\030\014 \001(\010\022\r\n\005bMute\030\r",
-      " \001(\010\022\020\n\010bConfReq\030\016 \001(\010\022\023\n\013bOnlineList\030\017 " +
-      "\001(\010\022\024\n\014bOfflineList\030\020 \001(\010\022\022\n\nbPicSwitch\030" +
-      "\021 \001(\010\022\030\n\020bSelSpeakingUser\030\022 \001(\010\022\027\n\017bForc" +
-      "eBroadcast\030\023 \001(\010\"S\n\013TMtMixParam\022%\n\014discu" +
-      "ss_mode\030\001 \001(\0162\017.mt.EmMtMixType\022\035\n\010mix_it" +
-      "em\030\002 \001(\0132\013.mt.TRpMtId\"\246\001\n\013TMtVmpParam\022!\n" +
-      "\010vmp_mode\030\001 \001(\0162\017.mt.EmMtVmpMode\022#\n\tvmp_" +
-      "style\030\002 \001(\0162\020.mt.EmMtVmpStyle\022\037\n\007mt_item" +
-      "\030\003 \003(\0132\016.mt.TMtVmpItem\022\026\n\016bvmp_broadcast" +
-      "\030\004 \001(\010\022\026\n\016badd_mmb_alias\030\005 \001(\010\"\211\001\n\nTMtVm",
-      "pItem\022\030\n\005mt_id\030\001 \001(\0132\t.mt.TMtId\022#\n\007mt_ty" +
-      "pe\030\002 \001(\0162\022.mt.EmMtVMPMmbType\022+\n\010chan_idx" +
-      "\030\003 \001(\0162\031.mt.EmCodecComponentIndex\022\017\n\007mem" +
-      "_idx\030\004 \001(\r\"\230\001\n\013TMtPollInfo\022%\n\nmedia_type" +
-      "\030\001 \001(\0162\021.mt.EmMtMediaType\022\034\n\006action\030\002 \001(" +
-      "\0162\014.mt.EmAction\022\021\n\tkeep_time\030\003 \001(\r\022\031\n\006mt" +
-      "list\030\004 \003(\0132\t.mt.TMtId\022\026\n\016poll_scheme_id\030" +
-      "\005 \001(\r\"7\n\020TVideoSourceInfo\022\020\n\010vid_port\030\001 " +
-      "\001(\r\022\021\n\tport_name\030\002 \001(\014\"C\n\022TRpVideoSource" +
-      "Info\022-\n\017vid_source_info\030\001 \003(\0132\024.mt.TVide",
-      "oSourceInfo\"\231\001\n\rTMtVideoAlias\022(\n\nvideo_t" +
-      "ype\030\001 \001(\0162\024.mt.EmCodecComponent\022+\n\010video" +
-      "_id\030\002 \001(\0162\031.mt.EmCodecComponentIndex\0221\n\021" +
-      "video_source_list\030\003 \001(\0132\026.mt.TRpVideoSou" +
-      "rceInfo\">\n\017TRpMtVideoAlias\022+\n\020video_alia" +
-      "s_list\030\001 \003(\0132\021.mt.TMtVideoAlias\"O\n\017TMtEn" +
-      "tityStatus\022\030\n\005label\030\001 \001(\0132\t.mt.TMtId\022\"\n\n" +
-      "ter_status\030\002 \001(\0132\016.mt.TTerStatus\";\n\021TRpM" +
-      "tEntityStatus\022&\n\tmt_status\030\001 \003(\0132\023.mt.TM" +
-      "tEntityStatus\"T\n\nTVideoInfo\022\n\n\002id\030\001 \001(\r\022",
-      "\024\n\014bfecc_enable\030\002 \001(\010\022\021\n\thas_video\030\003 \001(\010" +
-      "\022\021\n\tvideo_src\030\004 \001(\r\"1\n\014TRpVideoInfo\022!\n\tv" +
-      "ideoinfo\030\001 \003(\0132\016.mt.TVideoInfo\"\310\001\n\nTTerS" +
-      "tatus\022\037\n\010mt_model\030\001 \001(\0162\r.mt.EmMtModel\022\017" +
-      "\n\007enc_vol\030\002 \001(\r\022\017\n\007dec_vol\030\003 \001(\r\022\r\n\005bmut" +
-      "e\030\004 \001(\010\022\016\n\006bquiet\030\005 \001(\010\022\017\n\007bmatrix\030\006 \001(\010" +
-      "\022!\n\tvideoinfo\030\007 \003(\0132\016.mt.TVideoInfo\022$\n\tv" +
-      "iew_type\030\010 \001(\0162\021.mt.EmMtMediaType\"\254\001\n\tTS" +
-      "hortMsg\022\037\n\010sms_type\030\001 \001(\0162\r.mt.EmSMSType" +
-      "\022\031\n\006mt_src\030\002 \001(\0132\t.mt.TMtId\022\031\n\006mt_dst\030\003 ",
-      "\003(\0132\t.mt.TMtId\022&\n\nroll_speed\030\004 \001(\0162\022.mt." +
-      "EmRollMsgSpeed\022\022\n\nroll_times\030\005 \001(\r\022\014\n\004te" +
-      "xt\030\006 \001(\t\"\241\002\n\014TMtRegistReq\022\035\n\005alias\030\001 \001(\013" +
-      "2\016.mt.TRpMtAlias\022 \n\nlocal_addr\030\002 \001(\0132\014.m" +
-      "t.TNetAddr\022\035\n\007gk_addr\030\003 \001(\0132\014.mt.TNetAdd" +
-      "r\022\"\n\014sip_reg_addr\030\004 \001(\0132\014.mt.TNetAddr\022\021\n" +
-      "\ttime_live\030\005 \001(\r\022\036\n\010username\030\006 \001(\0132\014.mt." +
-      "TMtAlias\022\020\n\010password\030\007 \001(\t\022\021\n\tproductid\030" +
-      "\010 \001(\t\022\021\n\tversionid\030\t \001(\t\022\022\n\nsip_domain\030\n" +
-      " \001(\t\022\016\n\006domain\030\013 \001(\t\"X\n\nTGkRegInfo\022\021\n\tbr",
-      "egisted\030\001 \001(\010\022%\n\006reason\030\002 \001(\0162\025.mt.EmReg" +
-      "FailedReason\022\020\n\010bauth_ok\030\003 \001(\010\"p\n\020TH323S" +
-      "tackHandle\022\014\n\004call\030\001 \001(\003\022\020\n\010app_call\030\002 \001" +
-      "(\003\022\014\n\004chan\030\003 \001(\003\022\020\n\010app_chan\030\004 \001(\003\022\013\n\003ra" +
-      "s\030\005 \001(\003\022\017\n\007app_ras\030\006 \001(\003\"`\n\nTMtRCFInfo\022!" +
-      "\n\013endpoint_id\030\001 \001(\0132\014.mt.TMtAlias\022\033\n\005gk_" +
-      "id\030\002 \001(\0132\014.mt.TMtAlias\022\022\n\ntimetolive\030\003 \001" +
-      "(\r\"C\n\nTMtACFInfo\022\024\n\014gk_bandwidth\030\001 \001(\r\022\037" +
-      "\n\tpeer_addr\030\002 \001(\0132\014.mt.TNetAddr\"\263\001\n\nTMtF" +
-      "eccMsg\022\016\n\006action\030\001 \001(\r\022\017\n\007request\030\002 \001(\r\022",
-      "\020\n\010sourceno\030\003 \001(\r\022\020\n\010presetno\030\004 \001(\r\022\017\n\007t" +
-      "imeout\030\005 \001(\r\022\022\n\nis_cme_msg\030\006 \001(\r\022*\n\014cme_" +
-      "msg_type\030\007 \001(\0162\024.mt.EmFeccCMEMsgType\022\017\n\007" +
-      "com_idx\030\010 \001(\r\"R\n\tTMtSeeing\022+\n\010chan_idx\030\001" +
-      " \001(\0162\031.mt.EmCodecComponentIndex\022\030\n\005mt_id" +
-      "\030\002 \001(\0132\t.mt.TMtId\",\n\013TRpMtSeeing\022\035\n\006mt_s" +
-      "ee\030\001 \003(\0132\r.mt.TMtSeeing\"\215\001\n\rTViewTerPara" +
-      "m\022\025\n\002mt\030\001 \001(\0132\t.mt.TMtId\022\037\n\004type\030\002 \001(\0162\021" +
-      ".mt.EmMtMediaType\022\027\n\017is_see_all_chan\030\003 \001" +
-      "(\010\022+\n\010chan_idx\030\004 \001(\0162\031.mt.EmCodecCompone",
-      "ntIndex\"T\n\021TCloudRecordState\022\027\n\017is_cloud" +
-      "_record\030\001 \001(\010\022&\n\021cloud_record_time\030\002 \001(\013" +
-      "2\013.mt.TMTTime\"\224\002\n\rTInnerMCParam\022\020\n\010vmp_t" +
-      "ype\030\001 \001(\r\022\035\n\007mc_mode\030\002 \001(\0162\014.mt.EmMCMode" +
-      "\022\021\n\tconf_name\030\003 \001(\t\022\021\n\tconf_rate\030\004 \001(\r\022)" +
-      "\n\rconf_protocol\030\005 \001(\0162\022.mt.EmConfProtoco" +
-      "l\022\'\n\014main_vid_cap\030\006 \001(\0132\021.mt.TVidFormatC" +
-      "ap\022(\n\rassis_vid_cap\030\007 \001(\0132\021.mt.TVidForma" +
-      "tCap\022\034\n\007aud_cap\030\010 \001(\0132\013.mt.TAudDes\022\020\n\010bm" +
-      "c_used\030\t \001(\010\"\257\001\n\017TInnerMCRunInfo\022\032\n\013mc_i",
-      "s_exist\030\001 \001(\010:\005false\022\033\n\014mc_is_active\030\002 \001" +
-      "(\010:\005false\022\033\n\014mc_is_inconf\030\003 \001(\010:\005false\022\025" +
-      "\n\rmc_mem_maxnum\030\004 \001(\r\022\030\n\rp2p_pa_handle\030\005" +
-      " \001(\r:\0010\022\025\n\rp2p_ep_handle\030\006 \001(\r\"}\n\tTFastC" +
-      "all\022\021\n\tcall_rate\030\001 \001(\r\022#\n\tcall_type\030\002 \001(" +
-      "\0162\020.mt.EmMtAddrType\022\021\n\tpeer_addr\030\003 \001(\r\022\021" +
-      "\n\tpeer_e164\030\004 \001(\t\022\022\n\npeer_alias\030\005 \001(\t\"1\n" +
-      "\rTFastCallList\022 \n\tfast_call\030\001 \003(\0132\r.mt.T" +
-      "FastCall\"\343\001\n\026TMtSecCertDistinctName\022\024\n\014c" +
-      "ountry_name\030\001 \001(\t\022\036\n\026state_or_province_n",
-      "ame\030\002 \001(\t\022\025\n\rlocality_name\030\003 \001(\t\022\031\n\021orga" +
-      "nization_name\030\004 \001(\t\022\036\n\026organization_unit" +
-      "_name\030\005 \001(\t\022\023\n\013common_name\030\006 \001(\t\022\025\n\rseri" +
-      "al_number\030\007 \001(\t\022\025\n\remail_address\030\010 \001(\t\"C" +
-      "\n\022TMtSecCertValidity\022\026\n\016nottime_before\030\001" +
-      " \001(\t\022\025\n\rnottime_after\030\002 \001(\t\"\221\002\n\016TMtSecCe" +
-      "rtInfo\022\017\n\007version\030\001 \001(\005\022\025\n\rserial_number" +
-      "\030\002 \001(\t\022\020\n\010sign_alg\030\003 \001(\t\022/\n\013issuer_info\030" +
-      "\004 \001(\0132\032.mt.TMtSecCertDistinctName\022(\n\010val" +
-      "idity\030\005 \001(\0132\026.mt.TMtSecCertValidity\0220\n\014s",
-      "ubject_info\030\006 \001(\0132\032.mt.TMtSecCertDistinc" +
-      "tName\022\022\n\npubkey_alg\030\007 \001(\t\022\024\n\014finger_prin" +
-      "t\030\010 \001(\014\022\016\n\006format\030\t \001(\005\"%\n\020TRpMtSecCaIDL" +
-      "ist\022\021\n\tcacert_id\030\001 \003(\014\"9\n\rTMtTerAuthCmd\022" +
-      "\023\n\013auther_name\030\001 \001(\t\022\023\n\013authee_name\030\002 \001(" +
-      "\t\"7\n\021TMtTerAuthRequest\022\020\n\010username\030\001 \001(\t" +
-      "\022\020\n\010password\030\002 \001(\t\"<\n\020TMtTerAuthCancel\022\023" +
-      "\n\013auther_name\030\001 \001(\t\022\023\n\013authee_name\030\002 \001(\t" +
-      "\"7\n\rTMtTerAuthMsg\022\026\n\016is_authforcall\030\001 \001(" +
-      "\005\022\016\n\006callid\030\002 \001(\t\"\202\001\n\023TMtSecCreateCertRe",
-      "q\022\017\n\007is_sign\030\001 \001(\010\022\023\n\013is_resetpwd\030\002 \001(\010\022" +
-      "\033\n\023devicecert_fileName\030\003 \001(\t\022(\n\004name\030\004 \001" +
-      "(\0132\032.mt.TMtSecCertDistinctName\"\\\n\016TMtVrs" +
-      "UserInfo\022\021\n\trightmask\030\001 \001(\005\022\r\n\005token\030\002 \001" +
-      "(\t\022\026\n\016userdomainmoid\030\003 \001(\t\022\020\n\010usermoid\030\004" +
-      " \001(\t\"\377\002\n\010TLicense\022*\n\017KeyVersion_Type\030\001 \001" +
-      "(\0162\021.mt.EmVersionType\022(\n\021emKeyTerminalTy" +
-      "pe\030\002 \001(\0162\r.mt.EmMtModel\022\030\n\020KeyChannelAcc" +
-      "ess\030\003 \001(\010\022\034\n\024KeyHybridcloudAccess\030\004 \001(\010\022" +
-      "\034\n\024KeyPubliccloudAccess\030\005 \001(\010\022\033\n\023KeyTerm",
-      "inalDeviceId\030\006 \001(\t\022\020\n\010UserType\030\007 \001(\t\022\024\n\014" +
-      "ContractNode\030\010 \001(\t\022\024\n\014CustomerName\030\t \001(\t" +
-      "\022\027\n\017CustomerAddress\030\n \001(\t\022\016\n\006Serler\030\013 \001(" +
-      "\t\022\023\n\013Description\030\014 \001(\t\022.\n\nCheckValue\030\r \001" +
-      "(\0162\032.mt.EmLicenseKeyCheckValue\"e\n\017TMtAiI" +
-      "nviteInfo\022\014\n\004name\030\001 \001(\t\022\014\n\004e164\030\002 \001(\t\022\n\n" +
-      "\002ip\030\003 \001(\t\022*\n\remContactType\030\004 \001(\0162\023.mt.Em" +
-      "AiContactType\"=\n\023TMtAiInviteInfoList\022&\n\t" +
-      "tAiInvite\030\001 \003(\0132\023.mt.TMtAiInviteInfo\"l\n\022" +
-      "TVendorCheckConfig\022\016\n\006peerip\030\001 \001(\r\022\020\n\010pe",
-      "erport\030\002 \001(\r\022\014\n\004path\030\003 \001(\t\022\021\n\tlocalport\030" +
-      "\004 \001(\r\022\023\n\013is_platform\030\005 \001(\010B1\n!com.kedaco" +
-      "m.mt.netmanage.protobufB\014StructConfPB"
+      "\tconf_name\030\t \001(\t\022\021\n\tconf_e164\030\n \001(\t\022\022\n\ni" +
+      "s_enc_pwd\030\030 \001(\010\022\033\n\010chairman\030\013 \001(\0132\t.mt.T" +
+      "MtId\022\032\n\007speaker\030\014 \001(\0132\t.mt.TMtId\022\"\n\tvmp_" +
+      "param\030\r \001(\0132\017.mt.TMtVmpParam\022\"\n\tmix_para" +
+      "m\030\016 \001(\0132\017.mt.TMtMixParam\022\027\n\017bsat_dcast_m" +
+      "ode\030\017 \001(\010\022#\n\topen_mode\030\020 \001(\0162\020.mt.EmMtOp" +
+      "enMode\022\025\n\ris_occupy_vpu\030\021 \001(\010\022:\n\tdual_mo",
+      "de\030\022 \001(\0162\020.mt.EmMtDualMode:\025MT_DUAL_MODE" +
+      "_EVERYONE\022\030\n\020is_all_init_dumb\030\023 \001(\010\022\032\n\022i" +
+      "s_conf_no_disturb\030\024 \001(\010\022\024\n\014is_port_mode\030" +
+      "\025 \001(\010\022\032\n\022is_force_broadcast\030\026 \001(\010\022\023\n\013rec" +
+      "ord_mode\030\027 \001(\r\"\373\002\n\023TPeerCapabilityInfo\022\014" +
+      "\n\004bMix\030\001 \001(\010\022\014\n\004bVAC\030\002 \001(\010\022\022\n\nbCustomVMP" +
+      "\030\003 \001(\010\022\020\n\010bAutoVMP\030\004 \001(\010\022\020\n\010bEndConf\030\005 \001" +
+      "(\010\022\021\n\tbInvateMt\030\006 \001(\010\022\017\n\007bDropMt\030\007 \001(\010\022\023" +
+      "\n\013bSelSpeaker\030\010 \001(\010\022\021\n\tbSelChair\030\t \001(\010\022\022" +
+      "\n\nbSelSource\030\n \001(\010\022\r\n\005bFECC\030\013 \001(\010\022\016\n\006bQu",
+      "iet\030\014 \001(\010\022\r\n\005bMute\030\r \001(\010\022\020\n\010bConfReq\030\016 \001" +
+      "(\010\022\023\n\013bOnlineList\030\017 \001(\010\022\024\n\014bOfflineList\030" +
+      "\020 \001(\010\022\022\n\nbPicSwitch\030\021 \001(\010\022\030\n\020bSelSpeakin" +
+      "gUser\030\022 \001(\010\022\027\n\017bForceBroadcast\030\023 \001(\010\"S\n\013" +
+      "TMtMixParam\022%\n\014discuss_mode\030\001 \001(\0162\017.mt.E" +
+      "mMtMixType\022\035\n\010mix_item\030\002 \001(\0132\013.mt.TRpMtI" +
+      "d\"\246\001\n\013TMtVmpParam\022!\n\010vmp_mode\030\001 \001(\0162\017.mt" +
+      ".EmMtVmpMode\022#\n\tvmp_style\030\002 \001(\0162\020.mt.EmM" +
+      "tVmpStyle\022\037\n\007mt_item\030\003 \003(\0132\016.mt.TMtVmpIt" +
+      "em\022\026\n\016bvmp_broadcast\030\004 \001(\010\022\026\n\016badd_mmb_a",
+      "lias\030\005 \001(\010\"\211\001\n\nTMtVmpItem\022\030\n\005mt_id\030\001 \001(\013" +
+      "2\t.mt.TMtId\022#\n\007mt_type\030\002 \001(\0162\022.mt.EmMtVM" +
+      "PMmbType\022+\n\010chan_idx\030\003 \001(\0162\031.mt.EmCodecC" +
+      "omponentIndex\022\017\n\007mem_idx\030\004 \001(\r\"\230\001\n\013TMtPo" +
+      "llInfo\022%\n\nmedia_type\030\001 \001(\0162\021.mt.EmMtMedi" +
+      "aType\022\034\n\006action\030\002 \001(\0162\014.mt.EmAction\022\021\n\tk" +
+      "eep_time\030\003 \001(\r\022\031\n\006mtlist\030\004 \003(\0132\t.mt.TMtI" +
+      "d\022\026\n\016poll_scheme_id\030\005 \001(\r\"7\n\020TVideoSourc" +
+      "eInfo\022\020\n\010vid_port\030\001 \001(\r\022\021\n\tport_name\030\002 \001" +
+      "(\014\"C\n\022TRpVideoSourceInfo\022-\n\017vid_source_i",
+      "nfo\030\001 \003(\0132\024.mt.TVideoSourceInfo\"\231\001\n\rTMtV" +
+      "ideoAlias\022(\n\nvideo_type\030\001 \001(\0162\024.mt.EmCod" +
+      "ecComponent\022+\n\010video_id\030\002 \001(\0162\031.mt.EmCod" +
+      "ecComponentIndex\0221\n\021video_source_list\030\003 " +
+      "\001(\0132\026.mt.TRpVideoSourceInfo\">\n\017TRpMtVide" +
+      "oAlias\022+\n\020video_alias_list\030\001 \003(\0132\021.mt.TM" +
+      "tVideoAlias\"O\n\017TMtEntityStatus\022\030\n\005label\030" +
+      "\001 \001(\0132\t.mt.TMtId\022\"\n\nter_status\030\002 \001(\0132\016.m" +
+      "t.TTerStatus\";\n\021TRpMtEntityStatus\022&\n\tmt_" +
+      "status\030\001 \003(\0132\023.mt.TMtEntityStatus\"T\n\nTVi",
+      "deoInfo\022\n\n\002id\030\001 \001(\r\022\024\n\014bfecc_enable\030\002 \001(" +
+      "\010\022\021\n\thas_video\030\003 \001(\010\022\021\n\tvideo_src\030\004 \001(\r\"" +
+      "1\n\014TRpVideoInfo\022!\n\tvideoinfo\030\001 \003(\0132\016.mt." +
+      "TVideoInfo\"\310\001\n\nTTerStatus\022\037\n\010mt_model\030\001 " +
+      "\001(\0162\r.mt.EmMtModel\022\017\n\007enc_vol\030\002 \001(\r\022\017\n\007d" +
+      "ec_vol\030\003 \001(\r\022\r\n\005bmute\030\004 \001(\010\022\016\n\006bquiet\030\005 " +
+      "\001(\010\022\017\n\007bmatrix\030\006 \001(\010\022!\n\tvideoinfo\030\007 \003(\0132" +
+      "\016.mt.TVideoInfo\022$\n\tview_type\030\010 \001(\0162\021.mt." +
+      "EmMtMediaType\"\254\001\n\tTShortMsg\022\037\n\010sms_type\030" +
+      "\001 \001(\0162\r.mt.EmSMSType\022\031\n\006mt_src\030\002 \001(\0132\t.m",
+      "t.TMtId\022\031\n\006mt_dst\030\003 \003(\0132\t.mt.TMtId\022&\n\nro" +
+      "ll_speed\030\004 \001(\0162\022.mt.EmRollMsgSpeed\022\022\n\nro" +
+      "ll_times\030\005 \001(\r\022\014\n\004text\030\006 \001(\t\"\241\002\n\014TMtRegi" +
+      "stReq\022\035\n\005alias\030\001 \001(\0132\016.mt.TRpMtAlias\022 \n\n" +
+      "local_addr\030\002 \001(\0132\014.mt.TNetAddr\022\035\n\007gk_add" +
+      "r\030\003 \001(\0132\014.mt.TNetAddr\022\"\n\014sip_reg_addr\030\004 " +
+      "\001(\0132\014.mt.TNetAddr\022\021\n\ttime_live\030\005 \001(\r\022\036\n\010" +
+      "username\030\006 \001(\0132\014.mt.TMtAlias\022\020\n\010password" +
+      "\030\007 \001(\t\022\021\n\tproductid\030\010 \001(\t\022\021\n\tversionid\030\t" +
+      " \001(\t\022\022\n\nsip_domain\030\n \001(\t\022\016\n\006domain\030\013 \001(\t",
+      "\"X\n\nTGkRegInfo\022\021\n\tbregisted\030\001 \001(\010\022%\n\006rea" +
+      "son\030\002 \001(\0162\025.mt.EmRegFailedReason\022\020\n\010baut" +
+      "h_ok\030\003 \001(\010\"p\n\020TH323StackHandle\022\014\n\004call\030\001" +
+      " \001(\003\022\020\n\010app_call\030\002 \001(\003\022\014\n\004chan\030\003 \001(\003\022\020\n\010" +
+      "app_chan\030\004 \001(\003\022\013\n\003ras\030\005 \001(\003\022\017\n\007app_ras\030\006" +
+      " \001(\003\"`\n\nTMtRCFInfo\022!\n\013endpoint_id\030\001 \001(\0132" +
+      "\014.mt.TMtAlias\022\033\n\005gk_id\030\002 \001(\0132\014.mt.TMtAli" +
+      "as\022\022\n\ntimetolive\030\003 \001(\r\"C\n\nTMtACFInfo\022\024\n\014" +
+      "gk_bandwidth\030\001 \001(\r\022\037\n\tpeer_addr\030\002 \001(\0132\014." +
+      "mt.TNetAddr\"\263\001\n\nTMtFeccMsg\022\016\n\006action\030\001 \001",
+      "(\r\022\017\n\007request\030\002 \001(\r\022\020\n\010sourceno\030\003 \001(\r\022\020\n" +
+      "\010presetno\030\004 \001(\r\022\017\n\007timeout\030\005 \001(\r\022\022\n\nis_c" +
+      "me_msg\030\006 \001(\r\022*\n\014cme_msg_type\030\007 \001(\0162\024.mt." +
+      "EmFeccCMEMsgType\022\017\n\007com_idx\030\010 \001(\r\"R\n\tTMt" +
+      "Seeing\022+\n\010chan_idx\030\001 \001(\0162\031.mt.EmCodecCom" +
+      "ponentIndex\022\030\n\005mt_id\030\002 \001(\0132\t.mt.TMtId\",\n" +
+      "\013TRpMtSeeing\022\035\n\006mt_see\030\001 \003(\0132\r.mt.TMtSee" +
+      "ing\"\215\001\n\rTViewTerParam\022\025\n\002mt\030\001 \001(\0132\t.mt.T" +
+      "MtId\022\037\n\004type\030\002 \001(\0162\021.mt.EmMtMediaType\022\027\n" +
+      "\017is_see_all_chan\030\003 \001(\010\022+\n\010chan_idx\030\004 \001(\016",
+      "2\031.mt.EmCodecComponentIndex\"T\n\021TCloudRec" +
+      "ordState\022\027\n\017is_cloud_record\030\001 \001(\010\022&\n\021clo" +
+      "ud_record_time\030\002 \001(\0132\013.mt.TMTTime\"\224\002\n\rTI" +
+      "nnerMCParam\022\020\n\010vmp_type\030\001 \001(\r\022\035\n\007mc_mode" +
+      "\030\002 \001(\0162\014.mt.EmMCMode\022\021\n\tconf_name\030\003 \001(\t\022" +
+      "\021\n\tconf_rate\030\004 \001(\r\022)\n\rconf_protocol\030\005 \001(" +
+      "\0162\022.mt.EmConfProtocol\022\'\n\014main_vid_cap\030\006 " +
+      "\001(\0132\021.mt.TVidFormatCap\022(\n\rassis_vid_cap\030" +
+      "\007 \001(\0132\021.mt.TVidFormatCap\022\034\n\007aud_cap\030\010 \001(" +
+      "\0132\013.mt.TAudDes\022\020\n\010bmc_used\030\t \001(\010\"\257\001\n\017TIn",
+      "nerMCRunInfo\022\032\n\013mc_is_exist\030\001 \001(\010:\005false" +
+      "\022\033\n\014mc_is_active\030\002 \001(\010:\005false\022\033\n\014mc_is_i" +
+      "nconf\030\003 \001(\010:\005false\022\025\n\rmc_mem_maxnum\030\004 \001(" +
+      "\r\022\030\n\rp2p_pa_handle\030\005 \001(\r:\0010\022\025\n\rp2p_ep_ha" +
+      "ndle\030\006 \001(\r\"}\n\tTFastCall\022\021\n\tcall_rate\030\001 \001" +
+      "(\r\022#\n\tcall_type\030\002 \001(\0162\020.mt.EmMtAddrType\022" +
+      "\021\n\tpeer_addr\030\003 \001(\r\022\021\n\tpeer_e164\030\004 \001(\t\022\022\n" +
+      "\npeer_alias\030\005 \001(\t\"1\n\rTFastCallList\022 \n\tfa" +
+      "st_call\030\001 \003(\0132\r.mt.TFastCall\"\343\001\n\026TMtSecC" +
+      "ertDistinctName\022\024\n\014country_name\030\001 \001(\t\022\036\n",
+      "\026state_or_province_name\030\002 \001(\t\022\025\n\rlocalit" +
+      "y_name\030\003 \001(\t\022\031\n\021organization_name\030\004 \001(\t\022" +
+      "\036\n\026organization_unit_name\030\005 \001(\t\022\023\n\013commo" +
+      "n_name\030\006 \001(\t\022\025\n\rserial_number\030\007 \001(\t\022\025\n\re" +
+      "mail_address\030\010 \001(\t\"C\n\022TMtSecCertValidity" +
+      "\022\026\n\016nottime_before\030\001 \001(\t\022\025\n\rnottime_afte" +
+      "r\030\002 \001(\t\"\221\002\n\016TMtSecCertInfo\022\017\n\007version\030\001 " +
+      "\001(\005\022\025\n\rserial_number\030\002 \001(\t\022\020\n\010sign_alg\030\003" +
+      " \001(\t\022/\n\013issuer_info\030\004 \001(\0132\032.mt.TMtSecCer" +
+      "tDistinctName\022(\n\010validity\030\005 \001(\0132\026.mt.TMt",
+      "SecCertValidity\0220\n\014subject_info\030\006 \001(\0132\032." +
+      "mt.TMtSecCertDistinctName\022\022\n\npubkey_alg\030" +
+      "\007 \001(\t\022\024\n\014finger_print\030\010 \001(\014\022\016\n\006format\030\t " +
+      "\001(\005\"%\n\020TRpMtSecCaIDList\022\021\n\tcacert_id\030\001 \003" +
+      "(\014\"9\n\rTMtTerAuthCmd\022\023\n\013auther_name\030\001 \001(\t" +
+      "\022\023\n\013authee_name\030\002 \001(\t\"7\n\021TMtTerAuthReque" +
+      "st\022\020\n\010username\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"<" +
+      "\n\020TMtTerAuthCancel\022\023\n\013auther_name\030\001 \001(\t\022" +
+      "\023\n\013authee_name\030\002 \001(\t\"7\n\rTMtTerAuthMsg\022\026\n" +
+      "\016is_authforcall\030\001 \001(\005\022\016\n\006callid\030\002 \001(\t\"\202\001",
+      "\n\023TMtSecCreateCertReq\022\017\n\007is_sign\030\001 \001(\010\022\023" +
+      "\n\013is_resetpwd\030\002 \001(\010\022\033\n\023devicecert_fileNa" +
+      "me\030\003 \001(\t\022(\n\004name\030\004 \001(\0132\032.mt.TMtSecCertDi" +
+      "stinctName\"\\\n\016TMtVrsUserInfo\022\021\n\trightmas" +
+      "k\030\001 \001(\005\022\r\n\005token\030\002 \001(\t\022\026\n\016userdomainmoid" +
+      "\030\003 \001(\t\022\020\n\010usermoid\030\004 \001(\t\"\377\002\n\010TLicense\022*\n" +
+      "\017KeyVersion_Type\030\001 \001(\0162\021.mt.EmVersionTyp" +
+      "e\022(\n\021emKeyTerminalType\030\002 \001(\0162\r.mt.EmMtMo" +
+      "del\022\030\n\020KeyChannelAccess\030\003 \001(\010\022\034\n\024KeyHybr" +
+      "idcloudAccess\030\004 \001(\010\022\034\n\024KeyPubliccloudAcc",
+      "ess\030\005 \001(\010\022\033\n\023KeyTerminalDeviceId\030\006 \001(\t\022\020" +
+      "\n\010UserType\030\007 \001(\t\022\024\n\014ContractNode\030\010 \001(\t\022\024" +
+      "\n\014CustomerName\030\t \001(\t\022\027\n\017CustomerAddress\030" +
+      "\n \001(\t\022\016\n\006Serler\030\013 \001(\t\022\023\n\013Description\030\014 \001" +
+      "(\t\022.\n\nCheckValue\030\r \001(\0162\032.mt.EmLicenseKey" +
+      "CheckValue\"e\n\017TMtAiInviteInfo\022\014\n\004name\030\001 " +
+      "\001(\t\022\014\n\004e164\030\002 \001(\t\022\n\n\002ip\030\003 \001(\t\022*\n\remConta" +
+      "ctType\030\004 \001(\0162\023.mt.EmAiContactType\"=\n\023TMt" +
+      "AiInviteInfoList\022&\n\ttAiInvite\030\001 \003(\0132\023.mt" +
+      ".TMtAiInviteInfo\"l\n\022TVendorCheckConfig\022\016",
+      "\n\006peerip\030\001 \001(\r\022\020\n\010peerport\030\002 \001(\r\022\014\n\004path" +
+      "\030\003 \001(\t\022\021\n\tlocalport\030\004 \001(\r\022\023\n\013is_platform" +
+      "\030\005 \001(\010B1\n!com.kedacom.mt.netmanage.proto" +
+      "bufB\014StructConfPB"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -120297,7 +120411,7 @@ public final class StructConfPB {
           internal_static_mt_TMtConfInfo_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_mt_TMtConfInfo_descriptor,
-              new java.lang.String[] { "StartTime", "Duration", "Bitrate", "SecBitrate", "MainVideoRes", "AssVideoRes", "TalkHoldTime", "ConfPwd", "ConfName", "ConfE164", "Chairman", "Speaker", "VmpParam", "MixParam", "BsatDcastMode", "OpenMode", "IsOccupyVpu", "DualMode", "IsAllInitDumb", "IsConfNoDisturb", "IsPortMode", "IsForceBroadcast", "RecordMode", });
+              new java.lang.String[] { "StartTime", "Duration", "Bitrate", "SecBitrate", "MainVideoRes", "AssVideoRes", "TalkHoldTime", "ConfPwd", "ConfName", "ConfE164", "IsEncPwd", "Chairman", "Speaker", "VmpParam", "MixParam", "BsatDcastMode", "OpenMode", "IsOccupyVpu", "DualMode", "IsAllInitDumb", "IsConfNoDisturb", "IsPortMode", "IsForceBroadcast", "RecordMode", });
           internal_static_mt_TPeerCapabilityInfo_descriptor =
             getDescriptor().getMessageTypes().get(52);
           internal_static_mt_TPeerCapabilityInfo_fieldAccessorTable = new

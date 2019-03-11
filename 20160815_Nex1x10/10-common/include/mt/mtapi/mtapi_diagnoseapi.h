@@ -2030,6 +2030,18 @@ KdvMtAPI u32 KdvMtCALL KdvMt_DiagnoseElectricFanCmd( IN CONST BOOL32 bElectricFa
 */
 KdvMtAPI u32 KdvMtCALL KdvMt_DiagnoseGetElectricFanTimeReq( IN CONST SessionID dwSSID = KMTAPI_DEF_SSID );
 
+/**
+*  KdvMt_DiagnoseCleanUpdateSpaceCmd
+* 
+* @brief  清理升级包存储空间的命令(webmtc用)
+*  
+* @param    [in]   dwSSID  MT会话ID 
+* @return   u32   请求命令发送结果
+*
+* @note 更新通知:	Ev_MtApi_Diagnose_CleanUpdateSpace_Ntf   
+*/
+KdvMtAPI u32 KdvMtCALL KdvMt_DiagnoseCleanUpdateSpaceCmd( IN CONST SessionID dwSSID = KMTAPI_DEF_SSID );
+
 
 /**@}*/
 

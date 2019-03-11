@@ -306,6 +306,11 @@ enum EmNvDeviceMsg
 	*nvterinterface==>dispatch==>nvdevice
 	*/
 	MESSAGE(Ev_NV_AllImixShutdown_Cmd)
+
+	/*<<设置Nova路由器重启>>
+	*消息流向 : 
+	*/
+	MESSAGE(Ev_NV_SetNovaReboot_Cmd)
 	
 #if !defined(_MESSAGE_HELP_)
     EV_END(DEVICE) = EVSEG_DEVICE_END

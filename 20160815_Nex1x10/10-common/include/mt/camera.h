@@ -29,6 +29,8 @@ BOOL32 MTCBB_API CameraStart(TMdlStartParam &tMdlStartParam);
 ------------------------------------------------------------------------*/
 BOOL32 MTCBB_API CameraStop();
 
+MTCBB_API void mtcameraregcmd();
+
 #ifdef __cplusplus
 }
 #endif

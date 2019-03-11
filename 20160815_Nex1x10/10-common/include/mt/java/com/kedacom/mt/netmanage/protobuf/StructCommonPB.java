@@ -26476,6 +26476,33 @@ public final class StructCommonPB {
      */
     com.google.protobuf.ByteString
         getRoomidstrBytes();
+
+    // optional string shorturl = 10;
+    /**
+     * <code>optional string shorturl = 10;</code>
+     *
+     * <pre>
+     * 短链接url
+     * </pre>
+     */
+    boolean hasShorturl();
+    /**
+     * <code>optional string shorturl = 10;</code>
+     *
+     * <pre>
+     * 短链接url
+     * </pre>
+     */
+    java.lang.String getShorturl();
+    /**
+     * <code>optional string shorturl = 10;</code>
+     *
+     * <pre>
+     * 短链接url
+     * </pre>
+     */
+    com.google.protobuf.ByteString
+        getShorturlBytes();
   }
   /**
    * Protobuf type {@code mt.TVrsRoomState}
@@ -26571,6 +26598,11 @@ public final class StructCommonPB {
             case 74: {
               bitField0_ |= 0x00000100;
               roomidstr_ = input.readBytes();
+              break;
+            }
+            case 82: {
+              bitField0_ |= 0x00000200;
+              shorturl_ = input.readBytes();
               break;
             }
           }
@@ -26953,6 +26985,61 @@ public final class StructCommonPB {
       }
     }
 
+    // optional string shorturl = 10;
+    public static final int SHORTURL_FIELD_NUMBER = 10;
+    private java.lang.Object shorturl_;
+    /**
+     * <code>optional string shorturl = 10;</code>
+     *
+     * <pre>
+     * 短链接url
+     * </pre>
+     */
+    public boolean hasShorturl() {
+      return ((bitField0_ & 0x00000200) == 0x00000200);
+    }
+    /**
+     * <code>optional string shorturl = 10;</code>
+     *
+     * <pre>
+     * 短链接url
+     * </pre>
+     */
+    public java.lang.String getShorturl() {
+      java.lang.Object ref = shorturl_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          shorturl_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string shorturl = 10;</code>
+     *
+     * <pre>
+     * 短链接url
+     * </pre>
+     */
+    public com.google.protobuf.ByteString
+        getShorturlBytes() {
+      java.lang.Object ref = shorturl_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        shorturl_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private void initFields() {
       elapse_ = 0;
       lcastpoint_ = "";
@@ -26963,6 +27050,7 @@ public final class StructCommonPB {
       livetime_ = 0;
       livestreampath_ = "";
       roomidstr_ = "";
+      shorturl_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -27002,6 +27090,9 @@ public final class StructCommonPB {
       }
       if (((bitField0_ & 0x00000100) == 0x00000100)) {
         output.writeBytes(9, getRoomidstrBytes());
+      }
+      if (((bitField0_ & 0x00000200) == 0x00000200)) {
+        output.writeBytes(10, getShorturlBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -27047,6 +27138,10 @@ public final class StructCommonPB {
       if (((bitField0_ & 0x00000100) == 0x00000100)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(9, getRoomidstrBytes());
+      }
+      if (((bitField0_ & 0x00000200) == 0x00000200)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(10, getShorturlBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -27182,6 +27277,8 @@ public final class StructCommonPB {
         bitField0_ = (bitField0_ & ~0x00000080);
         roomidstr_ = "";
         bitField0_ = (bitField0_ & ~0x00000100);
+        shorturl_ = "";
+        bitField0_ = (bitField0_ & ~0x00000200);
         return this;
       }
 
@@ -27246,6 +27343,10 @@ public final class StructCommonPB {
           to_bitField0_ |= 0x00000100;
         }
         result.roomidstr_ = roomidstr_;
+        if (((from_bitField0_ & 0x00000200) == 0x00000200)) {
+          to_bitField0_ |= 0x00000200;
+        }
+        result.shorturl_ = shorturl_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -27295,6 +27396,11 @@ public final class StructCommonPB {
         if (other.hasRoomidstr()) {
           bitField0_ |= 0x00000100;
           roomidstr_ = other.roomidstr_;
+          onChanged();
+        }
+        if (other.hasShorturl()) {
+          bitField0_ |= 0x00000200;
+          shorturl_ = other.shorturl_;
           onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
@@ -27957,6 +28063,104 @@ public final class StructCommonPB {
   }
   bitField0_ |= 0x00000100;
         roomidstr_ = value;
+        onChanged();
+        return this;
+      }
+
+      // optional string shorturl = 10;
+      private java.lang.Object shorturl_ = "";
+      /**
+       * <code>optional string shorturl = 10;</code>
+       *
+       * <pre>
+       * 短链接url
+       * </pre>
+       */
+      public boolean hasShorturl() {
+        return ((bitField0_ & 0x00000200) == 0x00000200);
+      }
+      /**
+       * <code>optional string shorturl = 10;</code>
+       *
+       * <pre>
+       * 短链接url
+       * </pre>
+       */
+      public java.lang.String getShorturl() {
+        java.lang.Object ref = shorturl_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          shorturl_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string shorturl = 10;</code>
+       *
+       * <pre>
+       * 短链接url
+       * </pre>
+       */
+      public com.google.protobuf.ByteString
+          getShorturlBytes() {
+        java.lang.Object ref = shorturl_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          shorturl_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string shorturl = 10;</code>
+       *
+       * <pre>
+       * 短链接url
+       * </pre>
+       */
+      public Builder setShorturl(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000200;
+        shorturl_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string shorturl = 10;</code>
+       *
+       * <pre>
+       * 短链接url
+       * </pre>
+       */
+      public Builder clearShorturl() {
+        bitField0_ = (bitField0_ & ~0x00000200);
+        shorturl_ = getDefaultInstance().getShorturl();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string shorturl = 10;</code>
+       *
+       * <pre>
+       * 短链接url
+       * </pre>
+       */
+      public Builder setShorturlBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000200;
+        shorturl_ = value;
         onChanged();
         return this;
       }
@@ -44523,64 +44727,64 @@ public final class StructCommonPB {
       "ze\030\005 \001(\r\022\017\n\007prgdesc\030\006 \001(\t\022\016\n\006prggid\030\007 \001(" +
       "\r\022\020\n\010prgstate\030\010 \001(\r\022\026\n\016streamjsonpath\030\t " +
       "\001(\t\"8\n\020TVrsPrgsBaseInfo\022$\n\007prgbase\030\001 \003(\013" +
-      "2\023.mt.TVrsPrgBaseInfo\"\263\001\n\rTVrsRoomState\022",
+      "2\023.mt.TVrsPrgBaseInfo\"\305\001\n\rTVrsRoomState\022",
       "\016\n\006elapse\030\001 \001(\r\022\022\n\nlcastpoint\030\002 \001(\t\022\r\n\005p" +
       "rgid\030\003 \001(\r\022\016\n\006roomid\030\004 \001(\r\022\020\n\010roomname\030\005" +
       " \001(\t\022\020\n\010usrgrpid\030\006 \001(\r\022\020\n\010livetime\030\007 \001(\r" +
       "\022\026\n\016livestreampath\030\010 \001(\t\022\021\n\troomidstr\030\t " +
-      "\001(\t\"6\n\016TVrsRoomsState\022$\n\troomstate\030\001 \003(\013" +
-      "2\021.mt.TVrsRoomState\"2\n\013TVrsRoomCfg\022\020\n\010co" +
-      "nfname\030\001 \001(\t\022\021\n\tstarttime\030\002 \001(\t\"0\n\014TVrsR" +
-      "oomsCfg\022 \n\007roomcfg\030\001 \003(\0132\017.mt.TVrsRoomCf" +
-      "g\"\033\n\nTSubsMsgID\022\r\n\005msgid\030\001 \003(\t\"^\n\022TVrsSe" +
-      "archFilesReq\022\020\n\010folderid\030\001 \001(\r\022\021\n\tprgs1p",
-      "age\030\002 \001(\r\022\016\n\006pageid\030\003 \001(\r\022\023\n\013includename" +
-      "\030\005 \001(\t\"S\n\031TVrsGetReserveRoomListReq\022\021\n\tn" +
-      "ums1page\030\001 \001(\r\022\016\n\006pageid\030\002 \001(\r\022\023\n\013includ" +
-      "ename\030\003 \001(\t\"\217\001\n\016TVrsOldRoomCfg\022\n\n\002ip\030\001 \001" +
-      "(\r\022\014\n\004path\030\002 \001(\t\022\020\n\010prgalias\030\003 \001(\t\022\r\n\005pr" +
-      "gid\030\004 \001(\r\022\017\n\007prgname\030\005 \001(\t\022\017\n\007restime\030\006 " +
-      "\001(\r\022\016\n\006roomid\030\007 \001(\r\022\020\n\010usrgrpid\030\010 \001(\r\"6\n" +
-      "\017TVrsOldRoomsCfg\022#\n\007roomcfg\030\001 \003(\0132\022.mt.T" +
-      "VrsOldRoomCfg\"(\n\010TMTOrder\022\r\n\005count\030\001 \001(\005" +
-      "\022\r\n\005order\030\002 \001(\014\"N\n\rTGmTestResult\022*\n\temEn",
-      "crypt\030\001 \001(\0162\027.mt.EmEncryptArithmetic\022\021\n\t" +
-      "errorcode\030\002 \001(\005\"\\\n\023TGmAndRandomNumTest\022(" +
-      "\n\rgmtest_result\030\001 \003(\0132\021.mt.TGmTestResult" +
-      "\022\033\n\023randomnumtestresult\030\002 \001(\005\"\263\001\n\022TAllSe" +
-      "lfTestResult\022(\n\rgmtest_result\030\001 \003(\0132\021.mt" +
-      ".TGmTestResult\022\033\n\023randomnumtestresult\030\002 " +
-      "\001(\005\022\032\n\022signcerttestresult\030\003 \001(\005\022\031\n\021encce" +
-      "rttestresult\030\004 \001(\005\022\037\n\027softintegritytestr" +
-      "esult\030\005 \001(\r\"\245\001\n\017THandShakeParam\022\n\n\002pk\030\001 " +
-      "\001(\014\022)\n\010enc_type\030\002 \001(\0162\027.mt.EmEncryptArit",
-      "hmetic\022%\n\013digest_type\030\003 \001(\0162\020.mt.EmDiges" +
-      "tType\022%\n\013pubpri_type\030\004 \001(\0162\020.mt.EmPubPri" +
-      "Type\022\r\n\005nonce\030\005 \001(\014\"\261\001\n\016TMtcLoginParam\022%" +
-      "\n\010app_type\030\001 \001(\0162\023.mt.EmClientAppType\022!\n" +
-      "\tauth_type\030\002 \001(\0162\016.mt.EmAuthType\022\021\n\tuser" +
-      "_name\030\003 \001(\t\022\022\n\ndigest_pwd\030\004 \001(\014\022\r\n\005nonce" +
-      "\030\005 \001(\014\022\016\n\006cnonce\030\006 \001(\014\022\017\n\007enc_key\030\007 \001(\014\"" +
-      "\271\002\n\014TMtcLoginRet\022\016\n\006result\030\001 \001(\010\022\024\n\014is_k" +
-      "ickother\030\002 \001(\010\022 \n\006kickee\030\003 \001(\0132\020.mt.TMtc" +
-      "BaseInfo\022\037\n\005local\030\004 \001(\0132\020.mt.TMtcBaseInf",
-      "o\022\036\n\026user_login_error_count\030\005 \001(\r\022\027\n\017use" +
-      "r_login_time\030\006 \001(\r\022\025\n\ruser_is_exist\030\007 \001(" +
-      "\010\0226\n\027user_login_error_reason\030\010 \001(\0162\025.mt." +
-      "EmLoginFailReason\022\034\n\024user_max_login_coun" +
-      "t\030\t \001(\r\022\032\n\022user_max_lock_time\030\n \001(\r\"w\n\014T" +
-      "MtcBaseInfo\022\n\n\002ip\030\001 \001(\t\022%\n\010app_type\030\002 \001(" +
-      "\0162\023.mt.EmClientAppType\022!\n\tauth_type\030\003 \001(" +
-      "\0162\016.mt.EmAuthType\022\021\n\tuser_name\030\004 \001(\t\"V\n\016" +
-      "TMtVersionInfo\022\017\n\007version\030\001 \001(\t\022\034\n\005model" +
-      "\030\002 \001(\0162\r.mt.EmMtModel\022\025\n\ris_support_sm\030\003",
-      " \001(\010\"6\n\020TMtcBaseInfoList\022\"\n\010mtc_list\030\001 \003" +
-      "(\0132\020.mt.TMtcBaseInfo\"~\n\014TMtAiInfoCfg\022\030\n\020" +
-      "is_UsedVoiceAide\030\001 \001(\010\022\034\n\024is_UsedCountOf" +
-      "People\030\002 \001(\010\022\027\n\017is_UsedFaceSign\030\003 \001(\010\022\035\n" +
-      "\025is_UsedElectNameplate\030\004 \001(\010B3\n!com.keda" +
-      "com.mt.netmanage.protobufB\016StructCommonP" +
-      "B"
+      "\001(\t\022\020\n\010shorturl\030\n \001(\t\"6\n\016TVrsRoomsState\022" +
+      "$\n\troomstate\030\001 \003(\0132\021.mt.TVrsRoomState\"2\n" +
+      "\013TVrsRoomCfg\022\020\n\010confname\030\001 \001(\t\022\021\n\tstartt" +
+      "ime\030\002 \001(\t\"0\n\014TVrsRoomsCfg\022 \n\007roomcfg\030\001 \003" +
+      "(\0132\017.mt.TVrsRoomCfg\"\033\n\nTSubsMsgID\022\r\n\005msg" +
+      "id\030\001 \003(\t\"^\n\022TVrsSearchFilesReq\022\020\n\010folder",
+      "id\030\001 \001(\r\022\021\n\tprgs1page\030\002 \001(\r\022\016\n\006pageid\030\003 " +
+      "\001(\r\022\023\n\013includename\030\005 \001(\t\"S\n\031TVrsGetReser" +
+      "veRoomListReq\022\021\n\tnums1page\030\001 \001(\r\022\016\n\006page" +
+      "id\030\002 \001(\r\022\023\n\013includename\030\003 \001(\t\"\217\001\n\016TVrsOl" +
+      "dRoomCfg\022\n\n\002ip\030\001 \001(\r\022\014\n\004path\030\002 \001(\t\022\020\n\010pr" +
+      "galias\030\003 \001(\t\022\r\n\005prgid\030\004 \001(\r\022\017\n\007prgname\030\005" +
+      " \001(\t\022\017\n\007restime\030\006 \001(\r\022\016\n\006roomid\030\007 \001(\r\022\020\n" +
+      "\010usrgrpid\030\010 \001(\r\"6\n\017TVrsOldRoomsCfg\022#\n\007ro" +
+      "omcfg\030\001 \003(\0132\022.mt.TVrsOldRoomCfg\"(\n\010TMTOr" +
+      "der\022\r\n\005count\030\001 \001(\005\022\r\n\005order\030\002 \001(\014\"N\n\rTGm",
+      "TestResult\022*\n\temEncrypt\030\001 \001(\0162\027.mt.EmEnc" +
+      "ryptArithmetic\022\021\n\terrorcode\030\002 \001(\005\"\\\n\023TGm" +
+      "AndRandomNumTest\022(\n\rgmtest_result\030\001 \003(\0132" +
+      "\021.mt.TGmTestResult\022\033\n\023randomnumtestresul" +
+      "t\030\002 \001(\005\"\263\001\n\022TAllSelfTestResult\022(\n\rgmtest" +
+      "_result\030\001 \003(\0132\021.mt.TGmTestResult\022\033\n\023rand" +
+      "omnumtestresult\030\002 \001(\005\022\032\n\022signcerttestres" +
+      "ult\030\003 \001(\005\022\031\n\021enccerttestresult\030\004 \001(\005\022\037\n\027" +
+      "softintegritytestresult\030\005 \001(\r\"\245\001\n\017THandS" +
+      "hakeParam\022\n\n\002pk\030\001 \001(\014\022)\n\010enc_type\030\002 \001(\0162",
+      "\027.mt.EmEncryptArithmetic\022%\n\013digest_type\030" +
+      "\003 \001(\0162\020.mt.EmDigestType\022%\n\013pubpri_type\030\004" +
+      " \001(\0162\020.mt.EmPubPriType\022\r\n\005nonce\030\005 \001(\014\"\261\001" +
+      "\n\016TMtcLoginParam\022%\n\010app_type\030\001 \001(\0162\023.mt." +
+      "EmClientAppType\022!\n\tauth_type\030\002 \001(\0162\016.mt." +
+      "EmAuthType\022\021\n\tuser_name\030\003 \001(\t\022\022\n\ndigest_" +
+      "pwd\030\004 \001(\014\022\r\n\005nonce\030\005 \001(\014\022\016\n\006cnonce\030\006 \001(\014" +
+      "\022\017\n\007enc_key\030\007 \001(\014\"\271\002\n\014TMtcLoginRet\022\016\n\006re" +
+      "sult\030\001 \001(\010\022\024\n\014is_kickother\030\002 \001(\010\022 \n\006kick" +
+      "ee\030\003 \001(\0132\020.mt.TMtcBaseInfo\022\037\n\005local\030\004 \001(",
+      "\0132\020.mt.TMtcBaseInfo\022\036\n\026user_login_error_" +
+      "count\030\005 \001(\r\022\027\n\017user_login_time\030\006 \001(\r\022\025\n\r" +
+      "user_is_exist\030\007 \001(\010\0226\n\027user_login_error_" +
+      "reason\030\010 \001(\0162\025.mt.EmLoginFailReason\022\034\n\024u" +
+      "ser_max_login_count\030\t \001(\r\022\032\n\022user_max_lo" +
+      "ck_time\030\n \001(\r\"w\n\014TMtcBaseInfo\022\n\n\002ip\030\001 \001(" +
+      "\t\022%\n\010app_type\030\002 \001(\0162\023.mt.EmClientAppType" +
+      "\022!\n\tauth_type\030\003 \001(\0162\016.mt.EmAuthType\022\021\n\tu" +
+      "ser_name\030\004 \001(\t\"V\n\016TMtVersionInfo\022\017\n\007vers" +
+      "ion\030\001 \001(\t\022\034\n\005model\030\002 \001(\0162\r.mt.EmMtModel\022",
+      "\025\n\ris_support_sm\030\003 \001(\010\"6\n\020TMtcBaseInfoLi" +
+      "st\022\"\n\010mtc_list\030\001 \003(\0132\020.mt.TMtcBaseInfo\"~" +
+      "\n\014TMtAiInfoCfg\022\030\n\020is_UsedVoiceAide\030\001 \001(\010" +
+      "\022\034\n\024is_UsedCountOfPeople\030\002 \001(\010\022\027\n\017is_Use" +
+      "dFaceSign\030\003 \001(\010\022\035\n\025is_UsedElectNameplate" +
+      "\030\004 \001(\010B3\n!com.kedacom.mt.netmanage.proto" +
+      "bufB\016StructCommonPB"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -44766,7 +44970,7 @@ public final class StructCommonPB {
           internal_static_mt_TVrsRoomState_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_mt_TVrsRoomState_descriptor,
-              new java.lang.String[] { "Elapse", "Lcastpoint", "Prgid", "Roomid", "Roomname", "Usrgrpid", "Livetime", "Livestreampath", "Roomidstr", });
+              new java.lang.String[] { "Elapse", "Lcastpoint", "Prgid", "Roomid", "Roomname", "Usrgrpid", "Livetime", "Livestreampath", "Roomidstr", "Shorturl", });
           internal_static_mt_TVrsRoomsState_descriptor =
             getDescriptor().getMessageTypes().get(30);
           internal_static_mt_TVrsRoomsState_fieldAccessorTable = new

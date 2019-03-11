@@ -986,6 +986,19 @@ enum EmNvTerinterfaceMsg
 	*/
 	MESSAGE(Ev_NV_SkipTerWizard_Cmd)
 
+	/*<<关机前先让终端待机>>
+	*消息流向 nvdevice==>dispatch==>nvterinterface
+	*
+	*/
+	MESSAGE(Ev_NV_SetTerSleepBeforeTurnOff_Cmd)
+
+	/*<<关机前先让终端待机结果通知>>
+	*消息流向 nvterinterface==>dispatch==>nvdevice
+	*
+	*/
+	MESSAGE(Ev_NV_SetTerSleepBeforeTurnOff_Ntf)
+	BODY(nv::TS32, fail_reason) //枚举值统一使用nv::TS32来传输，该处实际为nv::EmNvSleepFailReason
+
 #if !defined(_MESSAGE_HELP_)
     EV_END(TERINTERFACE) = EVSEG_TERINTERFACE_END
 };

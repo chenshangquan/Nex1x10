@@ -58,6 +58,7 @@ public:
 	virtual u32 GetPacketDurationTimeReq() = 0;
 	virtual u32 ElectricFanCmd(IN CONST BOOL32 bElectricFan) = 0;
 	virtual u32 GetElectricFanTimeReq() = 0;
+	virtual u32 CleanUpdateSpaceCmd() = 0;
 
 public:
 	//获取抓包状态信息

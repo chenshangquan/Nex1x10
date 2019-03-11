@@ -3565,6 +3565,18 @@ class MTMSG_API TVrsRoomState : public ::google::protobuf::Message {
   inline ::std::string* release_roomidstr();
   inline void set_allocated_roomidstr(::std::string* roomidstr);
 
+  // optional string shorturl = 10;
+  inline bool has_shorturl() const;
+  inline void clear_shorturl();
+  static const int kShorturlFieldNumber = 10;
+  inline const ::std::string& shorturl() const;
+  inline void set_shorturl(const ::std::string& value);
+  inline void set_shorturl(const char* value);
+  inline void set_shorturl(const char* value, size_t size);
+  inline ::std::string* mutable_shorturl();
+  inline ::std::string* release_shorturl();
+  inline void set_allocated_shorturl(::std::string* shorturl);
+
   // @@protoc_insertion_point(class_scope:mt.TVrsRoomState)
  private:
   inline void set_has_elapse();
@@ -3585,6 +3597,8 @@ class MTMSG_API TVrsRoomState : public ::google::protobuf::Message {
   inline void clear_has_livestreampath();
   inline void set_has_roomidstr();
   inline void clear_has_roomidstr();
+  inline void set_has_shorturl();
+  inline void clear_has_shorturl();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
@@ -3596,10 +3610,11 @@ class MTMSG_API TVrsRoomState : public ::google::protobuf::Message {
   ::google::protobuf::uint32 usrgrpid_;
   ::std::string* livestreampath_;
   ::std::string* roomidstr_;
+  ::std::string* shorturl_;
   ::google::protobuf::uint32 livetime_;
 
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(9 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(10 + 31) / 32];
 
   friend void MTMSG_API protobuf_AddDesc_structcommon_2eproto();
   friend void protobuf_AssignDesc_structcommon_2eproto();
@@ -10101,6 +10116,76 @@ inline void TVrsRoomState::set_allocated_roomidstr(::std::string* roomidstr) {
   } else {
     clear_has_roomidstr();
     roomidstr_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  }
+}
+
+// optional string shorturl = 10;
+inline bool TVrsRoomState::has_shorturl() const {
+  return (_has_bits_[0] & 0x00000200u) != 0;
+}
+inline void TVrsRoomState::set_has_shorturl() {
+  _has_bits_[0] |= 0x00000200u;
+}
+inline void TVrsRoomState::clear_has_shorturl() {
+  _has_bits_[0] &= ~0x00000200u;
+}
+inline void TVrsRoomState::clear_shorturl() {
+  if (shorturl_ != &::google::protobuf::internal::kEmptyString) {
+    shorturl_->clear();
+  }
+  clear_has_shorturl();
+}
+inline const ::std::string& TVrsRoomState::shorturl() const {
+  return *shorturl_;
+}
+inline void TVrsRoomState::set_shorturl(const ::std::string& value) {
+  set_has_shorturl();
+  if (shorturl_ == &::google::protobuf::internal::kEmptyString) {
+    shorturl_ = new ::std::string;
+  }
+  shorturl_->assign(value);
+}
+inline void TVrsRoomState::set_shorturl(const char* value) {
+  set_has_shorturl();
+  if (shorturl_ == &::google::protobuf::internal::kEmptyString) {
+    shorturl_ = new ::std::string;
+  }
+  shorturl_->assign(value);
+}
+inline void TVrsRoomState::set_shorturl(const char* value, size_t size) {
+  set_has_shorturl();
+  if (shorturl_ == &::google::protobuf::internal::kEmptyString) {
+    shorturl_ = new ::std::string;
+  }
+  shorturl_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* TVrsRoomState::mutable_shorturl() {
+  set_has_shorturl();
+  if (shorturl_ == &::google::protobuf::internal::kEmptyString) {
+    shorturl_ = new ::std::string;
+  }
+  return shorturl_;
+}
+inline ::std::string* TVrsRoomState::release_shorturl() {
+  clear_has_shorturl();
+  if (shorturl_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = shorturl_;
+    shorturl_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
+}
+inline void TVrsRoomState::set_allocated_shorturl(::std::string* shorturl) {
+  if (shorturl_ != &::google::protobuf::internal::kEmptyString) {
+    delete shorturl_;
+  }
+  if (shorturl) {
+    set_has_shorturl();
+    shorturl_ = shorturl;
+  } else {
+    clear_has_shorturl();
+    shorturl_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   }
 }
 

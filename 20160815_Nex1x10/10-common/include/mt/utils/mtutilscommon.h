@@ -114,6 +114,7 @@ template <class T>
 *************************************************************/
 MTCBB_API T SAFE_CAST(T &t, u8 *pbyBuf)
 {
+	if (NULL == pbyBuf) return t;
 	memcpy(&t, pbyBuf, sizeof(T));
 	return t;
 }

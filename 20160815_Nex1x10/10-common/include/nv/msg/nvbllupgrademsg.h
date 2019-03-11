@@ -318,6 +318,10 @@ enum EmBLLUpgradeMsg
 	*/
     MESSAGE(Ev_NV_BLL_CancelFile_Cmd)
     BODY(nv::TString, tstrFile)
+
+	/*<<imix与sus断开连接>>
+	*/
+    MESSAGE(Ev_NV_BLL_ImixDisconnectSus_Cmd)
 	
 #if !defined(_MESSAGE_HELP_)
     EV_BLL_END(UPGRADE) = EVSEG_BLL_UPGRADE_END

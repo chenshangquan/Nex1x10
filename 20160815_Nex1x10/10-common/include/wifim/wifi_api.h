@@ -4,8 +4,43 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 #include <time.h>
+#include <arpa/inet.h>
+#define WIFIM_PROTO_TYPE_IPV4 AF_INET      /*ipv4*/
+#define WIFIM_PROTO_TYPE_IPV6 AF_INET6     /*ipv6*/
+#define WIFIM_PROTO_TYPE_ALL (AF_INET6+1) /* ipv4+ipv6 */
+
+/* IPv6地址类型 */
+typedef enum{
+	WIFIM_SCOPE_TYPE_DEF = 0, /* 默认使用WIFIM_SCOPE_TYPE_GLOBAL类型 */
+	WIFIM_SCOPE_TYPE_HOST,
+	WIFIM_SCOPE_TYPE_LINK, /* LINK地址, 此类型地址不可修改 */
+	WIFIM_SCOPE_TYPE_SITE,
+	WIFIM_SCOPE_TYPE_GLOBAL,
+}EWifimScopeType;
+typedef struct tagWifimAddr
+{
+	unsigned int wSinFamily;  /* WIFIM_PROTO_TYPE_IPV4 or WIFIM_PROTO_TYPE_IPV6 */
+	union{
+		struct in_addr tV4Addr;
+		struct in6_addr tV6Addr;
+	};
+}TWifimAddr;
+
+typedef struct{
+	EWifimScopeType eScopeType; /* 默认值0为SCOPE_GLOBAL */
+    TWifimAddr tIpAddr;         /* 网络字节序 */
+    unsigned int dwPrefix;                /* 主机字节序 */
+}TWifimIfaceIp;
+
+typedef enum{
+    WIFIM_INET_IPV4 = 0,
+	WIFIM_INET_IPV6,
+	WIFIM_INET_ALL,
+}EWifimInetType;
+
+typedef struct in6_addr TWiFimInaddrV6;
+typedef struct in_addr TWiFimInaddrV4;
 
 /* Wifi Mode */
 #define WIFIM_MODE_STA     0
@@ -22,6 +57,7 @@ extern "C" {
 #define WIFIM_MAX_PATH_LEN      512
 #define WIFIM_BSSID_LEN         18    /* The len of SSID's MAC */
 #define WIFIM_IP_LEN		16    /*The len of ip*/
+#define WIFIM_IPV6_LEN		64    /*The len of ipv6*/
 #define WIFIM_STA_NAME_LEN	20    /*The sta name len*/
 #define WIFIM_SSID_MAXLEN       32    /* The MAX len of SSID */
 #define WIFIM_PASSWD_LEN        64    /* The MAX len of Password */
@@ -37,6 +73,14 @@ typedef struct WifiMIPAddrMsg{
 	int          nDnsMode;
 	unsigned int dwDnsNum;                             /* the max number of DNS Server can be 64 */
 	unsigned int dwDnsServer[WIFIM_MAX_DNS_SERVER];    /* get or lose DNS Server address,Network Byte Order */
+	EWifimScopeType scope;     /*ip address type*/
+	unsigned int       dwIPModeV6;
+	unsigned int       dwDnsModeV6;
+	TWiFimInaddrV6     tIpAddrsv6;
+	TWiFimInaddrV6     tGateWayv6;
+	unsigned int  dwPrefixv6;
+    unsigned int dwDnsNumv6;
+	TWiFimInaddrV6     tDnsServerv6[WIFIM_MAX_DNS_SERVER];
 }TWifiMIPAddrMsg;
 
 typedef struct WifiMStationInfo{
@@ -98,6 +142,26 @@ typedef struct{
 	TWifiMDhcpSerVDnsInfo tDhcpServerDnsInfo;
 }TWifiMDhcpSerVConfInfo;
 
+typedef struct{
+	unsigned int dwPrefixV6;   /* Network Byte Order : dwPrefixV6 */
+	unsigned int dwScope;
+	char achSubnet[128];       /*for example :fec0:db8:0:1::/64, relation to dwIpPoolStartV6 & dwIpPoolEndV6*/
+	TWiFimInaddrV6       dwIpPoolStartV6;  /* Network Byte Order:  assign start address V6 */
+	TWiFimInaddrV6       dwIpPoolEndV6;    /* Network Byte Order : assign end address V6*/
+	TWiFimInaddrV6       dwRoutesV6;       /* Network Byte Order : default gateway or route address V6*/
+	TWiFimInaddrV6       dwEthIpV6;        /* Network Byte Order: dhcp server's IP address V6*/
+}TWifiMDhcpSerVEthInfoV6;
+typedef struct{
+	unsigned int IsAssignDns;  /* 0: using default dns; 1: use assigned DNS */
+	TWiFimInaddrV6       dwDnsIpV6;      /* DNS's IP address , Network Byte Order */
+	char         *pchDnsName;  /* DNS's name */
+}TWifiMDhcpSerVDnsInfoV6;
+
+typedef struct{
+	char *pchIfName;
+	TWifiMDhcpSerVEthInfoV6 tDhcpServerEthInfoV6;
+	TWifiMDhcpSerVDnsInfoV6 tDhcpServerDnsInfoV6;
+}TWifiMDhcpSerVConfInfoV6;
 typedef int(*WifiMSTANotifyCallBack)(TWifiMNotify *ptWifiMNotify);
 typedef int(*WifiMAPNotifyCallBack)(TWifiMNotify *ptWifiMAPNotify);
 
@@ -140,7 +204,12 @@ typedef  struct WifiMRegisterInfo{
 #define  WIFIM_ERR_UNINITIAL      (int)17   /* did not initialed */
 #define  WIFIM_ERR_SYSERR         (int)18   /* system call error */
 #define  WIFIM_ERR_FILE           (int)19   /* access file error */
+#define  WIFIM_ERROR_DHCPD_IPV4   (int)20
+#define  WIFIM_ERROR_DHCPD_IPV6   (int)21
+#define  WIFIM_ERROR_DHCPD_ALL    (int)22
 #define  WIFIM_ERROR              (int)100
+
+
 
 /* Msg Type */
 #define  WIFIM_MSG_BASE             (int)1000
@@ -154,6 +223,15 @@ typedef  struct WifiMRegisterInfo{
 #define  WIFIM_MSG_AUTH_FAILURE     (int)(WIFIM_MSG_BASE+8)  /* authorize failed */
 #define  WIFIM_MSG_PWD_ERROR        (int)(WIFIM_MSG_BASE+9)  /* password error */
 #define  WIFIM_MSG_AP_REJECT        (int)(WIFIM_MSG_BASE+10)  /* rejected associating by AP */
+#define  WIFIM_MSG_CONNECTED_IPV6        (int)(WIFIM_MSG_BASE+11)  /* connect to a AP & assign a IP address */
+#define  WIFIM_MSG_CONNECTED_FAILED_IPV6 (int)(WIFIM_MSG_BASE+12)  /* connect to ap failed */
+#define  WIFIM_MSG_DHCP_FAILED_IPV6      (int)(WIFIM_MSG_BASE+13)  /* DHCP failed*/
+#define  WIFIM_MSG_DHCP_RENEW_IPV6       (int)(WIFIM_MSG_BASE+14)  /* DHCP failed*/
+#define  WIFIM_MSG_DHCP_IPV6_START_FAIL   (int)(WIFIM_MSG_BASE+15)  /* DHCP failed*/
+#define  WIFIM_MSG_DHCP_IPV4_START_FAIL   (int)(WIFIM_MSG_BASE+16)  /* DHCP failed*/
+
+
+
 
 
 /* wps msg type */
@@ -196,7 +274,9 @@ enum EWifiMStates {
 	WIFIM_STATE_ASSOCIATED,
 	WIFIM_STATE_4WAY_HANDSHAKE,
 	WIFIM_STATE_GROUP_HANDSHAKE,
-	WIFIM_STATE_COMPLETED
+	WIFIM_STATE_COMPLETED,
+	WIFIM_STATE_AP_REJECT,
+	WIFIM_STATE_PWD_ERROR
 };
 
 /* Ecryption Method */
@@ -275,6 +355,8 @@ typedef struct WifiMStaConfigParam{
 	enum EWifiMMode *eEMode;        /*If assigned a value ,means join a hidden ssid*/
 	int            nIPMode;
 	TWifiMIPAddrMsg *ptStaticParam; /* default Dynamic */
+	unsigned int       dwIPModeV6;
+	EWifimInetType	   eInetType; //0--ipv4  1--ipv6 2--all
 }TWifiMStaConfigParam;
 
 /* NETWOKR PARAMETER READ FROM CONF FILE */
@@ -284,7 +366,7 @@ typedef struct WifiMConfigBss{
 	char   *pchAPPassWd;
 	char   *pchBSSID;
 	enum EWifiMMode  *eEMode;
-	int     nPriority;  /* 0 default��1 MAX .the smaller number, the higher priority */
+	int     nPriority;  /* 0 default£¬1 MAX .the smaller number, the higher priority */
 	int     nSignal;
 	int            nIPMode;
 	unsigned int   dwIPAddress;
@@ -293,6 +375,15 @@ typedef struct WifiMConfigBss{
 	int nDnsMode;
 	unsigned int   dwDNSAddress[WIFIM_MAX_DNS_SERVER];
 	int nDNSNum;
+	EWifimInetType	   eInetType; //0--ipv4  1--ipv6 2--all
+	EWifimScopeType scope;	 /*ip address type*/
+	unsigned int		 dwIPModeV6;
+	unsigned int		 dwDnsModeV6;
+	unsigned int  dwPrefixv6;
+	unsigned int  dwDnsNumv6;
+	TWiFimInaddrV6	   tIpAddrsv6;
+	TWiFimInaddrV6	   tGateWayv6;
+	TWiFimInaddrV6	   tDNSAddressv6[WIFIM_MAX_DNS_SERVER];
 }TWifiMConfigBss;
 
 
@@ -344,6 +435,8 @@ typedef struct WifiMAPConfigParam{
 	int                nApMaxInactivity;                    /*default: 300 (i.e., 5 minutes)*/
 	int                nBroadcastSsid;/*default 0,should not hide ssid*/
 	TWifiMDhcpSerVConfInfo* ptDhcpServerConfInfo;
+	EWifimInetType     eInetType; //0--ipv4  1--ipv6 2--all
+	TWifiMDhcpSerVConfInfoV6 * ptDhcpServerConfInfoV6;
 }TWifiMAPConfigParam;
 
 typedef struct WifiMStationMsg {
@@ -351,6 +444,8 @@ typedef struct WifiMStationMsg {
 	char achBssid[WIFIM_BSSID_LEN];
 	char achIp[WIFIM_IP_LEN];
 	char achStaName[WIFIM_STA_NAME_LEN];
+	EWifimInetType eInetType;
+	char achIpv6[WIFIM_IPV6_LEN];
 }TWifiMStationMsg;
 
 typedef struct WifiMFilterList{
@@ -373,6 +468,7 @@ enum EWifiMProto{
 typedef struct WifiMOutRule{
 	enum EWifiMIPAddrType emType;
 	enum EWifiMProto enProto;
+	TWiFimInaddrV6 tIPAddress;
 	unsigned int dwIPAddress;
 	unsigned int dwIPNetmask;
 	short int nPort;  /* default:-1 */

@@ -71,6 +71,7 @@ typedef enum em_NET_STATUS
 	NET_STATUS_ENOUGHNUM,           //Imix投屏量满
 	NET_STATUS_RESETQUICKSHARE,     //重新插拔投屏器
 	NET_STATUS_RESETWIFI,           //网络重连中
+	NET_STATUS_FIND_SSID_FAIL,      //查找热点失败
 }NET_STATUS;
 
 typedef enum em_PPT_STATUS

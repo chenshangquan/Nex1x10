@@ -42,6 +42,8 @@ enum EmNvOspMsgTimer
 	//serviceconf相关
 	Ev_Nv_Timer_WhiteBoard,        //远程白板定时器，在5s内有双流时不切换双流画面
 	Ev_Nv_Timer_ChanceTvQuite,//取消电视机静音定时器
+	Ev_Nv_Timer_ChangeEchoOrDual,        //切终端源（包括回显和双流源）的定时器
+	Ev_Nv_Timer_CloseHDMI0ToRecDule,     //接收双流先让imix输出到电视机黑屏的定时器
 };
 
 #endif

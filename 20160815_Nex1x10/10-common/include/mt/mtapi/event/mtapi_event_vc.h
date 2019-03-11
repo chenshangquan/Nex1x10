@@ -4517,6 +4517,25 @@ enum EmMtApiVCEv
 */
 	Ev_MtApi_CodecGetIsCameraUpgrading_Rsp,
 
+	/**
+    @brief 对端不是量通的通知
+    @verbatim
+    @endverbatim
+   */
+	Ev_MtApi_Vc_PeerNotQt_Ntf,
+
+	/**
+	@brief 会议加密类型的通知
+
+	MainBuf(#EmSrtpCryptoType_Api, emEncryType)	
+	@verbatim
+	{
+		emEncryType: 0
+	}
+	@endverbatim
+	*/ 
+	Ev_MtApi_Vc_GetEncryptType_Ntf,
+
     EV_UI_END(MTAPI_VC) = EVSEG_MTAPI_VC_END
 };
 

@@ -15,7 +15,8 @@
 #define new DEBUG_NEW
 #endif
 
-
+extern bool g_bHwEncStatus;
+extern bool g_bHwEncSupport;
 CtouchDlg * g_dlg = NULL;
 // CtouchApp
 
@@ -401,6 +402,7 @@ API void help()
 	 OspPrintf(TRUE,FALSE,"\ndatastatus:显示数据是否阻塞");
 	 OspPrintf(TRUE,FALSE,"\ncpuadjust:是否启用CPU动态调整");
 	 OspPrintf(TRUE,FALSE,"\nscreen byScreen:选择屏幕,从1开始\n");
+     OspPrintf(TRUE,FALSE,"\sethwenc :开启(1)|关闭(0) 硬编\n");
 }
 
 API void prt( u8 byLevel )
@@ -481,4 +483,81 @@ API void screen( u32 byScreen )
 	{
 		g_dlg->GetEncode().SelectCaptureScreen( byScreen );
 	}
+}
+
+API void sethwenc( BOOL32 bEnable )
+{
+    if (g_dlg)
+    {
+        // 硬编码码率为4M，软编码码率为2M
+        // 是否支持硬编码
+        if (g_bHwEncSupport)
+        {
+            g_dlg->GetEncode().SetEnableHwEnc( bEnable );
+
+            if (bEnable)
+            {
+                if (g_bHwEncStatus)
+                {
+                    return;
+                }
+                else
+                {
+                    TVideoEncParam tVideoEncParam;
+                    memset(&tVideoEncParam, 0, sizeof(TVideoEncParam));
+                    g_dlg->GetEncode().GetVideoEncParam(tVideoEncParam);
+                    tVideoEncParam.m_wBitRate = /*1536*/4096;
+                    tVideoEncParam.m_wMinBitRate = 4096;
+                    g_dlg->GetEncode().SetVideoEncParam(tVideoEncParam);
+                    g_bHwEncStatus = true;
+                    OspPrintf(TRUE, FALSE, "切换至硬编码状态\n");
+                }
+            }
+            else
+            {
+                if (g_bHwEncStatus)
+                {
+                    TVideoEncParam tVideoEncParam;
+                    memset(&tVideoEncParam, 0, sizeof(TVideoEncParam));
+                    g_dlg->GetEncode().GetVideoEncParam(tVideoEncParam);
+                    tVideoEncParam.m_wBitRate = /*1536*/2048;
+                    tVideoEncParam.m_wMinBitRate = 2048;
+                    g_dlg->GetEncode().SetVideoEncParam(tVideoEncParam);
+                    g_bHwEncStatus = false;
+                    OspPrintf(TRUE, FALSE, "切换至软编码状态\n");
+                }
+                else
+                {
+                    return;
+                }
+            }
+        }
+        else
+        {
+            //不支持硬编硬解
+            OspPrintf(TRUE, FALSE, "不支持硬编硬解\n");
+            return;
+        }
+    }
+}
+
+API void setlang(BOOL32 bEnable)
+{
+    CString strdirpath = CLogo::GetModuleFullPath() + _T("temp\\touch.ini");
+    LPTSTR strbEng = new TCHAR[6];
+    GetPrivateProfileString(_T("CONFIGINFO"), _T("ENG"), _T("false"), strbEng, 6, strdirpath);
+    if ( lstrcmp(strbEng,  _T("true")) == 0 )
+    {
+        WritePrivateProfileString(_T("CONFIGINFO"), _T("ENG"), _T("false"), strdirpath);
+        TerminateProcess(GetCurrentProcess(), 0);
+        delete [] strbEng;
+    }
+    WritePrivateProfileString(_T("CONFIGINFO"), _T("ENG"), _T("false"), strdirpath);
+
+    delete [] strbEng;
+
+    if (bEnable)
+    {
+        OspPrintf(TRUE, FALSE, "切换为英文语言提示\n");
+    }
 }

@@ -92,6 +92,21 @@ if not exist "..\..\..\..\10-common\lib\releaselib\release\win32\msvcr100.dll" (
     goto end
 )
 
+if not exist "..\..\..\..\10-common\lib\releaselib\release\win32\codec\dll\kdaudcodec.dll" (
+    echo miss file kdaudcodec.dll >> "%compileVerPath%\compileinfo\airdisplay_touch_r.txt"
+    goto end
+)
+
+if not exist "..\..\..\..\10-common\lib\releaselib\release\win32\HwCodecWrapper.dll" (
+    echo miss file HwCodecWrapper.dll >> "%compileVerPath%\compileinfo\airdisplay_touch_r.txt"
+    goto end
+)
+
+if not exist "..\..\..\..\10-common\lib\releaselib\release\win32\IntelHwWrapper.dll" (
+    echo miss file IntelHwWrapper.dll >> "%compileVerPath%\compileinfo\airdisplay_touch_r.txt"
+    goto end
+)
+
 call "%VS100COMNTOOLS%\vsvars32.bat"
 echo build clean release vs2010
 @devenv touch.vcxproj /ReBuild "Release" /Out "%compileVerPath%\compileinfo\airdisplay_touch_r.txt"
@@ -117,6 +132,10 @@ copy /Y "..\..\..\..\10-common\lib\releaselib\release\win32\kdaudproc.dll" "%com
 copy /Y "..\..\..\..\10-common\lib\releaselib\release\win32\mfc100u.dll" "%compileVerPath%\release\win32\AirDisplay\"
 copy /Y "..\..\..\..\10-common\lib\releaselib\release\win32\msvcp100.dll" "%compileVerPath%\release\win32\AirDisplay\"
 copy /Y "..\..\..\..\10-common\lib\releaselib\release\win32\msvcr100.dll" "%compileVerPath%\release\win32\AirDisplay\"
+rem 硬编码新增库
+copy /Y "..\..\..\..\10-common\lib\releaselib\release\win32\codec\dll\kdaudcodec.dll" "%compileVerPath%\release\win32\AirDisplay\"
+copy /Y "..\..\..\..\10-common\lib\releaselib\release\win32\HwCodecWrapper.dll" "%compileVerPath%\release\win32\AirDisplay\"
+copy /Y "..\..\..\..\10-common\lib\releaselib\release\win32\IntelHwWrapper.dll" "%compileVerPath%\release\win32\AirDisplay\"
 
 rem 数字签名
 autosigntool touch_r.ini

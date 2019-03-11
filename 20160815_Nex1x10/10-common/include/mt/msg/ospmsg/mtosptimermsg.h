@@ -151,6 +151,9 @@ enum EmMtOspMsgTimer
 	Ev_SipRegTimer,                           ///sip 注册超时定时器
 	Ev_AiWakeupTimer,                         ///唤醒之后多久没命令，重新进入唤醒
 	Ev_AiFilterAsrTimer,
+	Ev_Conf_ChairRecvTerApplyChairTimer,	  ///终端申请主席定时器，用于清空主席端sdk层缓存
+	Ev_Conf_ChairRecvTerApplySpeakTimer,      ///终端申请成为发言人，用于清空主席端sdk层缓存
+	Ev_Conf_ChairRecvTerApplyChiemeInTimer,	  ///终端申请插话，用于清空主席端sdk层缓存
 };
 
 #endif

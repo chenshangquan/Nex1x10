@@ -367,6 +367,13 @@ enum EmMPEmbedMsg
 	*/
 	MESSAGE( Ev_NV_TerVidSrcStatus_Nty )
 	BODY(nv::TBOOL32, tHasSrc)
+
+	/*<<设置HDMI0是否输出视频>>
+	*传输方向：nvservice==>dispatch==>nvmp
+	*tView: 是否输出HDMI1视频
+	*/
+	MESSAGE( Ev_NV_SetHDMI0VidPlyPortStd_Cmd )
+	BODY(nv::TBOOL32, tShow)
 	
 #if !defined(_MESSAGE_HELP_)
     EV_END(MPEMBED) = EVSEG_MPCOMMON_END

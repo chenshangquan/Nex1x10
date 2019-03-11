@@ -494,7 +494,9 @@ public:
 	virtual u32 GetUserLoginPwdTimeoutCfgReq() = 0;
 	virtual u32 GetEnableSecureCfgReq() = 0;
 	virtual u32 GetShortCutKeyCfgReq() = 0;
-
+	virtual u32 GetUseOspTelnetCfgReq() = 0;
+	virtual u32 GetCameraEnableDigZoomCfgReq() = 0;
+	virtual u32 GetFunctionIconCfgReq(const EmFunctionIcon_Api emSignType) = 0;
 private:
 
 };

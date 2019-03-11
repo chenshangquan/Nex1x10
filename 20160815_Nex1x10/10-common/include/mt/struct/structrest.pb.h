@@ -221,6 +221,7 @@ class TMTVConfResources;
 class TMTVConfRecord;
 class TMTVConfDetailInfo;
 class TMTVMtNameStyle;
+class TMTContentLiveURL;
 
 // ===================================================================
 
@@ -28458,6 +28459,215 @@ class MTMSG_API TMTVMtNameStyle : public ::google::protobuf::Message {
 
   void InitAsDefaultInstance();
   static TMTVMtNameStyle* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class MTMSG_API TMTContentLiveURL : public ::google::protobuf::Message {
+ public:
+  TMTContentLiveURL();
+  virtual ~TMTContentLiveURL();
+
+  TMTContentLiveURL(const TMTContentLiveURL& from);
+
+  inline TMTContentLiveURL& operator=(const TMTContentLiveURL& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const TMTContentLiveURL& default_instance();
+
+  void Swap(TMTContentLiveURL* other);
+
+  // implements Message ----------------------------------------------
+
+  TMTContentLiveURL* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const TMTContentLiveURL& from);
+  void MergeFrom(const TMTContentLiveURL& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional uint32 id = 1;
+  inline bool has_id() const;
+  inline void clear_id();
+  static const int kIdFieldNumber = 1;
+  inline ::google::protobuf::uint32 id() const;
+  inline void set_id(::google::protobuf::uint32 value);
+
+  // optional string subject = 2;
+  inline bool has_subject() const;
+  inline void clear_subject();
+  static const int kSubjectFieldNumber = 2;
+  inline const ::std::string& subject() const;
+  inline void set_subject(const ::std::string& value);
+  inline void set_subject(const char* value);
+  inline void set_subject(const char* value, size_t size);
+  inline ::std::string* mutable_subject();
+  inline ::std::string* release_subject();
+  inline void set_allocated_subject(::std::string* subject);
+
+  // optional string starttime = 3;
+  inline bool has_starttime() const;
+  inline void clear_starttime();
+  static const int kStarttimeFieldNumber = 3;
+  inline const ::std::string& starttime() const;
+  inline void set_starttime(const ::std::string& value);
+  inline void set_starttime(const char* value);
+  inline void set_starttime(const char* value, size_t size);
+  inline ::std::string* mutable_starttime();
+  inline ::std::string* release_starttime();
+  inline void set_allocated_starttime(::std::string* starttime);
+
+  // optional string endtime = 4;
+  inline bool has_endtime() const;
+  inline void clear_endtime();
+  static const int kEndtimeFieldNumber = 4;
+  inline const ::std::string& endtime() const;
+  inline void set_endtime(const ::std::string& value);
+  inline void set_endtime(const char* value);
+  inline void set_endtime(const char* value, size_t size);
+  inline ::std::string* mutable_endtime();
+  inline ::std::string* release_endtime();
+  inline void set_allocated_endtime(::std::string* endtime);
+
+  // optional bool isvideomeeting = 5;
+  inline bool has_isvideomeeting() const;
+  inline void clear_isvideomeeting();
+  static const int kIsvideomeetingFieldNumber = 5;
+  inline bool isvideomeeting() const;
+  inline void set_isvideomeeting(bool value);
+
+  // optional string phone = 6;
+  inline bool has_phone() const;
+  inline void clear_phone();
+  static const int kPhoneFieldNumber = 6;
+  inline const ::std::string& phone() const;
+  inline void set_phone(const ::std::string& value);
+  inline void set_phone(const char* value);
+  inline void set_phone(const char* value, size_t size);
+  inline ::std::string* mutable_phone();
+  inline ::std::string* release_phone();
+  inline void set_allocated_phone(::std::string* phone);
+
+  // optional string mobilephone = 7;
+  inline bool has_mobilephone() const;
+  inline void clear_mobilephone();
+  static const int kMobilephoneFieldNumber = 7;
+  inline const ::std::string& mobilephone() const;
+  inline void set_mobilephone(const ::std::string& value);
+  inline void set_mobilephone(const char* value);
+  inline void set_mobilephone(const char* value, size_t size);
+  inline ::std::string* mutable_mobilephone();
+  inline ::std::string* release_mobilephone();
+  inline void set_allocated_mobilephone(::std::string* mobilephone);
+
+  // optional string short_url = 8;
+  inline bool has_short_url() const;
+  inline void clear_short_url();
+  static const int kShortUrlFieldNumber = 8;
+  inline const ::std::string& short_url() const;
+  inline void set_short_url(const ::std::string& value);
+  inline void set_short_url(const char* value);
+  inline void set_short_url(const char* value, size_t size);
+  inline ::std::string* mutable_short_url();
+  inline ::std::string* release_short_url();
+  inline void set_allocated_short_url(::std::string* short_url);
+
+  // optional string organizermoid = 9;
+  inline bool has_organizermoid() const;
+  inline void clear_organizermoid();
+  static const int kOrganizermoidFieldNumber = 9;
+  inline const ::std::string& organizermoid() const;
+  inline void set_organizermoid(const ::std::string& value);
+  inline void set_organizermoid(const char* value);
+  inline void set_organizermoid(const char* value, size_t size);
+  inline ::std::string* mutable_organizermoid();
+  inline ::std::string* release_organizermoid();
+  inline void set_allocated_organizermoid(::std::string* organizermoid);
+
+  // optional .mt.TMTConfInfoRooms room = 10;
+  inline bool has_room() const;
+  inline void clear_room();
+  static const int kRoomFieldNumber = 10;
+  inline const ::mt::TMTConfInfoRooms& room() const;
+  inline ::mt::TMTConfInfoRooms* mutable_room();
+  inline ::mt::TMTConfInfoRooms* release_room();
+  inline void set_allocated_room(::mt::TMTConfInfoRooms* room);
+
+  // @@protoc_insertion_point(class_scope:mt.TMTContentLiveURL)
+ private:
+  inline void set_has_id();
+  inline void clear_has_id();
+  inline void set_has_subject();
+  inline void clear_has_subject();
+  inline void set_has_starttime();
+  inline void clear_has_starttime();
+  inline void set_has_endtime();
+  inline void clear_has_endtime();
+  inline void set_has_isvideomeeting();
+  inline void clear_has_isvideomeeting();
+  inline void set_has_phone();
+  inline void clear_has_phone();
+  inline void set_has_mobilephone();
+  inline void clear_has_mobilephone();
+  inline void set_has_short_url();
+  inline void clear_has_short_url();
+  inline void set_has_organizermoid();
+  inline void clear_has_organizermoid();
+  inline void set_has_room();
+  inline void clear_has_room();
+
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
+  ::std::string* subject_;
+  ::std::string* starttime_;
+  ::google::protobuf::uint32 id_;
+  bool isvideomeeting_;
+  ::std::string* endtime_;
+  ::std::string* phone_;
+  ::std::string* mobilephone_;
+  ::std::string* short_url_;
+  ::std::string* organizermoid_;
+  ::mt::TMTConfInfoRooms* room_;
+
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(10 + 31) / 32];
+
+  friend void MTMSG_API protobuf_AddDesc_structrest_2eproto();
+  friend void protobuf_AssignDesc_structrest_2eproto();
+  friend void protobuf_ShutdownFile_structrest_2eproto();
+
+  void InitAsDefaultInstance();
+  static TMTContentLiveURL* default_instance_;
 };
 // ===================================================================
 
@@ -76769,6 +76979,582 @@ inline void TMTVMtNameStyle::set_allocated_font_color(::std::string* font_color)
   } else {
     clear_has_font_color();
     font_color_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  }
+}
+
+// -------------------------------------------------------------------
+
+// TMTContentLiveURL
+
+// optional uint32 id = 1;
+inline bool TMTContentLiveURL::has_id() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void TMTContentLiveURL::set_has_id() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void TMTContentLiveURL::clear_has_id() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void TMTContentLiveURL::clear_id() {
+  id_ = 0u;
+  clear_has_id();
+}
+inline ::google::protobuf::uint32 TMTContentLiveURL::id() const {
+  return id_;
+}
+inline void TMTContentLiveURL::set_id(::google::protobuf::uint32 value) {
+  set_has_id();
+  id_ = value;
+}
+
+// optional string subject = 2;
+inline bool TMTContentLiveURL::has_subject() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void TMTContentLiveURL::set_has_subject() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void TMTContentLiveURL::clear_has_subject() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void TMTContentLiveURL::clear_subject() {
+  if (subject_ != &::google::protobuf::internal::kEmptyString) {
+    subject_->clear();
+  }
+  clear_has_subject();
+}
+inline const ::std::string& TMTContentLiveURL::subject() const {
+  return *subject_;
+}
+inline void TMTContentLiveURL::set_subject(const ::std::string& value) {
+  set_has_subject();
+  if (subject_ == &::google::protobuf::internal::kEmptyString) {
+    subject_ = new ::std::string;
+  }
+  subject_->assign(value);
+}
+inline void TMTContentLiveURL::set_subject(const char* value) {
+  set_has_subject();
+  if (subject_ == &::google::protobuf::internal::kEmptyString) {
+    subject_ = new ::std::string;
+  }
+  subject_->assign(value);
+}
+inline void TMTContentLiveURL::set_subject(const char* value, size_t size) {
+  set_has_subject();
+  if (subject_ == &::google::protobuf::internal::kEmptyString) {
+    subject_ = new ::std::string;
+  }
+  subject_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* TMTContentLiveURL::mutable_subject() {
+  set_has_subject();
+  if (subject_ == &::google::protobuf::internal::kEmptyString) {
+    subject_ = new ::std::string;
+  }
+  return subject_;
+}
+inline ::std::string* TMTContentLiveURL::release_subject() {
+  clear_has_subject();
+  if (subject_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = subject_;
+    subject_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
+}
+inline void TMTContentLiveURL::set_allocated_subject(::std::string* subject) {
+  if (subject_ != &::google::protobuf::internal::kEmptyString) {
+    delete subject_;
+  }
+  if (subject) {
+    set_has_subject();
+    subject_ = subject;
+  } else {
+    clear_has_subject();
+    subject_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  }
+}
+
+// optional string starttime = 3;
+inline bool TMTContentLiveURL::has_starttime() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void TMTContentLiveURL::set_has_starttime() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void TMTContentLiveURL::clear_has_starttime() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void TMTContentLiveURL::clear_starttime() {
+  if (starttime_ != &::google::protobuf::internal::kEmptyString) {
+    starttime_->clear();
+  }
+  clear_has_starttime();
+}
+inline const ::std::string& TMTContentLiveURL::starttime() const {
+  return *starttime_;
+}
+inline void TMTContentLiveURL::set_starttime(const ::std::string& value) {
+  set_has_starttime();
+  if (starttime_ == &::google::protobuf::internal::kEmptyString) {
+    starttime_ = new ::std::string;
+  }
+  starttime_->assign(value);
+}
+inline void TMTContentLiveURL::set_starttime(const char* value) {
+  set_has_starttime();
+  if (starttime_ == &::google::protobuf::internal::kEmptyString) {
+    starttime_ = new ::std::string;
+  }
+  starttime_->assign(value);
+}
+inline void TMTContentLiveURL::set_starttime(const char* value, size_t size) {
+  set_has_starttime();
+  if (starttime_ == &::google::protobuf::internal::kEmptyString) {
+    starttime_ = new ::std::string;
+  }
+  starttime_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* TMTContentLiveURL::mutable_starttime() {
+  set_has_starttime();
+  if (starttime_ == &::google::protobuf::internal::kEmptyString) {
+    starttime_ = new ::std::string;
+  }
+  return starttime_;
+}
+inline ::std::string* TMTContentLiveURL::release_starttime() {
+  clear_has_starttime();
+  if (starttime_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = starttime_;
+    starttime_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
+}
+inline void TMTContentLiveURL::set_allocated_starttime(::std::string* starttime) {
+  if (starttime_ != &::google::protobuf::internal::kEmptyString) {
+    delete starttime_;
+  }
+  if (starttime) {
+    set_has_starttime();
+    starttime_ = starttime;
+  } else {
+    clear_has_starttime();
+    starttime_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  }
+}
+
+// optional string endtime = 4;
+inline bool TMTContentLiveURL::has_endtime() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void TMTContentLiveURL::set_has_endtime() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void TMTContentLiveURL::clear_has_endtime() {
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline void TMTContentLiveURL::clear_endtime() {
+  if (endtime_ != &::google::protobuf::internal::kEmptyString) {
+    endtime_->clear();
+  }
+  clear_has_endtime();
+}
+inline const ::std::string& TMTContentLiveURL::endtime() const {
+  return *endtime_;
+}
+inline void TMTContentLiveURL::set_endtime(const ::std::string& value) {
+  set_has_endtime();
+  if (endtime_ == &::google::protobuf::internal::kEmptyString) {
+    endtime_ = new ::std::string;
+  }
+  endtime_->assign(value);
+}
+inline void TMTContentLiveURL::set_endtime(const char* value) {
+  set_has_endtime();
+  if (endtime_ == &::google::protobuf::internal::kEmptyString) {
+    endtime_ = new ::std::string;
+  }
+  endtime_->assign(value);
+}
+inline void TMTContentLiveURL::set_endtime(const char* value, size_t size) {
+  set_has_endtime();
+  if (endtime_ == &::google::protobuf::internal::kEmptyString) {
+    endtime_ = new ::std::string;
+  }
+  endtime_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* TMTContentLiveURL::mutable_endtime() {
+  set_has_endtime();
+  if (endtime_ == &::google::protobuf::internal::kEmptyString) {
+    endtime_ = new ::std::string;
+  }
+  return endtime_;
+}
+inline ::std::string* TMTContentLiveURL::release_endtime() {
+  clear_has_endtime();
+  if (endtime_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = endtime_;
+    endtime_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
+}
+inline void TMTContentLiveURL::set_allocated_endtime(::std::string* endtime) {
+  if (endtime_ != &::google::protobuf::internal::kEmptyString) {
+    delete endtime_;
+  }
+  if (endtime) {
+    set_has_endtime();
+    endtime_ = endtime;
+  } else {
+    clear_has_endtime();
+    endtime_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  }
+}
+
+// optional bool isvideomeeting = 5;
+inline bool TMTContentLiveURL::has_isvideomeeting() const {
+  return (_has_bits_[0] & 0x00000010u) != 0;
+}
+inline void TMTContentLiveURL::set_has_isvideomeeting() {
+  _has_bits_[0] |= 0x00000010u;
+}
+inline void TMTContentLiveURL::clear_has_isvideomeeting() {
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline void TMTContentLiveURL::clear_isvideomeeting() {
+  isvideomeeting_ = false;
+  clear_has_isvideomeeting();
+}
+inline bool TMTContentLiveURL::isvideomeeting() const {
+  return isvideomeeting_;
+}
+inline void TMTContentLiveURL::set_isvideomeeting(bool value) {
+  set_has_isvideomeeting();
+  isvideomeeting_ = value;
+}
+
+// optional string phone = 6;
+inline bool TMTContentLiveURL::has_phone() const {
+  return (_has_bits_[0] & 0x00000020u) != 0;
+}
+inline void TMTContentLiveURL::set_has_phone() {
+  _has_bits_[0] |= 0x00000020u;
+}
+inline void TMTContentLiveURL::clear_has_phone() {
+  _has_bits_[0] &= ~0x00000020u;
+}
+inline void TMTContentLiveURL::clear_phone() {
+  if (phone_ != &::google::protobuf::internal::kEmptyString) {
+    phone_->clear();
+  }
+  clear_has_phone();
+}
+inline const ::std::string& TMTContentLiveURL::phone() const {
+  return *phone_;
+}
+inline void TMTContentLiveURL::set_phone(const ::std::string& value) {
+  set_has_phone();
+  if (phone_ == &::google::protobuf::internal::kEmptyString) {
+    phone_ = new ::std::string;
+  }
+  phone_->assign(value);
+}
+inline void TMTContentLiveURL::set_phone(const char* value) {
+  set_has_phone();
+  if (phone_ == &::google::protobuf::internal::kEmptyString) {
+    phone_ = new ::std::string;
+  }
+  phone_->assign(value);
+}
+inline void TMTContentLiveURL::set_phone(const char* value, size_t size) {
+  set_has_phone();
+  if (phone_ == &::google::protobuf::internal::kEmptyString) {
+    phone_ = new ::std::string;
+  }
+  phone_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* TMTContentLiveURL::mutable_phone() {
+  set_has_phone();
+  if (phone_ == &::google::protobuf::internal::kEmptyString) {
+    phone_ = new ::std::string;
+  }
+  return phone_;
+}
+inline ::std::string* TMTContentLiveURL::release_phone() {
+  clear_has_phone();
+  if (phone_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = phone_;
+    phone_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
+}
+inline void TMTContentLiveURL::set_allocated_phone(::std::string* phone) {
+  if (phone_ != &::google::protobuf::internal::kEmptyString) {
+    delete phone_;
+  }
+  if (phone) {
+    set_has_phone();
+    phone_ = phone;
+  } else {
+    clear_has_phone();
+    phone_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  }
+}
+
+// optional string mobilephone = 7;
+inline bool TMTContentLiveURL::has_mobilephone() const {
+  return (_has_bits_[0] & 0x00000040u) != 0;
+}
+inline void TMTContentLiveURL::set_has_mobilephone() {
+  _has_bits_[0] |= 0x00000040u;
+}
+inline void TMTContentLiveURL::clear_has_mobilephone() {
+  _has_bits_[0] &= ~0x00000040u;
+}
+inline void TMTContentLiveURL::clear_mobilephone() {
+  if (mobilephone_ != &::google::protobuf::internal::kEmptyString) {
+    mobilephone_->clear();
+  }
+  clear_has_mobilephone();
+}
+inline const ::std::string& TMTContentLiveURL::mobilephone() const {
+  return *mobilephone_;
+}
+inline void TMTContentLiveURL::set_mobilephone(const ::std::string& value) {
+  set_has_mobilephone();
+  if (mobilephone_ == &::google::protobuf::internal::kEmptyString) {
+    mobilephone_ = new ::std::string;
+  }
+  mobilephone_->assign(value);
+}
+inline void TMTContentLiveURL::set_mobilephone(const char* value) {
+  set_has_mobilephone();
+  if (mobilephone_ == &::google::protobuf::internal::kEmptyString) {
+    mobilephone_ = new ::std::string;
+  }
+  mobilephone_->assign(value);
+}
+inline void TMTContentLiveURL::set_mobilephone(const char* value, size_t size) {
+  set_has_mobilephone();
+  if (mobilephone_ == &::google::protobuf::internal::kEmptyString) {
+    mobilephone_ = new ::std::string;
+  }
+  mobilephone_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* TMTContentLiveURL::mutable_mobilephone() {
+  set_has_mobilephone();
+  if (mobilephone_ == &::google::protobuf::internal::kEmptyString) {
+    mobilephone_ = new ::std::string;
+  }
+  return mobilephone_;
+}
+inline ::std::string* TMTContentLiveURL::release_mobilephone() {
+  clear_has_mobilephone();
+  if (mobilephone_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = mobilephone_;
+    mobilephone_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
+}
+inline void TMTContentLiveURL::set_allocated_mobilephone(::std::string* mobilephone) {
+  if (mobilephone_ != &::google::protobuf::internal::kEmptyString) {
+    delete mobilephone_;
+  }
+  if (mobilephone) {
+    set_has_mobilephone();
+    mobilephone_ = mobilephone;
+  } else {
+    clear_has_mobilephone();
+    mobilephone_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  }
+}
+
+// optional string short_url = 8;
+inline bool TMTContentLiveURL::has_short_url() const {
+  return (_has_bits_[0] & 0x00000080u) != 0;
+}
+inline void TMTContentLiveURL::set_has_short_url() {
+  _has_bits_[0] |= 0x00000080u;
+}
+inline void TMTContentLiveURL::clear_has_short_url() {
+  _has_bits_[0] &= ~0x00000080u;
+}
+inline void TMTContentLiveURL::clear_short_url() {
+  if (short_url_ != &::google::protobuf::internal::kEmptyString) {
+    short_url_->clear();
+  }
+  clear_has_short_url();
+}
+inline const ::std::string& TMTContentLiveURL::short_url() const {
+  return *short_url_;
+}
+inline void TMTContentLiveURL::set_short_url(const ::std::string& value) {
+  set_has_short_url();
+  if (short_url_ == &::google::protobuf::internal::kEmptyString) {
+    short_url_ = new ::std::string;
+  }
+  short_url_->assign(value);
+}
+inline void TMTContentLiveURL::set_short_url(const char* value) {
+  set_has_short_url();
+  if (short_url_ == &::google::protobuf::internal::kEmptyString) {
+    short_url_ = new ::std::string;
+  }
+  short_url_->assign(value);
+}
+inline void TMTContentLiveURL::set_short_url(const char* value, size_t size) {
+  set_has_short_url();
+  if (short_url_ == &::google::protobuf::internal::kEmptyString) {
+    short_url_ = new ::std::string;
+  }
+  short_url_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* TMTContentLiveURL::mutable_short_url() {
+  set_has_short_url();
+  if (short_url_ == &::google::protobuf::internal::kEmptyString) {
+    short_url_ = new ::std::string;
+  }
+  return short_url_;
+}
+inline ::std::string* TMTContentLiveURL::release_short_url() {
+  clear_has_short_url();
+  if (short_url_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = short_url_;
+    short_url_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
+}
+inline void TMTContentLiveURL::set_allocated_short_url(::std::string* short_url) {
+  if (short_url_ != &::google::protobuf::internal::kEmptyString) {
+    delete short_url_;
+  }
+  if (short_url) {
+    set_has_short_url();
+    short_url_ = short_url;
+  } else {
+    clear_has_short_url();
+    short_url_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  }
+}
+
+// optional string organizermoid = 9;
+inline bool TMTContentLiveURL::has_organizermoid() const {
+  return (_has_bits_[0] & 0x00000100u) != 0;
+}
+inline void TMTContentLiveURL::set_has_organizermoid() {
+  _has_bits_[0] |= 0x00000100u;
+}
+inline void TMTContentLiveURL::clear_has_organizermoid() {
+  _has_bits_[0] &= ~0x00000100u;
+}
+inline void TMTContentLiveURL::clear_organizermoid() {
+  if (organizermoid_ != &::google::protobuf::internal::kEmptyString) {
+    organizermoid_->clear();
+  }
+  clear_has_organizermoid();
+}
+inline const ::std::string& TMTContentLiveURL::organizermoid() const {
+  return *organizermoid_;
+}
+inline void TMTContentLiveURL::set_organizermoid(const ::std::string& value) {
+  set_has_organizermoid();
+  if (organizermoid_ == &::google::protobuf::internal::kEmptyString) {
+    organizermoid_ = new ::std::string;
+  }
+  organizermoid_->assign(value);
+}
+inline void TMTContentLiveURL::set_organizermoid(const char* value) {
+  set_has_organizermoid();
+  if (organizermoid_ == &::google::protobuf::internal::kEmptyString) {
+    organizermoid_ = new ::std::string;
+  }
+  organizermoid_->assign(value);
+}
+inline void TMTContentLiveURL::set_organizermoid(const char* value, size_t size) {
+  set_has_organizermoid();
+  if (organizermoid_ == &::google::protobuf::internal::kEmptyString) {
+    organizermoid_ = new ::std::string;
+  }
+  organizermoid_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* TMTContentLiveURL::mutable_organizermoid() {
+  set_has_organizermoid();
+  if (organizermoid_ == &::google::protobuf::internal::kEmptyString) {
+    organizermoid_ = new ::std::string;
+  }
+  return organizermoid_;
+}
+inline ::std::string* TMTContentLiveURL::release_organizermoid() {
+  clear_has_organizermoid();
+  if (organizermoid_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = organizermoid_;
+    organizermoid_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
+}
+inline void TMTContentLiveURL::set_allocated_organizermoid(::std::string* organizermoid) {
+  if (organizermoid_ != &::google::protobuf::internal::kEmptyString) {
+    delete organizermoid_;
+  }
+  if (organizermoid) {
+    set_has_organizermoid();
+    organizermoid_ = organizermoid;
+  } else {
+    clear_has_organizermoid();
+    organizermoid_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  }
+}
+
+// optional .mt.TMTConfInfoRooms room = 10;
+inline bool TMTContentLiveURL::has_room() const {
+  return (_has_bits_[0] & 0x00000200u) != 0;
+}
+inline void TMTContentLiveURL::set_has_room() {
+  _has_bits_[0] |= 0x00000200u;
+}
+inline void TMTContentLiveURL::clear_has_room() {
+  _has_bits_[0] &= ~0x00000200u;
+}
+inline void TMTContentLiveURL::clear_room() {
+  if (room_ != NULL) room_->::mt::TMTConfInfoRooms::Clear();
+  clear_has_room();
+}
+inline const ::mt::TMTConfInfoRooms& TMTContentLiveURL::room() const {
+  return room_ != NULL ? *room_ : *default_instance_->room_;
+}
+inline ::mt::TMTConfInfoRooms* TMTContentLiveURL::mutable_room() {
+  set_has_room();
+  if (room_ == NULL) room_ = new ::mt::TMTConfInfoRooms;
+  return room_;
+}
+inline ::mt::TMTConfInfoRooms* TMTContentLiveURL::release_room() {
+  clear_has_room();
+  ::mt::TMTConfInfoRooms* temp = room_;
+  room_ = NULL;
+  return temp;
+}
+inline void TMTContentLiveURL::set_allocated_room(::mt::TMTConfInfoRooms* room) {
+  delete room_;
+  room_ = room;
+  if (room) {
+    set_has_room();
+  } else {
+    clear_has_room();
   }
 }
 

@@ -139,6 +139,11 @@
 	"comment": "通用debug, 323addtional配置, 注册md5类型和460呼叫类型， 有些外厂商不一样",
 	"emRrqAuthAlgType": 0,
 	"emFacilityReason": 5
+	},
+	"TKeyFrameInterval":
+	{
+	"comment": "通用debug,视频发送关键帧最短间隔时间，单位ms",
+	"dwInterval": 0
 	}
 }
 */

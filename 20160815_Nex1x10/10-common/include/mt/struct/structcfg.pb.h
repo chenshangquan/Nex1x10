@@ -225,6 +225,8 @@ class TMtPlatformInfo;
 class TMtCameraLastPos;
 class TMtShortCutKey;
 class TMtShortCutKeyList;
+class TMtFunctionIcon;
+class TMtFunctionIconList;
 
 // ===================================================================
 
@@ -1831,6 +1833,13 @@ class MTMSG_API TMTUserPrevilege : public ::google::protobuf::Message {
   inline bool enableautocreatemeeting() const;
   inline void set_enableautocreatemeeting(bool value);
 
+  // optional .mt.EmPltSupportConfType emConfType = 25;
+  inline bool has_emconftype() const;
+  inline void clear_emconftype();
+  static const int kEmConfTypeFieldNumber = 25;
+  inline ::mt::EmPltSupportConfType emconftype() const;
+  inline void set_emconftype(::mt::EmPltSupportConfType value);
+
   // @@protoc_insertion_point(class_scope:mt.TMTUserPrevilege)
  private:
   inline void set_has_defaultservicedomainadmin();
@@ -1881,6 +1890,8 @@ class MTMSG_API TMTUserPrevilege : public ::google::protobuf::Message {
   inline void clear_has_portmedia();
   inline void set_has_enableautocreatemeeting();
   inline void clear_has_enableautocreatemeeting();
+  inline void set_has_emconftype();
+  inline void clear_has_emconftype();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
@@ -1908,9 +1919,10 @@ class MTMSG_API TMTUserPrevilege : public ::google::protobuf::Message {
   bool selfbuilt_;
   bool portmedia_;
   bool enableautocreatemeeting_;
+  int emconftype_;
 
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(24 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(25 + 31) / 32];
 
   friend void MTMSG_API protobuf_AddDesc_structcfg_2eproto();
   friend void protobuf_AssignDesc_structcfg_2eproto();
@@ -21815,6 +21827,183 @@ class MTMSG_API TMtShortCutKeyList : public ::google::protobuf::Message {
   void InitAsDefaultInstance();
   static TMtShortCutKeyList* default_instance_;
 };
+// -------------------------------------------------------------------
+
+class MTMSG_API TMtFunctionIcon : public ::google::protobuf::Message {
+ public:
+  TMtFunctionIcon();
+  virtual ~TMtFunctionIcon();
+
+  TMtFunctionIcon(const TMtFunctionIcon& from);
+
+  inline TMtFunctionIcon& operator=(const TMtFunctionIcon& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const TMtFunctionIcon& default_instance();
+
+  void Swap(TMtFunctionIcon* other);
+
+  // implements Message ----------------------------------------------
+
+  TMtFunctionIcon* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const TMtFunctionIcon& from);
+  void MergeFrom(const TMtFunctionIcon& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional .mt.EmFunctionIcon icon_type = 1;
+  inline bool has_icon_type() const;
+  inline void clear_icon_type();
+  static const int kIconTypeFieldNumber = 1;
+  inline ::mt::EmFunctionIcon icon_type() const;
+  inline void set_icon_type(::mt::EmFunctionIcon value);
+
+  // optional bool is_enable = 2;
+  inline bool has_is_enable() const;
+  inline void clear_is_enable();
+  static const int kIsEnableFieldNumber = 2;
+  inline bool is_enable() const;
+  inline void set_is_enable(bool value);
+
+  // @@protoc_insertion_point(class_scope:mt.TMtFunctionIcon)
+ private:
+  inline void set_has_icon_type();
+  inline void clear_has_icon_type();
+  inline void set_has_is_enable();
+  inline void clear_has_is_enable();
+
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
+  int icon_type_;
+  bool is_enable_;
+
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
+
+  friend void MTMSG_API protobuf_AddDesc_structcfg_2eproto();
+  friend void protobuf_AssignDesc_structcfg_2eproto();
+  friend void protobuf_ShutdownFile_structcfg_2eproto();
+
+  void InitAsDefaultInstance();
+  static TMtFunctionIcon* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class MTMSG_API TMtFunctionIconList : public ::google::protobuf::Message {
+ public:
+  TMtFunctionIconList();
+  virtual ~TMtFunctionIconList();
+
+  TMtFunctionIconList(const TMtFunctionIconList& from);
+
+  inline TMtFunctionIconList& operator=(const TMtFunctionIconList& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const TMtFunctionIconList& default_instance();
+
+  void Swap(TMtFunctionIconList* other);
+
+  // implements Message ----------------------------------------------
+
+  TMtFunctionIconList* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const TMtFunctionIconList& from);
+  void MergeFrom(const TMtFunctionIconList& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated .mt.TMtFunctionIcon function_icon = 1;
+  inline int function_icon_size() const;
+  inline void clear_function_icon();
+  static const int kFunctionIconFieldNumber = 1;
+  inline const ::mt::TMtFunctionIcon& function_icon(int index) const;
+  inline ::mt::TMtFunctionIcon* mutable_function_icon(int index);
+  inline ::mt::TMtFunctionIcon* add_function_icon();
+  inline const ::google::protobuf::RepeatedPtrField< ::mt::TMtFunctionIcon >&
+      function_icon() const;
+  inline ::google::protobuf::RepeatedPtrField< ::mt::TMtFunctionIcon >*
+      mutable_function_icon();
+
+  // @@protoc_insertion_point(class_scope:mt.TMtFunctionIconList)
+ private:
+
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
+  ::google::protobuf::RepeatedPtrField< ::mt::TMtFunctionIcon > function_icon_;
+
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+
+  friend void MTMSG_API protobuf_AddDesc_structcfg_2eproto();
+  friend void protobuf_AssignDesc_structcfg_2eproto();
+  friend void protobuf_ShutdownFile_structcfg_2eproto();
+
+  void InitAsDefaultInstance();
+  static TMtFunctionIconList* default_instance_;
+};
 // ===================================================================
 
 
@@ -23490,6 +23679,29 @@ inline bool TMTUserPrevilege::enableautocreatemeeting() const {
 inline void TMTUserPrevilege::set_enableautocreatemeeting(bool value) {
   set_has_enableautocreatemeeting();
   enableautocreatemeeting_ = value;
+}
+
+// optional .mt.EmPltSupportConfType emConfType = 25;
+inline bool TMTUserPrevilege::has_emconftype() const {
+  return (_has_bits_[0] & 0x01000000u) != 0;
+}
+inline void TMTUserPrevilege::set_has_emconftype() {
+  _has_bits_[0] |= 0x01000000u;
+}
+inline void TMTUserPrevilege::clear_has_emconftype() {
+  _has_bits_[0] &= ~0x01000000u;
+}
+inline void TMTUserPrevilege::clear_emconftype() {
+  emconftype_ = 0;
+  clear_has_emconftype();
+}
+inline ::mt::EmPltSupportConfType TMTUserPrevilege::emconftype() const {
+  return static_cast< ::mt::EmPltSupportConfType >(emconftype_);
+}
+inline void TMTUserPrevilege::set_emconftype(::mt::EmPltSupportConfType value) {
+  assert(::mt::EmPltSupportConfType_IsValid(value));
+  set_has_emconftype();
+  emconftype_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -46234,6 +46446,84 @@ TMtShortCutKeyList::short_cut_key() const {
 inline ::google::protobuf::RepeatedPtrField< ::mt::TMtShortCutKey >*
 TMtShortCutKeyList::mutable_short_cut_key() {
   return &short_cut_key_;
+}
+
+// -------------------------------------------------------------------
+
+// TMtFunctionIcon
+
+// optional .mt.EmFunctionIcon icon_type = 1;
+inline bool TMtFunctionIcon::has_icon_type() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void TMtFunctionIcon::set_has_icon_type() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void TMtFunctionIcon::clear_has_icon_type() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void TMtFunctionIcon::clear_icon_type() {
+  icon_type_ = 0;
+  clear_has_icon_type();
+}
+inline ::mt::EmFunctionIcon TMtFunctionIcon::icon_type() const {
+  return static_cast< ::mt::EmFunctionIcon >(icon_type_);
+}
+inline void TMtFunctionIcon::set_icon_type(::mt::EmFunctionIcon value) {
+  assert(::mt::EmFunctionIcon_IsValid(value));
+  set_has_icon_type();
+  icon_type_ = value;
+}
+
+// optional bool is_enable = 2;
+inline bool TMtFunctionIcon::has_is_enable() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void TMtFunctionIcon::set_has_is_enable() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void TMtFunctionIcon::clear_has_is_enable() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void TMtFunctionIcon::clear_is_enable() {
+  is_enable_ = false;
+  clear_has_is_enable();
+}
+inline bool TMtFunctionIcon::is_enable() const {
+  return is_enable_;
+}
+inline void TMtFunctionIcon::set_is_enable(bool value) {
+  set_has_is_enable();
+  is_enable_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// TMtFunctionIconList
+
+// repeated .mt.TMtFunctionIcon function_icon = 1;
+inline int TMtFunctionIconList::function_icon_size() const {
+  return function_icon_.size();
+}
+inline void TMtFunctionIconList::clear_function_icon() {
+  function_icon_.Clear();
+}
+inline const ::mt::TMtFunctionIcon& TMtFunctionIconList::function_icon(int index) const {
+  return function_icon_.Get(index);
+}
+inline ::mt::TMtFunctionIcon* TMtFunctionIconList::mutable_function_icon(int index) {
+  return function_icon_.Mutable(index);
+}
+inline ::mt::TMtFunctionIcon* TMtFunctionIconList::add_function_icon() {
+  return function_icon_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::mt::TMtFunctionIcon >&
+TMtFunctionIconList::function_icon() const {
+  return function_icon_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::mt::TMtFunctionIcon >*
+TMtFunctionIconList::mutable_function_icon() {
+  return &function_icon_;
 }
 
 

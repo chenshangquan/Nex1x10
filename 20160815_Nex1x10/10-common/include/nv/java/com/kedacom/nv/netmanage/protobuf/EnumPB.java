@@ -23655,6 +23655,281 @@ public final class EnumPB {
     // @@protoc_insertion_point(enum_scope:nv.EmSusNotUpgradeReason)
   }
 
+  /**
+   * Protobuf enum {@code nv.EmNvLogLevel}
+   */
+  public enum EmNvLogLevel
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>emLogHint = 0;</code>
+     */
+    emLogHint(0, 0),
+    /**
+     * <code>emLOgWarning = 1;</code>
+     */
+    emLOgWarning(1, 1),
+    /**
+     * <code>emLogError = 2;</code>
+     */
+    emLogError(2, 2),
+    /**
+     * <code>emLogDebug = 3;</code>
+     */
+    emLogDebug(3, 3),
+    ;
+
+    /**
+     * <code>emLogHint = 0;</code>
+     */
+    public static final int emLogHint_VALUE = 0;
+    /**
+     * <code>emLOgWarning = 1;</code>
+     */
+    public static final int emLOgWarning_VALUE = 1;
+    /**
+     * <code>emLogError = 2;</code>
+     */
+    public static final int emLogError_VALUE = 2;
+    /**
+     * <code>emLogDebug = 3;</code>
+     */
+    public static final int emLogDebug_VALUE = 3;
+
+
+    public final int getNumber() { return value; }
+
+    public static EmNvLogLevel valueOf(int value) {
+      switch (value) {
+        case 0: return emLogHint;
+        case 1: return emLOgWarning;
+        case 2: return emLogError;
+        case 3: return emLogDebug;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<EmNvLogLevel>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static com.google.protobuf.Internal.EnumLiteMap<EmNvLogLevel>
+        internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<EmNvLogLevel>() {
+            public EmNvLogLevel findValueByNumber(int number) {
+              return EmNvLogLevel.valueOf(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(index);
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return com.kedacom.nv.netmanage.protobuf.EnumPB.getDescriptor().getEnumTypes().get(115);
+    }
+
+    private static final EmNvLogLevel[] VALUES = values();
+
+    public static EmNvLogLevel valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int index;
+    private final int value;
+
+    private EmNvLogLevel(int index, int value) {
+      this.index = index;
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:nv.EmNvLogLevel)
+  }
+
+  /**
+   * Protobuf enum {@code nv.EmNvUpgradeFailReason}
+   */
+  public enum EmNvUpgradeFailReason
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>emUpgradeSuc = 0;</code>
+     */
+    emUpgradeSuc(0, 0),
+    /**
+     * <code>emNoPackage = 1;</code>
+     *
+     * <pre>
+     *不存在升级总包
+     * </pre>
+     */
+    emNoPackage(1, 1),
+    /**
+     * <code>emUnpackFail = 2;</code>
+     *
+     * <pre>
+     *由于包不完整而解压失败
+     * </pre>
+     */
+    emUnpackFail(2, 2),
+    /**
+     * <code>emNoEnoughSpace = 3;</code>
+     *
+     * <pre>
+     *升级空间不足
+     * </pre>
+     */
+    emNoEnoughSpace(3, 3),
+    /**
+     * <code>emLackUpgradeFile = 4;</code>
+     *
+     * <pre>
+     *升级包内缺少升级文件
+     * </pre>
+     */
+    emLackUpgradeFile(4, 4),
+    /**
+     * <code>emUpgradeImixFail = 5;</code>
+     *
+     * <pre>
+     *升级业务失败
+     * </pre>
+     */
+    emUpgradeImixFail(5, 5),
+    /**
+     * <code>emUnknowReason = 6;</code>
+     *
+     * <pre>
+     *未知原因
+     * </pre>
+     */
+    emUnknowReason(6, 6),
+    ;
+
+    /**
+     * <code>emUpgradeSuc = 0;</code>
+     */
+    public static final int emUpgradeSuc_VALUE = 0;
+    /**
+     * <code>emNoPackage = 1;</code>
+     *
+     * <pre>
+     *不存在升级总包
+     * </pre>
+     */
+    public static final int emNoPackage_VALUE = 1;
+    /**
+     * <code>emUnpackFail = 2;</code>
+     *
+     * <pre>
+     *由于包不完整而解压失败
+     * </pre>
+     */
+    public static final int emUnpackFail_VALUE = 2;
+    /**
+     * <code>emNoEnoughSpace = 3;</code>
+     *
+     * <pre>
+     *升级空间不足
+     * </pre>
+     */
+    public static final int emNoEnoughSpace_VALUE = 3;
+    /**
+     * <code>emLackUpgradeFile = 4;</code>
+     *
+     * <pre>
+     *升级包内缺少升级文件
+     * </pre>
+     */
+    public static final int emLackUpgradeFile_VALUE = 4;
+    /**
+     * <code>emUpgradeImixFail = 5;</code>
+     *
+     * <pre>
+     *升级业务失败
+     * </pre>
+     */
+    public static final int emUpgradeImixFail_VALUE = 5;
+    /**
+     * <code>emUnknowReason = 6;</code>
+     *
+     * <pre>
+     *未知原因
+     * </pre>
+     */
+    public static final int emUnknowReason_VALUE = 6;
+
+
+    public final int getNumber() { return value; }
+
+    public static EmNvUpgradeFailReason valueOf(int value) {
+      switch (value) {
+        case 0: return emUpgradeSuc;
+        case 1: return emNoPackage;
+        case 2: return emUnpackFail;
+        case 3: return emNoEnoughSpace;
+        case 4: return emLackUpgradeFile;
+        case 5: return emUpgradeImixFail;
+        case 6: return emUnknowReason;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<EmNvUpgradeFailReason>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static com.google.protobuf.Internal.EnumLiteMap<EmNvUpgradeFailReason>
+        internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<EmNvUpgradeFailReason>() {
+            public EmNvUpgradeFailReason findValueByNumber(int number) {
+              return EmNvUpgradeFailReason.valueOf(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(index);
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return com.kedacom.nv.netmanage.protobuf.EnumPB.getDescriptor().getEnumTypes().get(116);
+    }
+
+    private static final EmNvUpgradeFailReason[] VALUES = values();
+
+    public static EmNvUpgradeFailReason valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int index;
+    private final int value;
+
+    private EmNvUpgradeFailReason(int index, int value) {
+      this.index = index;
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:nv.EmNvUpgradeFailReason)
+  }
+
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -24364,8 +24639,14 @@ public final class EnumPB {
       "sNotUpgradeReason\022\026\n\022emNvSusConnectFail\020" +
       "\000\022\024\n\020emNvSusNoPackage\020\001\022\032\n\026emNvSusLoadCf" +
       "gFileFail\020\002\022\031\n\025emNvSusNotNeedUpgrade\020\003\022\026",
-      "\n\022emNvSusNeedUpgrade\020\004B+\n!com.kedacom.nv" +
-      ".netmanage.protobufB\006EnumPB"
+      "\n\022emNvSusNeedUpgrade\020\004*O\n\014EmNvLogLevel\022\r" +
+      "\n\temLogHint\020\000\022\020\n\014emLOgWarning\020\001\022\016\n\nemLog" +
+      "Error\020\002\022\016\n\nemLogDebug\020\003*\243\001\n\025EmNvUpgradeF" +
+      "ailReason\022\020\n\014emUpgradeSuc\020\000\022\017\n\013emNoPacka" +
+      "ge\020\001\022\020\n\014emUnpackFail\020\002\022\023\n\017emNoEnoughSpac" +
+      "e\020\003\022\025\n\021emLackUpgradeFile\020\004\022\025\n\021emUpgradeI" +
+      "mixFail\020\005\022\022\n\016emUnknowReason\020\006B+\n!com.ked" +
+      "acom.nv.netmanage.protobufB\006EnumPB"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

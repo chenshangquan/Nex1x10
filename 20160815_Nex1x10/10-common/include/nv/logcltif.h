@@ -45,6 +45,12 @@ NVCBB_API BOOL32 Hint(std::string strMod, std::string strLogMsg);
 /*调试类型打印，可通过命令屏蔽，不可输出到文件*/
 NVCBB_API BOOL32 Debug(std::string strMod, std::string strLogMsg);
 
+NVCBB_API BOOL32 NvLogOn(std::string strMod);
+NVCBB_API BOOL32 NvLogOff(std::string strMod);
+
+NVCBB_API BOOL32 NvDebugOn(std::string strMod);
+NVCBB_API BOOL32 NvDebugOff(std::string strMod);
+
 } // namespace LOGCLIENT
 
 #endif // _LOGIF_H_

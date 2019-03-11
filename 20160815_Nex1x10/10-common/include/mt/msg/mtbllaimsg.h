@@ -82,7 +82,8 @@ enum EmBLLMtAiMsg
 	BODY(mt::TBytes, tPlaySound)  ///ÖÐÎÄµÄutf-8
 	BODY(mt::TBOOL32, tExist)
 	BODY(mt::TMtId, tmtid)
-
+	
+	MESSAGE(Ev_MT_BLL_AiResetTimer_Ntf)
 	
  #if !defined(_MESSAGE_HELP_)
      EV_BLL_END(MTAI) = EVSEG_BLL_MTAIMSG_END

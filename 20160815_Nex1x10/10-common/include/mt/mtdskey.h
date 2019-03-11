@@ -150,6 +150,7 @@
 #define emMt_Cfg_ShortCutKey			  "emMt_Cfg_ShortCutKey"				   //快捷键功能配置(value: TMtShortCutKeyList)
 #define	emMt_Cfg_AiCameraInfo              "emMt_Cfg_AiCameraInfo"                 //(value: TMTHDCameraAiList)智能摄像机配置
 #define emMt_Cfg_TRtpSamePort              "emMt_Cfg_TRtpSamePort"                  //原先是debug配置，现在已升级为正式配置,是否收发端口复用(value: TBOOL32)
+#define emMt_Cfg_FunctionIcon              "emMt_Cfg_FunctionIcon"                 //功能图标是否显示(value:TMtFunctionIconList )
 
 /*************************组件运行时数据项Key开始********************/
 #define	emMt_Rt_CurAPS                    "emMt_Rt_CurAPS"                         //(value: TMtAPSSvrAddr)  //当前手动选择的XAP服务器，或自动登录成功的xap
@@ -213,6 +214,7 @@
 #define emMt_Rt_LocalContactInfo         "emMt_Rt_LocalContactInfo"              //本地联系人(value: TAddrBookRosterList)
 #define emMt_Rt_JoinConfListInfo         "emMt_Rt_JoinConfListInfo"                 //会议列表(value: TMtJoinConfParamList)
 #define emMt_Rt_OnLineTerListInfo        "emMt_Rt_OnLineTerListInfo"                 //在线终端(value: TRpMtInfo)
+#define emMt_Rt_IsConfRecording          "emMt_Rt_IsConfRecording"                  //终端是否开启云端录像(value: TBOOL32)
 /*================= 分界线，以下为产品专用Key ====================*/
 
 /********************硬终端产品配置数据项Key开始********************/
@@ -316,8 +318,8 @@
 #define emHD_Cfg_CameraImgDefog           "emHD_Cfg_CameraImgDefog"               //数字去雾(value: TCameraIspParam)
 #define emHD_Cfg_CameraImgDigDynSwitch    "emHD_Cfg_CameraImgDigDynSwitch"        //数字宽动态开关(value: TBOOL32)
 #define emHD_Cfg_CameraImgDigDynLevel     "emHD_Cfg_CameraImgDigDynLevel"         //数字宽动态等级(value: TCameraIspParam)
-
 #define emHD_Cfg_CameraLastPosCfg         "emHD_Cfg_CameraLastPosCfg"             //内置摄像机开机默认位置配置(value: TMtCameraLastPos)
+#define emHD_Cfg_CameraEnableDigZoom      "emHD_Cfg_CameraEnableDigZoom"          //是否开启使能数字变焦控制(value: TBOOL32)
 
 /********************硬终端产品运行时数据项Key开始********************/
 #define	emHD_Rt_IsMfgTest		          "emHD_Rt_IsMfgTest"                     //是否读取到e2prom中的生产测试标志位(value: TBOOL32)
@@ -333,6 +335,7 @@
 #define	emHD_Rt_NetCaping                 "emHD_Rt_NetCaping"                     //是否正在抓包(value:TBOOL32)
 #define	emHD_Rt_NetCapExporting           "emHD_Rt_NetCapExporting"               //是否正在导出抓包(value:TBOOL32)
 #define	emHD_Rt_AddrbookTransfering       "emHD_Rt_AddrbookTransfering"           //是否正在传输地址簿(value:TBOOL32)
+#define	emHD_Rt_LogExporting              "emHD_Rt_LogExporting"                  //是否正在导出日志(value: TBOOL32 )
 #define	emHD_Rt_VidSrc2FarCtrlId          "emHD_Rt_VidSrc2FarCtrlId"              //终端内部视频源与远遥id的对应关系(value: TMTVidSrc2FarCtrlIdList)
 #define	emHD_Rt_MtCapGroup                "emHD_Rt_MtCapGroup"                    //硬终端音视频能力集(value: TRpMtCap)
 #define	emHD_Rt_MtSipCapGroup             "emHD_Rt_MtSipCapGroup"                 //硬终端sip呼叫音视频能力集(value: TRpMtCap)
@@ -389,6 +392,7 @@
 #define  emMt_Cfg_AudDecDynamicPayload   "emMt_Cfg_AudDecDynamicPayload"          //通用debug,  强解音频码流的载荷值(value:TDynamicPayload)
 #define  emMt_Cfg_TIgnoreBitrateZero     "emMt_Cfg_TIgnoreBitrateZero"            //通用debug,  是否忽略码率为0的设置(value:TBOOL32)
 #define  emMt_Cfg_T323AdditionalConfig   "emMt_Cfg_T323AdditionalConfig"          //通用debug,  323addtional设置(value:TMultiU32)
+#define  emMt_Cfg_TKeyFrameInterval      "emMt_Cfg_TKeyFrameInterval"             //通用debug,  关键帧发送间隔时间设置(value:TU32)
 
 //////debug key  end
 

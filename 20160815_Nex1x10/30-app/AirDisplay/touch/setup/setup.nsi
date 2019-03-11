@@ -146,6 +146,10 @@ Function isFileNoLack
 	${AndIf} ${FileExists} "$INSTDIR\mfc100u.dll"
 	${AndIf} ${FileExists} "$INSTDIR\msvcp100.dll"
 	${AndIf} ${FileExists} "$INSTDIR\msvcr100.dll"
+	;硬编码新增库
+	${AndIf} ${FileExists} "$INSTDIR\kdaudcodec.dll"
+	${AndIf} ${FileExists} "$INSTDIR\HwCodecWrapper.dll"
+	${AndIf} ${FileExists} "$INSTDIR\IntelHwWrapper.dll"
 	    Push "true"
 	${Else}
 	    Push "false"
@@ -212,6 +216,10 @@ Function MAINInstall32
   File "mfc100u.dll"
   File "msvcp100.dll"
   File "msvcr100.dll"
+  ;硬编码新增库
+  File "kdaudcodec.dll"
+  File "HwCodecWrapper.dll"
+  File "IntelHwWrapper.dll"
   
   Call onComplete
 FunctionEnd

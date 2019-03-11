@@ -1666,6 +1666,16 @@ enum EmBLLMtDeviceMsg
 	BODY(mt::TU32, tCamIdx)
 	BODY(mt::TMTFaceCheckInList, value)
 
+	 /*<<清理升级包存储空间的命令>>
+	* device <- sdk
+	*/
+    MESSAGE(Ev_MT_BLL_UploadZip_Cmd)
+
+    /*<<清理升级包存储空间的通知>>
+	* device -> sdk
+	*/
+    MESSAGE(Ev_MT_BLL_UploadZip_Ntf)
+
 #if !defined(_MESSAGE_HELP_)
     EV_BLL_END(DEVICE) = EVSEG_BLL_DEVICE_END
 };

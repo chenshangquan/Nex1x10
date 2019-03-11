@@ -115,8 +115,8 @@ void CBannerDlg::InitUI()
 
 void CBannerDlg::OnBannerClose()
 {
-	g_dlg->StopProjectScreen(true);
 	PRINTMSG_TIME("\r\nµã»÷Í£Ö¹Í¶ÆÁ°´Å¥\r\n");
+	g_dlg->StopProjectScreen(true);
 }
 
 int CBannerDlg::OnCreate(LPCREATESTRUCT lpCreateStruct) 

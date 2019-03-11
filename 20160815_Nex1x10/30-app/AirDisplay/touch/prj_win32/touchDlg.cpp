@@ -27,6 +27,9 @@ extern CtouchDlg * g_dlg;
 
 //语言类型
 EMLangID g_emLanType;
+//编码方式
+bool g_bHwEncStatus = false;  //是否为硬编码状态
+bool g_bHwEncSupport = false; //是否支持硬编硬解
 //用于响应默认音量变化
 HWND g_hVolumeCtrlDlg = NULL;
 GUID g_guidMyContext = GUID_NULL;
@@ -475,17 +478,44 @@ void VideoCapStdCB(u32 dwWidht, u32 dwHeight, u32 dwContext)
 	PRINTMSG("VideoCapStdCB:dwWidht:%d,dwHeight:%d,m_wEncVideoWidth:%d,m_wEncVideoHeight:%d\r\n",
 		dwWidht, dwHeight, tVideoEncParam.m_wEncVideoWidth,tVideoEncParam.m_wEncVideoHeight);
 
+    g_dlg->m_bOverResLimit = false;
+    g_dlg->m_bStretch = false;
+    g_dlg->m_bCapOverEncode = false;
+
 	//需求  --编码最大支持限制1080p
 	if ( dwWidht > 1920 && dwHeight > 1080)
 	{
+        // 超出限制分辨率投屏
+        if ( dwWidht > 3840 || dwHeight > 2160 )
+        {
+            g_dlg->m_bOverResLimit = true;
+        }
+
+        // 新增编码分辨率与采集不一致策略
+        if ( float(dwWidht)/float(dwHeight) >= 1.5 )    // 采集分辨率比例大于等于1.5 --不等比全屏
+        {
+            g_dlg->m_bStretch = true;
+            g_dlg->GetEncode().SetVidDecZoomPolicy( EN_ZOOM_SCALE );
+            PRINTMSG("不等比全屏\r\n");
+        }
+        else
+        {
+            g_dlg->GetEncode().SetVidDecZoomPolicy( EN_ZOOM_FILLBLACK );
+            PRINTMSG("等比加黑边\r\n");
+        }
+
 		dwWidht = 1920;
 		dwHeight = 1080;
 		g_dlg->m_bCapOverEncode = true;
 	}
-	tVideoEncParam.m_wEncVideoWidth = dwWidht;
-	tVideoEncParam.m_wEncVideoHeight = dwHeight;
-	g_dlg->GetEncode().SetVideoEncParam(tVideoEncParam);
-	
+
+    if ( !g_dlg->NeedCodeConsult() )
+    {
+        tVideoEncParam.m_wEncVideoWidth = dwWidht;
+        tVideoEncParam.m_wEncVideoHeight = dwHeight;
+        g_dlg->GetEncode().SetVideoEncParam(tVideoEncParam);
+    }
+
 	//定时发送帧率信息直到收到回复
 	KillTimer(g_dlg->GetSafeHwnd(), SendWidthHeightFrameTimerID);
 	SetTimer(g_dlg->GetSafeHwnd(), SendWidthHeightFrameTimerID, 100, NULL);
@@ -531,6 +561,7 @@ CtouchDlg::CtouchDlg(CWnd* pParent /*=NULL*/)
 
 	m_bCapOverEncode = false;
 	m_bStretch = false;
+    m_bOverResLimit = false;
 
 	m_bBusinessStaus = true;
 	m_bNeedCodeConsult = FALSE;
@@ -822,6 +853,23 @@ BOOL CtouchDlg::OnInitDialog()
     else
     {
         g_emLanType = enumLangIdENG;
+    }
+
+    // 获取软硬编状态
+    TKdvEncStatus tKdvEncStatus;
+    memset(&tKdvEncStatus,0,sizeof(TKdvEncStatus));
+    m_cEncoder.GetEncoderStatus(tKdvEncStatus);  //获取编码器状态
+    if (tKdvEncStatus.m_emHwStatus == en_SupportedAndOpened)
+    {
+        //支持硬编硬解，当前为硬编码状态
+        g_bHwEncSupport = true;
+        g_bHwEncStatus = true;
+    }
+    else
+    {
+        //不支持硬编硬解，当前为软编码状态
+        g_bHwEncSupport = false;
+        g_bHwEncStatus = false;
     }
 
 	InitUI();
@@ -1328,7 +1376,21 @@ LRESULT CtouchDlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 			SendMessage(WM_PCREBOOTCLOSE_MSG, 0, 0);
 		}
 		break;
-	}	  
+    case WM_DISPLAYCHANGE:
+        {
+            //投屏器插入未投屏
+            if (m_bHidOpen && !m_bIsProjecting)
+            {
+                CheckResolution();
+                if ( !m_bOverResLimit )
+                {
+                    //显示已连接画面
+                    m_pcMainDlg->ShowConnectStatus(NET_STATUS_CONNECTED);
+                }
+            } 
+        }
+        break;
+	}
 	return CDialogEx::WindowProc(message, wParam, lParam);
 }
 
@@ -1518,9 +1580,21 @@ void CtouchDlg::InitVideoEncoderParam(u8 byVideoType)
 		tVideoEncParam.m_byFrameRate = 30;
 		tVideoEncParam.m_wEncVideoWidth = 1920;
 		tVideoEncParam.m_wEncVideoHeight = 1080;
-		tVideoEncParam.m_wBitRate = /*1536*/2048;
-		tVideoEncParam.m_wMinBitRate = 2048;
-		tVideoEncParam.m_wMaxBitRate = 10240;
+        // 软编码码率为2M，硬编码为保持同等画质，需提高码率，暂定为4M
+        if (g_bHwEncStatus)
+        {
+            PRINTMSG("HwEnc\r\n");
+            tVideoEncParam.m_wBitRate = /*1536*/4096;
+            tVideoEncParam.m_wMaxBitRate = 10240;
+            tVideoEncParam.m_wMinBitRate = 4096;
+        }
+        else
+        {
+            PRINTMSG("SfEnc\r\n");
+            tVideoEncParam.m_wBitRate = /*1536*/2048;
+            tVideoEncParam.m_wMaxBitRate = 2048;
+            tVideoEncParam.m_wMinBitRate = 2048;
+        }
 		tVideoEncParam.m_byEncLevel = 1;//1-bp,3-HP
 		break;
 	case MEDIA_TYPE_H262:
@@ -1566,9 +1640,10 @@ void CtouchDlg::InitVideoEncoderParam(u8 byVideoType)
 		tVideoEncParam.m_wEncVideoHeight = nHeight;
 	}
 
+    m_cEncoder.SetVideoEncParam(tVideoEncParam);
+
 	if ( m_bCapOverEncode )
 	{
-		//m_cEncoder.SetVidDecZoomPolicy( EN_ZOOM_FILLBLACK );
         // 采集分辨率比例大于等于1.5时，不等比全屏；反之，等比加黑边
         if (m_bStretch)
         {
@@ -1581,8 +1656,6 @@ void CtouchDlg::InitVideoEncoderParam(u8 byVideoType)
             PRINTMSG("等比加黑边\r\n");
         }
 	}
-
-	m_cEncoder.SetVideoEncParam(tVideoEncParam);
 
 	//检测笔记本电量状态
 	CheckBatteryStatus();
@@ -1734,8 +1807,29 @@ void CtouchDlg::SolveReadInfo(BYTE* recvDataBuf)
 			PRINTMSG("读线程--收到反控回复消息Ev_NV_WidthHeightFrame_Ntf\r\n");
 			KillTimer(SendWidthHeightFrameTimerID);
 
-			//显示已连接画面
-			SolveNetStatusNty(NET_STATUS_CONNECTED);
+            //超出限制分辨率投屏，投屏失败
+            if (m_bOverResLimit)
+            {
+                if (m_bIsProjecting)
+                {
+                    if (m_pcMainDlg)
+                    {
+                        m_pcMainDlg->ShowConnectPicture(CONNECT_OVER_RESOLUTION_LIMIT);
+                    }
+                    StopProjectScreen(true);
+                    PRINTMSG("超出限制分辨率投屏，投屏失败\r\n");
+                }
+                else
+                {
+                    //显示已连接画面
+                    SolveNetStatusNty(NET_STATUS_CONNECTED);
+                }
+            }
+            else
+            {
+                //显示已连接画面
+                SolveNetStatusNty(NET_STATUS_CONNECTED);
+            }
 		}
 		break;
 	case Ev_NV_PCDisconnet_Ntf:
@@ -1884,6 +1978,18 @@ void CtouchDlg::SolveReadInfo(BYTE* recvDataBuf)
 			wBitRate = wBitRate | byRateLow;
 			m_tVideoEncParam.m_wBitRate = wBitRate;
 
+            // H264 BitRate < 3M 时，采用恒定码率控制cbr
+            if ( m_tVideoEncParam.m_byEncType == MEDIA_TYPE_H264 && wBitRate < 3072 )
+            {
+                m_tVideoEncParam.m_wMaxBitRate = wBitRate;
+                m_tVideoEncParam.m_wMinBitRate = wBitRate;
+            }
+            else
+            {
+                m_tVideoEncParam.m_wMaxBitRate = 10240;
+                m_tVideoEncParam.m_wMinBitRate = 2048;
+            }
+
 			PRINTMSG("读线程--收到消息Ev_Nv_CodeRate_Cmd, wBitRate:%d\r\n", wBitRate);
 		}
 		break;
@@ -1944,10 +2050,20 @@ void CtouchDlg::SendCmdToHid( int nCmd )
 
 			TFrameInfo tFrameInfo;
 			memset(&tFrameInfo, 0, sizeof(TFrameInfo));
-			tFrameInfo.m_dwPCWidth = nWidth;
-			tFrameInfo.m_dwPCHeight = nHeight;
-			tFrameInfo.m_dwFrame = 30;
-			tFrameInfo.m_dwBitRate = 2048;
+            if ( m_bNeedCodeConsult )
+            {
+                tFrameInfo.m_dwPCWidth = m_tVideoEncParam.m_wEncVideoWidth;
+                tFrameInfo.m_dwPCHeight = m_tVideoEncParam.m_wEncVideoHeight;
+                tFrameInfo.m_dwFrame = m_tVideoEncParam.m_byFrameRate;
+                tFrameInfo.m_dwBitRate = m_tVideoEncParam.m_wBitRate;
+            }
+            else
+            {
+                tFrameInfo.m_dwPCWidth = nWidth;
+                tFrameInfo.m_dwPCHeight = nHeight;
+                tFrameInfo.m_dwFrame = 30;
+                tFrameInfo.m_dwBitRate = 2048;
+            }
 
 			BYTE acBuf[LENTH_OUT_BUFFER_CMD] = {0};
 			acBuf[0] = Ev_NV_WidthHeightFrame_Cmd; 
@@ -2022,10 +2138,22 @@ void CtouchDlg::StartProjectScreen()
 
 	if (!m_bIsProjecting)
 	{
+        //超出限制分辨率（3840*2160），投屏失败
+        if (m_bOverResLimit)
+        {
+            PRINTMSG("超出限制分辨率投屏，投屏失败\r\n");
+            m_pcMainDlg->ShowConnectPicture(CONNECT_OVER_RESOLUTION_LIMIT);
+            Sleep(1000);  //按键保护
+            SendCmdToHid(Ev_NV_StopProjecting_Cmd);
+            return;
+        }
+
 		//设置默认音频设备
 		InitDefaultAudioDevice();
 		//设置音量控制
 		InitVolumeCtrl();
+        //停止投屏时该标志位会被清空，需要重新初始化
+        InitAudioEncoderParam(AUDIO_MODE_BEST);
 
 		m_bIsProjecting = true;
 		bFirstKeyFrame = FALSE;
@@ -2034,13 +2162,14 @@ void CtouchDlg::StartProjectScreen()
 		StartAVThread();
 
 		if ( m_bNeedCodeConsult )
-		{			
+		{
 			m_cEncoder.SetVideoEncParam(m_tVideoEncParam);
 		}
 		else
 		{
 			InitVideoEncoderParam(MEDIA_TYPE_H264);//视频分辨率可能会人为改变，需要重新初始化
-		}	
+		}
+
 		OnStartScreenCatch();
 	}
 	else
@@ -2055,7 +2184,7 @@ void CtouchDlg::StopProjectScreen(bool bNotifyHid)
 	{
 		return;
 	}
-	
+
 	if (m_bIsProjecting)
 	{
 		//取消默认音频设备
@@ -2078,7 +2207,7 @@ void CtouchDlg::StopProjectScreen(bool bNotifyHid)
 		if (bNotifyHid)
 		{
 			SendCmdToHid(Ev_NV_StopProjecting_Cmd);
-	    }	
+	    }
 	}
 }
 
@@ -2095,9 +2224,10 @@ void CtouchDlg::SolveNetStatusNty( NET_STATUS emStatus )
 			if ( emStatus == NET_STATUS_DISCONNECTED
 				|| emStatus == NET_STATUS_NO_NETWORK
 				|| emStatus == NET_STATUS_NO_MATCH
-		        || emStatus == NET_STATUS_CONNECTING
+				|| emStatus == NET_STATUS_CONNECTING
 				|| emStatus == NET_STATUS_RESETQUICKSHARE
-				|| emStatus == NET_STATUS_RESETWIFI )
+				|| emStatus == NET_STATUS_RESETWIFI
+				|| emStatus == NET_STATUS_FIND_SSID_FAIL )
 			{
 				StopProjectScreen(true);
 				m_pcMainDlg->ShowConnectStatus(emStatus);
@@ -2348,17 +2478,19 @@ void CtouchDlg::GetResolution(int &nWidth, int &nHeight)
 {
 	int nWid = GetSystemMetrics(SM_CXSCREEN);
 	int nHei = GetSystemMetrics(SM_CYSCREEN);
+    PRINTMSG("当前系统分辨率：nWid = %d, nHei = %d\r\n", nWid, nHei);
 	if ( 1366 == nWid && 768 == nHei )
 	{
 		nWid = 1376;
 	}
 
+    m_bStretch = false;
+    m_bCapOverEncode = false;
+
 	//需求  --编码最大支持限制
-	m_bCapOverEncode = false;
-	if ( nWid > 1920 && nHei > 1080)
+	if ( nWid > 1920 && nHei > 1080 )
 	{
         // 新增编码分辨率与采集不一致策略
-        m_bStretch = false;
         if ( float(nWid)/float(nHei) >= 1.5 )    // 采集分辨率比例大于等于1.5 --不等比全屏
         {
             m_bStretch = true;
@@ -2371,6 +2503,20 @@ void CtouchDlg::GetResolution(int &nWidth, int &nHeight)
 
 	nWidth = nWid;
 	nHeight = nHei;
+}
+
+void CtouchDlg::CheckResolution()
+{
+    int nWid = GetSystemMetrics(SM_CXSCREEN);
+    int nHei = GetSystemMetrics(SM_CYSCREEN);
+
+    m_bOverResLimit = false;
+    // 超出限制分辨率投屏
+    if ( nWid > 3840 || nHei > 2160 )
+    {
+        PRINTMSG("超出限制分辨率：nWid = %d, nHei = %d\r\n", nWid, nHei);
+        m_bOverResLimit = true;
+    }
 }
 
 LRESULT CtouchDlg::OnOpenHidDevSuccess( WPARAM wParam, LPARAM lParam )
@@ -2411,11 +2557,13 @@ LRESULT CtouchDlg::OnOpenHidDevSuccess( WPARAM wParam, LPARAM lParam )
 	AfxBeginThread(ThreadPpt, this);
 
 	//台标
-	SetLogo();
+	//SetLogo();  //根据问题单号：SDM-00134016，去除台标
 	//设置音频及回调
 	InitEncoderParam();
 	//检查音频设备
 	CheckDedaultAudioDevice();
+    //检查当前系统分辨率
+    CheckResolution();
 
 	//检测笔记本电池电量定时器
 	SetTimer(BatteryPowerTimerID, 30000, NULL);
@@ -3120,9 +3268,21 @@ void CtouchDlg::SetConsultVideoParam(u8 byVideoType)
 		tVideoEncParam.m_byFrameRate = 30;
 		tVideoEncParam.m_wEncVideoWidth = 1920;
 		tVideoEncParam.m_wEncVideoHeight = 1080;
-		tVideoEncParam.m_wBitRate = 2048;
-		tVideoEncParam.m_wMinBitRate = 2048;
-		tVideoEncParam.m_wMaxBitRate = 10240;
+        // 软编码码率为2M，硬编码为保持同等画质，需提高码率，暂定为4M
+        if (g_bHwEncStatus)
+        {
+            PRINTMSG("HwEnc\r\n");
+            tVideoEncParam.m_wBitRate = /*1536*/4096;
+            tVideoEncParam.m_wMaxBitRate = 10240;
+            tVideoEncParam.m_wMinBitRate = 4096;
+        }
+        else
+        {
+            PRINTMSG("SfEnc\r\n");
+            tVideoEncParam.m_wBitRate = /*1536*/2048;
+            tVideoEncParam.m_wMaxBitRate = 2048;
+            tVideoEncParam.m_wMinBitRate = 2048;
+        }
 		tVideoEncParam.m_byEncLevel = 1;//1-bp,3-HP
 		break;
 	case MEDIA_TYPE_H262:
@@ -3166,6 +3326,21 @@ void CtouchDlg::SetConsultVideoParam(u8 byVideoType)
 
 	m_tVideoEncParam = tVideoEncParam;
 	//m_cEncoder.SetVideoEncParam(tVideoEncParam);
+
+    if ( m_bCapOverEncode )
+    {
+        // 采集分辨率比例大于等于1.5时，不等比全屏；反之，等比加黑边
+        if (m_bStretch)
+        {
+            m_cEncoder.SetVidDecZoomPolicy( EN_ZOOM_SCALE );
+            PRINTMSG("不等比全屏\r\n");
+        }
+        else
+        {
+            m_cEncoder.SetVidDecZoomPolicy( EN_ZOOM_FILLBLACK );
+            PRINTMSG("等比加黑边\r\n");
+        }
+    }
 }
 
 void CtouchDlg::MediaTypeToAudioMode( u8 byMediatype, u8& byRatio )
@@ -3237,4 +3412,14 @@ void CtouchDlg::MediaTypeToAudioMode( u8 byMediatype, u8& byRatio )
 	default:
 		break;
 	}
+}
+
+bool CtouchDlg::NeedCodeConsult()
+{
+    if (m_bNeedCodeConsult)
+    {
+        return true;
+    }
+
+    return false;
 }

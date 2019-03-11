@@ -3091,6 +3091,51 @@ inline bool EmSusNotUpgradeReason_Parse(
   return ::google::protobuf::internal::ParseNamedEnum<EmSusNotUpgradeReason>(
     EmSusNotUpgradeReason_descriptor(), name, value);
 }
+enum EmNvLogLevel {
+  emLogHint = 0,
+  emLOgWarning = 1,
+  emLogError = 2,
+  emLogDebug = 3
+};
+MTMSG_API bool EmNvLogLevel_IsValid(int value);
+const EmNvLogLevel EmNvLogLevel_MIN = emLogHint;
+const EmNvLogLevel EmNvLogLevel_MAX = emLogDebug;
+const int EmNvLogLevel_ARRAYSIZE = EmNvLogLevel_MAX + 1;
+
+MTMSG_API const ::google::protobuf::EnumDescriptor* EmNvLogLevel_descriptor();
+inline const ::std::string& EmNvLogLevel_Name(EmNvLogLevel value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    EmNvLogLevel_descriptor(), value);
+}
+inline bool EmNvLogLevel_Parse(
+    const ::std::string& name, EmNvLogLevel* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<EmNvLogLevel>(
+    EmNvLogLevel_descriptor(), name, value);
+}
+enum EmNvUpgradeFailReason {
+  emUpgradeSuc = 0,
+  emNoPackage = 1,
+  emUnpackFail = 2,
+  emNoEnoughSpace = 3,
+  emLackUpgradeFile = 4,
+  emUpgradeImixFail = 5,
+  emUnknowReason = 6
+};
+MTMSG_API bool EmNvUpgradeFailReason_IsValid(int value);
+const EmNvUpgradeFailReason EmNvUpgradeFailReason_MIN = emUpgradeSuc;
+const EmNvUpgradeFailReason EmNvUpgradeFailReason_MAX = emUnknowReason;
+const int EmNvUpgradeFailReason_ARRAYSIZE = EmNvUpgradeFailReason_MAX + 1;
+
+MTMSG_API const ::google::protobuf::EnumDescriptor* EmNvUpgradeFailReason_descriptor();
+inline const ::std::string& EmNvUpgradeFailReason_Name(EmNvUpgradeFailReason value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    EmNvUpgradeFailReason_descriptor(), value);
+}
+inline bool EmNvUpgradeFailReason_Parse(
+    const ::std::string& name, EmNvUpgradeFailReason* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<EmNvUpgradeFailReason>(
+    EmNvUpgradeFailReason_descriptor(), name, value);
+}
 // ===================================================================
 
 
@@ -3567,6 +3612,14 @@ inline const EnumDescriptor* GetEnumDescriptor< ::nv::EmSusUpgradeModule>() {
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::nv::EmSusNotUpgradeReason>() {
   return ::nv::EmSusNotUpgradeReason_descriptor();
+}
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::nv::EmNvLogLevel>() {
+  return ::nv::EmNvLogLevel_descriptor();
+}
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::nv::EmNvUpgradeFailReason>() {
+  return ::nv::EmNvUpgradeFailReason_descriptor();
 }
 
 }  // namespace google

@@ -2,15 +2,18 @@
 #define _MT_MTAIADAPTER_H_
 
 #include "kdvtype.h"
-#include "mtconst.h"
 #include <string.h>
+
+#define MT_STR_LEN_64		(u32)64
+#define MT_STR_LEN_16		(u32)16
+
 
 typedef s32 (*MtAiAdapter_Callback)(void *pUserdata, s32 nType, s8 *pData, s32 nLen);
 
 typedef struct tagTMtAiAdatperInitCfg
 {
-	s8 achProductId[MT_STR_LEN_64+1];
-	s8 achProfileFilePath[MT_STR_LEN_64+1];
+	s8 achProductId[MT_STR_LEN_64+1];       // "278576968"
+	s8 achProfileFilePath[MT_STR_LEN_64+1]; // 填写authkey.txt路径
 	
 	tagTMtAiAdatperInitCfg()
 	{
@@ -20,9 +23,9 @@ typedef struct tagTMtAiAdatperInitCfg
 
 typedef struct tagTMtWakeupCfg
 {
-	s8 achResBinPath[MT_STR_LEN_64+1];
-	MtAiAdapter_Callback  cbCallback;
-	void* pUserData;
+	s8 achResBinPath[MT_STR_LEN_64+1];  //填写 wakeup.bin文件路径
+	MtAiAdapter_Callback  cbCallback;   //回调函数，有回调可认为唤醒，回调内容先不关心(其实里面也有信任度，暂时不用)
+	void* pUserData;                    //上下文
 
 	tagTMtWakeupCfg()
 	{
@@ -34,9 +37,9 @@ typedef struct tagTMtWakeupCfg
 typedef struct tagTMtWakeupParam 
 {
 
-	s8 achWakeupPinyin[MT_STR_LEN_64+1];
-	s8 achThresh[MT_STR_LEN_16+1]; ///0-1之间
-	s8 achMajor[MT_STR_LEN_16+1];
+	s8 achWakeupPinyin[MT_STR_LEN_64+1];//例如 ni hao xiao ke
+	s8 achThresh[MT_STR_LEN_16+1]; ///0-1之间，值越小，越容易唤醒
+	s8 achMajor[MT_STR_LEN_16+1];  // 一般填写 1
 	tagTMtWakeupParam()
 	{
 		memset(this, 0, sizeof(tagTMtWakeupParam) );
@@ -47,7 +50,7 @@ typedef struct tagTMtWakeupParam
 
 typedef struct tagTMtVadCfg
 {
-	s8 achResBinPath[MT_STR_LEN_64+1];    //vad资源地址，必选
+	s8 achResBinPath[MT_STR_LEN_64+1];    //填写 vad.bin文件路径，必选
 	u16 wPauseTime;                    //停顿多长时间，认为vad结束，单位ms，可选
 	MtAiAdapter_Callback  cbCallback;  //回调函数，会返回json和binary两种类型的数据，其中json描述音频的开始和结束状态，binary为vad处理之后的
 	void* pUserData;
@@ -62,12 +65,12 @@ typedef struct tagTMtVadCfg
 
 typedef struct tagTMtAsrCfg
 {
-	s8 achGramResBinPath[MT_STR_LEN_64+1];    //语法编译资源路径，必选
-	s8 achOutputPath[MT_STR_LEN_64+1];    //生成的语法文件路径，必选
-	s8 achXbnfFile[MT_STR_LEN_64+1];      ///xbnf格式的说法文件
-	s8 achAsrResBinPath[MT_STR_LEN_64+1]; //识别资源文件，必选
+	s8 achGramResBinPath[MT_STR_LEN_64+1];    //填写 gramebnfc.bin文件路径，必选
+	s8 achOutputPath[MT_STR_LEN_64+1];    //填写要生成 gramoutput.bin文件路径(文件名可自己命名)，必选
+	s8 achXbnfFile[MT_STR_LEN_64+1];      ///填写 gram.xbnf文件路径
+	s8 achAsrResBinPath[MT_STR_LEN_64+1]; //填写 asrebnfr.bin文件路径，必选
 
-	MtAiAdapter_Callback  cbCallback;  //回调函数，会返回json和binary两种类型的数据，其中json描述音频的开始和结束状态，binary为vad处理之后的
+	MtAiAdapter_Callback  cbCallback;  //回调函数，会返回json和binary两种类型的数据，其中json可解析到行为，binary为音频数据
 	void* pUserData;
 
 	tagTMtAsrCfg()
@@ -76,11 +79,12 @@ typedef struct tagTMtAsrCfg
 	}
 }TMtAsrCfg;
 
+//cntts语音合成，目前可不用
 typedef struct tagTMtCnttsCfg
 {
-	s8 achResBinPath[MT_STR_LEN_64+1];    //vad资源地址，必选
-	s8 achDictPath[MT_STR_LEN_64+1];
-	MtAiAdapter_Callback  cbCallback;  //回调函数，会返回json和binary两种类型的数据，其中json描述音频的开始和结束状态，binary为vad处理之后的
+	s8 achResBinPath[MT_STR_LEN_64+1];    //填写zhilingf.bin文件路径，必选
+	s8 achDictPath[MT_STR_LEN_64+1];      //填写sent_dict.db文件路径, 必选
+	MtAiAdapter_Callback  cbCallback;  //回调函数，会返回json和binary两种类型的数据，binary为合成语音数据pcm格式
 	void* pUserData;
 
 	tagTMtCnttsCfg()

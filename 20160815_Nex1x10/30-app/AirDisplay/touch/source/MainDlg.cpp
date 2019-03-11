@@ -232,6 +232,13 @@ void CMainDlg::ShowConnectStatus(NET_STATUS emNetStatus)
 			ShowConnectPicture(CONNECT_FAIL);
 		}
 		break;
+    case NET_STATUS_FIND_SSID_FAIL:
+        {
+            m_stTip.SetWindowText(STRING_NET_STATUS_FIND_SSID_FAIL);
+            m_stTipDes.SetWindowText(STRING_DES_NET_STATUS_FIND_SSID_FAIL);
+            ShowConnectPicture(CONNECT_FAIL);
+        }
+        break;
 
 	}
 }
@@ -289,6 +296,20 @@ void CMainDlg::ShowConnectPicture(CONNECT_STATUS emConnectStatus)
 			m_stGifConnectSuccess.ShowWindow(SW_HIDE);
 		}
 		break;
+    case CONNECT_OVER_RESOLUTION_LIMIT:
+        {
+            m_stTip.SetWindowText(STRING_CONNECT_RESOLUTION_LIMITED);
+            m_stTipDes.SetWindowText(STRING_DES_CONNECT_RESOLUTION_LIMITED);
+
+            m_btnPicBk.ShowWindow(SW_SHOW);
+            m_btnPicConnectFail.ShowWindow(SW_SHOW);
+
+            m_stGifConnecting.StopGif();
+            m_stGifConnecting.ShowWindow(SW_HIDE);
+            m_stGifConnectSuccess.StopGif();
+            m_stGifConnectSuccess.ShowWindow(SW_HIDE);
+        }
+        break;
 	}
 }
 

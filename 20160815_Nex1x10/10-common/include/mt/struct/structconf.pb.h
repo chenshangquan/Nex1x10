@@ -7561,6 +7561,13 @@ class MTMSG_API TMtConfInfo : public ::google::protobuf::Message {
   inline ::std::string* release_conf_e164();
   inline void set_allocated_conf_e164(::std::string* conf_e164);
 
+  // optional bool is_enc_pwd = 24;
+  inline bool has_is_enc_pwd() const;
+  inline void clear_is_enc_pwd();
+  static const int kIsEncPwdFieldNumber = 24;
+  inline bool is_enc_pwd() const;
+  inline void set_is_enc_pwd(bool value);
+
   // optional .mt.TMtId chairman = 11;
   inline bool has_chairman() const;
   inline void clear_chairman();
@@ -7682,6 +7689,8 @@ class MTMSG_API TMtConfInfo : public ::google::protobuf::Message {
   inline void clear_has_conf_name();
   inline void set_has_conf_e164();
   inline void clear_has_conf_e164();
+  inline void set_has_is_enc_pwd();
+  inline void clear_has_is_enc_pwd();
   inline void set_has_chairman();
   inline void clear_has_chairman();
   inline void set_has_speaker();
@@ -7725,18 +7734,19 @@ class MTMSG_API TMtConfInfo : public ::google::protobuf::Message {
   ::mt::TMtId* speaker_;
   ::mt::TMtVmpParam* vmp_param_;
   ::mt::TMtMixParam* mix_param_;
-  int open_mode_;
+  bool is_enc_pwd_;
   bool bsat_dcast_mode_;
   bool is_occupy_vpu_;
   bool is_all_init_dumb_;
-  bool is_conf_no_disturb_;
+  int open_mode_;
   int dual_mode_;
+  bool is_conf_no_disturb_;
   bool is_port_mode_;
   bool is_force_broadcast_;
   ::google::protobuf::uint32 record_mode_;
 
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(23 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(24 + 31) / 32];
 
   friend void MTMSG_API protobuf_AddDesc_structconf_2eproto();
   friend void protobuf_AssignDesc_structconf_2eproto();
@@ -23308,15 +23318,37 @@ inline void TMtConfInfo::set_allocated_conf_e164(::std::string* conf_e164) {
   }
 }
 
-// optional .mt.TMtId chairman = 11;
-inline bool TMtConfInfo::has_chairman() const {
+// optional bool is_enc_pwd = 24;
+inline bool TMtConfInfo::has_is_enc_pwd() const {
   return (_has_bits_[0] & 0x00000400u) != 0;
 }
-inline void TMtConfInfo::set_has_chairman() {
+inline void TMtConfInfo::set_has_is_enc_pwd() {
   _has_bits_[0] |= 0x00000400u;
 }
-inline void TMtConfInfo::clear_has_chairman() {
+inline void TMtConfInfo::clear_has_is_enc_pwd() {
   _has_bits_[0] &= ~0x00000400u;
+}
+inline void TMtConfInfo::clear_is_enc_pwd() {
+  is_enc_pwd_ = false;
+  clear_has_is_enc_pwd();
+}
+inline bool TMtConfInfo::is_enc_pwd() const {
+  return is_enc_pwd_;
+}
+inline void TMtConfInfo::set_is_enc_pwd(bool value) {
+  set_has_is_enc_pwd();
+  is_enc_pwd_ = value;
+}
+
+// optional .mt.TMtId chairman = 11;
+inline bool TMtConfInfo::has_chairman() const {
+  return (_has_bits_[0] & 0x00000800u) != 0;
+}
+inline void TMtConfInfo::set_has_chairman() {
+  _has_bits_[0] |= 0x00000800u;
+}
+inline void TMtConfInfo::clear_has_chairman() {
+  _has_bits_[0] &= ~0x00000800u;
 }
 inline void TMtConfInfo::clear_chairman() {
   if (chairman_ != NULL) chairman_->::mt::TMtId::Clear();
@@ -23348,13 +23380,13 @@ inline void TMtConfInfo::set_allocated_chairman(::mt::TMtId* chairman) {
 
 // optional .mt.TMtId speaker = 12;
 inline bool TMtConfInfo::has_speaker() const {
-  return (_has_bits_[0] & 0x00000800u) != 0;
+  return (_has_bits_[0] & 0x00001000u) != 0;
 }
 inline void TMtConfInfo::set_has_speaker() {
-  _has_bits_[0] |= 0x00000800u;
+  _has_bits_[0] |= 0x00001000u;
 }
 inline void TMtConfInfo::clear_has_speaker() {
-  _has_bits_[0] &= ~0x00000800u;
+  _has_bits_[0] &= ~0x00001000u;
 }
 inline void TMtConfInfo::clear_speaker() {
   if (speaker_ != NULL) speaker_->::mt::TMtId::Clear();
@@ -23386,13 +23418,13 @@ inline void TMtConfInfo::set_allocated_speaker(::mt::TMtId* speaker) {
 
 // optional .mt.TMtVmpParam vmp_param = 13;
 inline bool TMtConfInfo::has_vmp_param() const {
-  return (_has_bits_[0] & 0x00001000u) != 0;
+  return (_has_bits_[0] & 0x00002000u) != 0;
 }
 inline void TMtConfInfo::set_has_vmp_param() {
-  _has_bits_[0] |= 0x00001000u;
+  _has_bits_[0] |= 0x00002000u;
 }
 inline void TMtConfInfo::clear_has_vmp_param() {
-  _has_bits_[0] &= ~0x00001000u;
+  _has_bits_[0] &= ~0x00002000u;
 }
 inline void TMtConfInfo::clear_vmp_param() {
   if (vmp_param_ != NULL) vmp_param_->::mt::TMtVmpParam::Clear();
@@ -23424,13 +23456,13 @@ inline void TMtConfInfo::set_allocated_vmp_param(::mt::TMtVmpParam* vmp_param) {
 
 // optional .mt.TMtMixParam mix_param = 14;
 inline bool TMtConfInfo::has_mix_param() const {
-  return (_has_bits_[0] & 0x00002000u) != 0;
+  return (_has_bits_[0] & 0x00004000u) != 0;
 }
 inline void TMtConfInfo::set_has_mix_param() {
-  _has_bits_[0] |= 0x00002000u;
+  _has_bits_[0] |= 0x00004000u;
 }
 inline void TMtConfInfo::clear_has_mix_param() {
-  _has_bits_[0] &= ~0x00002000u;
+  _has_bits_[0] &= ~0x00004000u;
 }
 inline void TMtConfInfo::clear_mix_param() {
   if (mix_param_ != NULL) mix_param_->::mt::TMtMixParam::Clear();
@@ -23462,13 +23494,13 @@ inline void TMtConfInfo::set_allocated_mix_param(::mt::TMtMixParam* mix_param) {
 
 // optional bool bsat_dcast_mode = 15;
 inline bool TMtConfInfo::has_bsat_dcast_mode() const {
-  return (_has_bits_[0] & 0x00004000u) != 0;
+  return (_has_bits_[0] & 0x00008000u) != 0;
 }
 inline void TMtConfInfo::set_has_bsat_dcast_mode() {
-  _has_bits_[0] |= 0x00004000u;
+  _has_bits_[0] |= 0x00008000u;
 }
 inline void TMtConfInfo::clear_has_bsat_dcast_mode() {
-  _has_bits_[0] &= ~0x00004000u;
+  _has_bits_[0] &= ~0x00008000u;
 }
 inline void TMtConfInfo::clear_bsat_dcast_mode() {
   bsat_dcast_mode_ = false;
@@ -23484,13 +23516,13 @@ inline void TMtConfInfo::set_bsat_dcast_mode(bool value) {
 
 // optional .mt.EmMtOpenMode open_mode = 16;
 inline bool TMtConfInfo::has_open_mode() const {
-  return (_has_bits_[0] & 0x00008000u) != 0;
+  return (_has_bits_[0] & 0x00010000u) != 0;
 }
 inline void TMtConfInfo::set_has_open_mode() {
-  _has_bits_[0] |= 0x00008000u;
+  _has_bits_[0] |= 0x00010000u;
 }
 inline void TMtConfInfo::clear_has_open_mode() {
-  _has_bits_[0] &= ~0x00008000u;
+  _has_bits_[0] &= ~0x00010000u;
 }
 inline void TMtConfInfo::clear_open_mode() {
   open_mode_ = 1;
@@ -23507,13 +23539,13 @@ inline void TMtConfInfo::set_open_mode(::mt::EmMtOpenMode value) {
 
 // optional bool is_occupy_vpu = 17;
 inline bool TMtConfInfo::has_is_occupy_vpu() const {
-  return (_has_bits_[0] & 0x00010000u) != 0;
+  return (_has_bits_[0] & 0x00020000u) != 0;
 }
 inline void TMtConfInfo::set_has_is_occupy_vpu() {
-  _has_bits_[0] |= 0x00010000u;
+  _has_bits_[0] |= 0x00020000u;
 }
 inline void TMtConfInfo::clear_has_is_occupy_vpu() {
-  _has_bits_[0] &= ~0x00010000u;
+  _has_bits_[0] &= ~0x00020000u;
 }
 inline void TMtConfInfo::clear_is_occupy_vpu() {
   is_occupy_vpu_ = false;
@@ -23529,13 +23561,13 @@ inline void TMtConfInfo::set_is_occupy_vpu(bool value) {
 
 // optional .mt.EmMtDualMode dual_mode = 18 [default = MT_DUAL_MODE_EVERYONE];
 inline bool TMtConfInfo::has_dual_mode() const {
-  return (_has_bits_[0] & 0x00020000u) != 0;
+  return (_has_bits_[0] & 0x00040000u) != 0;
 }
 inline void TMtConfInfo::set_has_dual_mode() {
-  _has_bits_[0] |= 0x00020000u;
+  _has_bits_[0] |= 0x00040000u;
 }
 inline void TMtConfInfo::clear_has_dual_mode() {
-  _has_bits_[0] &= ~0x00020000u;
+  _has_bits_[0] &= ~0x00040000u;
 }
 inline void TMtConfInfo::clear_dual_mode() {
   dual_mode_ = 1;
@@ -23552,13 +23584,13 @@ inline void TMtConfInfo::set_dual_mode(::mt::EmMtDualMode value) {
 
 // optional bool is_all_init_dumb = 19;
 inline bool TMtConfInfo::has_is_all_init_dumb() const {
-  return (_has_bits_[0] & 0x00040000u) != 0;
+  return (_has_bits_[0] & 0x00080000u) != 0;
 }
 inline void TMtConfInfo::set_has_is_all_init_dumb() {
-  _has_bits_[0] |= 0x00040000u;
+  _has_bits_[0] |= 0x00080000u;
 }
 inline void TMtConfInfo::clear_has_is_all_init_dumb() {
-  _has_bits_[0] &= ~0x00040000u;
+  _has_bits_[0] &= ~0x00080000u;
 }
 inline void TMtConfInfo::clear_is_all_init_dumb() {
   is_all_init_dumb_ = false;
@@ -23574,13 +23606,13 @@ inline void TMtConfInfo::set_is_all_init_dumb(bool value) {
 
 // optional bool is_conf_no_disturb = 20;
 inline bool TMtConfInfo::has_is_conf_no_disturb() const {
-  return (_has_bits_[0] & 0x00080000u) != 0;
+  return (_has_bits_[0] & 0x00100000u) != 0;
 }
 inline void TMtConfInfo::set_has_is_conf_no_disturb() {
-  _has_bits_[0] |= 0x00080000u;
+  _has_bits_[0] |= 0x00100000u;
 }
 inline void TMtConfInfo::clear_has_is_conf_no_disturb() {
-  _has_bits_[0] &= ~0x00080000u;
+  _has_bits_[0] &= ~0x00100000u;
 }
 inline void TMtConfInfo::clear_is_conf_no_disturb() {
   is_conf_no_disturb_ = false;
@@ -23596,13 +23628,13 @@ inline void TMtConfInfo::set_is_conf_no_disturb(bool value) {
 
 // optional bool is_port_mode = 21;
 inline bool TMtConfInfo::has_is_port_mode() const {
-  return (_has_bits_[0] & 0x00100000u) != 0;
+  return (_has_bits_[0] & 0x00200000u) != 0;
 }
 inline void TMtConfInfo::set_has_is_port_mode() {
-  _has_bits_[0] |= 0x00100000u;
+  _has_bits_[0] |= 0x00200000u;
 }
 inline void TMtConfInfo::clear_has_is_port_mode() {
-  _has_bits_[0] &= ~0x00100000u;
+  _has_bits_[0] &= ~0x00200000u;
 }
 inline void TMtConfInfo::clear_is_port_mode() {
   is_port_mode_ = false;
@@ -23618,13 +23650,13 @@ inline void TMtConfInfo::set_is_port_mode(bool value) {
 
 // optional bool is_force_broadcast = 22;
 inline bool TMtConfInfo::has_is_force_broadcast() const {
-  return (_has_bits_[0] & 0x00200000u) != 0;
+  return (_has_bits_[0] & 0x00400000u) != 0;
 }
 inline void TMtConfInfo::set_has_is_force_broadcast() {
-  _has_bits_[0] |= 0x00200000u;
+  _has_bits_[0] |= 0x00400000u;
 }
 inline void TMtConfInfo::clear_has_is_force_broadcast() {
-  _has_bits_[0] &= ~0x00200000u;
+  _has_bits_[0] &= ~0x00400000u;
 }
 inline void TMtConfInfo::clear_is_force_broadcast() {
   is_force_broadcast_ = false;
@@ -23640,13 +23672,13 @@ inline void TMtConfInfo::set_is_force_broadcast(bool value) {
 
 // optional uint32 record_mode = 23;
 inline bool TMtConfInfo::has_record_mode() const {
-  return (_has_bits_[0] & 0x00400000u) != 0;
+  return (_has_bits_[0] & 0x00800000u) != 0;
 }
 inline void TMtConfInfo::set_has_record_mode() {
-  _has_bits_[0] |= 0x00400000u;
+  _has_bits_[0] |= 0x00800000u;
 }
 inline void TMtConfInfo::clear_has_record_mode() {
-  _has_bits_[0] &= ~0x00400000u;
+  _has_bits_[0] &= ~0x00800000u;
 }
 inline void TMtConfInfo::clear_record_mode() {
   record_mode_ = 0u;

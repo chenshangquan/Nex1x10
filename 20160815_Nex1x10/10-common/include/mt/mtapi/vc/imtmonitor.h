@@ -122,7 +122,6 @@ public:
 	//5S内当前是否丢包
 	virtual BOOL32 IsStreamLostPack()  = 0;
 	//当前码流监控参数获取
-	virtual IMtApiVct<TMTStreamParam_Api> GetStremParamList() = 0;
 	//获取视频输入设备列表(仅WIN32)
 	virtual TDevInfoList_Api GetVidCapDevList() = 0;
 	//通过osd来打开/关闭pc双流，暂时用于sky100，sky100不支持硬双流

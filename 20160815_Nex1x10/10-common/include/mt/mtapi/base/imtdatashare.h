@@ -813,6 +813,15 @@ public:
 	virtual u32    SetShortCutKeyCfgCmd( IN CONST TMtShortCutKeyList_Api tCfg );
 	virtual TMtShortCutKeyList_Api GetShortCutKeyCfg() = 0;
 
+	virtual u32 SetUseOspTelnetCfgCmd( const BOOL32 bUse );
+
+	virtual u32 SetCameraEnableDigZoomCfgCmd( IN CONST BOOL32 bEnable );
+	virtual BOOL32 GetCameraEnableDigZoomCfg() = 0;
+
+	virtual u32    SetFunctionIconCfgCmd( IN CONST TMtFunctionIcon_Api tCfg );
+	virtual TMtFunctionIcon_Api GetFunctionIconCfg( IN CONST EmFunctionIcon_Api emSignType ) = 0;
+
+
 	/********************Ó²ÖÕ¶Ë²úÆ·Key½áÊø********************/
 
 	virtual u32 SetMtWizardResultCfgCmd( CONST BOOL32 &bIsConfiged);
@@ -1303,6 +1312,10 @@ protected:
 	BOOL32 OnSetUserLoginPwdTimeoutCfg_Ntf( mtmsg::CMtMsg *pcMsg, u32 dwSrcId, u32 dwSrcNode );
 	BOOL32 OnSetEnableSecureCfg_Ntf( mtmsg::CMtMsg *pcMsg, u32 dwSrcId, u32 dwSrcNode );
 	BOOL32 OnSetShortCutKeyCfg_Ntf( mtmsg::CMtMsg *pcMsg, u32 dwSrcId, u32 dwSrcNode );
+	BOOL32 OnSetUseOspTelnetCfg_Ntf( mtmsg::CMtMsg *pcMsg, u32 dwSrcId, u32 dwSrcNode );
+	BOOL32 OnSetCameraEnableDigZoomCfg_Ntf( mtmsg::CMtMsg *pcMsg, u32 dwSrcId, u32 dwSrcNode );
+	BOOL32 OnSetFunctionIconCfg_Ntf( mtmsg::CMtMsg *pcMsg, u32 dwSrcId, u32 dwSrcNode );
+
 };
 
 #endif // _I_MTDATASHARE_H_

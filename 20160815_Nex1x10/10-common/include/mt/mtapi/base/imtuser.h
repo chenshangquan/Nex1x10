@@ -151,6 +151,7 @@ public:
 	virtual u32 SetUserLoginUnLockCmd() = 0;
 	virtual u32 GetUserLoginLockStateReq() = 0;
 	virtual BOOL32 GetUserLoginLockState() = 0;
+	virtual u32 ResetAdminUserInfoCmd() = 0;
 
 };
 

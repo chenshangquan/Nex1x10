@@ -260,6 +260,12 @@ enum EmBLLMtAccessMsg
 	MESSAGE( Ev_MT_BLL_GetUserLoginLockState_Ntf )
 	BODY(mt::TBOOL32, bLock)
 
+	//osd重置管理员用户名和密码命令
+	MESSAGE( Ev_MT_BLL_ResetAdminUserInfo_Cmd )
+
+	//osd重置管理员用户名和密码的通知
+	MESSAGE( Ev_MT_BLL_ResetAdminUserInfo_Ntf )
+	BODY(mt::TMultiUserFullInfo, resetmuser_ntf)
 
 #if !defined(_MESSAGE_HELP_)
     EV_BLL_END(ACCESS) = EVSEG_BLL_ACCESS_END

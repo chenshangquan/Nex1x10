@@ -58,6 +58,7 @@ enum EmDataOptType_Api
 	emDataOptTypeDel_Api,       ///< 删除操作
 	emDataOptTypeMod_Api,       ///< 修改操作
 	emDataOptTypeInit_Api,      ///< 初始化操作
+	emDataOptTypeReset_Api,	    ///< 重置操作
 };
 
 /**终端型号*/
@@ -1414,6 +1415,7 @@ enum EmRestMeetingNotifyType_Api
 	emStartMeetingRemind_Api,                        ///<会议开始前2小时，提醒发起人点“正常召开”
 	emStartBeforeMeeting_Api,                        ///<会议提前召开，通知参会人，会议时间会更改
 	emParticipant_Meeting_Remind_Api,                 ///<会议开始前15分钟提醒，会通知参会人、创建人、管理方（如果是视频会议)
+    emLive_URL_Api,                                   ///<会管向终端推送直播消息
 };
 
 /** 呼入，呼出，还是未接，全部 */
@@ -2725,6 +2727,7 @@ enum EmVodGetListTimeOut_Api
 	///emLoginTimeOut_Api = 1,               ////登录vrs超时
 	emGetRoomTimeOut_Api = 2,                ////获取直播室超时
 	emGetGetReserveRoomTimeOut_Api = 3,      ////获取预约直播室超时
+    em_VRS_GetPrgsInfo_TimeOut_Api = 4,      ////获取文件列表超时
 	////todo
 };
 
@@ -3430,7 +3433,9 @@ enum EmQkState_Api
 	emApOff_Api		= 6,   //Ap断开
 	emQkStart_Api	= 7,   //开始投屏
 	emQkOff_Api		= 8,   //停止投屏
-	emWpsTimeOut_Api = 9   //超时
+	emWpsTimeOut_Api = 9,  //超时
+	emUpDateSucc_Api = 10, //升级成功
+	emUpDateFail_Api = 11  //升级失败
 };
 
 /** 网管文件打包错误信息*/
@@ -3443,8 +3448,8 @@ enum EmAgentPackFileState_Api
 
 enum EmResourceType_Api
 {
-	emResourceType_LimitP_Api  = 0,			///< 仅限制方数
-	emResourceType_LimitPR_Api = 1,			///< 同时限制方数及分辨率
+	emResourceType_LimitP_Api  = 0,			///< 仅限制方数 JDMCU
+	emResourceType_LimitPR_Api = 1,			///< 同时限制方数及分辨率 JDCLOUD
     emResourceType_None_Api    = 2,         ///< 平台不支持此功能
 };
 
@@ -3509,6 +3514,27 @@ enum EmShortCutKeyFuc_Api
 	emFaceCheckIn_Api           = 7,         ///人脸签到
 
 	emClose_Api                 = 20,        ///关闭功能
+};
+
+enum EmApsProtocol_Api
+{
+    emHTTP_Api             = 0,
+    emHTTPS_Api            = 1
+};
+
+enum EmFunctionIcon_Api
+{
+	emFunctionIconBegin_Api = 0,
+	emFaceCheckIcon_Api = 1,
+	// ......
+};
+
+enum EmPltSupportConfType_Api
+{
+    emPltConfTypeInvalid_Api   = 0, //无效
+    emSupportMediaConf_Api     = 1, //仅支持传统会议
+    emSupportPortConf_Api      = 2, //仅支持端口会议
+    emSupportMediaPortConf_Api = 3, //支持传统会议和端口会议
 };
 
 /**@}*/

@@ -9906,6 +9906,121 @@ enum EmMtApiBaseEv
 	*/
 	Ev_MtApi_Base_SkipWizardStaticImage_Ntf,
 
+	Ev_MtApi_Base_AiResetTimer_Ntf,
+
+	/**
+	@brief    osd重置管理员用户名和密码的响应（无消息体）
+
+	@verbatim
+	{
+		
+	}
+	@endverbatim
+	*/
+	Ev_MtApi_Base_ResetAdminUserInfo_Ntf,
+
+    /**	
+	@brief    通知终端开始诊断硬件信息
+	*/
+    Ev_MtApi_Base_Agent_DevicePerformance_Ntf,
+
+	/**
+	@brief    量通呼叫准备密钥失败(目前不用)
+	@endverbatim
+	*/
+	Ev_MtApi_Base_QtPrePareKeyError_Ntf,
+
+	/**
+	@brief    检测量子设备是否存在的消息返回 其他状态暂且不问
+
+	MainBuf(#TMtQtUk_Api) 
+	@verbatim
+	{
+		"wRes ": 0
+		"bPull": 0
+	}
+	@endverbatim
+	*/
+	Ev_MtApi_Base_SecTestQTDevice_Rsp,
+
+	/**
+	@brief    设置是否启用OspTelnet调试功能的通知
+	
+	MainBuf(#BOOL32, bUse)
+
+	@verbatim
+	{
+		
+	}
+	@endverbatim
+	*/
+	Ev_MtApi_Base_SetUseOspTelnet_Ntf,
+	
+	/**
+	@brief    请求OspTelnet调试功能启用状态的响应
+	
+	MainBuf(#BOOL32, bUse)
+
+	@verbatim
+	{
+		
+	}
+	@endverbatim
+	*/
+	Ev_MtApi_Base_GetUseOspTelnet_Rsp,
+
+	/**
+	@brief    设置是否开启使能数字变焦控制的通知
+	
+	MainBuf(#BOOL32, bUse)
+
+	@verbatim
+	{
+		
+	}
+	@endverbatim
+	*/
+	Ev_MtApi_Base_Hd_SetCameraEnableDigZoomCfg_Ntf,
+	
+	/**
+	@brief    获取是否开启使能数字变焦控制的响应
+	
+	MainBuf(#BOOL32, bUse)
+
+	@verbatim
+	{
+		
+	}
+	@endverbatim
+	*/
+	Ev_MtApi_Base_Hd_GetCameraEnableDigZoomCfg_Rsp,
+
+	/**
+	@brief    设置AI功能图标是否显示的通知
+	
+	MainBuf(#TMtFunctionIcon_Api, tCfg)
+
+	@verbatim
+	{
+		
+	}
+	@endverbatim
+	*/
+	Ev_MtApi_Base_SetFunctionIconCfg_Ntf,
+
+	/**
+	@brief    获取AI功能图标是否显示的回复
+	
+	MainBuf(#TMtFunctionIcon_Api, tCfg)
+
+	@verbatim
+	{
+		
+	}
+	@endverbatim
+	*/
+	Ev_MtApi_Base_GetFunctionIconCfg_Rsp, 
+
     EV_UI_END(MTAPI_BASE) = EVSEG_MTAPI_BASE_END
 };
 

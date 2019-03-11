@@ -445,7 +445,9 @@ typedef struct tagTMtCallLinkSate_Api
 	s8                    achPeerVersionId[KMTAPI_BUF_32_LEN+1];      ///< 对端VersionId
 	BOOL32                bIsPeerStackAfter5p0;                       ///< 判断对端是否是5.0
 	EmSipConnectType_Api  emSipConnect;                               ///< sip连接类型
+	BOOL32                bQtCall;                                    ///< 是否是量通呼叫
 	BOOL32                bPeerSptSubMtlist;                          ///< 对端是否支持订阅终端列表
+
 public:
 	tagTMtCallLinkSate_Api(){ memset( this ,0 ,sizeof( struct tagTMtCallLinkSate_Api ) );	}
 }*PTMtCallLinkSate_Api, TMtCallLinkSate_Api;
@@ -807,24 +809,7 @@ public:
 	tagTMTDynamicPayload_Api() { memset ( this ,0 ,sizeof( struct tagTMTDynamicPayload_Api ) ); }
 }*PTDynamicPayload_Api, TDynamicPayload_Api;
 
-/** 码流图像参数 */
-typedef struct tagTMTStreamParam_Api
-{
-	EmCodecComponent_Api emCodecType;       ///< 类型标识
-	EmCodecComponentIndex_Api emCodecIdx; ///< id
-	u8                byMediaType;                            ///< 媒体类型
-	u8                byPlayLoad;                               ///< 动态载荷
-	TEncryptKey_Api   tEncryptKey;                      ///< 密钥
-	BOOL32            bIsg7221Reverse;                  ///< g7221是否翻转
-	EmAacChnlNum_Api  emAacChanNum;        ///< aac声道数  
-	EmAacSampFreq_Api emAacSampFreq;        ///< aac采样率
-	u8                  byPayloadCnt;                //媒体个数
-	TDynamicPayload_Api atPayload[KMTAPI_COUNT_8];	 //媒体类型
-	u32					dwLocRtpPort;
-	u32					dwLocRtcpPort;
-public:
-	tagTMTStreamParam_Api(){ memset ( this ,0 ,sizeof( struct tagTMTStreamParam_Api ) );}
-}*PTMTStreamParam_Api,TMTStreamParam_Api;
+
 
 /** 视频源信息(仅Embed) */
 typedef struct tagTMTVidSrcItem_Api
@@ -897,6 +882,8 @@ typedef struct tagTVodGetPrgsReq_Api
 	u32 dwPrgTypeMask;                         ///< 过滤某种格式的文件,0 所有,1是asf,2是MP4
 	u32 dwStartTime;                           ///< 起始时间  时间戳
 	u32 dwEndTime;                             ///< 终止时间  时间戳
+	u32 dwOrderIndex;                          ///< 排序引索 默认为按发布状态升序，创建时间降序 
+	                                           ///< 1-名称 2-创建时间 3-时长 4-大小 5-发布状态 6-格式 7-热度（节目点播次数）
 public:
 	tagTVodGetPrgsReq_Api(){ memset ( this ,0 ,sizeof( struct tagTVodGetPrgsReq_Api ) );}
 }*PTVodGetPrgsReq_Api, TVodGetPrgsReq_Api;
@@ -922,7 +909,7 @@ typedef struct tagTVodPrgDetailInfo_Api
 	s8 achPrgName[KMTAPI_BUF_128_LEN+1]; ///< 节目文件名
 	u32	dwPrgSize;		                                  ///< 节目大小（BYTE）
 	s8	achPrgType[KMTAPI_BUF_128_LEN+1];   ///< 节目文件后缀
-	s8	achPath[KMTAPI_BUF_128_LEN+1];  	      ///< 存放的相对路径
+	s8	achPath[KMTAPI_BUF_256_LEN+1];  	      ///< 存放的相对路径   该字段是vod模块组装的，注意长度
 	u32 dwPrgsInfoIndex;                                 ///< 所属基本节目信息在列表中的索引
 public:
 	tagTVodPrgDetailInfo_Api() { memset( this, 0, sizeof( struct tagTVodPrgDetailInfo_Api ) ); }
@@ -974,6 +961,7 @@ typedef struct tagTVodRoomState_Api
 	u32 dwLiveTime;                             // 开始播放时间
 	s8  achLiveStreamPath[KMTAPI_BUF_128_LEN+1];             // 直播源描述文件
 	s8  achRoomIdStr[KMTAPI_BUF_128_LEN+1];   ///< 直播室ID,以后用字符串标识
+	s8  achShortUrl[KMTAPI_BUF_128_LEN+1];    //短链接url
 public:
 	tagTVodRoomState_Api(){ memset ( this ,0 ,sizeof( struct tagTVodRoomState_Api ) );}
 }*PTVodRoomState_Api, TVodRoomState_Api;
@@ -1741,6 +1729,7 @@ typedef struct tagTMtUserPrevilege_Api
 	BOOL32 bSelfBuilt; 					         ///< 平台属性：是否自建平台
 	BOOL32 bPortMedia; 		                 ///< 平台属性：端口会议
     BOOL32 bEnableAutoCreateMeeting;           /// 创会权限 （仅支持平台5.2之后版本）
+    EmPltSupportConfType_Api emSupportConfType;  ///< 平台属性：平台支持的会议类型
 public:
 	tagTMtUserPrevilege_Api(){ memset( this ,0 ,sizeof( struct tagTMtUserPrevilege_Api ) );}
 }*PTMtUserPrevilege_Api,TMtUserPrevilege_Api;
@@ -9047,7 +9036,31 @@ typedef struct TagTMtSrtpCrypto_Api
 	s8  achBkRtcpCryptoKey[KMTAPI_BUF_64_LEN+1]; //bkrtcp key 
 
 	TagTMtSrtpCrypto_Api(){ memset(this,0,sizeof(TagTMtSrtpCrypto_Api)); }
+
 }*PTMtSrtpCrypto_Api,TMtSrtpCrypto_Api;
+
+
+/** 码流图像参数 */
+typedef struct tagTMTStreamParam_Api
+{
+	EmCodecComponent_Api emCodecType;                ///< 类型标识
+	EmCodecComponentIndex_Api emCodecIdx;            ///< id
+	u8                byMediaType;                   ///< 媒体类型
+	u8                byPlayLoad;                    ///< 动态载荷
+	TEncryptKey_Api   tEncryptKey;                   ///< 密钥
+	BOOL32            bIsg7221Reverse;               ///< g7221是否翻转
+	EmAacChnlNum_Api  emAacChanNum;                  ///< aac声道数  
+	EmAacSampFreq_Api emAacSampFreq;                 ///< aac采样率
+	u8                  byPayloadCnt;                //媒体个数
+	TDynamicPayload_Api atPayload[KMTAPI_COUNT_8];	 //媒体类型
+	u32					dwLocRtpPort;
+	u32					dwLocRtcpPort;
+	TMtSrtpCrypto_Api   tSrtpParam;
+
+public:
+	tagTMTStreamParam_Api(){ memset ( this ,0 ,sizeof( struct tagTMTStreamParam_Api ) );}
+}*PTMTStreamParam_Api,TMTStreamParam_Api;
+
 
 typedef struct tagTAgentLogFileInfo_Api
 {
@@ -9132,6 +9145,7 @@ typedef struct tagTPlatformInfo_Api
 {
     s8      achVersion[KMTAPI_BUF_32_LEN+1];    //平台版本号
     u32     dwIP;                               //当前登录的平台IP
+    EmApsProtocol_Api emProtocol;               //aps登陆协议
     EmResourceType_Api emResourceType;
     tagTPlatformInfo_Api() { memset(this, 0, sizeof(tagTPlatformInfo_Api)); }
 }*PTPlatformInfo, TPlatformInfo_Api;
@@ -9304,7 +9318,7 @@ typedef struct tagTMtFaceCheckInInfo_Api
 {
 	s8					 achName[KMTAPI_BUF_32_LEN+1]; ///<姓名
 	s8					 achTime[KMTAPI_BUF_32_LEN+1]; ///<时间
-	s8					 achPosition[KMTAPI_BUF_32_LEN+1];///<员工职位
+	s8					 achPosition[KMTAPI_BUF_256_LEN+1];///<员工职位
 public:
 	tagTMtFaceCheckInInfo_Api(){ memset( this ,0 ,sizeof( struct  tagTMtFaceCheckInInfo_Api ) );}
 }*PTMtFaceCheckInInfo_Api, TMtFaceCheckInInfo_Api;
@@ -9336,6 +9350,38 @@ public:
 	tagTMtShortCutKeyList_Api(){ memset( this, 0, sizeof(tagTMtShortCutKeyList_Api) );}
 }*PTMtShortCutKeyList_Api, TMtShortCutKeyList_Api;
 
+/** 适用于messgaeType为120 */
+typedef struct tagTMTContentLiveURL_Api
+{
+    u32 dwMeetingId;                                ///<会议ID
+    s8  achSubject[KMTAPI_GM_MAX_SUBJECT+1];        ///<主题
+    s8  achStartTime[KMTAPI_GM_MAX_DATETIME+1];     ///<开始时间
+    s8  achEndTime[KMTAPI_GM_MAX_DATETIME+1];       ///<结束时间
+    BOOL32 bIsVideoMeeting;                         ///<是否是视频会议
+    s8  achPhone[KMTAPI_GM_MAX_PHONE+1];            //<分机
+    s8  achMobilePhone[KMTAPI_GM_MAX_MOBILE+1];     ///<电话
+    s8  achOrganigerMoid[KMTAPI_GM_MAX_MOID+1];     ///<创建人moid
+    s8  achShortUrl[KMTAPI_BUF_128_LEN+1];          ///<短链接url(直播URL)
+    TMTConfInfoRooms_Api tMTConfInfoRooms;          ///<欲占会议室
+public:
+    tagTMTContentLiveURL_Api() { memset(this, 0, sizeof(tagTMTContentLiveURL_Api)); }
+}*PTMTContentLiveURL_Api, TMTContentLiveURL_Api;
+
+//功能图标是否显示
+typedef struct tagTMtFunctionIcon_Api
+{
+	EmFunctionIcon_Api emFunctionIcon;
+	BOOL32 bIsEnable;
+public:
+	tagTMtFunctionIcon_Api(){ memset( this, 0, sizeof(tagTMtFunctionIcon_Api) );}
+}*PTMtFunctionIcon_Api, TMtFunctionIcon_Api;
+
+typedef struct tagTMtFunctionIconList_Api
+{
+	TMtFunctionIcon_Api atFunctionIcon[KMTAPI_COUNT_32];
+	u8 byCount;
+	tagTMtFunctionIconList_Api(){ memset( this, 0, sizeof(tagTMtFunctionIconList_Api) );}
+}*PTMtFunctionIconList_Api, TMtFunctionIconList_Api;
 
 /**@}*/
 

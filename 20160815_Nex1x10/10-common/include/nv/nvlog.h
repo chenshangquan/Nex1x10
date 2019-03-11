@@ -207,6 +207,49 @@ NVCBB_API u32 nvInitLogModule(std::string strSvrIp = "", std::string strCfgFileP
 **************************************************************/
 NVCBB_API u32 nvRegLogModule(std::string strLogger, s8 *pchModuleName, BOOL32 bOn = FALSE);
 
+/** ***********************************************************
+* 
+* @brief    放开打印接口
+* 
+* @param	[in] strModule       日志模块ID
+* @return	无
+* @note     此打印接口不受调试命令控制
+*
+**************************************************************/
+NVCBB_API void NvLogOn(std::string strModule = "");
+
+/** ***********************************************************
+* 
+* @brief    关闭打印接口
+* 
+* @param	[in] strModule       日志模块ID
+* @return	无
+* @note     此打印接口不受调试命令控制
+*
+**************************************************************/
+NVCBB_API void NvLogOff(std::string strModule = "");
+
+/** ***********************************************************
+* 
+* @brief    放开debug打印接口
+* 
+* @param	[in] strModule       日志模块ID
+* @return	无
+* @note     此打印接口不受调试命令控制
+*
+**************************************************************/
+NVCBB_API void NvDebugOn(std::string strModule = "");
+
+/** ***********************************************************
+* 
+* @brief    关闭debug打印接口
+* 
+* @param	[in] strModule       日志模块ID
+* @return	无
+* @note     此打印接口不受调试命令控制
+*
+**************************************************************/
+NVCBB_API void NvDebugOff(std::string strModule = "");
 
 /** ***********************************************************
 * 

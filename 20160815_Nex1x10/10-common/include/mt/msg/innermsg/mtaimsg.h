@@ -96,6 +96,9 @@ enum EmMtaiMsg
 	BODY(mt::TBOOL32, tExist)
 	BODY(mt::TMtId, tmtid)
 
+	MESSAGE(Ev_MT_AiResetTimer_Ntf)
+	
+
 #if !defined(_MESSAGE_HELP_)
 	EV_END(MTAI) = EVSEG_MTAIMSG_END
 };

@@ -363,4 +363,24 @@ void CEncoder::SelectCaptureScreen( u32 dwScreenIndex, BOOL32 bStartCap /*= TRUE
 	m_pcEncoder->SelectCaptureScreen(dwScreenIndex, bStartCap);
 }
 
+u16 CEncoder::SetEnableHwEnc(BOOL32 bEnable)
+{
+    if ( m_pcEncoder == NULL )
+    {
+        PRINTMSG("SetEnableHwEnc Failed!\r\n");
+        return 0;
+    }
 
+    return m_pcEncoder->SetEnableHwEnc(bEnable);
+}
+
+u16 CEncoder::GetEncoderStatus(TKdvEncStatus &tKdvEncStatus)
+{
+    if ( m_pcEncoder == NULL )
+    {
+        PRINTMSG("GetEncoderStatus Failed!\r\n");
+        return 0;
+    }
+
+    return m_pcEncoder->GetEncoderStatus(tKdvEncStatus);
+}

@@ -2797,11 +2797,12 @@ enum EmRestMeetingNotifyType {
   emNormalStart = 116,
   emStartMeetingRemind = 117,
   emStartBeforeMeeting = 118,
-  emParticipant_Meeting_Remind = 119
+  emParticipant_Meeting_Remind = 119,
+  emLive_URL = 120
 };
 MTMSG_API bool EmRestMeetingNotifyType_IsValid(int value);
 const EmRestMeetingNotifyType EmRestMeetingNotifyType_MIN = emRestMeetingNotifyTypeUnknown;
-const EmRestMeetingNotifyType EmRestMeetingNotifyType_MAX = emParticipant_Meeting_Remind;
+const EmRestMeetingNotifyType EmRestMeetingNotifyType_MAX = emLive_URL;
 const int EmRestMeetingNotifyType_ARRAYSIZE = EmRestMeetingNotifyType_MAX + 1;
 
 MTMSG_API const ::google::protobuf::EnumDescriptor* EmRestMeetingNotifyType_descriptor();
@@ -7099,11 +7100,13 @@ enum EmQkState {
   emApOff = 6,
   emQkStart = 7,
   emQkOff = 8,
-  emWpsTimeOut = 9
+  emWpsTimeOut = 9,
+  emUpDateSucc = 10,
+  emUpDateFail = 11
 };
 MTMSG_API bool EmQkState_IsValid(int value);
 const EmQkState EmQkState_MIN = emUsbOff;
-const EmQkState EmQkState_MAX = emWpsTimeOut;
+const EmQkState EmQkState_MAX = emUpDateFail;
 const int EmQkState_ARRAYSIZE = EmQkState_MAX + 1;
 
 MTMSG_API const ::google::protobuf::EnumDescriptor* EmQkState_descriptor();
@@ -7309,6 +7312,46 @@ inline bool EmShortCutKeyFuc_Parse(
     const ::std::string& name, EmShortCutKeyFuc* value) {
   return ::google::protobuf::internal::ParseNamedEnum<EmShortCutKeyFuc>(
     EmShortCutKeyFuc_descriptor(), name, value);
+}
+enum EmPltSupportConfType {
+  emPltConfTypeInvalid = 0,
+  emSupportMediaConf = 1,
+  emSupportPortConf = 2,
+  emSupportMediaPortConf = 3
+};
+MTMSG_API bool EmPltSupportConfType_IsValid(int value);
+const EmPltSupportConfType EmPltSupportConfType_MIN = emPltConfTypeInvalid;
+const EmPltSupportConfType EmPltSupportConfType_MAX = emSupportMediaPortConf;
+const int EmPltSupportConfType_ARRAYSIZE = EmPltSupportConfType_MAX + 1;
+
+MTMSG_API const ::google::protobuf::EnumDescriptor* EmPltSupportConfType_descriptor();
+inline const ::std::string& EmPltSupportConfType_Name(EmPltSupportConfType value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    EmPltSupportConfType_descriptor(), value);
+}
+inline bool EmPltSupportConfType_Parse(
+    const ::std::string& name, EmPltSupportConfType* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<EmPltSupportConfType>(
+    EmPltSupportConfType_descriptor(), name, value);
+}
+enum EmFunctionIcon {
+  emFunctionIconBegin = 0,
+  emFaceCheckIcon = 1
+};
+MTMSG_API bool EmFunctionIcon_IsValid(int value);
+const EmFunctionIcon EmFunctionIcon_MIN = emFunctionIconBegin;
+const EmFunctionIcon EmFunctionIcon_MAX = emFaceCheckIcon;
+const int EmFunctionIcon_ARRAYSIZE = EmFunctionIcon_MAX + 1;
+
+MTMSG_API const ::google::protobuf::EnumDescriptor* EmFunctionIcon_descriptor();
+inline const ::std::string& EmFunctionIcon_Name(EmFunctionIcon value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    EmFunctionIcon_descriptor(), value);
+}
+inline bool EmFunctionIcon_Parse(
+    const ::std::string& name, EmFunctionIcon* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<EmFunctionIcon>(
+    EmFunctionIcon_descriptor(), name, value);
 }
 // ===================================================================
 
@@ -8514,6 +8557,14 @@ inline const EnumDescriptor* GetEnumDescriptor< ::mt::EmShortCutKeyType>() {
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::mt::EmShortCutKeyFuc>() {
   return ::mt::EmShortCutKeyFuc_descriptor();
+}
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::mt::EmPltSupportConfType>() {
+  return ::mt::EmPltSupportConfType_descriptor();
+}
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::mt::EmFunctionIcon>() {
+  return ::mt::EmFunctionIcon_descriptor();
 }
 
 }  // namespace google

@@ -1987,6 +1987,29 @@ enum EmMtApiDiagnoseEv
 	*/
 	Ev_MtApi_Diagnose_FaceCheckInInfo_Ntf,
 
+	/**
+	@brief 清理升级包存储空间通知
+	MainBuf( )
+	@verbatim
+	{
+		
+	}
+	@endverbatim
+	*/
+	Ev_MtApi_Diagnose_CleanUpdateSpace_Ntf,
+
+	/**
+	@brief	是否正在导出日志的通知 
+	MainBuf(#BOOL32 )
+	@verbatim
+	{
+		
+	}
+	@endverbatim
+	*/
+	Ev_MtApi_Diagnose_ExportingLogFileState_Ntf,
+
+
     EV_UI_END(MTAPI_DIAGNOSE) = EVSEG_MTAPI_DIAGNOSE_END
 };
 

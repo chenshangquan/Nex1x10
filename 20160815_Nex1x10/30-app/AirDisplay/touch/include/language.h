@@ -31,7 +31,7 @@ extern EMLangID g_emLanType; //语言类型
     #define NET_STATUS_CONNECTED_ENG                "Connected"
 #define STRING_NET_STATUS_CONNECTED                 TRANSLATE(NET_STATUS_CONNECTED_)
     #define DES_NET_STATUS_CONNECTED_CHN            "按压无线投屏发射器开始投屏，再次按压结束投屏"
-    #define DES_NET_STATUS_CONNECTED_ENG            "Press NT30 for Projecting，Press Again to Stop"
+    #define DES_NET_STATUS_CONNECTED_ENG            "Press NT30 for Projecting,Press Again to Stop"
 #define STRING_DES_NET_STATUS_CONNECTED             TRANSLATE(DES_NET_STATUS_CONNECTED_)
 
     #define NET_STATUS_DISCONNECTED_CHN             "连接已断开"
@@ -54,6 +54,13 @@ extern EMLangID g_emLanType; //语言类型
     #define DES_NET_STATUS_NO_MATCH_CHN             "请将无线投屏发射器，插入显示端USB1或者USB2接口，完成配对"
     #define DES_NET_STATUS_NO_MATCH_ENG             "Please Plug NT30 to USB1/USB2 on the Display for Pairing"
 #define STRING_DES_NET_STATUS_NO_MATCH              TRANSLATE(DES_NET_STATUS_NO_MATCH_)
+
+    #define NET_STATUS_FIND_SSID_FAIL_CHN           "连接超时"
+    #define NET_STATUS_FIND_SSID_FAIL_ENG           "Connection Timeout"
+#define STRING_NET_STATUS_FIND_SSID_FAIL            TRANSLATE(NET_STATUS_FIND_SSID_FAIL_)
+    #define DES_NET_STATUS_FIND_SSID_FAIL_CHN       "请将无线投屏发射器，插入显示端USB1或者USB2接口，完成配对"
+    #define DES_NET_STATUS_FIND_SSID_FAIL_ENG       "Please Plug NT30 to USB1/USB2 on the Display for Pairing"
+#define STRING_DES_NET_STATUS_FIND_SSID_FAIL        TRANSLATE(DES_NET_STATUS_FIND_SSID_FAIL_)
 
     #define NET_STATUS_ENOUGHNUM_CHN                "连接数量受限"
     #define NET_STATUS_ENOUGHNUM_ENG                "Connection Quantity Limited"
@@ -93,11 +100,18 @@ extern EMLangID g_emLanType; //语言类型
 #define STRING_SHOW_LINK_IGNORE                     TRANSLATE(SHOW_LINK_IGNORE_)
 
     #define CONNECT_BUSINESS_FAIL_CHN               "发射器业务进程异常"
-    #define CONNECT_BUSINESS_FAIL_ENG               "发射器业务进程异常"//nt yt
+    #define CONNECT_BUSINESS_FAIL_ENG               "Business Process Exception"
 #define STRING_CONNECT_BUSINESS_FAIL                TRANSLATE(CONNECT_BUSINESS_FAIL_)
     #define DES_CONNECT_BUSINESS_FAIL_CHN           "请拔掉无线投屏发射器，重新接入电脑"
     #define DES_CONNECT_BUSINESS_FAIL_ENG           "Please Remove NT30 and Replug it to your PC"
 #define STRING_DES_CONNECT_BUSINESS_FAIL            TRANSLATE(DES_CONNECT_BUSINESS_FAIL_)
+
+    #define CONNECT_RESOLUTION_LIMITED_CHN          "投屏失败"
+    #define CONNECT_RESOLUTION_LIMITED_ENG          "Projecting Failed"
+#define STRING_CONNECT_RESOLUTION_LIMITED           TRANSLATE(CONNECT_RESOLUTION_LIMITED_)
+    #define DES_CONNECT_RESOLUTION_LIMITED_CHN      "不支持当前桌面分辨率投屏"
+    #define DES_CONNECT_RESOLUTION_LIMITED_ENG      "Desktop Resolution Disabled"
+#define STRING_DES_CONNECT_RESOLUTION_LIMITED       TRANSLATE(DES_CONNECT_RESOLUTION_LIMITED_)
 
     #define PROJECTING_CHN                          " 正在投屏"
     #define PROJECTING_ENG                          " Projecting"

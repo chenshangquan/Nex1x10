@@ -2482,4 +2482,13 @@ KdvNvAPI u32 KdvNvCALL KdvNv_SetSkipTerWizardCmd( IN CONST SessionID dwSSID);
 ***********************************************************************************/
 KdvNvAPI u32 KdvNvCALL KdvNv_GetImixSerialNumReq( IN CONST SessionID dwSSID);
 
+/*******************************************************************************//**
+*@brief         界面断开与sus服务器的连接
+*KdvNv_NvImixDisconnectSusCmd
+*@param[in]     dwSSID  NV会话ID 
+*@return        u32  0：成功获取， 其他：错误码
+*@note          更新通知：
+***********************************************************************************/
+KdvNvAPI u32 KdvNvCALL KdvNv_NvImixDisconnectSusCmd( IN CONST SessionID dwSSID);
+
 #endif //_NVAPI_BASEAPI_H_

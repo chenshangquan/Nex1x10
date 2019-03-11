@@ -71,6 +71,7 @@ public:
 	virtual u32 NvRouterDownStateNtf(const nv::TBOOL32 bUpgrade) = 0;
 	virtual u32 GetPadVersionReq() = 0;
 	virtual u32 NvRouterUpgradeStateNty(const nv::TBOOL32 bState) = 0;
+	virtual u32 NvImixDisconnectSusCmd() = 0;
 	//virtual u32 NvClearDataFolderSucNty(const nv::TBOOL32 bState) = 0;
 	//virtual u32 NvCancelFileCmd(const nv::TString tFile) = 0;
 public:

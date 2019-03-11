@@ -112,6 +112,8 @@ public:
 
 	void SelectCaptureScreen(u32 dwScreenIndex, BOOL32 bStartCap = TRUE);//选择采集屏幕，从1开始，1是主屏
 
+    u16	 SetEnableHwEnc(BOOL32 bEnable);//开启|关闭 硬编
+    u16  GetEncoderStatus(TKdvEncStatus &tKdvEncStatus);//获取编码器状态
 private:
 	void InitEncoder();
 	void PlayVideo();

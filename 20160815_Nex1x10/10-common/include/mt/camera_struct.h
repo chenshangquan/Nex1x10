@@ -4,11 +4,16 @@
 #include "kdvtype.h"
 #include <string.h>
 #define CAMERA_MAX_ID_LEN (u32)32  //<暂定32
+#define CAMERA_MAX_NUM (u32)20  //一次人脸签到最多20个人
+#define CMAERA_MAX_POSITION_LEN (u32)256 //<员工职位的最大字节数
 #define AICAMERA_INSTANCE_ID 1 
 
 #define CAMERA_APP_NO 0x40 //摄像机app Id
+#define CAMERA_RECONNECT_TIME 30*1000  // 30秒
+#define CAMERA_NULL "null"
 /*添加摄像机时需要device传递的信息*/
 ///<EV_AICAMERA_AddCamera_Cmd
+
 typedef struct tagTMtAddCamera
 {
 	u32 dwIp;                                         ///< 智能摄像机ip (网络序)
@@ -37,7 +42,7 @@ typedef struct tagTMtCheckInInfo
 {
     s8 achName[CAMERA_MAX_ID_LEN+1]; ///<签到人姓名
 	s8 achTime[CAMERA_MAX_ID_LEN+1]; ///<签到时间 (签到时间待定)
-	s8 achPosition[CAMERA_MAX_ID_LEN+1];///<员工职位
+	s8 achPosition[CMAERA_MAX_POSITION_LEN+1];///<员工职位
 public:
 	tagTMtCheckInInfo(){ memset( this ,0 ,sizeof( struct  tagTMtCheckInInfo ) );}
 }*PTMtCheckInInfo, TMtCheckInInfo;
@@ -48,7 +53,7 @@ typedef struct tagTMtFaceCheckInInfos
 {
 	u32 dwNum;			///<个数
 	s8  achCameraID[CAMERA_MAX_ID_LEN+1];       ///<  智能摄像机Id（作为摄像机的唯一标识）
-	TMtCheckInInfo  atFaceCheckInInfos[CAMERA_MAX_ID_LEN+1]; ///<暂定32一次通知签到人信息的数组（最多）
+	TMtCheckInInfo  atFaceCheckInInfos[CAMERA_MAX_NUM+1]; ///<暂定20一次通知签到人信息的数组（最多）
 public:
 	tagTMtFaceCheckInInfos(){ memset( this ,0 ,sizeof( struct  tagTMtFaceCheckInInfos ) );}
 }*PTMtFaceCheckInInfos, TMtFaceCheckInInfos;

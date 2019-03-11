@@ -21497,6 +21497,10 @@ public final class EnumPB {
      * <code>emParticipant_Meeting_Remind = 119;</code>
      */
     emParticipant_Meeting_Remind(18, 119),
+    /**
+     * <code>emLive_URL = 120;</code>
+     */
+    emLive_URL(19, 120),
     ;
 
     /**
@@ -21575,6 +21579,10 @@ public final class EnumPB {
      * <code>emParticipant_Meeting_Remind = 119;</code>
      */
     public static final int emParticipant_Meeting_Remind_VALUE = 119;
+    /**
+     * <code>emLive_URL = 120;</code>
+     */
+    public static final int emLive_URL_VALUE = 120;
 
 
     public final int getNumber() { return value; }
@@ -21600,6 +21608,7 @@ public final class EnumPB {
         case 117: return emStartMeetingRemind;
         case 118: return emStartBeforeMeeting;
         case 119: return emParticipant_Meeting_Remind;
+        case 120: return emLive_URL;
         default: return null;
       }
     }
@@ -51038,6 +51047,22 @@ public final class EnumPB {
      * </pre>
      */
     emWpsTimeOut(9, 9),
+    /**
+     * <code>emUpDateSucc = 10;</code>
+     *
+     * <pre>
+     *升级成功
+     * </pre>
+     */
+    emUpDateSucc(10, 10),
+    /**
+     * <code>emUpDateFail = 11;</code>
+     *
+     * <pre>
+     *升级失败
+     * </pre>
+     */
+    emUpDateFail(11, 11),
     ;
 
     /**
@@ -51120,6 +51145,22 @@ public final class EnumPB {
      * </pre>
      */
     public static final int emWpsTimeOut_VALUE = 9;
+    /**
+     * <code>emUpDateSucc = 10;</code>
+     *
+     * <pre>
+     *升级成功
+     * </pre>
+     */
+    public static final int emUpDateSucc_VALUE = 10;
+    /**
+     * <code>emUpDateFail = 11;</code>
+     *
+     * <pre>
+     *升级失败
+     * </pre>
+     */
+    public static final int emUpDateFail_VALUE = 11;
 
 
     public final int getNumber() { return value; }
@@ -51136,6 +51177,8 @@ public final class EnumPB {
         case 7: return emQkStart;
         case 8: return emQkOff;
         case 9: return emWpsTimeOut;
+        case 10: return emUpDateSucc;
+        case 11: return emUpDateFail;
         default: return null;
       }
     }
@@ -52850,6 +52893,220 @@ public final class EnumPB {
     // @@protoc_insertion_point(enum_scope:mt.EmShortCutKeyFuc)
   }
 
+  /**
+   * Protobuf enum {@code mt.EmPltSupportConfType}
+   */
+  public enum EmPltSupportConfType
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>emPltConfTypeInvalid = 0;</code>
+     */
+    emPltConfTypeInvalid(0, 0),
+    /**
+     * <code>emSupportMediaConf = 1;</code>
+     *
+     * <pre>
+     *仅支持传统会议
+     * </pre>
+     */
+    emSupportMediaConf(1, 1),
+    /**
+     * <code>emSupportPortConf = 2;</code>
+     *
+     * <pre>
+     *仅支持端口会议
+     * </pre>
+     */
+    emSupportPortConf(2, 2),
+    /**
+     * <code>emSupportMediaPortConf = 3;</code>
+     *
+     * <pre>
+     *支持传统会议和端口会议
+     * </pre>
+     */
+    emSupportMediaPortConf(3, 3),
+    ;
+
+    /**
+     * <code>emPltConfTypeInvalid = 0;</code>
+     */
+    public static final int emPltConfTypeInvalid_VALUE = 0;
+    /**
+     * <code>emSupportMediaConf = 1;</code>
+     *
+     * <pre>
+     *仅支持传统会议
+     * </pre>
+     */
+    public static final int emSupportMediaConf_VALUE = 1;
+    /**
+     * <code>emSupportPortConf = 2;</code>
+     *
+     * <pre>
+     *仅支持端口会议
+     * </pre>
+     */
+    public static final int emSupportPortConf_VALUE = 2;
+    /**
+     * <code>emSupportMediaPortConf = 3;</code>
+     *
+     * <pre>
+     *支持传统会议和端口会议
+     * </pre>
+     */
+    public static final int emSupportMediaPortConf_VALUE = 3;
+
+
+    public final int getNumber() { return value; }
+
+    public static EmPltSupportConfType valueOf(int value) {
+      switch (value) {
+        case 0: return emPltConfTypeInvalid;
+        case 1: return emSupportMediaConf;
+        case 2: return emSupportPortConf;
+        case 3: return emSupportMediaPortConf;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<EmPltSupportConfType>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static com.google.protobuf.Internal.EnumLiteMap<EmPltSupportConfType>
+        internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<EmPltSupportConfType>() {
+            public EmPltSupportConfType findValueByNumber(int number) {
+              return EmPltSupportConfType.valueOf(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(index);
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return com.kedacom.mt.netmanage.protobuf.EnumPB.getDescriptor().getEnumTypes().get(297);
+    }
+
+    private static final EmPltSupportConfType[] VALUES = values();
+
+    public static EmPltSupportConfType valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int index;
+    private final int value;
+
+    private EmPltSupportConfType(int index, int value) {
+      this.index = index;
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:mt.EmPltSupportConfType)
+  }
+
+  /**
+   * Protobuf enum {@code mt.EmFunctionIcon}
+   */
+  public enum EmFunctionIcon
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>emFunctionIconBegin = 0;</code>
+     */
+    emFunctionIconBegin(0, 0),
+    /**
+     * <code>emFaceCheckIcon = 1;</code>
+     *
+     * <pre>
+     *&#47;&lt;人脸签到
+     * </pre>
+     */
+    emFaceCheckIcon(1, 1),
+    ;
+
+    /**
+     * <code>emFunctionIconBegin = 0;</code>
+     */
+    public static final int emFunctionIconBegin_VALUE = 0;
+    /**
+     * <code>emFaceCheckIcon = 1;</code>
+     *
+     * <pre>
+     *&#47;&lt;人脸签到
+     * </pre>
+     */
+    public static final int emFaceCheckIcon_VALUE = 1;
+
+
+    public final int getNumber() { return value; }
+
+    public static EmFunctionIcon valueOf(int value) {
+      switch (value) {
+        case 0: return emFunctionIconBegin;
+        case 1: return emFaceCheckIcon;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<EmFunctionIcon>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static com.google.protobuf.Internal.EnumLiteMap<EmFunctionIcon>
+        internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<EmFunctionIcon>() {
+            public EmFunctionIcon findValueByNumber(int number) {
+              return EmFunctionIcon.valueOf(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(index);
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return com.kedacom.mt.netmanage.protobuf.EnumPB.getDescriptor().getEnumTypes().get(298);
+    }
+
+    private static final EmFunctionIcon[] VALUES = values();
+
+    public static EmFunctionIcon valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int index;
+    private final int value;
+
+    private EmFunctionIcon(int index, int value) {
+      this.index = index;
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:mt.EmFunctionIcon)
+  }
+
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -53493,7 +53750,7 @@ public final class EnumPB {
       "er_jid\020\004*s\n\021EmMtMultiChatType\022\030\n\024em_mult" +
       "ichat_invalid\020\000\022\027\n\023em_multichat_normal\020\001" +
       "\022\025\n\021em_multichat_conf\020\002\022\024\n\020em_multichat_" +
-      "end\020\003*\331\003\n\027EmRestMeetingNotifyType\022\"\n\036emR" +
+      "end\020\003*\351\003\n\027EmRestMeetingNotifyType\022\"\n\036emR" +
       "estMeetingNotifyTypeUnknown\020\000\022\023\n\017emCreat" +
       "eMeeting\020f\022\023\n\017emUpdateMeeting\020g\022\023\n\017emDel" +
       "eteMeeting\020h\022\023\n\017emCreateRegular\020i\022\023\n\017emU" +
@@ -53505,781 +53762,787 @@ public final class EnumPB {
       "artTimeAchieve\020s\022\021\n\remNormalStart\020t\022\030\n\024e" +
       "mStartMeetingRemind\020u\022\030\n\024emStartBeforeMe" +
       "eting\020v\022 \n\034emParticipant_Meeting_Remind\020" +
-      "w*v\n\023EmMtOperateUserInfo\022\024\n\020emOperateUse" +
-      "rAdd\020\001\022\027\n\023emOperateUserDelete\020\002\022\027\n\023emOpe" +
-      "rateUserModify\020\003\022\027\n\023emOperateUserSearch\020" +
-      "\004*h\n\rEmH323SrvType\022\025\n\021emH323SrvH323None\020",
-      "\001\022\024\n\020emH323SrvH323Pxy\020\002\022\025\n\021emH323SrvH323" +
-      "H460\020\003\022\023\n\017emH323SrvH323Gk\020\004*3\n\014EmSipSrvT" +
-      "ype\022\022\n\016emSipSrvServer\020\001\022\017\n\013emSipSrvPxy\020\002" +
-      "*^\n\007APIType\022\020\n\014emUnknownAPI\020\000\022\021\n\remPlatf" +
-      "ormAPI\020\001\022\016\n\nemWeiboAPI\020\002\022\020\n\014emMeetingAPI" +
-      "\020\003\022\014\n\010emAppAPI\020\004*.\n\nEmChatType\022\020\n\014emChat" +
-      "Normal\020\000\022\016\n\nemChatAuto\020\001*\251\001\n\014EmRtspStatu" +
-      "s\022\016\n\nemRtspInit\020\001\022\022\n\016emRtspPreReady\020\002\022\017\n" +
-      "\013emRtspReady\020\003\022\021\n\remRtspPlaying\020\004\022\017\n\013emR" +
-      "tspPause\020\005\022\020\n\014emRtspResume\020\006\022\025\n\021emRtspAd",
-      "justSpeed\020\007\022\027\n\023emRtspAdjustProcess\020\010*E\n\020" +
-      "EmServerAddrType\022\030\n\024emSrvAddrTypeDefault" +
-      "\020\000\022\027\n\023emSrvAddrTypeCustom\020\001*\333\001\n\024EmVMeeti" +
-      "ngVideoModel\022)\n%emMeeting_vmeeting_video" +
-      "_model_fluent\020\001\0221\n-emMeeting_vmeeting_vi" +
-      "deo_model_normal_quality\020\002\022/\n+emMeeting_" +
-      "vmeeting_video_model_high_quality\020\003\0224\n0e" +
-      "mMeeting_vmeeting_video_model_full_high_" +
-      "quality\020\004*g\n\023EmDesktopShareLimit\022)\n%emMe" +
-      "eting_desktop_share_limit_speaker\020\000\022%\n!e",
-      "mMeeting_desktop_share_limit_all\020\001*[\n\016Em" +
-      "VMeetingMode\022#\n\037emMeeting_vmeeting_mode_" +
-      "discuss\020\000\022$\n emMeeting_vmeeting_mode_tra" +
-      "ining\020\001*\310\001\n\016EmCallDuration\022&\n\"emMeeting_" +
-      "call_duration_very_short\020\000\022!\n\035emMeeting_" +
-      "call_duration_short\020\001\022\"\n\036emMeeting_call_" +
-      "duration_normal\020\002\022 \n\034emMeeting_call_dura" +
-      "tion_long\020\003\022%\n!emMeeting_call_duration_v" +
-      "ery_long\020\004*5\n\tEmNetType\022\016\n\nemInternet\020\000\022" +
-      "\r\n\temSpecial\020\001\022\t\n\005emVPN\020\002*d\n\021EmUpgradeVe",
-      "rLevel\022\030\n\024emUpgradeLevelForced\020\000\022\033\n\027emUp" +
-      "gradeLevelSuggested\020\001\022\030\n\024emUpgradeLevelN" +
-      "ormal\020\002*u\n\024EmUpgradeReleaseAttr\022\021\n\remUpg" +
-      "radeAttr\020\000\022\027\n\023emUpgradeAttrCommon\020\001\022\032\n\026e" +
-      "mUpgradeAttrRecommend\020\002\022\025\n\021emUpgradeAttr" +
-      "Gray\020\004*j\n\014EmMtPortrait\022\020\n\014mtportrait32\020\000" +
-      "\022\020\n\014mtportrait40\020\001\022\020\n\014mtportrait64\020\002\022\021\n\r" +
-      "mtportrait128\020\003\022\021\n\rmtportrait256\020\004*<\n\010Em" +
-      "MCMode\022\016\n\nemMcSpeech\020\000\022\017\n\013emMcDiscuss\020\001\022" +
-      "\017\n\013emMcInvalid\020\002*\334\001\n\014EmServerType\022\t\n\005emA",
-      "PS\020\000\022\t\n\005emXNU\020\001\022\t\n\005emSUS\020\002\022\t\n\005emNMS\020\003\022\t\n" +
-      "\005emNTS\020\004\022\t\n\005emSIP\020\005\022\r\n\temNonH323\020\006\022\r\n\tem" +
-      "StdH323\020\007\022\t\n\005emNTP\020\010\022\t\n\005emVOD\020\t\022\017\n\013emMoM" +
-      "eeting\020\n\022\020\n\014emMoPlatform\020\013\022\t\n\005emVRS\020\014\022\t\n" +
-      "\005emDCS\020\r\022\010\n\004emNS\020\016\022\023\n\017emServerTypeEnd\020\017*" +
-      "\212\001\n\rEmServerState\022\n\n\006emIdle\020\000\022\021\n\remDnsQu" +
-      "erying\020\001\022\020\n\014emLogging_In\020\002\022\020\n\014emLogin_Su" +
-      "cc\020\003\022\021\n\remLogging_Out\020\004\022\022\n\016emDisconnecte" +
-      "d\020\005\022\017\n\013emLogin_Err\020\006*J\n\022EmMtCallRecordTy" +
-      "pe\022\014\n\010emCallIn\020\000\022\r\n\temCallOut\020\001\022\014\n\010emMis",
-      "sed\020\002\022\t\n\005emAll\020\003*5\n\014EmMtCallType\022\013\n\007emVi" +
-      "deo\020\000\022\013\n\007emAudio\020\001\022\013\n\007emPhone\020\002*\372\003\n\rEmMt" +
-      "RecordErr\022\017\n\013emRecord_Ok\020\000\022\026\n\022emRecord_E" +
-      "rr_Index\020\001\022$\n emRecord_Err_No_Marching_R" +
-      "ecords\020\002\022!\n\035emRecord_Err_No_Marching_Typ" +
-      "e\020\003\022\037\n\033emRecord_Err_CallRecordType\020\004\022\031\n\025" +
-      "emRecord_Err_CallType\020\005\022\031\n\025emRecord_Err_" +
-      "Describe\020\006\022\031\n\025emRecord_Err_AddrType\020\007\022\025\n" +
-      "\021emRecord_Err_Addr\020\010\022\025\n\021emRecord_Err_Rat" +
-      "e\020\t\022\033\n\027emRecord_Err_PackageNum\020\n\022\'\n#emRe",
-      "cord_Err_Over_MaxLocalRecordNum\020\013\022\037\n\033emR" +
-      "oster_Err_GroupName_NULL\020d\022\030\n\024emRoster_E" +
-      "rr_GroupSn\020e\022\036\n\032emRoster_Err_ParentGroup" +
-      "Sn\020f\022\031\n\025emRoster_Err_RosterSn\020g\022\033\n\027emRos" +
-      "ter_Err_RosterName\020h*L\n\024EmMtRecordSearch" +
-      "Type\022\024\n\020emCallRecordType\020\000\022\016\n\nemCallType" +
-      "\020\001\022\016\n\nemDescribe\020\002*d\n\026EmMtAudPrecedenceL" +
-      "evel\022\026\n\022emAudPrecedenceLow\020\000\022\031\n\025emAudPre" +
-      "cedenceMiddle\020\001\022\027\n\023emAudPrecedenceHigh\020\002" +
-      "*t\n\014EmAlarmLevel\022\021\n\remAlarmNormal\020\000\022\022\n\016e",
-      "mAlarmGeneral\020\001\022\024\n\020emAlarmImportant\020\002\022\023\n" +
-      "\017emAlarmCritical\020\003\022\022\n\016emAlarmUnknown\020\004*3" +
-      "\n\014EmAlarmState\022\020\n\014emStateAlarm\020\000\022\021\n\remSt" +
-      "ateNormal\020\001*}\n\013EmAlarmCode\022\026\n\021emAlarmFil" +
-      "eSysErr\020\362\007\022\023\n\016emAlarmSysBusy\020\363\007\022\022\n\remAla" +
-      "rmFanErr\020\370\007\022\024\n\017emAlarmTempHigh\020\371\007\022\027\n\022emA" +
-      "larmVoltageHigh\020\372\007*<\n\014EmDLProtocol\022\t\n\005em" +
-      "PPP\020\000\022\n\n\006emHDLC\020\001\022\013\n\007emPPPOE\020\002\022\010\n\004emMP\020\003" +
-      "*W\n\024EmAuthenticationType\022\024\n\020emE1AuthType" +
-      "None\020\000\022\023\n\017emE1AuthTypePAP\020\001\022\024\n\020emE1AuthT",
-      "ypeCHAP\020\002*?\n\021EmApsLoginErrcode\022\020\n\014emApsL" +
-      "oginOk\020\000\022\030\n\024emApsLoginErrUnknown\020\001*\202\002\n\nE" +
-      "mPortType\022\022\n\016emConfChanPort\020\000\022\014\n\010emImPor" +
-      "t\020\001\022\r\n\temVodPort\020\002\022\014\n\010emMcPort\020\003\022\025\n\021emH3" +
-      "23CallingPort\020\004\022\025\n\021emH323TcpBasePort\020\005\022\024" +
-      "\n\020emH323TcpEndPort\020\006\022\025\n\021emH323pxyBasePor" +
-      "t\020\007\022\024\n\020emH323pxyEndPort\020\010\022\021\n\remSipBfcpPo" +
-      "rt\020\t\022\r\n\temMTCPort\020\n\022\014\n\010emGKPort\020\013\022\024\n\020emS" +
-      "ipCallingPort\020\014*_\n\013EmVideoType\022\023\n\017em1stP" +
-      "riomVideo\020\000\022\023\n\017em2ndPriomVideo\020\001\022\023\n\017em3r",
-      "dPriomVideo\020\002\022\021\n\remSecondVideo\020\n*\376\006\n\021EmV" +
-      "ideoOutPutMode\022\023\n\017emVOM_HD_ORIGIN\020\000\022\025\n\021e" +
-      "mVOM_HD_1080p_24\020\001\022\025\n\021emVOM_HD_1080p_25\020" +
-      "\002\022\025\n\021emVOM_HD_1080p_30\020\003\022\025\n\021emVOM_HD_108" +
-      "0p_50\020\004\022\027\n\023emVOM_HD_1080p_60hz\020\005\022\030\n\024emVO" +
-      "M_HD_1080p_60fps\020\006\022\025\n\021emVOM_HD_1080i_50\020" +
-      "\007\022\025\n\021emVOM_HD_1080i_60\020\010\022\024\n\020emVOM_HD_720" +
-      "p_50\020\t\022\026\n\022emVOM_HD_720p_60hz\020\n\022\027\n\023emVOM_" +
-      "HD_720p_60fps\020\013\022\024\n\020emVOM_HD_576i_50\020\014\022\025\n" +
-      "\021emVOM_HD_1080p_29\020\r\022\025\n\021emVOM_HD_1080p_5",
-      "9\020\016\022\021\n\remVOM_HD_576p\020\017\022\030\n\024emVOM_HD_1080p" +
-      "_29_97\020\020\022\030\n\024emVOM_HD_1080p_59_94\020\021\022\023\n\017em" +
-      "VOM_HD_VGA_60\020\022\022\023\n\017emVOM_HD_VGA_75\020\023\022\024\n\020" +
-      "emVOM_HD_SVGA_60\020\024\022\024\n\020emVOM_HD_SVGA_75\020\025" +
-      "\022\023\n\017emVOM_HD_XGA_60\020\026\022\023\n\017emVOM_HD_XGA_75" +
-      "\020\027\022\024\n\020emVOM_HD_SXGA_60\020\030\022\034\n\030emVOM_HD_WXG" +
-      "A1280x768_60\020\031\022\034\n\030emVOM_HD_WXGA1280x768_" +
-      "75\020\032\022\034\n\030emVOM_HD_WXGA1280x800_60\020\033\022\034\n\030em" +
-      "VOM_HD_WXGA1280x800_75\020\034\022\034\n\030emVOM_HD_WXG" +
-      "A1366x768_60\020\035\022\035\n\031emVOM_HD_UXGA1600x1200",
-      "_60\020\036\022\035\n\031emVOM_HD_WSXGA1440x900_60\020\037\022!\n\035" +
-      "emVOM_HD_SXGAPLUS1680x1050_60\020 \022\033\n\027emVOM" +
-      "_HD_4k3860x2160_30\020!\022\033\n\027emVOM_HD_4k3860x" +
-      "2160_60\020\"*C\n\013EmTextAlign\022\017\n\013emAlignLeft\020" +
-      "\000\022\021\n\remAlignCenter\020\001\022\020\n\014emAlignRight\020\002*L" +
-      "\n\nEmRollMode\022\014\n\010emStatic\020\000\022\020\n\014emRight2Le" +
-      "ft\020\001\022\r\n\temDown2Up\020\002\022\017\n\013emScollPage\020\003*c\n\013" +
-      "EmRollSpeed\022\020\n\014emRollSlower\020\000\022\016\n\nemRollS" +
-      "low\020\001\022\020\n\014emRollNormal\020\002\022\016\n\nemRollFast\020\003\022" +
-      "\020\n\014emRollFaster\020\004*\220\003\n\rEmHDAudPortIn\022\022\n\016e",
-      "mHDAudInBegin\020\000\022\022\n\016emHDAudInDMic1\020\001\022\022\n\016e" +
-      "mHDAudInDMic2\020\002\022\020\n\014emHDAudInXLR\020\003\022\022\n\016emH" +
-      "DAudInWMic1\020\004\022\022\n\016emHDAudInWMic2\020\005\022\022\n\016emH" +
-      "DAudInWMic3\020\006\022\020\n\014emHDAudInRCA\020\007\022\023\n\017emHDA" +
-      "udInTRS3_5\020\010\022\022\n\016emHDAudInHDMI1\020\t\022\022\n\016emHD" +
-      "AudInHDMI2\020\n\022\022\n\016emHDAudInHDMI3\020\013\022\022\n\016emHD" +
-      "AudInDHDMI\020\014\022\021\n\remHDAudInSDI1\020\r\022\021\n\remHDA" +
-      "udInSDI2\020\016\022\025\n\021emHDAudInHDBaseT1\020\017\022\025\n\021emH" +
-      "DAudInHDBaseT2\020\020\022\024\n\020emHDAudInDsiMic1\020\021\022\024" +
-      "\n\020emHDAudInDsiMic2\020\022*\341\001\n\016EmHDAudPortOut\022",
-      "\023\n\017emHDAudOutBegin\020\000\022\021\n\remHDAudOutRCA\020\001\022" +
-      "\024\n\020emHDAudOutTRS6_5\020\002\022\024\n\020emHDAudOutTRS3_" +
-      "5\020\003\022\024\n\020emHDAudOutDHDMI1\020\004\022\024\n\020emHDAudOutD" +
-      "HDMI2\020\005\022\022\n\016emHDAudOutHDMI\020\006\022\021\n\remHDAudOu" +
-      "tSDI\020\007\022\023\n\017emHDAudOutHDMI1\020\010\022\023\n\017emHDAudOu" +
-      "tHDMI2\020\t*V\n\024EmHDMultiVideoSwitch\022\026\n\022emHD" +
-      "MultiVideoStop\020\000\022\021\n\remHDMultiView\020\001\022\023\n\017e" +
-      "mHDMultiStream\020\002*\371\001\n\017EmHDMultiViewMP\022\030\n\024" +
-      "emMVMP_LeftRight_One\020\000\022\035\n\031emMVMP_BigSmal" +
-      "l_RightDown\020\001\022\034\n\030emMVMP_BigSmall_LeftDow",
-      "n\020\002\022\032\n\026emMVMP_BigSmall_LeftUp\020\003\022\033\n\027emMVM" +
-      "P_BigSmall_RightUp\020\004\022\033\n\027emMVMP_3View_1Bi" +
-      "g2Small\020\005\022\034\n\030emMVMP_3View_1Top2Bottom\020\006\022" +
-      "\033\n\027emMVMP_SingleView_Close\020\007*u\n\021EmHDVide" +
-      "oPortMode\022\021\n\remVPM_Invalid\020\000\022\016\n\nemVPM_Au" +
-      "to\020\001\022\016\n\nemVPM_HDMI\020\002\022\r\n\temVPM_DVI\020\003\022\017\n\013e" +
-      "mVPM_YPBPR\020\004\022\r\n\temVPM_VGA\020\005*\237\003\n\024EmHDVide" +
-      "oOutPortType\022\021\n\remVOT_Invalid\020\000\022\016\n\nemVOT" +
-      "_DVI1\020\001\022\016\n\nemVOT_DVI2\020\002\022\016\n\nemVOT_DVI3\020\003\022" +
-      "\016\n\nemVOT_DVI4\020\004\022\017\n\013emVOT_HDMI1\020\005\022\017\n\013emVO",
-      "T_HDMI2\020\006\022\017\n\013emVOT_HDMI3\020\007\022\017\n\013emVOT_HDMI" +
-      "4\020\010\022\020\n\014emVOT_YPbPr1\020\t\022\020\n\014emVOT_YPbPr2\020\n\022" +
-      "\020\n\014emVOT_YPbPr3\020\013\022\020\n\014emVOT_YPbPr4\020\014\022\016\n\ne" +
-      "mVOT_VGA1\020\r\022\016\n\nemVOT_VGA2\020\016\022\016\n\nemVOT_VGA" +
-      "3\020\017\022\016\n\nemVOT_VGA4\020\020\022\016\n\nemVOT_SDI1\020\021\022\016\n\ne" +
-      "mVOT_SDI2\020\022\022\016\n\nemVOT_SDI3\020\023\022\016\n\nemVOT_SDI" +
-      "4\020\024\022\014\n\010emVOT_C1\020\025\022\014\n\010emVOT_C2\020\026\022\014\n\010emVOT" +
-      "_C3\020\027*\325\006\n\023EmHDVideoSourceType\022\020\n\014emVS_In" +
-      "valid\020\000\022\017\n\013emVS_1stDec\020\001\022\017\n\013emVS_2ndDec\020" +
-      "\002\022\017\n\013emVS_3rdDec\020\003\022\017\n\013emVS_4thDec\020\004\022\017\n\013e",
-      "mVS_5thDec\020\005\022\017\n\013emVS_6thDec\020\006\022\017\n\013emVS_7t" +
-      "hDec\020\007\022\017\n\013emVS_8thDec\020\010\022\017\n\013emVS_9thDec\020\t" +
-      "\022\020\n\014emVS_10thDec\020\n\022\031\n\025emVS_MtVidInnerCam" +
-      "era\020\013\022\022\n\016emVS_MtVidDVI1\020\014\022\022\n\016emVS_MtVidD" +
-      "VI2\020\r\022\022\n\016emVS_MtVidDVI3\020\016\022\022\n\016emVS_MtVidD" +
-      "VI4\020\017\022\023\n\017emVS_MtVidHDMI1\020\020\022\023\n\017emVS_MtVid" +
-      "HDMI2\020\021\022\023\n\017emVS_MtVidHDMI3\020\022\022\023\n\017emVS_MtV" +
-      "idHDMI4\020\023\022\024\n\020emVS_MtVidYPbPr1\020\024\022\024\n\020emVS_" +
-      "MtVidYPbPr2\020\025\022\024\n\020emVS_MtVidYPbPr3\020\026\022\024\n\020e" +
-      "mVS_MtVidYPbPr4\020\027\022\022\n\016emVS_MtVidVGA1\020\030\022\022\n",
-      "\016emVS_MtVidVGA2\020\031\022\022\n\016emVS_MtVidVGA3\020\032\022\022\n" +
-      "\016emVS_MtVidVGA4\020\033\022\020\n\014emVS_MtVidC1\020\034\022\020\n\014e" +
-      "mVS_MtVidC2\020\035\022\020\n\014emVS_MtVidC3\020\036\022\020\n\014emVS_" +
-      "MtVidS1\020\037\022\020\n\014emVS_MtVidS2\020 \022\020\n\014emVS_MtVi" +
-      "dS3\020!\022\026\n\022emVS_MtVidHDBaseT1\020\"\022\026\n\022emVS_Mt" +
-      "VidHDBaseT2\020#\022\026\n\022emVS_MtVidHDBaseT3\020$\022\026\n" +
-      "\022emVS_MtVidHDBaseT4\020%\022\022\n\016emVS_MtVidSDI1\020" +
-      "&\022\022\n\016emVS_MtVidSDI2\020\'\022\022\n\016emVS_MtVidSDI3\020" +
-      "(\022\022\n\016emVS_MtVidSDI4\020)*b\n\017EmHDLastDisplay" +
-      "\022\022\n\016emLD_LastFrame\020\000\022\023\n\017emLD_BlueScreen\020",
-      "\001\022\022\n\016emLD_StaticBMP\020\002\022\022\n\016emLD_CustomBMP\020" +
-      "\003*\211\001\n\016EmHDImageNoise\022\030\n\024emImageNoise_Dis" +
-      "able\020\000\022\024\n\020emImageNoise_Low\020\001\022\024\n\020emImageN" +
-      "oise_Med\020\002\022\025\n\021emImageNoise_High\020\003\022\032\n\026emI" +
-      "mageNoise_UltraHigh\020\004*S\n\033EmHDImageDeform" +
-      "ationTensile\022\030\n\024emImageDT_Transverse\020\000\022\032" +
-      "\n\026emImageDT_Longitudinal\020\001*\257\001\n\020EmEthnetW" +
-      "orkMode\022\021\n\remEthModeAuto\020\000\022\024\n\020emEthMode1" +
-      "0MFull\020\001\022\024\n\020emEthMode10MHalf\020\002\022\025\n\021emEthM" +
-      "ode100MFull\020\003\022\025\n\021emEthMode100MHalf\020\004\022\026\n\022",
-      "emEthMode1000MFull\020\005\022\026\n\022emEthMode1000MHa" +
-      "lf\020\006*m\n\022EmEthInterfaceMode\022\034\n\030emEthInter" +
-      "faceModeBackup\020\000\022\033\n\027emEthInterfaceModeMu" +
-      "lti\020\001\022\034\n\030emEthInterfaceModeSingle\020\002*C\n\022E" +
-      "mEthStartupResult\022\027\n\023emEthStartupSuccess" +
-      "\020\000\022\024\n\020emEthStartupFail\020\001*\216\001\n\020EmPPPoELink" +
-      "State\022\030\n\024emPPPoELinkStateIdle\020\000\022\036\n\032emPPP" +
-      "oELinkStateConnecting\020\001\022!\n\035emPPPoELinkSt" +
-      "ateDisConnecting\020\002\022\035\n\031emPPPoELinkStateCo" +
-      "nnected\020\003*\352\001\n\024EmPPPoELinkErrReason\022\035\n\031em",
-      "PPPoELinkErrReason_None\020\000\022&\n\"emPPPoELink" +
-      "ErrReason_UsrOrPwdError\020\001\022 \n\034emPPPoELink" +
-      "ErrReason_Timeout\020\002\022!\n\035emPPPoELinkErrRea" +
-      "son_Linkdown\020\003\022$\n emPPPoELinkErrReason_N" +
-      "oISPServer\020\004\022 \n\034emPPPoELinkErrReason_Unk" +
-      "nown\020\005*a\n\016EmWifiWorkMode\022\027\n\023emWifiWorkMo" +
-      "deClose\020\000\022\034\n\030emWifiWorkModeWifiClient\020\001\022" +
-      "\030\n\024emWifiWorkModeWifiAp\020\002*\203\001\n\rEmWifiKeyT" +
-      "ype\022\025\n\021emWifiKeyTypeNone\020\000\022\024\n\020emWifiKeyT" +
-      "ypeWPA\020\001\022\025\n\021emWifiKeyTypeWPA2\020\002\022\030\n\024emWif",
-      "iKeyTypeWPAWPA2\020\003\022\024\n\020emWifiKeyTypeWEP\020\004*" +
-      "\230\001\n\021EmWifiSignalLevel\022\031\n\025emWifiSignalLev" +
-      "elNone\020\000\022\031\n\025emWifiSignalLevelLess\020\001\022\030\n\024e" +
-      "mWifiSignalLevelLow\020\002\022\030\n\024emWifiSignalLev" +
-      "elMid\020\003\022\031\n\025emWifiSignalLevelHigh\020\004*\211\003\n\017E" +
-      "mWifiLinkState\022\027\n\023emWifiLinkStateIdle\020\000\022" +
-      "!\n\035emWifiLinkStateAuthentication\020\001\022\032\n\026em" +
-      "WifiLinkStateBlocked\020\002\022\034\n\030emWifiLinkStat" +
-      "eConnected\020\003\022\035\n\031emWifiLinkStateConnectin" +
-      "g\020\004\022\037\n\033emWifiLinkStateDisConnected\020\005\022 \n\034",
-      "emWifiLinkStateDisConnecting\020\006\022\031\n\025emWifi" +
-      "LinkStateFailed\020\007\022\"\n\036emWifiLinkStateObta" +
-      "iningIpAddr\020\010\022\033\n\027emWifiLinkStateScanning" +
-      "\020\t\022\034\n\030emWifiLinkStateSuspended\020\n\022$\n emWi" +
-      "fiLinkStateVerifyingPoorLink\020\013*\225\001\n\023EmWif" +
-      "iLinkErrReason\022\034\n\030emWifiLinkErrReason_No" +
-      "ne\020\000\022\036\n\032emWifiLinkErrReason_Failed\020\001\022\037\n\033" +
-      "emWifiLinkErrReason_Timeout\020\002\022\037\n\033emWifiL" +
-      "inkErrReason_Unknown\020\003*C\n\017EmWifiApKeyTyp" +
-      "e\022\027\n\023emWifiApKeyTypeNone\020\000\022\027\n\023emWifiApKe",
-      "yTypeWPA2\020\001*_\n\027EmWifiFrequencyBandType\022!" +
-      "\n\035emWifiFrequencyBandType_24GHz\020\000\022!\n\035emW" +
-      "ifiFrequencyBandType_50GHz\020\001*\305\002\n\025EmMobil" +
-      "eDataLinkState\022\037\n\033emMobileDataLinkStateU" +
-      "nUsed\020\000\022\035\n\031emMobileDataLinkStateIdle\020\001\022#" +
-      "\n\037emMobileDataLinkStateConnecting\020\002\022&\n\"e" +
-      "mMobileDataLinkLinkStateConnected\020\003\022&\n\"e" +
-      "mMobileDataLinkLinkStateSuspended\020\004\022&\n\"e" +
-      "mMobileDataLinkStateDisConnecting\020\005\022)\n%e" +
-      "mMobileDataLinkLinkStateDisConnected\020\006\022$",
-      "\n emMobileDataLinkLinkStateUnknown\020\007*\263\001\n" +
-      "\031EmMobileDataLinkErrReason\022\"\n\036emMobileDa" +
-      "taLinkErrReason_None\020\000\022$\n emMobileDataLi" +
-      "nkErrReason_Failed\020\001\022%\n!emMobileDataLink" +
-      "ErrReason_Timeout\020\002\022%\n!emMobileDataLinkE" +
-      "rrReason_Unknown\020\003*\274\001\n\027EmMobileDataSigna" +
-      "lLevel\022\037\n\033emMobileDataSignalLevelNone\020\000\022" +
-      "\037\n\033emMobileDataSignalLevelLess\020\001\022\036\n\032emMo" +
-      "bileDataSignalLevelLow\020\002\022\036\n\032emMobileData" +
-      "SignalLevelMid\020\003\022\037\n\033emMobileDataSignalLe",
-      "velHigh\020\004*\202\002\n\024EmNetAdapterWorkType\022\035\n\031em" +
-      "NetAdapterWorkType_None\020\000\022\035\n\031emNetAdapte" +
-      "rWorkType_Wifi\020\001\022\036\n\032emNetAdapterWorkType" +
-      "_PPPoE\020\002\022#\n\037emNetAdapterWorkType_MobileD" +
-      "ata\020\003\022$\n emNetAdapterWorkType_EthnetCard" +
-      "1\020\004\022$\n emNetAdapterWorkType_EthnetCard2\020" +
-      "\005\022\033\n\027emNetAdapterWorkType_E1\020\006*\215\001\n\023EmMob" +
-      "ileDataNetType\022\034\n\030emMobileDataNetType_No" +
-      "ne\020\000\022\034\n\030emMobileDataNetType_CMCC\020\001\022\034\n\030em" +
-      "MobileDataNetType_CUCC\020\002\022\034\n\030emMobileData",
-      "NetType_CTCC\020\003*\271\001\n\035EmMobileDataNetGenera" +
-      "tionType\022&\n\"emMobileDataNetGenerationTyp" +
-      "e_None\020\000\022$\n emMobileDataNetGenerationTyp" +
-      "e_2G\020\001\022$\n emMobileDataNetGenerationType_" +
-      "3G\020\002\022$\n emMobileDataNetGenerationType_4G" +
-      "\020\003*v\n\021EmEthnetParamType\022\027\n\023emType_SetIpA" +
-      "ndMask\020\000\022\030\n\024emType_SetMacAddress\020\001\022\026\n\022em" +
-      "Type_SetAllParam\020\002\022\026\n\022emType_SetSecondIp" +
-      "\020\003*B\n\021EmE1InterfaceType\022\025\n\021emE1IfType_Se" +
-      "rial\020\000\022\026\n\022emE1IfType_Virtual\020\001*9\n\rEmE1Cl",
-      "ockType\022\023\n\017emClockType_Dce\020\000\022\023\n\017emClockT" +
-      "ype_Dte\020\001*l\n\020EmE1ChainOptType\022\025\n\021emType_" +
-      "OpenSingle\020\000\022\026\n\022emType_CloseSingle\020\001\022\023\n\017" +
-      "emType_OpenMult\020\002\022\024\n\020emType_CloseMult\020\003*" +
-      "\363\003\n\021EmE1LinkErrReason\022\017\n\013emE1ErrNone\020\000\022\031" +
-      "\n\025emE1ErrParamException\020\001\022\032\n\026emE1ErrSeri" +
-      "alIdInvalid\020\002\022\026\n\022emE1ErrE1IdInvalid\020\003\022\032\n" +
-      "\026emE1ErrE1TsMaskInvalid\020\004\022\036\n\032emE1ErrE1Ch" +
-      "ainGroupInvalid\020\005\022$\n emE1ErrSerialProtoc" +
-      "olTypeInvalid\020\006\022$\n emE1ErrSerialEchoInte",
-      "rvalInvalid\020\007\022$\n emE1ErrSerialEchoMaxRet" +
-      "ryInvalid\020\010\022\034\n\030emE1ErrStringLenOverflow\020" +
-      "\t\022\024\n\020emE1ErrNipOptErr\020\n\022\031\n\025emE1ErrChainN" +
-      "otConfig\020\013\022\030\n\024emE1ErrChainConflict\020\014\022\035\n\031" +
-      "emE1ErrPppAuthTypeInvalid\020\r\022\032\n\026emE1ErrPp" +
-      "pFragTooShort\020\016\022\025\n\021emE1ParamCheckErr\020\017\022\025" +
-      "\n\021emE1ParamConflict\020\020*Z\n\rEmPingErrcode\022\017" +
-      "\n\013emPingReply\020\000\022\021\n\remPingTimeout\020\001\022\017\n\013em" +
-      "PingError\020\002\022\024\n\020emPingNetUnreach\020\003*G\n\rEmU" +
-      "pgradeType\022\020\n\014emSusUpgrade\020\001\022\022\n\016emLocalU",
-      "pgrade\020\002\022\020\n\014emMtcUpgrade\020\003*\253\002\n\017EmUpgrade" +
-      "Notify\022\022\n\016emFileCheckBgn\020\000\022\025\n\021emWholeUpg" +
-      "radeBgn\020\001\022\026\n\022emFileCheckSuccess\020\002\022\031\n\025emW" +
-      "holeUpgradeSuccess\020\003\022\020\n\014emUnknownErr\020\004\022\024" +
-      "\n\020emInvalidFileErr\020\005\022\024\n\020emLoadXmlFileErr" +
-      "\020\006\022\022\n\016emFileCheckErr\020\007\022\024\n\020emSysMountBakE" +
-      "rr\020\010\022\034\n\030emUpgradeDriverModuleErr\020\t\022\031\n\025em" +
-      "UpgradeAppModuleErr\020\n\022\031\n\025emUpgradeExeMod" +
-      "uleErr\020\013*t\n\021EmNetConflictType\022\027\n\023emConfl" +
-      "ictType_None\020\000\022\025\n\021emConflictType_Ip\020\001\022\026\n",
-      "\022emConflictType_Mac\020\002\022\027\n\023emConflictType_" +
-      "Both\020\003*Y\n\013EmHDMicGain\022\020\n\014emMicGainOff\020\000\022" +
-      "\020\n\014emMicGainLow\020\001\022\023\n\017emMicGainMiddle\020\002\022\021" +
-      "\n\remMicGainHigh\020\003*=\n\017EmPPPoEDialMode\022\025\n\021" +
-      "emPPPoEDialManual\020\000\022\023\n\017emPPPoEDialAuto\020\001" +
-      "*\237\001\n\024EmEquipmentUpgrading\022\r\n\temEUbegin\020\000" +
-      "\022\r\n\temEUHD120\020\001\022\r\n\temEUHD200\020\002\022\016\n\nemEUHD" +
-      "120E\020\003\022\016\n\nemEUHD200E\020\004\022\016\n\nemEUMoon50\020\005\022\024" +
-      "\n\020emEUMoon50_1080p\020\006\022\024\n\020emEUMoon70_1080p" +
-      "\020\007*-\n\tEmUartNum\022\017\n\013emUartDMIC1\020\000\022\017\n\013emUa",
-      "rtDMIC2\020\001*$\n\013EmPicFormat\022\n\n\006emJPEG\020\000\022\t\n\005" +
-      "emBMP\020\001*l\n\nEmImgParam\022\t\n\005emHue\020\000\022\022\n\016emWh" +
-      "iteBalance\020\001\022\016\n\nemContrast\020\002\022\020\n\014emSatura" +
-      "tion\020\003\022\017\n\013emSharpness\020\004\022\014\n\010emBright\020\005*P\n" +
-      "\nEmFxoState\022\r\n\temFxoIdle\020\000\022\017\n\013emFxoCallI" +
-      "n\020\001\022\020\n\014emFxoCalling\020\002\022\020\n\014emFxoConnect\020\003*" +
-      "A\n\nEmSdiInOut\022\r\n\temSdiNone\020\000\022\016\n\nemSdiTwo" +
-      "In\020\001\022\024\n\020emSdiOneInOneOut\020\002*N\n\017EmMsgFromS" +
-      "ource\022\024\n\020emMsgFromInvalid\020\000\022\023\n\017emMsgFrom" +
-      "WebMtc\020\001\022\020\n\014emMsgFromOsd\020\002*\227\001\n\020EmNmsLogi",
-      "nResult\022\026\n\022emNmsLogin_Success\020\000\022\026\n\022emNms" +
-      "Login_ErrorID\020\001\022\032\n\026emNmsLogin_RepeatLogi" +
-      "n\020\002\022\033\n\027emNmsLogin_ErrorDevType\020\003\022\032\n\025emNm" +
-      "sLogin_DisConnect\020\377\001*\214\005\n\nEmTimeZone\022\022\n\016e" +
-      "mTimeZone_GMT\020\000\022\022\n\016emTimeZone_UTC\020\001\022\022\n\016e" +
-      "mTimeZone_ECT\020\002\022\022\n\016emTimeZone_EET\020\003\022\022\n\016e" +
-      "mTimeZone_ART\020\004\022\022\n\016emTimeZone_EAT\020\005\022\022\n\016e" +
-      "mTimeZone_MET\020\006\022\022\n\016emTimeZone_NET\020\007\022\022\n\016e" +
-      "mTimeZone_PLT\020\010\022\022\n\016emTimeZone_IST\020\t\022\022\n\016e" +
-      "mTimeZone_BST\020\n\022\022\n\016emTimeZone_VST\020\013\022\022\n\016e",
-      "mTimeZone_CTT\020\014\022\022\n\016emTimeZone_JST\020\r\022\022\n\016e" +
-      "mTimeZone_ACT\020\016\022\022\n\016emTimeZone_AET\020\017\022\022\n\016e" +
-      "mTimeZone_SST\020\020\022\022\n\016emTimeZone_NST\020\021\022\022\n\016e" +
-      "mTimeZone_MIT\020\022\022\022\n\016emTimeZone_HST\020\023\022\022\n\016e" +
-      "mTimeZone_AST\020\024\022\022\n\016emTimeZone_PST\020\025\022\022\n\016e" +
-      "mTimeZone_PNT\020\026\022\022\n\016emTimeZone_MST\020\027\022\022\n\016e" +
-      "mTimeZone_CST\020\030\022\022\n\016emTimeZone_EST\020\031\022\022\n\016e" +
-      "mTimeZone_IET\020\032\022\022\n\016emTimeZone_PRT\020\033\022\022\n\016e" +
-      "mTimeZone_CNT\020\034\022\022\n\016emTimeZone_AGT\020\035\022\022\n\016e" +
-      "mTimeZone_BET\020\036\022\022\n\016emTimeZone_CAT\020\037*\205\001\n\023",
-      "EmMtSmoothSendLevel\022\031\n\025emSmoothSendLevel" +
-      "_Off\020\000\022\032\n\026emSmoothSendLevel_High\020\001\022\034\n\030em" +
-      "SmoothSendLevel_Middle\020\002\022\031\n\025emSmoothSend" +
-      "Level_Low\020\003*S\n\016EmRestDualMode\022\026\n\022emRestD" +
-      "ual_Speaker\020\000\022\022\n\016emRestDual_any\020\001\022\025\n\021emR" +
-      "estDual_assign\020\002*Q\n\025EmRestMeetingSafeTyp" +
-      "e\022\034\n\030emRestMeetingType_Public\020\000\022\032\n\026emRes" +
-      "tMeetingType_Port\020\001*L\n\022EmRestVideoQualit" +
-      "y\022\033\n\027emRestQualityPrecedence\020\000\022\031\n\025emRest" +
-      "SpeedPrecedence\020\001*F\n\021EmRestCascadeMode\022\030",
-      "\n\024emRestCascade_Simple\020\000\022\027\n\023emRestCascad" +
-      "e_Merge\020\001*\311\001\n\014EmRemoteType\022\027\n\023emRemoteTy" +
-      "peUnknown\020\000\022\032\n\026emRemoteTypeShortBlack\020\001\022" +
-      "\031\n\025emRemoteTypeLongBlack\020\002\022\026\n\022emRemoteTy" +
-      "peSilver\020\003\022\031\n\025emRemoteTypeV3CamCtrl\020\004\022\031\n" +
-      "\025emRemoteTypeSkyWalker\020\005\022\033\n\027emRemoteType" +
-      "IRLongBlack\020\006*\357\t\n\020EmRemoteScanCode\022\017\n\013em" +
-      "ScanCode0\020\000\022\017\n\013emScanCode1\020\001\022\017\n\013emScanCo" +
-      "de2\020\002\022\017\n\013emScanCode3\020\003\022\017\n\013emScanCode4\020\004\022" +
-      "\017\n\013emScanCode5\020\005\022\017\n\013emScanCode6\020\006\022\017\n\013emS",
-      "canCode7\020\007\022\017\n\013emScanCode8\020\010\022\017\n\013emScanCod" +
-      "e9\020\t\022\023\n\017emScanCodePoint\020\n\022\023\n\017emScanCodeS" +
-      "harp\020\013\022\022\n\016emScanCodeMenu\020\014\022\027\n\023emScanCode" +
-      "Backspace\020\r\022\023\n\017emScanCodeEnter\020\016\022\020\n\014emSc" +
-      "anCodeUp\020\017\022\022\n\016emScanCodeDown\020\020\022\022\n\016emScan" +
-      "CodeLeft\020\021\022\023\n\017emScanCodeRight\020\022\022\023\n\017emSca" +
-      "nCodePower\020\023\022\026\n\022emScanCodeMainVSrc\020\024\022\020\n\014" +
-      "emScanCodeAV\020\025\022\025\n\021emScanCodeFarCtrl\020\026\022\022\n" +
-      "\016emScanCodeMute\020\027\022\023\n\017emScanCodeQuiet\020\030\022\021" +
-      "\n\remScanCodeVGA\020\031\022\017\n\013emScanCodeS\020\032\022\026\n\022em",
-      "ScanCodeShotSnap\020\033\022\026\n\022emScanCodeVolumeUp" +
-      "\020\034\022\030\n\024emScanCodeVolumeDown\020\035\022\025\n\021emScanCo" +
-      "deConnect\020\036\022\030\n\024emScanCodeDisconnect\020\037\022\027\n" +
-      "\023emScanCodeDirectory\020 \022\027\n\023emScanCodePipE" +
-      "nable\020!\022\027\n\023emScanCodePipAdjust\020\"\022\026\n\022emSc" +
-      "anCodeSelfTest\020#\022\027\n\023emScanCodeAutoFocus\020" +
-      "$\022\026\n\022emScanCodeNearZoom\020%\022\025\n\021emScanCodeF" +
-      "arZoom\020&\022\025\n\021emScanCodePreSave\020\'\022\025\n\021emSca" +
-      "nCodePreMove\020(\022\026\n\022emScanCodeChairReq\020)\022\026" +
-      "\n\022emScanCodeSpeakReq\020*\022\025\n\021emScanCodeQuit",
-      "Req\020+\022\023\n\017emScanCodeState\020,\022\025\n\021emScanCode" +
-      "HotLeft\020-\022\027\n\023emScanCodeHotCenter\020.\022\026\n\022em" +
-      "ScanCodeHotRight\020/\022\022\n\016emScanCodeHelp\0200\022\026" +
-      "\n\022emScanCodeBrightUp\0201\022\030\n\024emScanCodeBrig" +
-      "htDown\0202\022\022\n\016emScanCodeDual\0203\022\024\n\020emScanCo" +
-      "deReturn\0204\022\022\n\016emScanCodeFunc\0205\022\024\n\020emScan" +
-      "CodeSearch\0206\022\026\n\022emScanCodeImixMenu\0207\022\022\n\016" +
-      "emScanCodeNull\020b\022\025\n\021emScanCodeInvalid\020c*" +
-      "x\n\025EmParticipantResponse\022\030\n\024emResponseNo" +
-      "Feedback\020\000\022\024\n\020emResponseReject\020\001\022\031\n\025emRe",
-      "sponseParticipant\020\002\022\024\n\020emResponseCustom\020" +
-      "\003*F\n\017EmClosedMeeting\022\031\n\025emClosedMeeting_" +
-      "Close\020\000\022\030\n\024emClosedMeeting_Open\020\001*G\n\rEmC" +
-      "ameraSpeed\022\020\n\014emCameraSlow\020\000\022\022\n\016emCamera" +
-      "Normal\020\001\022\020\n\014emCameraFast\020\002*}\n\014EmCameraVi" +
-      "ew\022\027\n\023emRestoreCameraView\020\000\022\023\n\017em1stCame" +
-      "raView\020\001\022\023\n\017em2ndCameraView\020\002\022\025\n\021emCamer" +
-      "aMultiView\020\003\022\023\n\017em3rdCameraView\020\004*\234\001\n\020Em" +
-      "RestNotifyType\022\021\n\remUnknownType\020\000\022\014\n\010emN" +
-      "ewFan\020\001\022\r\n\temNewFeed\020\002\022\021\n\remNewRemindMe\020",
-      "\003\022\016\n\nemNewReply\020\004\022\021\n\remGroupInvite\020\005\022\r\n\t" +
-      "emNewLike\020\006\022\023\n\017emNewPrivateMsg\020\007*K\n\023EmVi" +
-      "dRationStrategy\022\017\n\013EmAssVidPri\020\000\022\020\n\014EmMa" +
-      "inVidPri\020\001\022\021\n\rEmUserDefined\020\002*Y\n\020EmSyste" +
-      "mFileType\022\020\n\014emFileNormal\020\000\022\023\n\017emFileDir" +
-      "ectory\020\001\022\016\n\nemFileLink\020\002\022\016\n\nemFilePipe\020\003" +
-      "*I\n\016EmSaveJpegType\022\017\n\013emSJMonitor\020\000\022\021\n\re" +
-      "mSJPresetPos\020\001\022\023\n\017emSJFtpSnapshot\020\002*\342\002\n\021" +
-      "EmSleepFailReason\022\020\n\014emSFRNoError\020\000\022\027\n\023e" +
-      "mSFRProtectionTime\020\001\022\020\n\014emSFRMonitor\020\002\022\017",
-      "\n\013emSFRInConf\020\003\022\r\n\temSFRLoop\020\004\022\023\n\017emSFRR" +
-      "ibbonTest\020\005\022\021\n\remSFRSnapView\020\006\022\014\n\010emSFRV" +
-      "rs\020\007\022\020\n\014emSFRUpgrade\020\010\022\023\n\017emSFRSusUpgrad" +
-      "e\020\t\022\017\n\013emSFRNetCap\020\n\022\021\n\remSFRAddrbook\020\013\022" +
-      "\023\n\017emSFRSnapExport\020\014\022\026\n\022emSFRCameraUpgra" +
-      "de\020\r\022\030\n\024emSFRMicPhoneUpgrade\020\016\022\022\n\016emSFRM" +
-      "tRecorde\020\017\022\024\n\020emSFRMtAssStream\020\020*F\n\014EmRe" +
-      "sizeMode\022\017\n\013emBlackEdge\020\000\022\r\n\temCutEdge\020\001" +
-      "\022\026\n\022emNoProportionally\020\002*I\n\020EmLocalSound" +
-      "Type\022\014\n\010emLSRing\020\000\022\017\n\013emLSKeyTone\020\001\022\026\n\022e",
-      "mLSSpecialEffects\020\002*\243\001\n\021EmLocalSoundInde" +
-      "x\022\016\n\nemSound1st\020\000\022\016\n\nemSound2nd\020\001\022\016\n\nemS" +
-      "ound3rd\020\002\022\016\n\nemSound4th\020\003\022\016\n\nemSound5th\020" +
-      "\004\022\016\n\nemSound6th\020\005\022\016\n\nemSound7th\020\006\022\016\n\nemS" +
-      "ound8th\020\007\022\016\n\nemSound9th\020\010*\221\001\n\rEmFileCopy" +
-      "Err\022\021\n\remCopySuccess\020\000\022\024\n\020emCopyUnknownE" +
-      "rr\020\001\022\021\n\remCopyNoSpace\020\002\022\031\n\025emCopySrcFile" +
-      "NotFound\020\003\022\031\n\025emCopyDstPathNotFound\020\004\022\016\n" +
-      "\nemCopyStop\020\005*\205\002\n\nEmMicDevId\022\017\n\013emWiredM" +
-      "ic0\020\000\022\017\n\013emWiredMic1\020\001\022\022\n\016emWirelessMic0",
-      "\020\002\022\022\n\016emWirelessMic1\020\003\022\022\n\016emWirelessMic2" +
-      "\020\004\022\027\n\023emWiredMic0Cascade1\020\005\022\027\n\023emWiredMi" +
-      "c0Cascade2\020\006\022\027\n\023emWiredMic1Cascade1\020\007\022\027\n" +
-      "\023emWiredMic1Cascade2\020\010\022\021\n\remBuiltinMic0\020" +
-      "\t\022\021\n\remBuiltinMic1\020\n\022\017\n\013emMicDevEnd\020\013*\266\001" +
-      "\n\024EmTemplateAccoutType\022\021\n\remAccountNone\020" +
-      "\000\022\021\n\remAccountMoid\020\001\022\020\n\014emAccountAny\020\003\022\027" +
-      "\n\023emAccountNonSysMail\020\004\022\021\n\remAccountE164" +
-      "\020\005\022\025\n\021emAccountTelPhone\020\006\022\017\n\013emAccountIP" +
-      "\020\007\022\022\n\016emAccountAlias\020\010*\256\001\n\014EmPingUserId\022",
-      "\020\n\014emPingUidLan\020\000\022\025\n\021emPingUidInternet\020\001" +
-      "\022\020\n\014emPingUidDns\020\002\022\023\n\017emPingUidServer\020\003\022" +
-      "\016\n\nemPingUid4\020\004\022\016\n\nemPingUid5\020\005\022\016\n\nemPin" +
-      "gUid6\020\006\022\016\n\nemPingUid7\020\007\022\016\n\nemPingUid8\020\010*" +
-      "\250\001\n\021EmMicUpgradeState\022\022\n\016emUploadEnable\020" +
-      "\000\022\017\n\013emUploading\020\001\022\021\n\remInstallable\020\002\022\020\n" +
-      "\014emInstalling\020\003\022\024\n\020emUpgradeSuccess\020\004\022\023\n" +
-      "\017emLatestVersion\020\005\022\016\n\nemReserve1\020\006\022\016\n\nem" +
-      "Reserve2\020\007*\307\001\n\026EmAudioDelayCheckState\022\025\n" +
-      "\021emAudioDelayBegin\020\000\022\030\n\024emAudioDelayChec",
-      "king\020\001\022\027\n\023emAudioDelayChecked\020\002\022\027\n\023emAud" +
-      "ioDelayTimeout\020\003\022\026\n\022emAudioDelayFailed\020\004" +
-      "\022\030\n\024emAudioDelayReserve1\020\005\022\030\n\024emAudioDel" +
-      "ayReserve2\020\006*\207\001\n\026EmCameraUpgradeErrCode\022" +
-      "\017\n\013emCUSuccess\020\000\022\021\n\remCUUpgrading\020\001\022\017\n\013e" +
-      "mCUErrType\020\002\022\020\n\014emCUNoDevice\020\003\022\025\n\021emCUNo" +
-      "UpgradeFile\020\004\022\017\n\013emCUFailure\020\005*N\n\024EmUpgr" +
-      "adeExitErrCode\022\026\n\022emUpgradeForceExit\020\000\022\036" +
-      "\n\032emUpgradeNetWorkDisconnect\020\001*O\n\016EmGene" +
-      "ralLevel\022\023\n\017emGeneralLevel0\020\000\022\023\n\017emGener",
-      "alLevel1\020\001\022\023\n\017emGeneralLevel2\020\002*j\n\005EmISO" +
-      "\022\r\n\temISOAuto\020\000\022\013\n\007emISO80\020\001\022\014\n\010emISO100" +
-      "\020\002\022\014\n\010emISO200\020\003\022\014\n\010emISO400\020\004\022\014\n\010emISO8" +
-      "00\020\005\022\r\n\temISO1250\020\006*z\n\016EmExposureMode\022\017\n" +
-      "\013emExMManual\020\000\022\r\n\temExMAuto\020\001\022\024\n\020emExMAp" +
-      "erturePri\020\002\022\023\n\017emExMShutterPri\020\003\022\020\n\014emEx" +
-      "LowLight\020\004\022\013\n\007emExHDR\020\005*w\n\nEmAperture\022\n\n" +
-      "\006emF1p2\020\000\022\n\n\006emF1p6\020\001\022\n\n\006emF1p8\020\002\022\n\n\006emF" +
-      "2p0\020\003\022\n\n\006emF2p8\020\004\022\n\n\006emF4p0\020\005\022\n\n\006emF5p6\020" +
-      "\006\022\n\n\006emF8p0\020\007\022\t\n\005emF11\020\010*?\n\rEmShutterTyp",
-      "e\022\027\n\023emShutterTypeManual\020\000\022\025\n\021emShutterT" +
-      "ypeAuto\020\001*\324\001\n\016EmShutterLevel\022\016\n\nemShutte" +
-      "r8\020\000\022\017\n\013emShutter15\020\001\022\017\n\013emShutter30\020\002\022\017" +
-      "\n\013emShutter60\020\003\022\020\n\014emShutter100\020\004\022\020\n\014emS" +
-      "hutter125\020\005\022\020\n\014emShutter250\020\006\022\020\n\014emShutt" +
-      "er500\020\007\022\021\n\remShutter1000\020\010\022\021\n\remShutter2" +
-      "000\020\t\022\021\n\remShutter4000\020\n*\312\001\n\tEmWBAMode\022\r" +
-      "\n\temWBAAuto\020\000\022\014\n\010emWBADay\020\001\022\017\n\013emWBAClou" +
-      "dy\020\002\022\016\n\nemWBAShade\020\003\022\024\n\020emWBAFluorescent" +
-      "\020\004\022\021\n\remWBATUngsten\020\005\022\r\n\temWBAWarm\020\006\022\021\n\r",
-      "emWBAStandard\020\007\022\020\n\014emWBANatural\020\010\022\021\n\remW" +
-      "BASunlight\020\t\022\017\n\013emWBAManual\020\n*@\n\021EMWBAMo" +
-      "deGainType\022\024\n\020emWBAModeGainRed\020\000\022\025\n\021emWB" +
-      "AModeGainBlue\020\001*`\n\013EmSceneMode\022\016\n\nemScen" +
-      "eOff\020\000\022\020\n\014emSceneNight\020\001\022\017\n\013emSceneAuto\020" +
-      "\002\022\016\n\nemSceneWDR\020\003\022\016\n\nemSceneHCT\020\004*,\n\010EmN" +
-      "FType\022\017\n\013emNFType_2D\020\000\022\017\n\013emNFType_3D\020\001*" +
-      "C\n\010EmNFMode\022\014\n\010emNF_Off\020\000\022\014\n\010emNF_Low\020\001\022" +
-      "\014\n\010emNF_Mid\020\002\022\r\n\temNF_High\020\003*A\n\025EmBright" +
-      "nessDirection\022\022\n\016emBrightnessUp\020\000\022\024\n\020emB",
-      "rightnessDown\020\001*\231\005\n\013EmIspImgInf\022\023\n\017IspIm" +
-      "gInf_Noise\020\000\022\027\n\023IspImgInf_Sharpness\020\001\022\021\n" +
-      "\rIspImgInf_ISO\020\002\022\032\n\026IspImgInf_ExposureMo" +
-      "de\020\003\022\026\n\022IspImgInf_Aperture\020\004\022\025\n\021IspImgIn" +
-      "f_Shutter\020\005\022\031\n\025IspImgInf_Brightnesss\020\006\022\032" +
-      "\n\026IspImgInf_WhiteBalance\020\007\022\026\n\022IspImgInf_" +
-      "Noise_2D\020\010\022\026\n\022IspImgInf_Noise_3D\020\t\022\036\n\032Is" +
-      "pImgInf_BrightnesssValue\020\n\022\026\n\022IspImgInf_" +
-      "Contrast\020\013\022\030\n\024IspImgInf_Saturation\020\014\022\035\n\031" +
-      "IspImgInf_Sharpness_Value\020\r\022\021\n\rIspImgInf",
-      "_Hue\020\016\022\034\n\030IspImgInf_BackLight_Type\020\017\022\035\n\031" +
-      "IspImgInf_BackLight_Value\020\020\022\025\n\021IspImgInf" +
-      "_RedGain\020\021\022\026\n\022IspImgInf_BlueGain\020\022\022\036\n\032Is" +
-      "pImgInf_AotoExposureGain\020\023\022 \n\034IspImgInf_" +
-      "ManualExposureGain\020\024\022\026\n\022IspImgInf_ImgGam" +
-      "ma\020\025\022\026\n\022IspImgInf_ImgDefog\020\026\022\032\n\026IspImgIn" +
-      "f_DigDynSwitch\020\027\022\031\n\025IspImgInf_DigDynLeve" +
-      "l\020\030*R\n\026EmExposureModeGainType\022\032\n\026emExpos" +
-      "ureModeGainAuto\020\000\022\034\n\030emExposureModeGainM" +
-      "anual\020\001*\216\002\n\032EmExposureModeGainRestrict\022\024",
-      "\n\020emGainRestrict15\020\000\022\024\n\020emGainRestrict18" +
-      "\020\001\022\024\n\020emGainRestrict21\020\002\022\024\n\020emGainRestri" +
-      "ct24\020\003\022\024\n\020emGainRestrict27\020\004\022\024\n\020emGainRe" +
-      "strict30\020\005\022\024\n\020emGainRestrict33\020\006\022\024\n\020emGa" +
-      "inRestrict36\020\007\022\024\n\020emGainRestrict39\020\010\022\024\n\020" +
-      "emGainRestrict42\020\t\022\024\n\020emGainRestrict45\020\n" +
-      "*9\n\013EmFocusMode\022\025\n\021emFocusModeManual\020\000\022\023" +
-      "\n\017emFocusModeAuto\020\001*>\n\tEmImgMode\022\021\n\remIm" +
-      "gStandard\020\000\022\r\n\temImgSoft\020\001\022\017\n\013emImgBrigh" +
-      "t\020\002*\311\003\n\017EmIspActionType\022\024\n\020IspActSetZoom",
-      "Out\020\000\022\023\n\017IspActSetZoomIn\020\001\022\025\n\021IspActSetZ" +
-      "oomStop\020\002\022\025\n\021IspActSetZoomAuto\020\003\022\026\n\022IspA" +
-      "ctSetZoomSpeed\020\004\022\026\n\022IspActSetZoomLimit\020\005" +
-      "\022\031\n\025IspActSetZoomPosition\020\006\022\031\n\025IspActGet" +
-      "ZoomPosition\020\007\022\026\n\022IspActSetFocusNear\020\010\022\025" +
-      "\n\021IspActSetFocusFar\020\t\022\026\n\022IspActSetFocusS" +
-      "top\020\n\022\026\n\022IspActSetFocusAuto\020\013\022\032\n\026IspActS" +
-      "etFocusPosition\020\014\022\032\n\026IspActGetFocusPosit" +
-      "ion\020\r\022\025\n\021IspActSetAperture\020\016\022\030\n\024IspActSe" +
-      "tPiCalibrate\020\017\022\026\n\022IspActSetCameraStd\020\020\022\027",
-      "\n\023IspActSetCameraFlip\020\021*\331\001\n\016EmCameraVidS" +
-      "td\022\021\n\remCamera_Auto\020\000\022\025\n\021emCamera_1080p_" +
-      "25\020\001\022\025\n\021emCamera_1080p_30\020\002\022\025\n\021emCamera_" +
-      "1080p_50\020\003\022\025\n\021emCamera_1080p_60\020\004\022\025\n\021emC" +
-      "amera_1080i_50\020\005\022\025\n\021emCamera_1080i_60\020\006\022" +
-      "\024\n\020emCamera_720p_50\020\007\022\024\n\020emCamera_720p_6" +
-      "0\020\010*[\n\nEmFilpType\022\016\n\nemFlip_OFF\020\000\022\023\n\017emF" +
-      "lip_Vertical\020\001\022\025\n\021emFlip_Horizontal\020\002\022\021\n" +
-      "\remFlip_Center\020\003*H\n\tEmVmpMode\022\017\n\013emScree" +
-      "nVmp\020\000\022\025\n\021emCustomScreenVmp\020\001\022\023\n\017emAutoS",
-      "creenVmp\020\002*U\n\nEmPollMode\022\023\n\017emPollModeBe" +
-      "gin\020\000\022\017\n\013emVideoPoll\020\001\022\020\n\014emReserveTwo\020\002" +
-      "\022\017\n\013emAudioPoll\020\003*\201\002\n\016EmStreamNumber\022\017\n\013" +
-      "emStreamBeg\020\000\022\020\n\014emMainAudEnc\020\001\022\020\n\014emMai" +
-      "nAudDec\020\002\022\017\n\013emAssAudEnc\020\003\022\017\n\013emAssAudDe" +
-      "c\020\004\022\017\n\013em1stVidEnc\020\005\022\017\n\013em1stVidDec\020\006\022\017\n" +
-      "\013em2ndVidEnc\020\007\022\017\n\013em2ndVidDec\020\010\022\017\n\013em3rd" +
-      "VidEnc\020\t\022\017\n\013em3rdVidDec\020\n\022\017\n\013emAssVidEnc" +
-      "\020\013\022\017\n\013emAssVidDec\020\014\022\020\n\013emStreamEnd\020\200\001*\\\n" +
-      "\nEmCtrlType\022\022\n\016emAudioEncType\020\000\022\022\n\016emAud",
-      "ioDecType\020\001\022\022\n\016emVideoEncType\020\002\022\022\n\016emVid" +
-      "eoDecType\020\003*\236\005\n\025EmVideoRecordErrorNum\022\022\n" +
-      "\016emErrorNoError\020\000\022\027\n\023emErrorFileNotFound" +
-      "\020\001\022\031\n\025emErrorInvalidASFFile\020\002\022\031\n\025emError" +
-      "ObjectNotFound\020\003\022\023\n\017emErrorBadIndex\020\004\022\030\n" +
-      "\024emErrorValueNotFound\020\005\022\026\n\022emErrorBadArg" +
-      "ument\020\006\022\023\n\017emErrorReadOnly\020\007\022\031\n\025emErrorN" +
-      "otEnoughSpace\020\010\022\030\n\024emErrorInternalError\020" +
-      "\t\022\030\n\024emErrorReadFileError\020\n\022\031\n\025emErrorWr" +
-      "iteFileError\020\013\022\030\n\024emErrorSeekFileError\020\014",
-      "\022\032\n\026emErrorCreateFileError\020\r\022\034\n\030emErrorC" +
-      "reateThreadError\020\016\022\032\n\026emErrorObjectNULLE" +
-      "rror\020\017\022\036\n\032emErrorTooMuchVideoStrream\020\020\022\034" +
-      "\n\030emErrorNotSupportedCodec\020\021\022\022\n\016emErrorF" +
-      "ileEnd\020\022\022\027\n\023emErrorUnknownError\020\023\022\030\n\024emE" +
-      "rrorWriteMemError\020\024\022\030\n\024emErrorFileNameEm" +
-      "pty\020\025\022\021\n\remErrorNotDir\020\026\022\017\n\013emErrorLoop\020" +
-      "\027\022\021\n\remErrorAccess\020\030\022\026\n\022emErrorNameTooLo" +
-      "ng\020\031*>\n\nEmKeyState\022\013\n\007emKeyUp\020\000\022\r\n\temKey" +
-      "Down\020\001\022\024\n\020emKeyLongPressed\020\002*`\n\023EmVideoR",
-      "ecordStatus\022\025\n\021emVideoRecordIdle\020\000\022\032\n\026em" +
-      "VideoRecordRecording\020\001\022\026\n\022emVideoRecordP" +
-      "ause\020\002*T\n\025EmWirelessScreenState\022\034\n\030emWir" +
-      "elessScreen_enabled\020\000\022\035\n\031emWirelessScree" +
-      "n_disabled\020\001*\263\001\n\031EmWirelessScreenErrReas" +
-      "on\022\"\n\036emWirelessScreenErrReason_None\020\000\022$" +
-      "\n emWirelessScreenErrReason_Failed\020\001\022%\n!" +
-      "emWirelessScreenErrReason_Timeout\020\002\022%\n!e" +
-      "mWirelessScreenErrReason_Unknown\020\003*\177\n\014Em" +
-      "MtWarnType\022\021\n\remMtWarnBegin\020\000\022\020\n\014emMtWar",
-      "nTemp\020\001\022\024\n\020emMtWarnFanSpeed\020\002\022\017\n\013emMtWar" +
-      "nCpu\020\004\022\020\n\014emMtWarnVolt\020\010\022\021\n\013emMtWarnEnd\020" +
-      "\200\200\002*j\n\017EmLimitedIpType\022\035\n\031emLimitedIpTyp" +
-      "e_WhiteList\020\000\022\035\n\031emLimitedIpType_BlackLi" +
-      "st\020\001\022\031\n\025emLimitedIpType_Reset\020\002*Z\n\031EmTer" +
-      "ControlCameraOsdType\022\023\n\017emCameraOsdMenu\020" +
-      "\000\022\021\n\remCameraOsdOk\020\001\022\025\n\021emCameraOsdRetur" +
-      "e\020\002*$\n\014EmDigestType\022\t\n\005emSm3\020\000\022\t\n\005emMd5\020" +
-      "\001*$\n\014EmPubPriType\022\t\n\005emRsa\020\001\022\t\n\005emSm2\020\002*" +
-      "\213\002\n\020EmSrtpCryptoType\022\024\n\020emSrtpCryptoNone",
-      "\020\000\022\032\n\026emSrtpCryptoAES_CM_128\020\001\022\032\n\026emSrtp" +
-      "CryptoAES_CM_192\020\002\022\032\n\026emSrtpCryptoAES_CM" +
-      "_256\020\003\022\033\n\027emSrtpCryptoAES_GCM_128\020\004\022\033\n\027e" +
-      "mSrtpCryptoAES_GCM_192\020\005\022\033\n\027emSrtpCrypto" +
-      "AES_GCM_256\020\006\022\032\n\026emSrtpCryptoSM4_CM_128\020" +
-      "\007\022\032\n\026emSrtpCryptoSM1_CM_128\020\010*{\n\016EmSrtpA" +
-      "uthType\022\022\n\016emSrtpAuthNone\020\000\022\023\n\017emSrtpAut" +
-      "hTag_8\020\001\022\024\n\020emSrtpAuthTag_16\020\002\022\024\n\020emSrtp" +
-      "AuthTag_32\020\003\022\024\n\020emSrtpAuthTag_80\020\004*h\n\020Em" +
-      "SipConnectType\022\023\n\017emSipUdpConnect\020\000\022\023\n\017e",
-      "mSipTcpConnect\020\001\022\023\n\017emSipTlsConnect\020\002\022\025\n" +
-      "\021emSipGMTlsConnect\020\003*\224\001\n\017EmSecCertFormat" +
-      "\022\031\n\025emSecCertFormart_NULL\020\000\022\030\n\024emSecCert" +
-      "Formart_PEM\020\001\022\030\n\024emSecCertFormart_DER\020\002\022" +
-      "\030\n\024emSecCertFormart_PFX\020\003\022\030\n\024emSecCertFo" +
-      "rmart_B64\020\004*S\n\014EmRecordType\022\025\n\021emStartRe" +
-      "cordType\020\000\022\026\n\022emConferenceRecord\020\001\022\024\n\020em" +
-      "TerminalRecord\020\002*8\n\rEmPublishMode\022\024\n\020emN" +
-      "otPublishMode\020\000\022\021\n\remPublishMode\020\001*_\n\014Em" +
-      "RecordMode\022\027\n\023emDisableRecordMode\020\000\022\020\n\014e",
-      "mRecordMode\020\001\022\016\n\nemLiveMode\020\002\022\024\n\020emRecor" +
-      "dLiveMode\020\003*T\n\nEmCallMode\022\021\n\remMannualCa" +
-      "ll\020\000\022\016\n\nemAutoCall\020\001\022\020\n\014emTimingCall\020\002\022\021" +
-      "\n\remChasingCall\020\003*n\n\rEmRecordState\022\021\n\rem" +
-      "DoNotRecord\020\000\022\017\n\013emRecording\020\001\022\023\n\017emSusp" +
-      "endRecord\020\002\022\017\n\013emCallingMT\020\003\022\023\n\017emPrepar" +
-      "eRecord\020\004*J\n\013EmRecordCmd\022\022\n\016emRecordCmdB" +
-      "ak\020\000\022\021\n\remPauseRecord\020\001\022\024\n\020emContinueRec" +
-      "ord\020\002*\371\001\n\013EmMtDcsType\022\021\n\remTypeUnknown\020\000" +
-      "\022\022\n\016emTypeTrueLink\020\001\022\033\n\027emTypeTrueTouchP",
-      "honeIOS\020\002\022\031\n\025emTypeTrueTouchPadIOS\020\003\022\037\n\033" +
-      "emTypeTrueTouchPhoneAndroid\020\004\022\035\n\031emTypeT" +
-      "rueTouchPadAndroid\020\005\022\022\n\016emTypeTrueSens\020\006" +
-      "\022\016\n\nemTypeIMIX\020\007\022\027\n\023emTypeThirdPartyTer\020" +
-      "\010\022\016\n\nemTypeButt\020\t*N\n\013EmMtDcsRole\022\020\n\014emRo" +
-      "leManage\020\000\022\016\n\nemRoleOper\020\001\022\016\n\nemRoleUser" +
-      "\020\002\022\r\n\temRoleErr\020\n*O\n\017EmMtDcsConfMode\022\022\n\016" +
-      "emConfModeStop\020\000\022\024\n\020emConfModeManage\020\001\022\022" +
-      "\n\016emConfModeAuto\020\002*7\n\017EmMtDcsConfType\022\021\n" +
-      "\remConfTypeP2P\020\000\022\021\n\remConfTypeMCC\020\001*0\n\rE",
-      "mMtDcsWbMode\022\016\n\nemWbModeWB\020\000\022\017\n\013emWBMode" +
-      "DOC\020\001*c\n\016EmWbEntityType\022\014\n\010emUnknow\020\000\022\n\n" +
-      "\006emLine\020\001\022\014\n\010emCircle\020\002\022\014\n\010emPencil\020\003\022\016\n" +
-      "\nemColorPen\020\004\022\013\n\007emImage\020\005*\337\001\n\016EmWbImage" +
-      "State\022\033\n\027emImageStateDownloading\020\000\022\034\n\030em" +
-      "ImageStateDownLoadFail\020\001\022!\n\035emImageState" +
-      "OwnerAlreadyLeave\020\002\022\032\n\026emImageStateDownL" +
-      "oadOk\020\003\022\024\n\020emImageStateInit\020\004\022\033\n\027emImage" +
-      "StateConvertFail\020\005\022 \n\034emImageStateSelfAl" +
-      "readyLeave\020\006*G\n\010EmWBMode\022\022\n\016emWbModeUnko",
-      "wn\020\000\022\026\n\022emWbModeWhiteBoard\020\001\022\017\n\013emWbMode" +
-      "DOC\020\002*9\n\020EmDcsConnectType\022\022\n\016emConnectLo" +
-      "gin\020\000\022\021\n\remConnectConf\020\001*\377\003\n\tEmDcsOper\022\024" +
-      "\n\020emWbLineOperInfo\020\000\022\026\n\022emWbCircleOperIn" +
-      "fo\020\001\022\031\n\025emWbRectangleOperInfo\020\002\022\026\n\022emWbP" +
-      "encilOperInfo\020\003\022\030\n\024emWbColorPenOperInfo\020" +
-      "\004\022\025\n\021emWbImageOperInfo\020\005\022\026\n\022emWbAddSubPa" +
-      "geInfo\020\006\022\025\n\021emWbEraseOperInfo\020\007\022\020\n\014emWbZ" +
-      "oomInfo\020\010\022\014\n\010emWbUndo\020\t\022\014\n\010emWbRedo\020\n\022\022\n" +
-      "\016emWbRotateLeft\020\013\022\023\n\017emWbRotateRight\020\014\022\023",
-      "\n\017emWbClearScreen\020\r\022\024\n\020emWbScrollScreen\020" +
-      "\016\022\022\n\016emWbFullScreen\020\017\022\033\n\027emWb100Proporti" +
-      "onScreen\020\020\022\022\n\016emWbReginErase\020\021\022\021\n\remWbIn" +
-      "sertPic\020\022\022\024\n\020emWbPitchPicZoom\020\023\022\026\n\022emWbP" +
-      "itchPicRotate\020\024\022\024\n\020emWbPitchPicDrag\020\025\022\023\n" +
-      "\017emWbPitchPicDel\020\026*\216\001\n\023EmDcsConnectErrCo" +
-      "de\022\021\n\remConfSuccess\020\001\022\020\n\014emConfFailed\020\002\022" +
-      "\024\n\020emConfDisconnect\020\003\022\022\n\016emLoginSuccess\020" +
-      "\004\022\021\n\remLoginFailed\020\005\022\025\n\021emLoginDisconnec" +
-      "t\020\006*\351\001\n\032EmDcsAdpRejectJoinConfCode\022\032\n\026em",
-      "RejectJoinConf_start\020\001\022\031\n\025emRejectJoinCo" +
-      "nf_busy\020\002\022\033\n\027emRejectJoinConf_normal\020\003\022\035" +
-      "\n\031emRejectJoinConf_rejected\020\004\022 \n\034emRejec" +
-      "tJoinConf_unreachable\020\005\022\034\n\030emRejectJoinC" +
-      "onf_unknown\020\006\022\030\n\024emRejectJoinConf_end\020\007*" +
-      "C\n\rEmSecAutState\022\020\n\014emSecAutidle\020\000\022\017\n\013em" +
-      "SecAuting\020\001\022\017\n\013emSecAutsuc\020\002*t\n\022EmAuthCa" +
-      "ncelReason\022\024\n\020emSecAuth_Cancel\020\001\022\031\n\025emSe" +
-      "cAuth_ErrOverTime\020\002\022\024\n\020emSecAut_TimeOut\020" +
-      "\003\022\027\n\023emSecAut_ErrConnect\020\004*U\n\022EmSecKeyUp",
-      "dateMode\022\036\n\032EmSecKeyUpdateModeByPeriod\020\000" +
-      "\022\037\n\033EmSecKeyUpdateModeByPackage\020\001*6\n\020EmC" +
-      "ameraCtrlType\022\020\n\014emIspImgCtrl\020\001\022\020\n\014emSer" +
-      "ialCtrl\020\002*,\n\rEmVersionType\022\r\n\temChannel\020" +
-      "\000\022\014\n\010emOthers\020\001*Z\n\026EmLicenseKeyCheckValu" +
-      "e\022\016\n\nemWrongKey\020\000\022\016\n\nemRightKey\020\001\022\016\n\nemN" +
-      "otExist\020\002\022\020\n\014emParseError\020\003*\376\001\n\021EmCamera" +
-      "ErrorType\022\035\n\031EmCameraErrorType_unknown\020\000" +
-      "\022\037\n\033EmCameraErrorType_ZoominEnd\020\001\022 \n\034EmC" +
-      "ameraErrorType_ZoomoutEnd\020\002\022\037\n\033EmCameraE",
-      "rrorType_TiltUpEnd\020\003\022!\n\035EmCameraErrorTyp" +
-      "e_TiltDownEnd\020\004\022 \n\034EmCameraErrorType_Pan" +
-      "LeftEnd\020\005\022!\n\035EmCameraErrorType_PanRightE" +
-      "nd\020\006*\240\001\n\021EmCameraSceneMode\022\036\n\032EmCameraSc" +
-      "eneMode_Standard\020\000\022\037\n\033EmCameraSceneMode_" +
-      "Projector\020\001\022#\n\037EmCameraSceneMode_Peoplef" +
-      "eature\020\002\022%\n!EmCameraSceneMode_Peopleback" +
-      "light\020\003*5\n\017EmMtVConfStatus\022\020\n\014emVConf_Id" +
-      "le\020\000\022\020\n\014emVConf_Busy\020\001*_\n\rEmMtMaxJoinMt\022" +
-      "\021\n\remMaxJoinMt_8\020\000\022\022\n\016emMaxJoinMt_32\020\001\022\022",
-      "\n\016emMaxJoinMt_64\020\002\022\023\n\017emMaxJoinMt_192\020\003*" +
-      "\370\001\n\022EmMtVConfResources\022\031\n\025emVConfResourc" +
-      "e_8_720\020\001\022\032\n\026emVConfResource_8_1080\020\002\022\032\n" +
-      "\026emVConfResource_32_720\020\003\022\033\n\027emVConfReso" +
-      "urce_32_1080\020\004\022\032\n\026emVConfResource_64_720" +
-      "\020\005\022\033\n\027emVConfResource_64_1080\020\006\022\033\n\027emVCo" +
-      "nfResource_192_720\020\007\022\034\n\030emVConfResource_" +
-      "192_1080\020\010*2\n\013EmMtFecMode\022\021\n\remMtFec_Clo" +
-      "se\020\000\022\020\n\014emMtFec_Open\020\001*J\n\nEmPlatform\022\022\n\016" +
-      "emOLD_PLATFORM\020\000\022\023\n\017emBUSS_PLATFORM\020\001\022\023\n",
-      "\017emCOMM_PLATFORM\020\002*\251\002\n\014EmMtChipType\022\021\n\re" +
-      "mMtChip_Main\020\000\022\024\n\020emMtChip_VidEnc1\020\001\022\024\n\020" +
-      "emMtChip_VidEnc2\020\002\022\024\n\020emMtChip_VidEnc3\020\003" +
-      "\022\024\n\020emMtChip_VidEnc4\020\004\022\024\n\020emMtChip_VidEn" +
-      "c5\020\005\022\024\n\020emMtChip_VidDec1\020\006\022\024\n\020emMtChip_V" +
-      "idDec2\020\007\022\024\n\020emMtChip_VidDec3\020\010\022\024\n\020emMtCh" +
-      "ip_VidDec4\020\t\022\024\n\020emMtChip_VidDec5\020\n\022\024\n\020em" +
-      "MtChip_AudEnc1\020\013\022\024\n\020emMtChip_AudDec1\020\014*\242" +
-      "\002\n\017EmClientAppType\022\022\n\016emClientAppOsd\020\000\022\031" +
-      "\n\025emClientAppWebService\020\001\022\027\n\023emClientApp",
-      "SkyShare\020\002\022\030\n\024emClientAppSkyRemote\020\003\022\025\n\021" +
-      "emClientAppSkyMTC\020\004\022\031\n\025emClientAppSkyWin" +
-      "dows\020\005\022\031\n\025emClientAppSkyAndroid\020\006\022\025\n\021emC" +
-      "lientAppSkyIOS\020\007\022\031\n\025emClientAppThirdPart" +
-      "y\020\010\022\027\n\023emClientAppNexVison\020\t\022\025\n\021emClient" +
-      "AppMTCEnd\020\n*Y\n\nEmAuthType\022\025\n\021emUserNameP" +
-      "wdAuth\020\000\022\022\n\016emInnerPwdAuth\020\001\022\021\n\remDynami" +
-      "cAuth\020\002\022\r\n\temAuthEnd\020\003*]\n\021EmLoginFailRea" +
-      "son\022\014\n\010emPwdErr\020\001\022\021\n\remTerStarting\020\002\022\022\n\016" +
-      "emTerUpgrading\020\003\022\023\n\017emFailReasonEnd\020\n*`\n",
-      "\021EmVConfCreateType\022\026\n\022emCreateNormalConf" +
-      "\020\000\022\027\n\023emCreateVirtualConf\020\001\022\032\n\026emCreateC" +
-      "onfByTemplate\020\002*\231\001\n\tEmQkState\022\014\n\010emUsbOf" +
-      "f\020\000\022\013\n\007emUsbOn\020\001\022\016\n\nemUpdating\020\002\022\t\n\005emWp" +
-      "s\020\003\022\r\n\temWpsSucc\020\004\022\014\n\010emApLink\020\005\022\013\n\007emAp" +
-      "Off\020\006\022\r\n\temQkStart\020\007\022\013\n\007emQkOff\020\010\022\020\n\014emW" +
-      "psTimeOut\020\t*`\n\016EmResourceType\022\031\n\025emResou" +
-      "rceType_LimitP\020\000\022\032\n\026emResourceType_Limit" +
-      "PR\020\001\022\027\n\023emResourceType_None\020\002*J\n\024EmAgent" +
-      "PackFileState\022\022\n\016emPackNotStart\020\000\022\r\n\temP",
-      "acking\020\001\022\017\n\013emPackError\020\002*\301\007\n\rEmAiAudioT" +
-      "ype\022\016\n\nemAiUnknow\020\000\022\021\n\remAiPleaseSay\020\001\022\016" +
-      "\n\nemAiBayBay\020\002\022\027\n\023emAiUnLoginPlatForm\020\003\022" +
-      "\026\n\022emAiRepeatConfName\020\004\022\022\n\016emAiSelectCon" +
-      "f\020\005\022\024\n\020emAiJoinConfFail\020\006\022\024\n\020emAiOnCreat" +
-      "eConf\020\007\022\025\n\021emAiCreateSuccess\020\010\022\022\n\016emAiCr" +
-      "eateFail\020\t\022\027\n\023emAiJoinConfSuccess\020\n\022\022\n\016e" +
-      "mAiOnJoinConf\020\013\022\024\n\020emAiNoPermission\020\014\022\022\n" +
-      "\016emAiHungupConf\020\r\022\016\n\nemAiRobAss\020\016\022\021\n\remA" +
-      "iDelayConf\020\017\022\022\n\016emAiConfIsIdle\020\020\022\022\n\016emAi",
-      "ConfNotMcc\020\021\022\017\n\013emAiEndConf\020\022\022\023\n\017emAiUnk" +
-      "nowAgain\020\023\022\022\n\016emAiOnFindConf\020\024\022\014\n\010emAiGo" +
-      "od\020\025\022\030\n\024emAiOnFindConfMember\020\026\022\032\n\026emAiRe" +
-      "peatInviteMember\020\027\022\026\n\022emAiOnInviteMember" +
-      "\020\030\022\020\n\014emAiSatrtAss\020\031\022\023\n\017emAiAssNoSignal\020" +
-      "\032\022\031\n\025emAiDelayConfWithTime\020\033\022\017\n\013emAiUpAu" +
-      "dio\020\034\022\021\n\remAiDownAudio\020\035\022\020\n\014emAiMaxAudio" +
-      "\020\036\022\020\n\014emAiMinAudio\020\037\022\024\n\020emAiSelectMember" +
-      "\020 \022\020\n\014emAiCloseAss\020!\022\030\n\024emAiSureOrNotEnd" +
-      "Conf\020\"\022\033\n\027emAiSureOrNotHangupConf\020#\022\026\n\022e",
-      "mAiCancleOperator\020$\022\027\n\023emAiHangupOrEndCo" +
-      "nf\020%\022\022\n\016emAiApplyChair\020&\022\022\n\016emAiSelectVi" +
-      "ew\020\'\022\032\n\026emAiSelectViewNotExist\020(\022\030\n\024emAi" +
-      "CancleSelectView\020)\022\020\n\014emAiMtOnConf\020*\022\022\n\016" +
-      "emAiAssIsClose\020+\022\013\n\007emAiEnd\020d*\263\001\n\017EmAiAc" +
-      "tionState\022\023\n\017emAiActionBegin\020\000\022\025\n\021emAiAc" +
-      "tionEndConf\020\001\022\030\n\024emAiActionHungupConf\020\002\022" +
-      "\025\n\021emAiActionOpenAss\020\003\022\026\n\022emAiActionJoin" +
-      "Conf\020\004\022\030\n\024emAiActionInviteCall\020\005\022\021\n\remAi" +
-      "ActionEnd\0202*g\n\017EmAiContactType\022\024\n\020emAiCo",
-      "ntactBegin\020\000\022\024\n\020emAiLocalContact\020\001\022\024\n\020em" +
-      "AiShareContact\020\002\022\022\n\016emAiContactEnd\020\024*h\n\021" +
-      "EmShortCutKeyType\022\014\n\010emUnkown\020\000\022\024\n\020emRed" +
-      "ShortCutKey\020\001\022\027\n\023emYellowShortCutKey\020\002\022\026" +
-      "\n\022emGreenShortCutKey\020\003*\256\001\n\020EmShortCutKey" +
-      "Fuc\022\016\n\nemFucBegin\020\000\022\n\n\006emLoop\020\001\022\020\n\014emApp" +
-      "lyChair\020\002\022\022\n\016emApplySpeaker\020\003\022\024\n\020emShowS" +
-      "ystemInfo\020\004\022\016\n\nemFullMute\020\005\022\022\n\016emSpeechH" +
-      "elper\020\006\022\021\n\remFaceCheckIn\020\007\022\013\n\007emClose\020\024B" +
-      "+\n!com.kedacom.mt.netmanage.protobufB\006En",
-      "umPB"
+      "w\022\016\n\nemLive_URL\020x*v\n\023EmMtOperateUserInfo" +
+      "\022\024\n\020emOperateUserAdd\020\001\022\027\n\023emOperateUserD" +
+      "elete\020\002\022\027\n\023emOperateUserModify\020\003\022\027\n\023emOp" +
+      "erateUserSearch\020\004*h\n\rEmH323SrvType\022\025\n\021em",
+      "H323SrvH323None\020\001\022\024\n\020emH323SrvH323Pxy\020\002\022" +
+      "\025\n\021emH323SrvH323H460\020\003\022\023\n\017emH323SrvH323G" +
+      "k\020\004*3\n\014EmSipSrvType\022\022\n\016emSipSrvServer\020\001\022" +
+      "\017\n\013emSipSrvPxy\020\002*^\n\007APIType\022\020\n\014emUnknown" +
+      "API\020\000\022\021\n\remPlatformAPI\020\001\022\016\n\nemWeiboAPI\020\002" +
+      "\022\020\n\014emMeetingAPI\020\003\022\014\n\010emAppAPI\020\004*.\n\nEmCh" +
+      "atType\022\020\n\014emChatNormal\020\000\022\016\n\nemChatAuto\020\001" +
+      "*\251\001\n\014EmRtspStatus\022\016\n\nemRtspInit\020\001\022\022\n\016emR" +
+      "tspPreReady\020\002\022\017\n\013emRtspReady\020\003\022\021\n\remRtsp" +
+      "Playing\020\004\022\017\n\013emRtspPause\020\005\022\020\n\014emRtspResu",
+      "me\020\006\022\025\n\021emRtspAdjustSpeed\020\007\022\027\n\023emRtspAdj" +
+      "ustProcess\020\010*E\n\020EmServerAddrType\022\030\n\024emSr" +
+      "vAddrTypeDefault\020\000\022\027\n\023emSrvAddrTypeCusto" +
+      "m\020\001*\333\001\n\024EmVMeetingVideoModel\022)\n%emMeetin" +
+      "g_vmeeting_video_model_fluent\020\001\0221\n-emMee" +
+      "ting_vmeeting_video_model_normal_quality" +
+      "\020\002\022/\n+emMeeting_vmeeting_video_model_hig" +
+      "h_quality\020\003\0224\n0emMeeting_vmeeting_video_" +
+      "model_full_high_quality\020\004*g\n\023EmDesktopSh" +
+      "areLimit\022)\n%emMeeting_desktop_share_limi",
+      "t_speaker\020\000\022%\n!emMeeting_desktop_share_l" +
+      "imit_all\020\001*[\n\016EmVMeetingMode\022#\n\037emMeetin" +
+      "g_vmeeting_mode_discuss\020\000\022$\n emMeeting_v" +
+      "meeting_mode_training\020\001*\310\001\n\016EmCallDurati" +
+      "on\022&\n\"emMeeting_call_duration_very_short" +
+      "\020\000\022!\n\035emMeeting_call_duration_short\020\001\022\"\n" +
+      "\036emMeeting_call_duration_normal\020\002\022 \n\034emM" +
+      "eeting_call_duration_long\020\003\022%\n!emMeeting" +
+      "_call_duration_very_long\020\004*5\n\tEmNetType\022" +
+      "\016\n\nemInternet\020\000\022\r\n\temSpecial\020\001\022\t\n\005emVPN\020",
+      "\002*d\n\021EmUpgradeVerLevel\022\030\n\024emUpgradeLevel" +
+      "Forced\020\000\022\033\n\027emUpgradeLevelSuggested\020\001\022\030\n" +
+      "\024emUpgradeLevelNormal\020\002*u\n\024EmUpgradeRele" +
+      "aseAttr\022\021\n\remUpgradeAttr\020\000\022\027\n\023emUpgradeA" +
+      "ttrCommon\020\001\022\032\n\026emUpgradeAttrRecommend\020\002\022" +
+      "\025\n\021emUpgradeAttrGray\020\004*j\n\014EmMtPortrait\022\020" +
+      "\n\014mtportrait32\020\000\022\020\n\014mtportrait40\020\001\022\020\n\014mt" +
+      "portrait64\020\002\022\021\n\rmtportrait128\020\003\022\021\n\rmtpor" +
+      "trait256\020\004*<\n\010EmMCMode\022\016\n\nemMcSpeech\020\000\022\017" +
+      "\n\013emMcDiscuss\020\001\022\017\n\013emMcInvalid\020\002*\334\001\n\014EmS",
+      "erverType\022\t\n\005emAPS\020\000\022\t\n\005emXNU\020\001\022\t\n\005emSUS" +
+      "\020\002\022\t\n\005emNMS\020\003\022\t\n\005emNTS\020\004\022\t\n\005emSIP\020\005\022\r\n\te" +
+      "mNonH323\020\006\022\r\n\temStdH323\020\007\022\t\n\005emNTP\020\010\022\t\n\005" +
+      "emVOD\020\t\022\017\n\013emMoMeeting\020\n\022\020\n\014emMoPlatform" +
+      "\020\013\022\t\n\005emVRS\020\014\022\t\n\005emDCS\020\r\022\010\n\004emNS\020\016\022\023\n\017em" +
+      "ServerTypeEnd\020\017*\212\001\n\rEmServerState\022\n\n\006emI" +
+      "dle\020\000\022\021\n\remDnsQuerying\020\001\022\020\n\014emLogging_In" +
+      "\020\002\022\020\n\014emLogin_Succ\020\003\022\021\n\remLogging_Out\020\004\022" +
+      "\022\n\016emDisconnected\020\005\022\017\n\013emLogin_Err\020\006*J\n\022" +
+      "EmMtCallRecordType\022\014\n\010emCallIn\020\000\022\r\n\temCa",
+      "llOut\020\001\022\014\n\010emMissed\020\002\022\t\n\005emAll\020\003*5\n\014EmMt" +
+      "CallType\022\013\n\007emVideo\020\000\022\013\n\007emAudio\020\001\022\013\n\007em" +
+      "Phone\020\002*\372\003\n\rEmMtRecordErr\022\017\n\013emRecord_Ok" +
+      "\020\000\022\026\n\022emRecord_Err_Index\020\001\022$\n emRecord_E" +
+      "rr_No_Marching_Records\020\002\022!\n\035emRecord_Err" +
+      "_No_Marching_Type\020\003\022\037\n\033emRecord_Err_Call" +
+      "RecordType\020\004\022\031\n\025emRecord_Err_CallType\020\005\022" +
+      "\031\n\025emRecord_Err_Describe\020\006\022\031\n\025emRecord_E" +
+      "rr_AddrType\020\007\022\025\n\021emRecord_Err_Addr\020\010\022\025\n\021" +
+      "emRecord_Err_Rate\020\t\022\033\n\027emRecord_Err_Pack",
+      "ageNum\020\n\022\'\n#emRecord_Err_Over_MaxLocalRe" +
+      "cordNum\020\013\022\037\n\033emRoster_Err_GroupName_NULL" +
+      "\020d\022\030\n\024emRoster_Err_GroupSn\020e\022\036\n\032emRoster" +
+      "_Err_ParentGroupSn\020f\022\031\n\025emRoster_Err_Ros" +
+      "terSn\020g\022\033\n\027emRoster_Err_RosterName\020h*L\n\024" +
+      "EmMtRecordSearchType\022\024\n\020emCallRecordType" +
+      "\020\000\022\016\n\nemCallType\020\001\022\016\n\nemDescribe\020\002*d\n\026Em" +
+      "MtAudPrecedenceLevel\022\026\n\022emAudPrecedenceL" +
+      "ow\020\000\022\031\n\025emAudPrecedenceMiddle\020\001\022\027\n\023emAud" +
+      "PrecedenceHigh\020\002*t\n\014EmAlarmLevel\022\021\n\remAl",
+      "armNormal\020\000\022\022\n\016emAlarmGeneral\020\001\022\024\n\020emAla" +
+      "rmImportant\020\002\022\023\n\017emAlarmCritical\020\003\022\022\n\016em" +
+      "AlarmUnknown\020\004*3\n\014EmAlarmState\022\020\n\014emStat" +
+      "eAlarm\020\000\022\021\n\remStateNormal\020\001*}\n\013EmAlarmCo" +
+      "de\022\026\n\021emAlarmFileSysErr\020\362\007\022\023\n\016emAlarmSys" +
+      "Busy\020\363\007\022\022\n\remAlarmFanErr\020\370\007\022\024\n\017emAlarmTe" +
+      "mpHigh\020\371\007\022\027\n\022emAlarmVoltageHigh\020\372\007*<\n\014Em" +
+      "DLProtocol\022\t\n\005emPPP\020\000\022\n\n\006emHDLC\020\001\022\013\n\007emP" +
+      "PPOE\020\002\022\010\n\004emMP\020\003*W\n\024EmAuthenticationType" +
+      "\022\024\n\020emE1AuthTypeNone\020\000\022\023\n\017emE1AuthTypePA",
+      "P\020\001\022\024\n\020emE1AuthTypeCHAP\020\002*?\n\021EmApsLoginE" +
+      "rrcode\022\020\n\014emApsLoginOk\020\000\022\030\n\024emApsLoginEr" +
+      "rUnknown\020\001*\202\002\n\nEmPortType\022\022\n\016emConfChanP" +
+      "ort\020\000\022\014\n\010emImPort\020\001\022\r\n\temVodPort\020\002\022\014\n\010em" +
+      "McPort\020\003\022\025\n\021emH323CallingPort\020\004\022\025\n\021emH32" +
+      "3TcpBasePort\020\005\022\024\n\020emH323TcpEndPort\020\006\022\025\n\021" +
+      "emH323pxyBasePort\020\007\022\024\n\020emH323pxyEndPort\020" +
+      "\010\022\021\n\remSipBfcpPort\020\t\022\r\n\temMTCPort\020\n\022\014\n\010e" +
+      "mGKPort\020\013\022\024\n\020emSipCallingPort\020\014*_\n\013EmVid" +
+      "eoType\022\023\n\017em1stPriomVideo\020\000\022\023\n\017em2ndPrio",
+      "mVideo\020\001\022\023\n\017em3rdPriomVideo\020\002\022\021\n\remSecon" +
+      "dVideo\020\n*\376\006\n\021EmVideoOutPutMode\022\023\n\017emVOM_" +
+      "HD_ORIGIN\020\000\022\025\n\021emVOM_HD_1080p_24\020\001\022\025\n\021em" +
+      "VOM_HD_1080p_25\020\002\022\025\n\021emVOM_HD_1080p_30\020\003" +
+      "\022\025\n\021emVOM_HD_1080p_50\020\004\022\027\n\023emVOM_HD_1080" +
+      "p_60hz\020\005\022\030\n\024emVOM_HD_1080p_60fps\020\006\022\025\n\021em" +
+      "VOM_HD_1080i_50\020\007\022\025\n\021emVOM_HD_1080i_60\020\010" +
+      "\022\024\n\020emVOM_HD_720p_50\020\t\022\026\n\022emVOM_HD_720p_" +
+      "60hz\020\n\022\027\n\023emVOM_HD_720p_60fps\020\013\022\024\n\020emVOM" +
+      "_HD_576i_50\020\014\022\025\n\021emVOM_HD_1080p_29\020\r\022\025\n\021",
+      "emVOM_HD_1080p_59\020\016\022\021\n\remVOM_HD_576p\020\017\022\030" +
+      "\n\024emVOM_HD_1080p_29_97\020\020\022\030\n\024emVOM_HD_108" +
+      "0p_59_94\020\021\022\023\n\017emVOM_HD_VGA_60\020\022\022\023\n\017emVOM" +
+      "_HD_VGA_75\020\023\022\024\n\020emVOM_HD_SVGA_60\020\024\022\024\n\020em" +
+      "VOM_HD_SVGA_75\020\025\022\023\n\017emVOM_HD_XGA_60\020\026\022\023\n" +
+      "\017emVOM_HD_XGA_75\020\027\022\024\n\020emVOM_HD_SXGA_60\020\030" +
+      "\022\034\n\030emVOM_HD_WXGA1280x768_60\020\031\022\034\n\030emVOM_" +
+      "HD_WXGA1280x768_75\020\032\022\034\n\030emVOM_HD_WXGA128" +
+      "0x800_60\020\033\022\034\n\030emVOM_HD_WXGA1280x800_75\020\034" +
+      "\022\034\n\030emVOM_HD_WXGA1366x768_60\020\035\022\035\n\031emVOM_",
+      "HD_UXGA1600x1200_60\020\036\022\035\n\031emVOM_HD_WSXGA1" +
+      "440x900_60\020\037\022!\n\035emVOM_HD_SXGAPLUS1680x10" +
+      "50_60\020 \022\033\n\027emVOM_HD_4k3860x2160_30\020!\022\033\n\027" +
+      "emVOM_HD_4k3860x2160_60\020\"*C\n\013EmTextAlign" +
+      "\022\017\n\013emAlignLeft\020\000\022\021\n\remAlignCenter\020\001\022\020\n\014" +
+      "emAlignRight\020\002*L\n\nEmRollMode\022\014\n\010emStatic" +
+      "\020\000\022\020\n\014emRight2Left\020\001\022\r\n\temDown2Up\020\002\022\017\n\013e" +
+      "mScollPage\020\003*c\n\013EmRollSpeed\022\020\n\014emRollSlo" +
+      "wer\020\000\022\016\n\nemRollSlow\020\001\022\020\n\014emRollNormal\020\002\022" +
+      "\016\n\nemRollFast\020\003\022\020\n\014emRollFaster\020\004*\220\003\n\rEm",
+      "HDAudPortIn\022\022\n\016emHDAudInBegin\020\000\022\022\n\016emHDA" +
+      "udInDMic1\020\001\022\022\n\016emHDAudInDMic2\020\002\022\020\n\014emHDA" +
+      "udInXLR\020\003\022\022\n\016emHDAudInWMic1\020\004\022\022\n\016emHDAud" +
+      "InWMic2\020\005\022\022\n\016emHDAudInWMic3\020\006\022\020\n\014emHDAud" +
+      "InRCA\020\007\022\023\n\017emHDAudInTRS3_5\020\010\022\022\n\016emHDAudI" +
+      "nHDMI1\020\t\022\022\n\016emHDAudInHDMI2\020\n\022\022\n\016emHDAudI" +
+      "nHDMI3\020\013\022\022\n\016emHDAudInDHDMI\020\014\022\021\n\remHDAudI" +
+      "nSDI1\020\r\022\021\n\remHDAudInSDI2\020\016\022\025\n\021emHDAudInH" +
+      "DBaseT1\020\017\022\025\n\021emHDAudInHDBaseT2\020\020\022\024\n\020emHD" +
+      "AudInDsiMic1\020\021\022\024\n\020emHDAudInDsiMic2\020\022*\341\001\n",
+      "\016EmHDAudPortOut\022\023\n\017emHDAudOutBegin\020\000\022\021\n\r" +
+      "emHDAudOutRCA\020\001\022\024\n\020emHDAudOutTRS6_5\020\002\022\024\n" +
+      "\020emHDAudOutTRS3_5\020\003\022\024\n\020emHDAudOutDHDMI1\020" +
+      "\004\022\024\n\020emHDAudOutDHDMI2\020\005\022\022\n\016emHDAudOutHDM" +
+      "I\020\006\022\021\n\remHDAudOutSDI\020\007\022\023\n\017emHDAudOutHDMI" +
+      "1\020\010\022\023\n\017emHDAudOutHDMI2\020\t*V\n\024EmHDMultiVid" +
+      "eoSwitch\022\026\n\022emHDMultiVideoStop\020\000\022\021\n\remHD" +
+      "MultiView\020\001\022\023\n\017emHDMultiStream\020\002*\371\001\n\017EmH" +
+      "DMultiViewMP\022\030\n\024emMVMP_LeftRight_One\020\000\022\035" +
+      "\n\031emMVMP_BigSmall_RightDown\020\001\022\034\n\030emMVMP_",
+      "BigSmall_LeftDown\020\002\022\032\n\026emMVMP_BigSmall_L" +
+      "eftUp\020\003\022\033\n\027emMVMP_BigSmall_RightUp\020\004\022\033\n\027" +
+      "emMVMP_3View_1Big2Small\020\005\022\034\n\030emMVMP_3Vie" +
+      "w_1Top2Bottom\020\006\022\033\n\027emMVMP_SingleView_Clo" +
+      "se\020\007*u\n\021EmHDVideoPortMode\022\021\n\remVPM_Inval" +
+      "id\020\000\022\016\n\nemVPM_Auto\020\001\022\016\n\nemVPM_HDMI\020\002\022\r\n\t" +
+      "emVPM_DVI\020\003\022\017\n\013emVPM_YPBPR\020\004\022\r\n\temVPM_VG" +
+      "A\020\005*\237\003\n\024EmHDVideoOutPortType\022\021\n\remVOT_In" +
+      "valid\020\000\022\016\n\nemVOT_DVI1\020\001\022\016\n\nemVOT_DVI2\020\002\022" +
+      "\016\n\nemVOT_DVI3\020\003\022\016\n\nemVOT_DVI4\020\004\022\017\n\013emVOT",
+      "_HDMI1\020\005\022\017\n\013emVOT_HDMI2\020\006\022\017\n\013emVOT_HDMI3" +
+      "\020\007\022\017\n\013emVOT_HDMI4\020\010\022\020\n\014emVOT_YPbPr1\020\t\022\020\n" +
+      "\014emVOT_YPbPr2\020\n\022\020\n\014emVOT_YPbPr3\020\013\022\020\n\014emV" +
+      "OT_YPbPr4\020\014\022\016\n\nemVOT_VGA1\020\r\022\016\n\nemVOT_VGA" +
+      "2\020\016\022\016\n\nemVOT_VGA3\020\017\022\016\n\nemVOT_VGA4\020\020\022\016\n\ne" +
+      "mVOT_SDI1\020\021\022\016\n\nemVOT_SDI2\020\022\022\016\n\nemVOT_SDI" +
+      "3\020\023\022\016\n\nemVOT_SDI4\020\024\022\014\n\010emVOT_C1\020\025\022\014\n\010emV" +
+      "OT_C2\020\026\022\014\n\010emVOT_C3\020\027*\325\006\n\023EmHDVideoSourc" +
+      "eType\022\020\n\014emVS_Invalid\020\000\022\017\n\013emVS_1stDec\020\001" +
+      "\022\017\n\013emVS_2ndDec\020\002\022\017\n\013emVS_3rdDec\020\003\022\017\n\013em",
+      "VS_4thDec\020\004\022\017\n\013emVS_5thDec\020\005\022\017\n\013emVS_6th" +
+      "Dec\020\006\022\017\n\013emVS_7thDec\020\007\022\017\n\013emVS_8thDec\020\010\022" +
+      "\017\n\013emVS_9thDec\020\t\022\020\n\014emVS_10thDec\020\n\022\031\n\025em" +
+      "VS_MtVidInnerCamera\020\013\022\022\n\016emVS_MtVidDVI1\020" +
+      "\014\022\022\n\016emVS_MtVidDVI2\020\r\022\022\n\016emVS_MtVidDVI3\020" +
+      "\016\022\022\n\016emVS_MtVidDVI4\020\017\022\023\n\017emVS_MtVidHDMI1" +
+      "\020\020\022\023\n\017emVS_MtVidHDMI2\020\021\022\023\n\017emVS_MtVidHDM" +
+      "I3\020\022\022\023\n\017emVS_MtVidHDMI4\020\023\022\024\n\020emVS_MtVidY" +
+      "PbPr1\020\024\022\024\n\020emVS_MtVidYPbPr2\020\025\022\024\n\020emVS_Mt" +
+      "VidYPbPr3\020\026\022\024\n\020emVS_MtVidYPbPr4\020\027\022\022\n\016emV",
+      "S_MtVidVGA1\020\030\022\022\n\016emVS_MtVidVGA2\020\031\022\022\n\016emV" +
+      "S_MtVidVGA3\020\032\022\022\n\016emVS_MtVidVGA4\020\033\022\020\n\014emV" +
+      "S_MtVidC1\020\034\022\020\n\014emVS_MtVidC2\020\035\022\020\n\014emVS_Mt" +
+      "VidC3\020\036\022\020\n\014emVS_MtVidS1\020\037\022\020\n\014emVS_MtVidS" +
+      "2\020 \022\020\n\014emVS_MtVidS3\020!\022\026\n\022emVS_MtVidHDBas" +
+      "eT1\020\"\022\026\n\022emVS_MtVidHDBaseT2\020#\022\026\n\022emVS_Mt" +
+      "VidHDBaseT3\020$\022\026\n\022emVS_MtVidHDBaseT4\020%\022\022\n" +
+      "\016emVS_MtVidSDI1\020&\022\022\n\016emVS_MtVidSDI2\020\'\022\022\n" +
+      "\016emVS_MtVidSDI3\020(\022\022\n\016emVS_MtVidSDI4\020)*b\n" +
+      "\017EmHDLastDisplay\022\022\n\016emLD_LastFrame\020\000\022\023\n\017",
+      "emLD_BlueScreen\020\001\022\022\n\016emLD_StaticBMP\020\002\022\022\n" +
+      "\016emLD_CustomBMP\020\003*\211\001\n\016EmHDImageNoise\022\030\n\024" +
+      "emImageNoise_Disable\020\000\022\024\n\020emImageNoise_L" +
+      "ow\020\001\022\024\n\020emImageNoise_Med\020\002\022\025\n\021emImageNoi" +
+      "se_High\020\003\022\032\n\026emImageNoise_UltraHigh\020\004*S\n" +
+      "\033EmHDImageDeformationTensile\022\030\n\024emImageD" +
+      "T_Transverse\020\000\022\032\n\026emImageDT_Longitudinal" +
+      "\020\001*\257\001\n\020EmEthnetWorkMode\022\021\n\remEthModeAuto" +
+      "\020\000\022\024\n\020emEthMode10MFull\020\001\022\024\n\020emEthMode10M" +
+      "Half\020\002\022\025\n\021emEthMode100MFull\020\003\022\025\n\021emEthMo",
+      "de100MHalf\020\004\022\026\n\022emEthMode1000MFull\020\005\022\026\n\022" +
+      "emEthMode1000MHalf\020\006*m\n\022EmEthInterfaceMo" +
+      "de\022\034\n\030emEthInterfaceModeBackup\020\000\022\033\n\027emEt" +
+      "hInterfaceModeMulti\020\001\022\034\n\030emEthInterfaceM" +
+      "odeSingle\020\002*C\n\022EmEthStartupResult\022\027\n\023emE" +
+      "thStartupSuccess\020\000\022\024\n\020emEthStartupFail\020\001" +
+      "*\216\001\n\020EmPPPoELinkState\022\030\n\024emPPPoELinkStat" +
+      "eIdle\020\000\022\036\n\032emPPPoELinkStateConnecting\020\001\022" +
+      "!\n\035emPPPoELinkStateDisConnecting\020\002\022\035\n\031em" +
+      "PPPoELinkStateConnected\020\003*\352\001\n\024EmPPPoELin",
+      "kErrReason\022\035\n\031emPPPoELinkErrReason_None\020" +
+      "\000\022&\n\"emPPPoELinkErrReason_UsrOrPwdError\020" +
+      "\001\022 \n\034emPPPoELinkErrReason_Timeout\020\002\022!\n\035e" +
+      "mPPPoELinkErrReason_Linkdown\020\003\022$\n emPPPo" +
+      "ELinkErrReason_NoISPServer\020\004\022 \n\034emPPPoEL" +
+      "inkErrReason_Unknown\020\005*a\n\016EmWifiWorkMode" +
+      "\022\027\n\023emWifiWorkModeClose\020\000\022\034\n\030emWifiWorkM" +
+      "odeWifiClient\020\001\022\030\n\024emWifiWorkModeWifiAp\020" +
+      "\002*\203\001\n\rEmWifiKeyType\022\025\n\021emWifiKeyTypeNone" +
+      "\020\000\022\024\n\020emWifiKeyTypeWPA\020\001\022\025\n\021emWifiKeyTyp",
+      "eWPA2\020\002\022\030\n\024emWifiKeyTypeWPAWPA2\020\003\022\024\n\020emW" +
+      "ifiKeyTypeWEP\020\004*\230\001\n\021EmWifiSignalLevel\022\031\n" +
+      "\025emWifiSignalLevelNone\020\000\022\031\n\025emWifiSignal" +
+      "LevelLess\020\001\022\030\n\024emWifiSignalLevelLow\020\002\022\030\n" +
+      "\024emWifiSignalLevelMid\020\003\022\031\n\025emWifiSignalL" +
+      "evelHigh\020\004*\211\003\n\017EmWifiLinkState\022\027\n\023emWifi" +
+      "LinkStateIdle\020\000\022!\n\035emWifiLinkStateAuthen" +
+      "tication\020\001\022\032\n\026emWifiLinkStateBlocked\020\002\022\034" +
+      "\n\030emWifiLinkStateConnected\020\003\022\035\n\031emWifiLi" +
+      "nkStateConnecting\020\004\022\037\n\033emWifiLinkStateDi",
+      "sConnected\020\005\022 \n\034emWifiLinkStateDisConnec" +
+      "ting\020\006\022\031\n\025emWifiLinkStateFailed\020\007\022\"\n\036emW" +
+      "ifiLinkStateObtainingIpAddr\020\010\022\033\n\027emWifiL" +
+      "inkStateScanning\020\t\022\034\n\030emWifiLinkStateSus" +
+      "pended\020\n\022$\n emWifiLinkStateVerifyingPoor" +
+      "Link\020\013*\225\001\n\023EmWifiLinkErrReason\022\034\n\030emWifi" +
+      "LinkErrReason_None\020\000\022\036\n\032emWifiLinkErrRea" +
+      "son_Failed\020\001\022\037\n\033emWifiLinkErrReason_Time" +
+      "out\020\002\022\037\n\033emWifiLinkErrReason_Unknown\020\003*C" +
+      "\n\017EmWifiApKeyType\022\027\n\023emWifiApKeyTypeNone",
+      "\020\000\022\027\n\023emWifiApKeyTypeWPA2\020\001*_\n\027EmWifiFre" +
+      "quencyBandType\022!\n\035emWifiFrequencyBandTyp" +
+      "e_24GHz\020\000\022!\n\035emWifiFrequencyBandType_50G" +
+      "Hz\020\001*\305\002\n\025EmMobileDataLinkState\022\037\n\033emMobi" +
+      "leDataLinkStateUnUsed\020\000\022\035\n\031emMobileDataL" +
+      "inkStateIdle\020\001\022#\n\037emMobileDataLinkStateC" +
+      "onnecting\020\002\022&\n\"emMobileDataLinkLinkState" +
+      "Connected\020\003\022&\n\"emMobileDataLinkLinkState" +
+      "Suspended\020\004\022&\n\"emMobileDataLinkStateDisC" +
+      "onnecting\020\005\022)\n%emMobileDataLinkLinkState",
+      "DisConnected\020\006\022$\n emMobileDataLinkLinkSt" +
+      "ateUnknown\020\007*\263\001\n\031EmMobileDataLinkErrReas" +
+      "on\022\"\n\036emMobileDataLinkErrReason_None\020\000\022$" +
+      "\n emMobileDataLinkErrReason_Failed\020\001\022%\n!" +
+      "emMobileDataLinkErrReason_Timeout\020\002\022%\n!e" +
+      "mMobileDataLinkErrReason_Unknown\020\003*\274\001\n\027E" +
+      "mMobileDataSignalLevel\022\037\n\033emMobileDataSi" +
+      "gnalLevelNone\020\000\022\037\n\033emMobileDataSignalLev" +
+      "elLess\020\001\022\036\n\032emMobileDataSignalLevelLow\020\002" +
+      "\022\036\n\032emMobileDataSignalLevelMid\020\003\022\037\n\033emMo",
+      "bileDataSignalLevelHigh\020\004*\202\002\n\024EmNetAdapt" +
+      "erWorkType\022\035\n\031emNetAdapterWorkType_None\020" +
+      "\000\022\035\n\031emNetAdapterWorkType_Wifi\020\001\022\036\n\032emNe" +
+      "tAdapterWorkType_PPPoE\020\002\022#\n\037emNetAdapter" +
+      "WorkType_MobileData\020\003\022$\n emNetAdapterWor" +
+      "kType_EthnetCard1\020\004\022$\n emNetAdapterWorkT" +
+      "ype_EthnetCard2\020\005\022\033\n\027emNetAdapterWorkTyp" +
+      "e_E1\020\006*\215\001\n\023EmMobileDataNetType\022\034\n\030emMobi" +
+      "leDataNetType_None\020\000\022\034\n\030emMobileDataNetT" +
+      "ype_CMCC\020\001\022\034\n\030emMobileDataNetType_CUCC\020\002",
+      "\022\034\n\030emMobileDataNetType_CTCC\020\003*\271\001\n\035EmMob" +
+      "ileDataNetGenerationType\022&\n\"emMobileData" +
+      "NetGenerationType_None\020\000\022$\n emMobileData" +
+      "NetGenerationType_2G\020\001\022$\n emMobileDataNe" +
+      "tGenerationType_3G\020\002\022$\n emMobileDataNetG" +
+      "enerationType_4G\020\003*v\n\021EmEthnetParamType\022" +
+      "\027\n\023emType_SetIpAndMask\020\000\022\030\n\024emType_SetMa" +
+      "cAddress\020\001\022\026\n\022emType_SetAllParam\020\002\022\026\n\022em" +
+      "Type_SetSecondIp\020\003*B\n\021EmE1InterfaceType\022" +
+      "\025\n\021emE1IfType_Serial\020\000\022\026\n\022emE1IfType_Vir",
+      "tual\020\001*9\n\rEmE1ClockType\022\023\n\017emClockType_D" +
+      "ce\020\000\022\023\n\017emClockType_Dte\020\001*l\n\020EmE1ChainOp" +
+      "tType\022\025\n\021emType_OpenSingle\020\000\022\026\n\022emType_C" +
+      "loseSingle\020\001\022\023\n\017emType_OpenMult\020\002\022\024\n\020emT" +
+      "ype_CloseMult\020\003*\363\003\n\021EmE1LinkErrReason\022\017\n" +
+      "\013emE1ErrNone\020\000\022\031\n\025emE1ErrParamException\020" +
+      "\001\022\032\n\026emE1ErrSerialIdInvalid\020\002\022\026\n\022emE1Err" +
+      "E1IdInvalid\020\003\022\032\n\026emE1ErrE1TsMaskInvalid\020" +
+      "\004\022\036\n\032emE1ErrE1ChainGroupInvalid\020\005\022$\n emE" +
+      "1ErrSerialProtocolTypeInvalid\020\006\022$\n emE1E",
+      "rrSerialEchoIntervalInvalid\020\007\022$\n emE1Err" +
+      "SerialEchoMaxRetryInvalid\020\010\022\034\n\030emE1ErrSt" +
+      "ringLenOverflow\020\t\022\024\n\020emE1ErrNipOptErr\020\n\022" +
+      "\031\n\025emE1ErrChainNotConfig\020\013\022\030\n\024emE1ErrCha" +
+      "inConflict\020\014\022\035\n\031emE1ErrPppAuthTypeInvali" +
+      "d\020\r\022\032\n\026emE1ErrPppFragTooShort\020\016\022\025\n\021emE1P" +
+      "aramCheckErr\020\017\022\025\n\021emE1ParamConflict\020\020*Z\n" +
+      "\rEmPingErrcode\022\017\n\013emPingReply\020\000\022\021\n\remPin" +
+      "gTimeout\020\001\022\017\n\013emPingError\020\002\022\024\n\020emPingNet" +
+      "Unreach\020\003*G\n\rEmUpgradeType\022\020\n\014emSusUpgra",
+      "de\020\001\022\022\n\016emLocalUpgrade\020\002\022\020\n\014emMtcUpgrade" +
+      "\020\003*\253\002\n\017EmUpgradeNotify\022\022\n\016emFileCheckBgn" +
+      "\020\000\022\025\n\021emWholeUpgradeBgn\020\001\022\026\n\022emFileCheck" +
+      "Success\020\002\022\031\n\025emWholeUpgradeSuccess\020\003\022\020\n\014" +
+      "emUnknownErr\020\004\022\024\n\020emInvalidFileErr\020\005\022\024\n\020" +
+      "emLoadXmlFileErr\020\006\022\022\n\016emFileCheckErr\020\007\022\024" +
+      "\n\020emSysMountBakErr\020\010\022\034\n\030emUpgradeDriverM" +
+      "oduleErr\020\t\022\031\n\025emUpgradeAppModuleErr\020\n\022\031\n" +
+      "\025emUpgradeExeModuleErr\020\013*t\n\021EmNetConflic" +
+      "tType\022\027\n\023emConflictType_None\020\000\022\025\n\021emConf",
+      "lictType_Ip\020\001\022\026\n\022emConflictType_Mac\020\002\022\027\n" +
+      "\023emConflictType_Both\020\003*Y\n\013EmHDMicGain\022\020\n" +
+      "\014emMicGainOff\020\000\022\020\n\014emMicGainLow\020\001\022\023\n\017emM" +
+      "icGainMiddle\020\002\022\021\n\remMicGainHigh\020\003*=\n\017EmP" +
+      "PPoEDialMode\022\025\n\021emPPPoEDialManual\020\000\022\023\n\017e" +
+      "mPPPoEDialAuto\020\001*\237\001\n\024EmEquipmentUpgradin" +
+      "g\022\r\n\temEUbegin\020\000\022\r\n\temEUHD120\020\001\022\r\n\temEUH" +
+      "D200\020\002\022\016\n\nemEUHD120E\020\003\022\016\n\nemEUHD200E\020\004\022\016" +
+      "\n\nemEUMoon50\020\005\022\024\n\020emEUMoon50_1080p\020\006\022\024\n\020" +
+      "emEUMoon70_1080p\020\007*-\n\tEmUartNum\022\017\n\013emUar",
+      "tDMIC1\020\000\022\017\n\013emUartDMIC2\020\001*$\n\013EmPicFormat" +
+      "\022\n\n\006emJPEG\020\000\022\t\n\005emBMP\020\001*l\n\nEmImgParam\022\t\n" +
+      "\005emHue\020\000\022\022\n\016emWhiteBalance\020\001\022\016\n\nemContra" +
+      "st\020\002\022\020\n\014emSaturation\020\003\022\017\n\013emSharpness\020\004\022" +
+      "\014\n\010emBright\020\005*P\n\nEmFxoState\022\r\n\temFxoIdle" +
+      "\020\000\022\017\n\013emFxoCallIn\020\001\022\020\n\014emFxoCalling\020\002\022\020\n" +
+      "\014emFxoConnect\020\003*A\n\nEmSdiInOut\022\r\n\temSdiNo" +
+      "ne\020\000\022\016\n\nemSdiTwoIn\020\001\022\024\n\020emSdiOneInOneOut" +
+      "\020\002*N\n\017EmMsgFromSource\022\024\n\020emMsgFromInvali" +
+      "d\020\000\022\023\n\017emMsgFromWebMtc\020\001\022\020\n\014emMsgFromOsd",
+      "\020\002*\227\001\n\020EmNmsLoginResult\022\026\n\022emNmsLogin_Su" +
+      "ccess\020\000\022\026\n\022emNmsLogin_ErrorID\020\001\022\032\n\026emNms" +
+      "Login_RepeatLogin\020\002\022\033\n\027emNmsLogin_ErrorD" +
+      "evType\020\003\022\032\n\025emNmsLogin_DisConnect\020\377\001*\214\005\n" +
+      "\nEmTimeZone\022\022\n\016emTimeZone_GMT\020\000\022\022\n\016emTim" +
+      "eZone_UTC\020\001\022\022\n\016emTimeZone_ECT\020\002\022\022\n\016emTim" +
+      "eZone_EET\020\003\022\022\n\016emTimeZone_ART\020\004\022\022\n\016emTim" +
+      "eZone_EAT\020\005\022\022\n\016emTimeZone_MET\020\006\022\022\n\016emTim" +
+      "eZone_NET\020\007\022\022\n\016emTimeZone_PLT\020\010\022\022\n\016emTim" +
+      "eZone_IST\020\t\022\022\n\016emTimeZone_BST\020\n\022\022\n\016emTim",
+      "eZone_VST\020\013\022\022\n\016emTimeZone_CTT\020\014\022\022\n\016emTim" +
+      "eZone_JST\020\r\022\022\n\016emTimeZone_ACT\020\016\022\022\n\016emTim" +
+      "eZone_AET\020\017\022\022\n\016emTimeZone_SST\020\020\022\022\n\016emTim" +
+      "eZone_NST\020\021\022\022\n\016emTimeZone_MIT\020\022\022\022\n\016emTim" +
+      "eZone_HST\020\023\022\022\n\016emTimeZone_AST\020\024\022\022\n\016emTim" +
+      "eZone_PST\020\025\022\022\n\016emTimeZone_PNT\020\026\022\022\n\016emTim" +
+      "eZone_MST\020\027\022\022\n\016emTimeZone_CST\020\030\022\022\n\016emTim" +
+      "eZone_EST\020\031\022\022\n\016emTimeZone_IET\020\032\022\022\n\016emTim" +
+      "eZone_PRT\020\033\022\022\n\016emTimeZone_CNT\020\034\022\022\n\016emTim" +
+      "eZone_AGT\020\035\022\022\n\016emTimeZone_BET\020\036\022\022\n\016emTim",
+      "eZone_CAT\020\037*\205\001\n\023EmMtSmoothSendLevel\022\031\n\025e" +
+      "mSmoothSendLevel_Off\020\000\022\032\n\026emSmoothSendLe" +
+      "vel_High\020\001\022\034\n\030emSmoothSendLevel_Middle\020\002" +
+      "\022\031\n\025emSmoothSendLevel_Low\020\003*S\n\016EmRestDua" +
+      "lMode\022\026\n\022emRestDual_Speaker\020\000\022\022\n\016emRestD" +
+      "ual_any\020\001\022\025\n\021emRestDual_assign\020\002*Q\n\025EmRe" +
+      "stMeetingSafeType\022\034\n\030emRestMeetingType_P" +
+      "ublic\020\000\022\032\n\026emRestMeetingType_Port\020\001*L\n\022E" +
+      "mRestVideoQuality\022\033\n\027emRestQualityPreced" +
+      "ence\020\000\022\031\n\025emRestSpeedPrecedence\020\001*F\n\021EmR",
+      "estCascadeMode\022\030\n\024emRestCascade_Simple\020\000" +
+      "\022\027\n\023emRestCascade_Merge\020\001*\311\001\n\014EmRemoteTy" +
+      "pe\022\027\n\023emRemoteTypeUnknown\020\000\022\032\n\026emRemoteT" +
+      "ypeShortBlack\020\001\022\031\n\025emRemoteTypeLongBlack" +
+      "\020\002\022\026\n\022emRemoteTypeSilver\020\003\022\031\n\025emRemoteTy" +
+      "peV3CamCtrl\020\004\022\031\n\025emRemoteTypeSkyWalker\020\005" +
+      "\022\033\n\027emRemoteTypeIRLongBlack\020\006*\357\t\n\020EmRemo" +
+      "teScanCode\022\017\n\013emScanCode0\020\000\022\017\n\013emScanCod" +
+      "e1\020\001\022\017\n\013emScanCode2\020\002\022\017\n\013emScanCode3\020\003\022\017" +
+      "\n\013emScanCode4\020\004\022\017\n\013emScanCode5\020\005\022\017\n\013emSc",
+      "anCode6\020\006\022\017\n\013emScanCode7\020\007\022\017\n\013emScanCode" +
+      "8\020\010\022\017\n\013emScanCode9\020\t\022\023\n\017emScanCodePoint\020" +
+      "\n\022\023\n\017emScanCodeSharp\020\013\022\022\n\016emScanCodeMenu" +
+      "\020\014\022\027\n\023emScanCodeBackspace\020\r\022\023\n\017emScanCod" +
+      "eEnter\020\016\022\020\n\014emScanCodeUp\020\017\022\022\n\016emScanCode" +
+      "Down\020\020\022\022\n\016emScanCodeLeft\020\021\022\023\n\017emScanCode" +
+      "Right\020\022\022\023\n\017emScanCodePower\020\023\022\026\n\022emScanCo" +
+      "deMainVSrc\020\024\022\020\n\014emScanCodeAV\020\025\022\025\n\021emScan" +
+      "CodeFarCtrl\020\026\022\022\n\016emScanCodeMute\020\027\022\023\n\017emS" +
+      "canCodeQuiet\020\030\022\021\n\remScanCodeVGA\020\031\022\017\n\013emS",
+      "canCodeS\020\032\022\026\n\022emScanCodeShotSnap\020\033\022\026\n\022em" +
+      "ScanCodeVolumeUp\020\034\022\030\n\024emScanCodeVolumeDo" +
+      "wn\020\035\022\025\n\021emScanCodeConnect\020\036\022\030\n\024emScanCod" +
+      "eDisconnect\020\037\022\027\n\023emScanCodeDirectory\020 \022\027" +
+      "\n\023emScanCodePipEnable\020!\022\027\n\023emScanCodePip" +
+      "Adjust\020\"\022\026\n\022emScanCodeSelfTest\020#\022\027\n\023emSc" +
+      "anCodeAutoFocus\020$\022\026\n\022emScanCodeNearZoom\020" +
+      "%\022\025\n\021emScanCodeFarZoom\020&\022\025\n\021emScanCodePr" +
+      "eSave\020\'\022\025\n\021emScanCodePreMove\020(\022\026\n\022emScan" +
+      "CodeChairReq\020)\022\026\n\022emScanCodeSpeakReq\020*\022\025",
+      "\n\021emScanCodeQuitReq\020+\022\023\n\017emScanCodeState" +
+      "\020,\022\025\n\021emScanCodeHotLeft\020-\022\027\n\023emScanCodeH" +
+      "otCenter\020.\022\026\n\022emScanCodeHotRight\020/\022\022\n\016em" +
+      "ScanCodeHelp\0200\022\026\n\022emScanCodeBrightUp\0201\022\030" +
+      "\n\024emScanCodeBrightDown\0202\022\022\n\016emScanCodeDu" +
+      "al\0203\022\024\n\020emScanCodeReturn\0204\022\022\n\016emScanCode" +
+      "Func\0205\022\024\n\020emScanCodeSearch\0206\022\026\n\022emScanCo" +
+      "deImixMenu\0207\022\022\n\016emScanCodeNull\020b\022\025\n\021emSc" +
+      "anCodeInvalid\020c*x\n\025EmParticipantResponse" +
+      "\022\030\n\024emResponseNoFeedback\020\000\022\024\n\020emResponse",
+      "Reject\020\001\022\031\n\025emResponseParticipant\020\002\022\024\n\020e" +
+      "mResponseCustom\020\003*F\n\017EmClosedMeeting\022\031\n\025" +
+      "emClosedMeeting_Close\020\000\022\030\n\024emClosedMeeti" +
+      "ng_Open\020\001*G\n\rEmCameraSpeed\022\020\n\014emCameraSl" +
+      "ow\020\000\022\022\n\016emCameraNormal\020\001\022\020\n\014emCameraFast" +
+      "\020\002*}\n\014EmCameraView\022\027\n\023emRestoreCameraVie" +
+      "w\020\000\022\023\n\017em1stCameraView\020\001\022\023\n\017em2ndCameraV" +
+      "iew\020\002\022\025\n\021emCameraMultiView\020\003\022\023\n\017em3rdCam" +
+      "eraView\020\004*\234\001\n\020EmRestNotifyType\022\021\n\remUnkn" +
+      "ownType\020\000\022\014\n\010emNewFan\020\001\022\r\n\temNewFeed\020\002\022\021",
+      "\n\remNewRemindMe\020\003\022\016\n\nemNewReply\020\004\022\021\n\remG" +
+      "roupInvite\020\005\022\r\n\temNewLike\020\006\022\023\n\017emNewPriv" +
+      "ateMsg\020\007*K\n\023EmVidRationStrategy\022\017\n\013EmAss" +
+      "VidPri\020\000\022\020\n\014EmMainVidPri\020\001\022\021\n\rEmUserDefi" +
+      "ned\020\002*Y\n\020EmSystemFileType\022\020\n\014emFileNorma" +
+      "l\020\000\022\023\n\017emFileDirectory\020\001\022\016\n\nemFileLink\020\002" +
+      "\022\016\n\nemFilePipe\020\003*I\n\016EmSaveJpegType\022\017\n\013em" +
+      "SJMonitor\020\000\022\021\n\remSJPresetPos\020\001\022\023\n\017emSJFt" +
+      "pSnapshot\020\002*\342\002\n\021EmSleepFailReason\022\020\n\014emS" +
+      "FRNoError\020\000\022\027\n\023emSFRProtectionTime\020\001\022\020\n\014",
+      "emSFRMonitor\020\002\022\017\n\013emSFRInConf\020\003\022\r\n\temSFR" +
+      "Loop\020\004\022\023\n\017emSFRRibbonTest\020\005\022\021\n\remSFRSnap" +
+      "View\020\006\022\014\n\010emSFRVrs\020\007\022\020\n\014emSFRUpgrade\020\010\022\023" +
+      "\n\017emSFRSusUpgrade\020\t\022\017\n\013emSFRNetCap\020\n\022\021\n\r" +
+      "emSFRAddrbook\020\013\022\023\n\017emSFRSnapExport\020\014\022\026\n\022" +
+      "emSFRCameraUpgrade\020\r\022\030\n\024emSFRMicPhoneUpg" +
+      "rade\020\016\022\022\n\016emSFRMtRecorde\020\017\022\024\n\020emSFRMtAss" +
+      "Stream\020\020*F\n\014EmResizeMode\022\017\n\013emBlackEdge\020" +
+      "\000\022\r\n\temCutEdge\020\001\022\026\n\022emNoProportionally\020\002" +
+      "*I\n\020EmLocalSoundType\022\014\n\010emLSRing\020\000\022\017\n\013em",
+      "LSKeyTone\020\001\022\026\n\022emLSSpecialEffects\020\002*\243\001\n\021" +
+      "EmLocalSoundIndex\022\016\n\nemSound1st\020\000\022\016\n\nemS" +
+      "ound2nd\020\001\022\016\n\nemSound3rd\020\002\022\016\n\nemSound4th\020" +
+      "\003\022\016\n\nemSound5th\020\004\022\016\n\nemSound6th\020\005\022\016\n\nemS" +
+      "ound7th\020\006\022\016\n\nemSound8th\020\007\022\016\n\nemSound9th\020" +
+      "\010*\221\001\n\rEmFileCopyErr\022\021\n\remCopySuccess\020\000\022\024" +
+      "\n\020emCopyUnknownErr\020\001\022\021\n\remCopyNoSpace\020\002\022" +
+      "\031\n\025emCopySrcFileNotFound\020\003\022\031\n\025emCopyDstP" +
+      "athNotFound\020\004\022\016\n\nemCopyStop\020\005*\205\002\n\nEmMicD" +
+      "evId\022\017\n\013emWiredMic0\020\000\022\017\n\013emWiredMic1\020\001\022\022",
+      "\n\016emWirelessMic0\020\002\022\022\n\016emWirelessMic1\020\003\022\022" +
+      "\n\016emWirelessMic2\020\004\022\027\n\023emWiredMic0Cascade" +
+      "1\020\005\022\027\n\023emWiredMic0Cascade2\020\006\022\027\n\023emWiredM" +
+      "ic1Cascade1\020\007\022\027\n\023emWiredMic1Cascade2\020\010\022\021" +
+      "\n\remBuiltinMic0\020\t\022\021\n\remBuiltinMic1\020\n\022\017\n\013" +
+      "emMicDevEnd\020\013*\266\001\n\024EmTemplateAccoutType\022\021" +
+      "\n\remAccountNone\020\000\022\021\n\remAccountMoid\020\001\022\020\n\014" +
+      "emAccountAny\020\003\022\027\n\023emAccountNonSysMail\020\004\022" +
+      "\021\n\remAccountE164\020\005\022\025\n\021emAccountTelPhone\020" +
+      "\006\022\017\n\013emAccountIP\020\007\022\022\n\016emAccountAlias\020\010*\256",
+      "\001\n\014EmPingUserId\022\020\n\014emPingUidLan\020\000\022\025\n\021emP" +
+      "ingUidInternet\020\001\022\020\n\014emPingUidDns\020\002\022\023\n\017em" +
+      "PingUidServer\020\003\022\016\n\nemPingUid4\020\004\022\016\n\nemPin" +
+      "gUid5\020\005\022\016\n\nemPingUid6\020\006\022\016\n\nemPingUid7\020\007\022" +
+      "\016\n\nemPingUid8\020\010*\250\001\n\021EmMicUpgradeState\022\022\n" +
+      "\016emUploadEnable\020\000\022\017\n\013emUploading\020\001\022\021\n\rem" +
+      "Installable\020\002\022\020\n\014emInstalling\020\003\022\024\n\020emUpg" +
+      "radeSuccess\020\004\022\023\n\017emLatestVersion\020\005\022\016\n\nem" +
+      "Reserve1\020\006\022\016\n\nemReserve2\020\007*\307\001\n\026EmAudioDe" +
+      "layCheckState\022\025\n\021emAudioDelayBegin\020\000\022\030\n\024",
+      "emAudioDelayChecking\020\001\022\027\n\023emAudioDelayCh" +
+      "ecked\020\002\022\027\n\023emAudioDelayTimeout\020\003\022\026\n\022emAu" +
+      "dioDelayFailed\020\004\022\030\n\024emAudioDelayReserve1" +
+      "\020\005\022\030\n\024emAudioDelayReserve2\020\006*\207\001\n\026EmCamer" +
+      "aUpgradeErrCode\022\017\n\013emCUSuccess\020\000\022\021\n\remCU" +
+      "Upgrading\020\001\022\017\n\013emCUErrType\020\002\022\020\n\014emCUNoDe" +
+      "vice\020\003\022\025\n\021emCUNoUpgradeFile\020\004\022\017\n\013emCUFai" +
+      "lure\020\005*N\n\024EmUpgradeExitErrCode\022\026\n\022emUpgr" +
+      "adeForceExit\020\000\022\036\n\032emUpgradeNetWorkDiscon" +
+      "nect\020\001*O\n\016EmGeneralLevel\022\023\n\017emGeneralLev",
+      "el0\020\000\022\023\n\017emGeneralLevel1\020\001\022\023\n\017emGeneralL" +
+      "evel2\020\002*j\n\005EmISO\022\r\n\temISOAuto\020\000\022\013\n\007emISO" +
+      "80\020\001\022\014\n\010emISO100\020\002\022\014\n\010emISO200\020\003\022\014\n\010emIS" +
+      "O400\020\004\022\014\n\010emISO800\020\005\022\r\n\temISO1250\020\006*z\n\016E" +
+      "mExposureMode\022\017\n\013emExMManual\020\000\022\r\n\temExMA" +
+      "uto\020\001\022\024\n\020emExMAperturePri\020\002\022\023\n\017emExMShut" +
+      "terPri\020\003\022\020\n\014emExLowLight\020\004\022\013\n\007emExHDR\020\005*" +
+      "w\n\nEmAperture\022\n\n\006emF1p2\020\000\022\n\n\006emF1p6\020\001\022\n\n" +
+      "\006emF1p8\020\002\022\n\n\006emF2p0\020\003\022\n\n\006emF2p8\020\004\022\n\n\006emF" +
+      "4p0\020\005\022\n\n\006emF5p6\020\006\022\n\n\006emF8p0\020\007\022\t\n\005emF11\020\010",
+      "*?\n\rEmShutterType\022\027\n\023emShutterTypeManual" +
+      "\020\000\022\025\n\021emShutterTypeAuto\020\001*\324\001\n\016EmShutterL" +
+      "evel\022\016\n\nemShutter8\020\000\022\017\n\013emShutter15\020\001\022\017\n" +
+      "\013emShutter30\020\002\022\017\n\013emShutter60\020\003\022\020\n\014emShu" +
+      "tter100\020\004\022\020\n\014emShutter125\020\005\022\020\n\014emShutter" +
+      "250\020\006\022\020\n\014emShutter500\020\007\022\021\n\remShutter1000" +
+      "\020\010\022\021\n\remShutter2000\020\t\022\021\n\remShutter4000\020\n" +
+      "*\312\001\n\tEmWBAMode\022\r\n\temWBAAuto\020\000\022\014\n\010emWBADa" +
+      "y\020\001\022\017\n\013emWBACloudy\020\002\022\016\n\nemWBAShade\020\003\022\024\n\020" +
+      "emWBAFluorescent\020\004\022\021\n\remWBATUngsten\020\005\022\r\n",
+      "\temWBAWarm\020\006\022\021\n\remWBAStandard\020\007\022\020\n\014emWBA" +
+      "Natural\020\010\022\021\n\remWBASunlight\020\t\022\017\n\013emWBAMan" +
+      "ual\020\n*@\n\021EMWBAModeGainType\022\024\n\020emWBAModeG" +
+      "ainRed\020\000\022\025\n\021emWBAModeGainBlue\020\001*`\n\013EmSce" +
+      "neMode\022\016\n\nemSceneOff\020\000\022\020\n\014emSceneNight\020\001" +
+      "\022\017\n\013emSceneAuto\020\002\022\016\n\nemSceneWDR\020\003\022\016\n\nemS" +
+      "ceneHCT\020\004*,\n\010EmNFType\022\017\n\013emNFType_2D\020\000\022\017" +
+      "\n\013emNFType_3D\020\001*C\n\010EmNFMode\022\014\n\010emNF_Off\020" +
+      "\000\022\014\n\010emNF_Low\020\001\022\014\n\010emNF_Mid\020\002\022\r\n\temNF_Hi" +
+      "gh\020\003*A\n\025EmBrightnessDirection\022\022\n\016emBrigh",
+      "tnessUp\020\000\022\024\n\020emBrightnessDown\020\001*\231\005\n\013EmIs" +
+      "pImgInf\022\023\n\017IspImgInf_Noise\020\000\022\027\n\023IspImgIn" +
+      "f_Sharpness\020\001\022\021\n\rIspImgInf_ISO\020\002\022\032\n\026IspI" +
+      "mgInf_ExposureMode\020\003\022\026\n\022IspImgInf_Apertu" +
+      "re\020\004\022\025\n\021IspImgInf_Shutter\020\005\022\031\n\025IspImgInf" +
+      "_Brightnesss\020\006\022\032\n\026IspImgInf_WhiteBalance" +
+      "\020\007\022\026\n\022IspImgInf_Noise_2D\020\010\022\026\n\022IspImgInf_" +
+      "Noise_3D\020\t\022\036\n\032IspImgInf_BrightnesssValue" +
+      "\020\n\022\026\n\022IspImgInf_Contrast\020\013\022\030\n\024IspImgInf_" +
+      "Saturation\020\014\022\035\n\031IspImgInf_Sharpness_Valu",
+      "e\020\r\022\021\n\rIspImgInf_Hue\020\016\022\034\n\030IspImgInf_Back" +
+      "Light_Type\020\017\022\035\n\031IspImgInf_BackLight_Valu" +
+      "e\020\020\022\025\n\021IspImgInf_RedGain\020\021\022\026\n\022IspImgInf_" +
+      "BlueGain\020\022\022\036\n\032IspImgInf_AotoExposureGain" +
+      "\020\023\022 \n\034IspImgInf_ManualExposureGain\020\024\022\026\n\022" +
+      "IspImgInf_ImgGamma\020\025\022\026\n\022IspImgInf_ImgDef" +
+      "og\020\026\022\032\n\026IspImgInf_DigDynSwitch\020\027\022\031\n\025IspI" +
+      "mgInf_DigDynLevel\020\030*R\n\026EmExposureModeGai" +
+      "nType\022\032\n\026emExposureModeGainAuto\020\000\022\034\n\030emE" +
+      "xposureModeGainManual\020\001*\216\002\n\032EmExposureMo",
+      "deGainRestrict\022\024\n\020emGainRestrict15\020\000\022\024\n\020" +
+      "emGainRestrict18\020\001\022\024\n\020emGainRestrict21\020\002" +
+      "\022\024\n\020emGainRestrict24\020\003\022\024\n\020emGainRestrict" +
+      "27\020\004\022\024\n\020emGainRestrict30\020\005\022\024\n\020emGainRest" +
+      "rict33\020\006\022\024\n\020emGainRestrict36\020\007\022\024\n\020emGain" +
+      "Restrict39\020\010\022\024\n\020emGainRestrict42\020\t\022\024\n\020em" +
+      "GainRestrict45\020\n*9\n\013EmFocusMode\022\025\n\021emFoc" +
+      "usModeManual\020\000\022\023\n\017emFocusModeAuto\020\001*>\n\tE" +
+      "mImgMode\022\021\n\remImgStandard\020\000\022\r\n\temImgSoft" +
+      "\020\001\022\017\n\013emImgBright\020\002*\311\003\n\017EmIspActionType\022",
+      "\024\n\020IspActSetZoomOut\020\000\022\023\n\017IspActSetZoomIn" +
+      "\020\001\022\025\n\021IspActSetZoomStop\020\002\022\025\n\021IspActSetZo" +
+      "omAuto\020\003\022\026\n\022IspActSetZoomSpeed\020\004\022\026\n\022IspA" +
+      "ctSetZoomLimit\020\005\022\031\n\025IspActSetZoomPositio" +
+      "n\020\006\022\031\n\025IspActGetZoomPosition\020\007\022\026\n\022IspAct" +
+      "SetFocusNear\020\010\022\025\n\021IspActSetFocusFar\020\t\022\026\n" +
+      "\022IspActSetFocusStop\020\n\022\026\n\022IspActSetFocusA" +
+      "uto\020\013\022\032\n\026IspActSetFocusPosition\020\014\022\032\n\026Isp" +
+      "ActGetFocusPosition\020\r\022\025\n\021IspActSetApertu" +
+      "re\020\016\022\030\n\024IspActSetPiCalibrate\020\017\022\026\n\022IspAct",
+      "SetCameraStd\020\020\022\027\n\023IspActSetCameraFlip\020\021*" +
+      "\331\001\n\016EmCameraVidStd\022\021\n\remCamera_Auto\020\000\022\025\n" +
+      "\021emCamera_1080p_25\020\001\022\025\n\021emCamera_1080p_3" +
+      "0\020\002\022\025\n\021emCamera_1080p_50\020\003\022\025\n\021emCamera_1" +
+      "080p_60\020\004\022\025\n\021emCamera_1080i_50\020\005\022\025\n\021emCa" +
+      "mera_1080i_60\020\006\022\024\n\020emCamera_720p_50\020\007\022\024\n" +
+      "\020emCamera_720p_60\020\010*[\n\nEmFilpType\022\016\n\nemF" +
+      "lip_OFF\020\000\022\023\n\017emFlip_Vertical\020\001\022\025\n\021emFlip" +
+      "_Horizontal\020\002\022\021\n\remFlip_Center\020\003*H\n\tEmVm" +
+      "pMode\022\017\n\013emScreenVmp\020\000\022\025\n\021emCustomScreen",
+      "Vmp\020\001\022\023\n\017emAutoScreenVmp\020\002*U\n\nEmPollMode" +
+      "\022\023\n\017emPollModeBegin\020\000\022\017\n\013emVideoPoll\020\001\022\020" +
+      "\n\014emReserveTwo\020\002\022\017\n\013emAudioPoll\020\003*\201\002\n\016Em" +
+      "StreamNumber\022\017\n\013emStreamBeg\020\000\022\020\n\014emMainA" +
+      "udEnc\020\001\022\020\n\014emMainAudDec\020\002\022\017\n\013emAssAudEnc" +
+      "\020\003\022\017\n\013emAssAudDec\020\004\022\017\n\013em1stVidEnc\020\005\022\017\n\013" +
+      "em1stVidDec\020\006\022\017\n\013em2ndVidEnc\020\007\022\017\n\013em2ndV" +
+      "idDec\020\010\022\017\n\013em3rdVidEnc\020\t\022\017\n\013em3rdVidDec\020" +
+      "\n\022\017\n\013emAssVidEnc\020\013\022\017\n\013emAssVidDec\020\014\022\020\n\013e" +
+      "mStreamEnd\020\200\001*\\\n\nEmCtrlType\022\022\n\016emAudioEn",
+      "cType\020\000\022\022\n\016emAudioDecType\020\001\022\022\n\016emVideoEn" +
+      "cType\020\002\022\022\n\016emVideoDecType\020\003*\236\005\n\025EmVideoR" +
+      "ecordErrorNum\022\022\n\016emErrorNoError\020\000\022\027\n\023emE" +
+      "rrorFileNotFound\020\001\022\031\n\025emErrorInvalidASFF" +
+      "ile\020\002\022\031\n\025emErrorObjectNotFound\020\003\022\023\n\017emEr" +
+      "rorBadIndex\020\004\022\030\n\024emErrorValueNotFound\020\005\022" +
+      "\026\n\022emErrorBadArgument\020\006\022\023\n\017emErrorReadOn" +
+      "ly\020\007\022\031\n\025emErrorNotEnoughSpace\020\010\022\030\n\024emErr" +
+      "orInternalError\020\t\022\030\n\024emErrorReadFileErro" +
+      "r\020\n\022\031\n\025emErrorWriteFileError\020\013\022\030\n\024emErro",
+      "rSeekFileError\020\014\022\032\n\026emErrorCreateFileErr" +
+      "or\020\r\022\034\n\030emErrorCreateThreadError\020\016\022\032\n\026em" +
+      "ErrorObjectNULLError\020\017\022\036\n\032emErrorTooMuch" +
+      "VideoStrream\020\020\022\034\n\030emErrorNotSupportedCod" +
+      "ec\020\021\022\022\n\016emErrorFileEnd\020\022\022\027\n\023emErrorUnkno" +
+      "wnError\020\023\022\030\n\024emErrorWriteMemError\020\024\022\030\n\024e" +
+      "mErrorFileNameEmpty\020\025\022\021\n\remErrorNotDir\020\026" +
+      "\022\017\n\013emErrorLoop\020\027\022\021\n\remErrorAccess\020\030\022\026\n\022" +
+      "emErrorNameTooLong\020\031*>\n\nEmKeyState\022\013\n\007em" +
+      "KeyUp\020\000\022\r\n\temKeyDown\020\001\022\024\n\020emKeyLongPress",
+      "ed\020\002*`\n\023EmVideoRecordStatus\022\025\n\021emVideoRe" +
+      "cordIdle\020\000\022\032\n\026emVideoRecordRecording\020\001\022\026" +
+      "\n\022emVideoRecordPause\020\002*T\n\025EmWirelessScre" +
+      "enState\022\034\n\030emWirelessScreen_enabled\020\000\022\035\n" +
+      "\031emWirelessScreen_disabled\020\001*\263\001\n\031EmWirel" +
+      "essScreenErrReason\022\"\n\036emWirelessScreenEr" +
+      "rReason_None\020\000\022$\n emWirelessScreenErrRea" +
+      "son_Failed\020\001\022%\n!emWirelessScreenErrReaso" +
+      "n_Timeout\020\002\022%\n!emWirelessScreenErrReason" +
+      "_Unknown\020\003*\177\n\014EmMtWarnType\022\021\n\remMtWarnBe",
+      "gin\020\000\022\020\n\014emMtWarnTemp\020\001\022\024\n\020emMtWarnFanSp" +
+      "eed\020\002\022\017\n\013emMtWarnCpu\020\004\022\020\n\014emMtWarnVolt\020\010" +
+      "\022\021\n\013emMtWarnEnd\020\200\200\002*j\n\017EmLimitedIpType\022\035" +
+      "\n\031emLimitedIpType_WhiteList\020\000\022\035\n\031emLimit" +
+      "edIpType_BlackList\020\001\022\031\n\025emLimitedIpType_" +
+      "Reset\020\002*Z\n\031EmTerControlCameraOsdType\022\023\n\017" +
+      "emCameraOsdMenu\020\000\022\021\n\remCameraOsdOk\020\001\022\025\n\021" +
+      "emCameraOsdReture\020\002*$\n\014EmDigestType\022\t\n\005e" +
+      "mSm3\020\000\022\t\n\005emMd5\020\001*$\n\014EmPubPriType\022\t\n\005emR" +
+      "sa\020\001\022\t\n\005emSm2\020\002*\213\002\n\020EmSrtpCryptoType\022\024\n\020",
+      "emSrtpCryptoNone\020\000\022\032\n\026emSrtpCryptoAES_CM" +
+      "_128\020\001\022\032\n\026emSrtpCryptoAES_CM_192\020\002\022\032\n\026em" +
+      "SrtpCryptoAES_CM_256\020\003\022\033\n\027emSrtpCryptoAE" +
+      "S_GCM_128\020\004\022\033\n\027emSrtpCryptoAES_GCM_192\020\005" +
+      "\022\033\n\027emSrtpCryptoAES_GCM_256\020\006\022\032\n\026emSrtpC" +
+      "ryptoSM4_CM_128\020\007\022\032\n\026emSrtpCryptoSM1_CM_" +
+      "128\020\010*{\n\016EmSrtpAuthType\022\022\n\016emSrtpAuthNon" +
+      "e\020\000\022\023\n\017emSrtpAuthTag_8\020\001\022\024\n\020emSrtpAuthTa" +
+      "g_16\020\002\022\024\n\020emSrtpAuthTag_32\020\003\022\024\n\020emSrtpAu" +
+      "thTag_80\020\004*h\n\020EmSipConnectType\022\023\n\017emSipU",
+      "dpConnect\020\000\022\023\n\017emSipTcpConnect\020\001\022\023\n\017emSi" +
+      "pTlsConnect\020\002\022\025\n\021emSipGMTlsConnect\020\003*\224\001\n" +
+      "\017EmSecCertFormat\022\031\n\025emSecCertFormart_NUL" +
+      "L\020\000\022\030\n\024emSecCertFormart_PEM\020\001\022\030\n\024emSecCe" +
+      "rtFormart_DER\020\002\022\030\n\024emSecCertFormart_PFX\020" +
+      "\003\022\030\n\024emSecCertFormart_B64\020\004*S\n\014EmRecordT" +
+      "ype\022\025\n\021emStartRecordType\020\000\022\026\n\022emConferen" +
+      "ceRecord\020\001\022\024\n\020emTerminalRecord\020\002*8\n\rEmPu" +
+      "blishMode\022\024\n\020emNotPublishMode\020\000\022\021\n\remPub" +
+      "lishMode\020\001*_\n\014EmRecordMode\022\027\n\023emDisableR",
+      "ecordMode\020\000\022\020\n\014emRecordMode\020\001\022\016\n\nemLiveM" +
+      "ode\020\002\022\024\n\020emRecordLiveMode\020\003*T\n\nEmCallMod" +
+      "e\022\021\n\remMannualCall\020\000\022\016\n\nemAutoCall\020\001\022\020\n\014" +
+      "emTimingCall\020\002\022\021\n\remChasingCall\020\003*n\n\rEmR" +
+      "ecordState\022\021\n\remDoNotRecord\020\000\022\017\n\013emRecor" +
+      "ding\020\001\022\023\n\017emSuspendRecord\020\002\022\017\n\013emCalling" +
+      "MT\020\003\022\023\n\017emPrepareRecord\020\004*J\n\013EmRecordCmd" +
+      "\022\022\n\016emRecordCmdBak\020\000\022\021\n\remPauseRecord\020\001\022" +
+      "\024\n\020emContinueRecord\020\002*\371\001\n\013EmMtDcsType\022\021\n" +
+      "\remTypeUnknown\020\000\022\022\n\016emTypeTrueLink\020\001\022\033\n\027",
+      "emTypeTrueTouchPhoneIOS\020\002\022\031\n\025emTypeTrueT" +
+      "ouchPadIOS\020\003\022\037\n\033emTypeTrueTouchPhoneAndr" +
+      "oid\020\004\022\035\n\031emTypeTrueTouchPadAndroid\020\005\022\022\n\016" +
+      "emTypeTrueSens\020\006\022\016\n\nemTypeIMIX\020\007\022\027\n\023emTy" +
+      "peThirdPartyTer\020\010\022\016\n\nemTypeButt\020\t*N\n\013EmM" +
+      "tDcsRole\022\020\n\014emRoleManage\020\000\022\016\n\nemRoleOper" +
+      "\020\001\022\016\n\nemRoleUser\020\002\022\r\n\temRoleErr\020\n*O\n\017EmM" +
+      "tDcsConfMode\022\022\n\016emConfModeStop\020\000\022\024\n\020emCo" +
+      "nfModeManage\020\001\022\022\n\016emConfModeAuto\020\002*7\n\017Em" +
+      "MtDcsConfType\022\021\n\remConfTypeP2P\020\000\022\021\n\remCo",
+      "nfTypeMCC\020\001*0\n\rEmMtDcsWbMode\022\016\n\nemWbMode" +
+      "WB\020\000\022\017\n\013emWBModeDOC\020\001*c\n\016EmWbEntityType\022" +
+      "\014\n\010emUnknow\020\000\022\n\n\006emLine\020\001\022\014\n\010emCircle\020\002\022" +
+      "\014\n\010emPencil\020\003\022\016\n\nemColorPen\020\004\022\013\n\007emImage" +
+      "\020\005*\337\001\n\016EmWbImageState\022\033\n\027emImageStateDow" +
+      "nloading\020\000\022\034\n\030emImageStateDownLoadFail\020\001" +
+      "\022!\n\035emImageStateOwnerAlreadyLeave\020\002\022\032\n\026e" +
+      "mImageStateDownLoadOk\020\003\022\024\n\020emImageStateI" +
+      "nit\020\004\022\033\n\027emImageStateConvertFail\020\005\022 \n\034em" +
+      "ImageStateSelfAlreadyLeave\020\006*G\n\010EmWBMode",
+      "\022\022\n\016emWbModeUnkown\020\000\022\026\n\022emWbModeWhiteBoa" +
+      "rd\020\001\022\017\n\013emWbModeDOC\020\002*9\n\020EmDcsConnectTyp" +
+      "e\022\022\n\016emConnectLogin\020\000\022\021\n\remConnectConf\020\001" +
+      "*\377\003\n\tEmDcsOper\022\024\n\020emWbLineOperInfo\020\000\022\026\n\022" +
+      "emWbCircleOperInfo\020\001\022\031\n\025emWbRectangleOpe" +
+      "rInfo\020\002\022\026\n\022emWbPencilOperInfo\020\003\022\030\n\024emWbC" +
+      "olorPenOperInfo\020\004\022\025\n\021emWbImageOperInfo\020\005" +
+      "\022\026\n\022emWbAddSubPageInfo\020\006\022\025\n\021emWbEraseOpe" +
+      "rInfo\020\007\022\020\n\014emWbZoomInfo\020\010\022\014\n\010emWbUndo\020\t\022" +
+      "\014\n\010emWbRedo\020\n\022\022\n\016emWbRotateLeft\020\013\022\023\n\017emW",
+      "bRotateRight\020\014\022\023\n\017emWbClearScreen\020\r\022\024\n\020e" +
+      "mWbScrollScreen\020\016\022\022\n\016emWbFullScreen\020\017\022\033\n" +
+      "\027emWb100ProportionScreen\020\020\022\022\n\016emWbReginE" +
+      "rase\020\021\022\021\n\remWbInsertPic\020\022\022\024\n\020emWbPitchPi" +
+      "cZoom\020\023\022\026\n\022emWbPitchPicRotate\020\024\022\024\n\020emWbP" +
+      "itchPicDrag\020\025\022\023\n\017emWbPitchPicDel\020\026*\216\001\n\023E" +
+      "mDcsConnectErrCode\022\021\n\remConfSuccess\020\001\022\020\n" +
+      "\014emConfFailed\020\002\022\024\n\020emConfDisconnect\020\003\022\022\n" +
+      "\016emLoginSuccess\020\004\022\021\n\remLoginFailed\020\005\022\025\n\021" +
+      "emLoginDisconnect\020\006*\351\001\n\032EmDcsAdpRejectJo",
+      "inConfCode\022\032\n\026emRejectJoinConf_start\020\001\022\031" +
+      "\n\025emRejectJoinConf_busy\020\002\022\033\n\027emRejectJoi" +
+      "nConf_normal\020\003\022\035\n\031emRejectJoinConf_rejec" +
+      "ted\020\004\022 \n\034emRejectJoinConf_unreachable\020\005\022" +
+      "\034\n\030emRejectJoinConf_unknown\020\006\022\030\n\024emRejec" +
+      "tJoinConf_end\020\007*C\n\rEmSecAutState\022\020\n\014emSe" +
+      "cAutidle\020\000\022\017\n\013emSecAuting\020\001\022\017\n\013emSecAuts" +
+      "uc\020\002*t\n\022EmAuthCancelReason\022\024\n\020emSecAuth_" +
+      "Cancel\020\001\022\031\n\025emSecAuth_ErrOverTime\020\002\022\024\n\020e" +
+      "mSecAut_TimeOut\020\003\022\027\n\023emSecAut_ErrConnect",
+      "\020\004*U\n\022EmSecKeyUpdateMode\022\036\n\032EmSecKeyUpda" +
+      "teModeByPeriod\020\000\022\037\n\033EmSecKeyUpdateModeBy" +
+      "Package\020\001*6\n\020EmCameraCtrlType\022\020\n\014emIspIm" +
+      "gCtrl\020\001\022\020\n\014emSerialCtrl\020\002*,\n\rEmVersionTy" +
+      "pe\022\r\n\temChannel\020\000\022\014\n\010emOthers\020\001*Z\n\026EmLic" +
+      "enseKeyCheckValue\022\016\n\nemWrongKey\020\000\022\016\n\nemR" +
+      "ightKey\020\001\022\016\n\nemNotExist\020\002\022\020\n\014emParseErro" +
+      "r\020\003*\376\001\n\021EmCameraErrorType\022\035\n\031EmCameraErr" +
+      "orType_unknown\020\000\022\037\n\033EmCameraErrorType_Zo" +
+      "ominEnd\020\001\022 \n\034EmCameraErrorType_ZoomoutEn",
+      "d\020\002\022\037\n\033EmCameraErrorType_TiltUpEnd\020\003\022!\n\035" +
+      "EmCameraErrorType_TiltDownEnd\020\004\022 \n\034EmCam" +
+      "eraErrorType_PanLeftEnd\020\005\022!\n\035EmCameraErr" +
+      "orType_PanRightEnd\020\006*\240\001\n\021EmCameraSceneMo" +
+      "de\022\036\n\032EmCameraSceneMode_Standard\020\000\022\037\n\033Em" +
+      "CameraSceneMode_Projector\020\001\022#\n\037EmCameraS" +
+      "ceneMode_Peoplefeature\020\002\022%\n!EmCameraScen" +
+      "eMode_Peoplebacklight\020\003*5\n\017EmMtVConfStat" +
+      "us\022\020\n\014emVConf_Idle\020\000\022\020\n\014emVConf_Busy\020\001*_" +
+      "\n\rEmMtMaxJoinMt\022\021\n\remMaxJoinMt_8\020\000\022\022\n\016em",
+      "MaxJoinMt_32\020\001\022\022\n\016emMaxJoinMt_64\020\002\022\023\n\017em" +
+      "MaxJoinMt_192\020\003*\370\001\n\022EmMtVConfResources\022\031" +
+      "\n\025emVConfResource_8_720\020\001\022\032\n\026emVConfReso" +
+      "urce_8_1080\020\002\022\032\n\026emVConfResource_32_720\020" +
+      "\003\022\033\n\027emVConfResource_32_1080\020\004\022\032\n\026emVCon" +
+      "fResource_64_720\020\005\022\033\n\027emVConfResource_64" +
+      "_1080\020\006\022\033\n\027emVConfResource_192_720\020\007\022\034\n\030" +
+      "emVConfResource_192_1080\020\010*2\n\013EmMtFecMod" +
+      "e\022\021\n\remMtFec_Close\020\000\022\020\n\014emMtFec_Open\020\001*J" +
+      "\n\nEmPlatform\022\022\n\016emOLD_PLATFORM\020\000\022\023\n\017emBU",
+      "SS_PLATFORM\020\001\022\023\n\017emCOMM_PLATFORM\020\002*\251\002\n\014E" +
+      "mMtChipType\022\021\n\remMtChip_Main\020\000\022\024\n\020emMtCh" +
+      "ip_VidEnc1\020\001\022\024\n\020emMtChip_VidEnc2\020\002\022\024\n\020em" +
+      "MtChip_VidEnc3\020\003\022\024\n\020emMtChip_VidEnc4\020\004\022\024" +
+      "\n\020emMtChip_VidEnc5\020\005\022\024\n\020emMtChip_VidDec1" +
+      "\020\006\022\024\n\020emMtChip_VidDec2\020\007\022\024\n\020emMtChip_Vid" +
+      "Dec3\020\010\022\024\n\020emMtChip_VidDec4\020\t\022\024\n\020emMtChip" +
+      "_VidDec5\020\n\022\024\n\020emMtChip_AudEnc1\020\013\022\024\n\020emMt" +
+      "Chip_AudDec1\020\014*\242\002\n\017EmClientAppType\022\022\n\016em" +
+      "ClientAppOsd\020\000\022\031\n\025emClientAppWebService\020",
+      "\001\022\027\n\023emClientAppSkyShare\020\002\022\030\n\024emClientAp" +
+      "pSkyRemote\020\003\022\025\n\021emClientAppSkyMTC\020\004\022\031\n\025e" +
+      "mClientAppSkyWindows\020\005\022\031\n\025emClientAppSky" +
+      "Android\020\006\022\025\n\021emClientAppSkyIOS\020\007\022\031\n\025emCl" +
+      "ientAppThirdParty\020\010\022\027\n\023emClientAppNexVis" +
+      "on\020\t\022\025\n\021emClientAppMTCEnd\020\n*Y\n\nEmAuthTyp" +
+      "e\022\025\n\021emUserNamePwdAuth\020\000\022\022\n\016emInnerPwdAu" +
+      "th\020\001\022\021\n\remDynamicAuth\020\002\022\r\n\temAuthEnd\020\003*]" +
+      "\n\021EmLoginFailReason\022\014\n\010emPwdErr\020\001\022\021\n\remT" +
+      "erStarting\020\002\022\022\n\016emTerUpgrading\020\003\022\023\n\017emFa",
+      "ilReasonEnd\020\n*`\n\021EmVConfCreateType\022\026\n\022em" +
+      "CreateNormalConf\020\000\022\027\n\023emCreateVirtualCon" +
+      "f\020\001\022\032\n\026emCreateConfByTemplate\020\002*\275\001\n\tEmQk" +
+      "State\022\014\n\010emUsbOff\020\000\022\013\n\007emUsbOn\020\001\022\016\n\nemUp" +
+      "dating\020\002\022\t\n\005emWps\020\003\022\r\n\temWpsSucc\020\004\022\014\n\010em" +
+      "ApLink\020\005\022\013\n\007emApOff\020\006\022\r\n\temQkStart\020\007\022\013\n\007" +
+      "emQkOff\020\010\022\020\n\014emWpsTimeOut\020\t\022\020\n\014emUpDateS" +
+      "ucc\020\n\022\020\n\014emUpDateFail\020\013*`\n\016EmResourceTyp" +
+      "e\022\031\n\025emResourceType_LimitP\020\000\022\032\n\026emResour" +
+      "ceType_LimitPR\020\001\022\027\n\023emResourceType_None\020",
+      "\002*J\n\024EmAgentPackFileState\022\022\n\016emPackNotSt" +
+      "art\020\000\022\r\n\temPacking\020\001\022\017\n\013emPackError\020\002*\301\007" +
+      "\n\rEmAiAudioType\022\016\n\nemAiUnknow\020\000\022\021\n\remAiP" +
+      "leaseSay\020\001\022\016\n\nemAiBayBay\020\002\022\027\n\023emAiUnLogi" +
+      "nPlatForm\020\003\022\026\n\022emAiRepeatConfName\020\004\022\022\n\016e" +
+      "mAiSelectConf\020\005\022\024\n\020emAiJoinConfFail\020\006\022\024\n" +
+      "\020emAiOnCreateConf\020\007\022\025\n\021emAiCreateSuccess" +
+      "\020\010\022\022\n\016emAiCreateFail\020\t\022\027\n\023emAiJoinConfSu" +
+      "ccess\020\n\022\022\n\016emAiOnJoinConf\020\013\022\024\n\020emAiNoPer" +
+      "mission\020\014\022\022\n\016emAiHungupConf\020\r\022\016\n\nemAiRob",
+      "Ass\020\016\022\021\n\remAiDelayConf\020\017\022\022\n\016emAiConfIsId" +
+      "le\020\020\022\022\n\016emAiConfNotMcc\020\021\022\017\n\013emAiEndConf\020" +
+      "\022\022\023\n\017emAiUnknowAgain\020\023\022\022\n\016emAiOnFindConf" +
+      "\020\024\022\014\n\010emAiGood\020\025\022\030\n\024emAiOnFindConfMember" +
+      "\020\026\022\032\n\026emAiRepeatInviteMember\020\027\022\026\n\022emAiOn" +
+      "InviteMember\020\030\022\020\n\014emAiSatrtAss\020\031\022\023\n\017emAi" +
+      "AssNoSignal\020\032\022\031\n\025emAiDelayConfWithTime\020\033" +
+      "\022\017\n\013emAiUpAudio\020\034\022\021\n\remAiDownAudio\020\035\022\020\n\014" +
+      "emAiMaxAudio\020\036\022\020\n\014emAiMinAudio\020\037\022\024\n\020emAi" +
+      "SelectMember\020 \022\020\n\014emAiCloseAss\020!\022\030\n\024emAi",
+      "SureOrNotEndConf\020\"\022\033\n\027emAiSureOrNotHangu" +
+      "pConf\020#\022\026\n\022emAiCancleOperator\020$\022\027\n\023emAiH" +
+      "angupOrEndConf\020%\022\022\n\016emAiApplyChair\020&\022\022\n\016" +
+      "emAiSelectView\020\'\022\032\n\026emAiSelectViewNotExi" +
+      "st\020(\022\030\n\024emAiCancleSelectView\020)\022\020\n\014emAiMt" +
+      "OnConf\020*\022\022\n\016emAiAssIsClose\020+\022\013\n\007emAiEnd\020" +
+      "d*\263\001\n\017EmAiActionState\022\023\n\017emAiActionBegin" +
+      "\020\000\022\025\n\021emAiActionEndConf\020\001\022\030\n\024emAiActionH" +
+      "ungupConf\020\002\022\025\n\021emAiActionOpenAss\020\003\022\026\n\022em" +
+      "AiActionJoinConf\020\004\022\030\n\024emAiActionInviteCa",
+      "ll\020\005\022\021\n\remAiActionEnd\0202*g\n\017EmAiContactTy" +
+      "pe\022\024\n\020emAiContactBegin\020\000\022\024\n\020emAiLocalCon" +
+      "tact\020\001\022\024\n\020emAiShareContact\020\002\022\022\n\016emAiCont" +
+      "actEnd\020\024*h\n\021EmShortCutKeyType\022\014\n\010emUnkow" +
+      "n\020\000\022\024\n\020emRedShortCutKey\020\001\022\027\n\023emYellowSho" +
+      "rtCutKey\020\002\022\026\n\022emGreenShortCutKey\020\003*\256\001\n\020E" +
+      "mShortCutKeyFuc\022\016\n\nemFucBegin\020\000\022\n\n\006emLoo" +
+      "p\020\001\022\020\n\014emApplyChair\020\002\022\022\n\016emApplySpeaker\020" +
+      "\003\022\024\n\020emShowSystemInfo\020\004\022\016\n\nemFullMute\020\005\022" +
+      "\022\n\016emSpeechHelper\020\006\022\021\n\remFaceCheckIn\020\007\022\013",
+      "\n\007emClose\020\024*{\n\024EmPltSupportConfType\022\030\n\024e" +
+      "mPltConfTypeInvalid\020\000\022\026\n\022emSupportMediaC" +
+      "onf\020\001\022\025\n\021emSupportPortConf\020\002\022\032\n\026emSuppor" +
+      "tMediaPortConf\020\003*>\n\016EmFunctionIcon\022\027\n\023em" +
+      "FunctionIconBegin\020\000\022\023\n\017emFaceCheckIcon\020\001" +
+      "B+\n!com.kedacom.mt.netmanage.protobufB\006E" +
+      "numPB"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

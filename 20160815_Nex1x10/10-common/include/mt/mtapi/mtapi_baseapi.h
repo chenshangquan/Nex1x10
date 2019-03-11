@@ -4652,7 +4652,7 @@ KdvMtAPI u32 KdvMtCALL KdvMt_CFGGetSmoothSendCfg( OUT u32 &dwSmoothSendLevel, IN
 /**
 *  KdvMt_CFGSetUseTelnetCfgCmd 
 * 
-* @brief   设置telnet开关
+* @brief   设置telnet开关(硬终端ssh )
 * 
 * @param    [in]  bUse telnet开关 
 * @param    [in]   dwSSID     MT会话ID 
@@ -10414,7 +10414,7 @@ KdvMtAPI u32 KdvMtCALL KdvMt_GetSkyMtcVerRtReq( IN CONST SessionID dwSSID = KMTA
 /**
 *  KdvMt_ResetOsdAdminPwd
 * 
-* @brief   重置osd管理员密码
+* @brief   在webmtc重置osd管理员密码
 * 
 * @param    [in] dwSSID  MT会话ID 
 * @return   u32  MT_SUCCESS:发送请求成功  其他：错误码
@@ -10790,7 +10790,120 @@ KdvMtAPI u32 KdvMtCALL KdvMt_SetDeviceCameraSleepCmd( IN CONST BOOL32 bSleep,  I
 *
 * @note 更新通知:  Ev_MtApi_Base_SkipWizardStaticImage_Ntf
 */
-KdvMtAPI u32 KdvMtCALL KdvMt_SetSkipWizardStaticImage( IN CONST BOOL32 bSkip,  IN CONST SessionID dwSSID = KMTAPI_DEF_SSID );
+KdvMtAPI u32 KdvMtCALL KdvMt_SetSkipWizardStaticImageCmd( IN CONST BOOL32 bSkip,  IN CONST SessionID dwSSID = KMTAPI_DEF_SSID );
+
+/**
+*  KdvMt_ResetAdminUserInfoCmd
+* 
+* @brief  osd重置管理员用户名和密码
+*  
+* @param    [in]   dwSSID  MT会话ID 
+* @return   u32  MT_SUCCESS:发送请求成功  其他：错误码
+*
+* @note 更新通知:	Ev_MtApi_Base_ResetAdminUserInfo_Ntf   
+*/
+KdvMtAPI u32 KdvMtCALL KdvMt_ResetAdminUserInfoCmd( IN CONST SessionID dwSSID = KMTAPI_DEF_SSID );
+
+/**
+*  KdvMt_CfgSetUseOspTelnetCfgCmd
+* 
+* @brief  设置是否启用OspTelnet调试功能
+* 
+* @param    [in]   bUse     是否启用   
+* @param    [in]   dwSSID  MT会话ID 
+* @return   u32    请求命令发送结果
+*
+* @note 更新通知:	Ev_MtApi_Base_SetUseOspTelnet_Ntf   
+*/
+KdvMtAPI u32 KdvMtCALL KdvMt_CfgSetUseOspTelnetCfgCmd( IN CONST BOOL32 bUse, IN CONST SessionID dwSSID = KMTAPI_DEF_SSID );
+
+/**
+* KdvMt_CFGGetUseOspTelnetCfgReq
+* 
+* @brief  请求OspTelnet调试功能启用状态
+* 
+* @param    [in]   dwSSID     MT会话ID 
+* @return   u32    请求命令发送结果
+*
+* @note 更新通知:	Ev_MtApi_Base_GetUseOspTelnet_Rsp
+*/
+KdvMtAPI u32 KdvMtCALL KdvMt_CFGGetUseOspTelnetCfgReq( IN CONST SessionID dwSSID = KMTAPI_DEF_SSID );
+
+/**
+*  KdvMt_CFGSetCameraEnableDigZoomCfgCmd 
+* 
+* @brief 设置是否使能数字变焦控制
+* 
+* @param    [IN CONST]  bEnable   是否开启
+* @param    [in]   dwSSID      MT会话ID 
+* @return   u32  0：成功获取， 其他：错误码 
+*
+* @note 响应通知：Ev_MtApi_Base_Hd_SetCameraEnableDigZoomCfg_Ntf
+*/
+KdvMtAPI u32 KdvMtCALL KdvMt_CFGSetCameraEnableDigZoomCfgCmd( IN CONST BOOL32 bEnable, IN CONST SessionID dwSSID = KMTAPI_DEF_SSID );
+
+/**
+*  KdvMt_CFGGetCameraEnableDigZoomCfg 
+* 
+* @brief 获取是否使能数字变焦控制
+* 
+* @param    [out]  bEnable   是否开启
+* @param    [in]   dwSSID      MT会话ID 
+* @return   u32  0：成功获取， 其他：错误码 
+*
+* @note 更新通知：Ev_MtApi_Base_Hd_SetCameraEnableDigZoomCfg_Ntf, Ev_MtApi_Base_Hd_GetCameraEnableDigZoomCfg_Rsp
+*/
+KdvMtAPI u32 KdvMtCALL KdvMt_CFGGetCameraEnableDigZoomCfg( OUT BOOL32& bEnable, IN CONST SessionID dwSSID = KMTAPI_DEF_SSID );
+
+/**
+*  KdvMt_CFGGetCameraEnableDigZoomCfgReq 
+* 
+* @brief    获取是否使能数字变焦控制请求
+* 
+* @param    [in] dwSSID  MT会话ID 
+* @return   u32  MT_SUCCESS:发送请求成功  其他：错误码
+*
+* @note 响应通知：Ev_MtApi_Base_Hd_GetCameraEnableDigZoomCfg_Rsp
+*/
+KdvMtAPI u32 KdvMtCALL KdvMt_CFGGetCameraEnableDigZoomCfgReq( IN CONST SessionID dwSSID = KMTAPI_DEF_SSID );
+
+/**
+* KdvMt_CFGSetFunctionIconCfgCmd
+* 
+* @brief  设置功能图标是否显示
+* 
+* @param    [in]   bEnable     是否显示
+* @param    [in]   dwSSID     MT会话ID 
+* @return   u32    请求命令发送结果
+*
+* @note 更新通知:	Ev_MtApi_Base_FunctionIconCfg_Ntf
+*/
+KdvMtAPI u32 KdvMtCALL KdvMt_CFGSetFunctionIconCfgCmd( IN CONST TMtFunctionIcon_Api tCfg, IN CONST SessionID dwSSID = KMTAPI_DEF_SSID );
+
+/**
+*  KdvMt_CFGGetFunctionIconCfgReq
+* 
+* @brief    请求功能图标显示配置
+* 
+* @param    [in]   dwSSID    MT会话ID 
+* @return   u32    请求命令发送结果 
+*
+* @note 更新通知:  Ev_MtApi_Base_GetFunctionIconCfg_Rsp
+*/
+KdvMtAPI u32 KdvMtCALL KdvMt_CFGGetFunctionIconCfgReq( IN CONST EmFunctionIcon_Api emIconType, IN CONST SessionID dwSSID = KMTAPI_DEF_SSID );
+
+/**
+*  KdvMt_CFGGetFunctionIconCfg
+* 
+* @brief   请求功能图标显示配置
+* 
+* @param    [out] TMTFunctionIcon_Api，相应图标的配置
+* @param    [in]  dwSSID    MT会话ID 
+* @return   u32  0：成功获取， 其他：错误码
+*
+* @note 响应通知：no
+*/
+KdvMtAPI u32 KdvMtCALL KdvMt_CFGGetFunctionIconCfg( OUT TMtFunctionIcon_Api &tCfg, IN CONST EmFunctionIcon_Api emIconType, IN CONST SessionID dwSSID = KMTAPI_DEF_SSID );
 
 
 /**@}*/

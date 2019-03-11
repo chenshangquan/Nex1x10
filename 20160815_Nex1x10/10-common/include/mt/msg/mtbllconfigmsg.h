@@ -1681,6 +1681,36 @@ enum EmBLLMtConfigMsg
 
 
     /*
+    * key : emMt_Cfg_TRtpSamePort
+    */
+    MESSAGE(Ev_MT_BLL_SetTRtpSamePortCfg_Cmd)
+    BODY(mt::TBOOL32, )
+
+    MESSAGE(Ev_MT_BLL_SetTRtpSamePortCfg_Ntf)
+    BODY(mt::TBOOL32, )
+
+    MESSAGE(Ev_MT_BLL_GetTRtpSamePortCfg_Req)
+
+    MESSAGE(Ev_MT_BLL_GetTRtpSamePortCfg_Rsp)
+    BODY(mt::TBOOL32, )
+
+
+    /*
+    * key : emMt_Cfg_FunctionIcon
+    */
+    MESSAGE(Ev_MT_BLL_SetFunctionIconCfg_Cmd)
+    BODY(mt::TMtFunctionIconList, )
+
+    MESSAGE(Ev_MT_BLL_SetFunctionIconCfg_Ntf)
+    BODY(mt::TMtFunctionIconList, )
+
+    MESSAGE(Ev_MT_BLL_GetFunctionIconCfg_Req)
+
+    MESSAGE(Ev_MT_BLL_GetFunctionIconCfg_Rsp)
+    BODY(mt::TMtFunctionIconList, )
+
+
+    /*
     * key : emMt_Rt_CurAPS
     */
     MESSAGE(Ev_MT_BLL_SetCurAPSRt_Ntf)
@@ -3889,6 +3919,21 @@ enum EmBLLMtConfigMsg
 
 
     /*
+    * key : emHD_Cfg_CameraEnableDigZoom
+    */
+    MESSAGE(Ev_MT_BLL_HD_SetCameraEnableDigZoomCfg_Cmd)
+    BODY(mt::TBOOL32, )
+
+    MESSAGE(Ev_MT_BLL_HD_SetCameraEnableDigZoomCfg_Ntf)
+    BODY(mt::TBOOL32, )
+
+    MESSAGE(Ev_MT_BLL_HD_GetCameraEnableDigZoomCfg_Req)
+
+    MESSAGE(Ev_MT_BLL_HD_GetCameraEnableDigZoomCfg_Rsp)
+    BODY(mt::TBOOL32, )
+
+
+    /*
     * key : emHD_Rt_IsMfgTest
     */
     MESSAGE(Ev_MT_BLL_HD_SetIsMfgTestRt_Ntf)
@@ -4041,6 +4086,18 @@ enum EmBLLMtConfigMsg
     MESSAGE(Ev_MT_BLL_HD_GetAddrbookTransferingRt_Req)
 
     MESSAGE(Ev_MT_BLL_HD_GetAddrbookTransferingRt_Rsp)
+    BODY(mt::TBOOL32, )
+
+
+    /*
+    * key : emHD_Rt_LogExporting
+    */
+    MESSAGE(Ev_MT_BLL_HD_SetLogExportingRt_Ntf)
+    BODY(mt::TBOOL32, )
+
+    MESSAGE(Ev_MT_BLL_HD_GetLogExportingRt_Req)
+
+    MESSAGE(Ev_MT_BLL_HD_GetLogExportingRt_Rsp)
     BODY(mt::TBOOL32, )
 
 
@@ -4693,6 +4750,21 @@ enum EmBLLMtConfigMsg
 
 
     /*
+    * key : emMt_Cfg_TKeyFrameInterval
+    */
+    MESSAGE(Ev_MT_BLL_SetTKeyFrameIntervalCfg_Cmd)
+    BODY(mt::TU32, )
+
+    MESSAGE(Ev_MT_BLL_SetTKeyFrameIntervalCfg_Ntf)
+    BODY(mt::TU32, )
+
+    MESSAGE(Ev_MT_BLL_GetTKeyFrameIntervalCfg_Req)
+
+    MESSAGE(Ev_MT_BLL_GetTKeyFrameIntervalCfg_Rsp)
+    BODY(mt::TU32, )
+
+
+    /*
     * key : emMt_Rt_InnerMcAvSWPort
     */
     MESSAGE(Ev_MT_BLL_SetInnerMcAvSWPortRt_Ntf)
@@ -4843,21 +4915,6 @@ enum EmBLLMtConfigMsg
 
     MESSAGE(Ev_MT_BLL_GetTConfinfoRt_Rsp)
     BODY(mt::UnknownProtoMsg, )
-
-
-    /*
-    * key : emMt_Cfg_TRtpSamePort
-    */
-    MESSAGE(Ev_MT_BLL_SetTRtpSamePortCfg_Cmd)
-    BODY(mt::TBOOL32, )
-
-    MESSAGE(Ev_MT_BLL_SetTRtpSamePortCfg_Ntf)
-    BODY(mt::TBOOL32, )
-
-    MESSAGE(Ev_MT_BLL_GetTRtpSamePortCfg_Req)
-
-    MESSAGE(Ev_MT_BLL_GetTRtpSamePortCfg_Rsp)
-    BODY(mt::TBOOL32, )
 
 
     /*

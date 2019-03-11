@@ -1128,6 +1128,26 @@ enum EmMtConfigMsg
 
 
     /*
+    * key : emMt_Cfg_TRtpSamePort
+    */
+    MESSAGE(Ev_MT_SetTRtpSamePortCfg_Cmd)
+    BODY(mt::TBOOL32, )
+
+    MESSAGE(Ev_MT_SetTRtpSamePortCfg_Ntf)
+    BODY(mt::TBOOL32, )
+
+
+    /*
+    * key : emMt_Cfg_FunctionIcon
+    */
+    MESSAGE(Ev_MT_SetFunctionIconCfg_Cmd)
+    BODY(mt::TMtFunctionIconList, )
+
+    MESSAGE(Ev_MT_SetFunctionIconCfg_Ntf)
+    BODY(mt::TMtFunctionIconList, )
+
+
+    /*
     * key : emHD_Cfg_ShortMsg
     */
     MESSAGE(Ev_HD_SetShortMsgCfg_Cmd)
@@ -2128,6 +2148,16 @@ enum EmMtConfigMsg
 
 
     /*
+    * key : emHD_Cfg_CameraEnableDigZoom
+    */
+    MESSAGE(Ev_HD_SetCameraEnableDigZoomCfg_Cmd)
+    BODY(mt::TBOOL32, )
+
+    MESSAGE(Ev_HD_SetCameraEnableDigZoomCfg_Ntf)
+    BODY(mt::TBOOL32, )
+
+
+    /*
     * key : emMt_Cfg_TAudioRemoveG719
     */
     MESSAGE(Ev_MT_SetTAudioRemoveG719Cfg_Cmd)
@@ -2288,6 +2318,16 @@ enum EmMtConfigMsg
 
 
     /*
+    * key : emMt_Cfg_TKeyFrameInterval
+    */
+    MESSAGE(Ev_MT_SetTKeyFrameIntervalCfg_Cmd)
+    BODY(mt::TU32, )
+
+    MESSAGE(Ev_MT_SetTKeyFrameIntervalCfg_Ntf)
+    BODY(mt::TU32, )
+
+
+    /*
     * key : emMt_Cfg_TAudioRemoveLCLD
     */
     MESSAGE(Ev_MT_SetTAudioRemoveLCLDCfg_Cmd)
@@ -2355,16 +2395,6 @@ enum EmMtConfigMsg
 
     MESSAGE(Ev_MT_SetSipKeepAliveItrvlCfg_Ntf)
     BODY(mt::TU32, )
-
-
-    /*
-    * key : emMt_Cfg_TRtpSamePort
-    */
-    MESSAGE(Ev_MT_SetTRtpSamePortCfg_Cmd)
-    BODY(mt::TBOOL32, )
-
-    MESSAGE(Ev_MT_SetTRtpSamePortCfg_Ntf)
-    BODY(mt::TBOOL32, )
 
 
     /*
