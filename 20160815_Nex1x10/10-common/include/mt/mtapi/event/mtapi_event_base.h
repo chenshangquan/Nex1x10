@@ -10021,6 +10021,9 @@ enum EmMtApiBaseEv
 	*/
 	Ev_MtApi_Base_GetFunctionIconCfg_Rsp, 
 
+	Ev_MtApi_Base_GetAiLoadLicenseTest_Rsp,
+	Ev_MtApi_Base_AiLoadLicenseTest_Ntf,
+
     EV_UI_END(MTAPI_BASE) = EVSEG_MTAPI_BASE_END
 };
 

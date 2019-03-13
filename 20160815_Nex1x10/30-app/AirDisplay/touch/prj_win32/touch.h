@@ -73,4 +73,4 @@ API void screen( u32 byScreen );
 
 API void sethwenc( BOOL32 bEnable );
 
-API void setlang( BOOL32 bEnable );
+API void setlang( u32 byLangID );

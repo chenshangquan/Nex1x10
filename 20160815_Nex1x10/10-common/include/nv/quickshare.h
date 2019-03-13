@@ -127,6 +127,7 @@ typedef enum em_CodeRes_Type
 	em_RES_TYPE_1280x600,
 	em_RES_TYPE_XGA1024x768,
 	em_RES_TYPE_SVGA800x600,
+	em_RES_TYPE_CIF352x288,
 }EmCodeResType;
 
 

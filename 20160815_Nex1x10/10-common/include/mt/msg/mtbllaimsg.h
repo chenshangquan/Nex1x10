@@ -84,6 +84,9 @@ enum EmBLLMtAiMsg
 	BODY(mt::TMtId, tmtid)
 	
 	MESSAGE(Ev_MT_BLL_AiResetTimer_Ntf)
+
+	MESSAGE(Ev_MT_BLL_AiLoadLicenseTest_Ntf)
+	BODY(mt::TBOOL32, tResult)
 	
  #if !defined(_MESSAGE_HELP_)
      EV_BLL_END(MTAI) = EVSEG_BLL_MTAIMSG_END

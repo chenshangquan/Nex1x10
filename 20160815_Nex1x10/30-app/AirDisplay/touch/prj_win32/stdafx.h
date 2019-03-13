@@ -85,6 +85,8 @@ using namespace Gdiplus;
 #define TOUCH_VERSION_ID	   "5.2.0.2.0."
 #define MAX_VER_LEN            38
 
+#define MAX_NAME_LEN           32  //最大的名字长度
+
 //全局定义
 extern s8 g_achDefaultFont[MAX_PATH];
 #define DEFAULT_FONT_COLOR Color(76,76,76)
@@ -110,4 +112,11 @@ enum EMLangID
 {
     enumLangIdCHN   = (u8)0,    //简体中文
     enumLangIdENG   = (u8)1     //English
+};
+
+enum EMUILangID
+{
+    enumUILangAUTO   = (u8)0,    //自动识别
+    enumUILangCHN    = (u8)1,    //中文界面
+    enumUILangENG    = (u8)2     //英文界面
 };

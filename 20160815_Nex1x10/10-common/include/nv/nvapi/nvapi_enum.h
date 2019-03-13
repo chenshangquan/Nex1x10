@@ -150,7 +150,8 @@ enum EmNvQkCodeRes_Api
 	emQkRes_1280x600_Api                = 10,
 	emQkRes_XGA_1024x768_Api            = 11,
 	emQkRes_SVGA_800x600_Api            = 12,
-	emQkRes_End_Api                     = 13,
+	emQkRes_CIF_352x288_Api             = 13,
+	emQkRes_End_Api                     = 14,
 };
 /**@}*/
 

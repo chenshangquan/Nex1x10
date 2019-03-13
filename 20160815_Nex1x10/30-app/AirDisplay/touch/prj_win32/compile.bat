@@ -107,6 +107,12 @@ if not exist "..\..\..\..\10-common\lib\releaselib\release\win32\IntelHwWrapper.
     goto end
 )
 
+rem touch 配置文件
+if not exist "..\setup\touch.ini" (
+    echo miss file touch.ini >> "%compileVerPath%\compileinfo\airdisplay_touch_r.txt"
+    goto end
+)
+
 call "%VS100COMNTOOLS%\vsvars32.bat"
 echo build clean release vs2010
 @devenv touch.vcxproj /ReBuild "Release" /Out "%compileVerPath%\compileinfo\airdisplay_touch_r.txt"
@@ -136,6 +142,8 @@ rem 硬编码新增库
 copy /Y "..\..\..\..\10-common\lib\releaselib\release\win32\codec\dll\kdaudcodec.dll" "%compileVerPath%\release\win32\AirDisplay\"
 copy /Y "..\..\..\..\10-common\lib\releaselib\release\win32\HwCodecWrapper.dll" "%compileVerPath%\release\win32\AirDisplay\"
 copy /Y "..\..\..\..\10-common\lib\releaselib\release\win32\IntelHwWrapper.dll" "%compileVerPath%\release\win32\AirDisplay\"
+rem touch 配置文件
+copy /Y "..\setup\touch.ini" "%compileVerPath%\release\win32\AirDisplay\"
 
 rem 数字签名
 autosigntool touch_r.ini

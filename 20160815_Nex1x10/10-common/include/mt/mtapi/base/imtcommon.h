@@ -110,6 +110,9 @@ public:
 
 	virtual u32 SetSkipWizardStaticImage( IN CONST BOOL32 bSkip ) = 0;
 
+	virtual BOOL32 GetAiLoadLicenseTestCfg() = 0;
+	virtual u32 GetAiLoadLicenseTestReq() = 0;
+
 public:
 
 };

@@ -10906,6 +10906,32 @@ KdvMtAPI u32 KdvMtCALL KdvMt_CFGGetFunctionIconCfgReq( IN CONST EmFunctionIcon_A
 KdvMtAPI u32 KdvMtCALL KdvMt_CFGGetFunctionIconCfg( OUT TMtFunctionIcon_Api &tCfg, IN CONST EmFunctionIcon_Api emIconType, IN CONST SessionID dwSSID = KMTAPI_DEF_SSID );
 
 
+/**
+*  KdvMt_GetAiLoadLicenseTestCfg 
+* 
+* @brief    获取导入ai证书是否成功
+* 
+* @param    [out]  bResult       ai配置
+* @param    [in]   dwSSID     MT会话ID 
+* @return   u32  0：成功获取， 其他：错误码 
+*
+* @note 更新通知：
+*/
+KdvMtAPI u32 KdvMtCALL KdvMt_GetAiLoadLicenseTestCfg( OUT BOOL32 &bResult, IN CONST SessionID dwSSID = KMTAPI_DEF_SSID );
+
+
+/**
+* KdvMt_GetAiLoadLicenseTestReq
+* 
+* @brief  请求获取导入ai证书是否成功
+* 
+* @param    [in]   dwSSID     MT会话ID 
+* @return   u32    请求命令发送结果
+*
+* @note 更新通知:	Ev_MtApi_Base_GetAiLoadLicenseTest_Rsp
+*/
+KdvMtAPI u32 KdvMtCALL KdvMt_GetAiLoadLicenseTestReq( IN CONST SessionID dwSSID = KMTAPI_DEF_SSID );
+
 /**@}*/
 
 /**@}*/

@@ -17,6 +17,7 @@
 
 extern bool g_bHwEncStatus;
 extern bool g_bHwEncSupport;
+extern EMLangID g_emLanType;
 CtouchDlg * g_dlg = NULL;
 // CtouchApp
 
@@ -402,7 +403,8 @@ API void help()
 	 OspPrintf(TRUE,FALSE,"\ndatastatus:显示数据是否阻塞");
 	 OspPrintf(TRUE,FALSE,"\ncpuadjust:是否启用CPU动态调整");
 	 OspPrintf(TRUE,FALSE,"\nscreen byScreen:选择屏幕,从1开始\n");
-     OspPrintf(TRUE,FALSE,"\sethwenc :开启(1)|关闭(0) 硬编\n");
+     OspPrintf(TRUE,FALSE,"\sethwenc:开启(1)|关闭(0) 硬编\n");
+     OspPrintf(TRUE,FALSE,"\setlang:自动(0)|中文(1)|英文(2) 设置界面语言\n");
 }
 
 API void prt( u8 byLevel )
@@ -541,23 +543,41 @@ API void sethwenc( BOOL32 bEnable )
     }
 }
 
-API void setlang(BOOL32 bEnable)
+API void setlang(u32 byLangID)
 {
-    CString strdirpath = CLogo::GetModuleFullPath() + _T("temp\\touch.ini");
-    LPTSTR strbEng = new TCHAR[6];
-    GetPrivateProfileString(_T("CONFIGINFO"), _T("ENG"), _T("false"), strbEng, 6, strdirpath);
-    if ( lstrcmp(strbEng,  _T("true")) == 0 )
+    if (g_dlg)
     {
-        WritePrivateProfileString(_T("CONFIGINFO"), _T("ENG"), _T("false"), strdirpath);
-        TerminateProcess(GetCurrentProcess(), 0);
-        delete [] strbEng;
-    }
-    WritePrivateProfileString(_T("CONFIGINFO"), _T("ENG"), _T("false"), strdirpath);
+        CString strIniFilePath = g_dlg->GetIniFilePath();
+        if (strIniFilePath.IsEmpty())
+        {
+            return;
+        }
 
-    delete [] strbEng;
-
-    if (bEnable)
-    {
-        OspPrintf(TRUE, FALSE, "切换为英文语言提示\n");
+        if (byLangID >= 0)
+        {
+            switch (byLangID)
+            {
+            case enumUILangAUTO:
+                {
+                    WritePrivateProfileString(_T("UILangInfo"), _T("Language"), _T("AUTO"), strIniFilePath);
+                    OspPrintf(TRUE, FALSE, "界面语言为自动模式，需重新插拔投屏器\n");
+                }
+                break;
+            case enumUILangCHN:
+                {
+                    WritePrivateProfileString(_T("UILangInfo"), _T("Language"), _T("CHN"), strIniFilePath);
+                    OspPrintf(TRUE, FALSE, "界面语言为中文模式，需重新插拔投屏器\n");
+                }
+                break;
+            case enumUILangENG:
+                {
+                    WritePrivateProfileString(_T("UILangInfo"), _T("Language"), _T("ENG"), strIniFilePath);
+                    OspPrintf(TRUE, FALSE, "界面语言为英文模式，需重新插拔投屏器\n");
+                }
+                break;
+            default:   
+                break;
+            }
+        }
     }
 }

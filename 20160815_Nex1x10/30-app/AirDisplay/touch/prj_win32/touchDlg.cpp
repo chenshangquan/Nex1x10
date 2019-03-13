@@ -833,6 +833,12 @@ BOOL CtouchDlg::OnInitDialog()
 	m_hTrayIcon[2] = AfxGetApp()->LoadIcon(IDI_TRAYICON_MIDDLE_UP);
 	m_hTrayIcon[3] = AfxGetApp()->LoadIcon(IDI_TRAYICON_UP);
 */
+    //创建temp文件夹
+    m_strLogoPath = CLogo::GetModuleFullPath() + TP_TEMPFILE_PATH;
+    if(!PathFileExists(m_strLogoPath))
+    {
+        CreateDirectory(m_strLogoPath, NULL);
+    }
 
 	//获取系统用户名
 	if ( !GetSysUserName(m_strSysUserName) )
@@ -844,15 +850,34 @@ BOOL CtouchDlg::OnInitDialog()
 		//return FALSE;
 	}
 
-    // 获取系统语言类型，并设置界面语言类型
-    LANGID langID = GetSystemDefaultLangID();
-    if (langID == 0x0804)
+    //设置界面语言类型
+    CString strIniFilePath = GetIniFilePath();
+    if (!strIniFilePath.IsEmpty())
     {
-        g_emLanType = enumLangIdCHN;
-    }
-    else
-    {
-        g_emLanType = enumLangIdENG;
+        TCHAR strbEng[MAX_NAME_LEN] = {0};
+        GetPrivateProfileString(_T("UILangInfo"), _T("Language"),
+            _T("AUTO"), strbEng, MAX_NAME_LEN-1, strIniFilePath);
+        if ( lstrcmp(strbEng, _T("AUTO")) == 0 )
+        {
+            // 获取系统语言类型，并设置界面语言类型
+            LANGID langID = GetSystemDefaultLangID();
+            if (langID == 0x0804)
+            {
+                g_emLanType = enumLangIdCHN;
+            }
+            else
+            {
+                g_emLanType = enumLangIdENG;
+            }
+        }
+        else if (lstrcmp(strbEng, _T("ENG")) == 0)
+        {
+            g_emLanType = enumLangIdENG;
+        }
+        else
+        {
+            g_emLanType = enumLangIdCHN;
+        }
     }
 
     // 获取软硬编状态
@@ -931,6 +956,18 @@ BOOL CtouchDlg::OnInitDialog()
 	//AfxBeginThread(ThreadAddAudioData, this);
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
+}
+
+CString CtouchDlg::GetIniFilePath()
+{
+    CString strIniFilePath = CLogo::GetModuleFullPath() + _T("\\touch.ini");
+    if (!PathFileExists(strIniFilePath))
+    {
+        PRINTMSG("\r\n获取配置文件失败!\r\n");
+        strIniFilePath.Empty();
+    }
+
+    return strIniFilePath;
 }
 
 BOOL CtouchDlg::PreTranslateMessage(MSG* pMsg)
@@ -1958,6 +1995,10 @@ void CtouchDlg::SolveReadInfo(BYTE* recvDataBuf)
 				m_tVideoEncParam.m_wEncVideoWidth = 800;
 				m_tVideoEncParam.m_wEncVideoHeight = 600;
 				break;
+            case em_RES_TYPE_CIF352x288:
+                m_tVideoEncParam.m_wEncVideoWidth = 352;
+                m_tVideoEncParam.m_wEncVideoHeight = 288;
+                break;
 			}			
 		}
 		break;
@@ -2521,13 +2562,6 @@ void CtouchDlg::CheckResolution()
 
 LRESULT CtouchDlg::OnOpenHidDevSuccess( WPARAM wParam, LPARAM lParam )
 {
-	//创建temp文件夹
-	m_strLogoPath = CLogo::GetModuleFullPath() + TP_TEMPFILE_PATH;
-	if(!PathFileExists(m_strLogoPath))
-	{
-		CreateDirectory(m_strLogoPath, NULL);
-	}
-
 	if (m_bHidOpen)
 	{
 		//版本

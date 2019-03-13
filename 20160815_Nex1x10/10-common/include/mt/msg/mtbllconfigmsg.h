@@ -2419,6 +2419,30 @@ enum EmBLLMtConfigMsg
 
 
     /*
+    * key : emMt_Rt_IsConfRecording
+    */
+    MESSAGE(Ev_MT_BLL_SetIsConfRecordingRt_Ntf)
+    BODY(mt::TBOOL32, )
+
+    MESSAGE(Ev_MT_BLL_GetIsConfRecordingRt_Req)
+
+    MESSAGE(Ev_MT_BLL_GetIsConfRecordingRt_Rsp)
+    BODY(mt::TBOOL32, )
+
+
+    /*
+    * key : emMt_Rt_IsAiLoadLicense
+    */
+    MESSAGE(Ev_MT_BLL_SetIsAiLoadLicenseRt_Ntf)
+    BODY(mt::TBOOL32, )
+
+    MESSAGE(Ev_MT_BLL_GetIsAiLoadLicenseRt_Req)
+
+    MESSAGE(Ev_MT_BLL_GetIsAiLoadLicenseRt_Rsp)
+    BODY(mt::TBOOL32, )
+
+
+    /*
     * key : emHD_Cfg_ShortMsg
     */
     MESSAGE(Ev_MT_BLL_HD_SetShortMsgCfg_Cmd)

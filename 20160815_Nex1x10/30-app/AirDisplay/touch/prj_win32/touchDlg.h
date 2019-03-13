@@ -112,6 +112,8 @@ public:
 
 	bool GetSysUserName( CString &strName );  //获取操作系统用户名
 
+    CString GetIniFilePath();  //ini文件路径
+
 	//ppt函数
 	void SendPptCmdToHid( EnumPptStatus emStatus );//发送ppt消息到hid
 	void SolvePptNty( PPT_STATUS emPptStatus );

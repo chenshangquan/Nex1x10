@@ -215,6 +215,7 @@
 #define emMt_Rt_JoinConfListInfo         "emMt_Rt_JoinConfListInfo"                 //会议列表(value: TMtJoinConfParamList)
 #define emMt_Rt_OnLineTerListInfo        "emMt_Rt_OnLineTerListInfo"                 //在线终端(value: TRpMtInfo)
 #define emMt_Rt_IsConfRecording          "emMt_Rt_IsConfRecording"                  //终端是否开启云端录像(value: TBOOL32)
+#define emMt_Rt_IsAiLoadLicense          "emMt_Rt_IsAiLoadLicense"                  //是否成功加载思必驰证书(value: TBOOL32)
 /*================= 分界线，以下为产品专用Key ====================*/
 
 /********************硬终端产品配置数据项Key开始********************/

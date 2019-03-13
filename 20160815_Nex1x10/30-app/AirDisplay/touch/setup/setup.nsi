@@ -150,6 +150,8 @@ Function isFileNoLack
 	${AndIf} ${FileExists} "$INSTDIR\kdaudcodec.dll"
 	${AndIf} ${FileExists} "$INSTDIR\HwCodecWrapper.dll"
 	${AndIf} ${FileExists} "$INSTDIR\IntelHwWrapper.dll"
+	;touch配置文件
+	${AndIf} ${FileExists} "$INSTDIR\touch.ini"
 	    Push "true"
 	${Else}
 	    Push "false"
@@ -220,6 +222,8 @@ Function MAINInstall32
   File "kdaudcodec.dll"
   File "HwCodecWrapper.dll"
   File "IntelHwWrapper.dll"
+  ;touch配置文件
+  File "touch.ini"
   
   Call onComplete
 FunctionEnd
