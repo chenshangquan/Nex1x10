@@ -5,6 +5,9 @@
 #include "windows.h"
 #include "AVCollect.h"
 
+#define SAFE_FCLOSE(p)    { if ( (p) != NULL ) { fclose(p); (p) = NULL; } }
+
+int g_nEncLogon = 15;
 int dwNum = 0;
 //音频返回nwidth为声道，nheight为采样率，视频是宽度与高度
 void VCALLBACK(unsigned char *pBuf, int nSize, int nParam1, int nParam2, void* dwContext,int nTimeTap)
@@ -14,6 +17,50 @@ void VCALLBACK(unsigned char *pBuf, int nSize, int nParam1, int nParam2, void* d
 	{
 		printf("Vid size:%d, w:%d, h:%d, tt:%d\n", nSize, nParam1, nParam2, nTimeTap);
 	}
+
+    //抓取200帧数据
+    if (g_nEncLogon == 15)
+    {
+        static FILE *pFile = NULL;
+        static INT32 dwVidCount = 0;
+        if (dwVidCount != 200)
+        {
+            if (NULL == pFile && 0 == dwVidCount)
+            {
+                pFile = fopen("c:\\yuv\\ShareCapVideo.yuv", "wb");
+            }
+
+            if (pFile)
+            {
+                fwrite(pBuf, nSize, 1, pFile);
+            }
+            dwVidCount++;
+        }
+        else
+        {
+            SAFE_FCLOSE(pFile);
+            g_nEncLogon = 0;
+            dwVidCount = 0;
+        }
+    }
+
+    //计算采集帧率
+    if (NULL != dwContext)
+    {
+
+        static INT32 s_dwFrameCount = 0;
+        static INT32 s_dwCapStartTime = ::GetTickCount();
+        if (++s_dwFrameCount % 200 == 0)
+        {
+            INT32 dwCapStoptime = ::GetTickCount();
+            INT32 dwCapFramerate = 200000 / (dwCapStoptime - s_dwCapStartTime);
+
+            printf(">>>>>>DeskShared Cap Framerate: %d,EncDataLen: %d\n", dwCapFramerate, nSize);
+
+            s_dwCapStartTime = dwCapStoptime;
+            s_dwFrameCount = 0;
+        }
+    }
 }
 
 int dwANum = 0;
@@ -93,7 +140,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	ptAud->StartAudCapture(true);
 	printf("开始抓屏！！\n");
 
-	Sleep(20000);
+	Sleep(600000);
 
 	printf("停止抓屏！！\n");
 	ptAud->StopAudCapture();
