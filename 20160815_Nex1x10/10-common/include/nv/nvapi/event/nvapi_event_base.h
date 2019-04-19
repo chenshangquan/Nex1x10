@@ -1455,6 +1455,12 @@ enum EmNvApiBaseEv
 	*/
 	Ev_NvApi_Base_GetImixSerialNum_Rsp,
 
+	/**
+	@brief	投屏器是否支持投屏
+	*BODY(nv::TBOOL32, tEnable)是否支持
+	*/
+	Ev_NvApi_Base_QKEnableView_Cmd,
+
 	EV_UI_END(NVAPI_BASE) = EVSEG_NVAPI_BASE_END
 	
 };

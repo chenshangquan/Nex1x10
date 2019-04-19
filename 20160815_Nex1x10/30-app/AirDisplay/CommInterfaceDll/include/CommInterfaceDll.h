@@ -38,7 +38,7 @@ extern "C"
 
 #define PACKET_SIZE           512      //一包大小
 #define MAX_BUFFER_NUM        4096     //最大缓冲包数，约2M数据
-#define MAX_STORE_NUM         5000     //最大堆积包数，约2M数据
+#define MAX_STORE_NUM         6144     //最大堆积包数，约3M数据
 
 typedef enum emHID_TYPE
 {

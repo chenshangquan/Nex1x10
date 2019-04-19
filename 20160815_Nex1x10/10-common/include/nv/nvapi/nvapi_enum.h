@@ -83,6 +83,7 @@ enum EmNvViewQkReason_Api
 	emNvViewQk_OverFormat      = 5,       //分辨率过大
 	emNvViewQk_IsSame          = 6,
 	emNvViewQk_CodeConsultFail = 7,       //编码协商失败
+	emNvViewQk_MtEncryptConf   = 8,       //商密终端不能投屏
 };
 
 /**投屏器ppt翻页控制**/
@@ -152,6 +153,14 @@ enum EmNvQkCodeRes_Api
 	emQkRes_SVGA_800x600_Api            = 12,
 	emQkRes_CIF_352x288_Api             = 13,
 	emQkRes_End_Api                     = 14,
+};
+
+/**投屏器不能投屏的原因**/
+enum EmNvQkNotViewReason_Api
+{
+	emQkAdmmit_View_Api                   = 0,    //允许投屏
+	emQkNot_View_MtEncryptConf            = 1,    //商密会议不能投屏
+	emQkNot_View_UnknowReason             = 2,    //未知原因不能投屏
 };
 /**@}*/
 

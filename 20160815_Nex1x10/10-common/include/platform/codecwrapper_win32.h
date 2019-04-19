@@ -113,9 +113,11 @@ using namespace std;
 
 #define 	CAMERAPARAM_HUE				0
 #define 	CAMERAPARAM_WHITEBALANCE	1
-#define 	CAMERAPARAM_CONTRAST		2
-#define 	CAMERAPARAM_SATURATION		3
-#define 	CAMERAPARAM_SHARPNESS		4
+#define     CAMERAPARAM_BRIGHTNESS		2
+#define 	CAMERAPARAM_CONTRAST		3
+#define 	CAMERAPARAM_SATURATION		4
+#define 	CAMERAPARAM_SHARPNESS		5
+
 
 #define CAP_YUV_FORMAT_MJPG			(u8)0
 #define CAP_YUV_FORMAT_I420			(u8)1
@@ -452,6 +454,16 @@ enum enZoomMode
 	EN_ZOOM_CUT,//裁边
 	EN_ZOOM_SCALE//不等比拉伸
 };
+//STDAACLD的编码参数获取结构体和解码参数设置结构体add by wj 2018.02.29
+typedef struct
+{
+	u32 u32Size;          //记录结构体空间大小
+	u32 u32CodecTypeMode; //例如AUDIO_MODE_STDAACLD_48　　标准ＡＡＣＬＤ编码模式
+	u32 u32SubFrames;     //子帧数目
+	u8  u8Conf[16];       //配置参数数组
+	u32 u32ConfSize;      //配置参数字节数大小
+	u32 u32Reserved;      //保留参数
+}TMcAudAacConfPrm;
 
 //mediasdk 全局初始化
 MEDIA_API u16 MediaSDKInitial();
@@ -585,7 +597,7 @@ public:
 	u16		SetAddLogoIntoEncStream(TFullLogoParam *ptLogoSetting);
 	//(暂时无用)   //设置 编码器的本地预览 的开关
 	u16		ShowPreview(BOOL32 bPreview);
-	//设置编一个关键帧，MediaCtrl在75帧内编一个I帧发送
+	//设置编一个关键帧，MediaCtrl至少也要间隔15帧的才能编出一个关键帧，防止频繁编关键帧
 	u16		SetFastUpdate(BOOL32 bIsNeedProtect = TRUE); 
 	//设置静态图片 编码和预览开关  bSend：TRUE - 采用静态图片编码和预览, FALSE - 不采用
 	u16		SendStaticPicture(BOOL32 bSend, wchar_t* pszFileName);

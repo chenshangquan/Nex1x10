@@ -194,6 +194,17 @@ private:
 **************************************************************/
 NVCBB_API u32 nvInitLogModule(std::string strSvrIp = "", std::string strCfgFilePath = "", BOOL32 bToFileLogServer = FALSE, std::string strCltTag = "");
 
+/** ***********************************************************
+* 
+* @brief    初始化日志模块,可选择连接日志服务器的端口
+*
+* @param	[in] strCfgFilePath            日志配置文件，utf8编码
+* @param	[in] bToFileLogServer          TRUE 文件日志输出到日志服务器，FALSE 文件日志输出到本地
+* @return	NV_SUCCESS 成功
+*           NV_FAILED  失败
+**************************************************************/
+NVCBB_API u32 nvInitLogModuleOfPort(std::string strSvrIp = "", std::string strCfgFilePath = "", BOOL32 bToFileLogServer = FALSE, std::string strCltTag = "", u32 dwPort = 10000);
+
 
 /** ***********************************************************
 * 

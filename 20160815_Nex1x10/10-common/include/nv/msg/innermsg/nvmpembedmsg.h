@@ -374,6 +374,15 @@ enum EmMPEmbedMsg
 	*/
 	MESSAGE( Ev_NV_SetHDMI0VidPlyPortStd_Cmd )
 	BODY(nv::TBOOL32, tShow)
+
+	/*<<imix连续接收双流时通知状态，使imix不解冻，直到接收到最后一个双流状态>>
+	*传输方向：nvterinterface==>dispatch==>nvmp
+	*tbFreeze: 是否解冻
+	*tbRcvDual: 是否接收双流
+	*/
+	MESSAGE( Ev_NV_NotifyMpFreezeState_Cmd )
+	BODY(nv::TBOOL32, tbFreeze)
+	BODY(nv::TBOOL32, tbRcvDual)
 	
 #if !defined(_MESSAGE_HELP_)
     EV_END(MPEMBED) = EVSEG_MPCOMMON_END

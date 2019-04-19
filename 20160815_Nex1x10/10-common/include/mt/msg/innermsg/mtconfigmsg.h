@@ -1138,16 +1138,6 @@ enum EmMtConfigMsg
 
 
     /*
-    * key : emMt_Cfg_FunctionIcon
-    */
-    MESSAGE(Ev_MT_SetFunctionIconCfg_Cmd)
-    BODY(mt::TMtFunctionIconList, )
-
-    MESSAGE(Ev_MT_SetFunctionIconCfg_Ntf)
-    BODY(mt::TMtFunctionIconList, )
-
-
-    /*
     * key : emHD_Cfg_ShortMsg
     */
     MESSAGE(Ev_HD_SetShortMsgCfg_Cmd)
@@ -2155,6 +2145,16 @@ enum EmMtConfigMsg
 
     MESSAGE(Ev_HD_SetCameraEnableDigZoomCfg_Ntf)
     BODY(mt::TBOOL32, )
+
+
+    /*
+    * key : emMt_Cfg_FunctionIcon
+    */
+    MESSAGE(Ev_MT_SetFunctionIconCfg_Cmd)
+    BODY(mt::TMtFunctionIconList, )
+
+    MESSAGE(Ev_MT_SetFunctionIconCfg_Ntf)
+    BODY(mt::TMtFunctionIconList, )
 
 
     /*

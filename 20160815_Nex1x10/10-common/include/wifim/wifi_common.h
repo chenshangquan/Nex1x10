@@ -124,7 +124,7 @@ int RandNumber(int nMax, int nMin);
 //if method is WIFIM_SYSCMD_REQ_2, should free *retbuf
 int WifimSysExecCmd(char *cmd, char **retbuf, int method);
 int CheckProcIsRun(char *process);
-
+int WifiSetMode(char *ifname, char *mode);
 #ifdef __cplusplus
 }
 #endif

@@ -54,6 +54,13 @@ extern EMLangID g_emLanType; //语言类型
     #define DES_NET_STATUS_NO_MATCH_CHN             "请将无线投屏发射器，插入显示端USB1或者USB2接口，完成配对"
     #define DES_NET_STATUS_NO_MATCH_ENG             "Please Plug NT30 to USB1/USB2 on the Display for Pairing"
 #define STRING_DES_NET_STATUS_NO_MATCH              TRANSLATE(DES_NET_STATUS_NO_MATCH_)
+//MT型号
+    #define MT_NET_STATUS_NO_MATCH_CHN              "配对帮助"
+    #define MT_NET_STATUS_NO_MATCH_ENG              "Not paired"
+#define STRING_MT_NET_STATUS_NO_MATCH               TRANSLATE(MT_NET_STATUS_NO_MATCH_)
+    #define DES_MT_NET_STATUS_NO_MATCH_CHN          "请将无线投屏发射器，插入终端USB接口，完成配对"
+    #define DES_MT_NET_STATUS_NO_MATCH_ENG          "Please Plug NT30 to USB on the Terminal for Pairing"
+#define STRING_DES_MT_NET_STATUS_NO_MATCH           TRANSLATE(DES_MT_NET_STATUS_NO_MATCH_)
 
     #define NET_STATUS_FIND_SSID_FAIL_CHN           "连接超时"
     #define NET_STATUS_FIND_SSID_FAIL_ENG           "Connection Timeout"
@@ -112,6 +119,13 @@ extern EMLangID g_emLanType; //语言类型
     #define DES_CONNECT_RESOLUTION_LIMITED_CHN      "不支持当前桌面分辨率投屏"
     #define DES_CONNECT_RESOLUTION_LIMITED_ENG      "Desktop Resolution Disabled"
 #define STRING_DES_CONNECT_RESOLUTION_LIMITED       TRANSLATE(DES_CONNECT_RESOLUTION_LIMITED_)
+
+    #define CONNECT_NT30_MT_NONSUPPORT_CHN         "投屏失败"
+    #define CONNECT_NT30_MT_NONSUPPORT_ENG         "Projecting Failed"
+#define STRING_CONNECT_NT30_MT_NONSUPPORT          TRANSLATE(CONNECT_NT30_MT_NONSUPPORT_)
+    #define DES_CONNECT_NT30_MT_NONSUPPORT_CHN     "商密终端不支持投屏"
+    #define DES_CONNECT_NT30_MT_NONSUPPORT_ENG     "The special encryption is enabled."
+#define STRING_DES_CONNECT_NT30_MT_NONSUPPORT      TRANSLATE(DES_CONNECT_NT30_MT_NONSUPPORT_)
 
     #define PROJECTING_CHN                          " 正在投屏"
     #define PROJECTING_ENG                          " Projecting"

@@ -1696,21 +1696,6 @@ enum EmBLLMtConfigMsg
 
 
     /*
-    * key : emMt_Cfg_FunctionIcon
-    */
-    MESSAGE(Ev_MT_BLL_SetFunctionIconCfg_Cmd)
-    BODY(mt::TMtFunctionIconList, )
-
-    MESSAGE(Ev_MT_BLL_SetFunctionIconCfg_Ntf)
-    BODY(mt::TMtFunctionIconList, )
-
-    MESSAGE(Ev_MT_BLL_GetFunctionIconCfg_Req)
-
-    MESSAGE(Ev_MT_BLL_GetFunctionIconCfg_Rsp)
-    BODY(mt::TMtFunctionIconList, )
-
-
-    /*
     * key : emMt_Rt_CurAPS
     */
     MESSAGE(Ev_MT_BLL_SetCurAPSRt_Ntf)
@@ -2428,19 +2413,6 @@ enum EmBLLMtConfigMsg
 
     MESSAGE(Ev_MT_BLL_GetIsConfRecordingRt_Rsp)
     BODY(mt::TBOOL32, )
-
-
-    /*
-    * key : emMt_Rt_IsAiLoadLicense
-    */
-    MESSAGE(Ev_MT_BLL_SetIsAiLoadLicenseRt_Ntf)
-    BODY(mt::TBOOL32, )
-
-    MESSAGE(Ev_MT_BLL_GetIsAiLoadLicenseRt_Req)
-
-    MESSAGE(Ev_MT_BLL_GetIsAiLoadLicenseRt_Rsp)
-    BODY(mt::TBOOL32, )
-
 
     /*
     * key : emHD_Cfg_ShortMsg
@@ -3958,6 +3930,21 @@ enum EmBLLMtConfigMsg
 
 
     /*
+    * key : emMt_Cfg_FunctionIcon
+    */
+    MESSAGE(Ev_MT_BLL_SetFunctionIconCfg_Cmd)
+    BODY(mt::TMtFunctionIconList, )
+
+    MESSAGE(Ev_MT_BLL_SetFunctionIconCfg_Ntf)
+    BODY(mt::TMtFunctionIconList, )
+
+    MESSAGE(Ev_MT_BLL_GetFunctionIconCfg_Req)
+
+    MESSAGE(Ev_MT_BLL_GetFunctionIconCfg_Rsp)
+    BODY(mt::TMtFunctionIconList, )
+
+
+    /*
     * key : emHD_Rt_IsMfgTest
     */
     MESSAGE(Ev_MT_BLL_HD_SetIsMfgTestRt_Ntf)
@@ -4530,6 +4517,30 @@ enum EmBLLMtConfigMsg
     MESSAGE(Ev_MT_BLL_HD_GetIsMfgTestLoadRt_Req)
 
     MESSAGE(Ev_MT_BLL_HD_GetIsMfgTestLoadRt_Rsp)
+    BODY(mt::TBOOL32, )
+
+
+    /*
+    * key : emHD_Rt_IsDerivation
+    */
+    MESSAGE(Ev_MT_BLL_HD_SetIsDerivationRt_Ntf)
+    BODY(mt::TBOOL32, )
+
+    MESSAGE(Ev_MT_BLL_HD_GetIsDerivationRt_Req)
+
+    MESSAGE(Ev_MT_BLL_HD_GetIsDerivationRt_Rsp)
+    BODY(mt::TBOOL32, )
+
+
+    /*
+    * key : emMt_Rt_IsAiLoadLicense
+    */
+    MESSAGE(Ev_MT_BLL_SetIsAiLoadLicenseRt_Ntf)
+    BODY(mt::TBOOL32, )
+
+    MESSAGE(Ev_MT_BLL_GetIsAiLoadLicenseRt_Req)
+
+    MESSAGE(Ev_MT_BLL_GetIsAiLoadLicenseRt_Rsp)
     BODY(mt::TBOOL32, )
 
 

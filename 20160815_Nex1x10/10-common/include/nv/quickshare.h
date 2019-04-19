@@ -31,6 +31,8 @@
 #define Ev_Nv_CodeResolution_Cmd            0x33    /*通知PC界面编码分辨率*/
 #define Ev_Nv_CodeFrameRate_Cmd             0x34    /*通知PC界面编码帧率*/
 #define Ev_Nv_CodeRate_Cmd                  0x35    /*通知PC界面编码率*/
+#define Ev_Nv_QKPidType_Cmd                 0x36    /*通知PC界面当前投屏器类型*/
+#define Ev_Nv_QKNotView_Cmd                 0x37    /*通知PC界面当前投屏器不能投屏（商密终端会议中不能投屏）*/
 
 //和Imax配对相关
 #define Ev_NV_RequstIPAndSSID_Req			0x08	/*quichshare请求Imax发送ip和ssid*/
@@ -129,6 +131,20 @@ typedef enum em_CodeRes_Type
 	em_RES_TYPE_SVGA800x600,
 	em_RES_TYPE_CIF352x288,
 }EmCodeResType;
+
+typedef enum em_QK_Pid_Type
+{
+	em_NT30_Type = 0x01,
+	em_NT30_MT_Type,
+	em_Unknow_Type,
+}EmQKPidType;
+
+typedef enum em_QK_NotView_Reason
+{
+	em_MtEncryptConf_Reason = 0x01,   //终端加密会议
+	em_UnkownReason,
+
+}EmQkNotViewReason;
 
 
 typedef struct tagUserInfo

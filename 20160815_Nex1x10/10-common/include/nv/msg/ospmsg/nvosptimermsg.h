@@ -44,6 +44,10 @@ enum EmNvOspMsgTimer
 	Ev_Nv_Timer_ChanceTvQuite,//取消电视机静音定时器
 	Ev_Nv_Timer_ChangeEchoOrDual,        //切终端源（包括回显和双流源）的定时器
 	Ev_Nv_Timer_CloseHDMI0ToRecDule,     //接收双流先让imix输出到电视机黑屏的定时器
+	Ev_Nv_Timer_SetMulConfPip,     //多点会议时，开启终端自动多画面合成定时器
+
+	Ev_Nv_Timer_RcvDualTimer,       //接收双流定时器
+	Ev_Nv_Timer_X700ChangeLocalEcho,       //x700在入会时切回显的定时器
 };
 
 #endif

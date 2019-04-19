@@ -46,6 +46,7 @@ typedef struct in_addr TWiFimInaddrV4;
 #define WIFIM_MODE_STA     0
 #define WIFIM_MODE_AP      1
 #define WIFIM_MODE_SWITCH  2
+#define WIFIM_MODE_MONITOR 3
 
 #define WIFIM_CLEAN_CONFIG_FILE        0    /* clean all the wifi config file */
 #define WIFIM_NOT_CLEAN_CONFIG_FILE    1    /* not clean all the config file */
@@ -984,6 +985,24 @@ int WifiMQueryVersion(char* pchVer, unsigned int dwBufLen);
  *      @return WIFIM_OK
  ***********************************************************************/
 int WifiMDebug(int nSwitch);
+
+/***********************************************************************
+ * Name:  WifiMSetMode
+ *
+ * Function:
+ *      Wifi set mode
+ * Description:
+ *
+ * Parameters:
+ *      @Param pchIfName        [IN]The name of wireless physical chip
+ *      @Param nWifiMode        [IN]The mode that you want to set, 0-managed,
+ *                                  1--master,3--monitor
+ *
+ * Returns:
+ *      @return SUCCEED : WIFI_OK
+ *      @return FAILED  : specifically defined in error type
+ ***********************************************************************/
+int WifiMSetMode(char *pchIfName, int nWifiMode);
 
 #define WIFIM_MODUL_ALL     0x00000000  /* Everything supported */
 #define WIFIM_MODUL_FH      0x00000001  /* Frequency Hopping */

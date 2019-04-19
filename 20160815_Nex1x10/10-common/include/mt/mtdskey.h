@@ -150,7 +150,6 @@
 #define emMt_Cfg_ShortCutKey			  "emMt_Cfg_ShortCutKey"				   //快捷键功能配置(value: TMtShortCutKeyList)
 #define	emMt_Cfg_AiCameraInfo              "emMt_Cfg_AiCameraInfo"                 //(value: TMTHDCameraAiList)智能摄像机配置
 #define emMt_Cfg_TRtpSamePort              "emMt_Cfg_TRtpSamePort"                  //原先是debug配置，现在已升级为正式配置,是否收发端口复用(value: TBOOL32)
-#define emMt_Cfg_FunctionIcon              "emMt_Cfg_FunctionIcon"                 //功能图标是否显示(value:TMtFunctionIconList )
 
 /*************************组件运行时数据项Key开始********************/
 #define	emMt_Rt_CurAPS                    "emMt_Rt_CurAPS"                         //(value: TMtAPSSvrAddr)  //当前手动选择的XAP服务器，或自动登录成功的xap
@@ -321,6 +320,7 @@
 #define emHD_Cfg_CameraImgDigDynLevel     "emHD_Cfg_CameraImgDigDynLevel"         //数字宽动态等级(value: TCameraIspParam)
 #define emHD_Cfg_CameraLastPosCfg         "emHD_Cfg_CameraLastPosCfg"             //内置摄像机开机默认位置配置(value: TMtCameraLastPos)
 #define emHD_Cfg_CameraEnableDigZoom      "emHD_Cfg_CameraEnableDigZoom"          //是否开启使能数字变焦控制(value: TBOOL32)
+#define emMt_Cfg_FunctionIcon             "emMt_Cfg_FunctionIcon"                 //功能图标是否显示(value:TMtFunctionIconList )
 
 /********************硬终端产品运行时数据项Key开始********************/
 #define	emHD_Rt_IsMfgTest		          "emHD_Rt_IsMfgTest"                     //是否读取到e2prom中的生产测试标志位(value: TBOOL32)
@@ -368,10 +368,11 @@
 #define emHD_Rt_MtCameraCtrlType          "emHD_Rt_MtCameraCtrlType"              //sky300终端机芯类型(value: TU32) 
 #define emHD_Rt_HwSubVer				  "emHD_Rt_HwSubVer"	                  //硬件子版本号(value: TU32 )
 #define emHD_Rt_MicTag				      "emHD_Rt_MicTag"	                      //麦克枚举和名称对应(value: TMTMicTagList )
-#define	emHD_Rt_MicPhoneUpdating          "emHD_Rt_MicPhoneUpdating"              //麦克是否正在升级(value: TBOOL32 )
-#define	emHD_Rt_OpenScanFeature           "emHD_Rt_OpenScanFeature"               //开启厂商识别(value: TBOOL32 )
+#define emHD_Rt_MicPhoneUpdating          "emHD_Rt_MicPhoneUpdating"              //麦克是否正在升级(value: TBOOL32 )
+#define emHD_Rt_OpenScanFeature           "emHD_Rt_OpenScanFeature"               //使用厂商识别的结果(value: TBOOL32 )
 #define emHD_Rt_IsMfgTestLoad             "emHD_Rt_IsMfgTestLoad"                 //加载模式(value: TBOOL32 )
-
+#define emHD_Rt_IsDerivation              "emHD_Rt_IsDerivation"                  //是否为衍生的产品(value: TBOOL32 )
+#define emMt_Rt_IsAiLoadLicense           "emMt_Rt_IsAiLoadLicense"               //是否成功加载思必驰证书(value: TBOOL32)
 
 //////下面是所有的debug配置的key
 /*

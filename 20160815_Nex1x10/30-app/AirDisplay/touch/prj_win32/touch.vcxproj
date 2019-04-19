@@ -120,9 +120,12 @@
     <None Include="res\close_sel.png" />
     <None Include="res\connect.png" />
     <None Include="res\connecting.gif" />
+    <None Include="res\connect_arrow.png" />
     <None Include="res\connect_bk.png" />
+    <None Include="res\connect_device.png" />
     <None Include="res\connect_fail.png" />
     <None Include="res\connect_success.gif" />
+    <None Include="res\connect_usb.png" />
     <None Include="res\info.png" />
     <None Include="res\info_sel.png" />
     <None Include="res\log.png" />

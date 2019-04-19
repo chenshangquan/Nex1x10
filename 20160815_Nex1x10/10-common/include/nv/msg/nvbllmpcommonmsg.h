@@ -252,6 +252,15 @@ enum EmBLLMPCommonMsg
 	*/
 	MESSAGE(Ev_BLL_NV_CodecBitRateResult_Nty)
 	BODY(nv::TBOOL32, tbResult)
+
+	/*<<无线投屏sdk发送是否支持投屏>>
+	*消息流向 qksdk ==>dispatch==>qk
+	*tEnable:是否支持投屏
+	*tReason:不支持投屏的原因
+	*/
+	MESSAGE(Ev_BLL_NV_QKEnableView_Cmd)
+	BODY(nv::TBOOL32, tEnable)
+	BODY(nv::TS32, tReason)
 	
 #if !defined(_MESSAGE_HELP_)
     EV_BLL_END(MPCOMMON) = EVSEG_BLL_MPCOMMON_END

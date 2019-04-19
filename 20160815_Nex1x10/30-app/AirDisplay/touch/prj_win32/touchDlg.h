@@ -166,17 +166,19 @@ public:
 
 	CString m_strSysUserName; //系统用户名
 
-	int m_nStartPptCount;    //发送ppt播放命令次数
-	int m_nStopPptCount;     //发送ppt未播放命令次数
+	int m_nStartPptCount;      //发送ppt播放命令次数
+	int m_nStopPptCount;       //发送ppt未播放命令次数
+    int m_nSendBusinessCount;  //发送业务命令次数
+    int m_nThreadExitCount;    //音视频发送线程退出次数
 
 	bool m_bCapOverEncode;   //判断采集分辨率是否大于编码分辨率
 	bool m_bStretch;         //判断是否不等比拉伸，即采集分辨率比例大于等于1.5时
     bool m_bOverResLimit;    //判断是否超出限制分辨率
 
 	bool m_bBusinessStaus;   //是否需要判断业务状态
-	int m_nSendBusinessCount;//发送业务命令次数
 
-	NET_STATUS m_bCurConnetStatus;//当前连接状态
+	NET_STATUS m_bCurConnetStatus;    //当前连接状态
+    EmQKPidType m_emQKPidType;        //当前投屏器类型
 
 protected:
 	HICON m_hIcon;

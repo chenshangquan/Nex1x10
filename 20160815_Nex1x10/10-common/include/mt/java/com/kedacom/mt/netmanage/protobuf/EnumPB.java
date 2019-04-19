@@ -48901,7 +48901,7 @@ public final class EnumPB {
    * Protobuf enum {@code mt.EmCameraCtrlType}
    *
    * <pre>
-   *SKY300机芯控制类型
+   *云台/机芯控制类型
    * </pre>
    */
   public enum EmCameraCtrlType
@@ -48922,6 +48922,14 @@ public final class EnumPB {
      * </pre>
      */
     emSerialCtrl(1, 2),
+    /**
+     * <code>emBrdPtzCtrl = 3;</code>
+     *
+     * <pre>
+     *驱动Ptz控制(sky100有使用)
+     * </pre>
+     */
+    emBrdPtzCtrl(2, 3),
     ;
 
     /**
@@ -48940,6 +48948,14 @@ public final class EnumPB {
      * </pre>
      */
     public static final int emSerialCtrl_VALUE = 2;
+    /**
+     * <code>emBrdPtzCtrl = 3;</code>
+     *
+     * <pre>
+     *驱动Ptz控制(sky100有使用)
+     * </pre>
+     */
+    public static final int emBrdPtzCtrl_VALUE = 3;
 
 
     public final int getNumber() { return value; }
@@ -48948,6 +48964,7 @@ public final class EnumPB {
       switch (value) {
         case 1: return emIspImgCtrl;
         case 2: return emSerialCtrl;
+        case 3: return emBrdPtzCtrl;
         default: return null;
       }
     }
@@ -51063,6 +51080,22 @@ public final class EnumPB {
      * </pre>
      */
     emUpDateFail(11, 11),
+    /**
+     * <code>emSecFail = 12;</code>
+     *
+     * <pre>
+     *商密终端不支持投屏器
+     * </pre>
+     */
+    emSecFail(12, 12),
+    /**
+     * <code>emQkFail = 13;</code>
+     *
+     * <pre>
+     *投屏失败
+     * </pre>
+     */
+    emQkFail(13, 13),
     ;
 
     /**
@@ -51161,6 +51194,22 @@ public final class EnumPB {
      * </pre>
      */
     public static final int emUpDateFail_VALUE = 11;
+    /**
+     * <code>emSecFail = 12;</code>
+     *
+     * <pre>
+     *商密终端不支持投屏器
+     * </pre>
+     */
+    public static final int emSecFail_VALUE = 12;
+    /**
+     * <code>emQkFail = 13;</code>
+     *
+     * <pre>
+     *投屏失败
+     * </pre>
+     */
+    public static final int emQkFail_VALUE = 13;
 
 
     public final int getNumber() { return value; }
@@ -51179,6 +51228,8 @@ public final class EnumPB {
         case 9: return emWpsTimeOut;
         case 10: return emUpDateSucc;
         case 11: return emUpDateFail;
+        case 12: return emSecFail;
+        case 13: return emQkFail;
         default: return null;
       }
     }
@@ -53107,6 +53158,181 @@ public final class EnumPB {
     // @@protoc_insertion_point(enum_scope:mt.EmFunctionIcon)
   }
 
+  /**
+   * Protobuf enum {@code mt.EmWindowVer}
+   *
+   * <pre>
+   *windows版本号
+   * </pre>
+   */
+  public enum EmWindowVer
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>emWinUnknown = 0;</code>
+     *
+     * <pre>
+     *未知版本
+     * </pre>
+     */
+    emWinUnknown(0, 0),
+    /**
+     * <code>emWinXp_32 = 1;</code>
+     */
+    emWinXp_32(1, 1),
+    /**
+     * <code>emWinXp_64 = 2;</code>
+     */
+    emWinXp_64(2, 2),
+    /**
+     * <code>emWin7_32 = 3;</code>
+     */
+    emWin7_32(3, 3),
+    /**
+     * <code>emWin7_64 = 4;</code>
+     */
+    emWin7_64(4, 4),
+    /**
+     * <code>emWin8_32 = 5;</code>
+     */
+    emWin8_32(5, 5),
+    /**
+     * <code>emWin8_64 = 6;</code>
+     */
+    emWin8_64(6, 6),
+    /**
+     * <code>emWin8_1_32 = 7;</code>
+     */
+    emWin8_1_32(7, 7),
+    /**
+     * <code>emWin8_1_64 = 8;</code>
+     */
+    emWin8_1_64(8, 8),
+    /**
+     * <code>emWin10_32 = 9;</code>
+     */
+    emWin10_32(9, 9),
+    /**
+     * <code>emWin10_64 = 10;</code>
+     */
+    emWin10_64(10, 10),
+    ;
+
+    /**
+     * <code>emWinUnknown = 0;</code>
+     *
+     * <pre>
+     *未知版本
+     * </pre>
+     */
+    public static final int emWinUnknown_VALUE = 0;
+    /**
+     * <code>emWinXp_32 = 1;</code>
+     */
+    public static final int emWinXp_32_VALUE = 1;
+    /**
+     * <code>emWinXp_64 = 2;</code>
+     */
+    public static final int emWinXp_64_VALUE = 2;
+    /**
+     * <code>emWin7_32 = 3;</code>
+     */
+    public static final int emWin7_32_VALUE = 3;
+    /**
+     * <code>emWin7_64 = 4;</code>
+     */
+    public static final int emWin7_64_VALUE = 4;
+    /**
+     * <code>emWin8_32 = 5;</code>
+     */
+    public static final int emWin8_32_VALUE = 5;
+    /**
+     * <code>emWin8_64 = 6;</code>
+     */
+    public static final int emWin8_64_VALUE = 6;
+    /**
+     * <code>emWin8_1_32 = 7;</code>
+     */
+    public static final int emWin8_1_32_VALUE = 7;
+    /**
+     * <code>emWin8_1_64 = 8;</code>
+     */
+    public static final int emWin8_1_64_VALUE = 8;
+    /**
+     * <code>emWin10_32 = 9;</code>
+     */
+    public static final int emWin10_32_VALUE = 9;
+    /**
+     * <code>emWin10_64 = 10;</code>
+     */
+    public static final int emWin10_64_VALUE = 10;
+
+
+    public final int getNumber() { return value; }
+
+    public static EmWindowVer valueOf(int value) {
+      switch (value) {
+        case 0: return emWinUnknown;
+        case 1: return emWinXp_32;
+        case 2: return emWinXp_64;
+        case 3: return emWin7_32;
+        case 4: return emWin7_64;
+        case 5: return emWin8_32;
+        case 6: return emWin8_64;
+        case 7: return emWin8_1_32;
+        case 8: return emWin8_1_64;
+        case 9: return emWin10_32;
+        case 10: return emWin10_64;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<EmWindowVer>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static com.google.protobuf.Internal.EnumLiteMap<EmWindowVer>
+        internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<EmWindowVer>() {
+            public EmWindowVer findValueByNumber(int number) {
+              return EmWindowVer.valueOf(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(index);
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return com.kedacom.mt.netmanage.protobuf.EnumPB.getDescriptor().getEnumTypes().get(299);
+    }
+
+    private static final EmWindowVer[] VALUES = values();
+
+    public static EmWindowVer valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int index;
+    private final int value;
+
+    private EmWindowVer(int index, int value) {
+      this.index = index;
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:mt.EmWindowVer)
+  }
+
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -54438,111 +54664,117 @@ public final class EnumPB {
       "mSecAut_TimeOut\020\003\022\027\n\023emSecAut_ErrConnect",
       "\020\004*U\n\022EmSecKeyUpdateMode\022\036\n\032EmSecKeyUpda" +
       "teModeByPeriod\020\000\022\037\n\033EmSecKeyUpdateModeBy" +
-      "Package\020\001*6\n\020EmCameraCtrlType\022\020\n\014emIspIm" +
-      "gCtrl\020\001\022\020\n\014emSerialCtrl\020\002*,\n\rEmVersionTy" +
-      "pe\022\r\n\temChannel\020\000\022\014\n\010emOthers\020\001*Z\n\026EmLic" +
-      "enseKeyCheckValue\022\016\n\nemWrongKey\020\000\022\016\n\nemR" +
-      "ightKey\020\001\022\016\n\nemNotExist\020\002\022\020\n\014emParseErro" +
-      "r\020\003*\376\001\n\021EmCameraErrorType\022\035\n\031EmCameraErr" +
-      "orType_unknown\020\000\022\037\n\033EmCameraErrorType_Zo" +
-      "ominEnd\020\001\022 \n\034EmCameraErrorType_ZoomoutEn",
-      "d\020\002\022\037\n\033EmCameraErrorType_TiltUpEnd\020\003\022!\n\035" +
-      "EmCameraErrorType_TiltDownEnd\020\004\022 \n\034EmCam" +
-      "eraErrorType_PanLeftEnd\020\005\022!\n\035EmCameraErr" +
-      "orType_PanRightEnd\020\006*\240\001\n\021EmCameraSceneMo" +
-      "de\022\036\n\032EmCameraSceneMode_Standard\020\000\022\037\n\033Em" +
-      "CameraSceneMode_Projector\020\001\022#\n\037EmCameraS" +
-      "ceneMode_Peoplefeature\020\002\022%\n!EmCameraScen" +
-      "eMode_Peoplebacklight\020\003*5\n\017EmMtVConfStat" +
-      "us\022\020\n\014emVConf_Idle\020\000\022\020\n\014emVConf_Busy\020\001*_" +
-      "\n\rEmMtMaxJoinMt\022\021\n\remMaxJoinMt_8\020\000\022\022\n\016em",
-      "MaxJoinMt_32\020\001\022\022\n\016emMaxJoinMt_64\020\002\022\023\n\017em" +
-      "MaxJoinMt_192\020\003*\370\001\n\022EmMtVConfResources\022\031" +
-      "\n\025emVConfResource_8_720\020\001\022\032\n\026emVConfReso" +
-      "urce_8_1080\020\002\022\032\n\026emVConfResource_32_720\020" +
-      "\003\022\033\n\027emVConfResource_32_1080\020\004\022\032\n\026emVCon" +
-      "fResource_64_720\020\005\022\033\n\027emVConfResource_64" +
-      "_1080\020\006\022\033\n\027emVConfResource_192_720\020\007\022\034\n\030" +
-      "emVConfResource_192_1080\020\010*2\n\013EmMtFecMod" +
-      "e\022\021\n\remMtFec_Close\020\000\022\020\n\014emMtFec_Open\020\001*J" +
-      "\n\nEmPlatform\022\022\n\016emOLD_PLATFORM\020\000\022\023\n\017emBU",
-      "SS_PLATFORM\020\001\022\023\n\017emCOMM_PLATFORM\020\002*\251\002\n\014E" +
-      "mMtChipType\022\021\n\remMtChip_Main\020\000\022\024\n\020emMtCh" +
-      "ip_VidEnc1\020\001\022\024\n\020emMtChip_VidEnc2\020\002\022\024\n\020em" +
-      "MtChip_VidEnc3\020\003\022\024\n\020emMtChip_VidEnc4\020\004\022\024" +
-      "\n\020emMtChip_VidEnc5\020\005\022\024\n\020emMtChip_VidDec1" +
-      "\020\006\022\024\n\020emMtChip_VidDec2\020\007\022\024\n\020emMtChip_Vid" +
-      "Dec3\020\010\022\024\n\020emMtChip_VidDec4\020\t\022\024\n\020emMtChip" +
-      "_VidDec5\020\n\022\024\n\020emMtChip_AudEnc1\020\013\022\024\n\020emMt" +
-      "Chip_AudDec1\020\014*\242\002\n\017EmClientAppType\022\022\n\016em" +
-      "ClientAppOsd\020\000\022\031\n\025emClientAppWebService\020",
-      "\001\022\027\n\023emClientAppSkyShare\020\002\022\030\n\024emClientAp" +
-      "pSkyRemote\020\003\022\025\n\021emClientAppSkyMTC\020\004\022\031\n\025e" +
-      "mClientAppSkyWindows\020\005\022\031\n\025emClientAppSky" +
-      "Android\020\006\022\025\n\021emClientAppSkyIOS\020\007\022\031\n\025emCl" +
-      "ientAppThirdParty\020\010\022\027\n\023emClientAppNexVis" +
-      "on\020\t\022\025\n\021emClientAppMTCEnd\020\n*Y\n\nEmAuthTyp" +
-      "e\022\025\n\021emUserNamePwdAuth\020\000\022\022\n\016emInnerPwdAu" +
-      "th\020\001\022\021\n\remDynamicAuth\020\002\022\r\n\temAuthEnd\020\003*]" +
-      "\n\021EmLoginFailReason\022\014\n\010emPwdErr\020\001\022\021\n\remT" +
-      "erStarting\020\002\022\022\n\016emTerUpgrading\020\003\022\023\n\017emFa",
-      "ilReasonEnd\020\n*`\n\021EmVConfCreateType\022\026\n\022em" +
-      "CreateNormalConf\020\000\022\027\n\023emCreateVirtualCon" +
-      "f\020\001\022\032\n\026emCreateConfByTemplate\020\002*\275\001\n\tEmQk" +
-      "State\022\014\n\010emUsbOff\020\000\022\013\n\007emUsbOn\020\001\022\016\n\nemUp" +
-      "dating\020\002\022\t\n\005emWps\020\003\022\r\n\temWpsSucc\020\004\022\014\n\010em" +
-      "ApLink\020\005\022\013\n\007emApOff\020\006\022\r\n\temQkStart\020\007\022\013\n\007" +
-      "emQkOff\020\010\022\020\n\014emWpsTimeOut\020\t\022\020\n\014emUpDateS" +
-      "ucc\020\n\022\020\n\014emUpDateFail\020\013*`\n\016EmResourceTyp" +
-      "e\022\031\n\025emResourceType_LimitP\020\000\022\032\n\026emResour" +
-      "ceType_LimitPR\020\001\022\027\n\023emResourceType_None\020",
-      "\002*J\n\024EmAgentPackFileState\022\022\n\016emPackNotSt" +
-      "art\020\000\022\r\n\temPacking\020\001\022\017\n\013emPackError\020\002*\301\007" +
-      "\n\rEmAiAudioType\022\016\n\nemAiUnknow\020\000\022\021\n\remAiP" +
-      "leaseSay\020\001\022\016\n\nemAiBayBay\020\002\022\027\n\023emAiUnLogi" +
-      "nPlatForm\020\003\022\026\n\022emAiRepeatConfName\020\004\022\022\n\016e" +
-      "mAiSelectConf\020\005\022\024\n\020emAiJoinConfFail\020\006\022\024\n" +
-      "\020emAiOnCreateConf\020\007\022\025\n\021emAiCreateSuccess" +
-      "\020\010\022\022\n\016emAiCreateFail\020\t\022\027\n\023emAiJoinConfSu" +
-      "ccess\020\n\022\022\n\016emAiOnJoinConf\020\013\022\024\n\020emAiNoPer" +
-      "mission\020\014\022\022\n\016emAiHungupConf\020\r\022\016\n\nemAiRob",
-      "Ass\020\016\022\021\n\remAiDelayConf\020\017\022\022\n\016emAiConfIsId" +
-      "le\020\020\022\022\n\016emAiConfNotMcc\020\021\022\017\n\013emAiEndConf\020" +
-      "\022\022\023\n\017emAiUnknowAgain\020\023\022\022\n\016emAiOnFindConf" +
-      "\020\024\022\014\n\010emAiGood\020\025\022\030\n\024emAiOnFindConfMember" +
-      "\020\026\022\032\n\026emAiRepeatInviteMember\020\027\022\026\n\022emAiOn" +
-      "InviteMember\020\030\022\020\n\014emAiSatrtAss\020\031\022\023\n\017emAi" +
-      "AssNoSignal\020\032\022\031\n\025emAiDelayConfWithTime\020\033" +
-      "\022\017\n\013emAiUpAudio\020\034\022\021\n\remAiDownAudio\020\035\022\020\n\014" +
-      "emAiMaxAudio\020\036\022\020\n\014emAiMinAudio\020\037\022\024\n\020emAi" +
-      "SelectMember\020 \022\020\n\014emAiCloseAss\020!\022\030\n\024emAi",
-      "SureOrNotEndConf\020\"\022\033\n\027emAiSureOrNotHangu" +
-      "pConf\020#\022\026\n\022emAiCancleOperator\020$\022\027\n\023emAiH" +
-      "angupOrEndConf\020%\022\022\n\016emAiApplyChair\020&\022\022\n\016" +
-      "emAiSelectView\020\'\022\032\n\026emAiSelectViewNotExi" +
-      "st\020(\022\030\n\024emAiCancleSelectView\020)\022\020\n\014emAiMt" +
-      "OnConf\020*\022\022\n\016emAiAssIsClose\020+\022\013\n\007emAiEnd\020" +
-      "d*\263\001\n\017EmAiActionState\022\023\n\017emAiActionBegin" +
-      "\020\000\022\025\n\021emAiActionEndConf\020\001\022\030\n\024emAiActionH" +
-      "ungupConf\020\002\022\025\n\021emAiActionOpenAss\020\003\022\026\n\022em" +
-      "AiActionJoinConf\020\004\022\030\n\024emAiActionInviteCa",
-      "ll\020\005\022\021\n\remAiActionEnd\0202*g\n\017EmAiContactTy" +
-      "pe\022\024\n\020emAiContactBegin\020\000\022\024\n\020emAiLocalCon" +
-      "tact\020\001\022\024\n\020emAiShareContact\020\002\022\022\n\016emAiCont" +
-      "actEnd\020\024*h\n\021EmShortCutKeyType\022\014\n\010emUnkow" +
-      "n\020\000\022\024\n\020emRedShortCutKey\020\001\022\027\n\023emYellowSho" +
-      "rtCutKey\020\002\022\026\n\022emGreenShortCutKey\020\003*\256\001\n\020E" +
-      "mShortCutKeyFuc\022\016\n\nemFucBegin\020\000\022\n\n\006emLoo" +
-      "p\020\001\022\020\n\014emApplyChair\020\002\022\022\n\016emApplySpeaker\020" +
-      "\003\022\024\n\020emShowSystemInfo\020\004\022\016\n\nemFullMute\020\005\022" +
-      "\022\n\016emSpeechHelper\020\006\022\021\n\remFaceCheckIn\020\007\022\013",
-      "\n\007emClose\020\024*{\n\024EmPltSupportConfType\022\030\n\024e" +
-      "mPltConfTypeInvalid\020\000\022\026\n\022emSupportMediaC" +
-      "onf\020\001\022\025\n\021emSupportPortConf\020\002\022\032\n\026emSuppor" +
-      "tMediaPortConf\020\003*>\n\016EmFunctionIcon\022\027\n\023em" +
-      "FunctionIconBegin\020\000\022\023\n\017emFaceCheckIcon\020\001" +
-      "B+\n!com.kedacom.mt.netmanage.protobufB\006E" +
-      "numPB"
+      "Package\020\001*H\n\020EmCameraCtrlType\022\020\n\014emIspIm" +
+      "gCtrl\020\001\022\020\n\014emSerialCtrl\020\002\022\020\n\014emBrdPtzCtr" +
+      "l\020\003*,\n\rEmVersionType\022\r\n\temChannel\020\000\022\014\n\010e" +
+      "mOthers\020\001*Z\n\026EmLicenseKeyCheckValue\022\016\n\ne" +
+      "mWrongKey\020\000\022\016\n\nemRightKey\020\001\022\016\n\nemNotExis" +
+      "t\020\002\022\020\n\014emParseError\020\003*\376\001\n\021EmCameraErrorT" +
+      "ype\022\035\n\031EmCameraErrorType_unknown\020\000\022\037\n\033Em" +
+      "CameraErrorType_ZoominEnd\020\001\022 \n\034EmCameraE",
+      "rrorType_ZoomoutEnd\020\002\022\037\n\033EmCameraErrorTy" +
+      "pe_TiltUpEnd\020\003\022!\n\035EmCameraErrorType_Tilt" +
+      "DownEnd\020\004\022 \n\034EmCameraErrorType_PanLeftEn" +
+      "d\020\005\022!\n\035EmCameraErrorType_PanRightEnd\020\006*\240" +
+      "\001\n\021EmCameraSceneMode\022\036\n\032EmCameraSceneMod" +
+      "e_Standard\020\000\022\037\n\033EmCameraSceneMode_Projec" +
+      "tor\020\001\022#\n\037EmCameraSceneMode_Peoplefeature" +
+      "\020\002\022%\n!EmCameraSceneMode_Peoplebacklight\020" +
+      "\003*5\n\017EmMtVConfStatus\022\020\n\014emVConf_Idle\020\000\022\020" +
+      "\n\014emVConf_Busy\020\001*_\n\rEmMtMaxJoinMt\022\021\n\remM",
+      "axJoinMt_8\020\000\022\022\n\016emMaxJoinMt_32\020\001\022\022\n\016emMa" +
+      "xJoinMt_64\020\002\022\023\n\017emMaxJoinMt_192\020\003*\370\001\n\022Em" +
+      "MtVConfResources\022\031\n\025emVConfResource_8_72" +
+      "0\020\001\022\032\n\026emVConfResource_8_1080\020\002\022\032\n\026emVCo" +
+      "nfResource_32_720\020\003\022\033\n\027emVConfResource_3" +
+      "2_1080\020\004\022\032\n\026emVConfResource_64_720\020\005\022\033\n\027" +
+      "emVConfResource_64_1080\020\006\022\033\n\027emVConfReso" +
+      "urce_192_720\020\007\022\034\n\030emVConfResource_192_10" +
+      "80\020\010*2\n\013EmMtFecMode\022\021\n\remMtFec_Close\020\000\022\020" +
+      "\n\014emMtFec_Open\020\001*J\n\nEmPlatform\022\022\n\016emOLD_",
+      "PLATFORM\020\000\022\023\n\017emBUSS_PLATFORM\020\001\022\023\n\017emCOM" +
+      "M_PLATFORM\020\002*\251\002\n\014EmMtChipType\022\021\n\remMtChi" +
+      "p_Main\020\000\022\024\n\020emMtChip_VidEnc1\020\001\022\024\n\020emMtCh" +
+      "ip_VidEnc2\020\002\022\024\n\020emMtChip_VidEnc3\020\003\022\024\n\020em" +
+      "MtChip_VidEnc4\020\004\022\024\n\020emMtChip_VidEnc5\020\005\022\024" +
+      "\n\020emMtChip_VidDec1\020\006\022\024\n\020emMtChip_VidDec2" +
+      "\020\007\022\024\n\020emMtChip_VidDec3\020\010\022\024\n\020emMtChip_Vid" +
+      "Dec4\020\t\022\024\n\020emMtChip_VidDec5\020\n\022\024\n\020emMtChip" +
+      "_AudEnc1\020\013\022\024\n\020emMtChip_AudDec1\020\014*\242\002\n\017EmC" +
+      "lientAppType\022\022\n\016emClientAppOsd\020\000\022\031\n\025emCl",
+      "ientAppWebService\020\001\022\027\n\023emClientAppSkySha" +
+      "re\020\002\022\030\n\024emClientAppSkyRemote\020\003\022\025\n\021emClie" +
+      "ntAppSkyMTC\020\004\022\031\n\025emClientAppSkyWindows\020\005" +
+      "\022\031\n\025emClientAppSkyAndroid\020\006\022\025\n\021emClientA" +
+      "ppSkyIOS\020\007\022\031\n\025emClientAppThirdParty\020\010\022\027\n" +
+      "\023emClientAppNexVison\020\t\022\025\n\021emClientAppMTC" +
+      "End\020\n*Y\n\nEmAuthType\022\025\n\021emUserNamePwdAuth" +
+      "\020\000\022\022\n\016emInnerPwdAuth\020\001\022\021\n\remDynamicAuth\020" +
+      "\002\022\r\n\temAuthEnd\020\003*]\n\021EmLoginFailReason\022\014\n" +
+      "\010emPwdErr\020\001\022\021\n\remTerStarting\020\002\022\022\n\016emTerU",
+      "pgrading\020\003\022\023\n\017emFailReasonEnd\020\n*`\n\021EmVCo" +
+      "nfCreateType\022\026\n\022emCreateNormalConf\020\000\022\027\n\023" +
+      "emCreateVirtualConf\020\001\022\032\n\026emCreateConfByT" +
+      "emplate\020\002*\332\001\n\tEmQkState\022\014\n\010emUsbOff\020\000\022\013\n" +
+      "\007emUsbOn\020\001\022\016\n\nemUpdating\020\002\022\t\n\005emWps\020\003\022\r\n" +
+      "\temWpsSucc\020\004\022\014\n\010emApLink\020\005\022\013\n\007emApOff\020\006\022" +
+      "\r\n\temQkStart\020\007\022\013\n\007emQkOff\020\010\022\020\n\014emWpsTime" +
+      "Out\020\t\022\020\n\014emUpDateSucc\020\n\022\020\n\014emUpDateFail\020" +
+      "\013\022\r\n\temSecFail\020\014\022\014\n\010emQkFail\020\r*`\n\016EmReso" +
+      "urceType\022\031\n\025emResourceType_LimitP\020\000\022\032\n\026e",
+      "mResourceType_LimitPR\020\001\022\027\n\023emResourceTyp" +
+      "e_None\020\002*J\n\024EmAgentPackFileState\022\022\n\016emPa" +
+      "ckNotStart\020\000\022\r\n\temPacking\020\001\022\017\n\013emPackErr" +
+      "or\020\002*\301\007\n\rEmAiAudioType\022\016\n\nemAiUnknow\020\000\022\021" +
+      "\n\remAiPleaseSay\020\001\022\016\n\nemAiBayBay\020\002\022\027\n\023emA" +
+      "iUnLoginPlatForm\020\003\022\026\n\022emAiRepeatConfName" +
+      "\020\004\022\022\n\016emAiSelectConf\020\005\022\024\n\020emAiJoinConfFa" +
+      "il\020\006\022\024\n\020emAiOnCreateConf\020\007\022\025\n\021emAiCreate" +
+      "Success\020\010\022\022\n\016emAiCreateFail\020\t\022\027\n\023emAiJoi" +
+      "nConfSuccess\020\n\022\022\n\016emAiOnJoinConf\020\013\022\024\n\020em",
+      "AiNoPermission\020\014\022\022\n\016emAiHungupConf\020\r\022\016\n\n" +
+      "emAiRobAss\020\016\022\021\n\remAiDelayConf\020\017\022\022\n\016emAiC" +
+      "onfIsIdle\020\020\022\022\n\016emAiConfNotMcc\020\021\022\017\n\013emAiE" +
+      "ndConf\020\022\022\023\n\017emAiUnknowAgain\020\023\022\022\n\016emAiOnF" +
+      "indConf\020\024\022\014\n\010emAiGood\020\025\022\030\n\024emAiOnFindCon" +
+      "fMember\020\026\022\032\n\026emAiRepeatInviteMember\020\027\022\026\n" +
+      "\022emAiOnInviteMember\020\030\022\020\n\014emAiSatrtAss\020\031\022" +
+      "\023\n\017emAiAssNoSignal\020\032\022\031\n\025emAiDelayConfWit" +
+      "hTime\020\033\022\017\n\013emAiUpAudio\020\034\022\021\n\remAiDownAudi" +
+      "o\020\035\022\020\n\014emAiMaxAudio\020\036\022\020\n\014emAiMinAudio\020\037\022",
+      "\024\n\020emAiSelectMember\020 \022\020\n\014emAiCloseAss\020!\022" +
+      "\030\n\024emAiSureOrNotEndConf\020\"\022\033\n\027emAiSureOrN" +
+      "otHangupConf\020#\022\026\n\022emAiCancleOperator\020$\022\027" +
+      "\n\023emAiHangupOrEndConf\020%\022\022\n\016emAiApplyChai" +
+      "r\020&\022\022\n\016emAiSelectView\020\'\022\032\n\026emAiSelectVie" +
+      "wNotExist\020(\022\030\n\024emAiCancleSelectView\020)\022\020\n" +
+      "\014emAiMtOnConf\020*\022\022\n\016emAiAssIsClose\020+\022\013\n\007e" +
+      "mAiEnd\020d*\263\001\n\017EmAiActionState\022\023\n\017emAiActi" +
+      "onBegin\020\000\022\025\n\021emAiActionEndConf\020\001\022\030\n\024emAi" +
+      "ActionHungupConf\020\002\022\025\n\021emAiActionOpenAss\020",
+      "\003\022\026\n\022emAiActionJoinConf\020\004\022\030\n\024emAiActionI" +
+      "nviteCall\020\005\022\021\n\remAiActionEnd\0202*g\n\017EmAiCo" +
+      "ntactType\022\024\n\020emAiContactBegin\020\000\022\024\n\020emAiL" +
+      "ocalContact\020\001\022\024\n\020emAiShareContact\020\002\022\022\n\016e" +
+      "mAiContactEnd\020\024*h\n\021EmShortCutKeyType\022\014\n\010" +
+      "emUnkown\020\000\022\024\n\020emRedShortCutKey\020\001\022\027\n\023emYe" +
+      "llowShortCutKey\020\002\022\026\n\022emGreenShortCutKey\020" +
+      "\003*\256\001\n\020EmShortCutKeyFuc\022\016\n\nemFucBegin\020\000\022\n" +
+      "\n\006emLoop\020\001\022\020\n\014emApplyChair\020\002\022\022\n\016emApplyS" +
+      "peaker\020\003\022\024\n\020emShowSystemInfo\020\004\022\016\n\nemFull",
+      "Mute\020\005\022\022\n\016emSpeechHelper\020\006\022\021\n\remFaceChec" +
+      "kIn\020\007\022\013\n\007emClose\020\024*{\n\024EmPltSupportConfTy" +
+      "pe\022\030\n\024emPltConfTypeInvalid\020\000\022\026\n\022emSuppor" +
+      "tMediaConf\020\001\022\025\n\021emSupportPortConf\020\002\022\032\n\026e" +
+      "mSupportMediaPortConf\020\003*>\n\016EmFunctionIco" +
+      "n\022\027\n\023emFunctionIconBegin\020\000\022\023\n\017emFaceChec" +
+      "kIcon\020\001*\275\001\n\013EmWindowVer\022\020\n\014emWinUnknown\020" +
+      "\000\022\016\n\nemWinXp_32\020\001\022\016\n\nemWinXp_64\020\002\022\r\n\temW" +
+      "in7_32\020\003\022\r\n\temWin7_64\020\004\022\r\n\temWin8_32\020\005\022\r" +
+      "\n\temWin8_64\020\006\022\017\n\013emWin8_1_32\020\007\022\017\n\013emWin8",
+      "_1_64\020\010\022\016\n\nemWin10_32\020\t\022\016\n\nemWin10_64\020\nB" +
+      "+\n!com.kedacom.mt.netmanage.protobufB\006En" +
+      "umPB"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

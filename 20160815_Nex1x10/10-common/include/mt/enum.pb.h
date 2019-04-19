@@ -6764,11 +6764,12 @@ inline bool EmSecKeyUpdateMode_Parse(
 }
 enum EmCameraCtrlType {
   emIspImgCtrl = 1,
-  emSerialCtrl = 2
+  emSerialCtrl = 2,
+  emBrdPtzCtrl = 3
 };
 MTMSG_API bool EmCameraCtrlType_IsValid(int value);
 const EmCameraCtrlType EmCameraCtrlType_MIN = emIspImgCtrl;
-const EmCameraCtrlType EmCameraCtrlType_MAX = emSerialCtrl;
+const EmCameraCtrlType EmCameraCtrlType_MAX = emBrdPtzCtrl;
 const int EmCameraCtrlType_ARRAYSIZE = EmCameraCtrlType_MAX + 1;
 
 MTMSG_API const ::google::protobuf::EnumDescriptor* EmCameraCtrlType_descriptor();
@@ -7102,11 +7103,13 @@ enum EmQkState {
   emQkOff = 8,
   emWpsTimeOut = 9,
   emUpDateSucc = 10,
-  emUpDateFail = 11
+  emUpDateFail = 11,
+  emSecFail = 12,
+  emQkFail = 13
 };
 MTMSG_API bool EmQkState_IsValid(int value);
 const EmQkState EmQkState_MIN = emUsbOff;
-const EmQkState EmQkState_MAX = emUpDateFail;
+const EmQkState EmQkState_MAX = emQkFail;
 const int EmQkState_ARRAYSIZE = EmQkState_MAX + 1;
 
 MTMSG_API const ::google::protobuf::EnumDescriptor* EmQkState_descriptor();
@@ -7352,6 +7355,34 @@ inline bool EmFunctionIcon_Parse(
     const ::std::string& name, EmFunctionIcon* value) {
   return ::google::protobuf::internal::ParseNamedEnum<EmFunctionIcon>(
     EmFunctionIcon_descriptor(), name, value);
+}
+enum EmWindowVer {
+  emWinUnknown = 0,
+  emWinXp_32 = 1,
+  emWinXp_64 = 2,
+  emWin7_32 = 3,
+  emWin7_64 = 4,
+  emWin8_32 = 5,
+  emWin8_64 = 6,
+  emWin8_1_32 = 7,
+  emWin8_1_64 = 8,
+  emWin10_32 = 9,
+  emWin10_64 = 10
+};
+MTMSG_API bool EmWindowVer_IsValid(int value);
+const EmWindowVer EmWindowVer_MIN = emWinUnknown;
+const EmWindowVer EmWindowVer_MAX = emWin10_64;
+const int EmWindowVer_ARRAYSIZE = EmWindowVer_MAX + 1;
+
+MTMSG_API const ::google::protobuf::EnumDescriptor* EmWindowVer_descriptor();
+inline const ::std::string& EmWindowVer_Name(EmWindowVer value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    EmWindowVer_descriptor(), value);
+}
+inline bool EmWindowVer_Parse(
+    const ::std::string& name, EmWindowVer* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<EmWindowVer>(
+    EmWindowVer_descriptor(), name, value);
 }
 // ===================================================================
 
@@ -8565,6 +8596,10 @@ inline const EnumDescriptor* GetEnumDescriptor< ::mt::EmPltSupportConfType>() {
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::mt::EmFunctionIcon>() {
   return ::mt::EmFunctionIcon_descriptor();
+}
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::mt::EmWindowVer>() {
+  return ::mt::EmWindowVer_descriptor();
 }
 
 }  // namespace google

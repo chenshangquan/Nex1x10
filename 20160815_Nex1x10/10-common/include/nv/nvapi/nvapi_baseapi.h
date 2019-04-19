@@ -46,7 +46,7 @@ KdvNvAPI BOOL32 KdvNvCALL KdvNv_BSIsInited();
 *@return        u32  0: 初始化成功， 非0: 初始化失败
 *@note          KdvNv_BSIsInited, KdvNv_BSUnInitalize
 ***********************************************************************************/
-KdvNvAPI u32 KdvNvCALL KdvNv_BSInitalize( IN CONST nv::TNVApiStartInfo &tApiStartInfo );
+KdvNvAPI u32 KdvNvCALL KdvNv_BSInitalize( IN CONST nv::TNVApiStartInfo &tApiStartInfo,IN CONST BOOL32 bInitLog = FALSE, IN CONST u32 dwLogPort = 10000 );
 
 /*******************************************************************************//**
 *@brief         nvbaseapi模块释放退出

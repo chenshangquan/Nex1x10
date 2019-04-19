@@ -160,6 +160,15 @@
     <None Include="res\upgrade.png">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="res\connect_usb.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\connect_arrow.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\connect_device.png">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="touch.h">

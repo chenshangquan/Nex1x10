@@ -53,6 +53,7 @@ IAudioEndpointVolume* g_pEndptVol = NULL;
 #define SendPptStopTimerID          11  //发送ppt停止播放消息的timer的ID
 #define SendBusinessTimerID         12  //确认业务是否没有挂掉的timer的ID
 #define BatteryPowerTimerID         13  //检测笔记本电池电量的timer的ID
+#define ThreadExitTimerID           14  //音视频发送线程退出的timer的ID
 
 //视频编码回调 *pFrame为取到的码流
 void CapScreenVidStart( void *pFrame, u32 dwContext )
@@ -143,15 +144,29 @@ void CapScreenVidStart( void *pFrame, u32 dwContext )
 		g_dlg->GetVideoDataList()->AddDataTail(tUsbData);
 	}
 
-	//判断业务是否挂掉 
-	if ( g_dlg->GetVideoDataList()->Size() > MAX_STORE_NUM && g_dlg->m_bBusinessStaus && g_dlg->m_bIsProjecting )
-	{
-		 g_dlg->m_bBusinessStaus = false;
-		 g_dlg->m_nSendBusinessCount = 0;
+    //判断是否已超过最大堆积包数
+    if ( g_dlg->GetVideoDataList()->Size() > MAX_STORE_NUM )
+    {
+        PRINTMSG_TIME( "Video Buffer Full, Clear DataList\r\n" );
+        g_dlg->GetVideoDataList()->Clear();
 
-		 g_dlg->SendCmdToHid( Ev_NV_PCSendBusiness_Cmd );
-		 SetTimer(g_dlg->GetSafeHwnd(), SendBusinessTimerID, 500, NULL);
-	}
+        //判断音视频发送线程是否异常
+        if ( !g_dlg->m_bVideoThreadRun || !g_dlg->m_bAudioThreadRun)
+        {
+            PRINTMSG_TIME("AVThread Abnormal, m_bVideoThreadRun:%d,m_bAudioThreadRun:%d\r\n",
+                g_dlg->m_bVideoThreadRun, g_dlg->m_bAudioThreadRun);
+        }
+
+        //判断业务是否挂掉
+        if ( g_dlg->m_bBusinessStaus && g_dlg->m_bIsProjecting )
+        {
+            g_dlg->m_bBusinessStaus = false;
+            g_dlg->m_nSendBusinessCount = 0;
+
+            g_dlg->SendCmdToHid( Ev_NV_PCSendBusiness_Cmd );
+            SetTimer(g_dlg->GetSafeHwnd(), SendBusinessTimerID, 500, NULL);
+        }
+    }
 
 	//
 	/*SYSTEMTIME st;
@@ -445,7 +460,7 @@ UINT ThreadPpt(LPVOID pParam)
 		}
 
 		bPlaying = CPpt::IsPptPlaying();
-		if ( bPlaying )
+		if ( bPlaying && pThis->bFirstKeyFrame )
 		{
 			if ( !bStatusChange )
 			{
@@ -477,6 +492,21 @@ void VideoCapStdCB(u32 dwWidht, u32 dwHeight, u32 dwContext)
 	g_dlg->GetEncode().GetVideoEncParam(tVideoEncParam);
 	PRINTMSG("VideoCapStdCB:dwWidht:%d,dwHeight:%d,m_wEncVideoWidth:%d,m_wEncVideoHeight:%d\r\n",
 		dwWidht, dwHeight, tVideoEncParam.m_wEncVideoWidth,tVideoEncParam.m_wEncVideoHeight);
+
+    if ( g_dlg->NeedCodeConsult() )
+    {
+        //定时发送帧率信息直到收到回复
+        KillTimer(g_dlg->GetSafeHwnd(), SendWidthHeightFrameTimerID);
+        SetTimer(g_dlg->GetSafeHwnd(), SendWidthHeightFrameTimerID, 500, NULL);
+        return;
+    }
+
+    //采集分辨率与编码分辨率一致
+    if (dwWidht == tVideoEncParam.m_wEncVideoWidth 
+        && dwHeight == tVideoEncParam.m_wEncVideoHeight)
+    {
+        return;
+    }
 
     g_dlg->m_bOverResLimit = false;
     g_dlg->m_bStretch = false;
@@ -518,7 +548,7 @@ void VideoCapStdCB(u32 dwWidht, u32 dwHeight, u32 dwContext)
 
 	//定时发送帧率信息直到收到回复
 	KillTimer(g_dlg->GetSafeHwnd(), SendWidthHeightFrameTimerID);
-	SetTimer(g_dlg->GetSafeHwnd(), SendWidthHeightFrameTimerID, 100, NULL);
+	SetTimer(g_dlg->GetSafeHwnd(), SendWidthHeightFrameTimerID, 500, NULL);
 }
 
 // CtouchDlg 对话框
@@ -565,6 +595,13 @@ CtouchDlg::CtouchDlg(CWnd* pParent /*=NULL*/)
 
 	m_bBusinessStaus = true;
 	m_bNeedCodeConsult = FALSE;
+
+    m_nStartPptCount = 0;
+    m_nStopPptCount = 0;
+    m_nThreadExitCount = 0;
+    m_nSendBusinessCount = 0;
+
+    m_emQKPidType = em_NT30_Type;
 
 	m_bCurConnetStatus = NET_STATUS_CONNECTING;
 }
@@ -889,12 +926,14 @@ BOOL CtouchDlg::OnInitDialog()
         //支持硬编硬解，当前为硬编码状态
         g_bHwEncSupport = true;
         g_bHwEncStatus = true;
+        PRINTMSG("\r\n--- 支持硬编硬解，当前为硬编码状态   ---\r\n");
     }
     else
     {
         //不支持硬编硬解，当前为软编码状态
         g_bHwEncSupport = false;
         g_bHwEncStatus = false;
+        PRINTMSG("\r\n--- 不支持硬编硬解，当前为软编码状态 ---\r\n");
     }
 
 	InitUI();
@@ -1320,6 +1359,32 @@ void CtouchDlg::OnTimer(UINT_PTR nIDEvent)
 			}		
 		}
 		break;
+    case ThreadExitTimerID:
+        {
+            if ( 4 == m_nThreadExitCount )
+            {
+                KillTimer(ThreadExitTimerID);
+                PRINTMSG_TIME("AVThread Exit Failed, m_bVideoThreadRun:%d, m_bAudioThreadRun:%d\r\n",
+                    m_bVideoThreadRun, m_bAudioThreadRun);
+                m_nThreadExitCount = 0;
+            }
+            else
+            {
+                if (m_bVideoThreadRun == false && m_bAudioThreadRun == false)
+                {
+                    KillTimer(ThreadExitTimerID);
+                    //清空数据
+                    GetVideoDataList()->Clear();
+                    GetAudioDataList()->Clear();
+                }
+                else
+                {
+                    m_nThreadExitCount++;
+                }
+            }
+
+        }
+        break;
 	default:   
 		break;   
 	}
@@ -1620,14 +1685,12 @@ void CtouchDlg::InitVideoEncoderParam(u8 byVideoType)
         // 软编码码率为2M，硬编码为保持同等画质，需提高码率，暂定为4M
         if (g_bHwEncStatus)
         {
-            PRINTMSG("HwEnc\r\n");
             tVideoEncParam.m_wBitRate = /*1536*/4096;
             tVideoEncParam.m_wMaxBitRate = 10240;
             tVideoEncParam.m_wMinBitRate = 4096;
         }
         else
         {
-            PRINTMSG("SfEnc\r\n");
             tVideoEncParam.m_wBitRate = /*1536*/2048;
             tVideoEncParam.m_wMaxBitRate = 2048;
             tVideoEncParam.m_wMinBitRate = 2048;
@@ -2034,6 +2097,25 @@ void CtouchDlg::SolveReadInfo(BYTE* recvDataBuf)
 			PRINTMSG("读线程--收到消息Ev_Nv_CodeRate_Cmd, wBitRate:%d\r\n", wBitRate);
 		}
 		break;
+    case Ev_Nv_QKPidType_Cmd:              /*通知PC界面当前投屏器类型*/
+        {
+            m_emQKPidType = (EmQKPidType)recvDataBuf[1];
+            PRINTMSG("读线程--收到消息Ev_Nv_QKPidType_Cmd, m_emQKPidType:%d\r\n", m_emQKPidType);
+        }
+        break;
+    case Ev_Nv_QKNotView_Cmd:
+        {
+            EmQkNotViewReason emQkNotViewReason = (EmQkNotViewReason)recvDataBuf[1];
+            PRINTMSG("读线程--收到消息Ev_Nv_QKNotView_Cmd, emQkNotViewReason:%d\r\n", emQkNotViewReason);
+
+            //商密终端会议中不支持投屏的双流
+            if (emQkNotViewReason == em_MtEncryptConf_Reason)
+            {
+                PRINTMSG("商密终端不支持投屏\r\n");
+                m_pcMainDlg->ShowConnectPicture(CONNECT_NT30_MT_NONSUPPORT);
+            }
+        }
+        break;
 	default:
 		break;
 	}
@@ -2056,22 +2138,23 @@ void CtouchDlg::SendCmdToHid( int nCmd )
 			TUserInfo tUserInfo;
 
 			CString strName;
-			if ( m_strSysUserName.GetLength() >= USERNAME_MAX_LENGTH )
+			if ( m_strSysUserName.GetLength() >= USERNAME_MAX_LENGTH/sizeof(WCHAR) )
 			{
-				strName = m_strSysUserName.Left(USERNAME_MAX_LENGTH - 1);
+				strName = m_strSysUserName.Left(USERNAME_MAX_LENGTH/sizeof(WCHAR) - 1);
 			}
 			else
 			{
 				strName = m_strSysUserName;
 			}
 
-			strcpy_s(tUserInfo.abyUserName, USERNAME_MAX_LENGTH, CW2A(strName));
+			//strcpy_s(tUserInfo.abyUserName, USERNAME_MAX_LENGTH, CW2A(strName));
+            lstrcpy((WCHAR *)tUserInfo.abyUserName, strName);  //采用Unicode编码发送，解决单字符显示乱码问题
 
 			BYTE acBuf[LENTH_OUT_BUFFER_CMD] = {0};
 			acBuf[0] = Ev_NV_UserInfo_Cmd; //
 			memcpy(&acBuf[1], &tUserInfo, sizeof(TUserInfo));
 			bool bRst = HID_SendData2Device(&m_HidDevice[HID_TYPE_CMD], acBuf, LENTH_OUT_BUFFER_CMD, DATA_TYPE_CMD);
-			PRINTMSG("\r\n发送用户名命令,achUserName:%s\r\n",tUserInfo.abyUserName);
+            PRINTMSG("\r\n发送用户名命令,achUserName:%s\r\n",CW2A(strName));
 		}
 		break;
 	case Ev_NV_KeepWidthHeight_Cmd:
@@ -2240,9 +2323,17 @@ void CtouchDlg::StopProjectScreen(bool bNotifyHid)
 		OnStopScreenCatch();
 		StopAVThread();
 		
-		//清空数据
-		GetVideoDataList()->Clear();
-		GetAudioDataList()->Clear();
+        if (m_bVideoThreadRun || m_bAudioThreadRun)
+        {
+            m_nThreadExitCount = 0;
+            SetTimer(ThreadExitTimerID, 200, NULL);
+        }
+        else
+        {
+            //清空数据
+            GetVideoDataList()->Clear();
+            GetAudioDataList()->Clear();
+        }
 
 		//通知usb-hid设备停止投屏消息
 		if (bNotifyHid)
@@ -2519,7 +2610,7 @@ void CtouchDlg::GetResolution(int &nWidth, int &nHeight)
 {
 	int nWid = GetSystemMetrics(SM_CXSCREEN);
 	int nHei = GetSystemMetrics(SM_CYSCREEN);
-    PRINTMSG("当前系统分辨率：nWid = %d, nHei = %d\r\n", nWid, nHei);
+    //PRINTMSG("当前系统分辨率：nWid = %d, nHei = %d\r\n", nWid, nHei);
 	if ( 1366 == nWid && 768 == nHei )
 	{
 		nWid = 1376;
@@ -2569,7 +2660,7 @@ LRESULT CtouchDlg::OnOpenHidDevSuccess( WPARAM wParam, LPARAM lParam )
 		CAboutDlg::GetBuildVersion(achVersion);
 		SYSTEMTIME st;
 		GetLocalTime(&st);
-		PRINTMSG("\r\nVersion:%s, Run Time:%d-%d-%d %d:%d:%d\r\n",achVersion, st.wYear, st.wMonth, st.wDay, st.wHour, st.wMinute, st.wSecond);
+		PRINTMSG("Version:%s, Run Time:%d-%d-%d %d:%d:%d\r\n",achVersion, st.wYear, st.wMonth, st.wDay, st.wHour, st.wMinute, st.wSecond);
 
 		//注册通知窗口
 		bool bRst = HID_RegisterDeviceNotification(this->GetSafeHwnd(), &m_hDevNotiy);
@@ -3172,7 +3263,7 @@ void CtouchDlg::SendPptCmdToHid( EnumPptStatus emStatus )
 		acBuf[0] = Ev_NV_BroadCastPPT_Cmd; 
 		acBuf[1] = PPT_STATUS_START;
 		bool bRst = HID_SendData2Device(&m_HidDevice[HID_TYPE_CMD], acBuf, LENTH_OUT_BUFFER_CMD, DATA_TYPE_CMD);
-		PRINTMSG("\r\n发送ppt正在播放命令\r\n");
+		PRINTMSG_TIME("\r\n发送ppt正在播放命令\r\n");
 	}
 	else if ( EM_PPT_NO_PLAY == emStatus )  //ppt未播放
 	{
@@ -3180,7 +3271,7 @@ void CtouchDlg::SendPptCmdToHid( EnumPptStatus emStatus )
 		acBuf[0] = Ev_NV_BroadCastPPT_Cmd; 
 		acBuf[1] = PPT_STATUS_STOP;
 		bool bRst = HID_SendData2Device(&m_HidDevice[HID_TYPE_CMD], acBuf, LENTH_OUT_BUFFER_CMD, DATA_TYPE_CMD);
-		PRINTMSG("\r\n发送ppt未播放命令\r\n");
+		PRINTMSG_TIME("\r\n发送ppt未播放命令\r\n");
 	}
 }
 
@@ -3305,14 +3396,12 @@ void CtouchDlg::SetConsultVideoParam(u8 byVideoType)
         // 软编码码率为2M，硬编码为保持同等画质，需提高码率，暂定为4M
         if (g_bHwEncStatus)
         {
-            PRINTMSG("HwEnc\r\n");
             tVideoEncParam.m_wBitRate = /*1536*/4096;
             tVideoEncParam.m_wMaxBitRate = 10240;
             tVideoEncParam.m_wMinBitRate = 4096;
         }
         else
         {
-            PRINTMSG("SfEnc\r\n");
             tVideoEncParam.m_wBitRate = /*1536*/2048;
             tVideoEncParam.m_wMaxBitRate = 2048;
             tVideoEncParam.m_wMinBitRate = 2048;

@@ -16,7 +16,6 @@ extern "C" {
 #include "common/defs.h"
 
 #include "wifi_api.h"
-
 #define WIFIM_COL_DIR     "/tmp/"
 
 #define WIFIM_START_NETLINK        "Start NetLink"
@@ -60,7 +59,7 @@ typedef struct tIEEEInfo {
 	unsigned char achBssid[WIFIM_MAC_LEN];
 	signed char nChannel;
 	signed char nRssi;
-	time_t tFirTime;
+	unsigned int tFirTime;
 	unsigned char nAuth;//dev_type is ap,should set ap auth
 	unsigned char achSsid[WIFIM_SSID_LEN];//dev_type is ap, should set ap ssid
 } TIEEEInfo;
@@ -74,7 +73,7 @@ typedef struct tMacData {
 	unsigned char achBssid[WIFIM_MAC_LEN];
 	unsigned char nChannel;
 	signed char nRssi;
-	time_t tFirTime;
+	unsigned int tFirTime;
 	unsigned char nAuth;//dev_type is ap,should set ap auth
 	unsigned char achSsid[WIFIM_SSID_LEN];//dev_type is ap, should set ap ssid
 	struct tMacData *next;

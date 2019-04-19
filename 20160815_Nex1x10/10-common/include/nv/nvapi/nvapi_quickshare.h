@@ -246,5 +246,15 @@ KdvNvAPI u32 KdvNvCALL KdvNv_QkCodeFrameCmd(IN CONST u32 dwIndex, IN CONST u32 d
 ***********************************************************************************/
 KdvNvAPI u32 KdvNvCALL KdvNv_QkCodeBitRateCmd(IN CONST u32 dwIndex, IN CONST u32 dwBitRate );
 
+/*******************************************************************************//**
+*@brief         设置投屏器是否可以投屏（用于商密终端会议中不能投屏专用）
+*KdvNv_EnableQkViewCmd
+*
+*@param[IN]     
+*@return        u32  0：成功， 1：失败
+*@note          更新通知：
+***********************************************************************************/
+KdvNvAPI u32 KdvNvCALL KdvNv_EnableQkViewCmd(IN CONST BOOL32 bEnable, IN CONST EmNvQkNotViewReason_Api emReason);
+
 /**@}*/
 #endif 
