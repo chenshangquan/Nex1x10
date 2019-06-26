@@ -466,6 +466,11 @@ LRESULT CTransparentStatic::OnRedrawUI( WPARAM wParam, LPARAM lParam )
     {
         sf.SetAlignment( StringAlignmentCenter );
     }
+    else if ( emLineAlignmentLeft == m_emTextAlign )
+    {
+        sf.SetAlignment( StringAlignmentNear );
+        sf.SetLineAlignment(StringAlignmentNear);
+    }
     else
     {
         sf.SetAlignment( StringAlignmentFar );

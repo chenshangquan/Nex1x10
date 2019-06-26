@@ -19,11 +19,9 @@ CMainDlg::CMainDlg(CWnd* pParent /*=NULL*/)
 	m_dwBkResourceID = IDB_MAINBK;
 	m_btnMin.SetImage( IDR_BTN_MIN_NORMAL, IDR_BTN_MIN_PRESS, IDR_BTN_MIN_HOVER, IDR_BTN_MIN_NORMAL);
 	m_btnClose.SetImage( IDR_BTN_CLOSE_NORMAL, IDR_BTN_CLOSE_PRESS, IDR_BTN_CLOSE_HOVER, IDR_BTN_CLOSE_NORMAL);
-	m_btnPicBk.SetImage( IDB_CONNECT_BK, IDB_CONNECT_BK, IDB_CONNECT_BK,IDB_CONNECT_BK);
+	//m_btnPicBk.SetImage( IDB_CONNECT_BK, IDB_CONNECT_BK, IDB_CONNECT_BK,IDB_CONNECT_BK);
 	m_btnPicConnectFail.SetImage( IDB_CONNECT_FAIL, IDB_CONNECT_FAIL,IDB_CONNECT_FAIL,IDB_CONNECT_FAIL);
-    m_btnPicUSB.SetImage(IDB_CONNECT_USB, IDB_CONNECT_USB, IDB_CONNECT_USB, IDB_CONNECT_USB);
-    m_btnPicArrow.SetImage(IDB_CONNECT_ARROW, IDB_CONNECT_ARROW, IDB_CONNECT_ARROW, IDB_CONNECT_ARROW);
-    m_btnPicDevice.SetImage(IDB_CONNECT_DEVICE, IDB_CONNECT_DEVICE, IDB_CONNECT_DEVICE, IDB_CONNECT_DEVICE);
+    m_btnPicStatus.SetImage(IDB_STATUS_CONNECTING, IDB_STATUS_CONNECTING, IDB_STATUS_CONNECTING, IDB_STATUS_CONNECTING);
 	m_btnPicBkUpgrade.SetImage( IDB_UPGRADE_BK, IDB_UPGRADE_BK, IDB_UPGRADE_BK,IDB_UPGRADE_BK);
 	m_pImgBK = CUtility::GetImage( IDB_MAINBK, _T("PNG") );
 	m_staticPic.SetBkImage( m_pImgBK );
@@ -32,12 +30,12 @@ CMainDlg::CMainDlg(CWnd* pParent /*=NULL*/)
 	m_stTitle.SetTextColor(DEFAULT_FONT_COLOR);
 	
 	m_stTip.SetFont(13, g_achDefaultFont);
-	m_stTip.SetTextColor(DEFAULT_FONT_COLOR);
-	m_stTip.SetTextAlign(CTransparentStatic::emAlignmentCenter);
+	m_stTip.SetTextColor(TIP_FONT_COLOR_CONNECTING);
+	m_stTip.SetTextAlign(CTransparentStatic::emAlignmentLeft);
 
-	m_stTipDes.SetFont(10, g_achDefaultFont);
-	m_stTipDes.SetTextColor(TIP_DES_FONT_COLOR);
-	m_stTipDes.SetTextAlign(CTransparentStatic::emAlignmentCenter);
+	m_stTipDes.SetFont(11, g_achDefaultFont);
+	m_stTipDes.SetTextColor(DEFAULT_FONT_COLOR);
+	m_stTipDes.SetTextAlign(CTransparentStatic::emLineAlignmentLeft);
 
 	m_stUpgradeTip1.SetFont(11, g_achDefaultFont);
 	m_stUpgradeTip1.SetTextColor(DEFAULT_FONT_COLOR);
@@ -64,9 +62,7 @@ void CMainDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_BTNMIN, m_btnMin);
 	DDX_Control(pDX, IDC_BTNCLOSE, m_btnClose);
 	DDX_Control(pDX, IDC_BTN_PIC_BK, m_btnPicBk);
-    DDX_Control(pDX, IDC_BTN_PIC_USB_BK, m_btnPicUSB);
-    DDX_Control(pDX, IDC_BTN_PIC_ARROW_BK, m_btnPicArrow);
-    DDX_Control(pDX, IDC_BTN_PIC_DEVICE_BK, m_btnPicDevice);
+    DDX_Control(pDX, IDC_BTN_PIC_STATUS, m_btnPicStatus);
 	DDX_Control(pDX, IDC_PIC_MAIN, m_staticPic);
 	DDX_Control(pDX, IDC_BTN_PIC_FAIL, m_btnPicConnectFail);
 	DDX_Control(pDX, IDC_PIC_CONNECT_SUCCESS, m_stGifConnectSuccess);
@@ -125,18 +121,16 @@ void CMainDlg::InitUI()
 	m_btnMin.SetWindowPos( NULL, MULX(431), MULY(1), MULX(30), MULY(35), SWP_HIDEWINDOW/*SWP_NOSIZE*/ );
 	m_btnClose.SetWindowPos( NULL, MULX(463),MULY(1), MULX(30), MULY(35), SWP_SHOWWINDOW/*SWP_NOSIZE*/ );
 
-	m_stTip.SetWindowPos( NULL, 0, MULY(64), MULX(500), MULY(18), SWP_SHOWWINDOW/*SWP_NOSIZE*/ );
+	m_stTip.SetWindowPos( NULL, MULX(123), MULY(76), MULX(332), MULY(18), SWP_SHOWWINDOW/*SWP_NOSIZE*/ );
 	
-	int nTipDesTop = MULY(64 + 18 + 8);
-	m_stTipDes.SetWindowPos( NULL, 0, nTipDesTop, MULX(500), MULY(16), SWP_SHOWWINDOW/*SWP_NOSIZE*/ );
+	int nTipDesTop = MULY(76 + 18 + 9);
+	m_stTipDes.SetWindowPos( NULL, MULX(123), nTipDesTop, MULX(346), MULY(40), SWP_SHOWWINDOW/*SWP_NOSIZE*/ );
 
-	m_btnPicBk.SetWindowPos( NULL, MULX(45), MULY(115), MULX(410), MULY(130), SWP_HIDEWINDOW );
-    m_btnPicUSB.SetWindowPos( NULL, MULX(109), MULY(148), MULX(82), MULY(78), SWP_HIDEWINDOW );
-    m_btnPicArrow.SetWindowPos( NULL, MULX(197), MULY(183), MULX(20), MULY(8), SWP_HIDEWINDOW );
-    m_btnPicDevice.SetWindowPos( NULL, MULX(223), MULY(148), MULX(168), MULY(78), SWP_HIDEWINDOW );
-	m_stGifConnecting.SetWindowPos( NULL, MULX(215), MULY(187), MULX(70), MULY(6), SWP_HIDEWINDOW );
-	m_btnPicConnectFail.SetWindowPos( NULL, MULX(215), MULY(179), MULX(70), MULY(22), SWP_HIDEWINDOW );
-	m_stGifConnectSuccess.SetWindowPos( NULL, MULX(45), MULY(115), MULX(410), MULY(130), SWP_HIDEWINDOW );
+	m_btnPicBk.SetWindowPos( NULL, MULX(45), MULY(141), MULX(410), MULY(130), SWP_HIDEWINDOW );
+    m_btnPicStatus.SetWindowPos( NULL, MULX(52), MULY(69), MULX(56), MULY(56), SWP_SHOWWINDOW );
+	m_stGifConnecting.SetWindowPos( NULL, MULX(215), MULY(213), MULX(70), MULY(6), SWP_HIDEWINDOW );
+	m_btnPicConnectFail.SetWindowPos( NULL, MULX(215), MULY(205), MULX(70), MULY(22), SWP_HIDEWINDOW );
+	m_stGifConnectSuccess.SetWindowPos( NULL, MULX(45), MULY(141), MULX(410), MULY(130), SWP_HIDEWINDOW );
 	m_btnPicBkUpgrade.SetWindowPos( NULL, MULX(50), MULY(135), MULX(204), MULY(115), SWP_HIDEWINDOW );
 	m_stUpgradeTip1.SetWindowPos( NULL, MULX(260), MULY(135), MULX(238), MULY(18), SWP_HIDEWINDOW );
 	m_stUpgradeTip2.SetWindowPos( NULL, MULX(267), MULY(161), MULX(225), MULY(18), SWP_HIDEWINDOW );
@@ -146,6 +140,24 @@ void CMainDlg::InitUI()
 	m_stGifConnectSuccess.SetTimerDelay(50);
 
 	m_stGifConnecting.SetImage(IDR_GIF_CONNECTING);
+
+    CPaintDC dc(this); // 用于绘制的设备上下文
+    HDC hDc = ::GetDC( this->GetSafeHwnd() );
+    HDC hDcMem =  CreateCompatibleDC( hDc);
+    CDC *pDC2 = CDC::FromHandle(hDcMem);
+
+    CWnd *pWnd=GetDlgItem(IDC_BTN_PIC_BK);//获得picture控件窗口句柄
+    CDC *pDC=pWnd->GetDC();//获得picture控件的DC
+    CImage* ImageBG;
+    ImageBG = new CImage;
+    ImageBG->Load(_T("F:\\bitmap.bmp"));
+    if (!ImageBG->IsNull())
+    {
+        ImageBG->Draw(pDC->GetSafeHdc(), 0, 0, 410, 130);
+        ReleaseDC(pDC);
+    }
+    delete ImageBG;
+    ImageBG = NULL;
 }
 
 LRESULT CMainDlg::OnNcHitTest(CPoint point)
@@ -187,73 +199,81 @@ void CMainDlg::ShowConnectStatus(NET_STATUS emNetStatus)
 	{
 	case NET_STATUS_CONNECTING:
 		{
+            m_btnPicStatus.SetImage(IDB_STATUS_CONNECTING, IDB_STATUS_CONNECTING, IDB_STATUS_CONNECTING, IDB_STATUS_CONNECTING);
             m_stTip.SetWindowText(STRING_NET_STATUS_CONNECTING);
+            m_stTip.SetTextColor(TIP_FONT_COLOR_CONNECTING);
 			m_stTipDes.SetWindowText(_T(""));
 			ShowConnectPicture(CONNECTING);
 		}
 		break;
 	case NET_STATUS_CONNECTED:
 		{
+            m_btnPicStatus.SetImage(IDB_STATUS_CONNECTED, IDB_STATUS_CONNECTED, IDB_STATUS_CONNECTED, IDB_STATUS_CONNECTED);
             m_stTip.SetWindowText(STRING_NET_STATUS_CONNECTED);
+            m_stTip.SetTextColor(TIP_FONT_COLOR_CONNECTED);
             m_stTipDes.SetWindowText(STRING_DES_NET_STATUS_CONNECTED);
 			ShowConnectPicture(CONNECT_SUCESS);
 		}
 		break;
 	case NET_STATUS_DISCONNECTED:
-		{
+        {
+            m_btnPicStatus.SetImage(IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL);
 			m_stTip.SetWindowText(STRING_NET_STATUS_DISCONNECTED);
+            m_stTip.SetTextColor(TIP_FONT_COLOR_DISCONNECTED);
 			m_stTipDes.SetWindowText(STRING_DES_NET_STATUS_DISCONNECTED);
 			ShowConnectPicture(CONNECT_FAIL);
 		}
 		break;
 	case NET_STATUS_NO_NETWORK:
 		{
+            m_btnPicStatus.SetImage(IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL);
 			m_stTip.SetWindowText(STRING_NET_STATUS_NO_NETWORK);
+            m_stTip.SetTextColor(TIP_FONT_COLOR_DISCONNECTED);
 			m_stTipDes.SetWindowText(STRING_DES_NET_STATUS_NO_NETWORK);
 			ShowConnectPicture(CONNECT_FAIL);
 		}
 		break;
 	case NET_STATUS_NO_MATCH:
 		{
-            if (g_dlg->m_emQKPidType == em_NT30_Type)
-            {
-                m_stTip.SetWindowText(STRING_NET_STATUS_NO_MATCH);
-                m_stTipDes.SetWindowText(STRING_DES_NET_STATUS_NO_MATCH);
-                ShowConnectPicture(CONNECT_FAIL);
-            }
-            else
-            {
-                m_stTip.SetWindowText(STRING_MT_NET_STATUS_NO_MATCH);
-                m_stTipDes.SetWindowText(STRING_DES_MT_NET_STATUS_NO_MATCH);
-                ShowConnectPicture(CONNECT_NT30_MT_PAIR_HELP);
-            }
-			
+            m_btnPicStatus.SetImage(IDB_STATUS_NOTPAIRED, IDB_STATUS_NOTPAIRED, IDB_STATUS_NOTPAIRED, IDB_STATUS_NOTPAIRED);
+            m_stTip.SetWindowText(STRING_NET_STATUS_NO_MATCH);
+            m_stTip.SetTextColor(TIP_FONT_COLOR_DISCONNECTED);
+            m_stTipDes.SetWindowText(STRING_DES_NET_STATUS_NO_MATCH);
+            ShowConnectPicture(CONNECT_NT30_PAIR_HELP);
 		}
 		break;
 	case NET_STATUS_ENOUGHNUM:
 		{
+            m_btnPicStatus.SetImage(IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL);
 			m_stTip.SetWindowText(STRING_NET_STATUS_ENOUGHNUM);
+            m_stTip.SetTextColor(TIP_FONT_COLOR_DISCONNECTED);
 			m_stTipDes.SetWindowText(STRING_DES_NET_STATUS_ENOUGHNUM);
 			ShowConnectPicture(CONNECT_FAIL);
 		}
 		break;
 	case NET_STATUS_RESETQUICKSHARE:
 		{
+            m_btnPicStatus.SetImage(IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL);
 			m_stTip.SetWindowText(STRING_NET_STATUS_RESETQUICKSHARE);
+            m_stTip.SetTextColor(TIP_FONT_COLOR_DISCONNECTED);
 			m_stTipDes.SetWindowText(STRING_DES_NET_STATUS_RESETQUICKSHARE);
 			ShowConnectPicture(CONNECT_FAIL);
 		}
 		break;
 	case NET_STATUS_RESETWIFI:
 		{
+            m_btnPicStatus.SetImage(IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL);
 			m_stTip.SetWindowText(STRING_NET_STATUS_RESETWIFI);
+            m_stTip.SetTextColor(TIP_FONT_COLOR_DISCONNECTED);
 			m_stTipDes.SetWindowText(STRING_DES_NET_STATUS_RESETWIFI);
 			ShowConnectPicture(CONNECT_FAIL);
 		}
 		break;
     case NET_STATUS_FIND_SSID_FAIL:
         {
+            m_btnPicStatus.SetImage(IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL);
             m_stTip.SetWindowText(STRING_NET_STATUS_FIND_SSID_FAIL);
+            m_stTip.SetTextColor(TIP_FONT_COLOR_DISCONNECTED);
             m_stTipDes.SetWindowText(STRING_DES_NET_STATUS_FIND_SSID_FAIL);
             ShowConnectPicture(CONNECT_FAIL);
         }
@@ -343,13 +363,11 @@ void CMainDlg::ShowConnectPicture(CONNECT_STATUS emConnectStatus)
             m_stGifConnectSuccess.ShowWindow(SW_HIDE);
         }
         break;
-    case CONNECT_NT30_MT_PAIR_HELP:
+    case CONNECT_NT30_PAIR_HELP:
         {
-            m_btnPicUSB.ShowWindow(SW_SHOW);
-            m_btnPicArrow.ShowWindow(SW_SHOW);
-            m_btnPicDevice.ShowWindow(SW_SHOW);
+            m_btnPicBk.SetImage(IDB_PAIR_HELP, IDB_PAIR_HELP, IDB_PAIR_HELP, IDB_PAIR_HELP);
+            m_btnPicBk.ShowWindow(SW_SHOW);
 
-            m_btnPicBk.ShowWindow(SW_HIDE);
             m_stGifConnecting.StopGif();
             m_stGifConnecting.ShowWindow(SW_HIDE);
 

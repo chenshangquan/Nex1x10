@@ -937,6 +937,13 @@ BOOL CtouchDlg::OnInitDialog()
     }
 
 	InitUI();
+    //OnBannerShow();
+     //查找资源
+    /*HRSRC hResource = FindResource(AfxGetResourceHandle(), MAKEINTRESOURCE(IDB_STATUS_BAR), L"PNG");
+    if ( hResource == NULL )
+    {
+        return FALSE;
+    }*/
 
 	//视频的hid设备同步打开
 	if (!m_HidDevice[HID_TYPE_VIDEO].hndHidDevice)
@@ -1145,7 +1152,7 @@ void CtouchDlg::OnBannerShow()
 
 void CtouchDlg::SetBannerAutoHide()
 {
-	SetTimer(g_nAutoHideBannerTimerID,5000,NULL); //5s自动隐藏
+	SetTimer(g_nAutoHideBannerTimerID,1000,NULL); //5s自动隐藏
 }
 
 void CtouchDlg::OnBannerClose()

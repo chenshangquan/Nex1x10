@@ -136,6 +136,7 @@
     <None Include="res\min_hover.png" />
     <None Include="res\min_sel.png" />
     <None Include="res\msgbox_bk.png" />
+    <None Include="res\pair_help.png" />
     <None Include="res\png1.png" />
     <None Include="res\screen_projecting.png" />
     <None Include="res\slider_highlight_left.png" />
@@ -146,9 +147,15 @@
     <None Include="res\slider_normal_right.png" />
     <None Include="res\slider_thumb_normal.png" />
     <None Include="res\slider_thumb_press.png" />
+    <None Include="res\status_abnormal.png" />
+    <None Include="res\status_bar.png" />
+    <None Include="res\status_connected.png" />
+    <None Include="res\status_connecting.png" />
+    <None Include="res\status_notpaired.png" />
     <None Include="res\tip.png" />
     <None Include="res\touch.ico" />
     <None Include="res\touch.rc2" />
+    <None Include="res\touch_bg.ico" />
     <None Include="res\trayicon_down.ico" />
     <None Include="res\trayicon_middle_down.ico" />
     <None Include="res\trayicon_middle_up.ico" />

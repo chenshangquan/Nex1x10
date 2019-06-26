@@ -90,6 +90,9 @@ using namespace Gdiplus;
 //全局定义
 extern s8 g_achDefaultFont[MAX_PATH];
 #define DEFAULT_FONT_COLOR Color(76,76,76)
+#define TIP_FONT_COLOR_CONNECTING Color(0,175,242)
+#define TIP_FONT_COLOR_CONNECTED Color(25,150,44)
+#define TIP_FONT_COLOR_DISCONNECTED Color(249,101,101)
 #define TIP_DES_FONT_COLOR Color(163,163,163)
 #define UPGRADE_FONT_COLOR Color(0,127,192)
 

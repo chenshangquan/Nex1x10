@@ -38,10 +38,12 @@ private:
 private:
 	CTransparentBtn m_btnBannerClose;
 	CTransparentStatic m_staticBanner;
+    CTransparentBtn m_btnBannerStatusBar;
 
 	BOOL m_bIsSetTimer;      //是否设置了检测鼠标的Timer
 	int  m_dwEdgeHeight;     //边缘高度
 	int  m_dwEdgeWidth;      //边缘宽度
 	BOOL m_bIsFinished;      //隐藏或显示过程是否完成
 	BOOL m_bIsHiding;        //该参数只有在!m_hsFinished才有效,真:正在隐藏,假:正在显示
+    BOOL m_bShowStatusBar;   //显示状态条
 };

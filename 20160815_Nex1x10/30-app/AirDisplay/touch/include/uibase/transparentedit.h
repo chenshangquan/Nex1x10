@@ -296,6 +296,7 @@ public:
         emAlignmentLeft = 0,
         emAlignmentCenter,
         emAlignmentRight,
+        emLineAlignmentLeft,  //×óÉÏ¶ÔÆë
         emAlignmentUserDef,
     };
 

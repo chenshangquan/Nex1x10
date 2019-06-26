@@ -37,47 +37,40 @@ extern EMLangID g_emLanType; //语言类型
     #define NET_STATUS_DISCONNECTED_CHN             "连接已断开"
     #define NET_STATUS_DISCONNECTED_ENG             "Disconnected"
 #define STRING_NET_STATUS_DISCONNECTED              TRANSLATE(NET_STATUS_DISCONNECTED_)
-    #define DES_NET_STATUS_DISCONNECTED_CHN         "请将无线投屏发射器，插入显示端USB1或USB2接口，重新配对"
-    #define DES_NET_STATUS_DISCONNECTED_ENG         "Please Plug NT30 to USB1/USB2 on the Display for Pairing"
+    #define DES_NET_STATUS_DISCONNECTED_CHN         "请将无线投屏发射器，插入显示端USB接口，重新配对"
+    #define DES_NET_STATUS_DISCONNECTED_ENG         "Please Plug NT30 to USB on the equipment for Pairing."
 #define STRING_DES_NET_STATUS_DISCONNECTED          TRANSLATE(DES_NET_STATUS_DISCONNECTED_)
 
-    #define NET_STATUS_NO_NETWORK_CHN               "搜索不到显示端"//nt yt
-    #define NET_STATUS_NO_NETWORK_ENG               "Cannot Find the Display"
+    #define NET_STATUS_NO_NETWORK_CHN               "搜索不到设备"//nt yt
+    #define NET_STATUS_NO_NETWORK_ENG               "Cannot Find the equipment"
 #define STRING_NET_STATUS_NO_NETWORK                TRANSLATE(NET_STATUS_NO_NETWORK_)
     #define DES_NET_STATUS_NO_NETWORK_CHN           "请检查网络连接是否正常"
-    #define DES_NET_STATUS_NO_NETWORK_ENG           "Please Check the Network"
+    #define DES_NET_STATUS_NO_NETWORK_ENG           "Please Check the Network."
 #define STRING_DES_NET_STATUS_NO_NETWORK            TRANSLATE(DES_NET_STATUS_NO_NETWORK_)
 
-    #define NET_STATUS_NO_MATCH_CHN                 "未与显示端配对"
+    #define NET_STATUS_NO_MATCH_CHN                 "未与视频会议设备配对"
     #define NET_STATUS_NO_MATCH_ENG                 "Not paired"
 #define STRING_NET_STATUS_NO_MATCH                  TRANSLATE(NET_STATUS_NO_MATCH_)
-    #define DES_NET_STATUS_NO_MATCH_CHN             "请将无线投屏发射器，插入显示端USB1或者USB2接口，完成配对"
-    #define DES_NET_STATUS_NO_MATCH_ENG             "Please Plug NT30 to USB1/USB2 on the Display for Pairing"
+    #define DES_NET_STATUS_NO_MATCH_CHN             "请将无线投屏发射器，插入视频会议设备的USB接口，完成配对"
+    #define DES_NET_STATUS_NO_MATCH_ENG             "Please Plug NT30 to USB on the equipment for Pairing."
 #define STRING_DES_NET_STATUS_NO_MATCH              TRANSLATE(DES_NET_STATUS_NO_MATCH_)
-//MT型号
-    #define MT_NET_STATUS_NO_MATCH_CHN              "配对帮助"
-    #define MT_NET_STATUS_NO_MATCH_ENG              "Not paired"
-#define STRING_MT_NET_STATUS_NO_MATCH               TRANSLATE(MT_NET_STATUS_NO_MATCH_)
-    #define DES_MT_NET_STATUS_NO_MATCH_CHN          "请将无线投屏发射器，插入终端USB接口，完成配对"
-    #define DES_MT_NET_STATUS_NO_MATCH_ENG          "Please Plug NT30 to USB on the Terminal for Pairing"
-#define STRING_DES_MT_NET_STATUS_NO_MATCH           TRANSLATE(DES_MT_NET_STATUS_NO_MATCH_)
 
     #define NET_STATUS_FIND_SSID_FAIL_CHN           "连接超时"
     #define NET_STATUS_FIND_SSID_FAIL_ENG           "Connection Timeout"
 #define STRING_NET_STATUS_FIND_SSID_FAIL            TRANSLATE(NET_STATUS_FIND_SSID_FAIL_)
-    #define DES_NET_STATUS_FIND_SSID_FAIL_CHN       "请将无线投屏发射器，插入显示端USB1或者USB2接口，完成配对"
-    #define DES_NET_STATUS_FIND_SSID_FAIL_ENG       "Please Plug NT30 to USB1/USB2 on the Display for Pairing"
+    #define DES_NET_STATUS_FIND_SSID_FAIL_CHN       "请将无线投屏发射器，插入显示端USB接口，重新配对"
+    #define DES_NET_STATUS_FIND_SSID_FAIL_ENG       "Please Plug NT30 to USB on the equipment for Pairing."
 #define STRING_DES_NET_STATUS_FIND_SSID_FAIL        TRANSLATE(DES_NET_STATUS_FIND_SSID_FAIL_)
 
     #define NET_STATUS_ENOUGHNUM_CHN                "连接数量受限"
     #define NET_STATUS_ENOUGHNUM_ENG                "Connection Quantity Limited"
 #define STRING_NET_STATUS_ENOUGHNUM                 TRANSLATE(NET_STATUS_ENOUGHNUM_)
     #define DES_NET_STATUS_ENOUGHNUM_CHN            "显示端最大支持连接8个无线投屏发射器"
-    #define DES_NET_STATUS_ENOUGHNUM_ENG            "Maxmium Quantity is 8"
+    #define DES_NET_STATUS_ENOUGHNUM_ENG            "Maxmium Quantity is 8."
 #define STRING_DES_NET_STATUS_ENOUGHNUM             TRANSLATE(DES_NET_STATUS_ENOUGHNUM_)
 
     #define NET_STATUS_RESETQUICKSHARE_CHN          "无法连接显示端"//nt yt
-    #define NET_STATUS_RESETQUICKSHARE_ENG          "Cannot connect to the display"
+    #define NET_STATUS_RESETQUICKSHARE_ENG          "Cannot connect to the equipment"
 #define STRING_NET_STATUS_RESETQUICKSHARE           TRANSLATE(NET_STATUS_RESETQUICKSHARE_)
     #define DES_NET_STATUS_RESETQUICKSHARE_CHN      "请拔掉无线投屏发射器，重新接入电脑"
     #define DES_NET_STATUS_RESETQUICKSHARE_ENG      "Please Remove NT30 and Replug it to your PC"
@@ -95,11 +88,11 @@ extern EMLangID g_emLanType; //语言类型
 #define STRING_SHOW_UPGRADE                         TRANSLATE(SHOW_UPGRADE_)
 
     #define SHOW_UPGRADE_TIP1_CHN                   "请将无线投屏发射器连接至显示端的"
-    #define SHOW_UPGRADE_TIP1_ENG                   "Please Plug NT30 to USB1/USB2"
+    #define SHOW_UPGRADE_TIP1_ENG                   "Please Plug NT30 to USB on"
 #define STRING_SHOW_UPGRADE_TIP1                    TRANSLATE(SHOW_UPGRADE_TIP1_)
 
-    #define SHOW_UPGRADE_TIP2_CHN                   "USB1或USB2接口进行升级"
-    #define SHOW_UPGRADE_TIP2_ENG                   "on the Display for Upgrading"
+    #define SHOW_UPGRADE_TIP2_CHN                   "USB接口进行升级"
+    #define SHOW_UPGRADE_TIP2_ENG                   "the equipment for Upgrading"
 #define STRING_SHOW_UPGRADE_TIP2                    TRANSLATE(SHOW_UPGRADE_TIP2_)
 
     #define SHOW_LINK_IGNORE_CHN                    "<a href=\"暂不升级,继续投屏\">暂不升级,继续投屏</a>"
@@ -117,7 +110,7 @@ extern EMLangID g_emLanType; //语言类型
     #define CONNECT_RESOLUTION_LIMITED_ENG          "Projecting Failed"
 #define STRING_CONNECT_RESOLUTION_LIMITED           TRANSLATE(CONNECT_RESOLUTION_LIMITED_)
     #define DES_CONNECT_RESOLUTION_LIMITED_CHN      "不支持当前桌面分辨率投屏"
-    #define DES_CONNECT_RESOLUTION_LIMITED_ENG      "Desktop Resolution Disabled"
+    #define DES_CONNECT_RESOLUTION_LIMITED_ENG      "Desktop Resolution Disabled."
 #define STRING_DES_CONNECT_RESOLUTION_LIMITED       TRANSLATE(DES_CONNECT_RESOLUTION_LIMITED_)
 
     #define CONNECT_NT30_MT_NONSUPPORT_CHN         "投屏失败"

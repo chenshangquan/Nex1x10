@@ -8400,6 +8400,7 @@ typedef struct tagTDCSWbPencilOperInfo_Api
 {
 	s8  			 achTabId[KMTAPI_BUF_64_LEN+1];            // 白板tab id（guid）
 	u32 			 dwSubPageId;        // 子页面id
+	BOOL32			 bFinished;			// 画线是否画完了，是否是最后一包
 	TDCSWbPencil_Api  tPencil;           // 铅笔操作信息
 
 	tagTDCSWbPencilOperInfo_Api() { memset(this, 0, sizeof(tagTDCSWbPencilOperInfo_Api)); }

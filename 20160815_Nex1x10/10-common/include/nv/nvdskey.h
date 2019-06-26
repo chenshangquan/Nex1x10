@@ -103,6 +103,7 @@
 #define emNv_Rt_TerminalName              "emNv_Rt_TerminalName"                  //终端别名(value:TNVTerminalName)
 #define emNv_Rt_ChangeLocalEcho           "emNv_Rt_ChangeLocalEcho"               //是否从回显切走
 #define emNv_Rt_ImixSerialNum             "emNv_Rt_ImixSerialNum"                 //imix序列号
+#define emNv_Rt_ImixWhiteBoard            "emNv_Rt_ImixWhiteBoard"                //当前白板切换状态(value: TBOOL32)
 
 /*------------------------平台升级相关----------------------------*/
 #define emNv_Rt_NvSusInfo                 "emNv_Rt_NvSusInfo"                     //sus服务器信息(value:TNVSUSAddr)

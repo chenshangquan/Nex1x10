@@ -169,6 +169,27 @@
     <None Include="res\connect_device.png">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="res\touch_bg.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\pair_help.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\status_bar.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\status_connecting.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\status_connected.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\status_notpaired.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\status_abnormal.png">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="touch.h">

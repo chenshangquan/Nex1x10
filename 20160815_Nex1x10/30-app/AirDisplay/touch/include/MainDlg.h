@@ -13,7 +13,7 @@ typedef enum _emCONNECT_STATUS
 	CONNECT_BUSINESS_FAIL,          //业务挂掉
     CONNECT_OVER_RESOLUTION_LIMIT,  //超出限制分辨率投屏
     CONNECT_NT30_MT_NONSUPPORT,     //商密终端不支持投屏
-    CONNECT_NT30_MT_PAIR_HELP,      //MT型号配对帮助
+    CONNECT_NT30_PAIR_HELP,         //配对帮助
 }CONNECT_STATUS;
 
 
@@ -65,9 +65,7 @@ private:
 	CTransparentBtn	m_btnClose;
 	CTransparentBtn	m_btnPicBk;
 	CTransparentBtn	m_btnPicConnectFail;
-    CTransparentBtn m_btnPicUSB;
-    CTransparentBtn m_btnPicArrow;
-    CTransparentBtn m_btnPicDevice;
+    CTransparentBtn m_btnPicStatus;
 	CTranStatic	m_staticPic;
 	CTransparentGif m_stGifConnectSuccess;
 	CTransparentGif m_stGifConnecting;
