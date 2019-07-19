@@ -20,6 +20,10 @@ CTranStatic::CTranStatic()
 	m_bSwap = FALSE;
 
     m_pImgBk = NULL;
+
+    m_bSttBarDraw = FALSE;
+    m_dwSttBarDrawNum = 0;
+    m_dwSttBarDrawCount = 0;
 }
 
 CTranStatic::~CTranStatic()
@@ -33,10 +37,35 @@ BEGIN_MESSAGE_MAP(CTranStatic, CStatic)
 	ON_WM_CREATE()
 	ON_WM_SIZE()
 	//}}AFX_MSG_MAP
+    ON_MESSAGE( WM_REDRAW_UI, OnRedrawUI )
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CVidStatic message handlers
+
+LRESULT CTranStatic::OnRedrawUI( WPARAM wParam, LPARAM lParam )
+{
+    m_hParent = (HWND)lParam;
+
+    if ( IsWindowVisible() == FALSE )
+    {
+        return S_FALSE;
+    }
+
+#ifdef _DEBUG
+    CString strWindowText;
+    GetWindowText( strWindowText );
+#endif // _DEBUG
+
+    Graphics *pGraphics = (Graphics*)wParam;
+
+    if ( NULL != m_pImgBk )
+    {
+        DrawBk(m_hParent, pGraphics);
+    }
+
+    return S_OK;
+}
 
 void CTranStatic::OnPaint() 
 {
@@ -132,11 +161,30 @@ void CTranStatic::DrawBk( HWND hWnd, Graphics *pGraphics )
 	cRectBK.bottom = cRectBK.top + szWin.cy;
 	if ( m_pImgBk != NULL )
 	{
-		pGraphics->DrawImage( m_pImgBk, cRectBK.left - 1, cRectBK.top - 1, cRectBK.Width() + 1, cRectBK.Height() + 1 );
+        if (m_bSttBarDraw)
+        {
+            RectF destRect(cRectBK.left-1, cRectBK.top-1, cRectBK.Width()+1, cRectBK.Height()+1);
+            pGraphics->DrawImage( m_pImgBk, destRect, cRectBK.Width()*m_dwSttBarDrawCount, 0, cRectBK.Width(), cRectBK.Height(), UnitPixel);
+            m_dwSttBarDrawCount++;
+        }
+        else
+        {
+            pGraphics->DrawImage( m_pImgBk, cRectBK.left - 1, cRectBK.top - 1, cRectBK.Width() + 1, cRectBK.Height() + 1 );
+        }
 	}
 	else
 	{
 		SolidBrush brush( Color( 0, 0, 0 ) );
 		pGraphics->FillRectangle( &brush, cRectBK.left - 1, cRectBK.top -1, cRectBK.Width() + 1, cRectBK.Height() + 1 );
 	}
+}
+
+void CTranStatic::RedrawStatusBar()
+{
+    //状态条画至最后一片时，需从头开始绘图
+    if (m_dwSttBarDrawCount >= m_dwSttBarDrawNum)
+    {
+        m_dwSttBarDrawCount = 0;
+    }
+    ::SendMessage( m_hParent, WM_REDRAW_UI, NULL, NULL );
 }

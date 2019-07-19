@@ -38,7 +38,7 @@ protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	//}}AFX_MSG
-
+    afx_msg LRESULT OnRedrawUI( WPARAM wParam, LPARAM lParam );
 	DECLARE_MESSAGE_MAP()
 
 public:
@@ -51,9 +51,22 @@ public:
     {
         m_pImgBk = pImgBk;
     }
+    void SetStatusBarDraw(BOOL bSttBarDraw, u32 dwSttBarDrawNum = 0)
+    {
+        m_bSttBarDraw = bSttBarDraw;
+        m_dwSttBarDrawNum = dwSttBarDrawNum;
+        m_dwSttBarDrawCount = 0;
+    }
+    void RedrawStatusBar();
 
+protected:
+    HWND    m_hParent;
 private:
     Image   *m_pImgBk;
+
+    BOOL    m_bSttBarDraw;              //状态条绘图
+    u32     m_dwSttBarDrawNum;          //状态条分割总片数
+    u32     m_dwSttBarDrawCount;        //状态条移动绘图计数
 };
 
 /////////////////////////////////////////////////////////////////////////////

@@ -852,24 +852,24 @@ BOOL CtouchDlg::OnInitDialog()
 	//  执行此操作
 	SetIcon(m_hIcon, TRUE);			// 设置大图标
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
-/*
+
 	// TODO: 在此添加额外的初始化代码
-	m_ntIcon.cbSize = sizeof(NOTIFYICONDATA);                            //该结构体变量的大小
-	m_ntIcon.hIcon = m_hIcon;  //图标，通过资源ID得到
-	m_ntIcon.hWnd = this->m_hWnd;                                                 //接收托盘图标通知消息的窗口句柄
-	TCHAR atip[128] = _T("NexPresence");                                                     //鼠标设上面时显示的提示
+	m_ntIcon.cbSize = sizeof(NOTIFYICONDATA);                     //该结构体变量的大小
+	m_ntIcon.hIcon = m_hIcon;                                     //图标，通过资源ID得到
+	m_ntIcon.hWnd = this->m_hWnd;                                 //接收托盘图标通知消息的窗口句柄
+	TCHAR atip[128] = _T("NexPresence");                          //鼠标设上面时显示的提示
 	StrNCpy(m_ntIcon.szTip, atip, 128);  
 
-	m_ntIcon.uCallbackMessage = WM_TRAY_NOTIFYICON;                //应用程序定义的消息ID号
+	m_ntIcon.uCallbackMessage = WM_TRAY_NOTIFYICON;               //应用程序定义的消息ID号
 	m_ntIcon.uFlags = NIF_MESSAGE|NIF_ICON|NIF_TIP;               //图标的属性：设置成员uCallbackMessage、hIcon、szTip有效
-	::Shell_NotifyIconW(NIM_ADD, &m_ntIcon);                                 //在系统通知区域增加这个图标
+	::Shell_NotifyIconW(NIM_ADD, &m_ntIcon);                      //在系统通知区域增加这个图标
 
 	//初始化用于变化的托盘图标
 	m_hTrayIcon[0] = AfxGetApp()->LoadIcon(IDI_TRAYICON_DOWN);
     m_hTrayIcon[1] = AfxGetApp()->LoadIcon(IDI_TRAYICON_MIDDLE_DOWN);
 	m_hTrayIcon[2] = AfxGetApp()->LoadIcon(IDI_TRAYICON_MIDDLE_UP);
 	m_hTrayIcon[3] = AfxGetApp()->LoadIcon(IDI_TRAYICON_UP);
-*/
+
     //创建temp文件夹
     m_strLogoPath = CLogo::GetModuleFullPath() + TP_TEMPFILE_PATH;
     if(!PathFileExists(m_strLogoPath))
@@ -937,13 +937,6 @@ BOOL CtouchDlg::OnInitDialog()
     }
 
 	InitUI();
-    //OnBannerShow();
-     //查找资源
-    /*HRSRC hResource = FindResource(AfxGetResourceHandle(), MAKEINTRESOURCE(IDB_STATUS_BAR), L"PNG");
-    if ( hResource == NULL )
-    {
-        return FALSE;
-    }*/
 
 	//视频的hid设备同步打开
 	if (!m_HidDevice[HID_TYPE_VIDEO].hndHidDevice)
@@ -1146,13 +1139,13 @@ void CtouchDlg::OnBannerShow()
 	if (m_pcBannerDlg)
 	{
 		m_pcBannerDlg->ShowWindow( SW_SHOW );
-		SetBannerAutoHide();
+		//SetBannerAutoHide();
 	}
 }
 
 void CtouchDlg::SetBannerAutoHide()
 {
-	SetTimer(g_nAutoHideBannerTimerID,1000,NULL); //5s自动隐藏
+	SetTimer(g_nAutoHideBannerTimerID,500,NULL); //500ms自动隐藏
 }
 
 void CtouchDlg::OnBannerClose()
@@ -1570,6 +1563,13 @@ void CtouchDlg::OnSize(UINT nType, int cx, int cy)
 
 void CtouchDlg::OnDestroy()
 {
+    if (m_bIsProjecting)
+	{
+		KillTimer(TrayIconChangeTimerID);
+	}
+
+	::Shell_NotifyIconW(NIM_DELETE, &m_ntIcon);
+
 	//投屏中拔掉先停止投屏
 	StopProjectScreen(false);
 	
@@ -2092,6 +2092,16 @@ void CtouchDlg::SolveReadInfo(BYTE* recvDataBuf)
             // H264 BitRate < 3M 时，采用恒定码率控制cbr
             if ( m_tVideoEncParam.m_byEncType == MEDIA_TYPE_H264 && wBitRate < 3072 )
             {
+                // 码率不足1.5M时，采用软编码
+                if ( wBitRate < 1536 )
+                {
+                    // 当前编码状态为硬编码时需切换至软编码
+                    if (g_bHwEncSupport == true && g_bHwEncStatus == true)
+                    {
+                        GetEncode().SetEnableHwEnc( false );
+                    }
+                }
+
                 m_tVideoEncParam.m_wMaxBitRate = wBitRate;
                 m_tVideoEncParam.m_wMinBitRate = wBitRate;
             }
@@ -2288,6 +2298,7 @@ void CtouchDlg::StartProjectScreen()
 
 		m_bIsProjecting = true;
 		bFirstKeyFrame = FALSE;
+        StartTrayIconChange();
 		OnBannerShow();
 
 		StartAVThread();
@@ -2325,6 +2336,7 @@ void CtouchDlg::StopProjectScreen(bool bNotifyHid)
 
 		m_bIsProjecting = false;
 		bFirstKeyFrame = FALSE;
+        StopTrayIconChange();
 		OnBannerClose();
 
 		OnStopScreenCatch();
@@ -2970,12 +2982,20 @@ void CtouchDlg::InitVolumeCtrl()
 	g_hVolumeCtrlDlg = this->GetSafeHwnd();
 
 	//设置音量
+    BOOL bMute = FALSE ;//是否静音
 	int nVolume;
 	float fVolume;
+    g_pEndptVol->GetMute(&bMute);
 	hr = g_pEndptVol->GetMasterVolumeLevelScalar(&fVolume);
 	nVolume = (int)(MAX_VOL*fVolume + 0.5);
-	m_cEncoder.SetAudZoominVol((float)(nVolume*1.0/DIVIDED_NUM));
-
+    if (bMute)
+    {
+        m_cEncoder.SetAudZoominVol(0);
+    }
+    else
+    {
+        m_cEncoder.SetAudZoominVol((float)(nVolume*1.0/DIVIDED_NUM));
+    }
 }
 
 void CtouchDlg::UninitVolumeCtrl()

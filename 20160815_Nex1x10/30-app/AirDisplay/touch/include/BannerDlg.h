@@ -36,9 +36,11 @@ private:
 	void InitUI();
 
 private:
+    Image   *m_pImgStatusBar;
+
 	CTransparentBtn m_btnBannerClose;
 	CTransparentStatic m_staticBanner;
-    CTransparentBtn m_btnBannerStatusBar;
+    CTranStatic m_staPicStatusBar;
 
 	BOOL m_bIsSetTimer;      //是否设置了检测鼠标的Timer
 	int  m_dwEdgeHeight;     //边缘高度

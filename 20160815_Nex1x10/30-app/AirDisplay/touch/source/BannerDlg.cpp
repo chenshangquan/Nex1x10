@@ -20,68 +20,12 @@ extern CtouchDlg * g_dlg;
 #define MINCX       200 //窗口最小宽度
 #define MINCY       400 //窗口最小高度
 
+#define STTBAR_LEN  342 //状态条长度
+
 //TimerId
 #define HideTimerId 3
 #define ShowTimerId 4
 #define StatusBarTimerId 5
-
-static bool LoadImageFromResource(IN CImage* pImage,
-    IN INT nResID = 196, IN LPCWSTR lpTyp = L"RCPNG" )
-{
-    if ( pImage == NULL )
-    {
-        return false;
-    }
-    pImage->Destroy();
-
-    //查找资源
-    HRSRC hResource = FindResource(AfxGetResourceHandle(), MAKEINTRESOURCE(196), L"PNG");
-    if ( hResource == NULL )
-    {
-        int res = GetLastError();
-        PRINTMSG("FindResource Err:%d\r\n", res);
-        return FALSE;
-    }
-
-    //加载资源
-    HGLOBAL hImgData = ::LoadResource(AfxGetResourceHandle(), hResource);
-    if ( hImgData == NULL )
-    {
-        int res = GetLastError();
-        PRINTMSG("LoadResource Err:%d\r\n", res);
-        ::FreeResource(hImgData);
-        return false;
-    }
-
-    //锁定内存中的指定资源
-    LPVOID lpVoid = ::LockResource(hImgData);
-
-    LPSTREAM pStream = NULL;
-    DWORD dwSize = ::SizeofResource(AfxGetResourceHandle(), hResource);
-    HGLOBAL hNew = ::GlobalAlloc(GHND, dwSize);
-    LPBYTE lpByte = (LPBYTE)::GlobalLock(hNew);
-    ::memcpy(lpByte, lpVoid, dwSize);
-
-    //解除内存中的指定资源
-    ::GlobalUnlock(hNew);
-
-    //从指定内存创建流对象
-    HRESULT ht = ::CreateStreamOnHGlobal(hNew, TRUE, &pStream);
-    if (ht = S_OK)
-    {
-        GlobalFree(hNew);
-    }
-    else
-    {
-        //加载图片
-        pImage->Load(pStream);
-        GlobalFree(hNew);
-    }
-
-    //释放资源
-    ::FreeResource(hImgData);
-    return true;
-}
 
 CBannerDlg::CBannerDlg(CWnd* pParent /*=NULL*/)
 	: CBaseDlg(CBannerDlg::IDD, pParent)
@@ -99,7 +43,8 @@ CBannerDlg::CBannerDlg(CWnd* pParent /*=NULL*/)
 	m_btnBannerClose.SetTextColor(Color(0,0,0), Color(30,148,218), Color(30,148,218), Color(0,0,0));
 	m_btnBannerClose.SetTextPoint(CPoint(MULX(23), 0));*/
 
-    //m_btnBannerStatusBar.SetImage(IDB_STATUS_BAR, IDB_STATUS_BAR, IDB_STATUS_BAR, IDB_STATUS_BAR);
+    m_pImgStatusBar = CUtility::GetImage( IDB_STATUS_BAR, _T("PNG") );
+    m_staPicStatusBar.SetBkImage( m_pImgStatusBar );
 
 	m_bIsSetTimer = FALSE;
 	m_bIsFinished = TRUE;
@@ -117,12 +62,12 @@ void CBannerDlg::DoDataExchange(CDataExchange* pDX)
 	CBaseDlg::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_STATIC_BANNER, m_staticBanner);
     //DDX_Control(pDX, IDC_BTN_BANNER_CLOSE, m_btnBannerClose );
-	DDX_Control(pDX, IDC_BTN_BANNER_CLOSE, m_btnBannerStatusBar );
+	DDX_Control(pDX, IDC_STATUS_BAR, m_staPicStatusBar );
 	
 }
 
 BEGIN_MESSAGE_MAP(CBannerDlg, CBaseDlg/*CDialogEx*/)
-	ON_BN_CLICKED(IDC_BTN_BANNER_CLOSE, OnBannerClose)
+	//ON_BN_CLICKED(IDC_BTN_BANNER_CLOSE, OnBannerClose)
 	ON_WM_TIMER()
 	ON_WM_NCHITTEST()
 	ON_WM_CREATE()
@@ -154,16 +99,16 @@ BOOL CBannerDlg::PreTranslateMessage(MSG* pMsg)
 
 void CBannerDlg::InitUI()
 {
-	int nWidthTmp = MULX(346);
-	int nHeighTmp = MULY(35);
+	int nWidthTmp = MULX(342+16);
+	int nHeighTmp = MULY(32+8);
 
 	int width = (GetSystemMetrics ( SM_CXSCREEN )-nWidthTmp)/2; 
 	int height= (GetSystemMetrics ( SM_CYSCREEN )-nHeighTmp)/2; 
 	CDialog::SetWindowPos( &wndTopMost, width, -m_dwEdgeHeight, nWidthTmp, nHeighTmp, SWP_HIDEWINDOW );
 
-	m_staticBanner.SetWindowPos( NULL, MULX(25), MULY(10), MULX(296), MULY(16), SWP_SHOWWINDOW/*SWP_NOSIZE*/ );
+	m_staticBanner.SetWindowPos( NULL, MULX(57), MULY(8), MULX(244), MULY(16), SWP_SHOWWINDOW/*SWP_NOSIZE*/ );
 	//m_btnBannerClose.SetWindowPos( NULL, MULX(251), MULY(10), MULX(74), MULY(16), SWP_SHOWWINDOW/*SWP_NOSIZE*/ );
-    //m_btnBannerStatusBar.SetWindowPos( NULL, MULX(2), MULY(27), MULX(342), MULY(6), SWP_HIDEWINDOW/*SWP_NOSIZE*/ );
+    m_staPicStatusBar.SetWindowPos( NULL, MULX(8), MULY(36), MULX(342), MULY(4), SWP_HIDEWINDOW/*SWP_NOSIZE*/ );
 
 	CString strName;
 	if ( g_dlg != NULL )
@@ -171,7 +116,6 @@ void CBannerDlg::InitUI()
 		strName = g_dlg->m_strSysUserName;
 	}
 	
-
 	CString strDes = strName + STRING_PROJECTING;
 	m_staticBanner.SetWindowText(strDes);
 
@@ -194,7 +138,7 @@ int CBannerDlg::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	//获得边缘高度和宽度
 	m_dwEdgeHeight = GetSystemMetrics(SM_CYEDGE);
-	m_dwEdgeWidth  = 10/* GetSystemMetrics(SM_CXFRAME)*/;
+	m_dwEdgeWidth  = 3/* GetSystemMetrics(SM_CXFRAME)*/;
 
 	//可以在这里读取上次关闭后保存的大小
 
@@ -209,6 +153,12 @@ LRESULT CBannerDlg::OnNcHitTest(CPoint point)
 		point.x < GetSystemMetrics(SM_CXSCREEN) + INFALTE)
 	{   //鼠标进入时,如果是从收缩状态到显示状态则开启Timer
 		//SetTimer(HideTimerId,CM_ELAPSE,NULL);
+
+        //隐藏状态条
+        KillTimer(StatusBarTimerId);
+        m_staPicStatusBar.SetStatusBarDraw(FALSE);
+        m_staPicStatusBar.ShowWindow(SW_HIDE);
+
 		m_bIsSetTimer = TRUE;
 
 		m_bIsFinished = FALSE;
@@ -262,45 +212,7 @@ void CBannerDlg::OnTimer(UINT nIDEvent)
 
     if (nIDEvent == StatusBarTimerId)
     {
-        //KillTimer(StatusBarTimerId);
-        HDC hDc = ::GetDC( this->GetSafeHwnd() );
-        HDC hDcMem =  CreateCompatibleDC( hDc);
-
-        //CPaintDC dc(this);
-        //CDC dcMem;
-        //dcMem.CreateCompatibleDC(&dc);  //创建兼容DC
-
-
-        CDC *pDC = CDC::FromHandle(hDcMem);
-        //CBitmap cbmp;
-        //cbmp.LoadBitmap(IDB_STATUS_BAR);  //载入位图
-
-        //BITMAP bitmap;
-        //cbmp.GetBitmap(&bitmap);  //获取位图信息
-        //CRect rect;
-        //PRINTMSG("bitmap: %ld, %ld", bitmap.bmWidth, bitmap.bmHeight);
-
-        CImage ImageBg;
-        if ( LoadImageFromResource(&ImageBg, IDB_STATUS_BAR, _T("RCPNG")) )
-        {
-            //Draw
-            if (pDC != NULL)
-            {
-                //PRINTMSG("Res width:%d, height:%d\r\n", ImageBg.GetWidth(), ImageBg.GetHeight());
-                ImageBg.Draw(pDC->m_hDC, 0, 30, 346, 4, 0, 0, 346,4);
-                ImageBg.Destroy();
-                ReleaseDC(pDC);
-            }
-        }
-
-
-        //CBitmap *pbitold=dcMem.SelectObject(&cbmp);  //将位图选入DC中
-        //BitBlt(hDcMem, 1, 30, 344, 4,
-        //    dcMem.GetSafeHdc(), 0, 0, SRCCOPY);  //以stretchBlt的方式添加位图到相应区域
-
-        //cbmp.DeleteObject();
-        //dcMem.SelectObject(pbitold);
-        //dcMem.DeleteDC();
+        m_staPicStatusBar.RedrawStatusBar();
     }
 
 	CDialog::OnTimer(nIDEvent);
@@ -321,8 +233,10 @@ BOOL CBannerDlg::SetWindowPos(const CWnd* pWndInsertAfter, LPCRECT pCRect, UINT 
 {
     if (m_bShowStatusBar)
     {
-        m_btnBannerStatusBar.ShowWindow(SW_SHOW);
-        SetTimer(StatusBarTimerId,30,NULL);
+        u32 dwSliceNum = m_pImgStatusBar->GetWidth()/STTBAR_LEN;
+        m_staPicStatusBar.SetStatusBarDraw(TRUE, dwSliceNum);
+        m_staPicStatusBar.ShowWindow(SW_SHOW);
+        SetTimer(StatusBarTimerId,100,NULL);
     }
 
 	return CDialog::SetWindowPos(pWndInsertAfter,pCRect->left, pCRect->top,
@@ -355,7 +269,6 @@ void CBannerDlg::Hide()
 
 void CBannerDlg::Show()
 {
-    m_btnBannerStatusBar.ShowWindow(SW_HIDE);
     m_bShowStatusBar = FALSE;
 
 	CRect tRect;

@@ -11,7 +11,7 @@
 !define TSERVICE_AUTO_RUN "$\"$LOCALAPPDATA\NexTransmitter\tservice.exe$\" hide"
 
 ;版本号,注意与touch版本号保持一致
-!define PRODUCT_VER 6.0.0.1.0
+!define PRODUCT_VER 6.0.0.3.0
 !define /date PRODUCT_DATE %Y%m%d
 !define PRODUCT_VERSION "${PRODUCT_VER}.${PRODUCT_DATE}"
 

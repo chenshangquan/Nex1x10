@@ -19,12 +19,12 @@ CMainDlg::CMainDlg(CWnd* pParent /*=NULL*/)
 	m_dwBkResourceID = IDB_MAINBK;
 	m_btnMin.SetImage( IDR_BTN_MIN_NORMAL, IDR_BTN_MIN_PRESS, IDR_BTN_MIN_HOVER, IDR_BTN_MIN_NORMAL);
 	m_btnClose.SetImage( IDR_BTN_CLOSE_NORMAL, IDR_BTN_CLOSE_PRESS, IDR_BTN_CLOSE_HOVER, IDR_BTN_CLOSE_NORMAL);
-	//m_btnPicBk.SetImage( IDB_CONNECT_BK, IDB_CONNECT_BK, IDB_CONNECT_BK,IDB_CONNECT_BK);
+	m_btnPicBk.SetImage( IDB_CONNECT_BK, IDB_CONNECT_BK, IDB_CONNECT_BK,IDB_CONNECT_BK);
 	m_btnPicConnectFail.SetImage( IDB_CONNECT_FAIL, IDB_CONNECT_FAIL,IDB_CONNECT_FAIL,IDB_CONNECT_FAIL);
     m_btnPicStatus.SetImage(IDB_STATUS_CONNECTING, IDB_STATUS_CONNECTING, IDB_STATUS_CONNECTING, IDB_STATUS_CONNECTING);
 	m_btnPicBkUpgrade.SetImage( IDB_UPGRADE_BK, IDB_UPGRADE_BK, IDB_UPGRADE_BK,IDB_UPGRADE_BK);
-	m_pImgBK = CUtility::GetImage( IDB_MAINBK, _T("PNG") );
-	m_staticPic.SetBkImage( m_pImgBK );
+	//m_pImgBK = CUtility::GetImage( IDB_MAINBK, _T("PNG") );
+	//m_staticPic.SetBkImage( m_pImgBK );
 
 	m_stTitle.SetFont(11, g_achDefaultFont);
 	m_stTitle.SetTextColor(DEFAULT_FONT_COLOR);
@@ -140,24 +140,6 @@ void CMainDlg::InitUI()
 	m_stGifConnectSuccess.SetTimerDelay(50);
 
 	m_stGifConnecting.SetImage(IDR_GIF_CONNECTING);
-
-    CPaintDC dc(this); // 用于绘制的设备上下文
-    HDC hDc = ::GetDC( this->GetSafeHwnd() );
-    HDC hDcMem =  CreateCompatibleDC( hDc);
-    CDC *pDC2 = CDC::FromHandle(hDcMem);
-
-    CWnd *pWnd=GetDlgItem(IDC_BTN_PIC_BK);//获得picture控件窗口句柄
-    CDC *pDC=pWnd->GetDC();//获得picture控件的DC
-    CImage* ImageBG;
-    ImageBG = new CImage;
-    ImageBG->Load(_T("F:\\bitmap.bmp"));
-    if (!ImageBG->IsNull())
-    {
-        ImageBG->Draw(pDC->GetSafeHdc(), 0, 0, 410, 130);
-        ReleaseDC(pDC);
-    }
-    delete ImageBG;
-    ImageBG = NULL;
 }
 
 LRESULT CMainDlg::OnNcHitTest(CPoint point)
@@ -206,6 +188,7 @@ void CMainDlg::ShowConnectStatus(NET_STATUS emNetStatus)
 			ShowConnectPicture(CONNECTING);
 		}
 		break;
+    case NET_STATUS_PROJECTING:
 	case NET_STATUS_CONNECTED:
 		{
             m_btnPicStatus.SetImage(IDB_STATUS_CONNECTED, IDB_STATUS_CONNECTED, IDB_STATUS_CONNECTED, IDB_STATUS_CONNECTED);
@@ -323,6 +306,8 @@ void CMainDlg::ShowConnectPicture(CONNECT_STATUS emConnectStatus)
 		break;
 	case CONNECT_BUSINESS_FAIL:
 		{
+            m_btnPicStatus.SetImage(IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL);
+            m_stTip.SetTextColor(TIP_FONT_COLOR_DISCONNECTED);
 			m_stTip.SetWindowText(STRING_CONNECT_BUSINESS_FAIL);
 			m_stTipDes.SetWindowText(STRING_DES_CONNECT_BUSINESS_FAIL);
 			
@@ -337,6 +322,8 @@ void CMainDlg::ShowConnectPicture(CONNECT_STATUS emConnectStatus)
 		break;
     case CONNECT_OVER_RESOLUTION_LIMIT:
         {
+            m_btnPicStatus.SetImage(IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL);
+            m_stTip.SetTextColor(TIP_FONT_COLOR_DISCONNECTED);
             m_stTip.SetWindowText(STRING_CONNECT_RESOLUTION_LIMITED);
             m_stTipDes.SetWindowText(STRING_DES_CONNECT_RESOLUTION_LIMITED);
 
@@ -351,6 +338,8 @@ void CMainDlg::ShowConnectPicture(CONNECT_STATUS emConnectStatus)
         break;
     case CONNECT_NT30_MT_NONSUPPORT:
         {
+            m_btnPicStatus.SetImage(IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL);
+            m_stTip.SetTextColor(TIP_FONT_COLOR_DISCONNECTED);
             m_stTip.SetWindowText(STRING_CONNECT_NT30_MT_NONSUPPORT);
             m_stTipDes.SetWindowText(STRING_DES_CONNECT_NT30_MT_NONSUPPORT);
 

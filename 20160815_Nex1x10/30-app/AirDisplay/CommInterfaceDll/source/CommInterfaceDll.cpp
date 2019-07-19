@@ -195,6 +195,16 @@ bool HID_OpenDevice(THidDevice *ptHidDevice, int overlapped, HID_TYPE emType)
 		return false;
 	}
 
+    //write/read timeout
+    COMMTIMEOUTS commTimeOut;
+    GetCommTimeouts(hidHandle, &commTimeOut);
+    commTimeOut.ReadIntervalTimeout = 0;
+    commTimeOut.ReadTotalTimeoutMultiplier = 1;
+    commTimeOut.ReadTotalTimeoutConstant =10;
+    commTimeOut.WriteTotalTimeoutMultiplier = 1;
+    commTimeOut.WriteTotalTimeoutConstant = 10;
+    SetCommTimeouts(hidHandle, &commTimeOut);
+
 	//获取信息
 	ptHidDevice->hndHidDevice =  hidHandle;
 	ptHidDevice->nOverlapped = overlapped;
