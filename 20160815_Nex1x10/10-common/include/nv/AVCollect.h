@@ -13,6 +13,19 @@
 CAPTURE_API bool AvCheckAuth(char* pcBuf, int dwLen );
 CAPTURE_API void AvMd5Encode(char* szOut, char* szIn);
 
+//抓屏方式
+typedef enum
+{
+	MODE_GDI = 0,    //GDI抓屏方式
+	MODE_DXGI,       //DXGI抓屏方式
+	MODE_NONE
+}EmGrabMode;
+
+//debugging interface
+CAPTURE_API void SetVidPrtSwitchOn(bool bPrtSwitchOn);
+CAPTURE_API bool SetGrabMode(EmGrabMode emGrabMode);
+CAPTURE_API EmGrabMode GetGrabMode();
+
 
 //音频返回nwidth为声道，nheight为采样率，视频是宽度与高度
 typedef void (*PAVCALLBACK)(unsigned char *pBuf, int nSize, int nParam1, int nParam2, void* dwContext,int nTimeTap);

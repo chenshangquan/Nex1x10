@@ -256,5 +256,27 @@ KdvNvAPI u32 KdvNvCALL KdvNv_QkCodeBitRateCmd(IN CONST u32 dwIndex, IN CONST u32
 ***********************************************************************************/
 KdvNvAPI u32 KdvNvCALL KdvNv_EnableQkViewCmd(IN CONST BOOL32 bEnable, IN CONST EmNvQkNotViewReason_Api emReason);
 
+/*******************************************************************************//**
+*@brief         设置投屏器断链检测参数
+*KdvNv_SetQKHBParamCmd
+*
+*@param[IN]     dwIndex:投屏器序号
+*@param[IN]     wHb : 链路检测周期(以秒为单位)
+*@param[IN]     byHbNum : 如果连续ping了uHbNum次没有应答, 主动断开.
+*@return        u32  0：成功， 1：失败
+*@note          更新通知：
+***********************************************************************************/
+KdvNvAPI u32 KdvNvCALL KdvNv_SetQKHBParamCmd(IN CONST u32 dwIndex, IN CONST u16 wHb,  IN CONST u8 byHbNum);
+
+/*******************************************************************************//**
+*@brief         回复投屏器目前升级版本信息
+*KdvNv_SetQKHBParamCmd
+*
+*@param[IN]     dwIndex:投屏器序号
+*@param[IN]     TNVQKUpgradeInfo_Api 升级版本信息
+*@note          更新通知：
+***********************************************************************************/
+KdvNvAPI u32 KdvNvCALL KdvNv_GetQkUpgradeVerRsp(IN CONST u32 dwIndex, IN CONST TNVQKUpgradeInfo_Api tInfo);
+
 /**@}*/
 #endif 

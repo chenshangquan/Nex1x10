@@ -198,7 +198,7 @@ void CMainDlg::ShowConnectStatus(NET_STATUS emNetStatus)
 			ShowConnectPicture(CONNECT_SUCESS);
 		}
 		break;
-	case NET_STATUS_DISCONNECTED:
+	case NET_STATUS_NET_DISCONNECTED:
         {
             m_btnPicStatus.SetImage(IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL);
 			m_stTip.SetWindowText(STRING_NET_STATUS_DISCONNECTED);
@@ -207,12 +207,12 @@ void CMainDlg::ShowConnectStatus(NET_STATUS emNetStatus)
 			ShowConnectPicture(CONNECT_FAIL);
 		}
 		break;
-	case NET_STATUS_NO_NETWORK:
+	case NET_STATUS_FIND_TER_FAIL:
 		{
             m_btnPicStatus.SetImage(IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL);
-			m_stTip.SetWindowText(STRING_NET_STATUS_NO_NETWORK);
+			m_stTip.SetWindowText(STRING_NET_STATUS_FIND_TER_FAIL);
             m_stTip.SetTextColor(TIP_FONT_COLOR_DISCONNECTED);
-			m_stTipDes.SetWindowText(STRING_DES_NET_STATUS_NO_NETWORK);
+			m_stTipDes.SetWindowText(STRING_DES_NET_STATUS_FIND_TER_FAIL);
 			ShowConnectPicture(CONNECT_FAIL);
 		}
 		break;
@@ -243,15 +243,24 @@ void CMainDlg::ShowConnectStatus(NET_STATUS emNetStatus)
 			ShowConnectPicture(CONNECT_FAIL);
 		}
 		break;
-	case NET_STATUS_RESETWIFI:
+	case NET_STATUS_TER_DISCONNECTED:
 		{
             m_btnPicStatus.SetImage(IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL);
-			m_stTip.SetWindowText(STRING_NET_STATUS_RESETWIFI);
+			m_stTip.SetWindowText(STRING_NET_STATUS_TER_DISCONNECTED);
             m_stTip.SetTextColor(TIP_FONT_COLOR_DISCONNECTED);
-			m_stTipDes.SetWindowText(STRING_DES_NET_STATUS_RESETWIFI);
+			m_stTipDes.SetWindowText(STRING_DES_NET_STATUS_TER_DISCONNECTED);
 			ShowConnectPicture(CONNECT_FAIL);
 		}
 		break;
+    case NET_STATUS_RECONNECTTER_FAIL:
+        {
+            m_btnPicStatus.SetImage(IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL);
+            m_stTip.SetWindowText(STRING_NET_STATUS_RECONNECTTER_FAIL);
+            m_stTip.SetTextColor(TIP_FONT_COLOR_DISCONNECTED);
+            m_stTipDes.SetWindowText(STRING_DES_NET_STATUS_RECONNECTTER_FAIL);
+            ShowConnectPicture(CONNECT_FAIL);
+        }
+        break;
     case NET_STATUS_FIND_SSID_FAIL:
         {
             m_btnPicStatus.SetImage(IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL);

@@ -2,11 +2,15 @@
 echo NexTransmitter.exe build begin
 
 rem 获取NSIS安装路径，softDisk:盘符，softPathTmp:盘符冒号后面的字符串，“delims=: ”表示冒号和空格是分隔符
+goto start
 for /f "skip=2 tokens=3* delims=: " %%j in ('reg query HKEY_LOCAL_MACHINE\SOFTWARE\NSIS /ve') do (
    set softDisk=%%j
    set softPathTmp=%%k
 )
 set softPath=%softDisk%:%softPathTmp%
+:start
+rem 获取NSIS安装路径，从环境变量中读取
+set softPath=%NSIS%
 
 set compileVerPath=..\..\..\10-common\version\release\win32\AirDisplay
 

@@ -51,10 +51,12 @@ public:
     {
         m_pImgBk = pImgBk;
     }
-    void SetStatusBarDraw(BOOL bSttBarDraw, u32 dwSttBarDrawNum = 0)
+    void SetStatusBarDraw(BOOL bSttBarDraw, u32 dwSttBarWid = 0, u32 dwSttBarHei = 0, u32 dwSttBarDrawNum = 0)
     {
         m_bSttBarDraw = bSttBarDraw;
         m_dwSttBarDrawNum = dwSttBarDrawNum;
+        m_dwSttBarWidth = dwSttBarWid;
+        m_dwSttBarHeight = dwSttBarHei;
         m_dwSttBarDrawCount = 0;
     }
     void RedrawStatusBar();
@@ -66,6 +68,8 @@ private:
 
     BOOL    m_bSttBarDraw;              //状态条绘图
     u32     m_dwSttBarDrawNum;          //状态条分割总片数
+    u32     m_dwSttBarWidth;            //状态条宽度
+    u32     m_dwSttBarHeight;           //状态条高度
     u32     m_dwSttBarDrawCount;        //状态条移动绘图计数
 };
 

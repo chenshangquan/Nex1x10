@@ -165,6 +165,14 @@ enum EmBLLNvAccessMsg
 	MESSAGE(Ev_NV_BLL_NVDownloadResultFromJD_Nty)
 	BODY(nv::TBOOL32, tbResult)
 
+	/*<<设置投屏器断链检测参数>>
+	*login_rsp ：账号验证应答结果
+	*传输方向：access->dispatch->nvc
+	*/
+	MESSAGE(Ev_NV_BLL_NVSetQKHbParm_Cmd)
+	BODY(nv::TU16, wHb)
+	BODY(nv::TU8, wHb)
+
 #if !defined(_MESSAGE_HELP_)
     EV_BLL_END(ACCESS) = EVSEG_BLL_ACCESS_END
 };

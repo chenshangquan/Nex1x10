@@ -857,7 +857,7 @@ BOOL CtouchDlg::OnInitDialog()
 	m_ntIcon.cbSize = sizeof(NOTIFYICONDATA);                     //该结构体变量的大小
 	m_ntIcon.hIcon = m_hIcon;                                     //图标，通过资源ID得到
 	m_ntIcon.hWnd = this->m_hWnd;                                 //接收托盘图标通知消息的窗口句柄
-	TCHAR atip[128] = _T("NexPresence");                          //鼠标设上面时显示的提示
+	TCHAR atip[128] = _T("NexTransmitter");                       //鼠标设上面时显示的提示
 	StrNCpy(m_ntIcon.szTip, atip, 128);  
 
 	m_ntIcon.uCallbackMessage = WM_TRAY_NOTIFYICON;               //应用程序定义的消息ID号
@@ -865,10 +865,18 @@ BOOL CtouchDlg::OnInitDialog()
 	::Shell_NotifyIconW(NIM_ADD, &m_ntIcon);                      //在系统通知区域增加这个图标
 
 	//初始化用于变化的托盘图标
-	m_hTrayIcon[0] = AfxGetApp()->LoadIcon(IDI_TRAYICON_DOWN);
-    m_hTrayIcon[1] = AfxGetApp()->LoadIcon(IDI_TRAYICON_MIDDLE_DOWN);
-	m_hTrayIcon[2] = AfxGetApp()->LoadIcon(IDI_TRAYICON_MIDDLE_UP);
-	m_hTrayIcon[3] = AfxGetApp()->LoadIcon(IDI_TRAYICON_UP);
+	m_hTrayIcon[0] = AfxGetApp()->LoadIcon(IDI_TRAYICON1);
+    m_hTrayIcon[1] = AfxGetApp()->LoadIcon(IDI_TRAYICON2);
+	m_hTrayIcon[2] = AfxGetApp()->LoadIcon(IDI_TRAYICON3);
+    m_hTrayIcon[3] = AfxGetApp()->LoadIcon(IDI_TRAYICON4);
+    m_hTrayIcon[4] = AfxGetApp()->LoadIcon(IDI_TRAYICON5);
+    m_hTrayIcon[5] = AfxGetApp()->LoadIcon(IDI_TRAYICON6);
+    m_hTrayIcon[6] = AfxGetApp()->LoadIcon(IDI_TRAYICON7);
+    m_hTrayIcon[7] = AfxGetApp()->LoadIcon(IDI_TRAYICON8);
+    m_hTrayIcon[8] = AfxGetApp()->LoadIcon(IDI_TRAYICON9);
+    m_hTrayIcon[9] = AfxGetApp()->LoadIcon(IDI_TRAYICON10);
+    m_hTrayIcon[10] = AfxGetApp()->LoadIcon(IDI_TRAYICON11);
+    m_hTrayIcon[11] = AfxGetApp()->LoadIcon(IDI_TRAYICON12);
 
     //创建temp文件夹
     m_strLogoPath = CLogo::GetModuleFullPath() + TP_TEMPFILE_PATH;
@@ -1178,7 +1186,7 @@ void CtouchDlg::OnTimer(UINT_PTR nIDEvent)
 				m_ntIcon.hIcon = m_hTrayIcon[nCount];  //图标，通过资源ID得到
 				::Shell_NotifyIconW(NIM_MODIFY, &m_ntIcon);      
 				nCount++;
-				if ( 4 == nCount )
+				if ( 12 == nCount )
 				{
 					nCount = 0;
 				}
@@ -1361,7 +1369,7 @@ void CtouchDlg::OnTimer(UINT_PTR nIDEvent)
 		break;
     case ThreadExitTimerID:
         {
-            if ( 4 == m_nThreadExitCount )
+            if ( 5 == m_nThreadExitCount )
             {
                 KillTimer(ThreadExitTimerID);
                 PRINTMSG_TIME("AVThread Exit Failed, m_bVideoThreadRun:%d, m_bAudioThreadRun:%d\r\n",
@@ -1524,17 +1532,17 @@ LRESULT CtouchDlg::OnNotifyIcon(WPARAM wparam, LPARAM lparam)
 		popMenu.SetFontInfo(18, "微软雅黑");
 		popMenu.InstallHook(theApp.m_hInstance);
 
-		popMenu.AppendCheckItem(MF_STRING, ID_KEEP_WIDTH_HEIGHT, _T("保持宽高比"), _T(""), IDI_MENU_CHECK_NORMAL, IDI_MENU_CHECK_HOVER);
+		//popMenu.AppendCheckItem(MF_STRING, ID_KEEP_WIDTH_HEIGHT, _T("保持宽高比"), _T(""), IDI_MENU_CHECK_NORMAL, IDI_MENU_CHECK_HOVER);
 		popMenu.AppendItem(MF_STRING, ID_ABOUT, _T("关于"), _T(""), 0);
 		
-		if (m_bKeepWidthHeight)
+		/*if (m_bKeepWidthHeight)
 		{
 			popMenu.CheckMenuItem(ID_KEEP_WIDTH_HEIGHT, MF_CHECKED);
 		}
 		else
 		{
 			popMenu.CheckMenuItem(ID_KEEP_WIDTH_HEIGHT, MF_UNCHECKED);
-		}
+		}*/
 		
 		
 		CPoint pos;
@@ -1884,6 +1892,7 @@ void CtouchDlg::SolveReadInfo(BYTE* recvDataBuf)
 		break;
 	case Ev_NV_REQUSTPCNAME_Ntf:
 		{
+            PRINTMSG("读线程--收到用户名请求通知\r\n");
 			//发送PC用户名
 			SendCmdToHid(Ev_NV_UserInfo_Cmd);
 		}
@@ -2191,14 +2200,14 @@ void CtouchDlg::SendCmdToHid( int nCmd )
 
 			TFrameInfo tFrameInfo;
 			memset(&tFrameInfo, 0, sizeof(TFrameInfo));
-            if ( m_bNeedCodeConsult )
+            /*if ( m_bNeedCodeConsult )
             {
                 tFrameInfo.m_dwPCWidth = m_tVideoEncParam.m_wEncVideoWidth;
                 tFrameInfo.m_dwPCHeight = m_tVideoEncParam.m_wEncVideoHeight;
                 tFrameInfo.m_dwFrame = m_tVideoEncParam.m_byFrameRate;
                 tFrameInfo.m_dwBitRate = m_tVideoEncParam.m_wBitRate;
             }
-            else
+            else*/
             {
                 tFrameInfo.m_dwPCWidth = nWidth;
                 tFrameInfo.m_dwPCHeight = nHeight;
@@ -2345,7 +2354,7 @@ void CtouchDlg::StopProjectScreen(bool bNotifyHid)
         if (m_bVideoThreadRun || m_bAudioThreadRun)
         {
             m_nThreadExitCount = 0;
-            SetTimer(ThreadExitTimerID, 200, NULL);
+            SetTimer(ThreadExitTimerID, 500, NULL);
         }
         else
         {
@@ -2372,13 +2381,13 @@ void CtouchDlg::SolveNetStatusNty( NET_STATUS emStatus )
 		}
 		else
 		{
-			if ( emStatus == NET_STATUS_DISCONNECTED
-				|| emStatus == NET_STATUS_NO_NETWORK
+			if ( emStatus == NET_STATUS_NET_DISCONNECTED
 				|| emStatus == NET_STATUS_NO_MATCH
 				|| emStatus == NET_STATUS_CONNECTING
 				|| emStatus == NET_STATUS_RESETQUICKSHARE
-				|| emStatus == NET_STATUS_RESETWIFI
-				|| emStatus == NET_STATUS_FIND_SSID_FAIL )
+				|| emStatus == NET_STATUS_FIND_TER_FAIL
+                || emStatus == NET_STATUS_TER_DISCONNECTED
+                || emStatus == NET_STATUS_FIND_SSID_FAIL )
 			{
 				StopProjectScreen(true);
 				m_pcMainDlg->ShowConnectStatus(emStatus);
@@ -2400,7 +2409,7 @@ THidDevice & CtouchDlg::GetHidDevie(HID_TYPE emType)
 
 void CtouchDlg::StartTrayIconChange()
 {
-	SetTimer(TrayIconChangeTimerID, 300, NULL);
+	SetTimer(TrayIconChangeTimerID, 60, NULL);
 }
 
 void CtouchDlg::StopTrayIconChange()
@@ -3063,12 +3072,12 @@ void CtouchDlg::SolvePCNty()
 	}
 
 	//系统重启、关机或注销处理
-	if (m_bIsRebootClose)
+	/*if (m_bIsRebootClose)
 	{
 		PRINTMSG("\r\n重启、关机或注销:SolvePCNty结束\r\n");
 		m_bIsRebootClose = false;
 		UdiskOut();
-	}
+	}*/
 }
 
 LRESULT CtouchDlg::OnPCSleepResume( WPARAM wParam, LPARAM lParam )
@@ -3090,12 +3099,13 @@ LRESULT CtouchDlg::OnPCRebootClose( WPARAM wParam, LPARAM lParam )
 		PRINTMSG("\r\n收到系统重启、关机或注销消息\r\n");
 		//投屏中拔掉先停止投屏
 		StopProjectScreen(false);
+        UdiskOut();
 
-		m_bIsRebootClose = true;
+		/*m_bIsRebootClose = true;
 		m_nSendPCDisconnetCount = 0;
 
 		SendCmdToHid(Ev_NV_PCDisconnet_Cmd);
-		SetTimer(SendPCDisconnetTimerID, 200, NULL);
+		SetTimer(SendPCDisconnetTimerID, 200, NULL);*/
 	}
 
 	return 0;

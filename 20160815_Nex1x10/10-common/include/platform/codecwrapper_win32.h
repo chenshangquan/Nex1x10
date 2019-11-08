@@ -111,83 +111,105 @@ using namespace std;
 #define MEDIA_API _declspec(dllimport)
 #endif
 
-#define 	CAMERAPARAM_HUE				0
-#define 	CAMERAPARAM_WHITEBALANCE	1
-#define     CAMERAPARAM_BRIGHTNESS		2
-#define 	CAMERAPARAM_CONTRAST		3
-#define 	CAMERAPARAM_SATURATION		4
-#define 	CAMERAPARAM_SHARPNESS		5
+//音频模式 (位宽:16bit)
+enum emAudioMode
+{
+	//mp3
+	AUDIO_MODE_WORST,                //最差  kdaudcodec.dll不支持
+	AUDIO_MODE_BAD,                  //差    kdaudcodec.dll不支持
+	AUDIO_MODE_NORMAL,               //一般  kdaudcodec.dll不支持
+	AUDIO_MODE_FINE,                 //好    kdaudcodec.dll不支持
+	AUDIO_MODE_BEST,                 //最好  
+	//G.711
+	AUDIO_MODE_PCMA,                 //G711 A Law
+	AUDIO_MODE_PCMU,                 //G711 U Law 
+	//G.723
+	AUDIO_MODE_G723_6,               // kdaudcodec.dll不支持
+	AUDIO_MODE_G723_5,               // kdaudcodec.dll不支持
+	//G.728 
+	AUDIO_MODE_G728,			        
+	//G.722
+	AUDIO_MODE_G722,			        
+	//G.729
+	AUDIO_MODE_G729,			        
+	//G.7221 24kbps
+	AUDIO_MODE_G7221_24,		     // 24kbps
+	//ADPCM
+	AUDIO_MODE_ADPCM,		         // 网络不支持
+	//AACLC_32K_STEREO
+	AUDIO_MODE_AACLC_32,             // 32KHz
+	//AACLD_32K_STEREO
+	AUDIO_MODE_AACLD_32_SINGLE,      // 32KHz
+	//AACLC_32K_MONO
+	AUDIO_MODE_AACLC_32_SINGLE,	     // 32KHz
+	//G.7221 32kbps
+	AUDIO_MODE_G7221_32,			 // 32kbps
+	//G.7221 48kkbps
+	AUDIO_MODE_G7221_48,			 // 48kbps
+	//G719
+	AUDIO_MODE_G719,				    
+	//AACLD_32K_MONO
+	AUDIO_MODE_AACLD_32_UNDEF,	     // 32KHz
+	//IBLC
+	AUDIO_MODE_IBLC,                 // mediawrapper.dll 编解码
+	//ISAC
+	AUDIO_MODE_ISAC_16,              // mediawrapper.dll 编解码
+	AUDIO_MODE_ISAC_32,              // mediawrapper.dll 编解码
+	//OPUS
+	AUDIO_MODE_OPUS,                 // mediawrapper.dll 编解码
+	//STDAACLD每一帧包含双子帧,即编码接口奇数帧进去，编码返回正确，输出长度为0，
+	//偶数帧进，编码返回正确，输出长度非0，然后网络才发送。
+	AUDIO_MODE_STDAACLD_32K_MONO,    // 32KHz
+	AUDIO_MODE_STDAACLD_32K_STEREO,  // 32KHz
+	AUDIO_MODE_STDAACLD_48K_MONO,    // 48KHz
+	AUDIO_MODE_STDAACLD_48K_STEREO,  // 48KHz
+	AUDIO_MODE_MAX,
+};
+//视频采集模式
+enum emVidCapMode
+{
+	CAP_CAMERA_ONLY     = (u8)0x02, // 摄像头采集
+	CAP_DESKTOP_ONLY    = (u8)0x04, // DESKTOP桌面采集
+	CAP_DESKSHARE_ONLY  = (u8)0x08, // 无线投屏
+	CAP_FILE_AV_BOTH    = (u8)0x08, // 以指定文件（目前支持kdc录像机产生的asf文件）的
+};
+//视频采集数据格式
+enum emVidCapFormat
+{
+	CAP_YUV_FORMAT_MJPG,
+	CAP_YUV_FORMAT_I420,
+	CAP_YUV_FORMAT_RGB24,
+	CAP_YUV_FORMAT_YUV2,
+};
+//摄像头调节参数
+enum emCameraParam
+{
+	CAMERAPARAM_HUE,
+	CAMERAPARAM_WHITEBALANCE,
+	CAMERAPARAM_BRIGHTNESS,
+	CAMERAPARAM_CONTRAST,
+	CAMERAPARAM_SATURATION,
+	CAMERAPARAM_SHARPNESS,
+};
+//抓图图片类型
+enum emSnapshotPicType
+{
+	PIC_ENCODE_JPEG  = (u8)1,  //抓取图片，可选保存的图片格式
+	PIC_ENCODE_BMP   = (u8)2,  // 
+};
+//编码能力级别
+enum emEncQualityLevel
+{
+	LV_QUALITY_PRIOR,       //BP慢速级别编码，ENC_QUALITY_LEVEL_4
+	LV_SPEED_PRIOR,         //BP快速级别编码，ENC_QUALITY_LEVEL_2
+	LV_HPSINGLE_PRIOR,      //HP编码单线程，ENC_QUALITY_LEVEL_11
+	LV_HPMULTE_PRIOR,       //HP编码多线程，ENC_QUALITY_LEVEL_13
+};
 
-
-#define CAP_YUV_FORMAT_MJPG			(u8)0
-#define CAP_YUV_FORMAT_I420			(u8)1
-#define CAP_YUV_FORMAT_RGB24		(u8)2
-#define CAP_YUV_FORMAT_YUV2			(u8)3
-
-/****** 音频模式 (位宽:16bit) ******/
-//mp3
-#define	 AUDIO_MODE_WORST               (u8)0 //最差  kdaudcodec.dll不支持
-#define	 AUDIO_MODE_BAD                 (u8)1 //差    kdaudcodec.dll不支持
-#define	 AUDIO_MODE_NORMAL              (u8)2 //一般  kdaudcodec.dll不支持
-#define	 AUDIO_MODE_FINE                (u8)3 //好    kdaudcodec.dll不支持
-#define	 AUDIO_MODE_BEST                (u8)4 //最好  
-//G.711
-#define  AUDIO_MODE_PCMA                (u8)5 //G711 A Law
-#define  AUDIO_MODE_PCMU                (u8)6 //G711 U Law 
-//G.723
-#define AUDIO_MODE_G723_6               (u8)7 // kdaudcodec.dll不支持
-#define AUDIO_MODE_G723_5               (u8)8 // kdaudcodec.dll不支持
-//G.728 
-#define AUDIO_MODE_G728			        (u8)9 
-//G.722
-#define AUDIO_MODE_G722			        (u8)10 
-//G.729
-#define AUDIO_MODE_G729			        (u8)11 
-//G.7221 24kbps
-#define AUDIO_MODE_G7221_24		        (u8)12 // 24kbps
-//ADPCM
-#define AUDIO_MODE_ADPCM		        (u8)13 // 网络不支持
-//AACLC_32K_STEREO
-#define AUDIO_MODE_AACLC_32             (u8)14 // 32KHz
-//AACLD_32K_STEREO
-#define AUDIO_MODE_AACLD_32_SINGLE      (u8)15 // 32KHz
-//AACLC_32K_MONO
-#define AUDIO_MODE_AACLC_32_SINGLE	    (u8)16 // 32KHz
-//G.7221 32kbps
-#define AUDIO_MODE_G7221_32			    (u8)17 // 32kbps
-//G.7221 48kkbps
-#define AUDIO_MODE_G7221_48			    (u8)18 // 48kbps
-//G719
-#define AUDIO_MODE_G719				    (u8)19
-//AACLD_32K_MONO
-#define AUDIO_MODE_AACLD_32_UNDEF	    (u8)20 // 32KHz
-//IBLC
-#define AUDIO_MODE_IBLC                 (u8)21 // mediawrapper.dll 编解码
-//ISAC
-#define AUDIO_MODE_ISAC_16              (u8)22 // mediawrapper.dll 编解码
-#define AUDIO_MODE_ISAC_32              (u8)23 // mediawrapper.dll 编解码
-//OPUS
-#define AUDIO_MODE_OPUS                 (u8)24 // mediawrapper.dll 编解码
-//STDAACLD每一帧包含双子帧,即编码接口奇数帧进去，编码返回正确，输出长度为0，
-//偶数帧进，编码返回正确，输出长度非0，然后网络才发送。
-#define AUDIO_MODE_STDAACLD_32K_MONO    (u8)25 // 32KHz
-#define AUDIO_MODE_STDAACLD_32K_STEREO  (u8)26 // 32KHz
-#define AUDIO_MODE_STDAACLD_48K_MONO    (u8)27 // 48KHz
-#define AUDIO_MODE_STDAACLD_48K_STEREO  (u8)28 // 48KHz
-
-
-
-#define  CAP_CAMERA_ONLY         (u8)0x02 // CAMERA视频数据捕获
-#define  CAP_DESKTOP_ONLY        (u8)0x04 // DESKTOP桌面视频数据捕获
-#define  CAP_DESKSHARE_ONLY		 (u8)0x08 //   无线投屏
-#define  CAP_FILE_AV_BOTH		 (u8)0x08 //以指定文件（目前支持kdc录像机产生的asf文件）的
-
-#define MAX_DEV_NAME_LEN		  256
-
-#define PIC_ENCODE_JPEG			 (u8)1     //抓取图片，可选保存的图片格式
-#define PIC_ENCODE_BMP			 (u8)2     // 
-
+//
+#define MAX_DEV_NAME_LEN		 256
 #define MAX_FILE_PATH_LEN        256
+
 /*编码器参数*/
 typedef struct tagInitVidEncoder
 {  
@@ -235,7 +257,10 @@ typedef struct VideoEncParam
 	u16 m_wEncVideoHeight;//编码设置图像高
 	u8	m_byFrameRate;  /*帧率(default:25)*/
 	u8  m_byEncLevel;	//编码能力级别 0:LV_QUALITY_PRIOR,1:LV_SPEED_PRIOR,2:LV_HPSINGLE_PRIOR,3:LV_HPMULTE_PRIOR
+	//u8  m_bySingleSlice; /*控制 H264是否编码单slice（0:多slice, 1:单slice）*/
+	//u8  m_byFixedIdrQp; /*是否固定I帧QP（0:不固定, 1:固定）默认固定的QP=50*/
 }TVideoEncParam;
+
 typedef struct VideoCapParam
 {
 	u16		wVideoWidth; //视频捕获图像宽度(default:640)
@@ -245,12 +270,12 @@ typedef struct VideoCapParam
 	u8  	byFormat;    // CAP_YUV_FORMAT_MJPG CAP_YUV_FORMAT_I420 等 
 }TVideoCapParam;
 
-
 typedef struct TDevNameInfo
 {
 	wchar_t m_achDevName[MAX_DEV_NAME_LEN];
 	wchar_t m_achDevGUID[MAX_DEV_NAME_LEN];   //若重名，此字符串不一致
 }TDevNameInfo;
+
 //硬编硬解状态
 enum emHwStatus
 {
@@ -287,14 +312,18 @@ typedef struct KdvEncStatus
 typedef struct KdvEncStatis
 {
     u8   m_byVideoFrameRate;/*视频帧率*/
-    u32  m_dwVideoBitRate;  /*视频码流速度*/
-    u32  m_dwAudioBitRate;  /*语音码流速度*/
+    u32  m_dwVideoBitRate;  /*视频码流速度 Kbps*/
+    u32  m_dwAudioBitRate;  /*语音码流速度 Kbps*/
     u32  m_dwVideoPackLose; /*视频丢帧数*///网络发送BUF满丢帧数
     u32  m_dwVideoPackError;/*视频错帧数*///编码失败次数
     u32  m_dwAudioPackLose; /*语音丢帧数*/
     u32  m_dwAudioPackError;/*语音错帧数*///编码失败次数
-	u32  m_wAvrVideoBitRate;   /*1分钟内视频编码平均码率*/
-	u32	 m_wAvrAudioBitRate;   /*1分钟内语音编码平均码率*/
+	u32  m_wAvrVideoBitRate;   /*1分钟内视频编码平均码率 Kbps*/
+	u32	 m_wAvrAudioBitRate;   /*1分钟内语音编码平均码率 Kbps*/
+	/*---从网络接口获取的参数---*/
+	u32  m_dwPackSendNum; //已发送的包数
+	u32  m_dwFrameNum;    //已发送的帧数
+	u32  m_dwFrameLoseNum;//由于缓冲满等原因造成的发送的丢帧数
 }TKdvEncStatis;
 
 
@@ -527,18 +556,20 @@ public:
 	u16		GetAudioCapAutoGain(BOOL32 &bEnable);
 	//音频采集诊断 ---taoz
 	u16		SetAudioCapTest(BOOL32 bActive); 
-	//设置采集音量 非系统
+	//设置采集音量 非系统 0~255
 	u16		SetAudioSoftVolume(u8 byVolume ); 	
-	//获取采集音量
+	//获取采集音量 0~255
 	u16		GetAudioSoftVolume(u8 &byVolume );
-	//设置采集音量 系统
+	//设置采集音量 系统 0~255
 	u16		SetAudioVolume(u8 byVolume ); 
-	//获取采集音量
+	//获取采集音量 0~255
 	u16		GetAudioVolume(u8 &byVolume );
 	//选择音频源
 	u16		SelectAudioSource(const wchar_t *pszDevName = NULL, const wchar_t *pszGUIDName = NULL);
 	//获取当前音频采集设备信息
 	u16     GetCurAudCapDev(TDevNameInfo &tDevNameInfo);
+	/*获取STDAACLD的编码信息，把u8Conf通过协议层传到解码端，由媒控设置给解码器*/
+	u16     GetAudStdAacEncPrm(u8 byAudioMode, TMcAudAacConfPrm & tConfPrm);
 
 	/************************************ video ***********************************/
 	//初始化视频编码器，如果不调用，默认后面的相关接口都无效
@@ -623,10 +654,10 @@ public:
 	u16     SetVideoRtcpStatus(RTCPSTATUS status);
 	//是否剥掉视频RTP扩展头
 	u16     VideoEnableRtpExStrip(BOOL32 bEnable);
-	//使能/关闭动态带宽检测 dwMaxRate:最大编码码率(单位kbps) dwMinRate:最小编码码率 dwStartRate：初始编码码率
-	u16		ResetBwe(BOOL32 bEnable, u32 dwMaxRate, u32 dwMinRate, u32 dwStartRate);
-	//获取动态带宽检测结果 pNumber:接收者个数 pReceivers:带宽检测结果 pRevision:接收组版本
-	u16		GetBweStatus(u32* pNumber, TBweReceiver* pReceivers, u32* pRevision);
+	////（Mnet旧版本不支持）使能/关闭动态带宽检测  (TMnetBweCfg中的码率单位bps)
+	//u16		ResetBwe(BOOL32 bEnable, TMnetBweCfg *pCfg);
+	////（Mnet旧版本不支持）获取动态带宽检测结果 pNumber:接收者个数 pReceivers:带宽检测结果 pRevision:接收组版本
+	//u16		GetBweStatus(u32 *pNumber, TMnetBweReceiver *pReceivers);
 	//开始发送图像
 	u16		StartSendVideo(int  dwSSRC = 0);
 	//停止发送图像
@@ -643,9 +674,11 @@ public:
 	u16		SetVidFecXY(s32 nDataPackNum, s32 nCrcPackNum);
 	//视频动态载荷的PT值的设定
 	u16		SetVideoActivePT(u8 byLocalActivePT, u8 byRemoteActivePT = MEDIA_TYPE_NULL );
+	////（Mnet旧版本不支持）设置会议参数
+	//u16		SetVidConfMode(TMnetConfMode *pCfg);
 	//设置视频编码加密key字串、加密的载荷PT值 以及 解密模式 Aes or Des
 	u16		SetVidEncryptKey( s8 *pszKeyBuf, u16 wKeySize, u8 byEncryptMode ); 
-	////设置响应对端关键帧请求的回调函数
+	////（Mnet旧版本不支持）设置响应对端关键帧请求的回调函数
 	//u16		SetRespondToMnetRequestIDRFrameCB(PKeyFrameRequestCallback pCallback, void *pContext);
 	//使能加密
 	u16     SetVidEnableCrypt( BOOL32 bEnableCrypt, TMnetCryptCfg *ptMnetCryptCfg);
@@ -669,16 +702,16 @@ public:
 	//获取视频网络传输开销百分比
 	u16     GetVidTransportOverhead(u8 *byPercent);
 	
-	////设置通道的秘钥类型为MNET_CRYPT_KEY_DYNAMIC的回调函数
+	////（Mnet旧版本不支持）设置通道的秘钥类型为MNET_CRYPT_KEY_DYNAMIC的回调函数
 	//u16     SetVidMnetCryptCfgSetDynamicKey(TMnetCryptCfg* ptCfg,TMnetCryptDataType tDataType,
 	//										TMnetCryptReKeyMode tReKeyMode);
-	////设置TMnetCryptDynMode类型为MNET_DYM_BY_ID的参数
+	////（Mnet旧版本不支持）设置TMnetCryptDynMode类型为MNET_DYM_BY_ID的参数
 	//u16     SetVidMnetCryptCfgSetDynamicKeyByIdAttr(TMnetCryptCfg* ptCfg, TMnetCryptDataType tDataType,
 	//												TMnetCryptRekeyRate tRekeyRate, void* pContext, u16 wIdLen,
 	//												PFNREKEYALLOCCB_BYID pfnAllocKeyCB,
 	//												PFNREKEYFINDCB_BYID pfnFindKeyCB);
 
-	////设置TMnetCryptDynMode类型为MNET_DYM_BY_SN的参数
+	////（Mnet旧版本不支持）设置TMnetCryptDynMode类型为MNET_DYM_BY_SN的参数
 	//u16     SetVidMnetCryptCfgSetDynamicKeyBySnAttr(TMnetCryptCfg* ptCfg, TMnetCryptDataType tDataType, void* pContext,
 	//												PFNREKEYALLOCCB_BYSN pfnAllocKeyCB,
 	//												PFNREKEYFINDCB_BYSN pfnFindKeyCB);
@@ -730,7 +763,8 @@ public:
 	//实现对G7221.c码流的翻转,对码流数据实现奇偶位翻转:  bReverse - 是否翻转(默认值FALSE,不翻转)
 	//(暂时无用)
 	u16		SetReverseG7221c(BOOL32 bReverse);
-
+	////（Mnet旧版本不支持）设置会议参数
+	//BOOL32	SetAudConfMode(TMnetConfMode *pCfg);
 
 	//使能加密
 	u16     SetAudEnableCrypt( BOOL32 bEnableCrypt, TMnetCryptCfg *ptMnetCryptCfg);
@@ -751,15 +785,15 @@ public:
 	u16     SetAudMnetCryptCfgSetPkt(TMnetCryptCfg* ptCfg, TMnetCryptDataType tDataType, TMnetCryptPktType tPktType);
 	//设置加密用的某个通道的认证tag长度,用于srtp
 	u16		SetAudMnetCryptCfgSetAuthTag(TMnetCryptCfg* ptCfg, TMnetCryptDataType tDataType, TMnetCryptTagLen tTagLen);
-	////设置通道的秘钥类型为MNET_CRYPT_KEY_DYNAMIC的回调函数
+	////（Mnet旧版本不支持）设置通道的秘钥类型为MNET_CRYPT_KEY_DYNAMIC的回调函数
 	//u16     SetAudMnetCryptCfgSetDynamicKey(TMnetCryptCfg* ptCfg,TMnetCryptDataType tDataType,
 	//										TMnetCryptReKeyMode tReKeyMode);
-	////设置TMnetCryptDynMode类型为MNET_DYM_BY_ID的参数
+	////（Mnet旧版本不支持）设置TMnetCryptDynMode类型为MNET_DYM_BY_ID的参数
 	//u16     SetAudMnetCryptCfgSetDynamicKeyByIdAttr(TMnetCryptCfg* ptCfg, TMnetCryptDataType tDataType,
 	//												TMnetCryptRekeyRate tRekeyRate, void* pContext, u16 wIdLen,
 	//												PFNREKEYALLOCCB_BYID pfnAllocKeyCB,
 	//												PFNREKEYFINDCB_BYID pfnFindKeyCB);
-	////设置TMnetCryptDynMode类型为MNET_DYM_BY_SN的参数
+	////（Mnet旧版本不支持）设置TMnetCryptDynMode类型为MNET_DYM_BY_SN的参数
 	//u16     SetAudMnetCryptCfgSetDynamicKeyBySnAttr(TMnetCryptCfg* ptCfg, TMnetCryptDataType tDataType, void* pContext,
 	//												PFNREKEYALLOCCB_BYSN pfnAllocKeyCB,
 	//												PFNREKEYFINDCB_BYSN pfnFindKeyCB);	
@@ -864,6 +898,8 @@ public:
 	u16    SetAudioDecParam(u32 dwSamplePerSecond, u32 dwChannels);
 	//音频播放测试
 	u16    SetAuditoPlyTest(BOOL32 bActive);
+	/*设置STDAACLD的编码信息，u8Conf来自于协议层传到解码端，由媒控设置给解码器*/
+	u16    SetAudStdAacDecPrm(u8 byAudioMode, TMcAudAacConfPrm  tConfPrm); 
 
 	/********************************* video **************************************/
 	//初始化视频解码器
@@ -920,8 +956,8 @@ public:
 	u16    VideoRcvEnableKeepAlive(BOOL32 bEnable, const TMnetNetParam *ptKeepAliveParam);
 	//设置RTCP状态
 	u16    SetVideoRtcpStatus(RTCPSTATUS status);
-	//使能/关闭动态带宽检测
-	u16    ResetBwe(BOOL32 bEnable);
+	////（Mnet旧版本不支持）使能/关闭动态带宽检测
+	//u16    ResetBwe(BOOL32 bEnable);
 	//设置最大接收延迟及播放策略
 	u16    SetMaxDelay(u8 policy, u32 softlimit, u32 hardlimit);
 	//重置接收端重传处理的开关
@@ -937,8 +973,11 @@ public:
 	u16    SetVidDecryptKey(s8 *pszKeyBuf, u16 wKeySize, u8 byDecryptMode);
 	//设置解码显示缩放策略
 	u16    SetVidDecZoomPolicy(enZoomMode emZoomMode);
-	////网络向对端请求关键帧
+	////（Mnet旧版本不支持）网络向对端请求关键帧
 	//u16    MnetRequestIDRFrame();
+	////（Mnet旧版本不支持）设置会议参数
+	//u16	   SetVidConfMode(TMnetConfMode *pCfg);
+
 
 	//使能加密
 	u16     SetVidEnableCrypt( BOOL32 bEnableCrypt, TMnetCryptCfg *ptMnetCryptCfg);
@@ -959,15 +998,15 @@ public:
 	u16     SetVidMnetCryptCfgSetPkt(TMnetCryptCfg* ptCfg, TMnetCryptDataType tDataType, TMnetCryptPktType tPktType);
 	//设置加密用的某个通道的认证tag长度,用于srtp
 	u16		SetVidMnetCryptCfgSetAuthTag(TMnetCryptCfg* ptCfg, TMnetCryptDataType tDataType, TMnetCryptTagLen tTagLen);
-	////设置通道的秘钥类型为MNET_CRYPT_KEY_DYNAMIC的回调函数
+	////（Mnet旧版本不支持）设置通道的秘钥类型为MNET_CRYPT_KEY_DYNAMIC的回调函数
 	//u16     SetVidMnetCryptCfgSetDynamicKey(TMnetCryptCfg* ptCfg,TMnetCryptDataType tDataType,
 	//										TMnetCryptReKeyMode tReKeyMode);
-	////设置TMnetCryptDynMode类型为MNET_DYM_BY_ID的参数
+	////（Mnet旧版本不支持）设置TMnetCryptDynMode类型为MNET_DYM_BY_ID的参数
 	//u16     SetVidMnetCryptCfgSetDynamicKeyByIdAttr(TMnetCryptCfg* ptCfg,TMnetCryptDataType tDataType,
 	//												TMnetCryptRekeyRate tRekeyRate, void* pContext, u16 wIdLen,
 	//												PFNREKEYALLOCCB_BYID pfnAllocKeyCB,
 	//												PFNREKEYFINDCB_BYID pfnFindKeyCB);
-	////设置TMnetCryptDynMode类型为MNET_DYM_BY_SN的参数
+	////（Mnet旧版本不支持）设置TMnetCryptDynMode类型为MNET_DYM_BY_SN的参数
 	//u16     SetVidMnetCryptCfgSetDynamicKeyBySnAttr(TMnetCryptCfg* ptCfg, TMnetCryptDataType tDataType, void* pContext,
 	//												PFNREKEYALLOCCB_BYSN pfnAllocKeyCB,
 	//												PFNREKEYFINDCB_BYSN pfnFindKeyCB);
@@ -991,7 +1030,7 @@ public:
 	u16    AudioRcvEnableKeepAlive(BOOL32 bEnable, const TMnetNetParam *ptKeepAliveParam);
 	//设置RTCP状态
 	u16    SetAudioRtcpStatus(RTCPSTATUS status);
-	//设置图像的网络重传参数
+	//设置音频的网络重传参数
 	u16    SetNetFeedbackAudioParam(BOOL32 bRepeatSnd = FALSE);
 	//解码器发送两路码流，一路发往Map或者win32解码绘制，一路发往网络, 参数NULL,则关闭后一路，并作相应套节子释放
 	//(暂时无用)
@@ -1004,7 +1043,8 @@ public:
 	u16    SetAudDecryptKey(s8 *pszKeyBuf, u16 wKeySize, u8 byDecryptMode); 
 	//设置g7221c反转(暂时无用)
 	u16    SetReverseG7221c(BOOL32 bReverse );
-
+	////（Mnet旧版本不支持）设置会议参数
+	//BOOL32	SetAudConfMode(TMnetConfMode *pCfg);
 
 	//使能加密
 	u16     SetAudEnableCrypt( BOOL32 bEnableCrypt, TMnetCryptCfg *ptMnetCryptCfg);
@@ -1025,15 +1065,15 @@ public:
 	u16     SetAudMnetCryptCfgSetPkt(TMnetCryptCfg* ptCfg, TMnetCryptDataType tDataType, TMnetCryptPktType tPktType);
 	//设置加密用的某个通道的认证tag长度,用于srtp
 	u16		SetAudMnetCryptCfgSetAuthTag(TMnetCryptCfg* ptCfg, TMnetCryptDataType tDataType, TMnetCryptTagLen tTagLen);
-	////设置通道的秘钥类型为MNET_CRYPT_KEY_DYNAMIC的回调函数
+	////（Mnet旧版本不支持）设置通道的秘钥类型为MNET_CRYPT_KEY_DYNAMIC的回调函数
 	//u16     SetAudMnetCryptCfgSetDynamicKey(TMnetCryptCfg* ptCfg,TMnetCryptDataType tDataType,
 	//										TMnetCryptReKeyMode tReKeyMode);
-	////设置TMnetCryptDynMode类型为MNET_DYM_BY_ID的参数
+	////（Mnet旧版本不支持）设置TMnetCryptDynMode类型为MNET_DYM_BY_ID的参数
 	//u16     SetAudMnetCryptCfgSetDynamicKeyByIdAttr(TMnetCryptCfg* ptCfg, TMnetCryptDataType tDataType,
 	//												TMnetCryptRekeyRate tRekeyRate, void* pContext, u16 wIdLen,
 	//												PFNREKEYALLOCCB_BYID pfnAllocKeyCB,
 	//												PFNREKEYFINDCB_BYID pfnFindKeyCB);
-	////设置TMnetCryptDynMode类型为MNET_DYM_BY_SN的参数
+	////（Mnet旧版本不支持）设置TMnetCryptDynMode类型为MNET_DYM_BY_SN的参数
 	//u16     SetAudMnetCryptCfgSetDynamicKeyBySnAttr(TMnetCryptCfg* ptCfg, TMnetCryptDataType tDataType, void* pContext,
 	//												PFNREKEYALLOCCB_BYSN pfnAllocKeyCB,
 	//												PFNREKEYFINDCB_BYSN pfnFindKeyCB);
@@ -1073,7 +1113,8 @@ private:
 
 typedef struct tagRecoderParam
 {
-	wchar_t m_aFilePath[MAX_FILE_PATH_LEN];
+	wchar_t m_aFileName[MAX_FILE_PATH_LEN];//保存文件名
+	wchar_t m_aFileDir[MAX_FILE_PATH_LEN]; //保存路径
 	u32	   m_dwFilePathLen;
 	BOOL32 m_bIsLocal;
 	BOOL32 m_bHasAudio;
@@ -1090,7 +1131,7 @@ MEDIA_API	int SetMediaTOS(int nTOS, int nType);
 MEDIA_API	int GetMediaTOS(int nType);
 
 //录像机
-MEDIA_API void*	CreateRecorder(const TRecoderParam& tRecoderParam);
+MEDIA_API void*	CreateRecorder(const TRecoderParam& tRecoderParam, s64 s64AsfMaxSize = 1.8*1024*1024*1024, BOOL32 bSaveTwoAudio = FALSE);
 MEDIA_API u16	CloseRecorder(void* pRecorderInst);
 MEDIA_API u16	PauseRecoder(void* pRecorderInst);
 MEDIA_API u16	ResumRecoder(void* pRecorderInst);

@@ -229,6 +229,19 @@ enum EmNvApiQuickShareEv
 	*/
 	Ev_NvApi_Qk_CodeBitRate_Ntf,
 
+	/**
+	@brief    获取终端本地投屏器升级文件版本号
+
+	MainBuf(#u32)
+	@verbatim
+	{
+	"dwIndex": 投屏器序号
+	}
+	@endverbatim
+
+	*/
+	Ev_NvApi_Qk_GetUpgradeVer_Req,
+
 	EV_UI_END(NVAPI_QUICKSHARE) = EVSEG_NVAPI_QUICKSHARE_END
 	
 };

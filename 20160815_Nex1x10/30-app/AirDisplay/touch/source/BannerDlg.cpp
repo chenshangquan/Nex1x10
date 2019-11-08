@@ -20,7 +20,8 @@ extern CtouchDlg * g_dlg;
 #define MINCX       200 //窗口最小宽度
 #define MINCY       400 //窗口最小高度
 
-#define STTBAR_LEN  342 //状态条长度
+#define STTBAR_WID  342 //状态条长度
+#define STTBAR_HEI  4   //状态条高度
 
 //TimerId
 #define HideTimerId 3
@@ -233,8 +234,8 @@ BOOL CBannerDlg::SetWindowPos(const CWnd* pWndInsertAfter, LPCRECT pCRect, UINT 
 {
     if (m_bShowStatusBar)
     {
-        u32 dwSliceNum = m_pImgStatusBar->GetWidth()/STTBAR_LEN;
-        m_staPicStatusBar.SetStatusBarDraw(TRUE, dwSliceNum);
+        u32 dwSliceNum = m_pImgStatusBar->GetWidth()/STTBAR_WID;
+        m_staPicStatusBar.SetStatusBarDraw(TRUE, STTBAR_WID, STTBAR_HEI, dwSliceNum);
         m_staPicStatusBar.ShowWindow(SW_SHOW);
         SetTimer(StatusBarTimerId,100,NULL);
     }
