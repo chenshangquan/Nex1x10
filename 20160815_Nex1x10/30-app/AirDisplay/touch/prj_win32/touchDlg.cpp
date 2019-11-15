@@ -2307,7 +2307,7 @@ void CtouchDlg::StartProjectScreen()
 
 		m_bIsProjecting = true;
 		bFirstKeyFrame = FALSE;
-        StartTrayIconChange();
+        //StartTrayIconChange();
 		OnBannerShow();
 
 		StartAVThread();
@@ -2345,7 +2345,7 @@ void CtouchDlg::StopProjectScreen(bool bNotifyHid)
 
 		m_bIsProjecting = false;
 		bFirstKeyFrame = FALSE;
-        StopTrayIconChange();
+        //StopTrayIconChange();
 		OnBannerClose();
 
 		OnStopScreenCatch();

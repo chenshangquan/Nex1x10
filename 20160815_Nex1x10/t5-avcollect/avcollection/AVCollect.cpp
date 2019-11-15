@@ -321,3 +321,18 @@ __declspec(dllexport) bool AvCheckAuth(char* pcBuf, int dwLen = Av_CheckAuth_MAX
 
 	return false;
 }
+
+__declspec(dllexport) void SetVidPrtSwitchOn(bool bPrtSwitchOn)
+{
+	g_cVedioCapture.SetVidPrtSwitchOn(bPrtSwitchOn);
+}
+
+__declspec(dllexport) bool SetGrabMode(EmGrabMode emGrabMode)
+{
+	return g_cVedioCapture.SetGrabMode(emGrabMode);
+}
+
+__declspec(dllexport) EmGrabMode GetGrabMode()
+{
+	return g_cVedioCapture.GetGrabMode();
+}

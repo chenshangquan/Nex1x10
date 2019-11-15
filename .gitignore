@@ -2,4 +2,8 @@
 *producetest2*
 
 *lib*
+*.sdf*
+*.sln*
+*.suo*
+*.user*
 
