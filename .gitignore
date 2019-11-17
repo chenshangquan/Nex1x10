@@ -1,9 +1,11 @@
 *svn*
 *producetest2*
 
+*Release/
+*Debug/
+*ipch/
 *lib*
-*.sdf*
-*.sln*
-*.suo*
-*.user*
-
+*.sdf
+*.sln
+*.suo
+*.user
