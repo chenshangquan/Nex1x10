@@ -4060,21 +4060,21 @@ class MTMSG_API TDCSWbPencilOperInfo : public ::google::protobuf::Message {
   inline ::google::protobuf::uint32 subpageid() const;
   inline void set_subpageid(::google::protobuf::uint32 value);
 
-  // optional bool finished = 3;
-  inline bool has_finished() const;
-  inline void clear_finished();
-  static const int kFinishedFieldNumber = 3;
-  inline bool finished() const;
-  inline void set_finished(bool value);
-
-  // optional .mt.TDCSWbPencil pencil = 4;
+  // optional .mt.TDCSWbPencil pencil = 3;
   inline bool has_pencil() const;
   inline void clear_pencil();
-  static const int kPencilFieldNumber = 4;
+  static const int kPencilFieldNumber = 3;
   inline const ::mt::TDCSWbPencil& pencil() const;
   inline ::mt::TDCSWbPencil* mutable_pencil();
   inline ::mt::TDCSWbPencil* release_pencil();
   inline void set_allocated_pencil(::mt::TDCSWbPencil* pencil);
+
+  // optional bool finished = 4;
+  inline bool has_finished() const;
+  inline void clear_finished();
+  static const int kFinishedFieldNumber = 4;
+  inline bool finished() const;
+  inline void set_finished(bool value);
 
   // @@protoc_insertion_point(class_scope:mt.TDCSWbPencilOperInfo)
  private:
@@ -4082,17 +4082,17 @@ class MTMSG_API TDCSWbPencilOperInfo : public ::google::protobuf::Message {
   inline void clear_has_tabid();
   inline void set_has_subpageid();
   inline void clear_has_subpageid();
-  inline void set_has_finished();
-  inline void clear_has_finished();
   inline void set_has_pencil();
   inline void clear_has_pencil();
+  inline void set_has_finished();
+  inline void clear_has_finished();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
   ::std::string* tabid_;
+  ::mt::TDCSWbPencil* pencil_;
   ::google::protobuf::uint32 subpageid_;
   bool finished_;
-  ::mt::TDCSWbPencil* pencil_;
 
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(4 + 31) / 32];
@@ -12285,37 +12285,15 @@ inline void TDCSWbPencilOperInfo::set_subpageid(::google::protobuf::uint32 value
   subpageid_ = value;
 }
 
-// optional bool finished = 3;
-inline bool TDCSWbPencilOperInfo::has_finished() const {
+// optional .mt.TDCSWbPencil pencil = 3;
+inline bool TDCSWbPencilOperInfo::has_pencil() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
-inline void TDCSWbPencilOperInfo::set_has_finished() {
+inline void TDCSWbPencilOperInfo::set_has_pencil() {
   _has_bits_[0] |= 0x00000004u;
 }
-inline void TDCSWbPencilOperInfo::clear_has_finished() {
-  _has_bits_[0] &= ~0x00000004u;
-}
-inline void TDCSWbPencilOperInfo::clear_finished() {
-  finished_ = false;
-  clear_has_finished();
-}
-inline bool TDCSWbPencilOperInfo::finished() const {
-  return finished_;
-}
-inline void TDCSWbPencilOperInfo::set_finished(bool value) {
-  set_has_finished();
-  finished_ = value;
-}
-
-// optional .mt.TDCSWbPencil pencil = 4;
-inline bool TDCSWbPencilOperInfo::has_pencil() const {
-  return (_has_bits_[0] & 0x00000008u) != 0;
-}
-inline void TDCSWbPencilOperInfo::set_has_pencil() {
-  _has_bits_[0] |= 0x00000008u;
-}
 inline void TDCSWbPencilOperInfo::clear_has_pencil() {
-  _has_bits_[0] &= ~0x00000008u;
+  _has_bits_[0] &= ~0x00000004u;
 }
 inline void TDCSWbPencilOperInfo::clear_pencil() {
   if (pencil_ != NULL) pencil_->::mt::TDCSWbPencil::Clear();
@@ -12343,6 +12321,28 @@ inline void TDCSWbPencilOperInfo::set_allocated_pencil(::mt::TDCSWbPencil* penci
   } else {
     clear_has_pencil();
   }
+}
+
+// optional bool finished = 4;
+inline bool TDCSWbPencilOperInfo::has_finished() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void TDCSWbPencilOperInfo::set_has_finished() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void TDCSWbPencilOperInfo::clear_has_finished() {
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline void TDCSWbPencilOperInfo::clear_finished() {
+  finished_ = false;
+  clear_has_finished();
+}
+inline bool TDCSWbPencilOperInfo::finished() const {
+  return finished_;
+}
+inline void TDCSWbPencilOperInfo::set_finished(bool value) {
+  set_has_finished();
+  finished_ = value;
 }
 
 // -------------------------------------------------------------------

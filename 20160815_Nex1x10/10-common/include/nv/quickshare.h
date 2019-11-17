@@ -67,13 +67,15 @@ typedef enum em_NET_STATUS
 	NET_STATUS_CONNECTING = 0x00,   //正在登录imix
 	NET_STATUS_CONNECTED,           //已连接
 	NET_STATUS_PROJECTING,          //正在投屏
-	NET_STATUS_DISCONNECTED,        //网络断开
+	NET_STATUS_NET_DISCONNECTED,    //与wifi网络连接断开
 	NET_STATUS_NO_NETWORK,          //无网络
-	NET_STATUS_NO_MATCH,            //未配对
+	NET_STATUS_NO_MATCH,            //投屏器wifi模块未保存热点，提示配对
 	NET_STATUS_ENOUGHNUM,           //Imix投屏量满
-	NET_STATUS_RESETQUICKSHARE,     //重新插拔投屏器
-	NET_STATUS_RESETWIFI,           //网络重连中
-	NET_STATUS_FIND_SSID_FAIL,      //查找热点失败
+	NET_STATUS_RESETQUICKSHARE,     //重新插拔投屏器,判断为假连接时通知该消息
+	NET_STATUS_TER_DISCONNECTED,    //网络连接的，但与终端断开连接
+	NET_STATUS_FIND_SSID_FAIL,      //查找热点失败（投屏器wifi模块已保存热点，但未找到热点）
+	NET_STATUS_FIND_TER_FAIL,       //连上wifi但未查找到终端
+	NET_STATUS_RECONNECTTER_FAIL,   //网络连接的，重连终端失败
 }NET_STATUS;
 
 typedef enum em_PPT_STATUS

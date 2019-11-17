@@ -82,7 +82,7 @@ using namespace Gdiplus;
 //设置默认音频播放设备
 #define  DEF_AUDIO_NAME _T("NexTransmitter")
 
-#define TOUCH_VERSION_ID	   "6.0.0.3.0."
+#define TOUCH_VERSION_ID	   "6.0.0.3.1."
 #define MAX_VER_LEN            38
 
 #define MAX_NAME_LEN           32  //最大的名字长度

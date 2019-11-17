@@ -23,7 +23,7 @@ rem 设置Autorun.inf为隐藏文件
 attrib +h "setup files\Autorun.inf"
 
 rem 打包成iso
-"E:\UltraISO\UltraISO.exe" -volume NexTransmitter -file "setup files\*.*" -output "%compileVerPath%\NexTransmitter.iso" -joliet -lowercase -silent
+"%UltraISO%\UltraISO.exe" -volume NexTransmitter -file "setup files\*.*" -output "%compileVerPath%\NexTransmitter.iso" -joliet -lowercase -silent
 
 
 

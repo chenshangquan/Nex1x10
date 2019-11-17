@@ -264,6 +264,8 @@ typedef  struct WifiMRegisterInfo{
 #define  WIFIM_MSG_DHCP_IPV6_START_FAIL   (int)(WIFIM_MSG_BASE+15)
 /* DHCP failed*/
 #define  WIFIM_MSG_DHCP_IPV4_START_FAIL   (int)(WIFIM_MSG_BASE+16)
+#define  WIFIM_MSG_CONNECTED_FAILED_IPV4   (int)(WIFIM_MSG_BASE+17)
+
 /* connect to a AP & assign a IP address */
 #define  WIFIM_MSG_CONNECTED_INVALID   (int)(WIFIM_MSG_BASE+100)
 
@@ -338,10 +340,10 @@ typedef struct WifiMSBSSIDItem{
 
 /* Network type */
 typedef enum WifiMSNetType {
-        NT_INFRA = 0,
-        NT_IBSS = 1,
-        NT_AP = 2,
-        NT_P2P_GO = 3,
+        NT_INFRA = 0,/*基础结构型网络*/
+        NT_IBSS = 1,/*独立型网络*/
+        NT_AP = 2,/*access point*/
+        NT_P2P_GO = 3,/*wifi direct, group owner*/
         NT_P2P_GROUP_FORMATION = 4,
 }EWifiMSNetType;
 
@@ -359,6 +361,7 @@ typedef enum WifiMSNetType {
 #define WIFIM_STA_CONNECTED      1
 #define WIFIM_STA_DISCONNECTED   2
 
+/*目前仅支持获取nId,nPriority,pdwSsid,achBssid,achPsk,nConnectState,eWifiMode*/
 typedef struct WifiMStatus{
     int nId;    /* current network ID*/
     int nPriority;    /* current network priority*/
@@ -486,7 +489,7 @@ typedef struct WifiMStationMsg {
     char achIp[WIFIM_IP_LEN];
     char achStaName[WIFIM_STA_NAME_LEN];
     EWifimInetType eInetType;
-    char achIpv6[WIFIM_IPV6_LEN];
+    char achIpv6[WIFIM_IPV6_LEN];//not implement
 }TWifiMStationMsg;
 
 typedef struct WifiMFilterList{
@@ -854,6 +857,11 @@ int WifiMSTAConfigSsidPriority(char *pchIfName, char* pchSsid,
  *                              if EWifiMAPAuth is WPAPSK/WPAPSK2,  EWifiMAPEncr
  *                                 is TKIP/CCMP, the lenth of pchKeyword
  *                                 should between 8 and 63)
+ *                              AP default support n mode(set emIeee80211 to
+ *                                 IEEE80211n ) high performance(ht_capab), so
+ *                                 EWifiMAPEncr should not be WEP, EWifiMAPAuth
+ *                                 should not be OPEN/SHARED.WEP is unsafe & low
+ *                                 performace.
  * Returns:
  *      @return SUCCEED : WIFI_OK
  *      @return FAILED  : specifically defined in error type
@@ -887,6 +895,7 @@ int WifiMAPWPSStart(char* pchIfName, int nWpsMethod, char* pchPin);
  *      WPS Connect function
  * Description:
  *      allow to connect to a station
+ *      need driver&hostapd support,so sometimes this api is useless.
  * Parameters:
  *      @Param pchIfName       [IN]Interface name
  * Returns:
@@ -902,6 +911,7 @@ int WifiMAPWPSAck(char* pchIfName);
  *      WPS reject to connect function
  * Description:
  *      reject to connect to a station
+ *      need driver&hostapd support,so sometimes this api is useless.
  * Parameters:
  *      @Param pchIfName       [IN]Interface name
  * Returns:

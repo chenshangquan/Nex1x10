@@ -183,7 +183,7 @@ public:
 protected:
 	HICON m_hIcon;
 	NOTIFYICONDATA m_ntIcon;
-	HICON m_hTrayIcon[4];//用于变化的icon;
+	HICON m_hTrayIcon[12];//用于变化的icon;
 
 private:
 	bool m_bMin;

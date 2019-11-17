@@ -11,16 +11,18 @@
 !define TSERVICE_AUTO_RUN "$\"$LOCALAPPDATA\NexTransmitter\tservice.exe$\" hide"
 
 ;版本号,注意与touch版本号保持一致
-!define PRODUCT_VER 6.0.0.3.0
+!define PRODUCT_VER 6.0.0.3.1
 !define /date PRODUCT_DATE %Y%m%d
 !define PRODUCT_VERSION "${PRODUCT_VER}.${PRODUCT_DATE}"
 
 ;dll信息
 !define VIDC_TPH4        "vidc.tph4"
+!define VIDC_KDH5        "vidc.kdh5"
 !define MSACM_KDMP3      "msacm.kdmp3"
 !define MSACM_KDMP3_ACM  "msacm.kdmp3.acm"
 
 !define TPH4_DLL         "tph4.dll"
+!define KDH5_DLL         "kdh5.dll"
 !define KDMP3_ACM        "kdmp3.acm"
 
  
@@ -132,7 +134,7 @@ Function isFileNoLack
     ${AndIf} ${FileExists} "$INSTDIR\tservice.exe"
     ${AndIf} ${FileExists} "$INSTDIR\AVCollection.dll"
     ${AndIf} ${FileExists} "$INSTDIR\asflib.dll"
-    ${AndIf} ${FileExists} "$INSTDIR\h264enc_x.dll"
+    ${AndIf} ${FileExists} "$INSTDIR\kdcodec.dll"
     ${AndIf} ${FileExists} "$INSTDIR\kdvmedianetdll.dll"
 	${AndIf} ${FileExists} "$INSTDIR\libkdcrypto-1_1.dll"
 	${AndIf} ${FileExists} "$INSTDIR\libkdvsrtp.dll"
@@ -141,11 +143,13 @@ Function isFileNoLack
 	${AndIf} ${FileExists} "$INSTDIR\ospdll.dll"
 	${AndIf} ${FileExists} "$INSTDIR\kdimg.dll"
 	${AndIf} ${FileExists} "$INSTDIR\tph4.dll"
+	${AndIf} ${FileExists} "$INSTDIR\kdh5.dll"
 	${AndIf} ${FileExists} "$INSTDIR\kdmp3.acm"
 	${AndIf} ${FileExists} "$INSTDIR\kdaudproc.dll"
 	${AndIf} ${FileExists} "$INSTDIR\mfc100u.dll"
 	${AndIf} ${FileExists} "$INSTDIR\msvcp100.dll"
 	${AndIf} ${FileExists} "$INSTDIR\msvcr100.dll"
+	${AndIf} ${FileExists} "$INSTDIR\vcruntime140.dll"
 	;硬编码新增库
 	${AndIf} ${FileExists} "$INSTDIR\kdaudcodec.dll"
 	${AndIf} ${FileExists} "$INSTDIR\HwCodecWrapper.dll"
@@ -188,6 +192,9 @@ Function RegisterDll
     ReadRegStr $info HKCU "${PRODUCT_DIR_REGDLL}" "${VIDC_TPH4}"
 	IfErrors 0 +2
 	  WriteRegStr HKCU "${PRODUCT_DIR_REGDLL}" "${VIDC_TPH4}" "${TPH4_DLL}"
+	ReadRegStr $info HKCU "${PRODUCT_DIR_REGDLL}" "${VIDC_KDH5}"
+	IfErrors 0 +2
+	  WriteRegStr HKCU "${PRODUCT_DIR_REGDLL}" "${VIDC_KDH5}" "${KDH5_DLL}"
 	ReadRegStr $info HKCU "${PRODUCT_DIR_REGDLL}" "${MSACM_KDMP3}" 
 	IfErrors 0 +2
 	  WriteRegStr HKCU "${PRODUCT_DIR_REGDLL}" "${MSACM_KDMP3}" "${KDMP3_ACM}"
@@ -204,7 +211,7 @@ Function MAINInstall32
   File "tservice.exe"
   File "AVCollection.dll"
   File "asflib.dll"
-  File "h264enc_x.dll"
+  File "kdcodec.dll"
   File "kdvmedianetdll.dll"
   File "libkdcrypto-1_1.dll"
   File "libkdvsrtp.dll"
@@ -213,11 +220,13 @@ Function MAINInstall32
   File "ospdll.dll"
   File "kdimg.dll"
   File "tph4.dll"
+  File "kdh5.dll"
   File "kdmp3.acm"
   File "kdaudproc.dll"
   File "mfc100u.dll"
   File "msvcp100.dll"
   File "msvcr100.dll"
+  File "vcruntime140.dll"
   ;硬编码新增库
   File "kdaudcodec.dll"
   File "HwCodecWrapper.dll"

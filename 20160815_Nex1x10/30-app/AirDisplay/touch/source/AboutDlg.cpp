@@ -43,12 +43,13 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_STATIC_DES, m_staticDes);
 	DDX_Control(pDX, IDC_STATIC_VER_NAME, m_staticVer);
 
-	DDX_Control(pDX, IDC_SYSLINK_COMPANY, m_linkCompany);
+	//DDX_Control(pDX, IDC_SYSLINK_COMPANY, m_linkCompany);
 }
 
 BEGIN_MESSAGE_MAP(CAboutDlg, CBaseDlg/*CDialogEx*/)
-	ON_NOTIFY(NM_CLICK, IDC_SYSLINK_COMPANY, &CAboutDlg::OnNMClickSyslinkCompany)
+	//ON_NOTIFY(NM_CLICK, IDC_SYSLINK_COMPANY, &CAboutDlg::OnNMClickSyslinkCompany)
 	ON_BN_CLICKED(IDC_BTN_CLOSE, &CAboutDlg::OnBtnClose)
+    ON_WM_NCHITTEST()
 END_MESSAGE_MAP()
 
 
@@ -64,18 +65,18 @@ void CAboutDlg::InitUI()
 {
 	int width = (GetSystemMetrics ( SM_CXSCREEN )-400)/2; 
 	int height= (GetSystemMetrics ( SM_CYSCREEN )-300)/2; 
-	SetWindowPos( NULL, width, height, 400, 300, SWP_SHOWWINDOW/*SWP_NOMOVE*/ );
+	SetWindowPos( NULL, width, height, MULX(400), MULY(300), SWP_SHOWWINDOW/*SWP_NOMOVE*/ );
 	
-	m_btnClose.SetWindowPos( NULL, 363,1, 30, 35, SWP_SHOWWINDOW/*SWP_NOSIZE*/ );
-	m_stPicLog.SetWindowPos( NULL, 43,86, 114, 16, SWP_NOSIZE );
+	m_btnClose.SetWindowPos( NULL, MULX(363), MULY(1), MULX(30), MULY(35), SWP_SHOWWINDOW/*SWP_NOSIZE*/ );
+	m_stPicLog.SetWindowPos( NULL, MULX(43), MULY(86), MULX(114), MULY(16), SWP_SHOWWINDOW );
 	
-	m_staticName.SetWindowPos( NULL, 194,136, 0, 0, SWP_NOSIZE );
+	m_staticName.SetWindowPos( NULL, MULX(150), MULY(136), MULX(140), 0, SWP_NOSIZE );
 
-	m_staticCompany.SetWindowPos( NULL, 43,198, 0, 0, SWP_NOSIZE );
-	m_staticDes.SetWindowPos( NULL, 43,218, 0, 0, SWP_NOSIZE );
-	m_staticVer.SetWindowPos( NULL, 43,238, 0, 0, SWP_NOSIZE );
+	m_staticCompany.SetWindowPos( NULL, MULX(40), MULY(198), MULX(220), 0, SWP_NOSIZE );
+	m_staticDes.SetWindowPos( NULL, MULX(40), MULY(218), MULX(250), 0, SWP_NOSIZE );
+	m_staticVer.SetWindowPos( NULL, MULX(40), MULY(238), MULX(240), 0, SWP_NOSIZE );
 
-	m_linkCompany.SetWindowPos( NULL, 170,238, 0, 0, SWP_NOSIZE );
+	//m_linkCompany.SetWindowPos( NULL, 170,238, 0, 0, SWP_NOSIZE );
 	
 
 	s8 achVersion[MAX_VER_LEN] = {0};
@@ -131,6 +132,11 @@ void CAboutDlg::GetBuildVersion(s8 achVersion[MAX_VER_LEN])
 	_snprintf( achVersion, MAX_VER_LEN, "%s%s", TOUCH_VERSION_ID, achFullDate );
 
 	achVersion[strlen(achVersion) + 1] = '\0';
+}
+
+LRESULT CAboutDlg::OnNcHitTest(CPoint point)
+{
+    return HTCAPTION;
 }
 
 void CAboutDlg::OnNMClickSyslinkCompany(NMHDR *pNMHDR, LRESULT *pResult)

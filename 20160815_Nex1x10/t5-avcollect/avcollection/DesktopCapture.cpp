@@ -12,11 +12,24 @@
 #include <time.h>
 #include <io.h>
 
-#pragma comment(lib,"winmm")  //lib file
+#pragma comment(lib, "winmm")  //lib file
+#pragma comment(lib, "d3d11.lib")
+#pragma comment(lib, "dxgi.lib")
+#pragma warning(disable: 4996)
 
 //Test param
 int g_dwIndex=0;
 
+//打印开关
+bool g_bPrtSwitchOn = false;
+//是否win8以后的操作系统
+bool g_bIsWin8OrLater = false;
+//抓屏方式：win7以前为GDI方式，win8以后为DXGI方式
+EmGrabMode g_emGrabMode = MODE_GDI;
+//抓屏默认内存对齐方式：GDI为4字节对齐，DXGI为16字节对齐
+bool g_bAlign4Bytes = true;
+//DXGI抓屏，鼠标状态
+TMouseStatus g_tMouseStatus;
 
 #define AVPROBE_SCORE_MAX       100 ///< maximum score
 #define AVPROBE_SCORE_RETRY (AVPROBE_SCORE_MAX/4)
@@ -63,9 +76,11 @@ HBRUSH         g_sBrush;
 
 #define   Max_TempCharLength      100
 #define   Align_4Byte               4
+#define   Align_8Byte               8
 #define   Align_16Byte              16
 #define   Max_LogFileLength      1024*1024*5
 #define   Max_LogNameLength      30
+#define   CAPTURE_TIMEOUT        25
 
 #define   Temp_Log_File         _T("c:\\err.log")
 CSimpleLock			g_csLog;
@@ -561,6 +576,11 @@ BOOL ErrorLog(int nErr)
 	case 12:
 		sprintf_s(ch, "传递的参数中有空指针\n");
 		break;
+	case 13:
+		sprintf_s(ch, "抓屏方式发生变化\n");
+		break;
+	case 20://do nothing
+		return FALSE;
 	default:
 		return TRUE;
 	}
@@ -616,17 +636,23 @@ bool Align4Bytes(int*pnWidth,int*pnHeight)
 	}
 	bool bResult = false;
 	int nWidth = *pnWidth;
-	double dNum = nWidth % Align_4Byte;
 
+	int nAlignType = Align_16Byte;
+	if (g_bAlign4Bytes)
+	{
+		nAlignType = Align_4Byte;
+	}
+
+	double dNum = nWidth % nAlignType;
 	if (dNum != 0)
 	{
 		//*pnWidth = (int)nWidth / 16 * 16;
-		int nTmp = nWidth / Align_16Byte;
-		if (nWidth % Align_16Byte > 0)
+		int nTmp = nWidth / nAlignType;
+		if (nWidth % nAlignType > 0)
 		{
 			nTmp = nTmp + 1;
 		}
-		*pnWidth = (int)nTmp * Align_16Byte;
+		*pnWidth = (int)nTmp * nAlignType;
 		bResult = true;
 	}
 	
@@ -777,6 +803,11 @@ error:
         //AVStream   *st       = NULL;  
       
         int bpp=24;  
+		if (g_emGrabMode == MODE_DXGI)
+		{
+			bpp = 32;
+		}
+
         RECT virtual_rect;  
         //窗口的位置和大小  
         RECT clip_rect;  
@@ -926,6 +957,10 @@ error:
         bmi.bmiHeader.biSize          = sizeof(BITMAPINFOHEADER);  
 		bmi.bmiHeader.biWidth         = nScrWidth;//clip_rect.right - clip_rect.left;
 		bmi.bmiHeader.biHeight        = nScrHeight;//clip_rect.bottom - clip_rect.top;////-(clip_rect.bottom - clip_rect.top);  
+		if (g_emGrabMode == MODE_DXGI)
+		{
+			bmi.bmiHeader.biHeight = -abs(bmi.bmiHeader.biHeight);
+		}
         bmi.bmiHeader.biPlanes        = 1;  
         bmi.bmiHeader.biBitCount      = bpp;  
         bmi.bmiHeader.biCompression   = BI_RGB;  
@@ -1070,6 +1105,21 @@ void paint_mouse_pointer(AVFormatContext *s1, struct gdigrab *gdigrab)
 		{
 			pos.x = pos.x * desktopvertres / vertres;
 			pos.y = pos.y * desktopvertres / vertres;
+
+			if (g_emGrabMode == MODE_DXGI)
+			{
+				if (g_tMouseStatus.bJudgeNextMousePos)
+				{
+					//拖动窗口时，鼠标不再绘制（DXGI抓屏，拖动窗口时，桌面数据已含有鼠标）
+					if (g_tMouseStatus.LastMousePosition.x != pos.x
+						|| g_tMouseStatus.LastMousePosition.y != pos.y)
+					{
+						g_tMouseStatus.bNextMousePosChanged = true;
+						goto icon_error;
+					}
+				}
+			}
+
 			if (pos.x >= 0 && pos.x <= clip_rect.right - clip_rect.left &&
 					pos.y >= 0 && pos.y <= clip_rect.bottom - clip_rect.top) {
 				if (!DrawIcon(gdigrab->dest_hdc, pos.x, pos.y, icon))
@@ -1752,6 +1802,23 @@ CDesktopCapture::CDesktopCapture()
 	m_nRGBtoYUVHeight=0;
 	m_CallbackType=0;
 	g_sBrush = CreateSolidBrush(RGB(0, 0, 0));
+
+	g_bIsWin8OrLater = JudgeIsWin8OrLater();
+	if (g_bIsWin8OrLater)
+	{
+		g_emGrabMode = MODE_DXGI;
+		g_bAlign4Bytes = false;
+	}//DXGI默认为16字节对齐
+
+	//DXGI
+	m_bDXInit = FALSE;
+	m_hDevice = NULL;
+	m_hContext = NULL;
+	m_hDeskDupl = NULL;
+	ZeroMemory(&m_dxgiOutDesc, sizeof(m_dxgiOutDesc));
+	m_bMapBitsChanged = false;
+	m_emCurGrabMode = g_emGrabMode;
+
 	return; 
 }
 
@@ -1766,6 +1833,7 @@ CDesktopCapture::~CDesktopCapture()
 	DeleteObject( g_sBrush);
 	/*AVPacket*avTemp = &g_avPacket;
 	av_packet_free(&avTemp);*/
+	ZeroMemory(&m_dxgiOutDesc, sizeof(m_dxgiOutDesc));
 }
 
 
@@ -1848,7 +1916,25 @@ int init_input(AVFormatContext *s, const char *filename)
         return 0;  
    
 	return 0;
-}  
+} 
+
+/*=============================================================================
+函数名		 MySleep
+功能		： 自定义延时函数
+算法实现	：（可选项）
+引用全局变量：无
+输入参数说明：延时时间
+返回值说明： 无
+=============================================================================*/
+void MySleep(int interval)
+{
+	HANDLE evt;
+	if (interval <= 0) interval = 1;
+	evt = CreateEvent(NULL, TRUE, FALSE, NULL);
+	WaitForSingleObject(evt, interval);
+	CloseHandle(evt);
+
+}
 
 int CDesktopCapture::ResizeDestop()
 {
@@ -1878,6 +1964,11 @@ int CDesktopCapture::ResizeDestop()
 	 char chLog[Max_TempCharLength] = { 0 };
 
         int bpp=24;  
+		if (g_emGrabMode == MODE_DXGI)
+		{
+			bpp = 32;
+		}
+
         RECT virtual_rect;  
         //窗口的位置和大小  
         RECT clip_rect;  
@@ -2016,6 +2107,10 @@ int CDesktopCapture::ResizeDestop()
         bmi.bmiHeader.biSize          = sizeof(BITMAPINFOHEADER);  
 		bmi.bmiHeader.biWidth         = nScrWidth;//clip_rect.right - clip_rect.left;
 		bmi.bmiHeader.biHeight        = nScrHeight;//clip_rect.bottom - clip_rect.top;////-(clip_rect.bottom - clip_rect.top);  
+		if (g_emGrabMode == MODE_DXGI)
+		{
+			bmi.bmiHeader.biHeight = -abs(bmi.bmiHeader.biHeight);
+		}
         bmi.bmiHeader.biPlanes        = 1;  
         bmi.bmiHeader.biBitCount      = bpp;  
         bmi.bmiHeader.biCompression   = BI_RGB;  
@@ -2045,7 +2140,7 @@ int CDesktopCapture::ResizeDestop()
        
         //保存信息到GDIGrab上下文结构体  
 		//bmp.bmWidthBytes * bmp.bmHeight * bmp.bmPlanes;
-	gdigrab1->frame_size  = bmi.bmiHeader.biWidth * bmi.bmiHeader.biHeight* bmi.bmiHeader.biBitCount/8;  // nScrWidth * nScrHeight * 3;
+	gdigrab1->frame_size  = nScrWidth * nScrHeight * bpp/8;  // nScrWidth * nScrHeight * bpp/8;
     
 		gdigrab1->header_size = sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER) ;
 
@@ -2071,6 +2166,7 @@ int CDesktopCapture::ResizeDestop()
             }  
         }  
       
+		gdigrab1->draw_mouse = true;
 
 		//
 		//TImageRGBtoYUVParam m_tImageRGBtoYUV;	//结构参数
@@ -2090,6 +2186,11 @@ int CDesktopCapture::ResizeDestop()
 		m_tImageRGBtoYUV.l32DstYUVType = YUV420;
 		m_tImageRGBtoYUV.l32TransposeFlag = 1;
 		m_tImageRGBtoYUV.u32Reserved = 0;
+		if (g_emGrabMode == MODE_DXGI)
+		{
+			m_tImageRGBtoYUV.l32SrcRGBType = RGB32;
+			m_tImageRGBtoYUV.l32TransposeFlag = 0;
+		}
 		//int nRet = ImageUnitSetParam(m_pvPreProcHandle,&m_tPreResize);
 		nRet = ImageUnitSetParam(g_pvPreProcHandle, &m_tImageRGBtoYUV);
       
@@ -2107,6 +2208,14 @@ int CDesktopCapture::ResizeDestop()
 		{
 			memset(g_pRetDesktopYuvBuf, 0, dwLen);
 		}
+
+		if (g_emGrabMode == MODE_DXGI)
+		{
+			//DXGI
+			DestroyDXGI();
+			InitDXGI();
+		}
+
         return 0;  
       
     error:  
@@ -2120,24 +2229,6 @@ int CDesktopCapture::ResizeDestop()
         if (source_hdc)  
             DeleteDC(source_hdc);  
         return ret; 
-}
-
-/*=============================================================================
-函数名		 MySleep
-功能		： 自定义延时函数
-算法实现	：（可选项）
-引用全局变量：无
-输入参数说明：延时时间
-返回值说明： 无
-=============================================================================*/
-void MySleep(int interval)
-{
-	HANDLE evt;
-	if(interval<=0) interval=1;
-	evt = CreateEvent(NULL, TRUE, FALSE, NULL);
-	WaitForSingleObject(evt, interval);
-	CloseHandle(evt);
-
 }
 
 /*=============================================================================
@@ -2205,6 +2296,19 @@ void CDesktopCapture::InitAll(bool bjt)
 	//gdigrab_read_header(&g_avFormatatContentx);
 	g_bIsBMP=bjt;
 
+	if (g_emGrabMode == MODE_DXGI)
+	{
+		//DXGI抓屏，检测到实际抓屏数据为4字节对齐方式
+		if (!m_bMapBitsChanged)
+		{
+			g_bAlign4Bytes = false;
+		}
+		else
+		{
+			m_bMapBitsChanged = false;
+		}
+	}
+
 	///////////////////mult display
 	if(g_tdispInfo.nDeviceCount<=0)
 	{
@@ -2267,6 +2371,11 @@ void CDesktopCapture::InitAll(bool bjt)
 	m_tImageRGBtoYUV.l32DstYUVType = YUV420;
 	m_tImageRGBtoYUV.l32TransposeFlag = 1;
 	m_tImageRGBtoYUV.u32Reserved = 0;
+	if (g_emGrabMode == MODE_DXGI)
+	{
+		m_tImageRGBtoYUV.l32SrcRGBType = RGB32;
+		m_tImageRGBtoYUV.l32TransposeFlag = 0;
+	}
 
 	sprintf_s(chMsg,"m_tImageRGBtoYUV.l32SrcStride:%d,m_tImageRGBtoYUV.l32DstWidth:%d\n",m_tImageRGBtoYUV.l32SrcStride,m_tImageRGBtoYUV.l32DstWidth);
 	OutputDebugString(chMsg);
@@ -2311,7 +2420,31 @@ void CDesktopCapture::InitAll(bool bjt)
 	//InstallHookEv();
 
 	InitConstData();
-} 
+	sprintf_s(strTmp, "抓屏方式：GDI \n");
+	if (g_emGrabMode == MODE_DXGI)
+	{
+		if (!InitDXGI())
+		{
+			m_bDXInit = TRUE;
+			DestroyDXGI();
+
+			char chLog1[Max_TempCharLength] = { 0 };
+			sprintf_s(chLog1, "InitDXGI Error, 切换至GDI抓屏方式\n");
+			WriteToLog(chLog1, Max_TempCharLength);
+
+			//DXGI初始化失败时切换为GDI抓屏方式
+			g_emGrabMode = MODE_GDI;
+			m_emCurGrabMode = g_emGrabMode;
+			g_bAlign4Bytes = true;
+			ResizeDestop();
+		}
+		else
+		{
+			sprintf_s(strTmp, "抓屏方式：DXGI \n");
+		}
+	}
+	WriteToLog(strTmp, MAX_PATH);
+}
 
 // 函数功能：获取系统时间片 
 //   返回值：系统时间片，单位毫秒 
@@ -2365,23 +2498,23 @@ DWORD WINAPI SendDesktopTimer(LPVOID dwUser)
 	//WriteToLog(ch, strnlen_s(ch, 200));
 	while (pMain->GetIsRunning())
 	{
-		LONGLONG   t1;
-		QueryPerformanceCounter((LARGE_INTEGER   *)&t1);
 		struct gdigrab *gdigrab = (struct gdigrab *)g_avFormatatContentx.priv_data;
 		int nLay = 0;
-		//09-15增加了延时，检测采集帧率限制不高于控制帧率的120% 
+		//09-15增加了延时，检测采集帧率限制不高于控制帧率的105% 
 		if (g_nCpuPerial > 0)
 		{
+			LONGLONG   t0;
+			QueryPerformanceCounter((LARGE_INTEGER*)& t0);
 			//限制帧率a-nlay-b--c3
-			 nLay = (t1 - gdigrab->time_frame) * 1000 / g_nCpuPerial;
+			 nLay = (t0 - gdigrab->time_frame) * 1000 / g_nCpuPerial;
 			
 			int nDelay = 1;//gdigrab->framerate.den;//13;
 			//gdigrab->nAllDelay= gdigrab->nAllDelay+ nLay;   //时延
 			if (gdigrab->nFrameCount==0)
 			{
-				if (gdigrab->last_frame < gdigrab->framerate.den*10/11)
+				if (gdigrab->last_frame < gdigrab->framerate.den*20/21)
 				{
-					nDelay = gdigrab->framerate.den*10/11- gdigrab->last_frame-2;
+					nDelay = gdigrab->framerate.den*20/21- gdigrab->last_frame-2;
 				}
 				
 #if _DEBUG
@@ -2392,9 +2525,9 @@ DWORD WINAPI SendDesktopTimer(LPVOID dwUser)
 			}
 			else
 			{
-				if (gdigrab->nFrameCount*gdigrab->framerate.den *10 / 11 > nLay) //帧率够
+				if (gdigrab->nFrameCount*gdigrab->framerate.den *20 / 21 > nLay) //帧率够
 				{
-					nDelay = (gdigrab->nFrameCount )*gdigrab->framerate.den * 10 / 11 - nLay-2;// -5;
+					nDelay = (gdigrab->nFrameCount )*gdigrab->framerate.den * 20 / 21 - nLay-2;// -5;
 				}
 				
 #if _DEBUG
@@ -2405,7 +2538,7 @@ DWORD WINAPI SendDesktopTimer(LPVOID dwUser)
 			}
 			if (nDelay <= 0)
 			{
-				nDelay = 5;   //防止cpu占用过高
+				nDelay = 2;   //防止cpu占用过高 -5
 			}
 			else if(nDelay >1000)
 			{
@@ -2423,6 +2556,14 @@ DWORD WINAPI SendDesktopTimer(LPVOID dwUser)
 		
 
 		}
+
+		LONGLONG   t1;
+		QueryPerformanceCounter((LARGE_INTEGER*)& t1);
+		if (gdigrab->nFrameCount == 0)
+		{
+			gdigrab->time_frame = t1;
+		}
+
 		//截屏成功上报
 		int nRet = pMain->CaptureScreen();
 
@@ -2439,8 +2580,9 @@ DWORD WINAPI SendDesktopTimer(LPVOID dwUser)
 			if (nRet > 1)
 			{
 				ErrorLog(nRet);
-				/*sprintf_s(ch, "CaptureScreen have error:%d\n", nRet);
-				WriteToLog(ch, strnlen_s(ch, Max_TempCharLength));*/
+
+				gdigrab->nAllDelay = 0;
+				gdigrab->nFrameCount = 0;
 			}
 		}
 
@@ -2465,14 +2607,15 @@ DWORD WINAPI SendDesktopTimer(LPVOID dwUser)
 
 		}
 
+		if (nlastdelay >= gdigrab->framerate.den*20/21 || nlastdelay >= CAPTURE_TIMEOUT)
+		{
+			gdigrab->nAllDelay = 0;
+			gdigrab->nFrameCount = 0;
+		}
+
 		//Sleep(15);
 		gdigrab->last_frame = nlastdelay;// McGetTick();//t1;
-		if (gdigrab->nFrameCount == 0)
-		{
-			gdigrab->time_frame = McGetTick();
-		}
 	}
-
 
 	return 0;
 }
@@ -2867,6 +3010,17 @@ void SaveToBmp(int nIndex, int nWidth,unsigned char*pData,int nLen)
 
 int CDesktopCapture::CaptureScreen()
 {
+	char chMsg[Max_TempCharLength] = { 0 };
+
+	//当前抓屏方式与设置的抓屏方式不一致
+	if (m_emCurGrabMode != g_emGrabMode)
+	{
+		ResizeDestop();
+		m_emCurGrabMode = g_emGrabMode;
+		sprintf_s(chMsg, Max_TempCharLength, "当前抓屏方式改变:%d\n", m_emCurGrabMode);
+		WriteToLog(chMsg, strnlen_s(chMsg, Max_TempCharLength));
+		return 13;
+	}
 
 	if (!m_bIsStart)
 	{
@@ -2906,11 +3060,19 @@ int CDesktopCapture::CaptureScreen()
 	LONGLONG   tbegin;
 	QueryPerformanceCounter((LARGE_INTEGER   *)&tbegin);
 	CAutoLock  csLock(&m_csDB);
-	int nbmpLen = gdigrab_read_packet(&g_avFormatatContentx, &g_avPacket);
+
+	int nbmpLen = 0;
+	if (g_emGrabMode == MODE_DXGI)
+	{
+		nbmpLen = dxgi_read_packet(&g_avFormatatContentx, &g_avPacket);
+	}
+	else
+	{
+		nbmpLen = gdigrab_read_packet(&g_avFormatatContentx, &g_avPacket);
+	}
 
 	LONGLONG   tcapure;
 	QueryPerformanceCounter((LARGE_INTEGER   *)&tcapure);
-	char chMsg[Max_TempCharLength] = { 0 };
 
 #if _DEBUG
 	if (g_nCpuPerial > 0)
@@ -2925,9 +3087,13 @@ int CDesktopCapture::CaptureScreen()
 
 	if (nbmpLen == 0)
 	{
-		sprintf_s(chMsg, Max_TempCharLength, "截屏没有获取到数据，read_packet 返回长度:%d\n", nbmpLen);
-		WriteToLog(chMsg, strnlen_s(chMsg, Max_TempCharLength));
-		return 2;
+		if (m_bDXInit)
+		{
+			sprintf_s(chMsg, Max_TempCharLength, "截屏没有获取到数据，read_packet 返回长度:%d\n", nbmpLen);
+			WriteToLog(chMsg, strnlen_s(chMsg, Max_TempCharLength));
+			return 2;
+		}
+		return 20;//锁屏时不获取数据
 	}
 	RECT   clip_rect = gdigrab->clip_rect;
 
@@ -3172,6 +3338,10 @@ void CDesktopCapture::Stop()
 	}
 	gdigrab_read_close(&g_avFormatatContentx);
 
+	if (g_emGrabMode == MODE_DXGI)
+	{
+		DestroyDXGI();
+	}
 }
 
 /*=============================================================================
@@ -3507,6 +3677,34 @@ bool CDesktopCapture::JudgeIsWin7Vista()
 }
 
 /*=============================================================================
+函数名		 JudgeIsWin8OrLater
+功能		： 判断是否win8以后的操作系统
+算法实现	：（可选项）
+引用全局变量：
+输入参数说明：无
+返回值说明： 是否win8以后的操作系统
+=============================================================================*/
+bool CDesktopCapture::JudgeIsWin8OrLater()
+{
+	bool bIsWin8OrLater = false;
+
+	OSVERSIONINFO osvi;
+	ZeroMemory(&osvi, sizeof(OSVERSIONINFO));
+	osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
+	GetVersionEx(&osvi);
+
+	// 判断系统类别
+
+	if ( (osvi.dwMajorVersion > 6) ||
+		(osvi.dwMajorVersion == 6) && (osvi.dwMinorVersion >= 2) )    //win8以上
+	{
+		bIsWin8OrLater = true;
+	}
+
+	return bIsWin8OrLater;
+}
+
+/*=============================================================================
 函数名		 InvalidAero
 功能		： 无效window的Aero
 算法实现	：（可选项）
@@ -3650,4 +3848,503 @@ int  CDesktopCapture::InitConstData()
 	//m_handleBack = CreateThread(NULL, 0, MsgThreadFun, this, 0, &m_dwThreadId);
 
 	return 0;
+}
+
+/*=============================================================================
+函数名		 InitDXGI
+功能		： 初始化DXGI
+算法实现	：（可选项）
+引用全局变量：
+输入参数说明：无
+返回值说明： 是否成功
+=============================================================================*/
+bool CDesktopCapture::InitDXGI()
+{
+	CAutoLock  csLock(&m_csDB);
+
+	char chLog[Max_TempCharLength] = { 0 };
+    HRESULT hr = S_OK;
+
+	if (m_bDXInit)
+	{
+		return FALSE;
+	}
+
+    // Driver types supported
+    D3D_DRIVER_TYPE DriverTypes[] =
+    {
+        D3D_DRIVER_TYPE_HARDWARE,
+        D3D_DRIVER_TYPE_WARP,
+        D3D_DRIVER_TYPE_REFERENCE,
+    };
+    UINT NumDriverTypes = ARRAYSIZE(DriverTypes);
+
+    // Feature levels supported
+    D3D_FEATURE_LEVEL FeatureLevels[] =
+    {
+        D3D_FEATURE_LEVEL_11_0,
+        D3D_FEATURE_LEVEL_10_1,
+        D3D_FEATURE_LEVEL_10_0,
+        D3D_FEATURE_LEVEL_9_1
+    };
+    UINT NumFeatureLevels = ARRAYSIZE(FeatureLevels);
+    D3D_FEATURE_LEVEL FeatureLevel;
+
+    //
+    // Create D3D device
+    //
+    for (UINT DriverTypeIndex = 0; DriverTypeIndex < NumDriverTypes; ++DriverTypeIndex)
+    {
+        hr = D3D11CreateDevice(NULL, DriverTypes[DriverTypeIndex], NULL, 0, FeatureLevels, NumFeatureLevels, D3D11_SDK_VERSION, &m_hDevice, &FeatureLevel, &m_hContext);
+
+        if (SUCCEEDED(hr))
+        {
+            break;
+        }
+    }
+
+    if (FAILED(hr))
+    {
+		sprintf_s(chLog, Max_TempCharLength, "Create D3D device failed\n");
+		WriteToLog(chLog, Max_TempCharLength);
+        return FALSE;
+    }
+
+    //
+    // Get DXGI device
+    //
+    IDXGIDevice *hDxgiDevice = NULL;
+    hr = m_hDevice->QueryInterface(__uuidof(IDXGIDevice), reinterpret_cast<void**>(&hDxgiDevice));
+    if (FAILED(hr))
+    {
+		sprintf_s(chLog, Max_TempCharLength, "Get DXGI device failed\n");
+		WriteToLog(chLog, Max_TempCharLength);
+        return FALSE;
+    }
+
+    //
+    // Get DXGI adapter
+    //
+    IDXGIAdapter *hDxgiAdapter = NULL;
+    hr = hDxgiDevice->GetParent(__uuidof(IDXGIAdapter), reinterpret_cast<void**>(&hDxgiAdapter));
+	RESET_OBJECT(hDxgiDevice);
+    if (FAILED(hr))
+    {
+		sprintf_s(chLog, Max_TempCharLength, "Get DXGI adapter failed\n");
+		WriteToLog(chLog, Max_TempCharLength);
+        return FALSE;
+    }
+
+    //
+    // Get output
+    //
+    INT nOutput = 0;
+    IDXGIOutput *hDxgiOutput = NULL;
+    hr = hDxgiAdapter->EnumOutputs(nOutput, &hDxgiOutput);
+    RESET_OBJECT(hDxgiAdapter);
+    if (FAILED(hr))
+    {
+		sprintf_s(chLog, Max_TempCharLength, "Get output failed\n");
+		WriteToLog(chLog, Max_TempCharLength);
+        return FALSE;
+    }
+
+    //
+    // get output description struct
+    //
+    hDxgiOutput->GetDesc(&m_dxgiOutDesc);
+
+    //
+    // QI for Output 1
+    //
+    IDXGIOutput1 *hDxgiOutput1 = NULL;
+    hr = hDxgiOutput->QueryInterface(__uuidof(hDxgiOutput1), reinterpret_cast<void**>(&hDxgiOutput1));
+    RESET_OBJECT(hDxgiOutput);
+    if (FAILED(hr))
+    {
+		sprintf_s(chLog, Max_TempCharLength, "QI for Output 1 failed\n");
+		WriteToLog(chLog, Max_TempCharLength);
+        return FALSE;
+    }
+
+    //
+    // Create desktop duplication
+    //
+    hr = hDxgiOutput1->DuplicateOutput(m_hDevice, &m_hDeskDupl);
+    RESET_OBJECT(hDxgiOutput1);
+    if (FAILED(hr))
+    {
+		sprintf_s(chLog, Max_TempCharLength, "Create desktop duplication failed:%d\n", hr);
+		WriteToLog(chLog, Max_TempCharLength);
+        return FALSE;
+    }
+
+	m_bDXInit = TRUE;
+    return TRUE;
+}
+
+void CDesktopCapture::DestroyDXGI()
+{
+	CAutoLock  csLock(&m_csDB);
+
+	if (!m_bDXInit)
+	{
+		return;
+	}
+
+	m_bDXInit = FALSE;
+
+	RESET_OBJECT(m_hDeskDupl);
+	RESET_OBJECT(m_hDevice);
+	RESET_OBJECT(m_hContext);
+
+	MySleep(200);
+}
+
+bool CDesktopCapture::AttatchToThread()
+{
+	HDESK hCurrentDesktop = OpenInputDesktop(0, FALSE, GENERIC_ALL);
+	if (!hCurrentDesktop)
+	{
+		return FALSE;
+	}
+
+	// Attach desktop to this thread
+	BOOL bDesktopAttached = SetThreadDesktop(hCurrentDesktop);
+	CloseDesktop(hCurrentDesktop);
+	hCurrentDesktop = NULL;
+
+	//DestroyDXGI时，需重新初始化
+	InitDXGI();
+
+	return bDesktopAttached;
+}
+
+bool CDesktopCapture::QueryFrame(void* pImgData, INT& nImgSize)
+{
+	char chMsg[Max_TempCharLength] = { 0 };
+	if (!AttatchToThread())
+	{
+		//锁屏时，获取桌面句柄失败
+		if (m_bDXInit)
+		{
+			sprintf_s(chMsg, Max_TempCharLength, "OpenInputDesktop failed\n");
+			WriteToLog(chMsg, strnlen_s(chMsg, Max_TempCharLength));
+		}
+		DestroyDXGI();
+		return FALSE;
+	}
+	struct gdigrab *gdigrab1 = (gdigrab *)(&g_avFormatatContentx)->priv_data;
+
+	IDXGIResource* hDesktopResource = NULL;
+	DXGI_OUTDUPL_FRAME_INFO FrameInfo;
+	m_hDeskDupl->ReleaseFrame();
+	HRESULT hr = m_hDeskDupl->AcquireNextFrame(CAPTURE_TIMEOUT, &FrameInfo, &hDesktopResource);
+	if (FAILED(hr))
+	{
+		//
+		// 在一些win10的系统上,如果桌面没有变化的情况下，
+		// 这里会发生超时现象，但是这并不是发生了错误，而是系统优化了刷新动作导致的。
+		// 所以，这里没必要返回FALSE，返回不带任何数据的TRUE即可
+		//
+		
+		if (g_bPrtSwitchOn)
+		{
+			sprintf_s(chMsg, Max_TempCharLength, "AcquireNextFrame timeout\n");
+			WriteToLog(chMsg, strnlen_s(chMsg, Max_TempCharLength));
+		}
+
+		gdigrab1->draw_mouse = false;
+		return TRUE;
+	}
+
+	if (FrameInfo.PointerPosition.Visible == true)
+	{//鼠标移动
+		g_tMouseStatus.LastMousePosition.x = FrameInfo.PointerPosition.Position.x;
+		g_tMouseStatus.LastMousePosition.y = FrameInfo.PointerPosition.Position.y;
+		g_tMouseStatus.bJudgeNextMousePos = false;
+		g_tMouseStatus.bNextMousePosChanged = false;
+	}
+	else
+	{//鼠标拖动窗口或静止
+		g_tMouseStatus.bJudgeNextMousePos = true;
+	}
+
+	//鼠标拖动应用窗口时，不再绘制鼠标
+	if (g_tMouseStatus.bNextMousePosChanged)
+	{
+		gdigrab1->draw_mouse = false;
+	}
+	else
+	{
+		gdigrab1->draw_mouse = true;
+	}
+
+	if (g_bPrtSwitchOn)
+	{
+		sprintf_s(chMsg, Max_TempCharLength, "AccumulatedFrames: %d\n", FrameInfo.AccumulatedFrames);
+		WriteToLog(chMsg, strnlen_s(chMsg, Max_TempCharLength));
+	}
+
+	//
+	// query next frame staging buffer
+	//
+	ID3D11Texture2D* hAcquiredDesktopImage = NULL;
+	hr = hDesktopResource->QueryInterface(__uuidof(ID3D11Texture2D), reinterpret_cast<void**>(&hAcquiredDesktopImage));
+	RESET_OBJECT(hDesktopResource);
+	if (FAILED(hr))
+	{
+		sprintf_s(chMsg, Max_TempCharLength, "AcquiredDesktopImage failed\n");
+		WriteToLog(chMsg, strnlen_s(chMsg, Max_TempCharLength));
+		return FALSE;
+	}
+
+	//
+	// copy old description
+	//
+	D3D11_TEXTURE2D_DESC frameDescriptor;
+	hAcquiredDesktopImage->GetDesc(&frameDescriptor);
+
+	//
+	// create a new staging buffer for fill frame image
+	//
+	ID3D11Texture2D* hNewDesktopImage = NULL;
+	frameDescriptor.Usage = D3D11_USAGE_STAGING;
+	frameDescriptor.CPUAccessFlags = D3D11_CPU_ACCESS_READ;
+	frameDescriptor.BindFlags = 0;
+	frameDescriptor.MiscFlags = 0;
+	frameDescriptor.MipLevels = 1;
+	frameDescriptor.ArraySize = 1;
+	frameDescriptor.SampleDesc.Count = 1;
+	hr = m_hDevice->CreateTexture2D(&frameDescriptor, NULL, &hNewDesktopImage);
+	if (FAILED(hr))
+	{
+		RESET_OBJECT(hAcquiredDesktopImage);
+		m_hDeskDupl->ReleaseFrame();
+		sprintf_s(chMsg, Max_TempCharLength, "CreateTexture2D failed\n");
+		WriteToLog(chMsg, strnlen_s(chMsg, Max_TempCharLength));
+		return FALSE;
+	}
+
+	//
+	// copy next staging buffer to new staging buffer
+	//
+	m_hContext->CopyResource(hNewDesktopImage, hAcquiredDesktopImage);
+	RESET_OBJECT(hAcquiredDesktopImage);
+	//m_hDeskDupl->ReleaseFrame();
+
+	//
+	// create staging buffer for map bits
+	//
+	IDXGISurface* hStagingSurf = NULL;
+	hr = hNewDesktopImage->QueryInterface(__uuidof(IDXGISurface), (void**)(&hStagingSurf));
+	RESET_OBJECT(hNewDesktopImage);
+	if (FAILED(hr))
+	{
+		sprintf_s(chMsg, Max_TempCharLength, "Greate staging buffer for map bits failed\n");
+		WriteToLog(chMsg, strnlen_s(chMsg, Max_TempCharLength));
+		return FALSE;
+	}
+
+	//
+	// copy bits to user space
+	//
+	DXGI_MAPPED_RECT mappedRect;
+	hr = hStagingSurf->Map(&mappedRect, DXGI_MAP_READ);
+	if (SUCCEEDED(hr))
+	{
+		if (g_bPrtSwitchOn)
+		{ 
+			sprintf_s(chMsg, Max_TempCharLength, "nImgSize:%d, nCaptureSize:%d, Pitch:%d\n",
+				nImgSize, mappedRect.Pitch*m_dxgiOutDesc.DesktopCoordinates.bottom, mappedRect.Pitch);
+			WriteToLog(chMsg, strnlen_s(chMsg, Max_TempCharLength));
+		}
+
+		// DXGI抓屏，部分型号电脑内存为4字节对齐
+		if (mappedRect.Pitch * m_dxgiOutDesc.DesktopCoordinates.bottom != nImgSize)
+		{
+			sprintf_s(chMsg, Max_TempCharLength, "Mapped bits pitch is:%d\n", mappedRect.Pitch);
+			WriteToLog(chMsg, strnlen_s(chMsg, Max_TempCharLength));
+			g_bAlign4Bytes = true;
+			m_bMapBitsChanged = true;
+			ResizeDestop();
+			return FALSE;
+		}
+
+		memcpy(pImgData, mappedRect.pBits, nImgSize);
+		hStagingSurf->Unmap();
+	}
+
+	RESET_OBJECT(hStagingSurf);
+	return SUCCEEDED(hr);
+}
+
+int CDesktopCapture::dxgi_read_packet(AVFormatContext* s1, AVPacket* pkt)
+{
+	char chMsg[Max_TempCharLength] = { 0 };
+	if (s1 == NULL)
+	{
+		return 0;
+	}
+
+	struct gdigrab* gdigrab = (struct gdigrab*)s1->priv_data;
+	if (gdigrab == NULL)
+	{
+		return 0;
+	}
+
+	//读取参数  
+	HDC        dest_hdc = gdigrab->dest_hdc;
+	HDC        source_hdc = gdigrab->source_hdc;
+	RECT       clip_rect = gdigrab->clip_rect;
+	//int64_t    time_frame = gdigrab->time_frame;
+
+	BITMAPFILEHEADER bfh;
+	int file_size = gdigrab->header_size + gdigrab->frame_size;
+
+	int64_t curtime;//, delay;  
+	curtime = GetTickCount();
+	pkt->pts = curtime; // 0;//
+
+	/* Run Window message processing queue */
+	if (gdigrab->show_region)
+		gdigrab_region_wnd_update(s1, gdigrab);
+
+	//判断是否能4字节对齐
+	int nScrWidth = (int)(gdigrab->width);
+	bool bIs4Byte = Align4Bytes(&nScrWidth, 0);
+	int nLeft = 0;
+	if (bIs4Byte)
+	{
+		//计算后，居中显示
+		nLeft = nScrWidth - (clip_rect.right - clip_rect.left);
+		nLeft = nLeft / 2;
+	}
+	else
+	{
+	}
+
+	//获取桌面数据
+	if (!QueryFrame(gdigrab->buffer, gdigrab->frame_size))
+	{
+		if (m_bDXInit)
+		{
+			sprintf_s(chMsg, Max_TempCharLength, "DXGI QueryFrame error\n");
+			WriteToLog(chMsg, strnlen_s(chMsg, Max_TempCharLength));
+		}
+		
+		return 0;
+	}
+
+	//画鼠标指针？  
+	if (gdigrab->draw_mouse)
+		paint_mouse_pointer(s1, gdigrab);
+
+	//测试用，填充黑色
+	if (bIs4Byte)
+	{
+		RECT sFillRect;
+		sFillRect.left = nScrWidth - nLeft;
+		sFillRect.right = clip_rect.left + nScrWidth;
+		sFillRect.top = clip_rect.top;
+		sFillRect.bottom = clip_rect.bottom;
+		FillRect(dest_hdc, &sFillRect, g_sBrush);
+	}
+
+	/* Copy bits to packet data */
+	//BMP文件头BITMAPFILEHEADER  
+	bfh.bfType = 0x4d42; /* "BM" in little-endian */
+	bfh.bfSize = file_size;
+	bfh.bfReserved1 = 0;
+	bfh.bfReserved2 = 0;
+	bfh.bfOffBits = gdigrab->header_size;
+	//往AVPacket中拷贝数据  
+	//拷贝BITMAPFILEHEADER  
+	if (pkt->data == NULL)
+	{
+
+		sprintf_s(chMsg, Max_TempCharLength, "DXGI get dib data error,data is null\n");
+		WriteToLog(chMsg, strnlen_s(chMsg, Max_TempCharLength));
+		return 0;
+	}
+	memcpy(pkt->data, &bfh, sizeof(bfh));
+	//拷贝BITMAPINFOHEADER  
+	memcpy(pkt->data + sizeof(bfh), &gdigrab->bmi.bmiHeader, sizeof(gdigrab->bmi.bmiHeader));
+	//不常见  
+	if (gdigrab->bmi.bmiHeader.biBitCount <= 8)
+	{
+		GetDIBColorTable(dest_hdc, 0, 1 << gdigrab->bmi.bmiHeader.biBitCount,
+			(RGBQUAD*)(pkt->data + sizeof(bfh) + sizeof(gdigrab->bmi.bmiHeader)));
+	}
+	//拷贝像素数据  
+	memcpy(pkt->data + gdigrab->header_size, gdigrab->buffer, gdigrab->frame_size);
+	pkt->size = file_size;
+
+	return gdigrab->header_size + gdigrab->frame_size;
+}
+
+/*=============================================================================
+函数名		 SetPrtSwitchOn
+功能		： 打印开关
+算法实现	：（可选项）
+引用全局变量：
+输入参数说明：bPrtSwitchOn == true/false(开启/关闭)
+返回值说明： 是否成功
+=============================================================================*/
+void CDesktopCapture::SetVidPrtSwitchOn(bool bPrtSwitchOn)
+{
+	CAutoLock  csLock(&m_csDB);
+
+	char chMsg[Max_TempCharLength] = { 0 };
+	sprintf_s(chMsg, Max_TempCharLength, "SetVidPrtSwitchOn:%d\n", bPrtSwitchOn);
+	WriteToLog(chMsg, strnlen_s(chMsg, Max_TempCharLength));
+
+	if (g_bPrtSwitchOn == bPrtSwitchOn)
+	{
+		return;
+	}
+
+	g_bPrtSwitchOn = bPrtSwitchOn;
+}
+
+/*=============================================================================
+函数名		 SetGrabMode
+功能		： 设置抓屏方式
+算法实现	：（可选项）
+引用全局变量：
+输入参数说明：emGrabMode 抓屏方式枚举值
+返回值说明： 是否成功
+=============================================================================*/
+bool CDesktopCapture::SetGrabMode(EmGrabMode emGrabMode)
+{
+	CAutoLock  csLock(&m_csDB);
+
+	//win7以前操作系统不支持DXGI方式，默认为GDI抓屏方式
+	if (!g_bIsWin8OrLater && emGrabMode == MODE_DXGI)
+	{
+		return false;
+	}
+
+	if (g_emGrabMode == emGrabMode)
+	{
+		return true;
+	}
+
+	g_emGrabMode = emGrabMode;
+	return true;
+}
+
+/*=============================================================================
+函数名		 GetGrabMode
+功能		： 获取当前抓屏方式
+算法实现	：（可选项）
+引用全局变量：
+输入参数说明：
+返回值说明： 是否成功
+=============================================================================*/
+EmGrabMode CDesktopCapture::GetGrabMode()
+{
+	CAutoLock  csLock(&m_csDB);
+
+	return m_emCurGrabMode;
 }

@@ -48,6 +48,7 @@ enum EmNvOspMsgTimer
 
 	Ev_Nv_Timer_RcvDualTimer,       //接收双流定时器
 	Ev_Nv_Timer_X700ChangeLocalEcho,       //x700在入会时切回显的定时器
+	Ev_Nv_Timer_QKConnectImixFail, /*< 定时监测投屏器连接终端是否失败*/
 };
 
 #endif

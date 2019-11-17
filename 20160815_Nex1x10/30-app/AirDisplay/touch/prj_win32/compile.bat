@@ -22,8 +22,8 @@ if not exist "..\..\..\..\10-common\lib\releaselib\release\win32\asflib.dll" (
     goto end
 )
 
-if not exist "..\..\..\..\10-common\lib\releaselib\release\win32\h264enc_x.dll" (
-    echo miss file h264enc_x.dll >> "%compileVerPath%\compileinfo\airdisplay_touch_r.txt"
+if not exist "..\..\..\..\10-common\lib\releaselib\release\win32\kdcodec.dll" (
+    echo miss file kdcodec.dll >> "%compileVerPath%\compileinfo\airdisplay_touch_r.txt"
     goto end
 )
 
@@ -67,6 +67,11 @@ if not exist "..\..\..\..\10-common\lib\releaselib\release\win32\kdh4.dll" (
     goto end
 )
 
+if not exist "..\..\..\..\10-common\lib\releaselib\release\win32\kdh5.dll" (
+    echo miss file kdh5.dll >> "%compileVerPath%\compileinfo\airdisplay_touch_r.txt"
+    goto end
+)
+
 if not exist "..\..\..\..\10-common\lib\releaselib\release\win32\kdmp3.acm" (
     echo miss file kdmp3.acm >> "%compileVerPath%\compileinfo\airdisplay_touch_r.txt"
     goto end
@@ -107,6 +112,11 @@ if not exist "..\..\..\..\10-common\lib\releaselib\release\win32\IntelHwWrapper.
     goto end
 )
 
+if not exist "..\..\..\..\10-common\lib\releaselib\release\win32\vcruntime140.dll" (
+    echo miss file vcruntime140.dll >> "%compileVerPath%\compileinfo\airdisplay_touch_r.txt"
+    goto end
+)
+
 rem touch 配置文件
 if not exist "..\setup\touch.ini" (
     echo miss file touch.ini >> "%compileVerPath%\compileinfo\airdisplay_touch_r.txt"
@@ -124,7 +134,7 @@ rem call "%VS60COMNTOOLS%\vcvars32.bat"
 copy /Y release\touch.exe "%compileVerPath%\release\win32\AirDisplay\touch.exe"
 copy /Y "..\..\..\..\10-common\lib\locallib\release\win32\AVCollection.dll" "%compileVerPath%\release\win32\AirDisplay\"
 copy /Y "..\..\..\..\10-common\lib\releaselib\release\win32\asflib.dll" "%compileVerPath%\release\win32\AirDisplay\"
-copy /Y "..\..\..\..\10-common\lib\releaselib\release\win32\h264enc_x.dll" "%compileVerPath%\release\win32\AirDisplay\"
+copy /Y "..\..\..\..\10-common\lib\releaselib\release\win32\kdcodec.dll" "%compileVerPath%\release\win32\AirDisplay\"
 copy /Y "..\..\..\..\10-common\lib\releaselib\release\win32\kdvmedianetdll.dll" "%compileVerPath%\release\win32\AirDisplay\"
 copy /Y "..\..\..\..\10-common\lib\releaselib\release\win32\libkdcrypto-1_1.dll" "%compileVerPath%\release\win32\AirDisplay\"
 copy /Y "..\..\..\..\10-common\lib\releaselib\release\win32\libkdvsrtp.dll" "%compileVerPath%\release\win32\AirDisplay\"
@@ -133,11 +143,13 @@ copy /Y "..\..\..\..\10-common\lib\releaselib\release\win32\mediawrapper.dll" "%
 copy /Y "..\..\..\..\10-common\lib\releaselib\release\win32\ospdll.dll" "%compileVerPath%\release\win32\AirDisplay\"
 copy /Y "..\..\..\..\10-common\lib\releaselib\release\win32\kdimg.dll" "%compileVerPath%\release\win32\AirDisplay\"
 copy /Y "..\..\..\..\10-common\lib\releaselib\release\win32\kdh4.dll" "%compileVerPath%\release\win32\AirDisplay\tph4.dll"
+copy /Y "..\..\..\..\10-common\lib\releaselib\release\win32\kdh5.dll" "%compileVerPath%\release\win32\AirDisplay\"
 copy /Y "..\..\..\..\10-common\lib\releaselib\release\win32\kdmp3.acm" "%compileVerPath%\release\win32\AirDisplay\"
 copy /Y "..\..\..\..\10-common\lib\releaselib\release\win32\kdaudproc.dll" "%compileVerPath%\release\win32\AirDisplay\"
 copy /Y "..\..\..\..\10-common\lib\releaselib\release\win32\mfc100u.dll" "%compileVerPath%\release\win32\AirDisplay\"
 copy /Y "..\..\..\..\10-common\lib\releaselib\release\win32\msvcp100.dll" "%compileVerPath%\release\win32\AirDisplay\"
 copy /Y "..\..\..\..\10-common\lib\releaselib\release\win32\msvcr100.dll" "%compileVerPath%\release\win32\AirDisplay\"
+copy /Y "..\..\..\..\10-common\lib\releaselib\release\win32\vcruntime140.dll" "%compileVerPath%\release\win32\AirDisplay\"
 rem 硬编码新增库
 copy /Y "..\..\..\..\10-common\lib\releaselib\release\win32\codec\dll\kdaudcodec.dll" "%compileVerPath%\release\win32\AirDisplay\"
 copy /Y "..\..\..\..\10-common\lib\releaselib\release\win32\HwCodecWrapper.dll" "%compileVerPath%\release\win32\AirDisplay\"

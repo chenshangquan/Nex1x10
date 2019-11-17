@@ -20,6 +20,7 @@ public:
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
 	virtual BOOL OnInitDialog();
+    LRESULT OnNcHitTest(CPoint point);//点击窗口的任意位置都显示
 	afx_msg void OnNMClickSyslinkCompany(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnBtnClose();
 	DECLARE_MESSAGE_MAP()

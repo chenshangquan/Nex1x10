@@ -10024,6 +10024,17 @@ enum EmMtApiBaseEv
 	Ev_MtApi_Base_GetAiLoadLicenseTest_Rsp,
 	Ev_MtApi_Base_AiLoadLicenseTest_Ntf,
 
+	/**
+	@brief k5开启或关闭电子白板
+	MainBuf(#BOOL, enable)
+	@verbatim
+	{
+		enable: true
+	}
+	@endverbatim
+	*/
+	Ev_MtApi_Base_K5EnableWhiteBoard_Ntf,
+
     EV_UI_END(MTAPI_BASE) = EVSEG_MTAPI_BASE_END
 };
 

@@ -28,6 +28,8 @@ Revision History:
 #include <functiondiscoverykeys.h>
 #define SAFE_RELEASE(punk) if ((punk) != NULL) { (punk)->Release(); (punk) = NULL; }
 
+#pragma warning(disable: 4996)
+
 //winmm 采集设备
 IMMDevice* g_pDevice;
 // 采集线程句柄

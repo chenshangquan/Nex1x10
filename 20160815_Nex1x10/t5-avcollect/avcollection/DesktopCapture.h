@@ -100,6 +100,10 @@ V1.0.0.1_1206
 #include "AutoLock.h"
 #include "common.h"
 
+//lint -e7
+
+#include <d3d11.h>
+#include <dxgi1_2.h>
 
 #ifdef DESKTOPCAPTURE_EXPORTS
 #define DESKTOPCAPTURE_API __declspec(dllexport)
@@ -107,6 +111,9 @@ V1.0.0.1_1206
 #define DESKTOPCAPTURE_API __declspec(dllimport)
 #endif
 
+#ifndef RESET_OBJECT
+#define RESET_OBJECT(obj) { if(obj) obj->Release(); obj = NULL; }
+#endif
 
 #define VEDIO_VERSION_DESC "V1.0.0.1_0419"    //版本号，版本生成时间
 #define VEDIO_VERSION_COMPILE   "2018-4-19 15:10:12"    //版本号，版本生成时间
@@ -441,6 +448,22 @@ typedef struct AVFormatContext {
 
 } AVFormatContext;
 
+/**
+* DXGI mouse status
+*/
+typedef struct tagMouseStatus
+{
+	POINT LastMousePosition;        //上一鼠标位置
+	bool bJudgeNextMousePos;        //是否判断下一鼠标位置
+	bool bNextMousePosChanged;      //下一鼠标位置是否改变，true为拖动窗口状态
+	tagMouseStatus::tagMouseStatus()
+	{
+		LastMousePosition.x = 0;
+		LastMousePosition.y = 0;
+		bJudgeNextMousePos = false;
+		bNextMousePosChanged = false;
+	}
+}TMouseStatus;
 
 class  CDesktopCapture {
 public:
@@ -499,10 +522,27 @@ private:
 
 	TImageRGBtoYUVParam m_tImageRGBtoYUV;	//结构参数
 
+	//DXGI 变量
+	bool m_bDXInit;
+	ID3D11Device* m_hDevice;
+	ID3D11DeviceContext* m_hContext;
+	IDXGIOutputDuplication* m_hDeskDupl;
+	DXGI_OUTPUT_DESC m_dxgiOutDesc;
+	bool m_bMapBitsChanged;  //实际采集位数发生改变
+	EmGrabMode m_emCurGrabMode;  //当前抓屏方式
+
 	bool JudgeIsWin7Vista();
+	bool JudgeIsWin8OrLater();
 	bool InvalidAero();
 
 	int InitConstData();
+	//DXGI 函数
+    bool InitDXGI();
+	void DestroyDXGI();
+	bool AttatchToThread();
+	bool QueryFrame(void* pImgData, INT& nImgSize);
+	int dxgi_read_packet(AVFormatContext* s1, AVPacket* pkt);
+
 public:
 	/*开始设置视频回调
 	******/
@@ -531,6 +571,16 @@ public:
 	bool GetIsRunning();
 
 	bool IsAeroEnabled();
+public:  //debugging interface
+	/*设置视频打印开关
+	******/
+	void SetVidPrtSwitchOn(bool bPrtSwitchOn);
+	/*设置抓屏方式
+	******/
+	bool SetGrabMode(EmGrabMode emGrabMode);
+	/*获取当前抓屏方式
+	******/
+	EmGrabMode GetGrabMode();
 };
 
 extern DESKTOPCAPTURE_API int nDesktopCapture;

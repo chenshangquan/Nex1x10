@@ -405,6 +405,10 @@ API void help()
 	 OspPrintf(TRUE,FALSE,"\nscreen byScreen:选择屏幕,从1开始\n");
      OspPrintf(TRUE,FALSE,"\sethwenc:开启(1)|关闭(0) 硬编\n");
      OspPrintf(TRUE,FALSE,"\setlang:自动(0)|中文(1)|英文(2) 设置界面语言\n");
+     OspPrintf(TRUE,FALSE,"======== 采集库相关 ========\n");
+     OspPrintf(TRUE,FALSE,"\setvlogon:开启(1)|关闭(0) 采集库打印开关\n");
+     OspPrintf(TRUE,FALSE,"\setgrabmode:GDI(0)|DXGI(1) 设置抓屏方式\n");
+     OspPrintf(TRUE,FALSE,"\getgrabmode:获取当前抓屏方式\n");
 }
 
 API void prt( u8 byLevel )
@@ -579,5 +583,40 @@ API void setlang(u32 byLangID)
                 break;
             }
         }
+    }
+}
+
+API void setvlogon( bool bPrtSwitchOn )
+{
+    SetVidPrtSwitchOn(bPrtSwitchOn);
+}
+
+API void setgrabmode( EmGrabMode emGrabMode )
+{
+    if (emGrabMode < 0 || emGrabMode >= MODE_NONE)
+    {
+        OspPrintf(TRUE, FALSE, "参数错误，请重新输入\n");
+        return;
+    }
+
+    bool bRet = SetGrabMode(emGrabMode);
+    if (!bRet)
+    {
+        OspPrintf(TRUE, FALSE, "当前操作系统不支持DXGI抓屏方式\n");
+        return;
+    }
+}
+
+API void getgrabmode()
+{
+    EmGrabMode emGrabMode = GetGrabMode();
+    if (emGrabMode == MODE_GDI)
+    {
+        OspPrintf(TRUE, FALSE, "当前为GDI抓屏方式\n");
+    }
+
+    if (emGrabMode == MODE_DXGI)
+    {
+        OspPrintf(TRUE, FALSE, "当前为DXGI抓屏方式\n");
     }
 }

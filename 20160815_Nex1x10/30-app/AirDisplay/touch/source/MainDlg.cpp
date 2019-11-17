@@ -18,7 +18,8 @@ CMainDlg::CMainDlg(CWnd* pParent /*=NULL*/)
 {
 	m_dwBkResourceID = IDB_MAINBK;
 	m_btnMin.SetImage( IDR_BTN_MIN_NORMAL, IDR_BTN_MIN_PRESS, IDR_BTN_MIN_HOVER, IDR_BTN_MIN_NORMAL);
-	m_btnClose.SetImage( IDR_BTN_CLOSE_NORMAL, IDR_BTN_CLOSE_PRESS, IDR_BTN_CLOSE_HOVER, IDR_BTN_CLOSE_NORMAL);
+	//m_btnClose.SetImage( IDR_BTN_CLOSE_NORMAL, IDR_BTN_CLOSE_PRESS, IDR_BTN_CLOSE_HOVER, IDR_BTN_CLOSE_NORMAL);
+    m_btnClose.SetImage( IDR_BTN_MIN_NORMAL, IDR_BTN_MIN_PRESS, IDR_BTN_MIN_HOVER, IDR_BTN_MIN_NORMAL);//20191113 modify:关闭图标更改为最小化图标
 	m_btnPicBk.SetImage( IDB_CONNECT_BK, IDB_CONNECT_BK, IDB_CONNECT_BK,IDB_CONNECT_BK);
 	m_btnPicConnectFail.SetImage( IDB_CONNECT_FAIL, IDB_CONNECT_FAIL,IDB_CONNECT_FAIL,IDB_CONNECT_FAIL);
     m_btnPicStatus.SetImage(IDB_STATUS_CONNECTING, IDB_STATUS_CONNECTING, IDB_STATUS_CONNECTING, IDB_STATUS_CONNECTING);
@@ -198,7 +199,7 @@ void CMainDlg::ShowConnectStatus(NET_STATUS emNetStatus)
 			ShowConnectPicture(CONNECT_SUCESS);
 		}
 		break;
-	case NET_STATUS_DISCONNECTED:
+	case NET_STATUS_NET_DISCONNECTED:
         {
             m_btnPicStatus.SetImage(IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL);
 			m_stTip.SetWindowText(STRING_NET_STATUS_DISCONNECTED);
@@ -207,12 +208,12 @@ void CMainDlg::ShowConnectStatus(NET_STATUS emNetStatus)
 			ShowConnectPicture(CONNECT_FAIL);
 		}
 		break;
-	case NET_STATUS_NO_NETWORK:
+	case NET_STATUS_FIND_TER_FAIL:
 		{
             m_btnPicStatus.SetImage(IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL);
-			m_stTip.SetWindowText(STRING_NET_STATUS_NO_NETWORK);
+			m_stTip.SetWindowText(STRING_NET_STATUS_FIND_TER_FAIL);
             m_stTip.SetTextColor(TIP_FONT_COLOR_DISCONNECTED);
-			m_stTipDes.SetWindowText(STRING_DES_NET_STATUS_NO_NETWORK);
+			m_stTipDes.SetWindowText(STRING_DES_NET_STATUS_FIND_TER_FAIL);
 			ShowConnectPicture(CONNECT_FAIL);
 		}
 		break;
@@ -243,15 +244,24 @@ void CMainDlg::ShowConnectStatus(NET_STATUS emNetStatus)
 			ShowConnectPicture(CONNECT_FAIL);
 		}
 		break;
-	case NET_STATUS_RESETWIFI:
+	case NET_STATUS_TER_DISCONNECTED:
 		{
             m_btnPicStatus.SetImage(IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL);
-			m_stTip.SetWindowText(STRING_NET_STATUS_RESETWIFI);
+			m_stTip.SetWindowText(STRING_NET_STATUS_TER_DISCONNECTED);
             m_stTip.SetTextColor(TIP_FONT_COLOR_DISCONNECTED);
-			m_stTipDes.SetWindowText(STRING_DES_NET_STATUS_RESETWIFI);
+			m_stTipDes.SetWindowText(STRING_DES_NET_STATUS_TER_DISCONNECTED);
 			ShowConnectPicture(CONNECT_FAIL);
 		}
 		break;
+    case NET_STATUS_RECONNECTTER_FAIL:
+        {
+            m_btnPicStatus.SetImage(IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL);
+            m_stTip.SetWindowText(STRING_NET_STATUS_RECONNECTTER_FAIL);
+            m_stTip.SetTextColor(TIP_FONT_COLOR_DISCONNECTED);
+            m_stTipDes.SetWindowText(STRING_DES_NET_STATUS_RECONNECTTER_FAIL);
+            ShowConnectPicture(CONNECT_FAIL);
+        }
+        break;
     case NET_STATUS_FIND_SSID_FAIL:
         {
             m_btnPicStatus.SetImage(IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL, IDB_STATUS_ABNORMAL);

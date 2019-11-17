@@ -372,7 +372,6 @@
 #define emHD_Rt_OpenScanFeature           "emHD_Rt_OpenScanFeature"               //使用厂商识别的结果(value: TBOOL32 )
 #define emHD_Rt_IsMfgTestLoad             "emHD_Rt_IsMfgTestLoad"                 //加载模式(value: TBOOL32 )
 #define emHD_Rt_IsDerivation              "emHD_Rt_IsDerivation"                  //是否为衍生的产品(value: TBOOL32 )
-#define emMt_Rt_IsAiLoadLicense           "emMt_Rt_IsAiLoadLicense"               //是否成功加载思必驰证书(value: TBOOL32)
 
 //////下面是所有的debug配置的key
 /*

@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 
+#pragma warning(disable: 4996)
+
 #define S11 7
 #define S12 12
 #define S13 17

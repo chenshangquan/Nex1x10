@@ -125,6 +125,8 @@ int RandNumber(int nMax, int nMin);
 int WifimSysExecCmd(char *cmd, char **retbuf, int method);
 int CheckProcIsRun(char *process);
 int WifiSetMode(char *ifname, char *mode);
+char * WifiConfigParseString(const char *pchValue, int *pnLen);
+
 #ifdef __cplusplus
 }
 #endif

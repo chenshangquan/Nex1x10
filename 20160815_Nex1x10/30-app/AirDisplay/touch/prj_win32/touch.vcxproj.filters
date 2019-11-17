@@ -190,6 +190,42 @@
     <None Include="res\status_abnormal.png">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="res\trayicon1.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\trayicon2.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\trayicon3.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\trayicon4.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\trayicon5.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\trayicon6.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\trayicon7.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\trayicon8.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\trayicon9.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\trayicon10.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\trayicon11.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\trayicon12.ico">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="touch.h">

@@ -35,6 +35,7 @@ typedef struct tagTNVQKVidSrcSignal_Api
 	u32 dwIndex;                                  //投屏器序号,值为0时非投屏器
 	BOOL32 bIsHasSrc;                             //是否有源
 	s8 achVidName[KNVAPI_BUF_64_LEN];             //无线投屏pcname
+	s8 achQkVer[KNVAPI_BUF_64_LEN];               //无线投屏版本
 public:
 	tagTNVQKVidSrcSignal_Api()	{ memset( this, 0, sizeof(*this) ); }
 }*PTNVQKVidSrcSignal_Api, TNVQKVidSrcSignal_Api;
@@ -69,6 +70,15 @@ typedef struct tagTNVQKCodeParam_Api
 public:
 	tagTNVQKCodeParam_Api()	{ memset( this, 0, sizeof(*this) ); }
 }*PTNVQKCodeParam_Api, TNVQKCodeParam_Api;
+
+/** 无线投屏升级版本信息*/
+typedef struct tagTNVQKUpgradeInfo_Api
+{
+	BOOL32    bHasQkUpgradeFile;                                 //无线投屏器是否有升级包
+	s8        achQkUpgradeVer[KNVAPI_BUF_64_LEN];               //无线投屏升级版本
+public:
+	tagTNVQKUpgradeInfo_Api()	{ memset( this, 0, sizeof(*this) ); }
+}*PTNVQKUpgradeInfo_Api, TNVQKUpgradeInfo_Api;
 /**@}*/
 
 /**@}*/
