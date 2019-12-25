@@ -1377,12 +1377,37 @@ void CtouchDlg::OnTimer(UINT_PTR nIDEvent)
 		break;
     case ThreadExitTimerID:
         {
-            if ( 5 == m_nThreadExitCount )
+            if ( 3 == m_nThreadExitCount )
             {
                 KillTimer(ThreadExitTimerID);
                 PRINTMSG_TIME("AVThread Exit Failed, m_bVideoThreadRun:%d, m_bAudioThreadRun:%d\r\n",
                     m_bVideoThreadRun, m_bAudioThreadRun);
                 m_nThreadExitCount = 0;
+
+                //线程退出超时则终止线程
+                DWORD dwWaitStatus = WaitForSingleObject(m_pcVideoThread->m_hThread, 500);
+                if ( WAIT_TIMEOUT == dwWaitStatus)
+                {
+                    TerminateThread(m_pcVideoThread->m_hThread, 0);
+                    PRINTMSG_TIME("Terminate VideoThread\r\n");
+                }
+
+                dwWaitStatus = WaitForSingleObject(m_pcAudioThread->m_hThread, 500);
+                if ( WAIT_TIMEOUT == dwWaitStatus)
+                {
+                    TerminateThread(m_pcAudioThread->m_hThread, 0);
+                    PRINTMSG_TIME("Terminate AudioThread\r\n");
+                }
+
+                m_pcVideoThread = NULL;
+                m_pcAudioThread = NULL;
+
+                m_bVideoThreadRun = false;
+                m_bAudioThreadRun = false;
+
+                //清空数据
+                GetVideoDataList()->Clear();
+                GetAudioDataList()->Clear();
             }
             else
             {

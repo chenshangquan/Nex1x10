@@ -1823,7 +1823,6 @@ CDesktopCapture::CDesktopCapture()
 	m_hContext = NULL;
 	m_hDeskDupl = NULL;
 	ZeroMemory(&m_dxgiOutDesc, sizeof(m_dxgiOutDesc));
-	m_bMapBitsChanged = false;
 	m_emCurGrabMode = g_emGrabMode;
 
 	return; 
@@ -2305,16 +2304,8 @@ void CDesktopCapture::InitAll(bool bjt)
 
 	if (g_emGrabMode == MODE_DXGI)
 	{
-		//DXGI抓屏，检测到实际抓屏数据为4字节对齐方式
-		if (!m_bMapBitsChanged)
-		{
-			g_emAlignBytes = ALIGN_16_BYTES;
-		}
-		else
-		{
-			m_bMapBitsChanged = false;
-		}
-	}
+		g_emAlignBytes = ALIGN_16_BYTES;
+	}//DXGI默认为16字节对齐
 
 	///////////////////mult display
 	if(g_tdispInfo.nDeviceCount<=0)
@@ -4188,7 +4179,6 @@ bool CDesktopCapture::QueryFrame(void* pImgData, INT& nImgSize)
 				g_emAlignBytes = ALIGN_4_BYTES;
 			}
 
-			m_bMapBitsChanged = true;
 			ResizeDestop();
 			return FALSE;
 		}

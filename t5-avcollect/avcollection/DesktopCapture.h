@@ -536,7 +536,6 @@ private:
 	ID3D11DeviceContext* m_hContext;
 	IDXGIOutputDuplication* m_hDeskDupl;
 	DXGI_OUTPUT_DESC m_dxgiOutDesc;
-	bool m_bMapBitsChanged;  //实际采集位数发生改变
 	EmGrabMode m_emCurGrabMode;  //当前抓屏方式
 
 	bool JudgeIsWin7Vista();
