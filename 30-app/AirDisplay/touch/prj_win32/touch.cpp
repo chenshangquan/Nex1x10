@@ -409,6 +409,7 @@ API void help()
      OspPrintf(TRUE,FALSE,"\setvlogon:开启(1)|关闭(0) 采集库打印开关\n");
      OspPrintf(TRUE,FALSE,"\setgrabmode:GDI(0)|DXGI(1) 设置抓屏方式\n");
      OspPrintf(TRUE,FALSE,"\getgrabmode:获取当前抓屏方式\n");
+     OspPrintf(TRUE,FALSE,"\systeminfo:获取系统信息\n");
 }
 
 API void prt( u8 byLevel )
@@ -619,4 +620,76 @@ API void getgrabmode()
     {
         OspPrintf(TRUE, FALSE, "当前为DXGI抓屏方式\n");
     }
+}
+
+std::string WStringToString(const std::wstring &wstr)
+{
+    std::string str(wstr.length(), ' ');
+    std::copy(wstr.begin(), wstr.end(), str.begin());
+    return str;
+}
+
+API void systeminfo()
+{
+    if (NULL == g_dlg)
+    {
+        return;
+    }
+
+    OspPrintf(TRUE, FALSE, "\r\n/****************************************\r\n");
+    CString strPrintMsg = _T("");
+    //获取系统用户名
+    if ( !g_dlg->GetSysUserName(strPrintMsg) )
+    {
+        s8 achUserName[USERNAME_MAX_LENGTH] = {0};
+        strncpy( achUserName, (CT2A)(LPCTSTR)strPrintMsg, USERNAME_MAX_LENGTH );
+        OspPrintf(TRUE, FALSE, "\r\n获取系统用户名失败!, SysUserName:%s \r\n", achUserName);
+    }
+    OspPrintf(TRUE, FALSE, "** 用户名：          %s\r\n", (CT2A)(LPCTSTR)strPrintMsg);
+    //获取OS名称
+    CString strOSName = _T("");
+    CString strOSVersion = _T("");
+    CString strOSArch = _T("");
+    g_dlg->GetOSInfo(strOSName, strOSVersion, strOSArch);
+    strPrintMsg = strOSName + _T(" ") + strOSArch + _T("(Build ") + strOSVersion + _T(")");
+    OspPrintf(TRUE, FALSE, "** 操作系统：        %s\r\n", (CT2A)(LPCTSTR)strPrintMsg);
+    //获取CPU名称、内核数目、主频
+    CString strProcName = _T("");
+    CString strProcType = _T("");
+    DWORD dwNum = 0;
+    DWORD dwMaxClockSpeed = 0;
+    g_dlg->GetCpuInfo(strProcName, strProcType, dwNum, dwMaxClockSpeed);
+    strPrintMsg.Format(_T("(%d CPUs) ~%.2lfGHz"), dwNum, dwMaxClockSpeed/1000.0);
+    strPrintMsg = strProcName + strPrintMsg;
+    OspPrintf(TRUE, FALSE, "** 处理器：          %s \r\n", (CT2A)(LPCTSTR)strPrintMsg);
+    OspPrintf(TRUE, FALSE, "** 处理器类型：      %s \r\n", (CT2A)(LPCTSTR)strProcType);
+    //获取物理内存和虚拟内存大小
+    MEMORYSTATUSEX statusex;
+    statusex.dwLength = sizeof(statusex);
+    if (GlobalMemoryStatusEx(&statusex))
+    {
+        OspPrintf(TRUE, FALSE, "** 物理内存总量：    %.2lf GB\r\n", statusex.ullTotalPhys/1024/1024/1024.0);
+        OspPrintf(TRUE, FALSE, "** 可用物理内存：    %.2lf GB\r\n", statusex.ullAvailPhys/1024/1024/1024.0);
+        OspPrintf(TRUE, FALSE, "** 虚拟内存总量：    %.2lf GB\r\n", statusex.ullTotalVirtual/1024/1024/1024.0);
+        OspPrintf(TRUE, FALSE, "** 可用虚拟内存：    %.2lf GB\r\n", statusex.ullAvailVirtual/1024/1024/1024.0);
+    }
+    //获取显卡信息
+    std::vector<IDXGIAdapter*> vAdapters;
+    g_dlg->GetDisplayCardInfo(vAdapters);
+    //信息输出
+    for (size_t i = 0; i < vAdapters.size(); i++)
+    {
+        //获取信息  
+        DXGI_ADAPTER_DESC adapterDesc;
+        vAdapters[i]->GetDesc(&adapterDesc);
+        std::wstring aa(adapterDesc.Description);
+        std::string bb = WStringToString(aa);
+        //输出显卡信息
+        OspPrintf(TRUE, FALSE, "** 显卡名称：        %s\r\n", bb.c_str());
+        OspPrintf(TRUE, FALSE, "**   系统视频内存：  %dM\r\n", adapterDesc.DedicatedSystemMemory/1024/1024);
+        OspPrintf(TRUE, FALSE, "**   专用视频内存：  %dM\r\n", adapterDesc.DedicatedVideoMemory/1024/1024);
+        OspPrintf(TRUE, FALSE, "**   共享系统内存：  %dM\r\n", adapterDesc.SharedSystemMemory/1024/1024);
+    }
+    vAdapters.swap(std::vector<IDXGIAdapter*>());
+    OspPrintf(TRUE, FALSE, "****************************************/\r\n");
 }

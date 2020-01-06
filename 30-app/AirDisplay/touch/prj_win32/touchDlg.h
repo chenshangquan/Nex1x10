@@ -10,6 +10,7 @@
 #include "datalistclass.h"
 #include "logo.h"
 #include "ppt.h"
+#include <dxgi.h>
 
 // CtouchDlg 对话框
 class CtouchDlg : public CDialogEx
@@ -110,7 +111,14 @@ public:
 
 	void SolvePCNty();      //处理系统睡眠、休眠,重启、关闭的通知
 
-	bool GetSysUserName( CString &strName );  //获取操作系统用户名
+    //获取操作系统用户名
+	bool GetSysUserName( CString &strName );
+    //获取OS操作系统信息
+    void GetOSInfo(CString &strOSName, CString &strOSVersion, CString &strOSArch);
+    //获取CPU名称、内核数目、主频
+    void GetCpuInfo(CString &strProcessorName,CString &strProcessorType,DWORD &dwNum,DWORD &dwMaxClockSpeed);
+    //获取显卡信息
+    void GetDisplayCardInfo(std::vector<IDXGIAdapter*> &vAdapters);
 
     CString GetIniFilePath();  //ini文件路径
 

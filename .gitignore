@@ -4,7 +4,6 @@
 *Release/
 *Debug/
 *ipch/
-*lib*
 *.sdf
 *.sln
 *.suo

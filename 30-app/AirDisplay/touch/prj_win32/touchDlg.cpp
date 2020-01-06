@@ -21,6 +21,7 @@
 #include "lm.h"
 #include "language.h"
 
+#pragma comment(lib,"dxgi.lib")
 #pragma comment(lib,"netapi32.lib")
 
 extern CtouchDlg * g_dlg;
@@ -2056,7 +2057,7 @@ void CtouchDlg::SolveReadInfo(BYTE* recvDataBuf)
 			s8 achName[LENTH_IN_BUFFER_CMD] = {0};
             memcpy( achName, &recvDataBuf[1], LENTH_IN_BUFFER_CMD-1);
             m_strTerName = UTF8_To_CString(achName);
-            PRINTMSG("读线程--收到消息Ev_NV_SendPCTerName_Ntf, strTerName:%s\r\n", CT2A(m_strTerName));
+            PRINTMSG("读线程--收到消息Ev_NV_SendPCTerName_Ntf, strTerName:%s\r\n", (CT2A)(LPCTSTR)m_strTerName);
 		}
 		break;
 	case Ev_Nv_NeedCodeConsult_Ntf:
@@ -3173,7 +3174,7 @@ LRESULT CtouchDlg::OnPCRebootClose( WPARAM wParam, LPARAM lParam )
 
 bool CtouchDlg::GetSysUserName( CString &strName )
 {
-	TCHAR achUserName[USERNAME_MAX_LENGTH];
+    TCHAR achUserName[USERNAME_MAX_LENGTH] = {0};
 	DWORD dwSize=USERNAME_MAX_LENGTH; 
 	::GetUserName(achUserName, &dwSize);
 	
@@ -3201,6 +3202,142 @@ bool CtouchDlg::GetSysUserName( CString &strName )
 	bufptr = NULL;
 
 	return true;
+}
+
+void CtouchDlg::GetOSInfo(CString &strOSName, CString &strOSVersion, CString &strOSArch)
+{
+    CString strPath = _T("Software\\Microsoft\\Windows NT\\CurrentVersion");//注册表子键路径
+    CRegKey regkey;//定义注册表类对象
+    LONG lResult;
+    lResult=regkey.Open(HKEY_LOCAL_MACHINE, LPCTSTR(strPath) ,KEY_READ);//打开注册表子键
+    if (lResult != ERROR_SUCCESS)
+    {
+        return;
+    }
+
+    WCHAR chOSName[MAX_PATH] = {0};
+    DWORD dwSize = MAX_PATH;
+    //获取ProcessorNameString字段值  
+    if (ERROR_SUCCESS == regkey.QueryStringValue(_T("ProductName"), chOSName, &dwSize))
+    {
+        strOSName = chOSName;
+    }
+
+    //获取版本号
+    WCHAR chBuildNum[MAX_PATH] = {0};
+    DWORD dwBuildNumSize = MAX_PATH;
+    DWORD dwMajorVerNum = 0;
+    DWORD dwMinorVerNum = 0;
+    if ( ERROR_SUCCESS == regkey.QueryStringValue(_T("CurrentBuildNumber"), chBuildNum, &dwBuildNumSize)
+        && ERROR_SUCCESS == regkey.QueryDWORDValue(_T("CurrentMajorVersionNumber"), dwMajorVerNum)
+        && ERROR_SUCCESS == regkey.QueryDWORDValue(_T("CurrentMinorVersionNumber"), dwMinorVerNum) )
+    {
+        strOSVersion.Format(_T("%d.%d.%s"), dwMajorVerNum, dwMinorVerNum, chBuildNum);
+    }
+
+    regkey.Close();//关闭注册表
+
+    //系统类型
+    SYSTEM_INFO si;
+    memset(&si, 0, sizeof(SYSTEM_INFO));
+    strOSArch = _T("32bits");
+    GetNativeSystemInfo(&si);
+    if ( si.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_AMD64
+        || si.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_IA64 )
+    {
+        strOSArch = _T("64bits");
+    }
+}
+
+void CtouchDlg::GetCpuInfo(CString &strProcessorName,CString &strProcessorType,DWORD &dwNum,DWORD &dwMaxClockSpeed)
+{
+    CString strPath = _T("HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0");//注册表子键路径
+    CRegKey regkey;//定义注册表类对象
+    LONG lResult;
+    lResult=regkey.Open(HKEY_LOCAL_MACHINE, LPCTSTR(strPath), KEY_READ);//打开注册表子键
+    if (lResult != ERROR_SUCCESS)
+    {
+        return;
+    }
+
+    WCHAR chCPUName[MAX_PATH] = {0};
+    DWORD dwSize=MAX_PATH;
+    //获取ProcessorNameString字段值  
+    if (ERROR_SUCCESS == regkey.QueryStringValue(_T("ProcessorNameString"), chCPUName, &dwSize))
+    {
+        strProcessorName = chCPUName;
+    }
+
+    //查询CPU主频
+    DWORD dwValue = 0;
+    if (ERROR_SUCCESS == regkey.QueryDWORDValue(_T("~MHz"),dwValue))
+    {
+        dwMaxClockSpeed = dwValue;
+    }
+
+    regkey.Close();//关闭注册表
+
+    //获取CPU核心数目  
+    SYSTEM_INFO si;
+    memset(&si, 0, sizeof(SYSTEM_INFO));
+    GetSystemInfo(&si);
+    dwNum = si.dwNumberOfProcessors;
+
+    //获取CPU处理器类型
+    switch (si.dwProcessorType)
+    {
+    case PROCESSOR_INTEL_386:
+        {
+            strProcessorType.Format(_T("Intel 386 processor"));
+        }
+        break;
+    case PROCESSOR_INTEL_486:
+        {
+            strProcessorType.Format(_T("Intel 486 Processor"));
+        }
+        break;
+    case PROCESSOR_INTEL_PENTIUM:
+        {
+            strProcessorType.Format(_T("Intel Pentium Processor"));
+        }
+        break;
+    case PROCESSOR_INTEL_IA64:
+        {
+            strProcessorType.Format(_T("Intel IA64 Processor"));
+        }
+        break;
+    case PROCESSOR_AMD_X8664:
+        {
+            strProcessorType.Format(_T("AMD X8664 Processor"));  
+        }
+        break;
+    default:
+        strProcessorType.Format(_T("未知"));
+        break;
+    }
+}
+
+void CtouchDlg::GetDisplayCardInfo(std::vector<IDXGIAdapter*> &vAdapters)
+{
+    IDXGIFactory * pFactory;
+    IDXGIAdapter * pAdapter;          
+    int iAdapterNum = 0; // 显卡的数量  
+
+    // 创建一个DXGI工厂
+    HRESULT hr = CreateDXGIFactory(__uuidof(IDXGIFactory), (void**)(&pFactory));
+
+    if (FAILED(hr))
+    {
+        return;
+    }
+
+    // 枚举适配器
+    vAdapters.clear();
+    while (pFactory->EnumAdapters(iAdapterNum, &pAdapter) != DXGI_ERROR_NOT_FOUND)
+    {
+        vAdapters.push_back(pAdapter);
+        ++iAdapterNum;
+    }
 }
 
 void CtouchDlg::CheckDedaultAudioDevice()

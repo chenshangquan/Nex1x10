@@ -80,3 +80,5 @@ API void setvlogon( bool bPrtSwitchOn );
 API void setgrabmode( EmGrabMode emGrabMode );
 
 API void getgrabmode();
+
+API void systeminfo();
