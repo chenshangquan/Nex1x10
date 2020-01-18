@@ -128,6 +128,14 @@ typedef enum
 	ALIGN_16_BYTES          //16字节对齐
 }EmAlignBytes;
 
+//GDI截屏方式
+typedef enum
+{
+	GDI_BITBLT_SRCCOPY = 0x0,   //BitBlt SRCCOPY
+	GDI_STRETCHBLT_SRCCOPY,     //StretchBlt SRCCOPY
+	GDI_NONE                    //NONE
+}EmGDIGrabMode;
+
 void GetAllDisplay();
 
 typedef HRESULT(WINAPI * fpDwmEnableComposition)(UINT);

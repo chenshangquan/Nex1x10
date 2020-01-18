@@ -26,6 +26,8 @@ bool g_bPrtSwitchOn = false;
 bool g_bIsWin8OrLater = false;
 //抓屏方式：win7以前为GDI方式，win8以后为DXGI方式
 EmGrabMode g_emGrabMode = MODE_GDI;
+//GDI截屏方式，默认为BitBlt SRCCOPY
+EmGDIGrabMode g_emGDIGrabMode = GDI_BITBLT_SRCCOPY;
 //抓屏默认内存对齐方式：GDI为4字节对齐，DXGI为16字节对齐
 EmAlignBytes g_emAlignBytes = ALIGN_4_BYTES;
 //DXGI抓屏，鼠标状态
@@ -1554,7 +1556,7 @@ int av_new_packet(AVPacket *pkt, int size)
      * @param pkt Packet holding the grabbed frame 
      * @return frame size in bytes 
      */  
-int gdigrab_read_packet(AVFormatContext *s1, AVPacket *pkt)
+int gdigrab_read_packet(AVFormatContext *s1, AVPacket *pkt, DWORD &dwBitBltError)
 {
 	char chMsg[Max_TempCharLength] = { 0 };
 	if (s1 == NULL)
@@ -1642,21 +1644,50 @@ int gdigrab_read_packet(AVFormatContext *s1, AVPacket *pkt)
 	else
 	{
 	}
-	if (!BitBlt(dest_hdc, nLeft, 0,
-		clip_rect.right - clip_rect.left + nLeft,
-		clip_rect.bottom - clip_rect.top,
-		source_hdc,
-		clip_rect.left, clip_rect.top, SRCCOPY )) {  //| CAPTUREBLTSRCCOPY| CAPTUREBLT 13369376NOMIRRORBITMAP
 
-		//获取当前的错误，需要打印到日志
-		DWORD dwError = GetLastError();
-		sprintf_s(chMsg, Max_TempCharLength, "BitBlt have error,GetLastError code:%d,right:%d,bottom:%d,left:%d,top:%d,nScrWidth:%d\n", 
-			dwError, clip_rect.right, clip_rect.bottom,clip_rect.left, clip_rect.top, nScrWidth);
-		WriteToLog(chMsg, strnlen_s(chMsg, Max_TempCharLength));
+	//GDI抓屏，默认为BitBlt方式
+	if (GDI_BITBLT_SRCCOPY == g_emGDIGrabMode)
+	{
+		if (!BitBlt(dest_hdc, nLeft, 0,
+			clip_rect.right - clip_rect.left + nLeft,
+			clip_rect.bottom - clip_rect.top,
+			source_hdc,
+			clip_rect.left, clip_rect.top, SRCCOPY)) {  //| CAPTUREBLTSRCCOPY| CAPTUREBLT 13369376NOMIRRORBITMAP
+			//获取当前的错误，需要打印到日志
+			DWORD dwError = GetLastError();
+			if (0 != dwError)
+			{
+				sprintf_s(chMsg, Max_TempCharLength, "BitBlt have error,GetLastError code:%d,clip_rect:[%d,%d,%d,%d],nScrWidth:%d\n",
+					dwError, clip_rect.left, clip_rect.top, clip_rect.right, clip_rect.bottom, nScrWidth);
+				WriteToLog(chMsg, strnlen_s(chMsg, Max_TempCharLength));
+			}
+			else
+			{//BitBlt返回出错，且GetLastError为0，采用StretchBlt方式再次截屏
+				sprintf_s(chMsg, Max_TempCharLength, "BitBlt have error,GetLastError code:%d,Change GDIGrabMode to StretchBlt\n", dwError);
+				WriteToLog(chMsg, strnlen_s(chMsg, Max_TempCharLength));
+			}
 
-		return 0;//AVERROR(EIO);  
+			dwBitBltError = dwError;
+			return 0;//AVERROR(EIO);
+		}
 	}
-	//}
+	else
+	{
+		if (!StretchBlt(dest_hdc, nLeft, 0,
+			clip_rect.right - clip_rect.left + nLeft,
+			clip_rect.bottom - clip_rect.top,
+			source_hdc,
+			clip_rect.left, clip_rect.top, clip_rect.right - clip_rect.left,
+			clip_rect.bottom - clip_rect.top, SRCCOPY))
+		{//StretchBlt返回出错，重新获取资源再次截屏
+			DWORD dwError = GetLastError();
+			sprintf_s(chMsg, Max_TempCharLength, "StretchBlt have error,GetLastError code:%d,ResizeDestop\n", dwError);
+			WriteToLog(chMsg, strnlen_s(chMsg, Max_TempCharLength));
+
+			dwBitBltError = dwError;
+			return 0;//AVERROR(EIO);  
+		}
+	}
 
 #if _DEBUG
 	LONGLONG   tBitBlt;
@@ -2306,6 +2337,9 @@ void CDesktopCapture::InitAll(bool bjt)
 	{
 		g_emAlignBytes = ALIGN_16_BYTES;
 	}//DXGI默认为16字节对齐
+
+	//GDI截屏默认为BITBLT方式
+	g_emGDIGrabMode = GDI_BITBLT_SRCCOPY;
 
 	///////////////////mult display
 	if(g_tdispInfo.nDeviceCount<=0)
@@ -3057,25 +3091,26 @@ int CDesktopCapture::CaptureScreen()
 		g_bScreenChange = false;
 	}
 
-
+#if _DEBUG
 	LONGLONG   tbegin;
 	QueryPerformanceCounter((LARGE_INTEGER   *)&tbegin);
+#endif
 	CAutoLock  csLock(&m_csDB);
 
 	int nbmpLen = 0;
+	DWORD dwReadError = 0;
 	if (g_emGrabMode == MODE_DXGI)
 	{
 		nbmpLen = dxgi_read_packet(&g_avFormatatContentx, &g_avPacket);
 	}
 	else
 	{
-		nbmpLen = gdigrab_read_packet(&g_avFormatatContentx, &g_avPacket);
+		nbmpLen = gdigrab_read_packet(&g_avFormatatContentx, &g_avPacket, dwReadError);
 	}
-
+#if _DEBUG
 	LONGLONG   tcapure;
 	QueryPerformanceCounter((LARGE_INTEGER   *)&tcapure);
 
-#if _DEBUG
 	if (g_nCpuPerial > 0)
 	{
 		int ndelay = (tcapure - tbegin) * 1000 / g_nCpuPerial;
@@ -3088,13 +3123,29 @@ int CDesktopCapture::CaptureScreen()
 
 	if (nbmpLen == 0)
 	{
-		if (m_bDXInit)
-		{
-			sprintf_s(chMsg, Max_TempCharLength, "截屏没有获取到数据，read_packet 返回长度:%d\n", nbmpLen);
-			WriteToLog(chMsg, strnlen_s(chMsg, Max_TempCharLength));
-			return 2;
+		if ( MODE_DXGI == g_emGrabMode)
+		{//DXGI截屏
+			if (!m_bDXInit)
+			{
+				return 20;//锁屏时不获取数据
+			}
 		}
-		return 20;//锁屏时不获取数据
+		else
+		{//GDI截屏
+		   //BitBlt返回出错,GetLastError != 0，或者
+		   //StretchBlt返回出错，重新获取资源再次截屏
+			if (0 != dwReadError || GDI_STRETCHBLT_SRCCOPY == g_emGDIGrabMode)
+			{
+				ResizeDestop();
+				g_emGDIGrabMode = GDI_BITBLT_SRCCOPY;
+			}
+			//BitBlt返回出错，且GetLastError为0，采用StretchBlt方式再次截屏
+			else if (GDI_BITBLT_SRCCOPY == g_emGDIGrabMode)
+			{
+				g_emGDIGrabMode = GDI_STRETCHBLT_SRCCOPY;
+			}
+		}
+		return 2;
 	}
 	RECT   clip_rect = gdigrab->clip_rect;
 
@@ -3422,8 +3473,8 @@ void GetAllDisplay()
 				 if (dspNum <= 0)
 				 {
 					 char chLog[Max_TempCharLength] = { 0 };
-					 //DWORD dwError = GetLastError();
-					 sprintf_s(chLog, "EnumDisplaySettings没有获得屏幕信息,DeviceName %s,display count:%d\n", ddDisplay.DeviceName, dspNum);
+					 DWORD dwError = GetLastError();
+					 sprintf_s(chLog, "LastError:%d,EnumDisplaySettings没有获得屏幕信息,DeviceName %s,display count:%d\n", dwError, ddDisplay.DeviceName, dspNum);
 					 WriteToLog(chLog, Max_TempCharLength);
 					 break;
 				 }
@@ -4029,7 +4080,8 @@ bool CDesktopCapture::QueryFrame(void* pImgData, INT& nImgSize)
 		//锁屏时，获取桌面句柄失败
 		if (m_bDXInit)
 		{
-			sprintf_s(chMsg, Max_TempCharLength, "OpenInputDesktop failed\n");
+			DWORD dwError = GetLastError();
+			sprintf_s(chMsg, Max_TempCharLength, "OpenInputDesktop failed, LastError: %d\n", dwError);
 			WriteToLog(chMsg, strnlen_s(chMsg, Max_TempCharLength));
 		}
 		DestroyDXGI();
@@ -4170,7 +4222,7 @@ bool CDesktopCapture::QueryFrame(void* pImgData, INT& nImgSize)
 			WriteToLog(chMsg, strnlen_s(chMsg, Max_TempCharLength));
 
 			//采集数据对齐方式发生改变
-			if ( (mappedRect.Pitch % 4) != 0  )
+			if ( ((mappedRect.Pitch/4) % 4) != 0  )
 			{
 				g_emAlignBytes = ALIGN_NO_BYTES;//实际抓屏数据无对齐方式
 			}

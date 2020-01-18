@@ -100,7 +100,7 @@ BOOL CBannerDlg::PreTranslateMessage(MSG* pMsg)
 
 void CBannerDlg::InitUI()
 {
-	int nWidthTmp = MULX(342+16);
+	int nWidthTmp = MULX(342+14);
 	int nHeighTmp = MULY(32+8);
 
 	int width = (GetSystemMetrics ( SM_CXSCREEN )-nWidthTmp)/2; 
@@ -109,7 +109,7 @@ void CBannerDlg::InitUI()
 
 	m_staticBanner.SetWindowPos( NULL, MULX(57), MULY(8), MULX(244), MULY(16), SWP_SHOWWINDOW/*SWP_NOSIZE*/ );
 	//m_btnBannerClose.SetWindowPos( NULL, MULX(251), MULY(10), MULX(74), MULY(16), SWP_SHOWWINDOW/*SWP_NOSIZE*/ );
-    m_staPicStatusBar.SetWindowPos( NULL, MULX(8), MULY(36), MULX(342), MULY(4), SWP_HIDEWINDOW/*SWP_NOSIZE*/ );
+    m_staPicStatusBar.SetWindowPos( NULL, MULX(7), MULY(32), MULX(342), MULY(4), SWP_HIDEWINDOW/*SWP_NOSIZE*/ );
 
 	CString strName;
 	if ( g_dlg != NULL )
@@ -120,6 +120,12 @@ void CBannerDlg::InitUI()
 	CString strDes = strName + STRING_PROJECTING;
 	m_staticBanner.SetWindowText(strDes);
 
+    //状态条绘制
+    u32 dwSliceNum = m_pImgStatusBar->GetWidth()/STTBAR_WID;
+    m_staPicStatusBar.SetStatusBarDraw(TRUE, STTBAR_WID, STTBAR_HEI, dwSliceNum);
+    m_staPicStatusBar.ShowWindow(SW_SHOW);
+    SetTimer(StatusBarTimerId,100,NULL);
+    m_bShowStatusBar = TRUE;
 	//m_btnBannerClose.SetWindowText(STRING_STOP_PROJECTING);
 	
 }
@@ -139,7 +145,7 @@ int CBannerDlg::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	//获得边缘高度和宽度
 	m_dwEdgeHeight = GetSystemMetrics(SM_CYEDGE);
-	m_dwEdgeWidth  = 3/* GetSystemMetrics(SM_CXFRAME)*/;
+	m_dwEdgeWidth  = 8/* GetSystemMetrics(SM_CXFRAME)*/;
 
 	//可以在这里读取上次关闭后保存的大小
 
@@ -156,7 +162,7 @@ LRESULT CBannerDlg::OnNcHitTest(CPoint point)
 		//SetTimer(HideTimerId,CM_ELAPSE,NULL);
 
         //隐藏状态条
-        StopStatusBarDraw();
+        //StopStatusBarDraw();
 
 		m_bIsSetTimer = TRUE;
 
@@ -253,13 +259,13 @@ void CBannerDlg::IsHideStatusBar()
 
 BOOL CBannerDlg::SetWindowPos(const CWnd* pWndInsertAfter, LPCRECT pCRect, UINT nFlags)
 {
-    if (m_bShowStatusBar)
+    /*if (m_bShowStatusBar)
     {
         u32 dwSliceNum = m_pImgStatusBar->GetWidth()/STTBAR_WID;
         m_staPicStatusBar.SetStatusBarDraw(TRUE, STTBAR_WID, STTBAR_HEI, dwSliceNum);
         m_staPicStatusBar.ShowWindow(SW_SHOW);
         SetTimer(StatusBarTimerId,100,NULL);
-    }
+    }*/
 
 	return CDialog::SetWindowPos(pWndInsertAfter,pCRect->left, pCRect->top,
 		pCRect->right - pCRect->left, pCRect->bottom - pCRect->top, nFlags);
@@ -282,7 +288,7 @@ void CBannerDlg::Hide()
 		//更好的办法是添加个BOOL值来控制,其他case同样.
 		tRect.bottom = m_dwEdgeWidth;
 		m_bIsFinished = TRUE;  //完成隐藏过程
-        m_bShowStatusBar = TRUE;
+        //m_bShowStatusBar = TRUE;
 	}
 	tRect.top = tRect.bottom - height; 
     m_tHideRect = tRect;
@@ -292,7 +298,7 @@ void CBannerDlg::Hide()
 
 void CBannerDlg::Show()
 {
-    m_bShowStatusBar = FALSE;
+    //m_bShowStatusBar = FALSE;
 
 	CRect tRect;
 	GetWindowRect(tRect);

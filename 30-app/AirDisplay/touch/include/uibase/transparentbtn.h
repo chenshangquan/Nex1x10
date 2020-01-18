@@ -100,6 +100,16 @@ public:
         m_bShowText = bShow;
     }
 
+    void    ShowBk( BOOL32 bShow )
+    {
+        m_bShowBk = bShow;
+    }
+
+    void    ShowEdge( BOOL32 bShow )
+    {
+        m_bShowEdge = bShow;
+    }
+
     enum EmTextAlignment
     {
         emAlignmentLeft = 0,
@@ -165,6 +175,24 @@ public:
 
 	void BtnPressed( BOOL bIsPressed ){ m_bPressed = bIsPressed; }
 	void SetTextColor( Color colorNormal, Color colorPress, Color colorHover, Color colorDisable );
+    
+    void SetWindowText( CString strWindowText)
+    {
+        m_strText = strWindowText;
+
+        if ( NULL != m_hParent )
+        {
+            ::SendMessage( m_hParent, WM_REDRAW_UI, NULL, NULL );
+        }
+    }
+
+    void GetWindowText( CString &strWindowText)
+    {
+        strWindowText = m_strText;
+    }
+
+    void SetBkColor( Color colorNormal, Color colorPress, Color colorHover, Color colorDisable );
+    void SetEdgeColor( Color colorNormal, Color colorPress, Color colorHover, Color colorDisable );
 
 public:
     BOOL32  m_bScale;
@@ -193,6 +221,8 @@ protected:
     EmStatus    m_emStatus;
 
     BOOL32  m_bShowText;
+    BOOL32  m_bShowBk;
+    BOOL32  m_bShowEdge;
 
     EmTextAlignment m_emTextAlign;
     CPoint  m_cPoint;
@@ -205,6 +235,9 @@ protected:
 	BOOL    m_bPressed;
 
 	Color   m_cColor[4];//ÎÄ×ÖÑÕÉ«
+    CString m_strText;//°´Å¥ÎÄ×Ö
+    Color   m_cBkColor[4];//±³¾°ÑÕÉ«
+    Color   m_cEdgeColor[4];//±ß¿òÑÕÉ«
 private:
 	bool m_bButtonDown;
 	bool m_bTracking;

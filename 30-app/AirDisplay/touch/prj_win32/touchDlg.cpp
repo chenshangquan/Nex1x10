@@ -1535,7 +1535,7 @@ LRESULT CtouchDlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 
             //分辨率更改时，Banner窗口主动显示
             //停止滚动条显示
-            m_pcBannerDlg->StopStatusBarDraw();
+            //m_pcBannerDlg->StopStatusBarDraw();
             //SetBannerAutoHide();
         }
         break;
@@ -1543,7 +1543,7 @@ LRESULT CtouchDlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
         {
             //缩放与布局更改时，Banner窗口主动显示
             //停止滚动条显示
-            m_pcBannerDlg->IsHideStatusBar();
+            //m_pcBannerDlg->IsHideStatusBar();
         }
         break;
 	}

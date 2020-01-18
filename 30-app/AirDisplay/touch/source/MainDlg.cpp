@@ -23,7 +23,19 @@ CMainDlg::CMainDlg(CWnd* pParent /*=NULL*/)
 	m_btnPicBk.SetImage( IDB_CONNECT_BK, IDB_CONNECT_BK, IDB_CONNECT_BK,IDB_CONNECT_BK);
 	m_btnPicConnectFail.SetImage( IDB_CONNECT_FAIL, IDB_CONNECT_FAIL,IDB_CONNECT_FAIL,IDB_CONNECT_FAIL);
     m_btnPicStatus.SetImage(IDB_STATUS_CONNECTING, IDB_STATUS_CONNECTING, IDB_STATUS_CONNECTING, IDB_STATUS_CONNECTING);
-	m_btnPicBkUpgrade.SetImage( IDB_UPGRADE_BK, IDB_UPGRADE_BK, IDB_UPGRADE_BK,IDB_UPGRADE_BK);
+
+    //升级提示相关
+    m_btnIgnoreUpgrade.ShowBk(TRUE);
+	m_btnIgnoreUpgrade.SetBkColor(Color(239,242,244), Color(255,255,255), Color(46,140,193), Color(255,255,255));
+    m_btnIgnoreUpgrade.ShowEdge(TRUE);
+    m_btnIgnoreUpgrade.SetEdgeColor(Color(220,223,225), Color(46,140,193), Color(255,255,255), Color(255,255,255));
+    m_btnIgnoreUpgrade.ShowText(TRUE);
+    m_btnIgnoreUpgrade.SetFont(10, g_achDefaultFont);
+    m_btnIgnoreUpgrade.SetTextColor(Color(95,95,95), Color(0,122,192), Color(255,255,255), Color(255,255,255));
+    m_btnIgnoreUpgrade.SetTextAlign(CTransparentBtn::emAlignmentCenter);
+    m_btnIgnoreUpgrade.SetWindowText(STRING_SHOW_IGNORE_UPGRADE);
+    
+    
 	//m_pImgBK = CUtility::GetImage( IDB_MAINBK, _T("PNG") );
 	//m_staticPic.SetBkImage( m_pImgBK );
 
@@ -38,14 +50,14 @@ CMainDlg::CMainDlg(CWnd* pParent /*=NULL*/)
 	m_stTipDes.SetTextColor(DEFAULT_FONT_COLOR);
 	m_stTipDes.SetTextAlign(CTransparentStatic::emLineAlignmentLeft);
 
-	m_stUpgradeTip1.SetFont(11, g_achDefaultFont);
+	/*m_stUpgradeTip1.SetFont(11, g_achDefaultFont);
 	m_stUpgradeTip1.SetTextColor(DEFAULT_FONT_COLOR);
 	
 	m_stUpgradeTip2.SetFont(11, g_achDefaultFont);
 	m_stUpgradeTip2.SetTextColor(DEFAULT_FONT_COLOR);
 	
 	m_linkIgnore.SetFont(10, g_achDefaultFont);
-	m_linkIgnore.SetTextColor(UPGRADE_FONT_COLOR);
+	m_linkIgnore.SetTextColor(UPGRADE_FONT_COLOR);*/
 
 	m_bIsShowUpgrade = false;
 }
@@ -68,15 +80,16 @@ void CMainDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_BTN_PIC_FAIL, m_btnPicConnectFail);
 	DDX_Control(pDX, IDC_PIC_CONNECT_SUCCESS, m_stGifConnectSuccess);
 	DDX_Control(pDX, IDC_PIC_CONNECTING, m_stGifConnecting);
-	DDX_Control(pDX, IDC_BTN_PIC_UPGRADE, m_btnPicBkUpgrade);
-	DDX_Control(pDX, IDC_STATIC_UPGRADE_TIP1, m_stUpgradeTip1);
+	DDX_Control(pDX, IDC_BTN_PIC_UPGRADE, m_btnIgnoreUpgrade);
+	/*DDX_Control(pDX, IDC_STATIC_UPGRADE_TIP1, m_stUpgradeTip1);
 	DDX_Control(pDX, IDC_STATIC_UPGRADE_TIP2, m_stUpgradeTip2);
-	DDX_Control(pDX, IDC_SYSLINK_IGNORE, m_linkIgnore);
+	DDX_Control(pDX, IDC_SYSLINK_IGNORE, m_linkIgnore);*/
 }
 
 BEGIN_MESSAGE_MAP(CMainDlg, CBaseDlg)
 	ON_BN_CLICKED(IDC_BTNMIN, &CMainDlg::OnBnMin)
 	ON_BN_CLICKED(IDC_BTNCLOSE, &CMainDlg::OnBtnClose)
+    ON_BN_CLICKED(IDC_BTN_PIC_UPGRADE, &CMainDlg::OnBtnIgnoreUpgrade)
 	ON_WM_PAINT()
 	ON_WM_NCHITTEST()
 	ON_NOTIFY(NM_CLICK, IDC_SYSLINK_IGNORE, &CMainDlg::OnNMClickSyslinkIgnore)
@@ -132,10 +145,10 @@ void CMainDlg::InitUI()
 	m_stGifConnecting.SetWindowPos( NULL, MULX(215), MULY(213), MULX(70), MULY(6), SWP_HIDEWINDOW );
 	m_btnPicConnectFail.SetWindowPos( NULL, MULX(215), MULY(205), MULX(70), MULY(22), SWP_HIDEWINDOW );
 	m_stGifConnectSuccess.SetWindowPos( NULL, MULX(45), MULY(141), MULX(410), MULY(130), SWP_HIDEWINDOW );
-	m_btnPicBkUpgrade.SetWindowPos( NULL, MULX(50), MULY(135), MULX(204), MULY(115), SWP_HIDEWINDOW );
-	m_stUpgradeTip1.SetWindowPos( NULL, MULX(260), MULY(135), MULX(238), MULY(18), SWP_HIDEWINDOW );
+	m_btnIgnoreUpgrade.SetWindowPos( NULL, MULX(127), MULY(186), MULX(100), MULY(24), SWP_HIDEWINDOW );
+	/*m_stUpgradeTip1.SetWindowPos( NULL, MULX(260), MULY(135), MULX(238), MULY(18), SWP_HIDEWINDOW );
 	m_stUpgradeTip2.SetWindowPos( NULL, MULX(267), MULY(161), MULX(225), MULY(18), SWP_HIDEWINDOW );
-	m_linkIgnore.SetWindowPos( NULL, MULX(295), MULY(201), MULX(200), MULY(18), SWP_HIDEWINDOW );
+	m_linkIgnore.SetWindowPos( NULL, MULX(295), MULY(201), MULX(200), MULY(18), SWP_HIDEWINDOW );*/
 
 	m_stGifConnectSuccess.SetImage(IDR_GIF_CONNECT_SUCCESS);
 	m_stGifConnectSuccess.SetTimerDelay(50);
@@ -161,6 +174,15 @@ void CMainDlg::OnBtnInfo()
 void CMainDlg::OnBtnClose()
 {
 	g_dlg->OnHide();
+}
+
+void CMainDlg::OnBtnIgnoreUpgrade()
+{
+    if ( g_dlg != NULL )
+    {
+        m_bIsShowUpgrade = false;
+        ShowConnectStatus(g_dlg->m_bCurConnetStatus);
+    }
 }
 
 void CMainDlg::OnPaint()
@@ -387,23 +409,34 @@ void CMainDlg::ShowUpgradeControl( bool bShow )
 	{
 		nShow = SW_SHOW;
 		m_stTip.SetWindowText(STRING_SHOW_UPGRADE);
-		m_stTipDes.SetWindowText(_T(""));
+        m_stTip.SetTextColor(TIP_FONT_COLOR_UPGRADE);
+        m_stTip.SetWindowPos( NULL, MULX(123), MULY(111), MULX(332), MULY(18), SWP_SHOWWINDOW/*SWP_NOSIZE*/ );
+		m_stTipDes.SetWindowText(STRING_SHOW_UPGRADE_TIP);
+        m_stTipDes.SetWindowPos( NULL, MULX(123), MULY(136), MULX(346), MULY(40), SWP_SHOWWINDOW/*SWP_NOSIZE*/ );
+        m_btnPicStatus.SetImage(IDB_STATUS_UPGRADE, IDB_STATUS_UPGRADE, IDB_STATUS_UPGRADE, IDB_STATUS_UPGRADE);
+        m_btnPicStatus.SetWindowPos( NULL, MULX(52), MULY(105), MULX(56), MULY(56), SWP_SHOWWINDOW );
 
-		m_btnPicBk.ShowWindow(SW_HIDE);
+        m_btnPicBk.ShowWindow(SW_HIDE);
 		m_btnPicConnectFail.ShowWindow(SW_HIDE);
 		m_stGifConnecting.StopGif();
 		m_stGifConnecting.ShowWindow(SW_HIDE);
 		m_stGifConnectSuccess.StopGif();
 		m_stGifConnectSuccess.ShowWindow(SW_HIDE);
 	}
+    else
+    {
+        m_stTip.SetWindowPos( NULL, MULX(123), MULY(76), MULX(332), MULY(18), SWP_SHOWWINDOW/*SWP_NOSIZE*/ );
+        m_stTipDes.SetWindowPos( NULL, MULX(123), MULY(103), MULX(346), MULY(40), SWP_SHOWWINDOW/*SWP_NOSIZE*/ );
+        m_btnPicStatus.SetWindowPos( NULL, MULX(52), MULY(69), MULX(56), MULY(56), SWP_SHOWWINDOW );
+    }
 
-	m_stUpgradeTip1.ShowWindow(nShow);
+	/*m_stUpgradeTip1.ShowWindow(nShow);
 	m_stUpgradeTip1.SetWindowText(STRING_SHOW_UPGRADE_TIP1);
 	m_stUpgradeTip2.ShowWindow(nShow);
 	m_stUpgradeTip2.SetWindowText(STRING_SHOW_UPGRADE_TIP2);
 	m_linkIgnore.ShowWindow(nShow);
-    m_linkIgnore.SetWindowText(STRING_SHOW_LINK_IGNORE);
-	m_btnPicBkUpgrade.ShowWindow(nShow);
+    m_linkIgnore.SetWindowText(STRING_SHOW_LINK_IGNORE);*/
+	m_btnIgnoreUpgrade.ShowWindow(nShow);
 }
 
 void CMainDlg::OnNMClickSyslinkIgnore( NMHDR *pNMHDR, LRESULT *pResult )

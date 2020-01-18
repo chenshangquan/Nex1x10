@@ -46,6 +46,7 @@ protected:
 	afx_msg void OnBnMin();
 	afx_msg void OnBtnInfo();
 	afx_msg void OnBtnClose();
+    afx_msg void OnBtnIgnoreUpgrade();
 	afx_msg void OnPaint();
 	afx_msg void OnBnClickedBtnUpgrade();
 	afx_msg void OnNMClickSyslinkIgnore(NMHDR *pNMHDR, LRESULT *pResult);
@@ -70,10 +71,10 @@ private:
 	CTransparentGif m_stGifConnectSuccess;
 	CTransparentGif m_stGifConnecting;
 	//升级提示相关
-	CTransparentBtn m_btnPicBkUpgrade;
-	CTransparentStatic	m_stUpgradeTip1;
+	CTransparentBtn m_btnIgnoreUpgrade;
+	/*CTransparentStatic	m_stUpgradeTip1;
 	CTransparentStatic	m_stUpgradeTip2;
-	CTransparentSysLink m_linkIgnore;
+	CTransparentSysLink m_linkIgnore;*/
 
 	bool m_bIsShowUpgrade;//升级控件是否已经显示
 

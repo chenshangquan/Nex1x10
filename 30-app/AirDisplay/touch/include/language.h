@@ -93,6 +93,10 @@ extern EMLangID g_emLanType; //语言类型
     #define SHOW_UPGRADE_ENG                        "New Version Released"
 #define STRING_SHOW_UPGRADE                         TRANSLATE(SHOW_UPGRADE_)
 
+    #define SHOW_UPGRADE_TIP_CHN                   "请将无线投屏发射器连接至显示端的USB接口进行升级"
+    #define SHOW_UPGRADE_TIP_ENG                   "Please Plug NT30 to USB on the equipment for Upgrading"
+#define STRING_SHOW_UPGRADE_TIP                    TRANSLATE(SHOW_UPGRADE_TIP_)
+
     #define SHOW_UPGRADE_TIP1_CHN                   "请将无线投屏发射器连接至显示端的"
     #define SHOW_UPGRADE_TIP1_ENG                   "Please Plug NT30 to USB on"
 #define STRING_SHOW_UPGRADE_TIP1                    TRANSLATE(SHOW_UPGRADE_TIP1_)
@@ -100,6 +104,10 @@ extern EMLangID g_emLanType; //语言类型
     #define SHOW_UPGRADE_TIP2_CHN                   "USB接口进行升级"
     #define SHOW_UPGRADE_TIP2_ENG                   "the equipment for Upgrading"
 #define STRING_SHOW_UPGRADE_TIP2                    TRANSLATE(SHOW_UPGRADE_TIP2_)
+
+    #define SHOW_IGNORE_UPGRADE_CHN                 "继续投屏"
+    #define SHOW_IGNORE_UPGRADE_ENG                 "Decide later"
+#define STRING_SHOW_IGNORE_UPGRADE                  TRANSLATE(SHOW_IGNORE_UPGRADE_)
 
     #define SHOW_LINK_IGNORE_CHN                    "<a href=\"暂不升级,继续投屏\">暂不升级,继续投屏</a>"
     #define SHOW_LINK_IGNORE_ENG                    "<a href=\"Optional: Decide later\">Optional: Decide later</a>"

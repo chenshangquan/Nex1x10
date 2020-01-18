@@ -36,6 +36,8 @@ extern "C" {
 #define WIFIM_COL_NUM          10
 #define WIFIM_COL_MNUM         50
 #define WIFIM_COL_BUF          128
+#define WIFIM_EPOLL_MAX_FD     1
+#define WIFIM_EPOLL_TIMEOUT    30
 
 typedef enum mNetLinkErr {
 	NET_ERROR,

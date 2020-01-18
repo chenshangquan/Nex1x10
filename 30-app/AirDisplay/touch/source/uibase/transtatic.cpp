@@ -163,7 +163,7 @@ void CTranStatic::DrawBk( HWND hWnd, Graphics *pGraphics )
 	{
         if (m_bSttBarDraw)
         {
-            RectF destRect(cRectBK.left-1, cRectBK.top-1, cRectBK.Width()+1, cRectBK.Height()+1);
+            RectF destRect(cRectBK.left, cRectBK.top, cRectBK.Width(), cRectBK.Height());
             pGraphics->DrawImage( m_pImgBk, destRect, m_dwSttBarWidth*m_dwSttBarDrawCount, 0, m_dwSttBarWidth, m_dwSttBarHeight, UnitPixel);
             m_dwSttBarDrawCount++;
         }

@@ -152,6 +152,7 @@
     <None Include="res\status_connected.png" />
     <None Include="res\status_connecting.png" />
     <None Include="res\status_notpaired.png" />
+    <None Include="res\status_upgrade.png" />
     <None Include="res\tip.png" />
     <None Include="res\touch.ico" />
     <None Include="res\touch.rc2" />

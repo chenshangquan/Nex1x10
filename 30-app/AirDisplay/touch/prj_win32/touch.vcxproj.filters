@@ -226,6 +226,9 @@
     <None Include="res\trayicon12.ico">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="res\status_upgrade.png">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="touch.h">

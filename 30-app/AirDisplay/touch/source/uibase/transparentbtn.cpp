@@ -35,6 +35,8 @@ CTransparentBtn::CTransparentBtn()
 	m_hTargetWnd = NULL;
 
     m_bShowText = FALSE;
+    m_bShowBk = FALSE;
+    m_bShowEdge  =FALSE;
 
     m_cPoint = CPoint( 0, 0 );
 
@@ -52,6 +54,8 @@ CTransparentBtn::CTransparentBtn()
 	for (int i=0; i<4; i++)
 	{
 		m_cColor[i] = Color( 255, 255, 255 );
+        m_cBkColor[i] = Color( 255, 255, 255 );
+        m_cEdgeColor[i] = Color( 255, 255, 255 );
 	}
 }
 
@@ -117,10 +121,10 @@ LRESULT CTransparentBtn::OnRedrawUI( WPARAM wParam, LPARAM lParam )
     GetWindowText( strWindowText );
 #endif // _DEBUG
 	
-    if ( 0 == m_dwNormalResID )
+    /*if ( 0 == m_dwNormalResID )
     {
         return S_FALSE;
-    }
+    }*/
 	
     if ( NULL == m_pImgNormal && 0 != m_dwNormalResID )
     {
@@ -166,13 +170,16 @@ LRESULT CTransparentBtn::OnRedrawUI( WPARAM wParam, LPARAM lParam )
     }
     else
     {
-        if ( cRect.Width() != m_pImgNormal->GetWidth()
+        if ( 0 == m_dwNormalResID )
+        {
+            cRect.right = cRect.left + cRect.Width();
+            cRect.bottom = cRect.top + cRect.Height();
+        }
+        else if ( cRect.Width() != m_pImgNormal->GetWidth()
 			|| cRect.Height() != m_pImgNormal->GetHeight() )
         {
             cRect.right = cRect.left + cRect.Width();
             cRect.bottom = cRect.top + cRect.Height();
-			
-            //SetWindowPos( NULL, 0, 0, m_pImgNormal->GetWidth(), m_pImgNormal->GetHeight(), SWP_NOMOVE );
         }
     }
     POINT point = cRect.TopLeft();
@@ -198,77 +205,87 @@ LRESULT CTransparentBtn::OnRedrawUI( WPARAM wParam, LPARAM lParam )
         pImage = m_pImgDisable;
     }
 	
+    //draw image
     if ( NULL != pImage )
     {
-       /* if ( TRUE == m_bScale )
+        pGraphics->DrawImage( pImage, point.x, point.y, cRect.Width(), cRect.Height() );
+	}
+
+    //draw backcolor
+    if ( TRUE == m_bShowBk )
+    {
+        Color colorBk;
+        colorBk = m_cBkColor[m_emStatus];
+        SolidBrush BkBrush(colorBk);
+        pGraphics->FillRectangle(&BkBrush, point.x-1, point.y-1, cRect.Width()+1, cRect.Height()+1);;
+    }
+
+    //draw edge
+    if ( TRUE == m_bShowEdge )
+    {
+        Color colorEdge;
+        colorEdge = m_cEdgeColor[m_emStatus];
+        pGraphics->DrawRectangle(new Pen(colorEdge), point.x-1, point.y-1, cRect.Width()+1, cRect.Height()+1);
+        //pGraphics->DrawRectangle(new Pen(colorEdge), point.x, point.y, cRect.Width()-1, cRect.Height()-1);//innerBounds
+        //pGraphics->DrawRectangle(new Pen(colorEdge), point.x-1, point.y-1, cRect.Width()+1, cRect.Height()+1);//outerBounds
+    }
+
+    //draw string
+    if ( TRUE == m_bShowText )
+    {
+        FontFamily fontFamily( m_awszFontName );
+        Gdiplus::Font font( &fontFamily, m_dwFontSize );
+        
+        Color colorText;
+        if ( TRUE == m_bPressed )
         {
-            pGraphics->DrawImage( pImage, point.x, point.y, pImage->GetWidth(), pImage->GetHeight() );
+            colorText = Color( 19, 171, 218 );
         }
         else
-        {*/
-            pGraphics->DrawImage( pImage, point.x, point.y, cRect.Width(), cRect.Height() );
-       // }
-		
-        if ( TRUE == m_bShowText )
         {
-            FontFamily fontFamily( m_awszFontName );
-			Gdiplus::Font font( &fontFamily, m_dwFontSize );
-			
-			Color colorText;
-			if ( m_bPressed == TRUE )
-			{
-				colorText = Color( 19, 171, 218 );
-			}
-			else
-			{
-				colorText = m_cColor[m_emStatus];
-			}
-            SolidBrush brush( colorText ); // 创建绿色的实心刷（写字符串用）
-            pGraphics->SetTextRenderingHint( TextRenderingHint( TextRenderingHintAntiAlias ) );
-			
-            CString strText;
-            GetWindowText( strText );
-//             WCHAR *pwszText = NULL;
-//             pwszText = new WCHAR[strText.GetLength() + 1];
-//             ZeroMemory( pwszText, (strText.GetLength() + 1) * 2 );
-//             //ASNI TO UNICODE
-//             MultiByteToWideChar( CP_ACP, 0, (LPCSTR)strText, -1, (WCHAR*)(pwszText), strText.GetLength());
-			
-            StringFormat sf;
-            sf.SetLineAlignment( StringAlignmentCenter );
-            if ( emAlignmentUserDef == m_emTextAlign )
+            colorText = m_cColor[m_emStatus];
+        }
+        
+        SolidBrush brush( colorText ); // 创建绿色的实心刷（写字符串用）
+        pGraphics->SetTextRenderingHint( TextRenderingHint( TextRenderingHintAntiAlias ) );
+        
+        CString strText;
+        GetWindowText( strText );
+        
+        StringFormat sf;
+        sf.SetLineAlignment( StringAlignmentCenter );
+        if ( emAlignmentUserDef == m_emTextAlign )
+        {
+            pGraphics->DrawString( strText, -1, &font, RectF( (float)point.x + m_cPoint.x, (float)point.y, cRect.Width(), cRect.Height() ), &sf, &brush );
+        }
+        else
+        {
+            if ( emAlignmentLeft == m_emTextAlign )
             {
-                pGraphics->DrawString( strText, -1, &font, RectF( (float)point.x + m_cPoint.x, (float)point.y, cRect.Width(), cRect.Height() ), &sf, &brush );
+                sf.SetAlignment( StringAlignmentNear );
+            }
+            else if ( emAlignmentCenter == m_emTextAlign )
+            {
+                sf.SetAlignment( StringAlignmentCenter );
             }
             else
             {
-                if ( emAlignmentLeft == m_emTextAlign )
-                {
-                    sf.SetAlignment( StringAlignmentNear );
-                }
-                else if ( emAlignmentCenter == m_emTextAlign )
-                {
-                    sf.SetAlignment( StringAlignmentCenter );
-                }
-                else
-                {
-                    sf.SetAlignment( StringAlignmentFar );
-                }
-				
-                /*if ( TRUE == m_bScale )
-                {
-                    pGraphics->DrawString( pwszText, -1, &font, RectF( (float)point.x, (float)point.y, 
-						m_pImgNormal->GetWidth(),  m_pImgNormal->GetHeight() ), 
-						&sf, &brush );
-                }
-                else
-                {*/
-                    pGraphics->DrawString( strText, -1, &font, RectF( (float)point.x, (float)point.y, m_pImgNormal->GetWidth(), m_pImgNormal->GetHeight() ), &sf, &brush );
-                //}
+                sf.SetAlignment( StringAlignmentFar );
             }
-				//delete []pwszText;
-			}
-		}
+            
+            /*if ( TRUE == m_bScale )
+            {
+                pGraphics->DrawString( pwszText, -1, &font, RectF( (float)point.x, (float)point.y, 
+                    m_pImgNormal->GetWidth(),  m_pImgNormal->GetHeight() ), 
+                    &sf, &brush );
+            }
+            else
+            {*/
+            pGraphics->DrawString( strText, -1, &font, RectF( (float)point.x, (float)point.y, cRect.Width(), cRect.Height() ), &sf, &brush );
+                //pGraphics->DrawString( strText, -1, &font, RectF( (float)point.x, (float)point.y, m_pImgNormal->GetWidth(), m_pImgNormal->GetHeight() ), &sf, &brush );
+            //}
+        }
+	}
 		
 
 	/*if ( cRect.Width() != m_pImgNormal->GetWidth()
@@ -370,4 +387,20 @@ void CTransparentBtn::SetTextColor( Color colorNormal, Color colorPress, Color c
 	m_cColor[emStatusBtnDown] = colorPress;
 	m_cColor[emStatusOver] = colorHover;
 	m_cColor[emStatusBtnDisable] = colorDisable;
+}
+
+void CTransparentBtn::SetBkColor( Color colorNormal, Color colorPress, Color colorHover, Color colorDisable )
+{
+    m_cBkColor[emStatusNormal] = colorNormal;
+    m_cBkColor[emStatusBtnDown] = colorPress;
+    m_cBkColor[emStatusOver] = colorHover;
+    m_cBkColor[emStatusBtnDisable] = colorDisable;
+}
+
+void CTransparentBtn::SetEdgeColor( Color colorNormal, Color colorPress, Color colorHover, Color colorDisable )
+{
+    m_cEdgeColor[emStatusNormal] = colorNormal;
+    m_cEdgeColor[emStatusBtnDown] = colorPress;
+    m_cEdgeColor[emStatusOver] = colorHover;
+    m_cEdgeColor[emStatusBtnDisable] = colorDisable;
 }
